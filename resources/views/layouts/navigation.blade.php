@@ -18,6 +18,30 @@
                 </div>
             </div>
 
+            <!-- Public Navigation Links -->
+            @guest
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                    About
+                </x-nav-link>
+                <x-nav-link href="{{ route('program') }}" :active="request()->routeIs('program')">
+                    Program
+                </x-nav-link>
+                <x-nav-link href="{{ route('kuota') }}" :active="request()->routeIs('kuota')">
+                    Kuota
+                </x-nav-link>
+                <x-nav-link href="{{ route('faq') }}" :active="request()->routeIs('faq')">
+                    FAQ
+                </x-nav-link>
+                <x-nav-link href="{{ route('galeri') }}" :active="request()->routeIs('galeri')">
+                    Galeri
+                </x-nav-link>
+                <x-nav-link href="{{ route('hubungi') }}" :active="request()->routeIs('hubungi')">
+                    Hubungi
+                </x-nav-link>
+            </div>
+            @endguest
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
