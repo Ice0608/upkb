@@ -30,8 +30,9 @@
 
             {{-- CENTER: MENU --}}
             <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                <a href="/" class="text-orange-500 font-semibold">Utama</a>
-                <a href="/program" class="hover:text-orange-500">Program Berkuota</a>
+                <a href="" class="text-orange-500 font-semibold">Utama</a>
+                <a href="" class="hover:text-orange-500">Program</a>
+                <a href="#" class="hover:text-orange-500">Berkouta</a>
                 <a href="#" class="hover:text-orange-500">FAQ</a>
                 <a href="#" class="hover:text-orange-500">Galeri</a>
                 <a href="#" class="hover:text-orange-500">Hubungi</a>
