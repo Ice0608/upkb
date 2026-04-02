@@ -45,24 +45,43 @@
 
     {{-- 🔹 HERO / KANDUNGAN PROGRAM --}}
     <section class="max-w-7xl mx-auto px-6 py-10">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Program Kami</h1>
-        <p class="text-gray-600 mb-8">Lihat senarai program terkini yang ditawarkan oleh UPKB. Klik program untuk maklumat lanjut dan pendaftaran.</p>
+        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Teroka Semua Kursus</h1>
+                    <p class="mt-3 text-lg text-orange-100">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
+                </div>
+                <button class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
 
         <div class="grid md:grid-cols-3 gap-6">
-            <article class="bg-white border rounded-xl p-6 shadow-sm">
-                <h2 class="text-xl font-semibold text-orange-500 mb-2">Program 1</h2>
-                <p class="text-gray-600">Penerangan ringkas tentang program pertama.</p>
+            <article class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
+                <div class="h-16 w-16 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5"><i class="fas fa-tools fa-lg"></i></div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-2">TVET</h2>
+                <p class="text-gray-500 mb-6">Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.</p>
+                <a href="{{ route('program') }}" class="inline-flex items-center gap-2 text-blue-600 font-bold">LIHAT PROGRAM <span>→</span></a>
             </article>
-            <article class="bg-white border rounded-xl p-6 shadow-sm">
-                <h2 class="text-xl font-semibold text-orange-500 mb-2">Program 2</h2>
-                <p class="text-gray-600">Penerangan ringkas tentang program kedua.</p>
+
+            <article class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
+                <div class="h-16 w-16 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center mb-5"><i class="fas fa-graduation-cap fa-lg"></i></div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-2">Diploma</h2>
+                <p class="text-gray-500 mb-6">Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.</p>
+                <a href="{{ route('program') }}" class="inline-flex items-center gap-2 text-violet-600 font-bold">LIHAT PROGRAM <span>→</span></a>
             </article>
-            <article class="bg-white border rounded-xl p-6 shadow-sm">
-                <h2 class="text-xl font-semibold text-orange-500 mb-2">Program 3</h2>
-                <p class="text-gray-600">Penerangan ringkas tentang program ketiga.</p>
+
+            <article class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
+                <div class="h-16 w-16 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5"><i class="fas fa-heartbeat fa-lg"></i></div>
+                <h2 class="text-2xl font-extrabold text-slate-900 mb-2">Sains Kesihatan</h2>
+                <p class="text-gray-500 mb-6">Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.</p>
+                <a href="{{ route('program') }}" class="inline-flex items-center gap-2 text-emerald-600 font-bold">LIHAT PROGRAM <span>→</span></a>
             </article>
         </div>
     </section>
+
+    @include('components.social-float')
 
     {{-- 🔹 FOOTER --}}
     <footer class="bg-gray-900 text-gray-300 mt-16">
