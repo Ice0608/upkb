@@ -12,7 +12,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::view('/about', 'about')->name('about');
-Route::view('/program', 'program')->name('program');
+Route::view('/program', 'program.program')->name('program');
 Route::view('/kuota', 'kuota')->name('kuota');
 Route::view('/faq', 'faq')->name('faq');
 Route::view('/galeri', 'galeri')->name('galeri');

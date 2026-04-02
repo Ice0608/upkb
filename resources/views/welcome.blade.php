@@ -30,12 +30,12 @@
 
             {{-- CENTER: MENU --}}
             <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                <a href="" class="text-orange-500 font-semibold">Utama</a>
-                <a href="" class="hover:text-orange-500">Program</a>
-                <a href="#" class="hover:text-orange-500">Berkouta</a>
-                <a href="#" class="hover:text-orange-500">FAQ</a>
-                <a href="#" class="hover:text-orange-500">Galeri</a>
-                <a href="#" class="hover:text-orange-500">Hubungi</a>
+                <a href="{{ url('/') }}" class="text-orange-500 font-semibold">Utama</a>
+                <a href="{{ route('program') }}" class="hover:text-orange-500">Program</a>
+                <a href="{{ route('kuota') }}" class="hover:text-orange-500">Berkouta</a>
+                <a href="{{ route('faq') }}" class="hover:text-orange-500">FAQ</a>
+                <a href="{{ route('galeri') }}" class="hover:text-orange-500">Galeri</a>
+                <a href="{{ route('hubungi') }}" class="hover:text-orange-500">Hubungi</a>
             </div>
 
             {{-- RIGHT: LOGIN ICON --}}
