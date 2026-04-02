@@ -24,7 +24,7 @@
             </div>
 
             {{-- CENTER: MENU --}}
-            <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium navbar menu">
                 <a href="{{ url('/') }}" class="hover:text-orange-500">Utama</a>
                 <a href="{{ route('program') }}" class="text-orange-500 font-semibold">Program</a>
                 <a href="{{ route('kuota') }}" class="hover:text-orange-500">Berkouta</a>
