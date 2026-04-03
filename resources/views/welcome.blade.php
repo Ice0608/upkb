@@ -136,7 +136,7 @@
 
             <div class="grid grid-cols-2 gap-2 text-sm">
                 <a href="/" class="hover:text-orange-400">Utama</a>
-                <a href="/program" class="hover:text-orange-400">Program</a>
+                <a href="views/program/welcome.blade.php" class="hover:text-orange-400">Program</a>
                 <a href="/program-berkuota" class="hover:text-orange-400">Program Berkuota</a>
                 <a href="/faq" class="hover:text-orange-400">Soalan Lazim</a>
                 <a href="/galeri" class="hover:text-orange-400">Galeri</a>
