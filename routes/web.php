@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProgramController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +13,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::view('/about', 'about')->name('about');
-Route::view('/program', 'program.program')->name('program');
+use App\Http\Controllers\ProgramController;
+
+Route::get('/program', [ProgramController::class, 'index'])->name('program');
 Route::view('/kuota', 'kuota')->name('kuota');
 Route::view('/faq', 'faq')->name('faq');
 Route::view('/galeri', 'galeri')->name('galeri');
@@ -24,6 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+// Admin routes
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/programs', [AdminProgramController::class, 'index'])->name('admin.programs');
+    Route::get('/addprogram', [AdminProgramController::class, 'create'])->name('admin.addprogram');
+    Route::post('/storeprogram', [AdminProgramController::class, 'store'])->name('admin.storeprogram');
+    Route::get('/editprogram/{id}', [AdminProgramController::class, 'edit'])->name('admin.editprogram');
+    Route::put('/updateprogram/{id}', [AdminProgramController::class, 'update'])->name('admin.updateprogram');
+    Route::delete('/deleteprogram/{id}', [AdminProgramController::class, 'destroy'])->name('admin.deleteprogram');
+});
 
 require __DIR__.'/auth.php';

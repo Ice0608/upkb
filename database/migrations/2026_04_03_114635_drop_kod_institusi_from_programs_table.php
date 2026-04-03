@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('programs', function (Blueprint $table) {
-            $table->id();
-            $table->string('jenis_program');
-            $table->text('info_program');
-            $table->string('icon');
-            $table->timestamps();
+        Schema::table('programs', function (Blueprint $table) {
+            $table->dropColumn('kod_institusi');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('programs');
+        Schema::table('programs', function (Blueprint $table) {
+            $table->string('kod_institusi');
+        });
     }
 };
