@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Add Khusus</title>
+    <title>UPKB - Edit Khusus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -12,7 +12,7 @@
 
     <section class="max-w-4xl mx-auto px-6 py-10">
         <div class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Add New Khusus</h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Khusus</h1>
 
             @if($errors->any())
             <div class="mb-6 rounded-2xl bg-red-50 p-5 border border-red-200 text-red-700">
@@ -24,55 +24,60 @@
             </div>
             @endif
 
-            <form action="{{ route('admin.storekhusus') }}" method="POST">
+            <form action="{{ route('admin.updatekhusus', $khusus->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="grid gap-6">
-                    <input type="hidden" name="kod_institusi" value="{{ $kod_institusi }}">
                     
                     <div>
                         <label for="kod_khusus" class="block text-sm font-medium text-gray-700">Kod Khusus</label>
-                        <input type="text" name="kod_khusus" id="kod_khusus" value="{{ old('kod_khusus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="text" name="kod_khusus" id="kod_khusus" value="{{ old('kod_khusus', $khusus->kod_khusus) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="nama_khusus" class="block text-sm font-medium text-gray-700">Nama Khusus</label>
-                        <input type="text" name="nama_khusus" id="nama_khusus" value="{{ old('nama_khusus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="text" name="nama_khusus" id="nama_khusus" value="{{ old('nama_khusus', $khusus->nama_khusus) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="jenis_khusus" class="block text-sm font-medium text-gray-700">Jenis Khusus</label>
-                        <input type="text" name="jenis_khusus" id="jenis_khusus" value="{{ old('jenis_khusus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="text" name="jenis_khusus" id="jenis_khusus" value="{{ old('jenis_khusus', $khusus->jenis_khusus) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="mod_pengajian" class="block text-sm font-medium text-gray-700">Mod Pengajian</label>
-                        <input type="text" name="mod_pengajian" id="mod_pengajian" value="{{ old('mod_pengajian') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="text" name="mod_pengajian" id="mod_pengajian" value="{{ old('mod_pengajian', $khusus->mod_pengajian) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="tempoh" class="block text-sm font-medium text-gray-700">Tempoh</label>
-                        <input type="text" name="tempoh" id="tempoh" value="{{ old('tempoh') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" placeholder="e.g., 2 Tahun" required>
+                        <input type="text" name="tempoh" id="tempoh" value="{{ old('tempoh', $khusus->tempoh) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="kuota" class="block text-sm font-medium text-gray-700">Kuota</label>
-                        <input type="number" name="kuota" id="kuota" value="{{ old('kuota') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="number" name="kuota" id="kuota" value="{{ old('kuota', $khusus->kuota) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="tarikh_pendaftaran" class="block text-sm font-medium text-gray-700">Tarikh Pendaftaran</label>
-                        <input type="date" name="tarikh_pendaftaran" id="tarikh_pendaftaran" value="{{ old('tarikh_pendaftaran') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="date" name="tarikh_pendaftaran" id="tarikh_pendaftaran" value="{{ old('tarikh_pendaftaran', $khusus->tarikh_pendaftaran) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
                         <label for="penerangan" class="block text-sm font-medium text-gray-700">Penerangan</label>
-                        <textarea name="penerangan" id="penerangan" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('penerangan') }}</textarea>
+                        <textarea name="penerangan" id="penerangan" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('penerangan', $khusus->penerangan) }}</textarea>
                     </div>
                 </div>
 
                 <div class="mt-8 flex items-center gap-4">
-                    <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Add Khusus</button>
-                    <a href="javascript:history.back()" class="text-gray-600 hover:text-gray-800">Cancel</a>
+                    <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Update Khusus</button>
+                    <form action="{{ route('admin.deletekhusus', $khusus->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this khusus?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition">Delete</button>
+                    </form>
+                    <a href="javascript:history.back()" class="text-gray-600 hover:text-gray-800 ml-auto">Cancel</a>
                 </div>
             </form>
         </div>

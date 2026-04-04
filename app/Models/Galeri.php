@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Galeri extends Model
 {
-    //
+    protected $fillable = [
+        'kod_institusi',
+        'imej',
+        'penerangan',
+    ];
 }
