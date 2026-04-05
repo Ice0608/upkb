@@ -84,6 +84,10 @@ class AdminKhususController extends Controller
             'penerangan',
         ]));
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Khusus updated successfully.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Khusus updated successfully.');
     }
@@ -113,6 +117,10 @@ class AdminKhususController extends Controller
             'syarat_kelayakan' => $request->syarat_kelayakan,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Syarat kelayakan berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Syarat kelayakan berjaya ditambah.');
     }
@@ -122,6 +130,10 @@ class AdminKhususController extends Controller
         $item = SyaratKelayakan::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Syarat kelayakan berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Syarat kelayakan berjaya dipadam.');
@@ -144,6 +156,10 @@ class AdminKhususController extends Controller
             'isi_kandungan' => $request->isi_kandungan,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Struktur silibus berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Struktur silibus berjaya ditambah.');
     }
@@ -153,6 +169,10 @@ class AdminKhususController extends Controller
         $item = Silibus::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Struktur silibus berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Struktur silibus berjaya dipadam.');
@@ -173,6 +193,10 @@ class AdminKhususController extends Controller
             'bidang_kerjaya' => $request->bidang_kerjaya,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Laluan kerjaya berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Laluan kerjaya berjaya ditambah.');
     }
@@ -182,6 +206,10 @@ class AdminKhususController extends Controller
         $item = Kerjaya::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Laluan kerjaya berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Laluan kerjaya berjaya dipadam.');
@@ -204,6 +232,10 @@ class AdminKhususController extends Controller
             'amount' => $request->amount,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Yuran pendaftaran berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Yuran pendaftaran berjaya ditambah.');
     }
@@ -213,6 +245,10 @@ class AdminKhususController extends Controller
         $item = YuranPendaftaran::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Item yuran pendaftaran berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Item yuran pendaftaran berjaya dipadam.');
@@ -237,6 +273,10 @@ class AdminKhususController extends Controller
             'amount' => $request->amount,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Yuran pilihan berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Yuran pilihan berjaya ditambah.');
     }
@@ -246,6 +286,10 @@ class AdminKhususController extends Controller
         $item = YuranPilihan::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Item yuran pilihan berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Item yuran pilihan berjaya dipadam.');
@@ -268,6 +312,10 @@ class AdminKhususController extends Controller
             'amount' => $request->amount,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Yuran asrama berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Yuran asrama berjaya ditambah.');
     }
@@ -277,6 +325,10 @@ class AdminKhususController extends Controller
         $item = YuranAsrama::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Item yuran asrama berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Item yuran asrama berjaya dipadam.');
@@ -301,6 +353,10 @@ class AdminKhususController extends Controller
             'amount' => $request->amount,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Yuran pengajian berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Yuran pengajian berjaya ditambah.');
     }
@@ -310,6 +366,10 @@ class AdminKhususController extends Controller
         $item = YuranPengajian::findOrFail($id);
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
+
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Item yuran pengajian berjaya dipadam.']);
+        }
 
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Item yuran pengajian berjaya dipadam.');
@@ -334,6 +394,10 @@ class AdminKhususController extends Controller
             'jumlah' => $request->jumlah,
         ]);
 
+        if ($request->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Elaun berjaya ditambah.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Elaun berjaya ditambah.');
     }
@@ -344,7 +408,47 @@ class AdminKhususController extends Controller
         $khusus = Khusus::where('kod_khusus', $item->kod_khusus)->first();
         $item->delete();
 
+        if (request()->wantsJson()) {
+            return response()->json(['success' => true, 'message' => 'Item elaun berjaya dipadam.']);
+        }
+
         return redirect()->route('admin.editkhusus', $khusus->id)
                         ->with('success', 'Item elaun berjaya dipadam.');
+    }
+
+    public function tabMaklumat($id)
+    {
+        $khusus = Khusus::findOrFail($id);
+        return view('admin._tab_maklumat', compact('khusus'));
+    }
+
+    public function tabSyarat($id)
+    {
+        $khusus = Khusus::with('syaratKelayakans')->findOrFail($id);
+        return view('admin._tab_syarat', compact('khusus'));
+    }
+
+    public function tabSilibus($id)
+    {
+        $khusus = Khusus::with('silibuses')->findOrFail($id);
+        return view('admin._tab_silibus', compact('khusus'));
+    }
+
+    public function tabKerjaya($id)
+    {
+        $khusus = Khusus::with('kerjayas')->findOrFail($id);
+        return view('admin._tab_kerjaya', compact('khusus'));
+    }
+
+    public function tabYuran($id)
+    {
+        $khusus = Khusus::with([
+            'yuranPendaftarans',
+            'yuranPilihans',
+            'yuranAsramas',
+            'yuranPengajians',
+            'elauns',
+        ])->findOrFail($id);
+        return view('admin._tab_yuran', compact('khusus'));
     }
 }

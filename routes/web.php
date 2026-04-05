@@ -72,6 +72,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/storeelaun', [AdminKhususController::class, 'storeElaun'])->name('admin.storeelaun');
     Route::delete('/deleteelaun/{id}', [AdminKhususController::class, 'destroyElaun'])->name('admin.deleteelaun');
 
+    Route::get('/tabmaklumat/{id}', [AdminKhususController::class, 'tabMaklumat'])->name('admin.tabmaklumat');
+    Route::get('/tabsyarat/{id}', [AdminKhususController::class, 'tabSyarat'])->name('admin.tabsyarat');
+    Route::get('/tabsilibus/{id}', [AdminKhususController::class, 'tabSilibus'])->name('admin.tabsilibus');
+    Route::get('/tabkerjaya/{id}', [AdminKhususController::class, 'tabKerjaya'])->name('admin.tabkerjaya');
+    Route::get('/tabyuran/{id}', [AdminKhususController::class, 'tabYuran'])->name('admin.tabyuran');
+
     Route::get('/addgaleri/{kod_institusi}', [AdminGaleriController::class, 'create'])->name('admin.addgaleri');
     Route::post('/storagaleri', [AdminGaleriController::class, 'store'])->name('admin.storagaleri');
     Route::get('/editgaleri/{id}', [AdminGaleriController::class, 'edit'])->name('admin.editgaleri');
@@ -81,5 +87,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 Route::get('/khusus/{id}', [KhususController::class, 'show'])->name('khusus.show');
 Route::get('/khusus/{id}/pdf', [KhususController::class, 'pdf'])->name('khusus.pdf');
+
+Route::get('/khusus/tabmaklumat/{id}', [KhususController::class, 'tabMaklumat'])->name('khusus.tabmaklumat');
+Route::get('/khusus/tabsyarat/{id}', [KhususController::class, 'tabSyarat'])->name('khusus.tabsyarat');
+Route::get('/khusus/tabsilibus/{id}', [KhususController::class, 'tabSilibus'])->name('khusus.tabsilibus');
+Route::get('/khusus/tabkerjaya/{id}', [KhususController::class, 'tabKerjaya'])->name('khusus.tabkerjaya');
+Route::get('/khusus/tabyuran/{id}', [KhususController::class, 'tabYuran'])->name('khusus.tabyuran');
 
 require __DIR__.'/auth.php';

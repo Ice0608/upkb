@@ -51,4 +51,40 @@ class KhususController extends Controller
             ->header('Content-Type', 'application/pdf')
             ->header('Content-Disposition', 'inline; filename="'.Str::slug($khusus->nama_khusus).'.pdf"');
     }
+
+    public function tabMaklumat($id)
+    {
+        $khusus = Khusus::findOrFail($id);
+        return view('program._guest_tab_maklumat', compact('khusus'));
+    }
+
+    public function tabSyarat($id)
+    {
+        $khusus = Khusus::with('syaratKelayakans')->findOrFail($id);
+        return view('program._guest_tab_syarat', compact('khusus'));
+    }
+
+    public function tabSilibus($id)
+    {
+        $khusus = Khusus::with('silibuses')->findOrFail($id);
+        return view('program._guest_tab_silibus', compact('khusus'));
+    }
+
+    public function tabKerjaya($id)
+    {
+        $khusus = Khusus::with('kerjayas')->findOrFail($id);
+        return view('program._guest_tab_kerjaya', compact('khusus'));
+    }
+
+    public function tabYuran($id)
+    {
+        $khusus = Khusus::with([
+            'yuranPendaftarans',
+            'yuranPilihans',
+            'yuranAsramas',
+            'yuranPengajians',
+            'elauns',
+        ])->findOrFail($id);
+        return view('program._guest_tab_yuran', compact('khusus'));
+    }
 }
