@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class YuranAsrama extends Model
+class SyaratKelayakan extends Model
 {
     protected $fillable = [
         'kod_institusi',
         'kod_khusus',
-        'item',
-        'amount',
+        'syarat_kelayakan',
     ];
 }

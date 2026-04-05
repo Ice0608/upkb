@@ -54,6 +54,7 @@
                             <th class="px-4 py-3 font-semibold text-gray-700">Mod Pengajian</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Tempoh</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Kuota</th>
+                            <th class="px-4 py-3 font-semibold text-gray-700">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +65,9 @@
                             <td class="px-4 py-3 text-gray-600">{{ $khusus->mod_pengajian }}</td>
                             <td class="px-4 py-3 text-gray-600">{{ $khusus->tempoh }}</td>
                             <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $khusus->kuota }}</td>
+                            <td class="px-4 py-3">
+                                <a href="{{ route('khusus.show', $khusus->id) }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold">Lihat detail</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

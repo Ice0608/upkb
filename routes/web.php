@@ -6,6 +6,7 @@ use App\Http\Controllers\InstitusiController;
 use App\Http\Controllers\AdminInstitusiController;
 use App\Http\Controllers\AdminKhususController;
 use App\Http\Controllers\AdminGaleriController;
+use App\Http\Controllers\KhususController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -54,6 +55,22 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/editkhusus/{id}', [AdminKhususController::class, 'edit'])->name('admin.editkhusus');
     Route::put('/updatekhusus/{id}', [AdminKhususController::class, 'update'])->name('admin.updatekhusus');
     Route::delete('/deletekhusus/{id}', [AdminKhususController::class, 'destroy'])->name('admin.deletekhusus');
+    Route::post('/storesyarat', [AdminKhususController::class, 'storeSyarat'])->name('admin.storesyarat');
+    Route::delete('/deletesyarat/{id}', [AdminKhususController::class, 'destroySyarat'])->name('admin.deletesyarat');
+    Route::post('/storesilibus', [AdminKhususController::class, 'storeSilibus'])->name('admin.storesilibus');
+    Route::delete('/deletesilibus/{id}', [AdminKhususController::class, 'destroySilibus'])->name('admin.deletesilibus');
+    Route::post('/storekerjaya', [AdminKhususController::class, 'storeKerjaya'])->name('admin.storekerjaya');
+    Route::delete('/deletekerjaya/{id}', [AdminKhususController::class, 'destroyKerjaya'])->name('admin.deletekerjaya');
+    Route::post('/storeyuranpendaftaran', [AdminKhususController::class, 'storeYuranPendaftaran'])->name('admin.storeyuranpendaftaran');
+    Route::delete('/deleteyuranpendaftaran/{id}', [AdminKhususController::class, 'destroyYuranPendaftaran'])->name('admin.deleteyuranpendaftaran');
+    Route::post('/storeyuranpilihan', [AdminKhususController::class, 'storeYuranPilihan'])->name('admin.storeyuranpilihan');
+    Route::delete('/deleteyuranpilihan/{id}', [AdminKhususController::class, 'destroyYuranPilihan'])->name('admin.deleteyuranpilihan');
+    Route::post('/storeyuranasrama', [AdminKhususController::class, 'storeYuranAsrama'])->name('admin.storeyuranasrama');
+    Route::delete('/deleteyuranasrama/{id}', [AdminKhususController::class, 'destroyYuranAsrama'])->name('admin.deleteyuranasrama');
+    Route::post('/storeyuranpengajian', [AdminKhususController::class, 'storeYuranPengajian'])->name('admin.storeyuranpengajian');
+    Route::delete('/deleteyuranpengajian/{id}', [AdminKhususController::class, 'destroyYuranPengajian'])->name('admin.deleteyuranpengajian');
+    Route::post('/storeelaun', [AdminKhususController::class, 'storeElaun'])->name('admin.storeelaun');
+    Route::delete('/deleteelaun/{id}', [AdminKhususController::class, 'destroyElaun'])->name('admin.deleteelaun');
 
     Route::get('/addgaleri/{kod_institusi}', [AdminGaleriController::class, 'create'])->name('admin.addgaleri');
     Route::post('/storagaleri', [AdminGaleriController::class, 'store'])->name('admin.storagaleri');
@@ -61,5 +78,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::put('/updategaleri/{id}', [AdminGaleriController::class, 'update'])->name('admin.updategaleri');
     Route::delete('/deletegaleri/{id}', [AdminGaleriController::class, 'destroy'])->name('admin.deletegaleri');
 });
+
+Route::get('/khusus/{id}', [KhususController::class, 'show'])->name('khusus.show');
+Route::get('/khusus/{id}/pdf', [KhususController::class, 'pdf'])->name('khusus.pdf');
 
 require __DIR__.'/auth.php';
