@@ -95,7 +95,7 @@
         <div class="w-full max-w-3xl mx-auto">
             <iframe 
                 class="w-full h-64 md:h-96 rounded-xl"
-                src="vide.mp4"
+                src="videos/prop.mp4"
                 allowfullscreen>
             </iframe>
         </div>
@@ -118,7 +118,7 @@
         {{-- LEFT --}}
         <div>
             <div class="flex items-center gap-3 mb-4">
-                <img src="{{ asset('images/logo.jpeg') }}" class="h-12">
+                <img src="{{ asset('images/icon/logo.jpeg') }}" class="h-12">
                 <div>
                     <h2 class="text-lg font-bold text-white">UPKB</h2>
                     <p class="text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
