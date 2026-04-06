@@ -17,6 +17,12 @@
             <p class="text-gray-600 mt-3 text-lg">Mempunyai sebarang pertanyaan mengenai program atau kemasukan? Pasukan kami sedia membantu anda.</p>
         </div>
 
+        @if ($message = Session::get('success'))
+            <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
+                <i class="fas fa-check-circle mr-2"></i>{{ $message }}
+            </div>
+        @endif
+
         <div class="grid md:grid-cols-2 gap-8">
             <section class="rounded-3xl bg-white shadow-xl p-8 border border-gray-100">
                 <div class="flex items-center gap-4 mb-6">
@@ -62,23 +68,27 @@
 
             <section class="rounded-3xl bg-white shadow-xl p-8 border border-gray-100">
                 <h2 class="text-2xl font-extrabold text-slate-900 mb-6">Hantar Pertanyaan</h2>
-                <form action="{{ route('hubungi') }}" method="POST" class="space-y-4">
+                <form action="{{ route('hubungi.store') }}" method="POST" class="space-y-4">
                     @csrf
                     <div>
                         <label for="nama" class="block text-sm font-semibold text-gray-700 mb-1">Nama Penuh</label>
-                        <input id="nama" name="nama" type="text" required class="w-full rounded-xl border border-gray-300 p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="Nama anda" />
+                        <input id="nama" name="nama" type="text" required class="w-full rounded-xl border @error('nama') border-red-500 @else border-gray-300 @enderror p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="Nama anda" value="{{ old('nama') }}" />
+                        @error('nama')<p class="text-red-500 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label for="emel" class="block text-sm font-semibold text-gray-700 mb-1">Emel</label>
-                        <input id="emel" name="emel" type="email" required class="w-full rounded-xl border border-gray-300 p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="email@contoh.com" />
+                        <input id="emel" name="emel" type="email" required class="w-full rounded-xl border @error('emel') border-red-500 @else border-gray-300 @enderror p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="email@contoh.com" value="{{ old('emel') }}" />
+                        @error('emel')<p class="text-red-500 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label for="perkara" class="block text-sm font-semibold text-gray-700 mb-1">Perkara</label>
-                        <input id="perkara" name="perkara" type="text" required class="w-full rounded-xl border border-gray-300 p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="Apa yang ingin anda tanya" />
+                        <input id="perkara" name="perkara" type="text" required class="w-full rounded-xl border @error('perkara') border-red-500 @else border-gray-300 @enderror p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="Apa yang ingin anda tanya" value="{{ old('perkara') }}" />
+                        @error('perkara')<p class="text-red-500 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label for="mesej" class="block text-sm font-semibold text-gray-700 mb-1">Mesej</label>
-                        <textarea id="mesej" name="mesej" rows="5" required class="w-full rounded-xl border border-gray-300 p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="Tulis mesej anda di sini"></textarea>
+                        <textarea id="mesej" name="mesej" rows="5" required class="w-full rounded-xl border @error('mesej') border-red-500 @else border-gray-300 @enderror p-3 text-gray-800 focus:ring-2 focus:ring-orange-300 outline-none" placeholder="Tulis mesej anda di sini">{{ old('mesej') }}</textarea>
+                        @error('mesej')<p class="text-red-500 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}</p>@enderror
                     </div>
                     <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl py-3 transition">
                         <i class="fas fa-paper-plane mr-2"></i> Hantar Mesej

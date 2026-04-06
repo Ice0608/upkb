@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2026 at 01:59 AM
+-- Generation Time: Apr 06, 2026 at 08:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -189,6 +189,7 @@ CREATE TABLE `kerjayas` (
 --
 
 INSERT INTO `kerjayas` (`id`, `kod_institusi`, `kod_khusus`, `bidang_kerjaya`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', 'manusia', '2026-04-04 21:31:13', '2026-04-04 21:31:13'),
 (1, 'T3ST1NG', 'F432-005-2:2019', 'manusia', '2026-04-04 21:31:13', '2026-04-04 21:31:13');
 
 -- --------------------------------------------------------
@@ -218,7 +219,33 @@ CREATE TABLE `khususes` (
 
 INSERT INTO `khususes` (`id`, `kod_khusus`, `kod_institusi`, `nama_khusus`, `jenis_khusus`, `mod_pengajian`, `tempoh`, `kuota`, `tarikh_pendaftaran`, `penerangan`, `created_at`, `updated_at`) VALUES
 (1, 'F432-005-2:2019', '1010', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TVET', 'TAHAP 2 / TAHAP 3', '2 Tahun', 10, '2026-04-23', 'Program Pemasangan & Penyelenggaraan Elektrik direka untuk melatih pelajar dalam kemahiran teknikal pendawaian elektrik domestik dan industri. Melalui latihan amali yang intensif, pelajar akan menguasai teknik pemasangan sistem satu fasa dan tiga fasa, penyelenggaraan perkakas suis, serta pengujian litar mengikut piawaian Suruhanjaya Tenaga. Program ini menyediakan landasan kukuh bagi melahirkan teknisi yang kompeten untuk memenuhi keperluan sektor pembinaan dan fasiliti negara.', '2026-04-03 20:39:19', '2026-04-03 20:39:19'),
+(2, 'F432-005-2:2019', 'T3ST1NG', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2', 'FULL TIME', '2 Tahun', 10, '2026-04-29', '1234567890', '2026-04-04 21:16:13', '2026-04-04 21:16:13'),
+(1, 'F432-005-2:2019', '1010', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TVET', 'TAHAP 2 / TAHAP 3', '2 Tahun', 10, '2026-04-23', 'Program Pemasangan & Penyelenggaraan Elektrik direka untuk melatih pelajar dalam kemahiran teknikal pendawaian elektrik domestik dan industri. Melalui latihan amali yang intensif, pelajar akan menguasai teknik pemasangan sistem satu fasa dan tiga fasa, penyelenggaraan perkakas suis, serta pengujian litar mengikut piawaian Suruhanjaya Tenaga. Program ini menyediakan landasan kukuh bagi melahirkan teknisi yang kompeten untuk memenuhi keperluan sektor pembinaan dan fasiliti negara.', '2026-04-03 20:39:19', '2026-04-03 20:39:19'),
 (2, 'F432-005-2:2019', 'T3ST1NG', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2', 'FULL TIME', '2 Tahun', 10, '2026-04-29', '1234567890', '2026-04-04 21:16:13', '2026-04-04 21:16:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `emel` varchar(255) NOT NULL,
+  `perkara` varchar(255) NOT NULL,
+  `mesej` longtext NOT NULL,
+  `comment` longtext DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `nama`, `emel`, `perkara`, `mesej`, `comment`, `created_at`, `updated_at`) VALUES
+(1, 'manusia yang berotak', 'aralkashah@student.usm.my', 'maksud tvet', 'apa maksud tvet saya tak faham wlaupon otak ada', 'ko bodo', '2026-04-05 22:52:26', '2026-04-05 22:56:01');
 
 -- --------------------------------------------------------
 
@@ -237,24 +264,24 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '0001_01_01_000000_create_users_table', 1),
-(2, '0001_01_01_000001_create_cache_table', 1),
-(3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2026_04_03_101232_create_programs_table', 2),
-(5, '2026_04_03_101236_create_institusis_table', 2),
-(6, '2026_04_03_101239_create_khususes_table', 2),
-(7, '2026_04_03_101244_create_silibuses_table', 2),
-(8, '2026_04_03_101247_create_kerjayas_table', 2),
-(9, '2026_04_03_101251_create_yuran_pendaftarans_table', 2),
-(10, '2026_04_03_101254_create_yuran_asramas_table', 2),
-(11, '2026_04_03_101302_create_yuran_pilihans_table', 2),
-(12, '2026_04_03_101305_create_yuran_pengajians_table', 2),
-(13, '2026_04_03_101308_create_elauns_table', 2),
-(14, '2026_04_03_101312_create_galeris_table', 2),
-(15, '2026_04_03_114635_drop_kod_institusi_from_programs_table', 3),
-(16, '2026_04_04_000000_update_institusis_table_add_gambar_and_rename_jenis', 3),
-(17, '2026_04_04_000001_update_galeris_add_penerangan_drop_kod_khusus', 4),
-(18, '2026_04_05_000000_create_syarat_kelayakans_table', 5);
+(5, '0001_01_01_000000_create_users_table', 1),
+(6, '0001_01_01_000001_create_cache_table', 1),
+(7, '0001_01_01_000002_create_jobs_table', 1),
+(8, '2025_04_06_000000_create_messages_table', 1),
+(9, '2026_04_03_101232_create_programs_table', 2),
+(10, '2026_04_03_101236_create_institusis_table', 2),
+(11, '2026_04_03_101239_create_khususes_table', 2),
+(12, '2026_04_03_101244_create_silibuses_table', 2),
+(13, '2026_04_03_101247_create_kerjayas_table', 2),
+(14, '2026_04_03_101251_create_yuran_pendaftarans_table', 2),
+(15, '2026_04_03_101254_create_yuran_asramas_table', 2),
+(16, '2026_04_03_101302_create_yuran_pilihans_table', 2),
+(17, '2026_04_03_101305_create_yuran_pengajians_table', 2),
+(18, '2026_04_03_101308_create_elauns_table', 2),
+(19, '2026_04_03_101312_create_galeris_table', 2),
+(20, '2026_04_03_114635_drop_kod_institusi_from_programs_table', 2),
+(21, '2026_04_04_000000_update_institusis_table_add_gambar_and_rename_jenis', 3),
+(22, '2025_04_06_000001_add_comment_to_messages_table', 4);
 
 -- --------------------------------------------------------
 
@@ -290,6 +317,9 @@ CREATE TABLE `programs` (
 INSERT INTO `programs` (`id`, `jenis_program`, `info_program`, `icon`, `created_at`, `updated_at`) VALUES
 (1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-03 03:47:43', '2026-04-03 04:08:51'),
 (2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-03 03:47:43', '2026-04-03 03:47:43'),
+(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-03 03:47:43', '2026-04-03 03:47:43'),
+(1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-03 03:47:43', '2026-04-03 04:08:51'),
+(2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-03 03:47:43', '2026-04-03 03:47:43'),
 (3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-03 03:47:43', '2026-04-03 03:47:43');
 
 -- --------------------------------------------------------
@@ -313,6 +343,7 @@ CREATE TABLE `sessions` (
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('bwARgQouwNyIzlZyQ9r2hJHGjEWCcC7hHJS4FQlS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUTlqM1JTZWxzcWx6MWxwTEVFNXBtY0h5NkxJN1pHcnBzZ0o5RGpTMCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAva2h1c3VzLzIiO3M6NToicm91dGUiO3M6MTE6ImtodXN1cy5zaG93Ijt9fQ==', 1775370333),
+('CdZF6ur0p1upQGBQaWIaCQ5ptwKyf36IrK7Z1v6L', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMW44VHZBVWxaVGd0eTZFNmhnMnl4UXhqWmxtcFRRaVhyVm01Zm9wYSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9tZXNzYWdlcyI7czo1OiJyb3V0ZSI7czoxNDoiYWRtaW4ubWVzc2FnZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1775458614),
 ('MsJy9SP15oJY6xL6LS6McEvQIBhJJfkuxXKjmcDc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiYUI0R2h0UUVwczUzSk9HRlMxY3M4Ylk1b2cwVkd4WHBXTldlTlZwViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775369541);
 
 -- --------------------------------------------------------
@@ -336,6 +367,7 @@ CREATE TABLE `silibuses` (
 --
 
 INSERT INTO `silibuses` (`id`, `kod_institusi`, `kod_khusus`, `topik`, `isi_kandungan`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', '1', 'blah', '2026-04-04 21:31:06', '2026-04-04 21:31:06'),
 (1, 'T3ST1NG', 'F432-005-2:2019', '1', 'blah', '2026-04-04 21:31:06', '2026-04-04 21:31:06');
 
 -- --------------------------------------------------------
@@ -358,6 +390,7 @@ CREATE TABLE `syarat_kelayakans` (
 --
 
 INSERT INTO `syarat_kelayakans` (`id`, `kod_institusi`, `kod_khusus`, `syarat_kelayakan`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', 'layak', '2026-04-04 21:30:55', '2026-04-04 21:30:55'),
 (1, 'T3ST1NG', 'F432-005-2:2019', 'layak', '2026-04-04 21:30:55', '2026-04-04 21:30:55');
 
 -- --------------------------------------------------------
@@ -405,6 +438,7 @@ CREATE TABLE `yuran_asramas` (
 --
 
 INSERT INTO `yuran_asramas` (`id`, `kod_institusi`, `kod_khusus`, `item`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 52.00, '2026-04-04 21:32:09', '2026-04-04 21:32:09'),
 (1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 52.00, '2026-04-04 21:32:09', '2026-04-04 21:32:09');
 
 -- --------------------------------------------------------
@@ -428,6 +462,10 @@ CREATE TABLE `yuran_pendaftarans` (
 --
 
 INSERT INTO `yuran_pendaftarans` (`id`, `kod_institusi`, `kod_khusus`, `item`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 5.00, '2026-04-04 21:31:37', '2026-04-04 21:31:37'),
+(2, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:22', '2026-04-04 22:02:22'),
+(3, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:25', '2026-04-04 22:02:25'),
+(4, 'T3ST1NG', 'F432-005-2:2019', 'makan', 5.00, '2026-04-04 22:02:38', '2026-04-04 22:02:38'),
 (1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 5.00, '2026-04-04 21:31:37', '2026-04-04 21:31:37'),
 (2, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:22', '2026-04-04 22:02:22'),
 (3, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:25', '2026-04-04 22:02:25'),
@@ -455,6 +493,7 @@ CREATE TABLE `yuran_pengajians` (
 --
 
 INSERT INTO `yuran_pengajians` (`id`, `kod_institusi`, `kod_khusus`, `peringkat`, `tempoh`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', '123', '2 Tahun', 5.00, '2026-04-04 21:32:23', '2026-04-04 21:32:23'),
 (1, 'T3ST1NG', 'F432-005-2:2019', '123', '2 Tahun', 5.00, '2026-04-04 21:32:23', '2026-04-04 21:32:23');
 
 -- --------------------------------------------------------
@@ -479,6 +518,7 @@ CREATE TABLE `yuran_pilihans` (
 --
 
 INSERT INTO `yuran_pilihans` (`id`, `kod_institusi`, `kod_khusus`, `pilihan`, `item`, `amount`, `created_at`, `updated_at`) VALUES
+(1, 'T3ST1NG', 'F432-005-2:2019', '12', '123', 1234.00, '2026-04-04 21:31:51', '2026-04-04 21:31:51'),
 (1, 'T3ST1NG', 'F432-005-2:2019', '12', '123', 1234.00, '2026-04-04 21:31:51', '2026-04-04 21:31:51');
 
 --
@@ -538,15 +578,9 @@ ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kerjayas`
+-- Indexes for table `messages`
 --
-ALTER TABLE `kerjayas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `khususes`
---
-ALTER TABLE `khususes`
+ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -562,30 +596,12 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `programs`
---
-ALTER TABLE `programs`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sessions_user_id_index` (`user_id`),
   ADD KEY `sessions_last_activity_index` (`last_activity`);
-
---
--- Indexes for table `silibuses`
---
-ALTER TABLE `silibuses`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `syarat_kelayakans`
---
-ALTER TABLE `syarat_kelayakans`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -595,38 +611,8 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `yuran_asramas`
---
-ALTER TABLE `yuran_asramas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `yuran_pendaftarans`
---
-ALTER TABLE `yuran_pendaftarans`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `yuran_pengajians`
---
-ALTER TABLE `yuran_pengajians`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `yuran_pilihans`
---
-ALTER TABLE `yuran_pilihans`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `elauns`
---
-ALTER TABLE `elauns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -635,88 +621,28 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `galeris`
---
-ALTER TABLE `galeris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `institusis`
---
-ALTER TABLE `institusis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kerjayas`
+-- AUTO_INCREMENT for table `messages`
 --
-ALTER TABLE `kerjayas`
+ALTER TABLE `messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `khususes`
---
-ALTER TABLE `khususes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `programs`
---
-ALTER TABLE `programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `silibuses`
---
-ALTER TABLE `silibuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `syarat_kelayakans`
---
-ALTER TABLE `syarat_kelayakans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `yuran_asramas`
---
-ALTER TABLE `yuran_asramas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `yuran_pendaftarans`
---
-ALTER TABLE `yuran_pendaftarans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `yuran_pengajians`
---
-ALTER TABLE `yuran_pengajians`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `yuran_pilihans`
---
-ALTER TABLE `yuran_pilihans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

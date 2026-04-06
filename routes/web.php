@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminInstitusiController;
 use App\Http\Controllers\AdminKhususController;
 use App\Http\Controllers\AdminGaleriController;
 use App\Http\Controllers\KhususController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,7 +27,8 @@ Route::get('/institusi/{id}', [InstitusiController::class, 'show'])->name('insti
 Route::view('/kuota', 'kuota')->name('kuota');
 Route::view('/faq', 'faq')->name('faq');
 Route::view('/galeri', 'galeri')->name('galeri');
-Route::view('/hubungi', 'hubungi')->name('hubungi');
+Route::get('/hubungi', [MessageController::class, 'show'])->name('hubungi');
+Route::post('/hubungi', [MessageController::class, 'store'])->name('hubungi.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -83,6 +85,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/editgaleri/{id}', [AdminGaleriController::class, 'edit'])->name('admin.editgaleri');
     Route::put('/updategaleri/{id}', [AdminGaleriController::class, 'update'])->name('admin.updategaleri');
     Route::delete('/deletegaleri/{id}', [AdminGaleriController::class, 'destroy'])->name('admin.deletegaleri');
+
+    Route::get('/messages', [MessageController::class, 'index'])->name('admin.messages');
+    Route::get('/messages/{id}', [MessageController::class, 'showMessage'])->name('admin.message-detail');
+    Route::post('/messages/{id}/comment', [MessageController::class, 'updateComment'])->name('admin.message-comment');
+    Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('admin.message-delete');
 });
 
 Route::get('/khusus/{id}', [KhususController::class, 'show'])->name('khusus.show');
