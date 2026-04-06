@@ -109,6 +109,7 @@
         </div>
     </section>
 
+    {{-- 🔹 SOCIAL FLOAT --}}
     @include('components.social-float')
 
     {{-- 🔹 FOOTER --}}

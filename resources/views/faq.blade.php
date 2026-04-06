@@ -179,6 +179,9 @@
     }
     </script>
 
+    {{-- 🔹 SOCIAL FLOAT --}}
+    @include('components.social-float')
+
     {{-- 🔹 FOOTER --}}
     @include('layouts.footer')
 

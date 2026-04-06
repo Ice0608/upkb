@@ -12,6 +12,7 @@
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
+
     {{-- 🔹 HERO / KANDUNGAN PROGRAM --}}
     <section class="max-w-7xl mx-auto px-6 py-10">
         <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
