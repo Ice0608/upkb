@@ -22,7 +22,6 @@
                 <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Program</a>
                 <a href="{{ route('institusi') }}" class="{{ request()->routeIs('institusi','institusi.show') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Institusi</a>
                 <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">FAQ</a>
-                <a href="{{ route('galeri') }}" class="{{ request()->routeIs('galeri') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Galeri</a>
                 <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Hubungi</a>
             </div>
 
