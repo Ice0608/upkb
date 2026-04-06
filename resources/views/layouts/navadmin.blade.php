@@ -4,7 +4,7 @@
 
             {{-- LEFT: LOGO + NAME --}}
             <div class="flex items-center space-x-3">
-                <img src="{{ asset('images/logo.jpeg') }}" alt="logo" class="w-12 h-12 object-contain">
+                <img src="{{ asset('images/icon/logo.jpeg') }}" alt="logo" class="w-12 h-12 object-contain">
 
                 <div class="leading-tight">
                     <h1 class="text-sm font-semibold text-gray-800">
