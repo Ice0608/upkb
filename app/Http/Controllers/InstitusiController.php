@@ -9,10 +9,19 @@ use Illuminate\Http\Request;
 
 class InstitusiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $institusis = Institusi::all();
-        return view('program.institusi', compact('institusis'));
+        $jenis = $request->jenis;
+        
+        $query = Institusi::query();
+        
+        if ($jenis) {
+            $query->where('jenis_institusi', $jenis);
+        }
+        
+        $institusis = $query->get();
+        
+        return view('program.institusi', compact('institusis', 'jenis'));
     }
 
     public function show($id)

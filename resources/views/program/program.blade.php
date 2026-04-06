@@ -30,7 +30,7 @@
                 <div class="h-16 w-16 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5"><i class="{{ $program->icon }} fa-lg"></i></div>
                 <h2 class="text-2xl font-extrabold text-slate-900 mb-2">{{ $program->jenis_program }}</h2>
                 <p class="text-gray-500 mb-6">{{ $program->info_program }}</p>
-                <a href="#" class="inline-flex items-center gap-2 text-blue-600 font-bold">LIHAT PROGRAM <span>→</span></a>
+                <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" class="inline-flex items-center gap-2 text-blue-600 font-bold">LIHAT PROGRAM <span>→</span></a>
             </article>
             @empty
             <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">

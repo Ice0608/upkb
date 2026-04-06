@@ -14,7 +14,13 @@
         <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Institusi TVET</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+                        @if($jenis)
+                            Institusi {{ $jenis }}
+                        @else
+                            Semua Institusi
+                        @endif
+                    </h1>
                     <p class="mt-3 text-lg text-orange-100">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
                 </div>
                 <button class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition">
