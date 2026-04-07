@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminKursusController;
 use App\Http\Controllers\AdminGaleriController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,6 +51,13 @@ Route::middleware('auth')->group(function () {
 
 // Admin routes
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
+    Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users');
+    Route::get('/adduser', [AdminUserController::class, 'create'])->name('admin.adduser');
+    Route::post('/storeuser', [AdminUserController::class, 'store'])->name('admin.storeuser');
+    Route::get('/edituser/{user}', [AdminUserController::class, 'edit'])->name('admin.edituser');
+    Route::put('/updateuser/{user}', [AdminUserController::class, 'update'])->name('admin.updateuser');
+    Route::delete('/deleteuser/{user}', [AdminUserController::class, 'destroy'])->name('admin.deleteuser');
+
     Route::get('/programs', [AdminProgramController::class, 'index'])->name('admin.programs');
     Route::get('/addprogram', [AdminProgramController::class, 'create'])->name('admin.addprogram');
     Route::post('/storeprogram', [AdminProgramController::class, 'store'])->name('admin.storeprogram');

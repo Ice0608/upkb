@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2026 at 02:57 PM
+-- Generation Time: Apr 07, 2026 at 05:37 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -251,7 +251,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (30, '2026_04_07_000000_make_kuota_and_tarikh_pendaftaran_nullable_in_kursuses_table', 11),
 (31, '2026_04_07_000006_rename_kod_khusus_to_kod_kursus_in_child_tables', 11),
 (32, '2026_04_07_123032_fix_yuran_asramas_id_auto_increment', 12),
-(33, '2026_04_07_124937_fix_messages_id_auto_increment', 13);
+(33, '2026_04_07_124937_fix_messages_id_auto_increment', 13),
+(34, '2026_04_07_133220_add_username_and_level_to_users_table', 14),
+(35, '2026_04_07_150110_modify_users_table_for_username_and_level', 15),
+(36, '2026_04_07_150435_fix_users_id_auto_increment', 16);
 
 -- --------------------------------------------------------
 
@@ -309,10 +312,11 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('1jKncZ7zePJtlX5gqnbI2tGjFclOTn1BhMrwNUsR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiNEJrY0VOYm1EMXltSWxtMG56a0V5Wk9vV1MxN1ZaanlUMm5IN0hWWiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775563686),
-('e3gGRq6STuOEL1rsqbGtP3dQ9ouwY0mA8FS9mcJg', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZFNnOXVXYUo0NGZqYzQ4ZmJ0WU8zQmNOejZPWkhTUlRxMVFxWTZQdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775565528),
-('Vk3QkYb3rzORyLCGfXf8EeEFWqMWTgJx5NMBlA1i', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiYlhrdDZrSExWajVzRGZWbEJnc0pIeHN1bWNqMlByZGRSMVVKV1JpbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775565752),
-('gIKyGuYLzb2JRiLpuUuPgq1xToW8l81YW6CpaUtF', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiR2pES3JLSmRnWlVKdFRtZ3UydVFnd2ZId3hQNjN6Q2tteWtQbVpNdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9pbnN0aXR1c2lzIjtzOjU6InJvdXRlIjtzOjE2OiJhZG1pbi5pbnN0aXR1c2lzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1775566632);
+('KAPt2jqtX6ak2Erx5WV5C4uWvzY6JV2gG5HnT7JC', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZVQyb0pLMEZyaXV2a0I0ZjN3UkhIcjNXWm9VRzRGNTBSbG02a05TciI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbG9naW4iO3M6NToicm91dGUiO3M6NToibG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1775569888),
+('EP2MPZDFPJrPKjy8xfTG7N0d38SVQQPWbs0fiotu', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoianRvd2taTTU3OVNRTWVwSVlUQ0xxN3R1SjVHSnhJeEpIMDdqaWVEdCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbG9naW4iO3M6NToicm91dGUiO3M6NToibG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1775575012),
+('DewAGVWw4S4FBdthxwpdxeWunEJKJitSNaywy89a', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiR3huMlFKSVQ1WHlCNlpxVklpV2ZGeTBaaDN5WmF0bEFHOWVuY0RqVyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO3M6NToicm91dGUiO3M6OToiZGFzaGJvYXJkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1775575441),
+('evZ5gIE7SiTDpLWZsclIXfxVEp5GFpdvIKqscyxU', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicThpa3ZUOEh3RHQ1a0pnWXJkTVhtajBlNmZtNTNZNUVsWFlsOFZpRiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1775575433),
+('3WKJinFlkyz9C08ARIevG2pEcVyS1RPFrkOVwdYQ', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWm9ST09temhEVFRFMFZTcmNad2t4R2t1QUhXMmhHZkk4Wnk4THl5bCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO3M6NToicm91dGUiO3M6OToiZGFzaGJvYXJkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1775576221);
 
 -- --------------------------------------------------------
 
@@ -363,9 +367,9 @@ INSERT INTO `syarat_kelayakans` (`id`, `kod_institusi`, `kod_kursus`, `syarat_ke
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `level` enum('admin','staff') NOT NULL DEFAULT 'staff',
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -375,8 +379,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2, 'admin', 'admin@mail.com', NULL, '$2y$12$5jeutrlTSjDNtiP6u9jWFuin2RJk8X1wy5cnWqbkAbtNlkwexjTVW', NULL, '2026-04-03 03:50:09', '2026-04-03 03:50:09');
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'Administrator', 'admin', '$2y$12$H19mAPrdXLYpiz1r/SScaO2.smzvdTdW0lS560xxxUtpEPZEEuWGC', 'admin', NULL, '2026-04-07 07:05:08', '2026-04-07 07:05:08'),
+(4, 'Staff Member', 'staff', '$2y$12$25XfLH49TjxriBWnD8uzLukkZTw.DpRi6hdJ2s63kZZuzqoCQ9pDy', 'staff', NULL, '2026-04-07 07:05:08', '2026-04-07 07:05:08'),
+(5, 'SHAHRUL IRFAN BIN SAFARIN', 'SIS0221', '$2y$12$323mcVuZEWkMgIuos2UOMO.PXNS6DoV672/nobFYUyZf7aOoEZUv6', 'admin', NULL, '2026-04-07 07:36:53', '2026-04-07 07:36:53');
 
 -- --------------------------------------------------------
 
@@ -534,7 +540,7 @@ ALTER TABLE `syarat_kelayakans`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_username_unique` (`username`);
 
 --
 -- Indexes for table `yuran_asramas`
@@ -610,7 +616,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `programs`
@@ -634,7 +640,7 @@ ALTER TABLE `syarat_kelayakans`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `yuran_asramas`

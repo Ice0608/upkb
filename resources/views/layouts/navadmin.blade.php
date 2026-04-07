@@ -22,6 +22,7 @@
                 <a href="{{ route('admin.programs') }}" class="{{ request()->routeIs('admin.programs','admin.addprogram','admin.editprogram') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Programs</a>
                 <a href="{{ route('admin.institusis') }}" class="{{ request()->routeIs('admin.institusis','admin.addinstitusi','admin.editinstitusi') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Institusi</a>
                 <a href="{{ route('admin.messages') }}" class="{{ request()->routeIs('admin.messages','admin.message-detail') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Pertanyaan</a>
+                <a href="{{ route('admin.users') }}" class="{{ request()->routeIs('admin.users','admin.adduser','admin.edituser') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Users</a>
             </div>
 
             {{-- RIGHT: LOGOUT --}}
