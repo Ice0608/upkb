@@ -4,9 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\InstitusiController;
 use App\Http\Controllers\AdminInstitusiController;
-use App\Http\Controllers\AdminKhususController;
+use App\Http\Controllers\AdminKursusController;
 use App\Http\Controllers\AdminGaleriController;
-use App\Http\Controllers\KhususController;
+use App\Http\Controllers\KursusController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,33 +52,33 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::put('/updateinstitusi/{id}', [AdminInstitusiController::class, 'update'])->name('admin.updateinstitusi');
     Route::delete('/deleteinstitusi/{id}', [AdminInstitusiController::class, 'destroy'])->name('admin.deleteinstitusi');
 
-    Route::get('/addkhusus/{kod_institusi}', [AdminKhususController::class, 'create'])->name('admin.addkhusus');
-    Route::post('/storekhusus', [AdminKhususController::class, 'store'])->name('admin.storekhusus');
-    Route::get('/editkhusus/{id}', [AdminKhususController::class, 'edit'])->name('admin.editkhusus');
-    Route::put('/updatekhusus/{id}', [AdminKhususController::class, 'update'])->name('admin.updatekhusus');
-    Route::delete('/deletekhusus/{id}', [AdminKhususController::class, 'destroy'])->name('admin.deletekhusus');
-    Route::post('/storesyarat', [AdminKhususController::class, 'storeSyarat'])->name('admin.storesyarat');
-    Route::delete('/deletesyarat/{id}', [AdminKhususController::class, 'destroySyarat'])->name('admin.deletesyarat');
-    Route::post('/storesilibus', [AdminKhususController::class, 'storeSilibus'])->name('admin.storesilibus');
-    Route::delete('/deletesilibus/{id}', [AdminKhususController::class, 'destroySilibus'])->name('admin.deletesilibus');
-    Route::post('/storekerjaya', [AdminKhususController::class, 'storeKerjaya'])->name('admin.storekerjaya');
-    Route::delete('/deletekerjaya/{id}', [AdminKhususController::class, 'destroyKerjaya'])->name('admin.deletekerjaya');
-    Route::post('/storeyuranpendaftaran', [AdminKhususController::class, 'storeYuranPendaftaran'])->name('admin.storeyuranpendaftaran');
-    Route::delete('/deleteyuranpendaftaran/{id}', [AdminKhususController::class, 'destroyYuranPendaftaran'])->name('admin.deleteyuranpendaftaran');
-    Route::post('/storeyuranpilihan', [AdminKhususController::class, 'storeYuranPilihan'])->name('admin.storeyuranpilihan');
-    Route::delete('/deleteyuranpilihan/{id}', [AdminKhususController::class, 'destroyYuranPilihan'])->name('admin.deleteyuranpilihan');
-    Route::post('/storeyuranasrama', [AdminKhususController::class, 'storeYuranAsrama'])->name('admin.storeyuranasrama');
-    Route::delete('/deleteyuranasrama/{id}', [AdminKhususController::class, 'destroyYuranAsrama'])->name('admin.deleteyuranasrama');
-    Route::post('/storeyuranpengajian', [AdminKhususController::class, 'storeYuranPengajian'])->name('admin.storeyuranpengajian');
-    Route::delete('/deleteyuranpengajian/{id}', [AdminKhususController::class, 'destroyYuranPengajian'])->name('admin.deleteyuranpengajian');
-    Route::post('/storeelaun', [AdminKhususController::class, 'storeElaun'])->name('admin.storeelaun');
-    Route::delete('/deleteelaun/{id}', [AdminKhususController::class, 'destroyElaun'])->name('admin.deleteelaun');
+    Route::get('/addkursus/{kod_institusi}', [AdminKursusController::class, 'create'])->name('admin.addkursus');
+    Route::post('/storekursus', [AdminKursusController::class, 'store'])->name('admin.storekursus');
+    Route::get('/editkursus/{id}', [AdminKursusController::class, 'edit'])->name('admin.editkursus');
+    Route::put('/updatekursus/{id}', [AdminKursusController::class, 'update'])->name('admin.updatekursus');
+    Route::delete('/deletekursus/{id}', [AdminKursusController::class, 'destroy'])->name('admin.deletekursus');
+    Route::post('/storesyarat', [AdminKursusController::class, 'storeSyarat'])->name('admin.storesyarat');
+    Route::delete('/deletesyarat/{id}', [AdminKursusController::class, 'destroySyarat'])->name('admin.deletesyarat');
+    Route::post('/storesilibus', [AdminKursusController::class, 'storeSilibus'])->name('admin.storesilibus');
+    Route::delete('/deletesilibus/{id}', [AdminKursusController::class, 'destroySilibus'])->name('admin.deletesilibus');
+    Route::post('/storekerjaya', [AdminKursusController::class, 'storeKerjaya'])->name('admin.storekerjaya');
+    Route::delete('/deletekerjaya/{id}', [AdminKursusController::class, 'destroyKerjaya'])->name('admin.deletekerjaya');
+    Route::post('/storeyuranpendaftaran', [AdminKursusController::class, 'storeYuranPendaftaran'])->name('admin.storeyuranpendaftaran');
+    Route::delete('/deleteyuranpendaftaran/{id}', [AdminKursusController::class, 'destroyYuranPendaftaran'])->name('admin.deleteyuranpendaftaran');
+    Route::post('/storeyuranpilihan', [AdminKursusController::class, 'storeYuranPilihan'])->name('admin.storeyuranpilihan');
+    Route::delete('/deleteyuranpilihan/{id}', [AdminKursusController::class, 'destroyYuranPilihan'])->name('admin.deleteyuranpilihan');
+    Route::post('/storeyuranasrama', [AdminKursusController::class, 'storeYuranAsrama'])->name('admin.storeyuranasrama');
+    Route::delete('/deleteyuranasrama/{id}', [AdminKursusController::class, 'destroyYuranAsrama'])->name('admin.deleteyuranasrama');
+    Route::post('/storeyuranpengajian', [AdminKursusController::class, 'storeYuranPengajian'])->name('admin.storeyuranpengajian');
+    Route::delete('/deleteyuranpengajian/{id}', [AdminKursusController::class, 'destroyYuranPengajian'])->name('admin.deleteyuranpengajian');
+    Route::post('/storeelaun', [AdminKursusController::class, 'storeElaun'])->name('admin.storeelaun');
+    Route::delete('/deleteelaun/{id}', [AdminkursusController::class, 'destroyElaun'])->name('admin.deleteelaun');
 
-    Route::get('/tabmaklumat/{id}', [AdminKhususController::class, 'tabMaklumat'])->name('admin.tabmaklumat');
-    Route::get('/tabsyarat/{id}', [AdminKhususController::class, 'tabSyarat'])->name('admin.tabsyarat');
-    Route::get('/tabsilibus/{id}', [AdminKhususController::class, 'tabSilibus'])->name('admin.tabsilibus');
-    Route::get('/tabkerjaya/{id}', [AdminKhususController::class, 'tabKerjaya'])->name('admin.tabkerjaya');
-    Route::get('/tabyuran/{id}', [AdminKhususController::class, 'tabYuran'])->name('admin.tabyuran');
+    Route::get('/tabmaklumat/{id}', [AdminkursusController::class, 'tabMaklumat'])->name('admin.tabmaklumat');
+    Route::get('/tabsyarat/{id}', [AdminkursusController::class, 'tabSyarat'])->name('admin.tabsyarat');
+    Route::get('/tabsilibus/{id}', [AdminkursusController::class, 'tabSilibus'])->name('admin.tabsilibus');
+    Route::get('/tabkerjaya/{id}', [AdminkursusController::class, 'tabKerjaya'])->name('admin.tabkerjaya');
+    Route::get('/tabyuran/{id}', [AdminkursusController::class, 'tabYuran'])->name('admin.tabyuran');
 
     Route::get('/addgaleri/{kod_institusi}', [AdminGaleriController::class, 'create'])->name('admin.addgaleri');
     Route::post('/storagaleri', [AdminGaleriController::class, 'store'])->name('admin.storagaleri');
@@ -92,13 +92,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('admin.message-delete');
 });
 
-Route::get('/khusus/{id}', [KhususController::class, 'show'])->name('khusus.show');
-Route::get('/khusus/{id}/pdf', [KhususController::class, 'pdf'])->name('khusus.pdf');
+Route::get('/kursus/{id}', [kursusController::class, 'show'])->name('kursus.show');
+Route::get('/kursus/{id}/pdf', [kursusController::class, 'pdf'])->name('kursus.pdf');
 
-Route::get('/khusus/tabmaklumat/{id}', [KhususController::class, 'tabMaklumat'])->name('khusus.tabmaklumat');
-Route::get('/khusus/tabsyarat/{id}', [KhususController::class, 'tabSyarat'])->name('khusus.tabsyarat');
-Route::get('/khusus/tabsilibus/{id}', [KhususController::class, 'tabSilibus'])->name('khusus.tabsilibus');
-Route::get('/khusus/tabkerjaya/{id}', [KhususController::class, 'tabKerjaya'])->name('khusus.tabkerjaya');
-Route::get('/khusus/tabyuran/{id}', [KhususController::class, 'tabYuran'])->name('khusus.tabyuran');
+Route::get('/kursus/tabmaklumat/{id}', [kursusController::class, 'tabMaklumat'])->name('kursus.tabmaklumat');
+Route::get('/kursus/tabsyarat/{id}', [kursusController::class, 'tabSyarat'])->name('kursus.tabsyarat');
+Route::get('/kursus/tabsilibus/{id}', [kursusController::class, 'tabSilibus'])->name('kursus.tabsilibus');
+Route::get('/kursus/tabkerjaya/{id}', [kursusController::class, 'tabKerjaya'])->name('kursus.tabkerjaya');
+Route::get('/kursus/tabyuran/{id}', [kursusController::class, 'tabYuran'])->name('kursus.tabyuran');
 
 require __DIR__.'/auth.php';

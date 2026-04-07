@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Khusus;
+use App\Models\Kursus;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class KhususController extends Controller
+class KursusController extends Controller
 {
     public function show($id)
     {
-        $khusus = Khusus::with([
+        $kursus = Kursus::with([
             'institusi',
             'syaratKelayakans',
             'silibuses',
@@ -23,12 +23,12 @@ class KhususController extends Controller
             'elauns',
         ])->findOrFail($id);
 
-        return view('program.infokhusus', compact('khusus'));
+        return view('program.infokursus', compact('kursus'));
     }
 
     public function pdf($id)
     {
-        $khusus = Khusus::with([
+        $kursus = Kursus::with([
             'institusi',
             'syaratKelayakans',
             'silibuses',
@@ -40,7 +40,7 @@ class KhususController extends Controller
             'elauns',
         ])->findOrFail($id);
 
-        $html = view('program.infokhusus-pdf', compact('khusus'))->render();
+        $html = view('program.infokursus-pdf', compact('kursus'))->render();
 
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
@@ -49,42 +49,42 @@ class KhususController extends Controller
 
         return response($dompdf->output(), 200)
             ->header('Content-Type', 'application/pdf')
-            ->header('Content-Disposition', 'inline; filename="'.Str::slug($khusus->nama_khusus).'.pdf"');
+            ->header('Content-Disposition', 'inline; filename="'.Str::slug($kursus->nama_kursus).'.pdf"');
     }
 
     public function tabMaklumat($id)
     {
-        $khusus = Khusus::findOrFail($id);
-        return view('program._guest_tab_maklumat', compact('khusus'));
+        $kursus = Kursus::findOrFail($id);
+        return view('program._guest_tab_maklumat', compact('kursus'));
     }
 
     public function tabSyarat($id)
     {
-        $khusus = Khusus::with('syaratKelayakans')->findOrFail($id);
-        return view('program._guest_tab_syarat', compact('khusus'));
+        $kursus = Kursus::with('syaratKelayakans')->findOrFail($id);
+        return view('program._guest_tab_syarat', compact('kursus'));
     }
 
     public function tabSilibus($id)
     {
-        $khusus = Khusus::with('silibuses')->findOrFail($id);
-        return view('program._guest_tab_silibus', compact('khusus'));
+        $kursus = Kursus::with('silibuses')->findOrFail($id);
+        return view('program._guest_tab_silibus', compact('kursus'));
     }
 
     public function tabKerjaya($id)
     {
-        $khusus = Khusus::with('kerjayas')->findOrFail($id);
-        return view('program._guest_tab_kerjaya', compact('khusus'));
+        $kursus = Kursus::with('kerjayas')->findOrFail($id);
+        return view('program._guest_tab_kerjaya', compact('kursus'));
     }
 
     public function tabYuran($id)
     {
-        $khusus = Khusus::with([
+        $kursus = Kursus::with([
             'yuranPendaftarans',
             'yuranPilihans',
             'yuranAsramas',
             'yuranPengajians',
             'elauns',
         ])->findOrFail($id);
-        return view('program._guest_tab_yuran', compact('khusus'));
+        return view('program._guest_tab_yuran', compact('kursus'));
     }
 }

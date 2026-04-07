@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('jenis_program');
             $table->text('alamat');
             $table->text('mengenai_institusi');
-            $table->string('kod_khusus');
+            $table->string('kod_kursus');
             $table->timestamps();
         });
     }

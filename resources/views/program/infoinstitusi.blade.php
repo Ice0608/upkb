@@ -41,17 +41,17 @@
         <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 mb-10">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-800">
-                    <i class="fas fa-graduation-cap text-orange-500"></i>Senarai Khusus Ditawarkan
-                    <span class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-semibold">{{ count($khususList) }} Khusus</span>
+                    <i class="fas fa-graduation-cap text-orange-500"></i>Senarai kursus Ditawarkan
+                    <span class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-semibold">{{ count($kursusList) }} kursus</span>
                 </h2>
             </div>
             
-            @if(count($khususList) > 0)
+            @if(count($kursusList) > 0)
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-gray-100 border-b border-gray-300">
                         <tr>
-                            <th class="px-4 py-3 font-semibold text-gray-700">Nama Khusus</th>
+                            <th class="px-4 py-3 font-semibold text-gray-700">Nama kursus</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Kod</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Mod Pengajian</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Tempoh</th>
@@ -60,15 +60,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($khususList as $khusus)
+                        @foreach($kursusList as $kursus)
                         <tr class="border-b border-gray-200 hover:bg-gray-50">
-                            <td class="px-4 py-3 text-gray-800 font-medium">{{ $khusus->nama_khusus }}</td>
-                            <td class="px-4 py-3 text-gray-600"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">{{ $khusus->kod_khusus }}</span></td>
-                            <td class="px-4 py-3 text-gray-600">{{ $khusus->mod_pengajian }}</td>
-                            <td class="px-4 py-3 text-gray-600">{{ $khusus->tempoh }}</td>
-                            <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $khusus->kuota }}</td>
+                            <td class="px-4 py-3 text-gray-800 font-medium">{{ $kursus->nama_kursus }}</td>
+                            <td class="px-4 py-3 text-gray-600"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">{{ $kursus->kod_kursus }}</span></td>
+                            <td class="px-4 py-3 text-gray-600">{{ $kursus->mod_pengajian }}</td>
+                            <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
+                            <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3">
-                                <a href="{{ route('khusus.show', $khusus->id) }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold">Lihat detail</a>
+                                <a href="{{ route('kursus.show', $kursus->id) }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold">Lihat detail</a>
                             </td>
                         </tr>
                         @endforeach
@@ -78,7 +78,7 @@
             @else
             <div class="bg-gray-50 rounded-2xl p-8 text-center text-gray-500">
                 <i class="fas fa-inbox text-3xl mb-3 text-gray-300"></i>
-                <p>Tiada khusus ditawarkan pada institusi ini.</p>
+                <p>Tiada kursus ditawarkan pada institusi ini.</p>
             </div>
             @endif
         </div>

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Edit Khusus</title>
+    <title>UPKB - Edit kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -15,10 +16,10 @@
             <div class="px-8 py-8 border-b border-gray-200">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 class="text-4xl font-bold text-gray-800">Edit Khusus</h1>
-                        <p class="mt-2 text-gray-600">Urus data khusus serta semua submodul syarat, silibus, kerjaya dan yuran.</p>
+                        <h1 class="text-4xl font-bold text-gray-800">Edit kursus</h1>
+                        <p class="mt-2 text-gray-600">Urus data kursus serta semua submodul syarat, silibus, kerjaya dan yuran.</p>
                     </div>
-                    <a href="{{ route('admin.editinstitusi', $khusus->institusi?->id ?? 0) }}" class="inline-flex items-center gap-2 rounded-full bg-orange-500 text-white px-5 py-3 hover:bg-orange-600 transition">
+                    <a href="{{ route('admin.editinstitusi', $kursus->institusi?->id ?? 0) }}" class="inline-flex items-center gap-2 rounded-full bg-orange-500 text-white px-5 py-3 hover:bg-orange-600 transition">
                         <i class="fas fa-building"></i> Kembali ke Institusi
                     </a>
                 </div>
@@ -59,10 +60,11 @@
             });
 
             // Load tab content via AJAX
-            const khususId = '{{ $khusus->id }}';
-            fetch(`/admin/tab${tab}/${khususId}`, {
+            const kursusId = '{{ $kursus->id }}';
+            fetch(`/admin/tab${tab}/${kursusId}`, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 }
             })
@@ -96,6 +98,7 @@
                         body: formData,
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             'Accept': 'application/json',
                         }
                     })

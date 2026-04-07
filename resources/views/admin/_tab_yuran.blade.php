@@ -1,9 +1,9 @@
 @php
-    $pendaftaranTotal = $khusus->yuranPendaftarans->sum('amount');
-    $pilihanTotal = $khusus->yuranPilihans->sum('amount');
-    $asramaTotal = $khusus->yuranAsramas->sum('amount');
-    $pengajianTotal = $khusus->yuranPengajians->sum('amount');
-    $elaunTotal = $khusus->elauns->sum('jumlah');
+    $pendaftaranTotal = $kursus->yuranPendaftarans->sum('amount');
+    $pilihanTotal = $kursus->yuranPilihans->sum('amount');
+    $asramaTotal = $kursus->yuranAsramas->sum('amount');
+    $pengajianTotal = $kursus->yuranPengajians->sum('amount');
+    $elaunTotal = $kursus->elauns->sum('jumlah');
     $totalYuran = $pendaftaranTotal + $pilihanTotal + $asramaTotal;
     $totalPinjaman = $pengajianTotal + $elaunTotal;
     $grandTotal = $totalYuran + $totalPinjaman;
@@ -14,7 +14,7 @@
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
                 <h2 class="text-2xl font-semibold text-gray-800">Yuran & Pinjaman</h2>
-                <p class="mt-2 text-sm text-gray-500">Semua item diambil dari rekod khusus ini.</p>
+                <p class="mt-2 text-sm text-gray-500">Semua item diambil dari rekod kursus ini.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div class="rounded-3xl bg-orange-50 p-4">
@@ -47,7 +47,7 @@
                     </div>
                     <form id="pendaftaran-form" action="{{ route('admin.storeyuranpendaftaran') }}" method="POST" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+                        <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
                         <div>
                             <label for="item_pendaftaran" class="block text-sm font-medium text-gray-700">Item</label>
                             <input type="text" id="item_pendaftaran" name="item" class="mt-1 w-full border-gray-300 rounded-xl shadow-sm" required>
@@ -67,7 +67,7 @@
                     </div>
                     <form id="pilihan-form" action="{{ route('admin.storeyuranpilihan') }}" method="POST" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+                        <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
                         <div>
                             <label for="pilihan" class="block text-sm font-medium text-gray-700">Pilihan</label>
                             <input type="text" id="pilihan" name="pilihan" class="mt-1 w-full border-gray-300 rounded-xl shadow-sm" required>
@@ -86,7 +86,7 @@
             </div>
 
             <div class="space-y-3" id="pendaftaran-list">
-                @forelse($khusus->yuranPendaftarans as $item)
+                @forelse($kursus->yuranPendaftarans as $item)
                     <div class="rounded-3xl border border-gray-200 bg-orange-50 p-4 flex items-center justify-between gap-4">
                         <div>
                             <p class="font-semibold text-gray-800">{{ $item->item }}</p>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="space-y-3" id="pilihan-list">
-                @forelse($khusus->yuranPilihans as $item)
+                @forelse($kursus->yuranPilihans as $item)
                     <div class="rounded-3xl border border-gray-200 bg-orange-50 p-4 flex items-center justify-between gap-4">
                         <div>
                             <p class="font-semibold text-gray-800">{{ $item->pilihan }} - {{ $item->item }}</p>
@@ -135,7 +135,7 @@
                     </div>
                     <form id="asrama-form" action="{{ route('admin.storeyuranasrama') }}" method="POST" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+                        <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
                         <div>
                             <label for="item_asrama" class="block text-sm font-medium text-gray-700">Item</label>
                             <input type="text" id="item_asrama" name="item" class="mt-1 w-full border-gray-300 rounded-xl shadow-sm" required>
@@ -148,7 +148,7 @@
                     </form>
                 </div>
                 <div id="asrama-list" class="space-y-3">
-                    @forelse($khusus->yuranAsramas as $item)
+                    @forelse($kursus->yuranAsramas as $item)
                         <div class="rounded-3xl border border-gray-200 bg-white p-4 flex items-center justify-between gap-4">
                             <div>
                                 <p class="font-semibold text-gray-800">{{ $item->item }}</p>
@@ -178,7 +178,7 @@
                     </div>
                     <form id="pengajian-form" action="{{ route('admin.storeyuranpengajian') }}" method="POST" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+                        <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
                         <div>
                             <label for="peringkat" class="block text-sm font-medium text-gray-700">Peringkat</label>
                             <input type="text" id="peringkat" name="peringkat" class="mt-1 w-full border-gray-300 rounded-xl shadow-sm" required>
@@ -201,7 +201,7 @@
                     </div>
                     <form id="elaun-form" action="{{ route('admin.storeelaun') }}" method="POST" class="space-y-4">
                         @csrf
-                        <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+                        <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
                         <div>
                             <label for="elaun_bulanan" class="block text-sm font-medium text-gray-700">Elaun Bulanan</label>
                             <input type="text" id="elaun_bulanan" name="elaun_bulanan" class="mt-1 w-full border-gray-300 rounded-xl shadow-sm" required>
@@ -220,7 +220,7 @@
             </div>
 
             <div class="space-y-3 mt-6" id="pengajian-list">
-                @forelse($khusus->yuranPengajians as $item)
+                @forelse($kursus->yuranPengajians as $item)
                     <div class="rounded-3xl border border-gray-200 bg-white p-4 flex items-center justify-between gap-4">
                         <div>
                             <p class="font-semibold text-gray-800">{{ $item->peringkat }} / {{ $item->tempoh }}</p>
@@ -240,7 +240,7 @@
             </div>
 
             <div class="space-y-3 mt-4" id="elaun-list">
-                @forelse($khusus->elauns as $item)
+                @forelse($kursus->elauns as $item)
                     <div class="rounded-3xl border border-gray-200 bg-white p-4 flex items-center justify-between gap-4">
                         <div>
                             <p class="font-semibold text-gray-800">{{ $item->elaun_bulanan }} / {{ $item->tempoh }}</p>

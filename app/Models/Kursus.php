@@ -13,13 +13,14 @@ use App\Models\YuranAsrama;
 use App\Models\YuranPengajian;
 use App\Models\Elaun;
 
-class Khusus extends Model
+class Kursus extends Model
 {
+    protected $table = 'kursuses';
     protected $fillable = [
-        'kod_khusus',
+        'kod_kursus',
         'kod_institusi',
-        'nama_khusus',
-        'jenis_khusus',
+        'nama_kursus',
+        'jenis_kursus',
         'mod_pengajian',
         'tempoh',
         'kuota',
@@ -38,41 +39,41 @@ class Khusus extends Model
 
     public function syaratKelayakans()
     {
-        return $this->hasMany(SyaratKelayakan::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(SyaratKelayakan::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function silibuses()
     {
-        return $this->hasMany(Silibus::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(Silibus::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function kerjayas()
     {
-        return $this->hasMany(Kerjaya::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(Kerjaya::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function yuranPendaftarans()
     {
-        return $this->hasMany(YuranPendaftaran::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(YuranPendaftaran::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function yuranPilihans()
     {
-        return $this->hasMany(YuranPilihan::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(YuranPilihan::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function yuranAsramas()
     {
-        return $this->hasMany(YuranAsrama::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(YuranAsrama::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function yuranPengajians()
     {
-        return $this->hasMany(YuranPengajian::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(YuranPengajian::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function elauns()
     {
-        return $this->hasMany(Elaun::class, 'kod_khusus', 'kod_khusus');
+        return $this->hasMany(Elaun::class, 'kod_kursus', 'kod_kursus');
     }
 }

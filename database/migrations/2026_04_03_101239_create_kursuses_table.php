@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('khususes', function (Blueprint $table) {
+        Schema::create('kursuses', function (Blueprint $table) {
             $table->id();
-            $table->string('kod_khusus');
+            $table->string('kod_kursus');
             $table->string('kod_institusi');
-            $table->string('nama_khusus');
-            $table->string('jenis_khusus');
+            $table->string('nama_kursus');
+            $table->string('jenis_kursus');
             $table->string('mod_pengajian');
             $table->string('tempoh');
-            $table->integer('kuota');
-            $table->date('tarikh_pendaftaran');
+            $table->integer('kuota')->nullable();
+            $table->date('tarikh_pendaftaran')->nullable();
             $table->text('penerangan');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('khususes');
+        Schema::dropIfExists('kursuses');
     }
 };

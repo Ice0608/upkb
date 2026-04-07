@@ -1,8 +1,8 @@
 <div class="p-8 border-t border-gray-100">
     <h2 class="text-2xl font-bold text-gray-800 mb-4">Laluan Kerjaya</h2>
-    @if($khusus->kerjayas->isNotEmpty())
+    @if($kursus->kerjayas->isNotEmpty())
         <div class="grid gap-4 md:grid-cols-2">
-            @foreach($khusus->kerjayas as $item)
+            @foreach($kursus->kerjayas as $item)
                 <div class="rounded-3xl border border-gray-200 p-6 bg-gray-50">
                     <p class="font-semibold text-slate-900 mb-2">{{ $item->bidang_kerjaya }}</p>
                     <p class="text-gray-600 leading-relaxed">Potensi jawatan dan peluang dalam bidang ini.</p>

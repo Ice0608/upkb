@@ -17,19 +17,19 @@
 <body>
     <div class="page">
         <div class="section">
-            <h1 class="heading">{{ $khusus->nama_khusus }}</h1>
-            <p class="small">{{ $khusus->institusi->nama_institusi }} | {{ $khusus->institusi->alamat }}</p>
-            <p class="small">Kod: {{ $khusus->kod_khusus }} · Mod: {{ $khusus->mod_pengajian }} · Tempoh: {{ $khusus->tempoh }}</p>
+            <h1 class="heading">{{ $kursus->nama_kursus }}</h1>
+            <p class="small">{{ $kursus->institusi->nama_institusi }} | {{ $kursus->institusi->alamat }}</p>
+            <p class="small">Kod: {{ $kursus->kod_kursus }} · Mod: {{ $kursus->mod_pengajian }} · Tempoh: {{ $kursus->tempoh }}</p>
         </div>
 
         <div class="section card">
             <h2 class="heading">Penerangan Program</h2>
-            <p>{{ $khusus->penerangan }}</p>
+            <p>{{ $kursus->penerangan }}</p>
         </div>
 
         <div class="section card">
             <h2 class="heading">Syarat Kelayakan</h2>
-            @forelse($khusus->syaratKelayakans as $item)
+            @forelse($kursus->syaratKelayakans as $item)
                 <p>{{ $item->syarat_kelayakan }}</p>
             @empty
                 <p>Tiada syarat kelayakan direkodkan.</p>
@@ -43,7 +43,7 @@
                     <tr><th>Topik</th><th>Isi Kandungan</th></tr>
                 </thead>
                 <tbody>
-                    @forelse($khusus->silibuses as $item)
+                    @forelse($kursus->silibuses as $item)
                         <tr><td>{{ $item->topik }}</td><td>{{ $item->isi_kandungan }}</td></tr>
                     @empty
                         <tr><td colspan="2">Tiada silibus direkodkan.</td></tr>
@@ -54,7 +54,7 @@
 
         <div class="section card">
             <h2 class="heading">Laluan Kerjaya</h2>
-            @forelse($khusus->kerjayas as $item)
+            @forelse($kursus->kerjayas as $item)
                 <p>{{ $item->bidang_kerjaya }}</p>
             @empty
                 <p>Tiada laluan kerjaya direkodkan.</p>
@@ -68,22 +68,22 @@
                     <tr><th>Jenis</th><th>Item</th><th>Jumlah</th></tr>
                 </thead>
                 <tbody>
-                    @foreach($khusus->yuranPendaftarans as $fee)
+                    @foreach($kursus->yuranPendaftarans as $fee)
                         <tr><td>Yuran Pendaftaran</td><td>{{ $fee->item }}</td><td>RM {{ number_format($fee->amount, 2) }}</td></tr>
                     @endforeach
-                    @foreach($khusus->yuranPilihans as $fee)
+                    @foreach($kursus->yuranPilihans as $fee)
                         <tr><td>Yuran Pilihan</td><td>{{ $fee->pilihan }} - {{ $fee->item }}</td><td>RM {{ number_format($fee->amount, 2) }}</td></tr>
                     @endforeach
-                    @foreach($khusus->yuranAsramas as $fee)
+                    @foreach($kursus->yuranAsramas as $fee)
                         <tr><td>Yuran Asrama</td><td>{{ $fee->item }}</td><td>RM {{ number_format($fee->amount, 2) }}</td></tr>
                     @endforeach
-                    @foreach($khusus->yuranPengajians as $fee)
+                    @foreach($kursus->yuranPengajians as $fee)
                         <tr><td>Yuran Pengajian</td><td>{{ $fee->peringkat }} / {{ $fee->tempoh }}</td><td>RM {{ number_format($fee->amount, 2) }}</td></tr>
                     @endforeach
-                    @foreach($khusus->elauns as $fee)
+                    @foreach($kursus->elauns as $fee)
                         <tr><td>Elaun</td><td>{{ $fee->elaun_bulanan }} / {{ $fee->tempoh }}</td><td>RM {{ number_format($fee->jumlah, 2) }}</td></tr>
                     @endforeach
-                    @if($khusus->yuranPendaftarans->isEmpty() && $khusus->yuranPilihans->isEmpty() && $khusus->yuranAsramas->isEmpty() && $khusus->yuranPengajians->isEmpty() && $khusus->elauns->isEmpty())
+                    @if($kursus->yuranPendaftarans->isEmpty() && $kursus->yuranPilihans->isEmpty() && $kursus->yuranAsramas->isEmpty() && $kursus->yuranPengajians->isEmpty() && $kursus->elauns->isEmpty())
                         <tr><td colspan="3">Tiada yuran atau elaun direkodkan.</td></tr>
                     @endif
                 </tbody>

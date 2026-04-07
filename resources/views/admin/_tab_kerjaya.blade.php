@@ -3,7 +3,7 @@
         <h2 class="text-2xl font-semibold text-gray-800">Laluan Kerjaya</h2>
         <form id="kerjaya-form" action="{{ route('admin.storekerjaya') }}" method="POST" class="w-full md:w-auto bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
             @csrf
-            <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+            <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
             <div class="space-y-4">
                 <label for="bidang_kerjaya" class="block text-sm font-medium text-gray-700">Bidang Kerjaya</label>
                 <input type="text" name="bidang_kerjaya" id="bidang_kerjaya" class="mt-1 w-full border-gray-300 rounded-xl shadow-sm" required>
@@ -13,7 +13,7 @@
     </div>
 
     <div id="kerjaya-list" class="grid gap-4 md:grid-cols-2">
-        @forelse($khusus->kerjayas as $item)
+        @forelse($kursus->kerjayas as $item)
             <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6 flex items-center justify-between gap-4">
                 <p class="text-gray-700">{{ $item->bidang_kerjaya }}</p>
                 <form action="{{ route('admin.deletekerjaya', $item->id) }}" method="POST" onsubmit="return confirm('Padam laluan kerjaya ini?');">

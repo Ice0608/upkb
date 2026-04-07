@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Institusi;
-use App\Models\Khusus;
+use App\Models\Kursus;
 use App\Models\Galeri;
 use App\Models\Silibus;
 use App\Models\Kerjaya;
@@ -73,9 +73,9 @@ class AdminInstitusiController extends Controller
     public function edit($id)
     {
         $institusi = Institusi::findOrFail($id);
-        $khususList = Khusus::where('kod_institusi', $institusi->kod_institusi)->get();
+        $kursusList = Kursus::where('kod_institusi', $institusi->kod_institusi)->get();
         $galeriList = Galeri::where('kod_institusi', $institusi->kod_institusi)->get();
-        return view('admin.editinstitusi', compact('institusi', 'khususList', 'galeriList'));
+        return view('admin.editinstitusi', compact('institusi', 'kursusList', 'galeriList'));
     }
 
     public function update(Request $request, $id)
@@ -120,7 +120,7 @@ class AdminInstitusiController extends Controller
         $kod_institusi = $institusi->kod_institusi;
 
         // Delete related records
-        Khusus::where('kod_institusi', $kod_institusi)->delete();
+        Kursus::where('kod_institusi', $kod_institusi)->delete();
         Silibus::where('kod_institusi', $kod_institusi)->delete();
         Galeri::where('kod_institusi', $kod_institusi)->delete();
         Kerjaya::where('kod_institusi', $kod_institusi)->delete();

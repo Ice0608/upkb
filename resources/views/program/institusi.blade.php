@@ -42,7 +42,7 @@
                     <h2 class="text-2xl font-extrabold text-slate-900 mb-2">{{ $institusi->nama_institusi }}</h2>
                     <p class="text-gray-500 mb-3"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
                     <p class="text-gray-500 mb-6">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 120) }}</p>
-                    <a href="{{ route('institusi.show', $institusi->id) }}" class="inline-flex items-center gap-2 text-orange-600 font-bold">Lihat khusus & fasiliti <span>→</span></a>
+                    <a href="{{ route('institusi.show', $institusi->id) }}" class="inline-flex items-center gap-2 text-orange-600 font-bold">Lihat kursus & fasiliti <span>→</span></a>
                 </div>
             </article>
             @empty

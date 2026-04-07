@@ -3,7 +3,7 @@
         <h2 class="text-2xl font-semibold text-gray-800">Struktur Silibus</h2>
         <form id="silibus-form" action="{{ route('admin.storesilibus') }}" method="POST" class="w-full md:w-auto bg-white rounded-3xl border border-gray-200 p-6 shadow-sm">
             @csrf
-            <input type="hidden" name="khusus_id" value="{{ $khusus->id }}">
+            <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
             <div class="space-y-4">
                 <div>
                     <label for="topik" class="block text-sm font-medium text-gray-700">Topik</label>
@@ -19,7 +19,7 @@
     </div>
 
     <div id="silibus-list" class="grid gap-4">
-        @forelse($khusus->silibuses as $item)
+        @forelse($kursus->silibuses as $item)
             <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6 flex flex-col gap-4">
                 <div>
                     <h3 class="font-semibold text-gray-800">{{ $item->topik }}</h3>

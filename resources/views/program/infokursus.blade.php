@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Info Khusus</title>
+    <title>UPKB - Info kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -15,23 +15,23 @@
             <div class="grid md:grid-cols-[1.8fr,0.8fr] gap-6 p-8">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
-                        <span class="bg-white/20 px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $khusus->jenis_khusus }}</span>
-                        <span class="bg-white/20 px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $khusus->mod_pengajian }}</span>
+                        <span class="bg-white/20 px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->jenis_kursus }}</span>
+                        <span class="bg-white/20 px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->mod_pengajian }}</span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">{{ $khusus->nama_khusus }}</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">{{ $kursus->nama_kursus }}</h1>
                     <div class="flex flex-wrap items-center gap-4 text-sm text-orange-100/90">
-                        <div class="inline-flex items-center gap-2"><i class="fas fa-hashtag"></i> {{ $khusus->kod_khusus }}</div>
-                        <div class="inline-flex items-center gap-2"><i class="fas fa-clock"></i> {{ $khusus->tempoh }}</div>
-                        <div class="inline-flex items-center gap-2"><i class="fas fa-users"></i> Kuota {{ $khusus->kuota }}</div>
-                        <div class="inline-flex items-center gap-2"><i class="fas fa-calendar-days"></i> Daftar {{ $khusus->tarikh_pendaftaran ? $khusus->tarikh_pendaftaran->format('d M Y') : '-' }}</div>
+                        <div class="inline-flex items-center gap-2"><i class="fas fa-hashtag"></i> {{ $kursus->kod_kursus }}</div>
+                        <div class="inline-flex items-center gap-2"><i class="fas fa-clock"></i> {{ $kursus->tempoh }}</div>
+                        <div class="inline-flex items-center gap-2"><i class="fas fa-users"></i> Kuota {{ $kursus->kuota }}</div>
+                        <div class="inline-flex items-center gap-2"><i class="fas fa-calendar-days"></i> Daftar {{ $kursus->tarikh_pendaftaran ? $kursus->tarikh_pendaftaran->format('d M Y') : '-' }}</div>
                     </div>
-                    <p class="mt-6 max-w-3xl leading-relaxed text-orange-100/90">{{ $khusus->penerangan }}</p>
+                    <p class="mt-6 max-w-3xl leading-relaxed text-orange-100/90">{{ $kursus->penerangan }}</p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="{{ route('institusi.show', $khusus->institusi->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
+                        <a href="{{ route('institusi.show', $kursus->institusi->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
                             <i class="fas fa-arrow-left"></i> Kembali ke Institusi
                         </a>
-                        <a href="{{ route('khusus.pdf', $khusus->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
+                        <a href="{{ route('kursus.pdf', $kursus->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
                             <i class="fas fa-file-pdf"></i> Simpan PDF
                         </a>
                     </div>
@@ -39,12 +39,12 @@
                 <div class="space-y-4">
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Institusi</h2>
-                        <p class="text-sm text-orange-100/90">{{ $khusus->institusi->nama_institusi }}</p>
-                        <p class="text-sm text-orange-100/90">{{ $khusus->institusi->alamat }}</p>
+                        <p class="text-sm text-orange-100/90">{{ $kursus->institusi->nama_institusi }}</p>
+                        <p class="text-sm text-orange-100/90">{{ $kursus->institusi->alamat }}</p>
                     </div>
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Ringkasan</h2>
-                        <p class="text-sm text-orange-100/90">{{ \Illuminate\Support\Str::limit($khusus->penerangan, 160) }}</p>
+                        <p class="text-sm text-orange-100/90">{{ \Illuminate\Support\Str::limit($kursus->penerangan, 160) }}</p>
                     </div>
                 </div>
             </div>
@@ -84,8 +84,8 @@
             });
 
             // Load tab content via AJAX
-            const khususId = '{{ $khusus->id }}';
-            fetch(`/khusus/tab${tab}/${khususId}`, {
+            const kursusId = '{{ $kursus->id }}';
+            fetch(`/kursus/tab${tab}/${kursusId}`, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',

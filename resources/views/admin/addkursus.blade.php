@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Add Khusus</title>
+    <title>UPKB - Add kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -12,7 +12,7 @@
 
     <section class="max-w-4xl mx-auto px-6 py-10">
         <div class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Add New Khusus</h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Add New kursus</h1>
 
             @if($errors->any())
             <div class="mb-6 rounded-2xl bg-red-50 p-5 border border-red-200 text-red-700">
@@ -24,24 +24,24 @@
             </div>
             @endif
 
-            <form action="{{ route('admin.storekhusus') }}" method="POST">
+            <form action="{{ route('admin.storekursus') }}" method="POST">
                 @csrf
                 <div class="grid gap-6">
                     <input type="hidden" name="kod_institusi" value="{{ $kod_institusi }}">
                     
                     <div>
-                        <label for="kod_khusus" class="block text-sm font-medium text-gray-700">Kod Khusus</label>
-                        <input type="text" name="kod_khusus" id="kod_khusus" value="{{ old('kod_khusus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="kod_kursus" class="block text-sm font-medium text-gray-700">Kod kursus</label>
+                        <input type="text" name="kod_kursus" id="kod_kursus" value="{{ old('kod_kursus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
-                        <label for="nama_khusus" class="block text-sm font-medium text-gray-700">Nama Khusus</label>
-                        <input type="text" name="nama_khusus" id="nama_khusus" value="{{ old('nama_khusus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="nama_kursus" class="block text-sm font-medium text-gray-700">Nama kursus</label>
+                        <input type="text" name="nama_kursus" id="nama_kursus" value="{{ old('nama_kursus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
-                        <label for="jenis_khusus" class="block text-sm font-medium text-gray-700">Jenis Khusus</label>
-                        <input type="text" name="jenis_khusus" id="jenis_khusus" value="{{ old('jenis_khusus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="jenis_kursus" class="block text-sm font-medium text-gray-700">Jenis kursus</label>
+                        <input type="text" name="jenis_kursus" id="jenis_kursus" value="{{ old('jenis_kursus') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     
                     <div>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="mt-8 flex items-center gap-4">
-                    <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Add Khusus</button>
+                    <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Add kursus</button>
                     <a href="javascript:history.back()" class="text-gray-600 hover:text-gray-800">Cancel</a>
                 </div>
             </form>

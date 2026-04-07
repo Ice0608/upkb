@@ -1,9 +1,9 @@
 @php
-    $pendaftaranTotal = $khusus->yuranPendaftarans->sum('amount');
-    $pilihanTotal = $khusus->yuranPilihans->sum('amount');
-    $asramaTotal = $khusus->yuranAsramas->sum('amount');
-    $pengajianTotal = $khusus->yuranPengajians->sum('amount');
-    $elaunTotal = $khusus->elauns->sum('jumlah');
+    $pendaftaranTotal = $kursus->yuranPendaftarans->sum('amount');
+    $pilihanTotal = $kursus->yuranPilihans->sum('amount');
+    $asramaTotal = $kursus->yuranAsramas->sum('amount');
+    $pengajianTotal = $kursus->yuranPengajians->sum('amount');
+    $elaunTotal = $kursus->elauns->sum('jumlah');
     $totalYuran = $pendaftaranTotal + $pilihanTotal + $asramaTotal;
     $totalPinjaman = $pengajianTotal + $elaunTotal;
 @endphp
@@ -20,9 +20,9 @@
             <div class="grid gap-6 md:grid-cols-2">
                 <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
                     <h3 class="font-semibold text-gray-800 mb-5">Yuran Pendaftaran</h3>
-                    @if($khusus->yuranPendaftarans->isNotEmpty())
+                    @if($kursus->yuranPendaftarans->isNotEmpty())
                         <div class="space-y-4">
-                            @foreach($khusus->yuranPendaftarans as $fee)
+                            @foreach($kursus->yuranPendaftarans as $fee)
                                 <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200">
                                     <p class="text-sm text-gray-700">{{ $fee->item }}</p>
                                     <p class="font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
@@ -40,9 +40,9 @@
 
                 <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
                     <h3 class="font-semibold text-gray-800 mb-5">Yuran Pilihan</h3>
-                    @if($khusus->yuranPilihans->isNotEmpty())
+                    @if($kursus->yuranPilihans->isNotEmpty())
                         <div class="space-y-4">
-                            @foreach($khusus->yuranPilihans as $fee)
+                            @foreach($kursus->yuranPilihans as $fee)
                                 <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200">
                                     <div class="text-sm text-gray-700">{{ $fee->pilihan }}</div>
                                     <div class="text-sm font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</div>
@@ -102,9 +102,9 @@
                     <h3 class="font-semibold text-gray-800">Yuran Pengajian</h3>
                     <span class="text-sm font-semibold text-gray-900">RM {{ number_format($pengajianTotal, 2) }}</span>
                 </div>
-                @if($khusus->yuranPengajians->isNotEmpty())
+                @if($kursus->yuranPengajians->isNotEmpty())
                     <div class="space-y-4">
-                        @foreach($khusus->yuranPengajians as $fee)
+                        @foreach($kursus->yuranPengajians as $fee)
                             <div class="rounded-3xl bg-white p-4 border border-gray-200 shadow-sm">
                                 <div class="flex items-center justify-between gap-4">
                                     <div>
@@ -130,9 +130,9 @@
                     <h3 class="font-semibold text-gray-800">Elaun / Bantuan Sara Hidup</h3>
                     <span class="text-sm font-semibold text-gray-900">RM {{ number_format($elaunTotal, 2) }}</span>
                 </div>
-                @if($khusus->elauns->isNotEmpty())
+                @if($kursus->elauns->isNotEmpty())
                     <div class="space-y-4">
-                        @foreach($khusus->elauns as $fee)
+                        @foreach($kursus->elauns as $fee)
                             <div class="rounded-3xl bg-white p-4 border border-gray-200 shadow-sm">
                                 <div class="grid gap-4 md:grid-cols-3 items-center">
                                     <div>

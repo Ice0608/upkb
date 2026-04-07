@@ -70,24 +70,24 @@
             </form>
         </div>
 
-        <!-- Senarai Khusus Ditawarkan -->
+        <!-- Senarai kursus Ditawarkan -->
         <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 mb-10">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-800">
-                    <i class="fas fa-graduation-cap text-orange-500"></i>Senarai Khusus Ditawarkan
-                    <span class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-semibold">{{ count($khususList) }} Khusus</span>
+                    <i class="fas fa-graduation-cap text-orange-500"></i>Senarai kursus Ditawarkan
+                    <span class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-semibold">{{ count($kursusList) }} kursus</span>
                 </h2>
-                <a href="{{ route('admin.addkhusus', $institusi->kod_institusi) }}" class="inline-flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">
-                    <i class="fas fa-plus"></i>Tambah Khusus
+                <a href="{{ route('admin.addkursus', $institusi->kod_institusi) }}" class="inline-flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">
+                    <i class="fas fa-plus"></i>Tambah kursus
                 </a>
             </div>
             
-            @if(count($khususList) > 0)
+            @if(count($kursusList) > 0)
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-gray-100 border-b border-gray-300">
                         <tr>
-                            <th class="px-4 py-3 font-semibold text-gray-700">Nama Khusus</th>
+                            <th class="px-4 py-3 font-semibold text-gray-700">Nama kursus</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Kod</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Mod Pengajian</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Tempoh</th>
@@ -96,19 +96,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($khususList as $khusus)
+                        @foreach($kursusList as $kursus)
                         <tr class="border-b border-gray-200 hover:bg-gray-50">
-                            <td class="px-4 py-3 text-gray-800 font-medium">{{ $khusus->nama_khusus }}</td>
-                            <td class="px-4 py-3 text-gray-600"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">{{ $khusus->kod_khusus }}</span></td>
-                            <td class="px-4 py-3 text-gray-600">{{ $khusus->mod_pengajian }}</td>
-                            <td class="px-4 py-3 text-gray-600">{{ $khusus->tempoh }}</td>
-                            <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $khusus->kuota }}</td>
+                            <td class="px-4 py-3 text-gray-800 font-medium">{{ $kursus->nama_kursus }}</td>
+                            <td class="px-4 py-3 text-gray-600"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">{{ $kursus->kod_kursus }}</span></td>
+                            <td class="px-4 py-3 text-gray-600">{{ $kursus->mod_pengajian }}</td>
+                            <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
+                            <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3 text-gray-600 space-x-3">
-                                <a href="{{ route('admin.editkhusus', $khusus->id) }}" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold">
+                                <a href="{{ route('admin.editkursus', $kursus->id) }}" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold">
                                     <i class="fas fa-edit"></i>Edit
                                 </a>
-                                <form action="{{ route('admin.deletekhusus', $khusus->id) }}" method="POST" class="inline"
-                                      onsubmit="return confirm('Padam khusus ini?');">
+                                <form action="{{ route('admin.deletekursus', $kursus->id) }}" method="POST" class="inline"
+                                      onsubmit="return confirm('Padam kursus ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="inline-flex items-center gap-1 text-red-600 hover:text-red-800 font-semibold">
@@ -124,7 +124,7 @@
             @else
             <div class="bg-gray-50 rounded-2xl p-8 text-center text-gray-500">
                 <i class="fas fa-inbox text-3xl mb-3 text-gray-300"></i>
-                <p>Tiada khusus ditawarkan. <a href="{{ route('admin.addkhusus', $institusi->kod_institusi) }}" class="text-orange-600 font-semibold hover:text-orange-800">Tambah sekarang</a></p>
+                <p>Tiada kursus ditawarkan. <a href="{{ route('admin.addkursus', $institusi->kod_institusi) }}" class="text-orange-600 font-semibold hover:text-orange-800">Tambah sekarang</a></p>
             </div>
             @endif
         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2026 at 08:57 AM
+-- Generation Time: Apr 07, 2026 at 02:57 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -54,20 +54,13 @@ CREATE TABLE `cache_locks` (
 CREATE TABLE `elauns` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `elaun_bulanan` varchar(255) NOT NULL,
   `tempoh` varchar(255) NOT NULL,
   `jumlah` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `elauns`
---
-
-INSERT INTO `elauns` (`id`, `kod_institusi`, `kod_khusus`, `elaun_bulanan`, `tempoh`, `jumlah`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', '12345', '2 Tahun', 12345.00, '2026-04-04 21:30:41', '2026-04-04 21:30:41');
 
 -- --------------------------------------------------------
 
@@ -100,14 +93,6 @@ CREATE TABLE `galeris` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `galeris`
---
-
-INSERT INTO `galeris` (`id`, `kod_institusi`, `imej`, `penerangan`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'images/galeri/t3st1ng-1775277289.jpeg', 'perpustakaan', '2026-04-03 20:34:49', '2026-04-03 20:34:49'),
-(2, '1010', 'images/galeri/1010-1775277422.jpeg', 'meeting', '2026-04-03 20:37:02', '2026-04-03 20:37:02');
-
 -- --------------------------------------------------------
 
 --
@@ -125,14 +110,6 @@ CREATE TABLE `institusis` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `institusis`
---
-
-INSERT INTO `institusis` (`id`, `kod_institusi`, `nama_institusi`, `jenis_institusi`, `gambar_institusi`, `alamat`, `mengenai_institusi`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'Test Lorem Ipsum', 'TVET', 'images/institusi/test-lorem-ipsum-1775274837.jpeg', 'Jasin, Melaka', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut libero urna. Nam lorem ipsum, euismod vel molestie at, finibus ut sapien. Cras congue auctor sapien, quis condimentum arcu. Fusce porta magna sed dolor viverra interdum. Donec consectetur neque vel libero eleifend, posuere feugiat eros commodo. Phasellus dictum sollicitudin odio, eu porttitor nibh blandit at. Proin et neque non massa blandit imperdiet. Vestibulum eleifend sapien ac enim euismod varius. Sed tincidunt orci porta, facilisis nisl non, gravida nunc. Quisque viverra, nunc ut molestie euismod, turpis ligula ullamcorper elit, nec tincidunt nisi mi at justo. Fusce ac justo sed turpis tristique accumsan. Maecenas efficitur nibh at posuere ultrices.', '2026-04-03 19:53:57', '2026-04-03 19:53:57'),
-(3, '1010', '1', '1', 'images/institusi/1-1775277400.jpeg', 'malaysia', '12345678', '2026-04-03 20:36:40', '2026-04-03 20:36:40');
 
 -- --------------------------------------------------------
 
@@ -178,50 +155,32 @@ CREATE TABLE `job_batches` (
 CREATE TABLE `kerjayas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `bidang_kerjaya` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `kerjayas`
---
-
-INSERT INTO `kerjayas` (`id`, `kod_institusi`, `kod_khusus`, `bidang_kerjaya`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', 'manusia', '2026-04-04 21:31:13', '2026-04-04 21:31:13'),
-(1, 'T3ST1NG', 'F432-005-2:2019', 'manusia', '2026-04-04 21:31:13', '2026-04-04 21:31:13');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khususes`
+-- Table structure for table `kursuses`
 --
 
-CREATE TABLE `khususes` (
+CREATE TABLE `kursuses` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `nama_khusus` varchar(255) NOT NULL,
-  `jenis_khusus` varchar(255) NOT NULL,
+  `nama_kursus` varchar(255) NOT NULL,
+  `jenis_kursus` varchar(255) NOT NULL,
   `mod_pengajian` varchar(255) NOT NULL,
   `tempoh` varchar(255) NOT NULL,
-  `kuota` int(11) NOT NULL,
-  `tarikh_pendaftaran` date NOT NULL,
+  `kuota` int(11) DEFAULT NULL,
+  `tarikh_pendaftaran` date DEFAULT NULL,
   `penerangan` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `khususes`
---
-
-INSERT INTO `khususes` (`id`, `kod_khusus`, `kod_institusi`, `nama_khusus`, `jenis_khusus`, `mod_pengajian`, `tempoh`, `kuota`, `tarikh_pendaftaran`, `penerangan`, `created_at`, `updated_at`) VALUES
-(1, 'F432-005-2:2019', '1010', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TVET', 'TAHAP 2 / TAHAP 3', '2 Tahun', 10, '2026-04-23', 'Program Pemasangan & Penyelenggaraan Elektrik direka untuk melatih pelajar dalam kemahiran teknikal pendawaian elektrik domestik dan industri. Melalui latihan amali yang intensif, pelajar akan menguasai teknik pemasangan sistem satu fasa dan tiga fasa, penyelenggaraan perkakas suis, serta pengujian litar mengikut piawaian Suruhanjaya Tenaga. Program ini menyediakan landasan kukuh bagi melahirkan teknisi yang kompeten untuk memenuhi keperluan sektor pembinaan dan fasiliti negara.', '2026-04-03 20:39:19', '2026-04-03 20:39:19'),
-(2, 'F432-005-2:2019', 'T3ST1NG', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2', 'FULL TIME', '2 Tahun', 10, '2026-04-29', '1234567890', '2026-04-04 21:16:13', '2026-04-04 21:16:13'),
-(1, 'F432-005-2:2019', '1010', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TVET', 'TAHAP 2 / TAHAP 3', '2 Tahun', 10, '2026-04-23', 'Program Pemasangan & Penyelenggaraan Elektrik direka untuk melatih pelajar dalam kemahiran teknikal pendawaian elektrik domestik dan industri. Melalui latihan amali yang intensif, pelajar akan menguasai teknik pemasangan sistem satu fasa dan tiga fasa, penyelenggaraan perkakas suis, serta pengujian litar mengikut piawaian Suruhanjaya Tenaga. Program ini menyediakan landasan kukuh bagi melahirkan teknisi yang kompeten untuk memenuhi keperluan sektor pembinaan dan fasiliti negara.', '2026-04-03 20:39:19', '2026-04-03 20:39:19'),
-(2, 'F432-005-2:2019', 'T3ST1NG', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2', 'FULL TIME', '2 Tahun', 10, '2026-04-29', '1234567890', '2026-04-04 21:16:13', '2026-04-04 21:16:13');
 
 -- --------------------------------------------------------
 
@@ -270,7 +229,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2025_04_06_000000_create_messages_table', 1),
 (9, '2026_04_03_101232_create_programs_table', 2),
 (10, '2026_04_03_101236_create_institusis_table', 2),
-(11, '2026_04_03_101239_create_khususes_table', 2),
+(11, '2026_04_03_101239_create_kursuses_table', 2),
 (12, '2026_04_03_101244_create_silibuses_table', 2),
 (13, '2026_04_03_101247_create_kerjayas_table', 2),
 (14, '2026_04_03_101251_create_yuran_pendaftarans_table', 2),
@@ -281,7 +240,18 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2026_04_03_101312_create_galeris_table', 2),
 (20, '2026_04_03_114635_drop_kod_institusi_from_programs_table', 2),
 (21, '2026_04_04_000000_update_institusis_table_add_gambar_and_rename_jenis', 3),
-(22, '2025_04_06_000001_add_comment_to_messages_table', 4);
+(22, '2025_04_06_000001_add_comment_to_messages_table', 4),
+(23, '2026_04_07_000001_fix_programs_id_auto_increment', 5),
+(24, '2026_04_07_000002_fix_auto_increment_ids', 6),
+(25, '2026_04_07_000003_fix_kursuses_id_auto_increment', 7),
+(26, '2026_04_07_000004_nullable_tarikh_pendaftaran_on_kursuses', 8),
+(27, '2026_04_07_000005_fix_missing_auto_increment_on_child_tables', 9),
+(28, '2026_04_04_000001_update_galeris_add_penerangan_drop_kod_khusus', 10),
+(29, '2026_04_05_000000_create_syarat_kelayakans_table', 11),
+(30, '2026_04_07_000000_make_kuota_and_tarikh_pendaftaran_nullable_in_kursuses_table', 11),
+(31, '2026_04_07_000006_rename_kod_khusus_to_kod_kursus_in_child_tables', 11),
+(32, '2026_04_07_123032_fix_yuran_asramas_id_auto_increment', 12),
+(33, '2026_04_07_124937_fix_messages_id_auto_increment', 13);
 
 -- --------------------------------------------------------
 
@@ -315,12 +285,9 @@ CREATE TABLE `programs` (
 --
 
 INSERT INTO `programs` (`id`, `jenis_program`, `info_program`, `icon`, `created_at`, `updated_at`) VALUES
-(1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-03 03:47:43', '2026-04-03 04:08:51'),
-(2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-03 03:47:43', '2026-04-03 03:47:43'),
-(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-03 03:47:43', '2026-04-03 03:47:43'),
-(1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-03 03:47:43', '2026-04-03 04:08:51'),
-(2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-03 03:47:43', '2026-04-03 03:47:43'),
-(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-03 03:47:43', '2026-04-03 03:47:43');
+(1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-07 00:32:34', '2026-04-07 00:32:34'),
+(2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-07 00:33:17', '2026-04-07 00:33:17'),
+(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-07 00:33:39', '2026-04-07 00:33:39');
 
 -- --------------------------------------------------------
 
@@ -342,9 +309,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('bwARgQouwNyIzlZyQ9r2hJHGjEWCcC7hHJS4FQlS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUTlqM1JTZWxzcWx6MWxwTEVFNXBtY0h5NkxJN1pHcnBzZ0o5RGpTMCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAva2h1c3VzLzIiO3M6NToicm91dGUiO3M6MTE6ImtodXN1cy5zaG93Ijt9fQ==', 1775370333),
-('CdZF6ur0p1upQGBQaWIaCQ5ptwKyf36IrK7Z1v6L', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMW44VHZBVWxaVGd0eTZFNmhnMnl4UXhqWmxtcFRRaVhyVm01Zm9wYSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9tZXNzYWdlcyI7czo1OiJyb3V0ZSI7czoxNDoiYWRtaW4ubWVzc2FnZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1775458614),
-('MsJy9SP15oJY6xL6LS6McEvQIBhJJfkuxXKjmcDc', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiYUI0R2h0UUVwczUzSk9HRlMxY3M4Ylk1b2cwVkd4WHBXTldlTlZwViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775369541);
+('1jKncZ7zePJtlX5gqnbI2tGjFclOTn1BhMrwNUsR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiNEJrY0VOYm1EMXltSWxtMG56a0V5Wk9vV1MxN1ZaanlUMm5IN0hWWiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775563686),
+('e3gGRq6STuOEL1rsqbGtP3dQ9ouwY0mA8FS9mcJg', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZFNnOXVXYUo0NGZqYzQ4ZmJ0WU8zQmNOejZPWkhTUlRxMVFxWTZQdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775565528),
+('Vk3QkYb3rzORyLCGfXf8EeEFWqMWTgJx5NMBlA1i', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiYlhrdDZrSExWajVzRGZWbEJnc0pIeHN1bWNqMlByZGRSMVVKV1JpbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1775565752),
+('gIKyGuYLzb2JRiLpuUuPgq1xToW8l81YW6CpaUtF', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiR2pES3JLSmRnWlVKdFRtZ3UydVFnd2ZId3hQNjN6Q2tteWtQbVpNdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9pbnN0aXR1c2lzIjtzOjU6InJvdXRlIjtzOjE2OiJhZG1pbi5pbnN0aXR1c2lzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1775566632);
 
 -- --------------------------------------------------------
 
@@ -355,20 +323,12 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 CREATE TABLE `silibuses` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `topik` varchar(255) NOT NULL,
   `isi_kandungan` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `silibuses`
---
-
-INSERT INTO `silibuses` (`id`, `kod_institusi`, `kod_khusus`, `topik`, `isi_kandungan`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', '1', 'blah', '2026-04-04 21:31:06', '2026-04-04 21:31:06'),
-(1, 'T3ST1NG', 'F432-005-2:2019', '1', 'blah', '2026-04-04 21:31:06', '2026-04-04 21:31:06');
 
 -- --------------------------------------------------------
 
@@ -379,7 +339,7 @@ INSERT INTO `silibuses` (`id`, `kod_institusi`, `kod_khusus`, `topik`, `isi_kand
 CREATE TABLE `syarat_kelayakans` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `syarat_kelayakan` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -389,9 +349,10 @@ CREATE TABLE `syarat_kelayakans` (
 -- Dumping data for table `syarat_kelayakans`
 --
 
-INSERT INTO `syarat_kelayakans` (`id`, `kod_institusi`, `kod_khusus`, `syarat_kelayakan`, `created_at`, `updated_at`) VALUES
+INSERT INTO `syarat_kelayakans` (`id`, `kod_institusi`, `kod_kursus`, `syarat_kelayakan`, `created_at`, `updated_at`) VALUES
 (1, 'T3ST1NG', 'F432-005-2:2019', 'layak', '2026-04-04 21:30:55', '2026-04-04 21:30:55'),
-(1, 'T3ST1NG', 'F432-005-2:2019', 'layak', '2026-04-04 21:30:55', '2026-04-04 21:30:55');
+(2, 'T3ST1NG', '1234', 'orang', '2026-04-07 04:05:48', '2026-04-07 04:05:48'),
+(3, 'T3ST1NG', '1234', 'aa', '2026-04-07 04:37:51', '2026-04-07 04:37:51');
 
 -- --------------------------------------------------------
 
@@ -426,20 +387,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 CREATE TABLE `yuran_asramas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `item` varchar(255) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `yuran_asramas`
---
-
-INSERT INTO `yuran_asramas` (`id`, `kod_institusi`, `kod_khusus`, `item`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 52.00, '2026-04-04 21:32:09', '2026-04-04 21:32:09'),
-(1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 52.00, '2026-04-04 21:32:09', '2026-04-04 21:32:09');
 
 -- --------------------------------------------------------
 
@@ -450,26 +403,12 @@ INSERT INTO `yuran_asramas` (`id`, `kod_institusi`, `kod_khusus`, `item`, `amoun
 CREATE TABLE `yuran_pendaftarans` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `item` varchar(255) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `yuran_pendaftarans`
---
-
-INSERT INTO `yuran_pendaftarans` (`id`, `kod_institusi`, `kod_khusus`, `item`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 5.00, '2026-04-04 21:31:37', '2026-04-04 21:31:37'),
-(2, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:22', '2026-04-04 22:02:22'),
-(3, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:25', '2026-04-04 22:02:25'),
-(4, 'T3ST1NG', 'F432-005-2:2019', 'makan', 5.00, '2026-04-04 22:02:38', '2026-04-04 22:02:38'),
-(1, 'T3ST1NG', 'F432-005-2:2019', 'baju', 5.00, '2026-04-04 21:31:37', '2026-04-04 21:31:37'),
-(2, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:22', '2026-04-04 22:02:22'),
-(3, 'T3ST1NG', 'F432-005-2:2019', 'baju ke 2', 55.00, '2026-04-04 22:02:25', '2026-04-04 22:02:25'),
-(4, 'T3ST1NG', 'F432-005-2:2019', 'makan', 5.00, '2026-04-04 22:02:38', '2026-04-04 22:02:38');
 
 -- --------------------------------------------------------
 
@@ -480,21 +419,13 @@ INSERT INTO `yuran_pendaftarans` (`id`, `kod_institusi`, `kod_khusus`, `item`, `
 CREATE TABLE `yuran_pengajians` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `peringkat` varchar(255) NOT NULL,
   `tempoh` varchar(255) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `yuran_pengajians`
---
-
-INSERT INTO `yuran_pengajians` (`id`, `kod_institusi`, `kod_khusus`, `peringkat`, `tempoh`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', '123', '2 Tahun', 5.00, '2026-04-04 21:32:23', '2026-04-04 21:32:23'),
-(1, 'T3ST1NG', 'F432-005-2:2019', '123', '2 Tahun', 5.00, '2026-04-04 21:32:23', '2026-04-04 21:32:23');
 
 -- --------------------------------------------------------
 
@@ -505,21 +436,13 @@ INSERT INTO `yuran_pengajians` (`id`, `kod_institusi`, `kod_khusus`, `peringkat`
 CREATE TABLE `yuran_pilihans` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
-  `kod_khusus` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) NOT NULL,
   `pilihan` varchar(255) NOT NULL,
   `item` varchar(255) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `yuran_pilihans`
---
-
-INSERT INTO `yuran_pilihans` (`id`, `kod_institusi`, `kod_khusus`, `pilihan`, `item`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 'T3ST1NG', 'F432-005-2:2019', '12', '123', 1234.00, '2026-04-04 21:31:51', '2026-04-04 21:31:51'),
-(1, 'T3ST1NG', 'F432-005-2:2019', '12', '123', 1234.00, '2026-04-04 21:31:51', '2026-04-04 21:31:51');
 
 --
 -- Indexes for dumped tables
@@ -565,16 +488,15 @@ ALTER TABLE `institusis`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jobs`
+-- Indexes for table `kerjayas`
 --
-ALTER TABLE `jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `jobs_queue_index` (`queue`);
+ALTER TABLE `kerjayas`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `job_batches`
+-- Indexes for table `kursuses`
 --
-ALTER TABLE `job_batches`
+ALTER TABLE `kursuses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -590,18 +512,22 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_reset_tokens`
+-- Indexes for table `programs`
 --
-ALTER TABLE `password_reset_tokens`
-  ADD PRIMARY KEY (`email`);
+ALTER TABLE `programs`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sessions`
+-- Indexes for table `silibuses`
 --
-ALTER TABLE `sessions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `sessions_user_id_index` (`user_id`),
-  ADD KEY `sessions_last_activity_index` (`last_activity`);
+ALTER TABLE `silibuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `syarat_kelayakans`
+--
+ALTER TABLE `syarat_kelayakans`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -611,8 +537,38 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `yuran_asramas`
+--
+ALTER TABLE `yuran_asramas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_pendaftarans`
+--
+ALTER TABLE `yuran_pendaftarans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_pengajians`
+--
+ALTER TABLE `yuran_pengajians`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_pilihans`
+--
+ALTER TABLE `yuran_pilihans`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `elauns`
+--
+ALTER TABLE `elauns`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -621,28 +577,88 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jobs`
+-- AUTO_INCREMENT for table `galeris`
 --
-ALTER TABLE `jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `galeris`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `institusis`
+--
+ALTER TABLE `institusis`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `kerjayas`
+--
+ALTER TABLE `kerjayas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `kursuses`
+--
+ALTER TABLE `kursuses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `programs`
+--
+ALTER TABLE `programs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `silibuses`
+--
+ALTER TABLE `silibuses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `syarat_kelayakans`
+--
+ALTER TABLE `syarat_kelayakans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `yuran_asramas`
+--
+ALTER TABLE `yuran_asramas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `yuran_pendaftarans`
+--
+ALTER TABLE `yuran_pendaftarans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `yuran_pengajians`
+--
+ALTER TABLE `yuran_pengajians`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `yuran_pilihans`
+--
+ALTER TABLE `yuran_pilihans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
