@@ -9,7 +9,18 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-orange-50 text-gray-800">
-    
+    <div id="introOverlay" class="fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/95"></div>
+        <div id="introStart" class="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold">Selamat Datang ke UPKB</h1>
+            <button id="startIntroButton" class="bg-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition">Start Now</button>
+        </div>
+        <video id="introVideo" class="relative hidden w-full h-full object-cover" playsinline>
+            <source src="{{ asset('videos/IntroUPKB.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
@@ -94,11 +105,10 @@
 
         {{-- VIDEO SIZE --}}
         <div class="w-full max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-xl">
-            <iframe 
-                class="w-full h-80 md:h-[520px]"
-                src="videos/prop.mp4"
-                allowfullscreen>
-            </iframe>
+            <video class="w-full h-80 md:h-[520px] object-cover" controls>
+                <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
 
         {{-- BUTTON --}}
@@ -122,6 +132,9 @@ let currentIndex = 0;
 const slides = document.getElementById("slides");
 const totalSlides = document.querySelectorAll("#slides > div").length;
 const dots = document.querySelectorAll(".dot");
+const introOverlay = document.getElementById('introOverlay');
+const introVideo = document.getElementById('introVideo');
+const startIntroButton = document.getElementById('startIntroButton');
 
 function updateSlider() {
     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -146,6 +159,38 @@ function prevSlide() {
     currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
     updateSlider();
 }
+
+function hideIntroOverlay() {
+    if (introOverlay) {
+        introOverlay.style.display = 'none';
+        document.body.style.overflow = '';
+        localStorage.setItem('upkbIntroSeen', '1');
+    }
+}
+
+function startIntro() {
+    if (!introVideo || !introOverlay) return;
+
+    introVideo.classList.remove('hidden');
+    introVideo.play().catch(() => {
+        // Browser may require user interaction, but start button click should satisfy that.
+    });
+    startIntroButton.classList.add('hidden');
+}
+
+function showIntroOverlayIfNeeded() {
+    const hasSeenIntro = localStorage.getItem('upkbIntroSeen') === '1';
+
+    if (!hasSeenIntro && introOverlay) {
+        document.body.style.overflow = 'hidden';
+        introVideo.addEventListener('ended', hideIntroOverlay);
+        startIntroButton.addEventListener('click', startIntro);
+    } else if (introOverlay) {
+        introOverlay.style.display = 'none';
+    }
+}
+
+showIntroOverlayIfNeeded();
 
 // AUTO SLIDE
 setInterval(nextSlide, 4000);

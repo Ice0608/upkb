@@ -20,7 +20,6 @@
             <div class="hidden md:flex items-center space-x-6 text-sm font-medium navbar-menu">
                 <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Utama</a>
                 <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Program</a>
-                <a href="{{ route('institusi') }}" class="{{ request()->routeIs('institusi','institusi.show') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Institusi</a>
                 <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">FAQ</a>
                 <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Hubungi</a>
             </div>
