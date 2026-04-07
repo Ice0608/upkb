@@ -55,13 +55,13 @@
                     </div>
                     
                     <div>
-                        <label for="kuota" class="block text-sm font-medium text-gray-700">Kuota</label>
-                        <input type="number" name="kuota" id="kuota" value="{{ old('kuota') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="kuota" class="block text-sm font-medium text-gray-700">Kuota <span class="text-xs text-gray-500">(pilihan)</span></label>
+                        <input type="number" name="kuota" id="kuota" value="{{ old('kuota') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     
                     <div>
-                        <label for="tarikh_pendaftaran" class="block text-sm font-medium text-gray-700">Tarikh Pendaftaran</label>
-                        <input type="date" name="tarikh_pendaftaran" id="tarikh_pendaftaran" value="{{ old('tarikh_pendaftaran') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="tarikh_pendaftaran" class="block text-sm font-medium text-gray-700">Tarikh Pendaftaran <span class="text-xs text-gray-500">(pilihan)</span></label>
+                        <input type="date" name="tarikh_pendaftaran" id="tarikh_pendaftaran" value="{{ old('tarikh_pendaftaran') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     
                     <div>

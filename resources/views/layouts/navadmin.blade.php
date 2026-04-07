@@ -21,7 +21,6 @@
                 <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Dashboard</a>
                 <a href="{{ route('admin.programs') }}" class="{{ request()->routeIs('admin.programs','admin.addprogram','admin.editprogram') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Programs</a>
                 <a href="{{ route('admin.institusis') }}" class="{{ request()->routeIs('admin.institusis','admin.addinstitusi','admin.editinstitusi') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Institusi</a>
-                <a href="#" class="{{ request()->routeIs('admin.khusus*') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Khusus</a>
                 <a href="{{ route('admin.messages') }}" class="{{ request()->routeIs('admin.messages','admin.message-detail') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Pertanyaan</a>
             </div>
 

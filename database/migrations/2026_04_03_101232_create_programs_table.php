@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('jenis_program');
             $table->text('info_program');
+            $table->string('kod_institusi');
             $table->string('icon');
             $table->timestamps();
         });

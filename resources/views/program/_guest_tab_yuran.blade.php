@@ -134,12 +134,19 @@
                     <div class="space-y-4">
                         @foreach($khusus->elauns as $fee)
                             <div class="rounded-3xl bg-white p-4 border border-gray-200 shadow-sm">
-                                <div class="flex items-center justify-between gap-4">
+                                <div class="grid gap-4 md:grid-cols-3 items-center">
                                     <div>
-                                        <p class="font-semibold text-gray-800">{{ $fee->elaun_bulanan }}</p>
-                                        <p class="text-sm text-gray-500">{{ $fee->tempoh }}</p>
+                                        <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Kadar Bulanan</p>
+                                        <p class="mt-2 text-lg font-semibold text-emerald-900">RM {{ number_format($fee->elaun_bulanan, 2) }}</p>
                                     </div>
-                                    <p class="text-lg font-semibold text-gray-900">RM {{ number_format($fee->jumlah, 2) }}</p>
+                                    <div>
+                                        <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Tempoh</p>
+                                        <p class="mt-2 text-lg font-semibold text-emerald-900">{{ $fee->tempoh }}</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Jumlah</p>
+                                        <p class="mt-2 text-lg font-semibold text-emerald-900">RM {{ number_format($fee->jumlah, 2) }}</p>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

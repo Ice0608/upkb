@@ -103,10 +103,18 @@
                             <td class="px-4 py-3 text-gray-600">{{ $khusus->mod_pengajian }}</td>
                             <td class="px-4 py-3 text-gray-600">{{ $khusus->tempoh }}</td>
                             <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $khusus->kuota }}</td>
-                            <td class="px-4 py-3 text-gray-600">
+                            <td class="px-4 py-3 text-gray-600 space-x-3">
                                 <a href="{{ route('admin.editkhusus', $khusus->id) }}" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold">
                                     <i class="fas fa-edit"></i>Edit
                                 </a>
+                                <form action="{{ route('admin.deletekhusus', $khusus->id) }}" method="POST" class="inline"
+                                      onsubmit="return confirm('Padam khusus ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="inline-flex items-center gap-1 text-red-600 hover:text-red-800 font-semibold">
+                                        <i class="fas fa-trash"></i>Padam
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

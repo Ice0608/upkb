@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Institusi;
 use App\Models\Khusus;
 use App\Models\Galeri;
+use App\Models\Silibus;
+use App\Models\Kerjaya;
+use App\Models\YuranPendaftaran;
+use App\Models\YuranPilihan;
+use App\Models\YuranAsrama;
+use App\Models\YuranPengajian;
+use App\Models\Elaun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -110,8 +117,22 @@ class AdminInstitusiController extends Controller
     public function destroy($id)
     {
         $institusi = Institusi::findOrFail($id);
+        $kod_institusi = $institusi->kod_institusi;
+
+        // Delete related records
+        Khusus::where('kod_institusi', $kod_institusi)->delete();
+        Silibus::where('kod_institusi', $kod_institusi)->delete();
+        Galeri::where('kod_institusi', $kod_institusi)->delete();
+        Kerjaya::where('kod_institusi', $kod_institusi)->delete();
+        YuranPendaftaran::where('kod_institusi', $kod_institusi)->delete();
+        YuranPilihan::where('kod_institusi', $kod_institusi)->delete();
+        YuranAsrama::where('kod_institusi', $kod_institusi)->delete();
+        YuranPengajian::where('kod_institusi', $kod_institusi)->delete();
+        Elaun::where('kod_institusi', $kod_institusi)->delete();
+
+        // Delete the institusi
         $institusi->delete();
 
-        return redirect()->route('admin.institusis')->with('success', 'Institusi deleted successfully.');
+        return redirect()->route('admin.institusis')->with('success', 'Institusi and all related records deleted successfully.');
     }
 }

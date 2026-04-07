@@ -30,12 +30,32 @@ class AdminKhususController extends Controller
             'jenis_khusus' => 'required|string|max:255',
             'mod_pengajian' => 'required|string|max:255',
             'tempoh' => 'required|string|max:255',
-            'kuota' => 'required|integer',
-            'tarikh_pendaftaran' => 'required|date',
+            'kuota' => 'nullable|integer',
+            'tarikh_pendaftaran' => 'nullable|date',
             'penerangan' => 'required|string',
         ]);
 
-        Khusus::create($request->all());
+        $data = $request->only([
+            'kod_khusus',
+            'kod_institusi',
+            'nama_khusus',
+            'jenis_khusus',
+            'mod_pengajian',
+            'tempoh',
+            'kuota',
+            'tarikh_pendaftaran',
+            'penerangan',
+        ]);
+
+        if ($data['kuota'] === '') {
+            $data['kuota'] = null;
+        }
+
+        if ($data['tarikh_pendaftaran'] === '') {
+            $data['tarikh_pendaftaran'] = null;
+        }
+
+        Khusus::create($data);
 
         $institusi = Institusi::where('kod_institusi', $request->kod_institusi)->first();
 
@@ -67,13 +87,12 @@ class AdminKhususController extends Controller
             'jenis_khusus' => 'required|string|max:255',
             'mod_pengajian' => 'required|string|max:255',
             'tempoh' => 'required|string|max:255',
-            'kuota' => 'required|integer',
-            'tarikh_pendaftaran' => 'required|date',
+            'kuota' => 'nullable|integer',
+            'tarikh_pendaftaran' => 'nullable|date',
             'penerangan' => 'required|string',
         ]);
 
-        $khusus = Khusus::findOrFail($id);
-        $khusus->update($request->only([
+        $data = $request->only([
             'kod_khusus',
             'nama_khusus',
             'jenis_khusus',
@@ -82,7 +101,18 @@ class AdminKhususController extends Controller
             'kuota',
             'tarikh_pendaftaran',
             'penerangan',
-        ]));
+        ]);
+
+        if ($data['kuota'] === '') {
+            $data['kuota'] = null;
+        }
+
+        if ($data['tarikh_pendaftaran'] === '') {
+            $data['tarikh_pendaftaran'] = null;
+        }
+
+        $khusus = Khusus::findOrFail($id);
+        $khusus->update($data);
 
         if ($request->wantsJson()) {
             return response()->json(['success' => true, 'message' => 'Khusus updated successfully.']);
