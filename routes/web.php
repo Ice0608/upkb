@@ -14,9 +14,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Admin only routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        abort_if(auth()->user()->level !== 'admin', 403);
+        return view('admin.dashboard');
+    })->name('dashboard');
+});
+
+// Staff only routes
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/staff/main', function () {
+        abort_if(auth()->user()->level !== 'staff', 403);
+        return view('staff.main');
+    })->name('staff.main');
+});
 
 Route::view('/about', 'about')->name('about');
 use App\Http\Controllers\ProgramController;
@@ -37,7 +49,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin routes
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/programs', [AdminProgramController::class, 'index'])->name('admin.programs');
     Route::get('/addprogram', [AdminProgramController::class, 'create'])->name('admin.addprogram');
     Route::post('/storeprogram', [AdminProgramController::class, 'store'])->name('admin.storeprogram');

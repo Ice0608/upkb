@@ -26,13 +26,17 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- EMAIL -->
+            <!-- USERNAME -->
             <div class="mb-4">
-                <label class="text-sm text-gray-400">Email</label>
-                <input type="email" name="email"
+                <label class="text-sm text-gray-400">Username</label>
+                <input type="text" name="username"
                     class="w-full mt-1 px-4 py-2 bg-transparent border border-orange-400 rounded-full
                            focus:outline-none focus:ring-2 focus:ring-orange-500"
-                    required>
+                    value="{{ old('username') }}"
+                    required autofocus>
+                @if ($errors->has('username'))
+                    <span class="text-red-500 text-xs mt-1">{{ $errors->first('username') }}</span>
+                @endif
             </div>
 
             <!-- PASSWORD -->
@@ -42,6 +46,9 @@
                     class="w-full mt-1 px-4 py-2 bg-transparent border border-orange-400 rounded-full
                            focus:outline-none focus:ring-2 focus:ring-orange-500"
                     required>
+                @if ($errors->has('password'))
+                    <span class="text-red-500 text-xs mt-1">{{ $errors->first('password') }}</span>
+                @endif
             </div>
 
             <!-- REMEMBER -->
@@ -50,13 +57,6 @@
                     <input type="checkbox" name="remember" class="mr-2">
                     Remember me
                 </label>
-
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" 
-                       class="text-orange-400 hover:underline">
-                        Forgot password?
-                    </a>
-                @endif
             </div>
 
             <!-- BUTTON -->
