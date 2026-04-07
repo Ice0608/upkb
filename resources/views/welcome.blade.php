@@ -14,27 +14,27 @@
     @include('layouts.navigation')
 
     {{-- 🔹 IKLAN SECTION --}}
-    <div class="relative max-w-6xl mx-auto mt-6">
+    <div class="relative w-full mt-6">
 
         {{-- SLIDER --}}
-        <div id="slider" class="overflow-hidden rounded-2xl relative">
+        <div id="slider" class="overflow-hidden rounded-2xl relative w-full">
 
             {{-- SLIDES --}}
             <div id="slides" class="flex transition-transform duration-700">
 
                 {{-- SLIDE 1 --}}
                 <div class="min-w-full relative">
-                    <img src="{{ asset('images/diploma.jpg') }}" class="w-full h-[400px] object-contain bg-black">
+                    <img src="{{ asset('images/diploma.jpg') }}" class="w-full h-[80vh] object-cover bg-black">
                 </div>
 
                 {{-- SLIDE 2 --}}
                 <div class="min-w-full relative">
-                    <img src="{{ asset('images/tvet.png') }}" class="w-full h-[400px] object-contain bg-black">
+                    <img src="{{ asset('images/tvet.png') }}" class="w-full h-[80vh] object-cover bg-black">
                 </div>
 
                 {{-- SLIDE 3 --}}
                 <div class="min-w-full relative">
-                    <img src="{{ asset('images/sainsKesihatan.jpg') }}" class="w-full h-[400px] object-contain bg-black">
+                    <img src="{{ asset('images/sainsKesihatan.jpg') }}" class="w-full h-[80vh] object-cover bg-black">
                 </div>
 
             </div>
@@ -93,9 +93,9 @@
         <h2 class="text-xl font-semibold mb-4">Program Popular</h2>
 
         {{-- VIDEO SIZE --}}
-        <div class="w-full max-w-3xl mx-auto">
+        <div class="w-full max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-xl">
             <iframe 
-                class="w-full h-64 md:h-96 rounded-xl"
+                class="w-full h-80 md:h-[520px]"
                 src="videos/prop.mp4"
                 allowfullscreen>
             </iframe>
