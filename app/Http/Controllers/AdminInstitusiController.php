@@ -10,9 +10,16 @@ use Illuminate\Support\Str;
 
 class AdminInstitusiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $institusis = Institusi::all();
+        $jenis = $request->query('jenis');
+
+        if ($jenis) {
+            $institusis = Institusi::where('jenis_institusi', $jenis)->get();
+        } else {
+            $institusis = Institusi::all();
+        }
+
         return view('admin.institusis', compact('institusis'));
     }
 

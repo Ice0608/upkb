@@ -15,7 +15,7 @@
         <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Admin Institusi</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Admin Institusi {{ request('jenis') ? request('jenis') : '' }}</h1>
                     <p class="mt-3 text-lg text-orange-100">Urus semua institusi di sini. Tambah, sunting dan hapus data institusi dengan mudah.</p>
                 </div>
                 <a href="{{ route('admin.addinstitusi') }}" class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition flex items-center justify-center">

@@ -32,10 +32,13 @@
         <div class="grid md:grid-cols-3 gap-6">
             @foreach($programs as $program)
             <article class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100 hover:shadow-xl transition">
-                <div class="h-16 w-16 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5"><i class="{{ $program->icon }} fa-lg"></i></div>
+                <div class="h-16 w-16 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
+                    <i class="{{ $program->icon }} fa-lg"></i>
+                </div>
                 <h2 class="text-2xl font-extrabold text-slate-900 mb-2">{{ $program->jenis_program }}</h2>
                 <p class="text-gray-500 mb-6">{{ $program->info_program }}</p>
                 <div class="flex gap-2">
+                    <a href="{{ route('admin.institusis', ['jenis' => $program->jenis_program]) }}" class="inline-flex items-center gap-2 text-blue-600 font-bold">LIHAT PROGRAM <span>→</span></a>
                     <a href="{{ route('admin.editprogram', $program->id) }}" class="inline-flex items-center gap-2 text-blue-600 font-bold">EDIT <span>→</span></a>
                     <form action="{{ route('admin.deleteprogram', $program->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this program?')">
                         @csrf
