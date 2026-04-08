@@ -27,10 +27,10 @@
 
                     <!-- DROPDOWN -->
                     <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4
-opacity-0 invisible translate-y-4 scale-95 blur-sm
-group-hover:opacity-100 group-hover:visible 
-group-hover:translate-y-0 group-hover:scale-100 group-hover:blur-0
-transition-all duration-300 ease-out delay-100">
+                    opacity-0 invisible translate-y-4 scale-95 blur-sm
+                    group-hover:opacity-100 group-hover:visible 
+                    group-hover:translate-y-0 group-hover:scale-100 group-hover:blur-0
+                    transition-all duration-300 ease-out delay-100">
 
                         <div class="backdrop-blur-md bg-white/40 rounded-xl shadow-md p-1 border border-white/30">
 
