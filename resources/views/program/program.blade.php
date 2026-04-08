@@ -1,43 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
     <style>
-        /* Membahagi bulatan kepada 3 bahagian (Mercedes style) */
-        .segment-top-left {
-            clip-path: polygon(50% 50%, -10% -10%, 50% -10%);
-            /* Tarik lebih sikit ke tepi untuk cover lengkung bulatan */
-            clip-path: polygon(50% 50%, 0 0, 50% 0, 0 60%);
-        }
-        .segment-top-right {
-            clip-path: polygon(50% 50%, 50% 0, 100% 0, 100% 60%);
-        }
-        .segment-bottom {
-            clip-path: polygon(50% 50%, 100% 60%, 100% 100%, 0 100%, 0 60%);
+        /* 🔹 CSS UNTUK BULATAN MERCEDES */
+        .mercedes-container {
+            overflow: hidden; /* Potong lebihan warna yang terkeluar dari bulatan */
         }
 
-        /* Hover effect supaya segmen timbul sikit */
-        .mercedes-segment {
-            transition: all 0.3s ease;
+        /* Koordinat tepat supaya segmen bertemu di tengah & tidak pecah */
+        .segment-top-left-clip { 
+            clip-path: polygon(50% 50%, 50% -20%, -20% -20%, -20% 65%); 
         }
-        .mercedes-segment:hover {
+        .segment-top-right-clip { 
+            clip-path: polygon(50% 50%, 50% -20%, 120% -20%, 120% 65%); 
+        }
+        .segment-bottom-clip { 
+            clip-path: polygon(50% 50%, 120% 65%, 120% 120%, -20% 120%, -20% 65%); 
+        }
+
+        .segment-wrapper .segment {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .segment-wrapper:hover .segment {
             transform: scale(1.05);
-            z-index: 30;
             filter: brightness(1.1);
+            z-index: 10;
+        }
+
+        /* 🔥 Hover glow ikut warna */
+        .segment-orange:hover .segment {
+            box-shadow: 0 0 40px rgba(255, 152, 0, 0.6);
+        }
+
+        .segment-purple:hover .segment {
+            box-shadow: 0 0 40px rgba(156, 39, 176, 0.6);
+        }
+
+        .segment-blue:hover .segment {
+            box-shadow: 0 0 40px rgba(33, 150, 243, 0.6);
+        }
+
+        /* 🔥 Fade segment lain bila hover */
+        .mercedes-container:hover .segment {
+            opacity: 0.5;
+        }
+
+        .segment-wrapper:hover .segment {
+            opacity: 1 !important;
+            transform: scale(1.08);
+            filter: brightness(1.15);
+        }
+
+        /* Pop keluar ikut arah */
+        .segment-orange:hover .segment {
+            transform: translate(-8px, -8px) scale(1.08);
+        }
+
+        .segment-purple:hover .segment {
+            transform: translate(8px, -8px) scale(1.08);
+        }
+
+        .segment-blue:hover .segment {
+            transform: translate(0px, 8px) scale(1.08);
+        }
+
+        @keyframes bounceSoft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .segment-wrapper:hover i {
+            animation: bounceSoft 0.6s ease;
         }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+    {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        {{-- Hero Header --}}
-        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-16">
+    <section class="max-w-7xl mx-auto px-6 py-6">
+        
+        {{-- 🔹 HERO HEADER --}}
+        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">Teroka Semua Kursus</h1>
@@ -49,52 +101,76 @@
             </div>
         </div>
 
-        {{-- CONTAINER BULATAN MERCEDES --}}
-        <div class="flex justify-center items-center py-10">
-            <div class="relative w-[340px] h-[340px] md:w-[500px] md:h-[500px] rounded-full bg-[#222] shadow-2xl overflow-visible border-[8px] border-white">
+        {{-- 🔹 BAHAGIAN BULATAN (MERCEDES STYLE) --}}
+        <div class="flex justify-center items-center py-4">
+    <div class="mercedes-container relative 
+        w-[280px] h-[280px] 
+        sm:w-[360px] sm:h-[360px] 
+        md:w-[520px] md:h-[520px] 
+        rounded-full border-[8px] sm:border-[10px] border-white shadow-2xl bg-white">
+
+        @foreach($programs->take(3) as $index => $program)
+            @php
+                $configs = [
+                    0 => [
+                        'clip' => 'segment-top-left-clip',
+                        'bg' => 'bg-[#FF9800]',
+                        'pos' => 'top-[20%] left-[9%] sm:top-[19%] sm:left-[4%] text-right items-end',
+                    ],
+                    1 => [
+                        'clip' => 'segment-top-right-clip',
+                        'bg' => 'bg-[#9C27B0]',
+                        'pos' => 'top-[20%] right-[9%] sm:top-[19%] sm:right-[4%] text-left items-start',
+                    ],
+                    2 => [
+                        'clip' => 'segment-bottom-clip',
+                        'bg' => 'bg-[#2196F3]',
+                        'pos' => 'bottom-[10%] left-1/2 -translate-x-1/2 sm:bottom-[15%] text-center items-center',
+                    ],
+                ];
+                $ui = $configs[$index] ?? $configs[0];
+            @endphp
+
+            <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" 
+                class="segment-wrapper group 
+                {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
                 
-                @forelse($programs as $index => $program)
-                    @php
-                        // Mapping mengikut gambar yang awak beri
-                        $config = [
-                            0 => ['class' => 'segment-top-left', 'bg' => 'bg-[#FF5722]', 'align' => 'items-start justify-center pt-16 pr-16 text-right'], // Sains Kesihatan
-                            1 => ['class' => 'segment-top-right', 'bg' => 'bg-[#FFA000]', 'align' => 'items-start justify-center pt-16 pl-16 text-left'], // Diploma
-                            2 => ['class' => 'segment-bottom', 'bg' => 'bg-[#7CB342]', 'align' => 'items-end justify-center pb-16 px-10 text-center'],   // TVET
-                        ];
-                        $ui = $config[$index] ?? $config[0];
-                    @endphp
+                <!-- Background segment -->
+                <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}"></div>
+                
+                <!-- Content -->
+                <div class="absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
+                            w-[100px] sm:w-[140px] md:w-[180px]">
 
-                    <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" 
-                       class="mercedes-segment absolute inset-0 rounded-full {{ $ui['bg'] }} {{ $ui['class'] }} flex {{ $ui['align'] }} text-white p-6 group">
-                        
-                        <div class="max-w-[120px] md:max-w-[180px]">
-                            <div class="mb-2 opacity-90 group-hover:scale-110 transition-transform duration-300">
-                                <i class="{{ $program->icon }} text-2xl md:text-4xl"></i>
-                            </div>
-                            <h2 class="text-sm md:text-xl font-black uppercase leading-tight mb-1">
-                                {{ $program->jenis_program }}
-                            </h2>
-                            <p class="hidden md:block text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">
-                                {{ Str::limit($program->info_program, 50) }}
-                            </p>
-                            <span class="text-[9px] md:text-xs font-bold mt-2 inline-block border-b border-white/50">
-                                LIHAT PROGRAM →
-                            </span>
-                        </div>
-                    </a>
-
-                @empty
-                    <div class="absolute inset-0 flex items-center justify-center text-white italic">
-                        Tiada program.
+                    <!-- Icon -->
+                    <div class="mb-1 sm:mb-2 bg-white/20 p-1.5 sm:p-2 rounded-xl backdrop-blur-sm 
+                                group-hover:scale-110 transition-transform w-fit">
+                        <i class="{{ $program->icon }} text-base sm:text-xl md:text-3xl"></i>
                     </div>
-                @endforelse
 
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-[#222] rounded-full z-40 border-4 border-white shadow-lg"></div>
-            </div>
-        </div>
+                    <!-- Title -->
+                    <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
+                               leading-tight break-words drop-shadow-md">
+                        {{ $program->jenis_program }}
+                    </h2>
+
+                    <!-- Button -->
+                    <div class="mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
+                                border-b border-white/40 group-hover:border-white 
+                                transition-all inline-block w-fit">
+                        LIHAT PROGRAM <i class="fas fa-chevron-right ml-1"></i>
+                    </div>
+                </div>
+            </a>
+        @endforeach
+    </div>
+</div>
+       
     </section>
 
     @include('components.social-float')
+
+    {{-- 🔹 FOOTER --}}
     @include('layouts.footer')
 
 </body>
