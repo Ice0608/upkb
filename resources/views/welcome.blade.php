@@ -25,51 +25,90 @@
     @include('layouts.navigation')
 
     {{-- 🔹 IKLAN SECTION --}}
-    <div class="relative w-full mt-6">
+    <div class="relative w-full">
 
-        {{-- SLIDER --}}
-        <div id="slider" class="overflow-hidden rounded-2xl relative w-full">
+        <!-- GLASS CONTENT -->
+<div class="absolute left-20 top-1/2 -translate-y-1/2 z-20 max-w-md">
 
-            {{-- SLIDES --}}
-            <div id="slides" class="flex transition-transform duration-700">
+    <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/40">
 
-                {{-- SLIDE 1 --}}
-                <div class="min-w-full relative">
-                    <img src="{{ asset('images/diploma.jpg') }}" class="w-full h-[80vh] object-cover bg-black">
-                </div>
+        <!-- SMALL TITLE -->
+        <p class="text-xs tracking-widest text-gray-500 mb-2 uppercase">
+            Program Kemahiran
+        </p>
 
-                {{-- SLIDE 2 --}}
-                <div class="min-w-full relative">
-                    <img src="{{ asset('images/tvet.png') }}" class="w-full h-[80vh] object-cover bg-black">
-                </div>
+        <!-- MAIN TITLE -->
+        <h2 class="text-3xl font-bold text-gray-900 leading-tight">
+            Bina Masa Depan <br>
+            <span class="text-orange-500">Kemahiran Anda</span>
+        </h2>
 
-                {{-- SLIDE 3 --}}
-                <div class="min-w-full relative">
-                    <img src="{{ asset('images/sainsKesihatan.jpg') }}" class="w-full h-[80vh] object-cover bg-black">
-                </div>
+        <!-- DESCRIPTION -->
+        <p class="text-sm text-gray-600 mt-3">
+            Terokai program TVET, Diploma dan Sains Kesihatan 
+            yang direka untuk meningkatkan peluang kerjaya anda.
+        </p>
 
+        <!-- BUTTON -->
+        <a href="{{ route('program') }}"
+           class="inline-block mt-5 bg-orange-500 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition">
+            Lihat Program →
+        </a>
+
+    </div>
+
+</div>
+
+    <div id="slider" class="overflow-hidden relative w-full">
+
+        <div id="slides" class="flex transition-transform duration-700">
+
+            <!-- SLIDE 1 -->
+            <div class="min-w-full relative">
+                <img src="{{ asset('images/diploma.jpg') }}" class="w-full h-[90vh] object-cover">
+
+                <!-- DARK OVERLAY -->
+                <div class="absolute inset-0 bg-black/30"></div>
             </div>
 
-            {{-- LEFT BUTTON --}}
-            <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full">
-                ❮
-            </button>
+            <!-- SLIDE 2 -->
+            <div class="min-w-full relative">
+                <img src="{{ asset('images/tvet.png') }}" class="w-full h-[90vh] object-cover">
 
-            {{-- RIGHT BUTTON --}}
-            <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full">
-                ❯
-            </button>
+                <div class="absolute inset-0 bg-black/30"></div>
+            </div>
 
-            {{-- DOTS --}}
-            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-                <span class="dot w-3 h-3 bg-white rounded-full"></span>
-                <span class="dot w-3 h-3 bg-gray-400 rounded-full"></span>
-                <span class="dot w-3 h-3 bg-gray-400 rounded-full"></span>
+            <!-- SLIDE 3 -->
+            <div class="min-w-full relative">
+                <img src="{{ asset('images/sainsKesihatan.jpg') }}" class="w-full h-[90vh] object-cover">
+
+                <div class="absolute inset-0 bg-black/30"></div>
             </div>
 
         </div>
 
+        <!-- LEFT BUTTON -->
+        <button onclick="prevSlide()" 
+            class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur text-white p-3 rounded-full hover:bg-white/40 transition">
+            ❮
+        </button>
+
+        <!-- RIGHT BUTTON -->
+        <button onclick="nextSlide()" 
+            class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur text-white p-3 rounded-full hover:bg-white/40 transition">
+            ❯
+        </button>
+
+        <!-- DOTS -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+            <span class="dot w-3 h-3 bg-white rounded-full"></span>
+            <span class="dot w-3 h-3 bg-white/40 rounded-full"></span>
+            <span class="dot w-3 h-3 bg-white/40 rounded-full"></span>
+        </div>
+
     </div>
+
+</div>
 
     {{-- 🔹 STATISTICS --}}
     <section class="max-w-7xl mx-auto px-6 mt-10">

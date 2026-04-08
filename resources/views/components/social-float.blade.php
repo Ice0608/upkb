@@ -1,4 +1,4 @@
-<div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-end gap-3">
+<div class="fixed right-4 bottom-6 z-50 flex flex-col items-end gap-3">
 
     {{-- 🔹 SOCIAL HOVER --}}
     <div class="group relative">

@@ -18,29 +18,55 @@
             </div>
 
             {{-- CENTER: MENU --}}
-            <div class="hidden md:flex items-center space-x-6 text-sm font-medium navbar-menu">
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium navbar-menu ml-auto mr-8">
                 {{-- Program Dropdown --}}
                 <div class="relative group">
                     <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }} inline-flex items-center gap-1">
                         Program
                     </a>
-                    
-                    {{-- Dropdown Menu --}}
-                    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4 opacity-0 group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                        <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-4">
-                            <div class="flex gap-4 items-center">
-                                <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="flex-1 text-center px-4 py-2 rounded-lg text-black transition duration-200">
+
+                    <!-- DROPDOWN -->
+                    <div class="absolute left-1/2 -translate-x-1/2 top-full pt-4
+opacity-0 invisible translate-y-4 scale-95 blur-sm
+group-hover:opacity-100 group-hover:visible 
+group-hover:translate-y-0 group-hover:scale-100 group-hover:blur-0
+transition-all duration-300 ease-out delay-100">
+
+                        <div class="backdrop-blur-md bg-white/40 rounded-xl shadow-md p-1 border border-white/30">
+
+                            <div class="flex overflow-hidden rounded-lg">
+
+                                <!-- TVET -->
+                                <a href="{{ route('institusi', ['jenis' => 'TVET']) }}"
+                                class="flex-1 text-center py-2 px-4 text-white text-sm font-medium
+                                bg-orange-500/80 hover:bg-orange-500
+                                transition duration-300">
                                     TVET
                                 </a>
-                                <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="flex-1 text-center px-4 py-2 rounded-lg text-black transition duration-200">
+
+                                <!-- Diploma -->
+                                <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}"
+                                class="flex-1 text-center py-2 px-4 text-white text-sm font-medium
+                                bg-purple-500/80 hover:bg-purple-500
+                                transition duration-300">
                                     Diploma
                                 </a>
-                                <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="flex-1 text-center px-4 py-2 rounded-lg text-black transition duration-200">
-                                    Sains Kesihatan
+
+                                <!-- Sains Kesihatan -->
+                                <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}"
+                                class="flex-1 text-center py-2 px-4 text-white text-sm font-medium leading-tight
+                                bg-blue-500/80 hover:bg-blue-500
+                                transition duration-300">
+                                    Sains<br>Kesihatan
                                 </a>
+
                             </div>
+
                         </div>
                     </div>
+
+
+
                 </div>
                 <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">FAQ</a>
                 <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'text-orange-500 font-semibold' : 'hover:text-orange-500' }}">Hubungi</a>
@@ -56,4 +82,7 @@
             </div>
 
         </div>
+
+        <div class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400 opacity-70"></div>
     </nav>
+    
