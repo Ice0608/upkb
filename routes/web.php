@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminGaleriController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\StaffEventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,12 +24,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+Route::get('/bmd', [StaffEventController::class, 'guestBmd'])->name('bmd');
+Route::post('/bmd', [StaffEventController::class, 'storeGuestPelajar'])->name('bmd.store');
+
 // Staff only routes
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/staff/main', function () {
-        abort_if(auth()->user()->level !== 'staff', 403);
-        return view('staff.main');
-    })->name('staff.main');
+    Route::get('/staff/main', [StaffEventController::class, 'index'])->name('staff.main');
+    Route::get('/staff/event/create', [StaffEventController::class, 'create'])->name('staff.event.create');
+    Route::post('/staff/event', [StaffEventController::class, 'store'])->name('staff.event.store');
+    Route::get('/staff/bmd/{pelajar}', [StaffEventController::class, 'editBmd'])->name('staff.bmd.edit');
+    Route::put('/staff/bmd/{pelajar}', [StaffEventController::class, 'updatePelajar'])->name('staff.bmd.update');
 });
 
 Route::view('/about', 'about')->name('about');
