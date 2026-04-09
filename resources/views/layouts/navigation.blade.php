@@ -219,6 +219,8 @@
             overflow: hidden;
             min-height: 13.5rem;
             border: 1px solid rgba(255, 255, 255, 0.24);
+            background-size: cover;
+            background-position: center;
             box-shadow:
                 0 22px 36px rgba(15, 23, 42, 0.16),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -298,6 +300,25 @@
             max-width: 11ch;
             line-height: 1.6;
             text-wrap: balance;
+            text-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+        }
+
+        .site-nav-program-card-tvet {
+            background-image:
+                linear-gradient(145deg, rgba(249, 115, 22, 0.84), rgba(251, 146, 60, 0.68), rgba(253, 186, 116, 0.48)),
+                url('{{ asset('images/tvet-vg2.jpeg') }}');
+        }
+
+        .site-nav-program-card-diploma {
+            background-image:
+                linear-gradient(145deg, rgba(162, 28, 175, 0.82), rgba(217, 70, 239, 0.68), rgba(192, 132, 252, 0.48)),
+                url('{{ asset('images/postgraduate-differences_sim-article.jpg') }}');
+        }
+
+        .site-nav-program-card-health {
+            background-image:
+                linear-gradient(145deg, rgba(2, 132, 199, 0.82), rgba(14, 165, 233, 0.68), rgba(103, 232, 249, 0.48)),
+                url('{{ asset('images/sains.jpg') }}');
         }
 
         .site-nav-program-card-arrow {
@@ -344,6 +365,8 @@
             overflow: hidden;
             min-height: 7rem;
             border: 1px solid rgba(255, 255, 255, 0.18);
+            background-size: cover;
+            background-position: center;
             box-shadow:
                 0 16px 30px rgba(15, 23, 42, 0.14),
                 inset 0 1px 0 rgba(255, 255, 255, 0.28);
@@ -355,6 +378,12 @@
             inset: 0;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.02));
             pointer-events: none;
+        }
+
+        .site-nav-mobile-program-card p,
+        .site-nav-mobile-program-card span {
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes siteNavCardFloat {
@@ -406,7 +435,7 @@
                             <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Kategori Program</p>
                         </div>
                         <div class="grid gap-3 md:grid-cols-3">
-                            <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-floating rounded-[1.9rem] bg-[linear-gradient(145deg,rgba(249,115,22,0.95)_0%,rgba(251,146,60,0.92)_54%,rgba(253,186,116,0.88)_100%)] px-5 py-5 text-white [animation-delay:0s]">
+                            <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-tvet site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0s]">
                                 <span class="site-nav-program-card-glow"></span>
                                 <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Kategori</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
@@ -416,7 +445,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-floating rounded-[1.9rem] bg-[linear-gradient(145deg,rgba(162,28,175,0.96)_0%,rgba(217,70,239,0.92)_55%,rgba(192,132,252,0.86)_100%)] px-5 py-5 text-white [animation-delay:0.4s]">
+                            <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-diploma site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.4s]">
                                 <span class="site-nav-program-card-glow"></span>
                                 <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Kategori</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
@@ -426,7 +455,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-floating rounded-[1.9rem] bg-[linear-gradient(145deg,rgba(2,132,199,0.96)_0%,rgba(14,165,233,0.92)_56%,rgba(103,232,249,0.84)_100%)] px-5 py-5 text-white [animation-delay:0.8s]">
+                            <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-health site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.8s]">
                                 <span class="site-nav-program-card-glow"></span>
                                 <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Kategori</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
@@ -470,17 +499,17 @@
                         Program
                     </a>
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
-                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(249,115,22,0.96)_0%,rgba(251,146,60,0.92)_60%,rgba(253,186,116,0.82)_100%)] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">TVET</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Laluan kemahiran teknikal dan praktikal.</p>
                         </a>
-                        <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(162,28,175,0.96)_0%,rgba(217,70,239,0.92)_58%,rgba(192,132,252,0.84)_100%)] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Diploma</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Program akademik untuk kemajuan kerjaya.</p>
                         </a>
-                        <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(2,132,199,0.96)_0%,rgba(14,165,233,0.92)_58%,rgba(103,232,249,0.84)_100%)] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Sains Kesihatan</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Fokus kepada latihan kesihatan dan klinikal.</p>
