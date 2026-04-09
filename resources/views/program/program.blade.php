@@ -8,12 +8,142 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <style>
-        /* 🔹 CSS UNTUK BULATAN MERCEDES */
-        .mercedes-container {
-            overflow: hidden; /* Potong lebihan warna yang terkeluar dari bulatan */
+        .program-page {
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 20%),
+                radial-gradient(circle at top right, rgba(168, 85, 247, 0.16), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.12), transparent 24%),
+                linear-gradient(180deg, #eef4ff 0%, #edf2ff 48%, #f8fafc 100%);
         }
 
-        /* Koordinat tepat supaya segmen bertemu di tengah & tidak pecah */
+        .program-shell {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .program-shell::before,
+        .program-shell::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .program-shell::before {
+            top: 1rem;
+            left: -4rem;
+            width: 15rem;
+            height: 15rem;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle, rgba(14, 165, 233, 0.16), rgba(14, 165, 233, 0) 64%),
+                repeating-radial-gradient(circle, rgba(14, 165, 233, 0.08) 0 2px, transparent 2px 16px);
+            box-shadow: 0 0 70px rgba(14, 165, 233, 0.12);
+        }
+
+        .program-shell::after {
+            right: -4rem;
+            bottom: 2rem;
+            width: 18rem;
+            height: 18rem;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle, rgba(168, 85, 247, 0.16), rgba(168, 85, 247, 0) 66%),
+                repeating-radial-gradient(circle, rgba(168, 85, 247, 0.08) 0 2px, transparent 2px 18px);
+            box-shadow: 0 0 80px rgba(168, 85, 247, 0.12);
+        }
+
+        .program-hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background:
+                linear-gradient(135deg, rgba(249, 115, 22, 0.95), rgba(251, 146, 60, 0.92)),
+                linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(168, 85, 247, 0.12));
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 36px rgba(249, 115, 22, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.26);
+        }
+
+        .program-hero::before,
+        .program-hero::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .program-hero::before {
+            top: -3rem;
+            right: 8%;
+            width: 11rem;
+            height: 11rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow:
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+        }
+
+        .program-hero::after {
+            left: 4%;
+            bottom: -1.5rem;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 2rem;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
+            transform: rotate(12deg);
+            opacity: 0.55;
+        }
+
+        .program-search-button {
+            box-shadow:
+                0 16px 36px rgba(15, 23, 42, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.88);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+        }
+
+        .program-search-button:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow:
+                0 22px 44px rgba(15, 23, 42, 0.18),
+                0 0 24px rgba(255, 255, 255, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+            color: #0ea5e9;
+        }
+
+        .program-wheel-wrap {
+            position: relative;
+        }
+
+        .program-wheel-wrap::before {
+            content: "";
+            position: absolute;
+            inset: 1rem 10% auto;
+            height: 18rem;
+            border-radius: 2rem;
+            background:
+                repeating-linear-gradient(90deg, rgba(56, 189, 248, 0.1) 0 1px, transparent 1px 26px),
+                repeating-linear-gradient(180deg, rgba(168, 85, 247, 0.08) 0 1px, transparent 1px 26px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 86%);
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .mercedes-container {
+            overflow: hidden;
+            background:
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.72));
+            box-shadow:
+                0 28px 72px rgba(15, 23, 42, 0.16),
+                0 0 40px rgba(56, 189, 248, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+
         .segment-top-left-clip { 
             clip-path: polygon(50% 50%, 50% -20%, -20% -20%, -20% 65%); 
         }
@@ -28,13 +158,22 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .segment::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+                radial-gradient(circle at top right, rgba(255, 255, 255, 0.24), transparent 24%);
+            pointer-events: none;
+        }
+
         .segment-wrapper:hover .segment {
             transform: scale(1.05);
             filter: brightness(1.1);
             z-index: 10;
         }
 
-        /* 🔥 Hover glow ikut warna */
         .segment-orange:hover .segment {
             box-shadow: 0 0 40px rgba(255, 152, 0, 0.6);
         }
@@ -47,7 +186,6 @@
             box-shadow: 0 0 40px rgba(33, 150, 243, 0.6);
         }
 
-        /* 🔥 Fade segment lain bila hover */
         .mercedes-container:hover .segment {
             opacity: 0.5;
         }
@@ -58,7 +196,6 @@
             filter: brightness(1.15);
         }
 
-        /* Pop keluar ikut arah */
         .segment-orange:hover .segment {
             transform: translate(-8px, -8px) scale(1.08);
         }
@@ -79,98 +216,118 @@
         .segment-wrapper:hover i {
             animation: bounceSoft 0.6s ease;
         }
+
+        .segment-content {
+            text-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+        }
+
+        .segment-chip {
+            box-shadow:
+                0 14px 26px rgba(15, 23, 42, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .segment-label {
+            transition: transform 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease;
+        }
+
+        .segment-wrapper:hover .segment-label {
+            transform: translateX(3px);
+            border-color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.18em;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .segment-wrapper .segment,
+            .program-search-button,
+            .segment-label {
+                transition: none;
+            }
+
+            .segment-wrapper:hover i {
+                animation: none;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="program-page text-gray-800">
 
-    {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
-    <section class="max-w-7xl mx-auto px-6 py-6">
-        
-        {{-- 🔹 HERO HEADER --}}
-        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
+    <section class="program-shell max-w-7xl mx-auto px-4 py-8 sm:px-6">
+        <div class="program-hero rounded-[2rem] p-8 sm:p-10 text-white mb-10">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Teroka Semua Kursus</h1>
-                    <p class="mt-3 text-lg text-orange-100">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
+                    <p class="text-xs sm:text-sm uppercase tracking-[0.28em] text-white/70 font-semibold">Eksplorasi Program</p>
+                    <h1 class="mt-3 text-4xl md:text-5xl font-bold leading-tight tracking-[-0.04em]">Teroka Semua Kursus</h1>
+                    <p class="mt-3 text-base sm:text-lg text-white/80 max-w-2xl">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
                 </div>
-                <button class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition">
+                <button class="program-search-button w-14 h-14 rounded-full bg-white/95 text-orange-600">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
         </div>
 
-        {{-- 🔹 BAHAGIAN BULATAN (MERCEDES STYLE) --}}
-        <div class="flex justify-center items-center py-4">
-    <div class="mercedes-container relative 
-        w-[280px] h-[280px] 
-        sm:w-[360px] sm:h-[360px] 
-        md:w-[520px] md:h-[520px] 
-        rounded-full border-[8px] sm:border-[10px] border-white shadow-2xl bg-white">
+        <div class="program-wheel-wrap flex justify-center items-center py-4">
+            <div class="mercedes-container relative 
+                w-[280px] h-[280px] 
+                sm:w-[360px] sm:h-[360px] 
+                md:w-[520px] md:h-[520px] 
+                rounded-full border-[8px] sm:border-[10px] border-white/90">
 
-        @foreach($programs->take(3) as $index => $program)
-            @php
-                $configs = [
-                    0 => [
-                        'clip' => 'segment-top-left-clip',
-                        'bg' => 'bg-[#FF9800]',
-                        'pos' => 'top-[20%] left-[9%] sm:top-[19%] sm:left-[4%] text-right items-end',
-                    ],
-                    1 => [
-                        'clip' => 'segment-top-right-clip',
-                        'bg' => 'bg-[#9C27B0]',
-                        'pos' => 'top-[20%] right-[9%] sm:top-[19%] sm:right-[4%] text-left items-start',
-                    ],
-                    2 => [
-                        'clip' => 'segment-bottom-clip',
-                        'bg' => 'bg-[#2196F3]',
-                        'pos' => 'bottom-[10%] left-1/2 -translate-x-1/2 sm:bottom-[15%] text-center items-center',
-                    ],
-                ];
-                $ui = $configs[$index] ?? $configs[0];
-            @endphp
+                @foreach($programs->take(3) as $index => $program)
+                    @php
+                        $configs = [
+                            0 => [
+                                'clip' => 'segment-top-left-clip',
+                                'bg' => 'bg-[#FF9800]',
+                                'pos' => 'top-[20%] left-[9%] sm:top-[19%] sm:left-[4%] text-right items-end',
+                            ],
+                            1 => [
+                                'clip' => 'segment-top-right-clip',
+                                'bg' => 'bg-[#9C27B0]',
+                                'pos' => 'top-[20%] right-[9%] sm:top-[19%] sm:right-[4%] text-left items-start',
+                            ],
+                            2 => [
+                                'clip' => 'segment-bottom-clip',
+                                'bg' => 'bg-[#2196F3]',
+                                'pos' => 'bottom-[10%] left-1/2 -translate-x-1/2 sm:bottom-[15%] text-center items-center',
+                            ],
+                        ];
+                        $ui = $configs[$index] ?? $configs[0];
+                    @endphp
 
-            <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" 
-                class="segment-wrapper group 
-                {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
-                
-                <!-- Background segment -->
-                <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}"></div>
-                
-                <!-- Content -->
-                <div class="absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
-                            w-[100px] sm:w-[140px] md:w-[180px]">
+                    <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" 
+                        class="segment-wrapper group 
+                        {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
+                        <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}"></div>
+                        
+                        <div class="segment-content absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
+                                    w-[100px] sm:w-[140px] md:w-[180px]">
 
-                    <!-- Icon -->
-                    <div class="mb-1 sm:mb-2 bg-white/20 p-1.5 sm:p-2 rounded-xl backdrop-blur-sm 
-                                group-hover:scale-110 transition-transform w-fit">
-                        <i class="{{ $program->icon }} text-base sm:text-xl md:text-3xl"></i>
-                    </div>
+                            <div class="segment-chip mb-1 sm:mb-2 bg-white/20 p-1.5 sm:p-2 rounded-xl backdrop-blur-sm 
+                                        group-hover:scale-110 transition-transform w-fit">
+                                <i class="{{ $program->icon }} text-base sm:text-xl md:text-3xl"></i>
+                            </div>
 
-                    <!-- Title -->
-                    <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
-                               leading-tight break-words drop-shadow-md">
-                        {{ $program->jenis_program }}
-                    </h2>
+                            <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
+                                       leading-tight break-words drop-shadow-md">
+                                {{ $program->jenis_program }}
+                            </h2>
 
-                    <!-- Button -->
-                    <div class="mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
-                                border-b border-white/40 group-hover:border-white 
-                                transition-all inline-block w-fit">
-                        LIHAT PROGRAM <i class="fas fa-chevron-right ml-1"></i>
-                    </div>
-                </div>
-            </a>
-        @endforeach
-    </div>
-</div>
-       
+                            <div class="segment-label mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
+                                        border-b border-white/40 group-hover:border-white 
+                                        transition-all inline-block w-fit">
+                                LIHAT PROGRAM <i class="fas fa-chevron-right ml-1"></i>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
     </section>
 
     @include('components.social-float')
-
-    {{-- 🔹 FOOTER --}}
     @include('layouts.footer')
 
 </body>
