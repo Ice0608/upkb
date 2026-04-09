@@ -128,9 +128,7 @@
 
 @include('components.social-float')
 
-<footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-slate-400">© {{ date('Y') }} Unit Pembangunan Kemahiran Belia.</div>
-</footer>
+@include('layouts.footer')
 
 </body>
 </html>
