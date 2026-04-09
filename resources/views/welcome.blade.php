@@ -11,9 +11,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        .titleglass { font-family: 'Gasoek One', sans-serif; word-break: break-word;} /* Brutalist */
-        p.font-sans { font-family: 'Inter', sans-serif; } /* Minimalist 1 */
-        p.font-mono { font-family: 'JetBrains Mono', monospace; } /* Minimalist 2 */
+        .titleglass { font-family: "Prata", serif; word-break: break-word;} /* Brutalist */
+        .titleglass-2 { font-family: "Montserrat", sans-serif; font-weight: 600;} /* Brutalist 2 */
+        p { font-family: "Roboto Condensed", sans-serif; font-weight: 500; } /* Sans-serif */
 
         .welcome-page {
             position: relative;
@@ -98,18 +98,25 @@
             
             <div class="bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
 
-                <p class="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-white/70 mb-3 md:mb-4 uppercase italic">
+                <p class=" text-[9px] md:text-[10px] tracking-[0.4em] text-white/70 mb-3 md:mb-4 uppercase italic">
                     // Program Kemahiran
                 </p>
 
-                <h2 class="titleglass font-brutalist text-3xl md:text-5xl lg:text-6xl text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
-                    Bina Masa <br class="hidden md:block"> Depan <br>
-                    <span class="text-orange-500 block mt-1 md:mt-2">Kemahiran Anda</span>
+                <h2 class="titleglass text-3xl md:text-5xl lg:text-6xl text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
+                    BINA MASA <br class="hidden md:block"> DEPAN <br>
                 </h2>
 
-                <p class="font-sans text-xs md:text-sm text-white/80 mt-6 md:mt-8 max-w-sm leading-relaxed font-light tracking-wide border-l border-white/30 pl-4">
+                <h2 class="titleglass-2 text-3xl md:text-5xl lg:text-6xl text-orange-400 leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
+                    KEMAHIRAN 
+                </h2>
+
+                <h2 class="titleglass-2 text-3xl md:text-5xl lg:text-6xl text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
+                    ANDA
+                </h2>
+
+                <p class=" text-xs md:text-sm text-white/80 mt-6 md:mt-8 max-w-sm leading-relaxed font-light tracking-wide border-l border-white/30 pl-4">
                     Terokai program TVET, Diploma dan Sains Kesihatan 
-                    yang direka untuk meningkatkan peluang kerjaya anda.
+                    <br>yang direka untuk meningkatkan peluang kerjaya anda.</br>
                 </p>
 
                 <a href="{{ route('program') }}"

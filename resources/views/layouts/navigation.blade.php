@@ -1,5 +1,11 @@
 @once
     <style>
+
+         p {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+        }
+
         .site-nav {
             position: sticky;
             top: 0;
@@ -100,6 +106,7 @@
 
         .site-nav-brand-kicker,
         .site-nav-brand-title {
+            font-family: 'Roboto Condensed', sans-serif !important;
             transition: transform 0.25s ease, letter-spacing 0.25s ease, color 0.25s ease;
         }
 
@@ -378,12 +385,12 @@
     <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="{{ url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
             <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-orange-100/90 bg-[linear-gradient(145deg,#fff7ed,#ffffff)] sm:h-14 sm:w-14">
-                <img src="{{ asset('images/icon/logo.jpeg') }}" alt="logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
+                <img src="{{ asset('images/icon/noBgLogo.jpeg') }}" alt="logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
             </span>
             <div class="site-nav-brand-copy min-w-0 leading-tight">
-                <p class="site-nav-brand-kicker truncate text-[11px] font-semibold uppercase tracking-[0.24em] text-orange-500 sm:text-xs">UPKB</p>
-                <h1 class="site-nav-brand-title text-sm font-semibold tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">Unit Pembangunan</h1>
-                <h1 class="site-nav-brand-title text-sm font-semibold tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">Kemahiran Belia</h1>
+                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">UPKB</p>
+                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]" style="font-family: 'Roboto Condensed', sans-serif;">Unit Pembangunan</h1>
+                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]" style="font-family: 'Roboto Condensed', sans-serif;">Kemahiran Belia</h1>
             </div>
         </a>
 
