@@ -1,11 +1,6 @@
 @once
     <style>
 
-         p {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 800;
-        }
-
         .site-nav {
             position: sticky;
             top: 0;

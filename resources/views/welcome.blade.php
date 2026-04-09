@@ -206,53 +206,68 @@
     </section>
 
     {{-- 🔹 VIDEO SECTION --}}
-    <section class="max-w-7xl mx-auto px-6 mt-12 text-center">
-
+<section class="max-w-7xl mx-auto px-6 mt-12">
+    {{-- Header Content --}}
+    <div class="text-center mb-10">
         <h2 class="text-xl font-semibold mb-2">Program Popular</h2>
-        <p class="mx-auto max-w-2xl text-sm text-slate-600 mb-8">Tonton sorotan program pilihan kami yang dilengkapi modul profesional, kemahiran abad ke-21 dan peluang kerjaya yang terjamin.</p>
+        <p class="mx-auto max-w-2xl text-sm text-slate-600">Tonton sorotan program pilihan kami yang dilengkapi modul profesional, kemahiran abad ke-21 dan peluang kerjaya yang terjamin.</p>
+    </div>
 
-        {{-- VIDEO SIZE --}}
-        <div class="w-full max-w-5xl mx-auto overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 bg-slate-950/80 relative">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/20 to-transparent pointer-events-none"></div>
-            <div class="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm">
-                <i class="fas fa-star text-orange-400"></i>
-                Koleksi Terbaik UPKB
+    {{-- Main Layout Container: 1/3 for Cards, 2/3 for Video --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        
+        {{-- LEFT SIDE: CARDS (1/3) --}}
+        <div class="flex flex-col gap-4 order-2 lg:order-1">
+            <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-white/80 p-6 shadow-lg backdrop-blur-sm flex flex-col justify-center">
+                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2 font-bold">Fokus Kualiti</p>
+                <p class="text-sm text-slate-600">Setiap program dirangka dengan kandungan mendalam dari pakar industri.</p>
             </div>
 
-            <video class="w-full h-80 md:h-[520px] object-cover" controls autoplay playsinline>
-                <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-slate-900/90 p-6 shadow-lg backdrop-blur-sm text-white flex flex-col justify-center border-l-4 border-l-orange-500">
+                <p class="text-sm uppercase tracking-[0.24em] text-orange-300 mb-2 font-bold">Mudah Dipercayai</p>
+                <p class="text-sm text-slate-300">Program kami telah dipercayai oleh ribuan pelajar dan institusi.</p>
+            </div>
 
-            <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-slate-950/95 to-transparent">
-                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <div class="text-left">
-                        <p class="text-xs uppercase tracking-[0.3em] text-slate-400 mb-2">Berkualiti / Dipercayai / Berprestasi</p>
-                        <h3 class="text-lg md:text-2xl font-semibold text-white">Pengalaman pembelajaran yang elegan, profesional dan berkualiti.</h3>
+            <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-white/80 p-6 shadow-lg backdrop-blur-sm flex flex-col justify-center">
+                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2 font-bold">Nilai Tambahan</p>
+                <p class="text-sm text-slate-600">Kandungan disokong oleh sokongan pelajar, panduan kerjaya dan alumni.</p>
+            </div>
+        </div>
+
+        {{-- RIGHT SIDE: VIDEO (2/3) --}}
+        <div class="lg:col-span-2 order-1 lg:order-2">
+            <div class="relative h-full overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 bg-slate-950/80">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/20 to-transparent pointer-events-none z-10"></div>
+                
+                <div class="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 text-xs text-white backdrop-blur-sm z-20">
+                    <i class="fas fa-star text-orange-400"></i>
+                    Koleksi Terbaik UPKB
+                </div>
+
+                <video class="w-full h-full object-cover min-h-[400px]" controls autoplay playsinline muted>
+                    <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <div class="absolute inset-x-0 bottom-0 p-8 z-20">
+                    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                        <div class="text-left">
+                            <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 mb-2">Berkualiti / Dipercayai / Berprestasi</p>
+                            <h3 class="text-lg md:text-xl font-semibold text-white max-w-md leading-snug">
+                                Pengalaman pembelajaran yang elegan dan profesional.
+                            </h3>
+                        </div>
+                        <a href="/program" class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition shrink-0">
+                            Terokai
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
-                    <a href="/program" class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
-                        Terokai Program
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="mt-8 grid gap-4 sm:grid-cols-3 text-left">
-            <div class="rounded-[1.75rem] border border-white/10 bg-white/80 p-5 shadow-lg backdrop-blur-sm">
-                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2">Fokus Kualiti</p>
-                <p class="text-sm text-slate-600">Setiap program dirangka dengan kandungan mendalam dari pakar industri.</p>
-            </div>
-            <div class="rounded-[1.75rem] border border-white/10 bg-slate-900/90 p-5 shadow-lg backdrop-blur-sm text-white">
-                <p class="text-sm uppercase tracking-[0.24em] text-orange-300 mb-2">Mudah Dipercayai</p>
-                <p class="text-sm text-slate-300">Program kami telah dipercayai oleh ribuan pelajar dan institusi.</p>
-            </div>
-            <div class="rounded-[1.75rem] border border-white/10 bg-white/80 p-5 shadow-lg backdrop-blur-sm">
-                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2">Nilai Tambahan</p>
-                <p class="text-sm text-slate-600">Kandungan disokong oleh sokongan pelajar, panduan kerjaya dan peluang alumni.</p>
-            </div>
-        </div>
-    </section>
+        
+    </div>
+</section>
 
     {{-- 🔹 SOCIAL FLOAT --}}
     @include('components.social-float')
