@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Kelola Mesej</title>
+    <title>UPKB - Urus Mesej</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -13,7 +13,7 @@
 
     <section class="max-w-7xl mx-auto px-6 py-10">
         <div class="mb-8">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">Kelola Mesej Pelanggan</h1>
+            <h1 class="text-4xl font-bold text-slate-900 mb-2">Urus Mesej Pelanggan</h1>
             <p class="text-gray-600">Lihat dan urus semua mesej yang diterima dari ruangan hubungi.</p>
         </div>
 
@@ -102,41 +102,7 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-gray-300 mt-16">
-        <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ asset('images/logo.jpeg') }}" class="h-12" alt="logo">
-                    <div>
-                        <h2 class="text-lg font-bold text-white">UPKB</h2>
-                        <p class="text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
-                    </div>
-                </div>
-                <p class="text-sm text-gray-400 leading-relaxed">Bantu pelajar dan ibu bapa melihat pilihan pusat, program, kuota semasa dan maklumat penting dengan lebih jelas dalam satu tempat.</p>
-            </div>
-            <div>
-                <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
-                <div class="space-y-2 text-sm">
-                    <a href="{{ route('dashboard') }}" class="hover:text-orange-400">Dashboard</a>
-                    <a href="{{ route('admin.programs') }}" class="hover:text-orange-400">Program</a>
-                    <a href="{{ route('admin.institusis') }}" class="hover:text-orange-400">Institusi</a>
-                    <a href="{{ route('admin.messages') }}" class="hover:text-orange-400">Mesej</a>
-                </div>
-            </div>
-            <div>
-                <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li>📞 +6017 921 5543</li>
-                    <li>✉️ info@upkb.my</li>
-                    <li>📍 34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-700"></div>
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm">
-            <p class="text-gray-400">© {{ date('Y') }} Unit Pembangunan Kemahiran Belia.</p>
-        </div>
-    </footer>
+    @include('layouts.footer-admin')
 
 </body>
 </html>
