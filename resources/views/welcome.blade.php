@@ -3,13 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .welcome-page {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.16), transparent 20%),
+                radial-gradient(circle at top right, rgba(168, 85, 247, 0.16), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.12), transparent 24%),
+                linear-gradient(180deg, #eef4ff 0%, #edf2ff 48%, #f8fafc 100%);
+        }
+
+        .welcome-page::before,
+        .welcome-page::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .welcome-page::before {
+            top: 1rem;
+            left: -4rem;
+            width: 15rem;
+            height: 15rem;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle, rgba(14, 165, 233, 0.16), rgba(14, 165, 233, 0) 64%),
+                repeating-radial-gradient(circle, rgba(14, 165, 233, 0.08) 0 2px, transparent 2px 16px);
+            box-shadow: 0 0 70px rgba(14, 165, 233, 0.12);
+        }
+
+        .welcome-page::after {
+            right: -4rem;
+            bottom: 2rem;
+            width: 18rem;
+            height: 18rem;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle, rgba(168, 85, 247, 0.16), rgba(168, 85, 247, 0) 66%),
+                repeating-radial-gradient(circle, rgba(168, 85, 247, 0.08) 0 2px, transparent 2px 18px);
+            box-shadow: 0 0 80px rgba(168, 85, 247, 0.12);
+        }
+
+        .intro-overlay {
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .intro-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
 </head>
-<body class="bg-orange-50 text-gray-800">
-    <div id="introOverlay" class="fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
+<body class="welcome-page text-gray-800">
+    <div id="introOverlay" class="intro-overlay fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
         <div class="absolute inset-0 bg-black/95"></div>
         <div id="introStart" class="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
             <h1 class="text-3xl md:text-4xl font-bold">Selamat Datang ke UPKB</h1>
@@ -114,24 +171,24 @@
     <section class="max-w-7xl mx-auto px-6 mt-10">
         <div class="grid md:grid-cols-4 gap-4 text-center">
 
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-2xl font-bold text-orange-500">10+</h2>
-                <p class="text-sm text-gray-500">Tahun Pengalaman</p>
+            <div class="bg-orange-500 shadow-xl rounded-[2rem] p-6 text-white">
+                <h2 class="text-3xl font-bold"><span class="counter" data-target="10">0</span>+</h2>
+                <p class="text-sm text-orange-100">Tahun Pengalaman</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-2xl font-bold text-orange-500">15K+</h2>
-                <p class="text-sm text-gray-500">Graduan Berjaya</p>
+            <div class="bg-slate-100 shadow-xl rounded-[2rem] p-6 text-slate-800 border border-slate-200">
+                <h2 class="text-3xl font-bold text-orange-500"><span class="counter" data-target="15000">0</span>+</h2>
+                <p class="text-sm text-slate-500">Graduan Berjaya</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-2xl font-bold text-orange-500">30+</h2>
-                <p class="text-sm text-gray-500">Program Kursus</p>
+            <div class="bg-orange-100 shadow-xl rounded-[2rem] p-6 text-orange-700 border border-orange-200">
+                <h2 class="text-3xl font-bold"><span class="counter" data-target="30">0</span>+</h2>
+                <p class="text-sm text-orange-700">Program Kursus</p>
             </div>
 
-            <div class="bg-white p-6 rounded-xl shadow">
-                <h2 class="text-2xl font-bold text-orange-500">50+</h2>
-                <p class="text-sm text-gray-500">Rakan Industri</p>
+            <div class="bg-slate-100 shadow-xl rounded-[2rem] p-6 text-slate-800 border border-slate-200">
+                <h2 class="text-3xl font-bold text-orange-500"><span class="counter" data-target="50">0</span>+</h2>
+                <p class="text-sm text-slate-500">Rakan Industri</p>
             </div>
 
         </div>
@@ -140,21 +197,49 @@
     {{-- 🔹 VIDEO SECTION --}}
     <section class="max-w-7xl mx-auto px-6 mt-12 text-center">
 
-        <h2 class="text-xl font-semibold mb-4">Program Popular</h2>
+        <h2 class="text-xl font-semibold mb-2">Program Popular</h2>
+        <p class="mx-auto max-w-2xl text-sm text-slate-600 mb-8">Tonton sorotan program pilihan kami yang dilengkapi modul profesional, kemahiran abad ke-21 dan peluang kerjaya yang terjamin.</p>
 
         {{-- VIDEO SIZE --}}
-        <div class="w-full max-w-5xl mx-auto overflow-hidden rounded-3xl shadow-xl">
-            <video class="w-full h-80 md:h-[520px] object-cover" controls>
+        <div class="w-full max-w-5xl mx-auto overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 bg-slate-950/80 relative">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/20 to-transparent pointer-events-none"></div>
+            <div class="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm">
+                <i class="fas fa-star text-orange-400"></i>
+                Koleksi Terbaik UPKB
+            </div>
+
+            <video class="w-full h-80 md:h-[520px] object-cover" controls autoplay playsinline>
                 <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+            <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-slate-950/95 to-transparent">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <div class="text-left">
+                        <p class="text-xs uppercase tracking-[0.3em] text-slate-400 mb-2">Berkualiti / Dipercayai / Berprestasi</p>
+                        <h3 class="text-lg md:text-2xl font-semibold text-white">Pengalaman pembelajaran yang elegan, profesional dan berkualiti.</h3>
+                    </div>
+                    <a href="/program" class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition">
+                        Terokai Program
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        {{-- BUTTON --}}
-        <div class="mt-6">
-            <a href="/program" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">
-                Lihat Program
-            </a>
+        <div class="mt-8 grid gap-4 sm:grid-cols-3 text-left">
+            <div class="rounded-[1.75rem] border border-white/10 bg-white/80 p-5 shadow-lg backdrop-blur-sm">
+                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2">Fokus Kualiti</p>
+                <p class="text-sm text-slate-600">Setiap program dirangka dengan kandungan mendalam dari pakar industri.</p>
+            </div>
+            <div class="rounded-[1.75rem] border border-white/10 bg-slate-900/90 p-5 shadow-lg backdrop-blur-sm text-white">
+                <p class="text-sm uppercase tracking-[0.24em] text-orange-300 mb-2">Mudah Dipercayai</p>
+                <p class="text-sm text-slate-300">Program kami telah dipercayai oleh ribuan pelajar dan institusi.</p>
+            </div>
+            <div class="rounded-[1.75rem] border border-white/10 bg-white/80 p-5 shadow-lg backdrop-blur-sm">
+                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2">Nilai Tambahan</p>
+                <p class="text-sm text-slate-600">Kandungan disokong oleh sokongan pelajar, panduan kerjaya dan peluang alumni.</p>
+            </div>
         </div>
     </section>
 
@@ -200,11 +285,16 @@ function prevSlide() {
 }
 
 function hideIntroOverlay() {
-    if (introOverlay) {
+    if (!introOverlay) return;
+
+    introOverlay.classList.add('hide');
+    introOverlay.addEventListener('transitionend', function onTransitionEnd() {
         introOverlay.style.display = 'none';
-        document.body.style.overflow = '';
-        localStorage.setItem('upkbIntroSeen', '1');
-    }
+        introOverlay.removeEventListener('transitionend', onTransitionEnd);
+    });
+
+    document.body.style.overflow = '';
+    localStorage.setItem('upkbIntroSeen', '1');
 }
 
 function startIntro() {
@@ -230,6 +320,33 @@ function showIntroOverlayIfNeeded() {
 }
 
 showIntroOverlayIfNeeded();
+
+function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+
+    counters.forEach((counter) => {
+        const target = parseInt(counter.dataset.target, 10) || 0;
+        const duration = 1200;
+        const stepTime = Math.max(Math.floor(duration / target), 20);
+        let current = 0;
+
+        const update = () => {
+            const increment = target > 0 ? Math.ceil(target / (duration / stepTime)) : 1;
+            current += increment;
+
+            if (current >= target) {
+                counter.innerText = target.toLocaleString();
+            } else {
+                counter.innerText = current.toLocaleString();
+                window.requestAnimationFrame(update);
+            }
+        };
+
+        update();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', animateCounters);
 
 // AUTO SLIDE
 setInterval(nextSlide, 4000);
