@@ -27,9 +27,9 @@
     <!-- VIDEO -->
     <video autoplay muted loop playsinline
         class="fixed top-0 left-0 w-full h-full object-cover"
-        poster="{{ asset('images/galeri/imgVideo.png') }}">
+        poster="{{ asset('images/galeri/bgLogin.png') }}">
 
-        <source src="{{ asset('videos/bgVideo.mp4') }}" type="video/mp4">
+        <source src="{{ asset('videos/bgVLogin3.mp4') }}" type="video/mp4">
     </video>
 
     <!-- 🌫️ OVERLAY -->
@@ -69,7 +69,7 @@
                         animate-pulse">
 
             <h2 class="text-2xl font-bold text-orange-400">
-                Unit Pembangun Kemahiran Belia
+                UNIT PEMBANGUNAN KEMAHIRAN BELIA
             </h2>
 
             <p class="text-gray-300 text-sm">

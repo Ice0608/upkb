@@ -407,7 +407,6 @@
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">TVET</p>
                                         <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Laluan kemahiran teknikal dan praktikal.</p>
                                     </div>
-                                    <span class="site-nav-program-card-arrow text-lg text-white/85">&rarr;</span>
                                 </div>
                             </a>
                             <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-floating rounded-[1.9rem] bg-[linear-gradient(145deg,rgba(162,28,175,0.96)_0%,rgba(217,70,239,0.92)_55%,rgba(192,132,252,0.86)_100%)] px-5 py-5 text-white [animation-delay:0.4s]">
@@ -418,7 +417,6 @@
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Diploma</p>
                                         <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Program akademik untuk kemajuan kerjaya.</p>
                                     </div>
-                                    <span class="site-nav-program-card-arrow text-lg text-white/85">&rarr;</span>
                                 </div>
                             </a>
                             <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-floating rounded-[1.9rem] bg-[linear-gradient(145deg,rgba(2,132,199,0.96)_0%,rgba(14,165,233,0.92)_56%,rgba(103,232,249,0.84)_100%)] px-5 py-5 text-white [animation-delay:0.8s]">
@@ -429,7 +427,6 @@
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Sains Kesihatan</p>
                                         <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Fokus kepada latihan kesihatan dan klinikal.</p>
                                     </div>
-                                    <span class="site-nav-program-card-arrow text-lg text-white/85">&rarr;</span>
                                 </div>
                             </a>
                         </div>
