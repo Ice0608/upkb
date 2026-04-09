@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&family=Inter:wght@300;400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <title>UPKB</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        .titleglass { font-family: 'Gasoek One', sans-serif; word-break: break-word;} /* Brutalist */
+        p.font-sans { font-family: 'Inter', sans-serif; } /* Minimalist 1 */
+        p.font-mono { font-family: 'JetBrains Mono', monospace; } /* Minimalist 2 */
+
         .welcome-page {
             position: relative;
             min-height: 100vh;
@@ -83,38 +88,37 @@
 
     {{-- 🔹 IKLAN SECTION --}}
     <div class="relative w-full">
+    
+   {{-- 🔹 GLASS CONTENT --}}
+        <div class="absolute z-30 
+                    /* Mobile: Centered horizontally,*/
+                    inset-x-8 top-1/2 -translate-y-1/2 px-6 
+                    /* Desktop: Reset to your original left-aligned look */
+                    lg:left-20 lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:px-0 lg:max-w-xl">
+            
+            <div class="bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
 
-        <!-- GLASS CONTENT -->
-<div class="absolute left-20 top-1/2 -translate-y-1/2 z-20 max-w-md">
+                <p class="font-mono text-[9px] md:text-[10px] tracking-[0.4em] text-white/70 mb-3 md:mb-4 uppercase italic">
+                    // Program Kemahiran
+                </p>
 
-    <div class="bg-white/80 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/40">
+                <h2 class="titleglass font-brutalist text-3xl md:text-5xl lg:text-6xl text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
+                    Bina Masa <br class="hidden md:block"> Depan <br>
+                    <span class="text-orange-500 block mt-1 md:mt-2">Kemahiran Anda</span>
+                </h2>
 
-        <!-- SMALL TITLE -->
-        <p class="text-xs tracking-widest text-gray-500 mb-2 uppercase">
-            Program Kemahiran
-        </p>
+                <p class="font-sans text-xs md:text-sm text-white/80 mt-6 md:mt-8 max-w-sm leading-relaxed font-light tracking-wide border-l border-white/30 pl-4">
+                    Terokai program TVET, Diploma dan Sains Kesihatan 
+                    yang direka untuk meningkatkan peluang kerjaya anda.
+                </p>
 
-        <!-- MAIN TITLE -->
-        <h2 class="text-3xl font-bold text-gray-900 leading-tight">
-            Bina Masa Depan <br>
-            <span class="text-orange-500">Kemahiran Anda</span>
-        </h2>
+                <a href="{{ route('program') }}"
+                   class="inline-block mt-8 md:mt-10 border border-white text-white px-8 md:px-10 py-3 md:py-4 rounded-none text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold hover:bg-white hover:text-black transition-all duration-300 transform active:scale-95 w-full sm:w-auto text-center">
+                    Lihat Program
+                </a>
 
-        <!-- DESCRIPTION -->
-        <p class="text-sm text-gray-600 mt-3">
-            Terokai program TVET, Diploma dan Sains Kesihatan 
-            yang direka untuk meningkatkan peluang kerjaya anda.
-        </p>
-
-        <!-- BUTTON -->
-        <a href="{{ route('program') }}"
-           class="inline-block mt-5 bg-orange-500 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition">
-            Lihat Program →
-        </a>
-
-    </div>
-
-</div>
+            </div>
+        </div>
 
     <div id="slider" class="overflow-hidden relative w-full">
 
