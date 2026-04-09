@@ -136,13 +136,53 @@
 
         .mercedes-container {
             overflow: hidden;
+            position: relative;
             background:
-                radial-gradient(circle at center, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
-                linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.72));
+                linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.10) 100%);
+            border: 1px solid rgba(255,255,255,0.3);
             box-shadow:
                 0 28px 72px rgba(15, 23, 42, 0.16),
                 0 0 40px rgba(56, 189, 248, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+                inset 0 0 40px 8px rgba(255,255,255,0.18),
+                0 1.5px 16px 0 rgba(255,255,255,0.10);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+        }
+
+        /* Glassmorphism segment backgrounds */
+        .segment {
+            background-blend-mode: lighten;
+        }
+        .segment-orange .segment {
+            background: rgba(255, 152, 0, 0.78) !important;
+        }
+        .segment-purple .segment {
+            background: rgba(156, 39, 176, 0.74) !important;
+        }
+        .segment-blue .segment {
+            background: rgba(33, 150, 243, 0.72) !important;
+        }
+
+        /* Subtle border for each segment */
+        .segment {
+            border: 1px solid rgba(255,255,255,0.30);
+            box-shadow: 0 2px 16px 0 rgba(255,255,255,0.10) inset;
+        }
+
+        /* Light reflection effect at the top */
+        .mercedes-reflection {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 22%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.10) 80%, transparent 100%);
+            border-radius: 100% 100% 60% 60% / 100% 100% 40% 40%;
+            pointer-events: none;
+            z-index: 30;
+            filter: blur(1.5px);
+            opacity: 0.85;
         }
 
         .segment-top-left-clip { 
@@ -276,6 +316,7 @@
                 md:w-[520px] md:h-[520px] 
                 rounded-full border-[8px] sm:border-[10px] border-white/90">
 
+                <div class="mercedes-reflection"></div>
                 @foreach($programs->take(3) as $index => $program)
                     @php
                         $configs = [
@@ -301,21 +342,30 @@
                     <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" 
                         class="segment-wrapper group 
                         {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
-                        <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}"></div>
-                        
+                        <!-- Segment background with image overlay -->
+                        <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}">
+                            @if($index == 0)
+                                <!-- TVET: Robotics/Workshop -->
+                                <div style="background: linear-gradient(rgba(255,152,0,0.60), rgba(255,152,0,0.50)), url('/images/tvet-vg2.jpeg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.92) blur(0.5px);" class="w-full h-full"></div>
+                            @elseif($index == 1)
+                                <!-- DIPLOMA: Graduation -->
+                                <div style="background: linear-gradient(rgba(156,39,176,0.55), rgba(156,39,176,0.45)), url('/images/postgraduate-differences_sim-article.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.96) blur(0.5px);" class="w-full h-full"></div>
+                            @elseif($index == 2)
+                                <!-- SAINS KESIHATAN: Lab/Microscope -->
+                                <div style="background: linear-gradient(rgba(33,150,243,0.50), rgba(33,150,243,0.40)), url('/images/sains.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.97) blur(0.5px);" class="w-full h-full"></div>
+                            @endif
+                        </div>
+                        <!-- Segment content -->
                         <div class="segment-content absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
                                     w-[100px] sm:w-[140px] md:w-[180px]">
-
                             <div class="segment-chip mb-1 sm:mb-2 bg-white/20 p-1.5 sm:p-2 rounded-xl backdrop-blur-sm 
                                         group-hover:scale-110 transition-transform w-fit">
                                 <i class="{{ $program->icon }} text-base sm:text-xl md:text-3xl"></i>
                             </div>
-
                             <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
                                        leading-tight break-words drop-shadow-md">
                                 {{ $program->jenis_program }}
                             </h2>
-
                             <div class="segment-label mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
                                         border-b border-white/40 group-hover:border-white 
                                         transition-all inline-block w-fit">
