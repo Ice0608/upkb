@@ -8,8 +8,10 @@ use App\Http\Controllers\AdminKursusController;
 use App\Http\Controllers\AdminGaleriController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\StaffEventController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,10 +20,7 @@ Route::get('/', function () {
 
 // Admin only routes
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        abort_if(auth()->user()->level !== 'admin', 403);
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/bmd', [StaffEventController::class, 'guestBmd'])->name('bmd');
@@ -37,7 +36,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::view('/about', 'about')->name('about');
-use App\Http\Controllers\ProgramController;
 
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
 Route::get('/institusi', [InstitusiController::class, 'index'])->name('institusi');
