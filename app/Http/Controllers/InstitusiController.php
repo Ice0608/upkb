@@ -12,11 +12,23 @@ class InstitusiController extends Controller
     public function index(Request $request)
     {
         $jenis = $request->jenis;
+        $negeri = $request->query('negeri');
+        $kuota = $request->query('kuota');
         
         $query = Institusi::query();
         
         if ($jenis) {
             $query->where('jenis_institusi', $jenis);
+        }
+
+        if ($negeri) {
+            $query->where('alamat', 'LIKE', '%' . $negeri . '%');
+        }
+
+        if ($kuota) {
+            $query->whereHas('kursuses', function ($q) {
+                $q->where('kuota', '>', 0);
+            });
         }
         
         $institusis = $query->get();

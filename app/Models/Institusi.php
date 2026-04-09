@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Kursus;
 
 class Institusi extends Model
 {
@@ -14,4 +15,9 @@ class Institusi extends Model
         'alamat',
         'mengenai_institusi',
     ];
+
+    public function kursuses()
+    {
+        return $this->hasMany(Kursus::class, 'kod_institusi', 'kod_institusi');
+    }
 }

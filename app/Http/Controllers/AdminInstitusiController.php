@@ -20,12 +20,26 @@ class AdminInstitusiController extends Controller
     public function index(Request $request)
     {
         $jenis = $request->query('jenis');
+        $negeri = $request->query('negeri');
+        $kuota = $request->query('kuota');
+
+        $query = Institusi::query();
 
         if ($jenis) {
-            $institusis = Institusi::where('jenis_institusi', $jenis)->get();
-        } else {
-            $institusis = Institusi::all();
+            $query->where('jenis_institusi', $jenis);
         }
+
+        if ($negeri) {
+            $query->where('alamat', 'LIKE', '%' . $negeri . '%');
+        }
+
+        if ($kuota) {
+            $query->whereHas('kursuses', function ($q) {
+                $q->where('kuota', '>', 0);
+            });
+        }
+
+        $institusis = $query->get();
 
         return view('admin.institusis', compact('institusis'));
     }
