@@ -8,85 +8,88 @@
     <title>UPKB - Manage Users</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-800">
-@include('layouts.navadmin')
+<body class="bg-white text-gray-900 antialiased">
+    @include('layouts.navadmin')
 
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="bg-white rounded-3xl shadow-lg p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">Manage Users</h1>
-                <a href="{{ route('admin.adduser') }}" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition font-semibold">
-                    <i class="fas fa-plus mr-2"></i>Add User
-                </a>
+    <main class="max-w-5xl mx-auto px-6 py-16">
+        
+        {{-- Header Section: Subtle Wash --}}
+        <div class="bg-gray-100 rounded-3xl p-8 md:p-10 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-950">Akaun Pengguna</h1>
+                <p class="text-gray-500 mt-1">Halaman pengurusan akaun pengguna.</p>
+            </div>
+            <a href="{{ route('admin.adduser') }}" class="inline-flex items-center justify-center bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-600 transition-all text-sm font-semibold shadow-sm">
+                <i class="fas fa-plus mr-2 text-xs"></i> Tambah Akaun
+            </a>
+        </div>
+
+        {{-- Alerts --}}
+        @if (session('success'))
+            <div class="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 text-sm rounded-r-lg">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- User List Section: Subtle Wash --}}
+        <div class="bg-gray-100 rounded-3xl p-2 md:p-8">
+            {{-- Section Label --}}
+            <div class="px-6 py-4 flex items-center justify-between">
+                <span class="text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400">Senarai Akaun</span>
+                <span class="text-xs text-gray-400">{{ $users->count() }} Total</span>
             </div>
 
-            @if (session('success'))
-                <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-                    {{ session('success') }}
-                </div>
-            @endif
-
             @if ($users->isEmpty())
-                <div class="text-center py-12">
-                    <p class="text-gray-500 text-lg">No users found</p>
+                <div class="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-gray-200 m-4">
+                    <p class="text-gray-400 text-sm">No registered users found.</p>
                 </div>
             @else
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead class="border-b bg-gray-50">
-                            <tr>
-                                <th class="px-4 py-3 font-semibold text-gray-700">No.</th>
-                                <th class="px-4 py-3 font-semibold text-gray-700">Name</th>
-                                <th class="px-4 py-3 font-semibold text-gray-700">Username</th>
-                                <th class="px-4 py-3 font-semibold text-gray-700">Level</th>
-                                <th class="px-4 py-3 font-semibold text-gray-700">Created</th>
-                                <th class="px-4 py-3 font-semibold text-gray-700">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($users as $key => $user)
-                                <tr class="border-b hover:bg-gray-50">
-                                    <td class="px-4 py-3">{{ $key + 1 }}</td>
-                                    <td class="px-4 py-3">{{ $user->name }}</td>
-                                    <td class="px-4 py-3">{{ $user->username }}</td>
-                                    <td class="px-4 py-3">
-                                        <span class="px-3 py-1 rounded-full text-sm font-semibold 
-                                            {{ $user->level === 'admin' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700' }}">
-                                            {{ ucfirst($user->level) }}
+                <div class="space-y-2">
+                    @foreach ($users as $user)
+                        <div class="group flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-white rounded-2xl transition-all hover:shadow-md border border-transparent hover:border-gray-100">
+                            <div class="flex items-center space-x-4">
+                                {{-- Avatar Placeholder --}}
+                                <div class="h-12 w-12 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-400 font-bold shrink-0">
+                                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <h2 class="text-lg font-bold text-gray-900 leading-tight">{{ $user->name }}</h2>
+                                        <span class="text-[10px] uppercase tracking-widest font-extrabold px-2 py-0.5 rounded {{ $user->level === 'admin' ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-blue-50 text-blue-600 border border-blue-100' }}">
+                                            {{ $user->level }}
                                         </span>
-                                    </td>
-                                    <td class="px-4 py-3">{{ $user->created_at->format('d/m/Y') }}</td>
-                                    <td class="px-4 py-3">
-                                        <div class="flex gap-2">
-                                            <a href="{{ route('admin.edituser', $user->id) }}" class="text-blue-500 hover:text-blue-700">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('admin.deleteuser', $user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Confirm delete?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-red-500 hover:text-red-700">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center py-4 text-gray-500">No users found</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                    </div>
+                                    <p class="text-sm text-gray-400 font-mono mt-0.5">@ {{ $user->username }}</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 sm:mt-0 flex items-center gap-8">
+                                <div class="hidden lg:block text-right">
+                                    <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Sertai</p>
+                                    <p class="text-sm font-medium text-gray-600">{{ $user->created_at->format('M d, Y') }}</p>
+                                </div>
+                                
+                                <div class="flex items-center gap-2">
+                                    <a href="{{ route('admin.edituser', $user->id) }}" class="p-2.5 text-blue-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all" title="Edit User">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.deleteuser', $user->id) }}" method="POST" onsubmit="return confirm('Delete this user?');" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="p-2.5 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all" title="Delete User">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             @endif
         </div>
-    </section>
+    </main>
 
     @include('components.social-float')
-
-    {{-- 🔹 FOOTER --}}
     @include('layouts.footer-admin')
-    
 </body>
 </html>

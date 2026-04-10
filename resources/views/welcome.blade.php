@@ -179,7 +179,7 @@
 </div>
 
     {{-- 🔹 STATISTICS --}}
-    <section class="max-w-7xl mx-auto px-6 mt-10">
+    <section class="max-w-7xl mx-auto px-6 mt-20">
         <div class="grid md:grid-cols-4 gap-4 text-center">
 
             <div class="bg-orange-500 shadow-xl rounded-[2rem] p-6 text-white">
@@ -206,7 +206,7 @@
     </section>
 
     {{-- 🔹 VIDEO SECTION --}}
-<section class="max-w-7xl mx-auto px-6 mt-12">
+<section class="max-w-7xl mx-auto px-6 mt-20">
     {{-- Header Content --}}
     <div class="text-center mb-10">
         <h2 class="text-xl font-semibold mb-2">Program Popular</h2>

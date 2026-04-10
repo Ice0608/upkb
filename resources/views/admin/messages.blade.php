@@ -8,99 +8,102 @@
     <title>UPKB - Urus Mesej</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-[#FBFCFE] text-slate-900">
 
 @include('layouts.navadmin')
 
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="mb-8">
-            <h1 class="text-4xl font-bold text-slate-900 mb-2">Urus Mesej Pelanggan</h1>
-            <p class="text-gray-600">Lihat dan urus semua mesej yang diterima dari ruangan hubungi.</p>
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="mb-10">
+            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 mb-2">Urus Mesej Pelanggan</h1>
+            <p class="text-slate-500 font-medium italic">Lihat dan urus semua mesej yang diterima dari ruangan hubungi.</p>
         </div>
 
         @if ($message = Session::get('success'))
-            <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg">
-                <i class="fas fa-check-circle mr-2"></i>{{ $message }}
+            <div class="mb-8 bg-white border border-green-100 shadow-sm text-green-700 px-5 py-4 rounded-2xl flex items-center">
+                <i class="fas fa-check-circle mr-3"></i>
+                <span class="text-sm font-bold">{{ $message }}</span>
             </div>
         @endif
 
-        {{-- Messages Table --}}
-        <div class="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
-            @if($messages->count() > 0)
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-                            <tr>
-                                <th class="px-6 py-4 font-semibold">No.</th>
-                                <th class="px-6 py-4 font-semibold">Nama</th>
-                                <th class="px-6 py-4 font-semibold">Emel</th>
-                                <th class="px-6 py-4 font-semibold">Perkara</th>
-                                <th class="px-6 py-4 font-semibold">Nota</th>
-                                <th class="px-6 py-4 font-semibold">Tarikh</th>
-                                <th class="px-6 py-4 font-semibold text-center">Tindakan</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            @php $counter = ($messages->currentPage() - 1) * $messages->perPage() + 1; @endphp
-                            @foreach($messages as $msg)
-                                <tr class="hover:bg-gray-50 transition">
-                                    <td class="px-6 py-4 font-medium text-gray-700">{{ $counter++ }}</td>
-                                    <td class="px-6 py-4">
-                                        <p class="font-semibold text-gray-900">{{ $msg->nama }}</p>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="mailto:{{ $msg->emel }}" class="text-orange-600 font-medium hover:text-orange-700 flex items-center gap-2">
-                                            <i class="fas fa-envelope"></i>{{ $msg->emel }}
-                                        </a>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">{{ Str::limit($msg->perkara, 30) }}</span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        @if($msg->comment)
-                                            <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-semibold">
-                                                <i class="fas fa-check-circle"></i>Ada
-                                            </span>
-                                        @else
-                                            <span class="inline-flex items-center gap-1 text-gray-400 text-xs">
-                                                <i class="fas fa-times-circle"></i>Tiada
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4 text-gray-600">
-                                        <small>{{ $msg->created_at->format('d/m/Y H:i') }}</small>
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <div class="flex justify-center gap-3">
-                                            <a href="{{ route('admin.message-detail', $msg->id) }}" class="inline-flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg transition text-xs font-semibold">
-                                                <i class="fas fa-eye"></i>Lihat
-                                            </a>
-                                            <form action="{{ route('admin.message-delete', $msg->id) }}" method="POST" class="inline" onsubmit="return confirm('Adakah anda pasti ingin memadam mesej ini?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="inline-flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg transition text-xs font-semibold">
-                                                    <i class="fas fa-trash"></i>Padam
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+        @if($messages->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($messages as $msg)
+                    <div class="group bg-white rounded-[2rem] border border-slate-100 flex flex-col h-full shadow-sm hover:shadow-xl hover:border-orange-100 transition-all duration-300 relative overflow-hidden">
+                        
+                        {{-- Subtle Orange Accent Line --}}
+                        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
-                {{-- Pagination --}}
-                <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
-                    {{ $messages->links() }}
+                        <div class="p-8 flex-grow">
+                            {{-- Date & Status --}}
+                            <div class="flex justify-between items-center mb-6">
+                                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 bg-orange-50 px-3 py-1 rounded-full">Baru</span>
+                                <span class="text-[11px] font-bold text-slate-400">{{ $msg->created_at->format('d M, Y') }}</span>
+                            </div>
+
+                            {{-- User Info --}}
+                            <div class="mb-8">
+                                <h2 class="text-xl font-black text-slate-800 leading-tight mb-2 tracking-tight">{{ $msg->nama }}</h2>
+                                <p class="text-sm text-slate-400 font-medium truncate flex items-center gap-2">
+                                    <i class="fas fa-at text-orange-300"></i> {{ $msg->emel }}
+                                </p>
+                            </div>
+
+                            {{-- Preview Section --}}
+                            <div class="space-y-5">
+                                <div class="relative">
+                                    <label class="text-[9px] font-black uppercase text-slate-300 mb-2 block tracking-widest">Perkara</label>
+                                    <p class="text-sm font-bold text-slate-600 line-clamp-2 leading-relaxed">
+                                        {{ $msg->perkara }}
+                                    </p>
+                                </div>
+
+                                <div class="flex items-center gap-2">
+                                    @if($msg->comment)
+                                        <div class="flex items-center gap-1.5 bg-green-50 text-green-600 px-3 py-1 rounded-lg">
+                                            <i class="fas fa-comment-dots text-[10px]"></i>
+                                            <span class="text-[10px] font-black uppercase tracking-wider">Ada Ulasan</span>
+                                        </div>
+                                    @else
+                                        <div class="flex items-center gap-1.5 bg-slate-50 text-slate-400 px-3 py-1 rounded-lg">
+                                            <i class="fas fa-comment-slash text-[10px]"></i>
+                                            <span class="text-[10px] font-black uppercase tracking-wider">Tiada</span>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Premium Actions --}}
+                        <div class="px-8 pb-8 pt-2 mt-auto grid grid-cols-5 gap-3">
+                            <a href="{{ route('admin.message-detail', $msg->id) }}" class="col-span-4 flex justify-center items-center bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl transition-all duration-300 text-xs font-black uppercase tracking-widest shadow-lg shadow-orange-200">
+                                Lihat Mesej
+                            </a>
+                            
+                            <form action="{{ route('admin.message-delete', $msg->id) }}" method="POST" class="col-span-1" onsubmit="return confirm('Padam mesej ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="w-full h-full flex items-center justify-center rounded-2xl border-2 border-slate-50 text-slate-300 hover:text-red-500 hover:border-red-50 transition-all duration-300">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <div class="mt-16 flex justify-center">
+                {{ $messages->links() }}
+            </div>
+
+        @else
+            <div class="bg-white rounded-[3rem] border-2 border-dashed border-slate-100 text-center py-32 shadow-sm">
+                <div class="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-inbox text-orange-200 text-3xl"></i>
                 </div>
-            @else
-                <div class="text-center py-16">
-                    <i class="fas fa-inbox text-5xl text-gray-300 mb-4"></i>
-                    <p class="text-gray-500 text-lg">Tiada mesej dalam sistem.</p>
-                </div>
-            @endif
-        </div>
+                <h3 class="text-xl font-bold text-slate-800 mb-1">Peti Masuk Kosong</h3>
+                <p class="text-slate-400 font-medium">Tiada sebarang mesej pelanggan buat masa ini.</p>
+            </div>
+        @endif
     </section>
 
     @include('layouts.footer-admin')
