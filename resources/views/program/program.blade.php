@@ -135,7 +135,7 @@
         }
 
         .mercedes-container {
-            overflow: hidden;
+            overflow: visible;
             position: relative;
             background:
                 linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.10) 100%);
@@ -153,14 +153,24 @@
         .segment {
             inset: -2px;
             background-blend-mode: lighten;
+            border-radius: 50%; /* Add rounded corners */
+            overflow: hidden; /* Ensure content respects the border radius */
+            border: 0;
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,0.18),
+                inset 0 2px 16px 0 rgba(255,255,255,0.10);
         }
+
         .segment-orange .segment,
         .segment-purple .segment,
         .segment-blue .segment {
-            background: rgba(255, 115, 22, 0.82) !important; /* orange */
-            box-shadow: 0 0 32px 8px rgba(255, 115, 22, 0.35), 0 0 0 2px #ffb066 inset;
             transition: box-shadow 0.3s, filter 0.3s;
         }
+
+        .segment-wrapper:hover{
+            z-index: 50;
+        }
+
         .segment-wrapper:hover .segment {
             box-shadow: 0 0 48px 16px #ff7300, 0 0 0 4px #fff3e6 inset;
             filter: brightness(1.08) saturate(1.1);
@@ -185,7 +195,7 @@
             background: linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.10) 80%, transparent 100%);
             border-radius: 100% 100% 60% 60% / 100% 100% 40% 40%;
             pointer-events: none;
-            z-index: 30;
+            z-index: 5;
             filter: blur(1.5px);
             opacity: 0.85;
         }
@@ -201,7 +211,8 @@
         }
 
         .segment-wrapper .segment {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-origin: center;
         }
 
         .segment::after {
@@ -222,14 +233,17 @@
 
         .segment-orange:hover .segment {
             box-shadow: 0 0 40px rgba(255, 152, 0, 0.6);
+            transform: translate(-30px, -30px) scale(1.25);
         }
 
         .segment-purple:hover .segment {
             box-shadow: 0 0 40px rgba(156, 39, 176, 0.6);
+            transform: translate(30px, -30px) scale(1.25);
         }
 
         .segment-blue:hover .segment {
             box-shadow: 0 0 40px rgba(33, 150, 243, 0.6);
+            transform: translate(0px, 40px) scale(1.25);
         }
 
         .mercedes-container:hover .segment {
@@ -315,7 +329,7 @@
         </div>
 
         <div class="program-wheel-wrap flex justify-center items-center py-4">
-            <div class="mercedes-container relative 
+            <div class="mercedes-container relative overflow-hidden
                 w-[280px] h-[280px] 
                 sm:w-[360px] sm:h-[360px] 
                 md:w-[520px] md:h-[520px] 
