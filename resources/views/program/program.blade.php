@@ -151,6 +151,7 @@
 
         /* Glassmorphism segment backgrounds */
         .segment {
+            inset: -2px;
             background-blend-mode: lighten;
         }
         .segment-orange .segment {
@@ -165,8 +166,10 @@
 
         /* Subtle border for each segment */
         .segment {
-            border: 1px solid rgba(255,255,255,0.30);
-            box-shadow: 0 2px 16px 0 rgba(255,255,255,0.10) inset;
+            border: 0;
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,0.18),
+                inset 0 2px 16px 0 rgba(255,255,255,0.10);
         }
 
         /* Light reflection effect at the top */
@@ -185,14 +188,14 @@
             opacity: 0.85;
         }
 
-        .segment-top-left-clip { 
-            clip-path: polygon(50% 50%, 50% -20%, -20% -20%, -20% 65%); 
+        .segment-top-left-clip {
+            clip-path: polygon(50% 50%, 50% -6%, 21% 2%, -6% 21%, -6% 60%, 7% 82%);
         }
-        .segment-top-right-clip { 
-            clip-path: polygon(50% 50%, 50% -20%, 120% -20%, 120% 65%); 
+        .segment-top-right-clip {
+            clip-path: polygon(50% 50%, 50% -6%, 79% 2%, 106% 21%, 106% 60%, 93% 82%);
         }
-        .segment-bottom-clip { 
-            clip-path: polygon(50% 50%, 120% 65%, 120% 120%, -20% 120%, -20% 65%); 
+        .segment-bottom-clip {
+            clip-path: polygon(50% 50%, 7% 82%, 21% 106%, 79% 106%, 93% 82%);
         }
 
         .segment-wrapper .segment {
