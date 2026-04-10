@@ -70,11 +70,11 @@
         }
     </style>
 </head>
-<body class="welcome-page text-gray-800">
+<body class="welcome-page text-gray-800 no-bg">
     <div id="introOverlay" class="intro-overlay fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
         <div class="absolute inset-0 bg-black/95"></div>
         <div id="introStart" class="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold">Selamat Datang ke UPKB</h1>
+            {{-- <h1 class="text-3xl md:text-4xl font-bold">Selamat Datang ke UPKB</h1> --}}
             <button id="startIntroButton" class="bg-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition">Start Now</button>
         </div>
         <video id="introVideo" class="relative hidden w-full h-full object-cover" playsinline>
@@ -244,7 +244,7 @@
                     Koleksi Terbaik UPKB
                 </div>
 
-                <video class="w-full h-full object-cover min-h-[400px]" controls autoplay playsinline muted>
+                <video class="w-full h-full object-cover min-h-[400px]" controls autoplay playsinline>
                     <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

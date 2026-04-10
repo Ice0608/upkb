@@ -23,7 +23,7 @@
     </style>
     @vite('resources/css/app.css')
 </head>
-<body class="min-h-screen overflow-hidden">
+<body class="min-h-screen overflow-hidden no-bg">
 
     <!-- VIDEO -->
     <video autoplay muted loop playsinline

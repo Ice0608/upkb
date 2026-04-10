@@ -14,9 +14,26 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <style>
+            html,
+            body {
+                min-height: 100%;
+                background-color: transparent;
+            }
+
+            body:not(.no-bg) {
+                background-image: url('/upkb/images/bg1.png'), url('/images/bg1.png');
+                background-attachment: fixed;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: transparent;
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="font-sans antialiased bg-transparent">
+        <div class="min-h-screen bg-transparent">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

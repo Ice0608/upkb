@@ -11,22 +11,22 @@
         {{-- HOVER MENU (KELUAR KE KIRI) --}}
         <div class="absolute right-16 top-1/2 -translate-y-1/2 flex flex-col gap-3 opacity-0 translate-x-5 group-hover:opacity-100 group-hover:translate-x-0 transition duration-300">
 
-            <a href="https://facebook.com" target="_blank"
+            <a href="https://www.facebook.com/smarteducationsocietyofficial" target="_blank"
                class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white shadow hover:scale-110 transition">
                 <i class="fab fa-facebook-f"></i>
             </a>
 
-            <a href="https://instagram.com" target="_blank"
+            <a href="https://www.instagram.com/smartedusocietyofficial" target="_blank"
                class="w-12 h-12 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white shadow hover:scale-110 transition">
                 <i class="fab fa-instagram"></i>
             </a>
 
-            <a href="https://tiktok.com" target="_blank"
+            <a href="https://www.tiktok.com/@smartedusocietyofficial" target="_blank"
                class="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white shadow hover:scale-110 transition">
                 <i class="fab fa-tiktok"></i>
             </a>
 
-            <a href="https://youtube.com" target="_blank"
+            <a href="https://www.youtube.com/@SMARTEDUCATIONSOCIETY" target="_blank"
                class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white shadow hover:scale-110 transition">
                 <i class="fab fa-youtube"></i>
             </a>
