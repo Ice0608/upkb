@@ -26,6 +26,35 @@ class KursusController extends Controller
         return view('program.infokursus', compact('kursus'));
     }
 
+    public function index(Request $request)
+    {
+        $jenis = $request->query('jenis');
+        $negeri = $request->query('negeri');
+        $kuota = $request->query('kuota');
+
+        $query = Kursus::with('institusi');
+
+        if ($jenis) {
+            $query->whereHas('institusi', function ($q) use ($jenis) {
+                $q->where('jenis_institusi', $jenis);
+            });
+        }
+
+        if ($negeri) {
+            $query->whereHas('institusi', function ($q) use ($negeri) {
+                $q->where('alamat', 'LIKE', '%' . $negeri . '%');
+            });
+        }
+
+        if ($kuota) {
+            $query->where('kuota', '>', 0);
+        }
+
+        $kursusList = $query->get();
+
+        return view('program.listkursus', compact('kursusList', 'jenis'));
+    }
+
     public function pdf($id)
     {
         $kursus = Kursus::with([

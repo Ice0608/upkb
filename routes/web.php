@@ -115,8 +115,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::delete('/messages/{id}', [MessageController::class, 'destroy'])->name('admin.message-delete');
 });
 
-Route::get('/kursus/{id}', [kursusController::class, 'show'])->name('kursus.show');
-Route::get('/kursus/{id}/pdf', [kursusController::class, 'pdf'])->name('kursus.pdf');
+Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
+Route::get('/kursus/{id}', [KursusController::class, 'show'])->name('kursus.show');
+Route::get('/kursus/{id}/pdf', [KursusController::class, 'pdf'])->name('kursus.pdf');
 
 Route::get('/kursus/tabmaklumat/{id}', [kursusController::class, 'tabMaklumat'])->name('kursus.tabmaklumat');
 Route::get('/kursus/tabsyarat/{id}', [kursusController::class, 'tabSyarat'])->name('kursus.tabsyarat');
