@@ -1,3 +1,117 @@
+/* PS3 XMB-Style FAQ UI */
+/* Orange/amber themed XMB background */
+.xmb-bg {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background: linear-gradient(120deg, #2d1606 0%, #ffb347 100%);
+}
+.xmb-bg .wave {
+	position: absolute;
+	left: 0; right: 0;
+	height: 320px;
+	background: linear-gradient(90deg, #ff9800 0%, #ffd700 100%);
+	opacity: 0.18;
+	filter: blur(32px);
+	animation: waveMove 12s cubic-bezier(.77,0,.18,1) infinite alternate;
+}
+.xmb-bg .wave.wave2 {
+	top: 40%;
+	background: linear-gradient(90deg, #ff512f 0%, #ffb347 100%);
+	opacity: 0.13;
+	animation-delay: 3s;
+}
+.xmb-bg .wave.wave3 {
+	top: 70%;
+	background: linear-gradient(90deg, #ffb347 0%, #ffe29f 100%);
+	opacity: 0.10;
+	animation-delay: 6s;
+}
+@keyframes waveMove {
+	0% { transform: translateY(0) scaleX(1); }
+	50% { transform: translateY(-30px) scaleX(1.1); }
+	100% { transform: translateY(0) scaleX(1); }
+}
+
+.xmb-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 2.5rem;
+	margin: 0 auto;
+	overflow-x: auto;
+	padding: 2rem 0 3rem 0;
+	scroll-behavior: smooth;
+}
+.xmb-card {
+	min-width: 340px;
+	max-width: 360px;
+	transition: all 0.45s cubic-bezier(.77,0,.18,1);
+	filter: blur(0px) brightness(1);
+	opacity: 0.85;
+	transform: scale(1) translateY(0);
+	box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+	border-radius: 1.75rem;
+	background: rgba(255,255,255,0.13);
+	backdrop-filter: blur(12px);
+	cursor: pointer;
+	position: relative;
+	animation: floatCard 3.5s ease-in-out infinite alternate;
+}
+.xmb-card:focus,
+.xmb-card.xmb-focused {
+	z-index: 2;
+	filter: blur(0) brightness(1.15) drop-shadow(0 0 18px #ff980088);
+	opacity: 1;
+	transform: scale(1.08) translateY(-10px);
+	box-shadow: 0 12px 40px 0 #ff980033, 0 2px 8px 0 #fff2;
+	outline: none;
+}
+.xmb-card.xmb-blur {
+	filter: blur(2.5px) brightness(0.7);
+	opacity: 0.55;
+	z-index: 1;
+}
+@keyframes floatCard {
+	0% { transform: scale(1) translateY(0); }
+	50% { transform: scale(1) translateY(-8px); }
+	100% { transform: scale(1) translateY(0); }
+}
+.xmb-card .faq-arrow {
+	transition: transform 0.45s cubic-bezier(.77,0,.18,1), color 0.45s cubic-bezier(.77,0,.18,1);
+}
+.xmb-card.xmb-focused .faq-arrow {
+	color: #ff9800;
+	transform: translateX(8px) scale(1.2);
+}
+.xmb-card .faq-icon-chip {
+	box-shadow: 0 8px 24px #ff980022, 0 1px 0 #fff2;
+	transition: box-shadow 0.45s cubic-bezier(.77,0,.18,1);
+}
+.xmb-card.xmb-focused .faq-icon-chip {
+	box-shadow: 0 0 0 4px #ff980033, 0 8px 24px #ff980044;
+}
+.xmb-card .faq-icon-chip::after {
+	display: none;
+}
+.xmb-card .faq-card-title {
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin-top: 0.5rem;
+	color: #232526;
+	letter-spacing: -0.02em;
+	transition: color 0.45s cubic-bezier(.77,0,.18,1);
+}
+.xmb-card.xmb-focused .faq-card-title {
+	color: #ff9800;
+}
+.xmb-row::-webkit-scrollbar {
+	display: none;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,4 +121,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 
