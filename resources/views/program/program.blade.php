@@ -154,14 +154,16 @@
             inset: -2px;
             background-blend-mode: lighten;
         }
-        .segment-orange .segment {
-            background: rgba(255, 152, 0, 0.78) !important;
-        }
-        .segment-purple .segment {
-            background: rgba(156, 39, 176, 0.74) !important;
-        }
+        .segment-orange .segment,
+        .segment-purple .segment,
         .segment-blue .segment {
-            background: rgba(33, 150, 243, 0.72) !important;
+            background: rgba(255, 115, 22, 0.82) !important; /* orange */
+            box-shadow: 0 0 32px 8px rgba(255, 115, 22, 0.35), 0 0 0 2px #ffb066 inset;
+            transition: box-shadow 0.3s, filter 0.3s;
+        }
+        .segment-wrapper:hover .segment {
+            box-shadow: 0 0 48px 16px #ff7300, 0 0 0 4px #fff3e6 inset;
+            filter: brightness(1.08) saturate(1.1);
         }
 
         /* Subtle border for each segment */
@@ -361,18 +363,26 @@
                         <!-- Segment content -->
                         <div class="segment-content absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
                                     w-[100px] sm:w-[140px] md:w-[180px]">
-                            <div class="segment-chip mb-1 sm:mb-2 bg-white/20 p-1.5 sm:p-2 rounded-xl backdrop-blur-sm 
-                                        group-hover:scale-110 transition-transform w-fit">
-                                <i class="{{ $program->icon }} text-base sm:text-xl md:text-3xl"></i>
+                               <div class="segment-chip mb-1 sm:mb-2 bg-white/30 p-1.5 sm:p-2 rounded-xl 
+                                        group-hover:scale-110 transition-transform w-fit border border-white/40"
+                                   style="backdrop-filter: blur(8px) saturate(1.2); -webkit-backdrop-filter: blur(8px) saturate(1.2); box-shadow: 0 2px 12px 0 rgba(255,255,255,0.10);">
+                                @if($index == 0)
+                                    <i class="{{ $program->icon }} text-[#FFC107] text-base sm:text-xl md:text-3xl"></i> <!-- TVET: gold -->
+                                @elseif($index == 1)
+                                    <i class="{{ $program->icon }} text-[#8d2be2] text-base sm:text-xl md:text-3xl"></i> <!-- Diploma: purple -->
+                                @elseif($index == 2)
+                                    <i class="{{ $program->icon }} text-[#2196f3] text-base sm:text-xl md:text-3xl"></i> <!-- Sains Kesihatan: blue -->
+                                @endif
                             </div>
                             <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
-                                       leading-tight break-words drop-shadow-md">
+                                       leading-tight break-words drop-shadow-md text-white">
                                 {{ $program->jenis_program }}
                             </h2>
                             <div class="segment-label mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
-                                        border-b border-white/40 group-hover:border-white 
-                                        transition-all inline-block w-fit">
-                                LIHAT PROGRAM <i class="fas fa-chevron-right ml-1"></i>
+                                        border-b-2 border-orange-600 text-white bg-orange-500 group-hover:border-orange-700 
+                                        transition-all inline-block w-fit rounded px-2 py-0.5 shadow-lg"
+                                 style="box-shadow: 0 0 12px 2px #ff7300;">
+                                LIHAT PROGRAM <i class="fas fa-chevron-right ml-1" style="text-shadow: 0 0 8px #fff;"></i>
                             </div>
                         </div>
                     </a>
