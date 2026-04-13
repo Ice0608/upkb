@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2026 at 05:55 AM
+-- Generation Time: Apr 13, 2026 at 10:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -398,7 +398,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (37, '2026_04_09_000000_create_event_table', 17),
 (39, '2026_04_09_000002_create_pembayaran_table', 17),
 (41, '2026_04_09_000001_create_pelajar_table', 18),
-(42, '2026_04_13_000002_add_kod_kursus_to_galeris_table', 19);
+(42, '2026_04_13_000002_add_kod_kursus_to_galeris_table', 19),
+(43, '2026_04_13_070352_add_new_fields_to_pelajar_table', 20);
 
 -- --------------------------------------------------------
 
@@ -420,9 +421,12 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `pelajar` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `noreff` varchar(255) DEFAULT NULL,
+  `program` enum('Diploma','TVET','Sains Kesihatan') DEFAULT NULL,
   `tarikh_pendaftaran` date NOT NULL,
   `nama_pelajar` varchar(255) NOT NULL,
   `ic_pelajar` varchar(255) NOT NULL,
+  `spm_credit` double DEFAULT NULL,
   `no_tel` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `address_line1` varchar(255) DEFAULT NULL,
@@ -435,12 +439,17 @@ CREATE TABLE `pelajar` (
   `nama_bapa` varchar(255) DEFAULT NULL,
   `ic_bapa` varchar(255) DEFAULT NULL,
   `no_tel_bapa` varchar(255) DEFAULT NULL,
+  `pekerjaan_bapa` varchar(255) DEFAULT NULL,
   `pendapatan_bapa` varchar(255) DEFAULT NULL,
   `nama_ibu` varchar(255) DEFAULT NULL,
   `ic_ibu` varchar(255) DEFAULT NULL,
   `no_tel_ibu` varchar(255) DEFAULT NULL,
+  `pekerjaan_ibu` varchar(255) DEFAULT NULL,
   `pendapatan_ibu` varchar(255) DEFAULT NULL,
   `jumlah_tanggungan` int(11) NOT NULL DEFAULT 0,
+  `pilihan_pertama` varchar(255) DEFAULT NULL,
+  `pilihan_kedua` varchar(255) DEFAULT NULL,
+  `pilihan_ketiga` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -449,8 +458,8 @@ CREATE TABLE `pelajar` (
 -- Dumping data for table `pelajar`
 --
 
-INSERT INTO `pelajar` (`id`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `created_at`, `updated_at`) VALUES
-(1, '2026-04-14', 'FULAN BIN FULAN', '012345678990', '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', '1500', 4, '2026-04-12 16:27:24', '2026-04-12 16:33:09');
+INSERT INTO `pelajar` (`id`, `noreff`, `program`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'TVET', '2026-04-14', 'FULAN BIN FULAN', '012345678990', 2.99, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', 'Security Guard', '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', 'Guru Kafa', '1500', 4, 'PENDIDIKAN AWAL KANAK-KANAK', 'PENDIDIKAN AWAL PRASEKOLAH', 'MEKANIKAL', '2026-04-12 16:27:24', '2026-04-12 23:46:08');
 
 -- --------------------------------------------------------
 
@@ -517,8 +526,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('qqP6zlPZ7PZoewKseO6gHosHwRyKLJhiMbXl1iKk', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiaVVza0R5R0VpRXFxRmdYS3NWZDBoRTEwMTdsRGgweXBUSVVjVzdIbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1776046699),
-('AqQmHeW9TCWMni0Fxqt34Ihj29SAPNsTCtLxNhAo', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmU4ZTR6T3BjWU4xaU9EVlA2SmZJVlNsTlZDTXFGUFk0alZmWjFWNiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9rdXJzdXM/amVuaXM9VFZFVCI7czo1OiJyb3V0ZSI7czoxMjoia3Vyc3VzLmluZGV4Ijt9fQ==', 1776052492);
+('6vrUxN79O40SsYbilohfUFFK59MfZp0Qy1QsmcpX', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRFdXZlc2YkUyV1FoVXhzT2p4aXQ4MEVkeVNUU1JrYjJLRlU2UnpLZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluIjtzOjU6InJvdXRlIjtzOjEwOiJzdGFmZi5tYWluIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1776066440);
 
 -- --------------------------------------------------------
 
@@ -1032,7 +1040,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `pelajar`
