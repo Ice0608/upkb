@@ -481,4 +481,60 @@ class AdminKursusController extends Controller
         ])->findOrFail($id);
         return view('admin._tab_yuran', compact('kursus'));
     }
+
+    public function tabGaleri($id)
+    {
+        $kursus = Kursus::findOrFail($id);
+        $galleries = \App\Models\Galeri::where('kod_kursus', $kursus->kod_kursus)
+            ->where('kod_institusi', $kursus->institusi?->kod_institusi)
+            ->get();
+        return view('admin._tab_galeri', compact('kursus', 'galleries'));
+    }
+
+    public function storeGaleri(Request $request)
+    {
+        $request->validate([
+            'imej.*' => 'required|mimes:jpeg,png,jpg,gif,webp,mp4,webm,ogg|max:20480',
+            'kod_kursus' => 'required|string',
+            'kod_institusi' => 'required|string',
+        ]);
+
+        if ($request->hasFile('imej')) {
+            foreach ($request->file('imej') as $file) {
+                $path = $file->store('galeri', 'public');
+                
+                \App\Models\Galeri::create([
+                    'imej' => 'storage/' . $path,
+                    'kod_kursus' => $request->input('kod_kursus'),
+                    'kod_institusi' => $request->input('kod_institusi'),
+                ]);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Gambar berjaya dimuat naik.'
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Tiada fail dipilih.'
+        ], 400);
+    }
+
+    public function destroyGaleri($id)
+    {
+        $galeri = \App\Models\Galeri::findOrFail($id);
+        
+        if ($galeri->imej && file_exists(public_path($galeri->imej))) {
+            unlink(public_path($galeri->imej));
+        }
+        
+        $galeri->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Gambar berjaya dipadam.'
+        ]);
+    }
 }

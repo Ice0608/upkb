@@ -420,7 +420,7 @@
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
             <div class="site-nav-program relative">
-                <a href="{{ route('program') }}" class="site-nav-link {{ request()->routeIs('program') || request()->routeIs('institusi') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                <a href="{{ route('program') }}" class="site-nav-link {{ request()->routeIs('program') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                     Program
                 </a>
 
@@ -466,43 +466,43 @@
             </div>
 
             <div class="site-nav-program relative">
-                <a href="{{ route('kursus.index') }}" class="site-nav-link {{ request()->routeIs('kursus.index') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
-                    Kursus
+                <a href="{{ route('institusi') }}" class="site-nav-link {{ request()->routeIs('institusi') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                    Institusi
                 </a>
 
                 <div class="site-nav-program-panel absolute left-1/2 top-full z-20 w-[min(92vw,32rem)] pt-4">
                     <div class="site-nav-program-shell rounded-[2rem] p-3 sm:p-4">
                         <div class="mb-4 px-2 sm:mb-5">
-                            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Cari Kursus Mengikut Program</p>
+                            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Cari Institusi Mengikut Program</p>
                         </div>
                         <div class="grid gap-3 md:grid-cols-3">
-                            <a href="{{ route('kursus.index', ['jenis' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-tvet site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0s]">
+                            <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-tvet site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0s]">
                                 <span class="site-nav-program-card-glow"></span>
                                 <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">TVET</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari kursus TVET dengan kuota tersedia.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi TVET dengan kuota tersedia.</p>
                                     </div>
                                 </div>
                             </a>
-                            <a href="{{ route('kursus.index', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-diploma site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.4s]">
+                            <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-diploma site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.4s]">
                                 <span class="site-nav-program-card-glow"></span>
                                 <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Diploma</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari kursus diploma yang sesuai untuk anda.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi diploma yang sesuai untuk anda.</p>
                                     </div>
                                 </div>
                             </a>
-                            <a href="{{ route('kursus.index', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-health site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.8s]">
+                            <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-health site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.8s]">
                                 <span class="site-nav-program-card-glow"></span>
                                 <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Sains Kesihatan</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari kursus kesihatan dan latihan klinikal.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi kesihatan dan latihan klinikal.</p>
                                     </div>
                                 </div>
                             </a>
@@ -536,7 +536,7 @@
 
             <div class="site-nav-mobile-panel absolute inset-x-4 top-full mt-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:inset-x-6">
                 <div class="space-y-2">
-                    <a href="{{ route('program') }}" class="{{ request()->routeIs('program') || request()->routeIs('institusi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Program
                     </a>
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
@@ -556,24 +556,24 @@
                             <p class="mt-1 text-xs leading-6 text-white/80">Fokus kepada latihan kesihatan dan klinikal.</p>
                         </a>
                     </div>
-                    <a href="{{ route('kursus.index') }}" class="{{ request()->routeIs('kursus.index') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        Senarai Kursus
+                    <a href="{{ route('institusi') }}" class="{{ request()->routeIs('institusi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                        Institusi
                     </a>
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
-                        <a href="{{ route('kursus.index', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">TVET</p>
-                            <p class="mt-1 text-xs leading-6 text-white/80">Cari kursus TVET.</p>
+                            <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi TVET.</p>
                         </a>
-                        <a href="{{ route('kursus.index', ['jenis' => 'Diploma']) }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Diploma</p>
-                            <p class="mt-1 text-xs leading-6 text-white/80">Cari kursus diploma.</p>
+                            <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi diploma.</p>
                         </a>
-                        <a href="{{ route('kursus.index', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Sains Kesihatan</p>
-                            <p class="mt-1 text-xs leading-6 text-white/80">Cari kursus kesihatan.</p>
+                            <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi kesihatan.</p>
                         </a>
                     </div>
                     <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">

@@ -128,10 +128,10 @@
                             <!-- Semua Kursus Button -->
                             <button 
                                 onclick="filterCourses('')"
-                                class="category-btn flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all bg-orange-100 text-orange-700 hover:bg-orange-200"
+                                class="category-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all bg-orange-100 text-orange-700 hover:bg-orange-200"
                                 id="btn-all"
                             >
-                                <span class="w-4 h-4 mr-3 rounded-full border-2 border-orange-500 flex items-center justify-center">
+                                <span class="w-4 h-4 min-w-[1rem] min-h-[1rem] flex-shrink-0 rounded-full border-2 border-orange-500 flex items-center justify-center">
                                     <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
                                 </span>
                                 Semua Kursus
@@ -141,10 +141,10 @@
                             @foreach($kursusList->unique('nama_kursus') as $kursus)
                                 <button 
                                     onclick="filterCourses('{{ addslashes($kursus->nama_kursus) }}')"
-                                    class="category-btn flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all text-gray-600 hover:bg-gray-50 hover:text-orange-500"
-                                    id="btn-{{ str_replace(' ', '-', strtolower($kursus->nama_kursus)) }}"
+                                    class="category-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all text-gray-600 hover:bg-gray-50 hover:text-orange-500"
+                                    id="btn-{{ Illuminate\Support\Str::slug($kursus->nama_kursus, '-') }}"
                                 >
-                                    <span class="w-4 h-4 mr-3 rounded-full border-2 border-gray-300 flex items-center justify-center transition-colors">
+                                    <span class="w-4 h-4 min-w-[1rem] min-h-[1rem] flex-shrink-0 rounded-full border-2 border-gray-300 flex items-center justify-center transition-colors">
                                     </span>
                                     
                                     <span class="truncate">{{ $kursus->nama_kursus }}</span>
@@ -159,11 +159,12 @@
             <main class="lg:col-span-3">
                 <div id="courses-container" class="grid md:grid-cols-3 gap-6">
                     @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
+                    @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
                     <article class="group rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition course-card cursor-pointer" 
                              data-course-name="{{ $kursus->nama_kursus }}"
                              onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
                         <div class="relative h-56 overflow-hidden">
-                            <img src="{{ asset($kursus->institusi->gambar_institusi ?? 'images/default-college.jpg') }}" alt="{{ $kursus->nama_kursus }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">
                                 <span class="inline-flex items-center rounded-full bg-orange-600/95 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="inline-flex items-center gap-2">
@@ -174,18 +175,6 @@
                         </div>
                         <div class="p-8">
                             <h2 class="text-2xl font-bold text-slate-900 mb-2">{{ $kursus->nama_kursus }}</h2>
-                            <p class="text-sm text-gray-500 mb-4">{{ $kursus->institusi->nama_institusi ?? 'Institusi tidak ditetapkan' }}</p>
-
-                            <div class="grid gap-3 text-sm text-gray-600 mb-5">
-                                <div class="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-gray-50">
-                                    <i class="fas fa-university text-orange-500"></i>
-                                    <span>{{ $kursus->institusi->nama_institusi ?? 'N/A' }}</span>
-                                </div>
-                                <div class="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-gray-50">
-                                    <i class="fas fa-calendar-days text-orange-500"></i>
-                                    <span>Tarikh daftar: {{ optional($kursus->tarikh_pendaftaran)->format('d M Y') ?? '-' }}</span>
-                                </div>
-                            </div>
 
                             <button class="inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition">
                                 <span>Lihat Pilihan Kursus</span>
@@ -217,7 +206,7 @@
 
             // Update button styles
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('bg-orange-100', 'text-orange-700', 'hover:bg-orange-200');
+                btn.classList.remove('bg-orange-100', 'text-orange-700', 'hover:bg-orange-200', 'bg-orange-50', 'text-orange-600', 'font-bold', 'hover:bg-orange-100');
                 btn.classList.add('text-gray-600', 'hover:bg-gray-50', 'hover:text-orange-500');
                 btn.querySelector('span').classList.remove('border-orange-500');
                 btn.querySelector('span').classList.add('border-gray-300');
@@ -232,7 +221,7 @@
                 document.getElementById('btn-all').querySelector('span').classList.add('border-orange-500');
                 document.getElementById('btn-all').querySelector('span').innerHTML = '<span class="w-2 h-2 bg-orange-500 rounded-full"></span>';
             } else {
-                const btnId = 'btn-' + courseName.replace(/ /g, '-').toLowerCase();
+                const btnId = 'btn-' + courseName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                 const activeBtn = document.getElementById(btnId);
                 if (activeBtn) {
                     activeBtn.classList.remove('text-gray-600', 'hover:bg-gray-50', 'hover:text-orange-500');

@@ -8,6 +8,7 @@ class Galeri extends Model
 {
     protected $fillable = [
         'kod_institusi',
+        'kod_kursus',
         'imej',
         'penerangan',
     ];

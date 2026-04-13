@@ -102,6 +102,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::get('/tabsilibus/{id}', [AdminkursusController::class, 'tabSilibus'])->name('admin.tabsilibus');
     Route::get('/tabkerjaya/{id}', [AdminkursusController::class, 'tabKerjaya'])->name('admin.tabkerjaya');
     Route::get('/tabyuran/{id}', [AdminkursusController::class, 'tabYuran'])->name('admin.tabyuran');
+    Route::get('/tabgaleri/{id}', [AdminkursusController::class, 'tabGaleri'])->name('admin.tabgaleri');
+    Route::post('/galeri/store', [AdminkursusController::class, 'storeGaleri'])->name('admin.storegaleri');
+    Route::delete('/galeri/{id}', [AdminkursusController::class, 'destroyGaleri'])->name('admin.destroygaleri');
 
     Route::get('/addgaleri/{kod_institusi}', [AdminGaleriController::class, 'create'])->name('admin.addgaleri');
     Route::post('/storagaleri', [AdminGaleriController::class, 'store'])->name('admin.storagaleri');
@@ -125,5 +128,6 @@ Route::get('/kursus/tabsyarat/{id}', [kursusController::class, 'tabSyarat'])->na
 Route::get('/kursus/tabsilibus/{id}', [kursusController::class, 'tabSilibus'])->name('kursus.tabsilibus');
 Route::get('/kursus/tabkerjaya/{id}', [kursusController::class, 'tabKerjaya'])->name('kursus.tabkerjaya');
 Route::get('/kursus/tabyuran/{id}', [kursusController::class, 'tabYuran'])->name('kursus.tabyuran');
+Route::get('/kursus/tabgaleri/{id}', [kursusController::class, 'tabGaleri'])->name('kursus.tabgaleri');
 
 require __DIR__.'/auth.php';

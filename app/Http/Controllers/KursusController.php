@@ -23,7 +23,7 @@ class KursusController extends Controller
         $negeri = $request->query('negeri');
         $kuota = $request->query('kuota');
 
-        $query = Kursus::with('institusi');
+        $query = Kursus::with(['institusi', 'galeris']);
 
         if ($jenis) {
             $query->whereHas('institusi', function ($q) use ($jenis) {
@@ -44,6 +44,12 @@ class KursusController extends Controller
         $kursusList = $query->get();
 
         return view('program.listkursus', compact('kursusList', 'jenis'));
+    }
+
+    public function show($id)
+    {
+        $kursus = Kursus::with('institusi')->findOrFail($id);
+        return view('program.infokursus', compact('kursus'));
     }
 
     public function pdf($id)
@@ -106,5 +112,15 @@ class KursusController extends Controller
             'elauns',
         ])->findOrFail($id);
         return view('program._guest_tab_yuran', compact('kursus'));
+    }
+
+    public function tabGaleri($id)
+    {
+        $kursus = Kursus::with('institusi')->findOrFail($id);
+        $galleries = \App\Models\Galeri::where('kod_kursus', $kursus->kod_kursus)
+            ->where('kod_institusi', $kursus->institusi?->kod_institusi)
+            ->get();
+
+        return view('program._guest_tab_galeri', compact('kursus', 'galleries'));
     }
 }

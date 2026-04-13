@@ -358,7 +358,7 @@
                         $ui = $configs[$index] ?? $configs[0];
                     @endphp
 
-                    <a href="{{ route('institusi', ['jenis' => $program->jenis_program]) }}" 
+                    <a href="{{ route('kursus.index', ['jenis' => $program->jenis_program]) }}" 
                         class="segment-wrapper group 
                         {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
                         <!-- Segment background with image overlay -->

@@ -33,6 +33,7 @@
                     <a href="#" onclick="loadTab('silibus')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="silibus">Struktur Silibus</a>
                     <a href="#" onclick="loadTab('kerjaya')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="kerjaya">Laluan Kerjaya</a>
                     <a href="#" onclick="loadTab('yuran')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="yuran">Yuran & Pinjaman</a>
+                    <a href="#" onclick="loadTab('galeri')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="galeri">Galeri Kursus</a>
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Institusi;
+use App\Models\Galeri;
 use App\Models\SyaratKelayakan;
 use App\Models\Silibus;
 use App\Models\Kerjaya;
@@ -35,6 +36,11 @@ class Kursus extends Model
     public function institusi()
     {
         return $this->belongsTo(Institusi::class, 'kod_institusi', 'kod_institusi');
+    }
+
+    public function galeris()
+    {
+        return $this->hasMany(Galeri::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function syaratKelayakans()
