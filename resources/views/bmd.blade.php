@@ -117,19 +117,6 @@
 
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
-                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
-                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-            </div>
-
-            <div class="grid gap-6 sm:grid-cols-2">
-                <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Bapa</span>
                     <input type="text" name="nama_bapa" value="{{ old('nama_bapa', $pelajar?->nama_bapa) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('nama_bapa') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror

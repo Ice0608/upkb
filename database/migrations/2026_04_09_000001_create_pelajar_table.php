@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('region')->nullable();
             $table->string('postcode')->nullable();
-            $table->string('kod_institusi');
-            $table->string('kod_kursus');
+            $table->string('kod_institusi')->nullable();
+            $table->string('kod_kursus')->nullable();
             $table->string('nama_bapa')->nullable();
             $table->string('ic_bapa')->nullable();
             $table->string('no_tel_bapa')->nullable();

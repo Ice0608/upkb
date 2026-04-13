@@ -19,7 +19,8 @@ class Event extends Model
         'PIC',
     ];
 
-    protected $dates = [
-        'tarikh_event',
+    protected $casts = [
+        'tarikh_event' => 'date',
+        'masa_event' => 'string',
     ];
 }

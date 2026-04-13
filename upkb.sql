@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2026 at 02:56 PM
+-- Generation Time: Apr 13, 2026 at 02:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,6 +78,14 @@ CREATE TABLE `event` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `nama_event`, `lokasi`, `tarikh_event`, `masa_event`, `PIC`, `created_at`, `updated_at`) VALUES
+(1, 'TEST EVENT', 'DEWAN SERBAGUNA', '2026-04-14', '23:28:00', 'AMIRUL MUKMININ', '2026-04-12 16:28:17', '2026-04-12 16:28:17'),
+(4, 'TEST EVENT2', 'NO 34 JALAN MPK 4 KEPAYANG COMMERCE SQUARE 70300 SEREMBAN NEGERI SEMBILAN', '2026-04-13', '21:31:00', 'AMIRUL MUKMININ2', '2026-04-12 16:30:50', '2026-04-12 16:30:50');
 
 -- --------------------------------------------------------
 
@@ -387,8 +395,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2026_04_07_150110_modify_users_table_for_username_and_level', 15),
 (36, '2026_04_07_150435_fix_users_id_auto_increment', 16),
 (37, '2026_04_09_000000_create_event_table', 17),
-(38, '2026_04_09_000001_create_pelajar_table', 17),
-(39, '2026_04_09_000002_create_pembayaran_table', 17);
+(39, '2026_04_09_000002_create_pembayaran_table', 17),
+(41, '2026_04_09_000001_create_pelajar_table', 18);
 
 -- --------------------------------------------------------
 
@@ -415,9 +423,13 @@ CREATE TABLE `pelajar` (
   `ic_pelajar` varchar(255) NOT NULL,
   `no_tel` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
-  `kod_institusi` varchar(255) NOT NULL,
-  `kod_kursus` varchar(255) NOT NULL,
+  `address_line1` varchar(255) DEFAULT NULL,
+  `address_line2` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `region` varchar(255) DEFAULT NULL,
+  `postcode` varchar(255) DEFAULT NULL,
+  `kod_institusi` varchar(255) DEFAULT NULL,
+  `kod_kursus` varchar(255) DEFAULT NULL,
   `nama_bapa` varchar(255) DEFAULT NULL,
   `ic_bapa` varchar(255) DEFAULT NULL,
   `no_tel_bapa` varchar(255) DEFAULT NULL,
@@ -430,6 +442,13 @@ CREATE TABLE `pelajar` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `pelajar`
+--
+
+INSERT INTO `pelajar` (`id`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `created_at`, `updated_at`) VALUES
+(1, '2026-04-14', 'FULAN BIN FULAN', '012345678990', '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', '1500', 4, '2026-04-12 16:27:24', '2026-04-12 16:33:09');
 
 -- --------------------------------------------------------
 
@@ -496,8 +515,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('lF5HDrDCCIogvAVhPmHNgKMZ7wLBWBNn8ZpK1ukY', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaWx1NVVwTjU5WjlBRU1xTnJGaVZGN0JGak1LZFhMYXNJM2dHcXNXYSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1775722596),
-('DIDWJIWxz5dOVEIsrNiQ4GCnjy8VEpU0OWCJ4T14', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNExRWG5WVVdIVlpiODNyR2EzUVdyamJOdVcydFAxVkFVckZXek5FNyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1775725133);
+('fOKl7N1v8k6mI2QpoA7pyI4O0WBH7RRmksTrhh31', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN3Fnb2pibEd6ZzlmRXA3OVlLQkhEMjZyZDVNU25jSEpjZGlwNGd2aCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluIjtzOjU6InJvdXRlIjtzOjEwOiJzdGFmZi5tYWluIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1776040710);
 
 -- --------------------------------------------------------
 
@@ -969,7 +987,7 @@ ALTER TABLE `elauns`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1011,13 +1029,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `pelajar`
 --
 ALTER TABLE `pelajar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`

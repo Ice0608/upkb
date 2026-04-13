@@ -7,6 +7,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>BMD - Borang Maklumat Diri</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        @media print {
+            body {
+                background-color: white;
+            }
+            nav, footer {
+                display: none !important;
+            }
+            main {
+                padding: 0;
+            }
+            .rounded-\[32px\] {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+            }
+            .flex.flex-col.gap-3.sm\:flex-row.sm\:items-center.sm\:justify-between {
+                display: none;
+            }
+            .mt-6 {
+                display: none;
+            }
+            .bg-white {
+                background-color: white;
+            }
+            .grid.gap-6 {
+                page-break-inside: avoid;
+            }
+            .grid.gap-6.sm\:grid-cols-2 {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
 @include('layouts.navstaff')
@@ -197,8 +230,6 @@
         </form>
     </div>
 </main>
-
-@include('components.social-float')
 
 @include('layouts.footer')
 
