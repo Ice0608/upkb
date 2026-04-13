@@ -117,26 +117,47 @@
 
         .site-nav-link {
             position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            border: 1px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+
+        .site-nav-link::before {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: inherit;
+            background:
+                linear-gradient(135deg, #ff8a1f, #f97316 56%, #ea580c 100%);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: -1;
         }
 
         .site-nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0.875rem;
-            right: 0.875rem;
-            bottom: 0.45rem;
-            height: 2px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, #fb923c, #f97316);
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform 0.25s ease;
+            content: none;
         }
 
-        .site-nav-link:hover::after,
-        .site-nav-link:focus-visible::after,
-        .site-nav-link.is-active::after {
-            transform: scaleX(1);
+        .site-nav-link:hover,
+        .site-nav-link:focus-visible,
+        .site-nav-link.is-active {
+            transform: translateY(-2px);
+            border-color: rgba(249, 115, 22, 0.2);
+            background: #f97316;
+            color: #ffffff;
+            box-shadow:
+                0 14px 30px rgba(15, 23, 42, 0.08),
+                0 0 24px rgba(249, 115, 22, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+
+        .site-nav-link:hover::before,
+        .site-nav-link:focus-visible::before,
+        .site-nav-link.is-active::before {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .site-nav-program-panel {
@@ -161,6 +182,7 @@
                 linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
             box-shadow:
                 0 28px 70px rgba(15, 23, 42, 0.18),
+                0 0 34px rgba(249, 115, 22, 0.08),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8),
                 inset 0 -1px 0 rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(22px);
@@ -199,6 +221,19 @@
             color: #ea580c;
         }
 
+        .site-nav-login:hover,
+        .site-nav-menu-icon:hover {
+            transform: translateY(-2px) scale(1.03);
+            border-color: rgba(249, 115, 22, 0.28);
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 247, 237, 0.82));
+            color: #ea580c;
+            box-shadow:
+                0 16px 30px rgba(15, 23, 42, 0.12),
+                0 0 22px rgba(249, 115, 22, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.78);
+        }
+
         .site-nav-mobile-panel {
             opacity: 0;
             transform: translateY(-6px);
@@ -233,8 +268,11 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.04) 42%, rgba(255, 255, 255, 0.02)),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+                linear-gradient(135deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.02)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
+                linear-gradient(115deg, rgba(255, 255, 255, 0) 36%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 64%);
+            transform: translateX(-16%);
+            transition: transform 0.45s ease, opacity 0.45s ease;
             pointer-events: none;
         }
 
@@ -251,14 +289,15 @@
 
         .site-nav-program-card:hover,
         .site-nav-program-card:focus-visible {
-            transform: translateY(-8px) scale(1.035) rotateX(1deg);
+            transform: translateY(-10px) scale(1.04) rotateX(4deg) rotateY(-3deg);
             border-color: rgba(255, 255, 255, 0.44);
             box-shadow:
-                0 30px 56px rgba(15, 23, 42, 0.22),
+                0 34px 60px rgba(15, 23, 42, 0.24),
+                0 0 40px rgba(255, 255, 255, 0.12),
+                0 0 60px rgba(249, 115, 22, 0.12),
                 0 0 0 1px rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(255, 255, 255, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.34);
-            filter: saturate(1.06);
+            filter: saturate(1.1) brightness(1.02);
         }
 
         .site-nav-program-card:active {
@@ -272,6 +311,11 @@
         .site-nav-program-card:hover::after {
             opacity: 0.9;
             transform: scale(1.06);
+        }
+
+        .site-nav-program-card:hover::before,
+        .site-nav-program-card:focus-visible::before {
+            transform: translateX(16%);
         }
 
         .site-nav-program-card-badge,
@@ -332,10 +376,11 @@
 
         .site-nav-program-card:hover .site-nav-program-card-arrow {
             opacity: 1;
-            transform: translate3d(4px, -2px, 0);
+            transform: translate3d(6px, -3px, 0) scale(1.05);
             background: rgba(255, 255, 255, 0.18);
             box-shadow:
-                0 12px 24px rgba(15, 23, 42, 0.14),
+                0 14px 28px rgba(15, 23, 42, 0.16),
+                0 0 20px rgba(255, 255, 255, 0.14),
                 inset 0 1px 0 rgba(255, 255, 255, 0.26);
         }
 
@@ -349,6 +394,14 @@
             filter: blur(22px);
             opacity: 0.8;
             pointer-events: none;
+            transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+        }
+
+        .site-nav-program-card:hover .site-nav-program-card-glow,
+        .site-nav-program-card:focus-visible .site-nav-program-card-glow {
+            transform: scale(1.18) translate3d(0.6rem, -0.35rem, 0);
+            opacity: 1;
+            filter: blur(28px);
         }
 
         .site-nav-program-card-floating {
