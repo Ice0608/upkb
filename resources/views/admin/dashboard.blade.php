@@ -114,6 +114,120 @@
     </div>
 </main>
 
+<div id="pixel-loader" class="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
+    
+    <div class="absolute inset-0 opacity-10 pointer-events-none" 
+         style="background-image: linear-gradient(#ffaa00 1px, transparent 1px), linear-gradient(90deg, #ffaa00 1px, transparent 1px); background-size: 60px 60px;">
+    </div>
+
+    <div class="absolute inset-0 z-10 opacity-0 transition-opacity duration-1000" id="video-container">
+        <video id="splash-video" class="w-full h-full object-cover scale-110 transition-transform duration-[3s] ease-out" muted playsinline>
+            <source src="{{ asset('videos/splash.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="loader-content" class="relative z-30 text-center transition-all duration-1000">
+        
+        <div class="relative w-56 h-56 md:w-76 md:h-80 mx-auto mb-6 opacity-0 transform translate-y-4 transition-all duration-1000 ease-out" id="logo-container">
+            <img src="{{ asset('images/icon/noBgLogo.jpeg') }}" 
+                 class="absolute inset-0 w-full h-full object-contain filter-glow multiply-blend animate-smoke-dissolve">
+        </div>
+
+        <div class="font-mono text-orange-500 tracking-[0.5em] text-[10px] uppercase animate-glitch-text opacity-0 transition-opacity duration-700 delay-500" id="status-text">
+            Initializing System...
+            <div class="mt-2 w-32 h-[1px] bg-gray-800 mx-auto overflow-hidden relative">
+                <div id="load-bar" class="h-full bg-orange-500 w-0 transition-all duration-[2s] ease-in-out"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* Elakkan scroll masa loading */
+    body.is-loading { overflow: hidden !important; }
+
+    /* Efek Glow & Multiply untuk Logo */
+    .filter-glow { filter: drop-shadow(0 0 25px rgba(255,165,0,0.6)); }
+    .multiply-blend { mix-blend-mode: multiply; }
+
+    /* Animasi Smoke/Dissolve untuk Logo */
+    @keyframes smoke-dissolve {
+        0% { opacity: 0; filter: blur(15px) drop-shadow(0 0 25px rgba(255,165,0,0)); transform: scale(1.1); }
+        50% { opacity: 0.8; filter: blur(5px) drop-shadow(0 0 25px rgba(255,165,0,0.6)); transform: scale(1); }
+        100% { opacity: 1; filter: blur(0px) drop-shadow(0 0 25px rgba(255,165,0,0.6)); transform: scale(1); }
+    }
+    .animate-smoke-dissolve { animation: smoke-dissolve 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+
+    /* Animasi Glitch Teks Halus */
+    @keyframes glitch-text {
+        0%, 100% { transform: translate(0); text-shadow: 0 0 2px rgba(255,165,0,0.5); }
+        33% { transform: translate(-1px, 1px); text-shadow: -1px 0 red, 1px 0 blue; }
+        66% { transform: translate(1px, -1px); text-shadow: 1px 0 red, -1px 0 blue; }
+    }
+    .animate-glitch-text { animation: glitch-text 2s infinite linear; }
+
+    /* Transition smooth untuk dashboard muncul (Sama macam kod sebelum) */
+    main, nav { 
+        opacity: 0; 
+        transform: scale(1.05);
+        transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .content-ready main, .content-ready nav { opacity: 1; transform: scale(1); }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.getElementById('pixel-loader');
+    const videoContainer = document.getElementById('video-container');
+    const splashVideo = document.getElementById('splash-video');
+    const logoContainer = document.getElementById('logo-container');
+    const statusText = document.getElementById('status-text');
+    const loadBar = document.getElementById('load-bar');
+    const body = document.body;
+
+    body.classList.add('is-loading');
+
+    // 1. Mula mainkan video splash (Latar Belakang)
+    splashVideo.play();
+    videoContainer.style.opacity = '1';
+    splashVideo.style.transform = 'scale(1)'; // Slow zoom out
+
+    // 2. Munculkan Logo (Dengan Efek Smoke) - Selepas 0.5 saat
+    setTimeout(() => {
+        logoContainer.style.opacity = '1';
+        logoContainer.style.transform = 'translateY(0)';
+    }, 500);
+
+    // 3. Munculkan Teks Status & Jalankan Loading Bar - Selepas 1 saat
+    setTimeout(() => {
+        statusText.style.opacity = '1';
+        loadBar.style.width = '100%';
+    }, 1000);
+
+    // 4. Reveal Dashboard - Selepas dakwat memenuhi skrin (Sync dengan video)
+    setTimeout(() => {
+        // Hilangkan content tengah (logo & status) dulu
+        loader.querySelector('#loader-content').style.opacity = '0';
+        loader.querySelector('#loader-content').style.transform = 'scale(0.9)';
+
+        // Paparkan Dashboard sedia ada secara perlahan
+        setTimeout(() => {
+            body.classList.add('content-ready');
+            // Fade out skrin hitam sepenuhnya
+            loader.style.transition = 'opacity 1s ease-out';
+            loader.style.opacity = '0';
+            
+            setTimeout(() => {
+                loader.style.display = 'none';
+                body.classList.remove('is-loading');
+            }, 1000); // Masa untuk loader fade out sepenuhnya
+        }, 800); // Masa 'sync' untuk logo-splash merebak besar
+
+    }, 3500); // Beri masa untuk video splash merebak megah
+});
+</script>
+
 @include('components.social-float')
 
 @include('layouts.footer-admin')
