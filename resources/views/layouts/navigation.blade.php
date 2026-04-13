@@ -116,6 +116,7 @@
         }
 
         .site-nav-link {
+            font-family: 'Montserrat', sans-serif !important;
             position: relative;
             isolation: isolate;
             overflow: hidden;
@@ -455,6 +456,7 @@
                 animation: none;
             }
         }
+        
     </style>
 @endonce
 

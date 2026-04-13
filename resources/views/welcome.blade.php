@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Gasoek+One&family=Inter:wght@300;400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <title>UPKB</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
         .titleglass { font-family: "Prata", serif; word-break: break-word;} /* Brutalist */
-        .titleglass-2 { font-family: "Montserrat", sans-serif; font-weight: 600;} /* Brutalist 2 */
-        p { font-family: "Roboto Condensed", sans-serif; font-weight: 500; } /* Sans-serif */
+        .titleglass-2 { font-family: "Montserrat", sans-serif; font-weight: 900;} /* Brutalist 2 */
+        p { font-family: "Lexend Deca", sans-serif; font-weight: 500; } /* Sans-serif */
+        h2 { font-family: "Montserrat", sans-serif; font-weight: 800; } /* Sans-serif Bold */
+        a { font-family: "Lexend Deca", sans-serif; font-weight: 500; } /* Sans-serif Bold */
+        h3 { font-family: "Montserrat", sans-serif; font-weight: 500; } /* Playful */
 
         .welcome-page {
             position: relative;
@@ -114,13 +118,13 @@
                     ANDA
                 </h2>
 
-                <p class=" text-xs md:text-sm text-white/80 mt-6 md:mt-8 max-w-sm leading-relaxed font-light tracking-wide border-l border-white/30 pl-4">
+                <p class="cubafont text-xs md:text-sm lg:text-sm text-white/80 mt-6 md:mt-8 max-w-sm leading-relaxed  tracking-wide border-l border-white/30 pl-4">
                     Terokai program TVET, Diploma dan Sains Kesihatan 
                     <br>yang direka untuk meningkatkan peluang kerjaya anda.</br>
                 </p>
 
                 <a href="{{ route('program') }}"
-                   class="inline-block mt-8 md:mt-10 border border-white text-white px-8 md:px-10 py-3 md:py-4 rounded-none text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold hover:bg-white hover:text-black transition-all duration-300 transform active:scale-95 w-full sm:w-auto text-center">
+                   class="inline-block mt-8 md:mt-10 border border-white text-white px-8 md:px-10 py-3 md:py-4 rounded-none text-[10px] md:text-xs uppercase tracking-[0.1em] font-bold hover:bg-white hover:text-black transition-all duration-300 transform active:scale-95 w-full sm:w-auto text-center">
                     Lihat Program
                 </a>
 
@@ -209,8 +213,8 @@
 <section class="max-w-7xl mx-auto px-6 mt-20">
     {{-- Header Content --}}
     <div class="text-center mb-10">
-        <h2 class="text-xl font-semibold mb-2">Program Popular</h2>
-        <p class="mx-auto max-w-2xl text-sm text-slate-600">Tonton sorotan program pilihan kami yang dilengkapi modul profesional, kemahiran abad ke-21 dan peluang kerjaya yang terjamin.</p>
+        <h2 class="text-5xl mb-6 uppercase">Program Popular</h2>
+        <p class="mx-auto max-w-3xl text-sm text-slate-600">Tonton sorotan program pilihan kami yang dilengkapi modul profesional, kemahiran abad ke-21 dan peluang kerjaya yang terjamin.</p>
     </div>
 
     {{-- Main Layout Container: 1/3 for Cards, 2/3 for Video --}}
@@ -219,17 +223,17 @@
         {{-- LEFT SIDE: CARDS (1/3) --}}
         <div class="flex flex-col gap-4 order-2 lg:order-1">
             <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-white/80 p-6 shadow-lg backdrop-blur-sm flex flex-col justify-center">
-                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2 font-bold">Fokus Kualiti</p>
+                <p class="text-xl uppercase text-orange-500 mb-2 font-bold">Fokus Kualiti</p>
                 <p class="text-sm text-slate-600">Setiap program dirangka dengan kandungan mendalam dari pakar industri.</p>
             </div>
 
             <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-slate-900/90 p-6 shadow-lg backdrop-blur-sm text-white flex flex-col justify-center border-l-4 border-l-orange-500">
-                <p class="text-sm uppercase tracking-[0.24em] text-orange-300 mb-2 font-bold">Mudah Dipercayai</p>
+                <p class="text-xl uppercase text-orange-300 mb-2 font-bold">Mudah Dipercayai</p>
                 <p class="text-sm text-slate-300">Program kami telah dipercayai oleh ribuan pelajar dan institusi.</p>
             </div>
 
             <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-white/80 p-6 shadow-lg backdrop-blur-sm flex flex-col justify-center">
-                <p class="text-sm uppercase tracking-[0.24em] text-orange-500 mb-2 font-bold">Nilai Tambahan</p>
+                <p class="text-xl uppercase text-orange-500 mb-2 font-bold">Nilai Tambahan</p>
                 <p class="text-sm text-slate-600">Kandungan disokong oleh sokongan pelajar, panduan kerjaya dan alumni.</p>
             </div>
         </div>
@@ -241,7 +245,7 @@
                 
                 <div class="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 text-xs text-white backdrop-blur-sm z-20">
                     <i class="fas fa-star text-orange-400"></i>
-                    Koleksi Terbaik UPKB
+                    <p>Koleksi Terbaik UPKB</p>
                 </div>
 
                 <video class="w-full h-full object-cover min-h-[400px]" controls autoplay playsinline>

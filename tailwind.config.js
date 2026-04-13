@@ -12,7 +12,13 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                prata: ['Prata', 'serif'],
+                lato: ['Lato', 'sans-serif'],
+                montserrat: ['Montserrat', 'sans-serif'],
+                roboto: ['Roboto Condensed', 'sans-serif'],
+                funnel: ['Funnel Sans', 'sans-serif'],
+                lexend: ['Lexend Deca', 'sans-serif'],
+                shrikhand: ['Shrikhand', 'cursive'],
             },
         },
     },
