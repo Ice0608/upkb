@@ -11,17 +11,20 @@
 <body class="bg-white text-gray-900 antialiased">
     @include('layouts.navadmin')
 
-    <main class="max-w-5xl mx-auto px-6 py-16">
+    <main class="max-w-7xl mx-auto px-6 py-16">
         
         {{-- Header Section: Subtle Wash --}}
-        <div class="bg-gray-100 rounded-3xl p-8 md:p-10 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-                <h1 class="text-4xl font-extrabold tracking-tight text-gray-950">Akaun Pengguna</h1>
-                <p class="text-gray-500 mt-1">Halaman pengurusan akaun pengguna.</p>
+        
+        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Akaun Pengguna</h1>
+                    <p class="mt-3 text-lg text-orange-100">Halaman pengurusan akaun pengguna.</p>
+                </div>
+                <a href="{{ route('admin.adduser') }}" class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition flex items-center justify-center">
+                    <i class="fas fa-plus"></i>
+                </a>
             </div>
-            <a href="{{ route('admin.adduser') }}" class="inline-flex items-center justify-center bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-600 transition-all text-sm font-semibold shadow-sm">
-                <i class="fas fa-plus mr-2 text-xs"></i> Tambah Akaun
-            </a>
         </div>
 
         {{-- Alerts --}}

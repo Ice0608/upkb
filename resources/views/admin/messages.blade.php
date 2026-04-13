@@ -13,9 +13,14 @@
 @include('layouts.navadmin')
 
     <section class="max-w-7xl mx-auto px-6 py-12">
-        <div class="mb-10">
-            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 mb-2">Urus Mesej Pelanggan</h1>
-            <p class="text-slate-500 font-medium italic">Lihat dan urus semua mesej yang diterima dari ruangan hubungi.</p>
+
+        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Urus Mesej Pelanggan</h1>
+                    <p class="mt-3 text-lg text-orange-100">Lihat dan urus semua mesej yang diterima dari ruangan hubungi.</p>
+                </div>
+            </div>
         </div>
 
         @if ($message = Session::get('success'))
