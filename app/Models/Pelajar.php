@@ -13,8 +13,11 @@ class Pelajar extends Model
 
     protected $fillable = [
         'tarikh_pendaftaran',
+        'noreff',
+        'program',
         'nama_pelajar',
         'ic_pelajar',
+        'spm_credit',
         'no_tel',
         'email',
         'address_line1',
@@ -27,12 +30,17 @@ class Pelajar extends Model
         'nama_bapa',
         'ic_bapa',
         'no_tel_bapa',
+        'pekerjaan_bapa',
         'pendapatan_bapa',
         'nama_ibu',
         'ic_ibu',
         'no_tel_ibu',
+        'pekerjaan_ibu',
         'pendapatan_ibu',
         'jumlah_tanggungan',
+        'pilihan_pertama',
+        'pilihan_kedua',
+        'pilihan_ketiga',
     ];
 
     protected $casts = [

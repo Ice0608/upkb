@@ -87,8 +87,11 @@ class StaffEventController extends Controller
     {
         $data = $request->validate([
             'tarikh_pendaftaran' => 'required|date',
+            'noreff' => 'nullable|string|max:255',
+            'program' => 'nullable|string|max:100',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
+            'spm_credit' => 'nullable|numeric|min:0',
             'no_tel' => 'required|string|max:50',
             'email' => 'nullable|email|max:255',
             'address_line1' => 'nullable|string|max:255',
@@ -101,12 +104,17 @@ class StaffEventController extends Controller
             'nama_bapa' => 'nullable|string|max:255',
             'ic_bapa' => 'nullable|string|max:50',
             'no_tel_bapa' => 'nullable|string|max:50',
+            'pekerjaan_bapa' => 'nullable|string|max:255',
             'pendapatan_bapa' => 'nullable|string|max:100',
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
+            'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'pilihan_pertama' => 'nullable|string|max:255',
+            'pilihan_kedua' => 'nullable|string|max:255',
+            'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
 
         $pelajar = Pelajar::create(array_merge([
@@ -130,9 +138,12 @@ class StaffEventController extends Controller
 
         $data = $request->validate([
             'tarikh_pendaftaran' => 'required|date',
+            'noreff' => 'nullable|string|max:255',
+            'program' => 'nullable|string|max:100',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
-            'no_tel' => 'required|string|max:50',
+            'spm_credit' => 'nullable|numeric|min:0',
+            'no_tel' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255',
             'address_line1' => 'nullable|string|max:255',
             'address_line2' => 'nullable|string|max:255',
@@ -144,12 +155,17 @@ class StaffEventController extends Controller
             'nama_bapa' => 'nullable|string|max:255',
             'ic_bapa' => 'nullable|string|max:50',
             'no_tel_bapa' => 'nullable|string|max:50',
+            'pekerjaan_bapa' => 'nullable|string|max:255',
             'pendapatan_bapa' => 'nullable|string|max:100',
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
+            'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'pilihan_pertama' => 'nullable|string|max:255',
+            'pilihan_kedua' => 'nullable|string|max:255',
+            'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
 
         $pelajar->update(array_merge([

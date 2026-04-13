@@ -26,6 +26,9 @@
             .flex.flex-col.gap-3.sm\:flex-row.sm\:items-center.sm\:justify-between {
                 display: none;
             }
+            .no-print {
+                display: none !important;
+            }
             .mt-6 {
                 display: none;
             }
@@ -65,11 +68,42 @@
             @csrf
             @method('PUT')
 
-            <div class="grid gap-6 sm:grid-cols-2">
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Tarikh Pendaftaran</span>
+            <div class="rounded-[32px] border border-slate-300 bg-slate-50 p-6">
+                <div class="text-center space-y-1">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">BORANG PERMOHONAN & TEMUDUGA</p>
+                    <h2 class="text-2xl font-semibold uppercase tracking-[0.15em] text-slate-900">Application & Interview Form</h2>
+                </div>
+            </div>
+
+            <div class="rounded-[32px] border border-slate-300 bg-white p-6 space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">1. Maklumat Pemohon</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Applicant Information</h3>
+                </div>
+
+                <div class="grid gap-6 sm:grid-cols-2">
+                    <label class="block">
+                        <span class="mb-2 block text-sm font-semibold text-slate-700">Tarikh Pendaftaran</span>
                     <input type="date" name="tarikh_pendaftaran" value="{{ old('tarikh_pendaftaran', $pelajar?->tarikh_pendaftaran?->format('Y-m-d')) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
                     @error('tarikh_pendaftaran') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. Reff (Username Staff)</span>
+                    <input type="text" name="noreff" value="{{ old('noreff', $pelajar?->noreff) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('noreff') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2">
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Program</span>
+                    <select name="program" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                        <option value="">Pilih Program</option>
+                        <option value="Diploma" {{ old('program', $pelajar?->program) == 'Diploma' ? 'selected' : '' }}>Diploma</option>
+                        <option value="TVET" {{ old('program', $pelajar?->program) == 'TVET' ? 'selected' : '' }}>TVET</option>
+                        <option value="Sains Kesihatan" {{ old('program', $pelajar?->program) == 'Sains Kesihatan' ? 'selected' : '' }}>Sains Kesihatan</option>
+                    </select>
+                    @error('program') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Pelajar</span>
@@ -85,9 +119,9 @@
                     @error('ic_pelajar') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. Telefon</span>
-                    <input type="text" name="no_tel" value="{{ old('no_tel', $pelajar?->no_tel) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
-                    @error('no_tel') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">SPM Credit</span>
+                    <input type="number" step="0.01" name="spm_credit" value="{{ old('spm_credit', $pelajar?->spm_credit) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('spm_credit') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
             </div>
 
@@ -97,6 +131,10 @@
                 @error('email') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
             </label>
 
+            <div class="border-t border-slate-200 pt-6">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">3. Maklumat Alamat</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Address Details</h3>
+            </div>
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Address Line 1</span>
@@ -159,6 +197,11 @@
                 </label>
             </div>
 
+                <div class="border-t border-slate-200 pt-6">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">3. Maklumat Bapa & Ibu</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Parents' Information</h3>
+                </div>
+
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Bapa</span>
@@ -172,11 +215,16 @@
                 </label>
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2">
+            <div class="grid gap-6 sm:grid-cols-3">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">No. Telefon Bapa</span>
                     <input type="text" name="no_tel_bapa" value="{{ old('no_tel_bapa', $pelajar?->no_tel_bapa) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('no_tel_bapa') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pekerjaan Bapa</span>
+                    <input type="text" name="pekerjaan_bapa" value="{{ old('pekerjaan_bapa', $pelajar?->pekerjaan_bapa) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('pekerjaan_bapa') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Pendapatan Bapa</span>
@@ -198,11 +246,16 @@
                 </label>
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2">
+            <div class="grid gap-6 sm:grid-cols-3">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">No. Telefon Ibu</span>
                     <input type="text" name="no_tel_ibu" value="{{ old('no_tel_ibu', $pelajar?->no_tel_ibu) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('no_tel_ibu') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pekerjaan Ibu</span>
+                    <input type="text" name="pekerjaan_ibu" value="{{ old('pekerjaan_ibu', $pelajar?->pekerjaan_ibu) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('pekerjaan_ibu') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Pendapatan Ibu</span>
@@ -217,7 +270,29 @@
                 @error('jumlah_tanggungan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
             </label>
 
-            <div class="flex flex-col gap-3 sm:flex-row sm:justify-between">
+            <div class="border-t border-slate-200 pt-6">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">4. Minat Program</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Programme Interest</h3>
+            </div>
+            <div class="grid gap-6 sm:grid-cols-3">
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Pertama (Nama Kursus)</span>
+                    <input type="text" name="pilihan_pertama" value="{{ old('pilihan_pertama', $pelajar?->pilihan_pertama) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('pilihan_pertama') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Kedua (Nama Kursus)</span>
+                    <input type="text" name="pilihan_kedua" value="{{ old('pilihan_kedua', $pelajar?->pilihan_kedua) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('pilihan_kedua') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Ketiga (Nama Kursus)</span>
+                    <input type="text" name="pilihan_ketiga" value="{{ old('pilihan_ketiga', $pelajar?->pilihan_ketiga) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('pilihan_ketiga') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row sm:justify-between no-print">
                 <div class="space-x-3">
                     <a href="{{ route('staff.main') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                     @if(isset($pelajar))
@@ -227,6 +302,7 @@
 
                 <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Simpan Maklumat</button>
             </div>
+        </div>
         </form>
     </div>
 </main>
