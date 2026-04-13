@@ -510,6 +510,7 @@
                     </div>
                 </div>
             </div>
+
             <a href="{{ route('faq') }}" class="site-nav-link {{ request()->routeIs('faq') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 FAQ
             </a>

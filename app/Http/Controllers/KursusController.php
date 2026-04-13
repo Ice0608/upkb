@@ -9,21 +9,12 @@ use Illuminate\Support\Str;
 
 class KursusController extends Controller
 {
-    public function show($id)
+    public function showByName($nama)
     {
-        $kursus = Kursus::with([
-            'institusi',
-            'syaratKelayakans',
-            'silibuses',
-            'kerjayas',
-            'yuranPendaftarans',
-            'yuranPilihans',
-            'yuranAsramas',
-            'yuranPengajians',
-            'elauns',
-        ])->findOrFail($id);
+        $namaKursus = urldecode($nama);
+        $semuaKursus = Kursus::with('institusi')->where('nama_kursus', $namaKursus)->get();
 
-        return view('program.infokursus', compact('kursus'));
+        return view('program.pilihankursus', compact('semuaKursus', 'namaKursus'));
     }
 
     public function index(Request $request)
