@@ -11,10 +11,45 @@
 
     <style>
         .faq-page {
+            position: relative;
+            min-height: 100vh;
             background:
-                radial-gradient(circle at top left, rgba(251, 191, 36, 0.12), transparent 24%),
-                radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 26%),
-                linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+                radial-gradient(circle at top left, rgba(245, 158, 11, 0.22), transparent 24%),
+                radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 26%),
+                linear-gradient(180deg, #fff1db 0%, #e8efff 100%);
+        }
+
+        .faq-page::before,
+        .faq-page::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .faq-page::before {
+            background:
+                linear-gradient(120deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0) 42%),
+                repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.04) 0 1px, transparent 1px 120px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.18));
+            opacity: 0.55;
+        }
+
+        .faq-page::after {
+            inset: auto auto 3rem 50%;
+            width: min(70rem, calc(100vw - 2rem));
+            height: 18rem;
+            transform: translateX(-50%);
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255, 184, 28, 0.34), rgba(255, 184, 28, 0) 66%);
+            filter: blur(34px);
+            opacity: 0.96;
+        }
+
+        .faq-page > * {
+            position: relative;
+            z-index: 1;
         }
 
         .faq-hero {
@@ -22,23 +57,62 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.78);
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.66)),
-                linear-gradient(135deg, rgba(251, 146, 60, 0.06), rgba(59, 130, 246, 0.08));
+                linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
             box-shadow:
-                0 24px 70px rgba(15, 23, 42, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.84);
-            backdrop-filter: blur(18px);
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(255, 166, 0, 0.3),
+                0 0 130px rgba(255, 212, 59, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
         }
 
         .faq-hero::before {
             content: "";
             position: absolute;
-            inset: auto -8% -40% auto;
-            width: 16rem;
-            height: 16rem;
+            top: -3rem;
+            right: 8%;
+            width: 11rem;
+            height: 11rem;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(249, 115, 22, 0.14), rgba(249, 115, 22, 0));
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 72%);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow:
+                0 0 36px rgba(255, 235, 140, 0.34),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
             pointer-events: none;
+            animation: faqGlowPulse 7s ease-in-out infinite;
+        }
+
+        .faq-hero::after {
+            content: "";
+            position: absolute;
+            left: 4%;
+            bottom: -1.5rem;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 2rem;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
+            transform: rotate(12deg);
+            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
+            opacity: 0.68;
+            pointer-events: none;
+        }
+
+        .faq-hero-eyebrow {
+            color: rgba(255, 255, 255, 0.74);
+        }
+
+        .faq-hero-title {
+            color: #ffffff;
+            text-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+        }
+
+        .faq-hero-copy {
+            color: rgba(255, 255, 255, 0.84);
+            text-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
         }
 
         .faq-card {
@@ -50,6 +124,7 @@
                 linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
             box-shadow:
                 0 18px 40px rgba(15, 23, 42, 0.08),
+                0 0 28px rgba(255, 184, 28, 0.08),
                 inset 0 1px 0 rgba(255, 255, 255, 0.86);
             backdrop-filter: blur(14px);
             transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
@@ -70,7 +145,8 @@
             border-color: rgba(251, 146, 60, 0.18);
             box-shadow:
                 0 28px 60px rgba(15, 23, 42, 0.12),
-                0 0 30px rgba(249, 115, 22, 0.08),
+                0 0 42px rgba(249, 115, 22, 0.16),
+                0 0 70px rgba(255, 184, 28, 0.12),
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
@@ -81,6 +157,14 @@
         .faq-icon-chip {
             position: relative;
             box-shadow:
+                0 0 28px rgba(249, 115, 22, 0.18),
+                0 14px 26px rgba(15, 23, 42, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+
+        .faq-icon-chip-blue {
+            box-shadow:
+                0 0 28px rgba(37, 99, 235, 0.22),
                 0 14px 26px rgba(15, 23, 42, 0.12),
                 inset 0 1px 0 rgba(255, 255, 255, 0.22);
         }
@@ -114,8 +198,20 @@
                 linear-gradient(135deg, rgba(251, 146, 60, 0.06), rgba(59, 130, 246, 0.05));
             box-shadow:
                 0 30px 80px rgba(15, 23, 42, 0.18),
+                0 0 52px rgba(255, 184, 28, 0.14),
                 inset 0 1px 0 rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(18px);
+        }
+
+        @keyframes faqGlowPulse {
+            0%, 100% {
+                opacity: 0.72;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.06);
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -123,6 +219,10 @@
             .faq-arrow,
             #modalBox {
                 transition: none;
+            }
+
+            .faq-hero::before {
+                animation: none;
             }
         }
     </style>
@@ -133,9 +233,9 @@
 
     <main class="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <div class="faq-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 text-center mb-14">
-            <p class="text-slate-500 font-semibold tracking-[0.28em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
-            <h2 class="mt-4 text-4xl sm:text-5xl font-semibold tracking-[-0.04em] text-slate-800">Soalan Lazim (FAQ)</h2>
-            <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-8">
+            <p class="faq-hero-eyebrow font-semibold tracking-[0.28em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
+            <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl font-semibold tracking-[-0.04em]">Soalan Lazim (FAQ)</h2>
+            <p class="faq-hero-copy mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-8">
                 Jawapan kepada pertanyaan yang sering diajukan oleh pelajar dan ibu bapa.
             </p>
         </div>
@@ -168,7 +268,7 @@
             <div onclick="openModal('tvet')"
                 class="faq-card group rounded-[1.75rem] p-6 sm:p-7 cursor-pointer">
                 <div class="flex items-start gap-4">
-                    <div class="faq-icon-chip bg-[linear-gradient(135deg,#8b5cf6,#3b82f6)] text-white p-3.5 rounded-2xl">
+                    <div class="faq-icon-chip faq-icon-chip-blue bg-[linear-gradient(135deg,#8b5cf6,#3b82f6)] text-white p-3.5 rounded-2xl">
                         <i class="fa-solid fa-book-open"></i>
                     </div>
 
