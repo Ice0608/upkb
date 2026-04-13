@@ -7,6 +7,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        .institusi-hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background: linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(255, 166, 0, 0.3),
+                0 0 130px rgba(255, 212, 59, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .institusi-hero::before,
+        .institusi-hero::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .institusi-hero::before {
+            top: -3rem;
+            right: 8%;
+            width: 11rem;
+            height: 11rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 72%);
+            box-shadow:
+                0 0 36px rgba(255, 235, 140, 0.34),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+        }
+
+        .institusi-hero::after {
+            left: 4%;
+            bottom: -1.5rem;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 2rem;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
+            transform: rotate(12deg);
+            opacity: 0.68;
+            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
+        }
+
+        .institusi-hero-button {
+            border: 1px solid rgba(255, 255, 255, 0.74);
+            box-shadow:
+                0 0 0 6px rgba(255, 255, 255, 0.14),
+                0 0 34px rgba(255, 166, 0, 0.34),
+                0 16px 36px rgba(15, 23, 42, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .institusi-hero-button:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow:
+                0 0 0 8px rgba(255, 255, 255, 0.16),
+                0 0 42px rgba(255, 187, 51, 0.44),
+                0 22px 44px rgba(15, 23, 42, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
     
@@ -14,7 +83,7 @@
     @include('layouts.navigation')
 
     <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
+        <div class="institusi-hero rounded-3xl p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
@@ -26,7 +95,7 @@
                     </h1>
                     <p class="mt-3 text-lg text-orange-100">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
                 </div>
-                <button class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition">
+                <button class="institusi-hero-button w-14 h-14 rounded-full bg-white text-orange-600">
                     <i class="fas fa-building"></i>
                 </button>
             </div>
