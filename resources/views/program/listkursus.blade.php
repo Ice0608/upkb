@@ -228,6 +228,8 @@
         }
 
         .course-card {
+            display: flex;
+            flex-direction: column;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.82);
@@ -471,7 +473,7 @@
                 <div id="courses-container" class="grid md:grid-cols-3 gap-6">
                     @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
-                    <article class="group rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition course-card cursor-pointer" 
+                    <article class="group rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition course-card cursor-pointer flex flex-col h-full" 
                              data-course-name="{{ $kursus->nama_kursus }}"
                              onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
                         <div class="relative h-56 overflow-hidden">
@@ -484,10 +486,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="p-8">
+                        <div class="p-8 flex flex-col flex-1">
                             <h2 class="text-2xl font-bold text-slate-900 mb-2">{{ $kursus->nama_kursus }}</h2>
 
-                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition">
+                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition mt-auto">
                                 <span>Lihat Pilihan Kursus</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>

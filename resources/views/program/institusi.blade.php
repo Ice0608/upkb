@@ -141,17 +141,22 @@
 
         <div class="grid md:grid-cols-3 gap-6">
             @forelse($institusis as $institusi)
-            <article class="rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
-                <div class="relative h-52 overflow-hidden">
-                    <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="w-full h-full object-cover">
-                </div>
-                <div class="p-8">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wide mb-4">{{ $institusi->jenis_institusi }}</span>
-                    <h2 class="text-2xl font-extrabold text-slate-900 mb-2">{{ $institusi->nama_institusi }}</h2>
-                    <p class="text-gray-500 mb-3"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
-                    <p class="text-gray-500 mb-6">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 120) }}</p>
-                    <a href="{{ route('institusi.show', $institusi->id) }}" class="inline-flex items-center gap-2 text-orange-600 font-bold">Lihat kursus & fasiliti <span>→</span></a>
-                </div>
+            <article class="rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition transform duration-300 hover:-translate-y-1 flex flex-col h-full">
+                <a href="{{ route('institusi.show', $institusi->id) }}" class="group flex flex-col h-full text-current no-underline">
+                    <div class="relative h-52 overflow-hidden">
+                        <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 flex flex-col flex-1">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-semibold uppercase tracking-wide mb-4">{{ $institusi->jenis_institusi }}</span>
+                        <h2 class="text-2xl font-extrabold text-slate-900 mb-2 group-hover:text-orange-600">{{ $institusi->nama_institusi }}</h2>
+                        <p class="text-gray-500 mb-3"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
+                        <p class="text-gray-500 mb-6">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 120) }}</p>
+                        <div class="inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg group-hover:bg-orange-600 transition mt-auto">
+                            <span>Lihat kursus & fasiliti</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </a>
             </article>
             @empty
             <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">

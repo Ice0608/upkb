@@ -120,6 +120,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
 Route::get('/kursus', [KursusController::class, 'index'])->name('kursus.index');
 Route::get('/kursus/nama/{nama}', [KursusController::class, 'showByName'])->name('kursus.showByName');
+Route::get('/kursus/nama/{nama}/filter', [KursusController::class, 'filterByName'])->name('kursus.filterByName');
 Route::get('/kursus/{id}', [KursusController::class, 'show'])->name('kursus.show');
 Route::get('/kursus/{id}/pdf', [KursusController::class, 'pdf'])->name('kursus.pdf');
 

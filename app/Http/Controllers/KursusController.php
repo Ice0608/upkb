@@ -13,9 +13,54 @@ class KursusController extends Controller
     public function showByName($nama)
     {
         $namaKursus = urldecode($nama);
-        $semuaKursus = Kursus::with('institusi')->where('nama_kursus', $namaKursus)->get();
+        $semuaKursus = Kursus::with(['institusi', 'galeris'])
+            ->where('nama_kursus', $namaKursus)
+            ->get();
 
-        return view('program.pilihankursus', compact('semuaKursus', 'namaKursus'));
+        $selectedCourse = $semuaKursus->first();
+        $heroImage = optional($selectedCourse?->galeris->first())->imej
+            ?? optional($selectedCourse?->institusi)->gambar_institusi
+            ?? 'images/default-course.jpg';
+        $selectedDescription = $selectedCourse?->penerangan
+            ?? 'Penerangan kursus tidak tersedia pada masa ini.';
+
+        $jenisKursusOptions = $semuaKursus->pluck('jenis_kursus')->filter()->unique()->values();
+        $tempohOptions = $semuaKursus->pluck('tempoh')->filter()->unique()->values();
+        $modPengajianOptions = $semuaKursus->pluck('mod_pengajian')->filter()->unique()->values();
+
+        return view('program.pilihankursus', compact(
+            'semuaKursus',
+            'namaKursus',
+            'heroImage',
+            'selectedDescription',
+            'jenisKursusOptions',
+            'tempohOptions',
+            'modPengajianOptions'
+        ));
+    }
+
+    public function filterByName(Request $request, $nama)
+    {
+        $namaKursus = urldecode($nama);
+        $query = Kursus::with(['institusi', 'galeris'])
+            ->where('nama_kursus', $namaKursus);
+
+        if ($request->filled('jenis_kursus')) {
+            $query->where('jenis_kursus', $request->jenis_kursus);
+        }
+
+        if ($request->filled('tempoh')) {
+            $query->where('tempoh', $request->tempoh);
+        }
+
+        if ($request->filled('mod_pengajian')) {
+            $query->where('mod_pengajian', $request->mod_pengajian);
+        }
+
+        $semuaKursus = $query->get();
+        $html = view('program._pilihankursus_institusi', compact('semuaKursus'))->render();
+
+        return response()->json(['html' => $html]);
     }
 
     public function index(Request $request)

@@ -14,6 +14,66 @@
         .course-variation-card:hover {
             transform: translateY(-4px);
         }
+
+        .pilihan-hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            background: linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(255, 166, 0, 0.3),
+                0 0 130px rgba(255, 212, 59, 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .pilihan-hero::before,
+        .pilihan-hero::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .pilihan-hero::before {
+            top: -3rem;
+            right: 8%;
+            width: 11rem;
+            height: 11rem;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 72%);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            box-shadow:
+                0 0 36px rgba(255, 235, 140, 0.34),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+            animation: pilihanGlowPulse 7s ease-in-out infinite;
+        }
+
+        .pilihan-hero::after {
+            left: 4%;
+            bottom: -1.5rem;
+            width: 8rem;
+            height: 8rem;
+            border-radius: 2rem;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
+            transform: rotate(12deg);
+            opacity: 0.68;
+            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
+        }
+
+        @keyframes pilihanGlowPulse {
+            0%, 100% {
+                opacity: 0.72;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -21,128 +81,123 @@
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <!-- HEADER -->
-        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div>
-                    <div class="flex items-center gap-3 mb-3">
-                        <a href="{{ route('kursus.index') }}" class="text-orange-100 hover:text-white transition">
+    <section class="max-w-7xl mx-auto px-6 py-10" id="pilihan-kursus-page" data-filter-url="{{ route('kursus.filterByName', ['nama' => $namaKursus]) }}">
+        <div class="pilihan-hero rounded-3xl p-8 text-white mb-8">
+            <div class="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-6 mb-8">
+                <div class="rounded-3xl overflow-hidden bg-white shadow-xl h-full">
+                    <img src="{{ asset($heroImage) }}" alt="{{ $namaKursus }}" class="w-full h-72 object-cover">
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('kursus.index') }}" class="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white/15 text-white hover:bg-white/25 transition">
                             <i class="fas fa-arrow-left"></i>
                         </a>
+                        <div>
+                            <p class="text-sm uppercase tracking-[0.2em] text-orange-100">Kursus Pilihan</p>
+                            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">{{ $namaKursus }}</h1>
+                        </div>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">{{ $namaKursus }}</h1>
-                    <p class="mt-3 text-lg text-orange-100">Pilih institusi yang menawarkan kursus ini.</p>
+                    <p class="text-slate-100 text-lg leading-relaxed">{{ $selectedDescription }}</p>
                 </div>
-                <button class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition">
-                    <i class="fas fa-graduation-cap"></i>
-                </button>
+            </div>
+
+            <div class="rounded-3xl bg-white p-6 shadow-xl border border-white/20 text-slate-900">
+                <div class="mb-4">
+                    <p class="text-sm uppercase tracking-[0.25em] text-orange-600">Tapisan</p>
+                    <h2 class="text-2xl font-bold">Cari Berdasarkan Pilihan</h2>
+                    <p class="mt-2 text-sm text-slate-600">Hanya pilih pilihan yang muncul untuk kursus ini.</p>
+                </div>
+
+                <div class="grid gap-4 lg:grid-cols-3">
+                    <label class="block text-sm text-slate-700">
+                        <span class="block mb-2 font-semibold">Jenis Program</span>
+                        <select id="jenis-kursus-filter" name="jenis_kursus" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-orange-400 focus:ring-orange-300 focus:outline-none">
+                            <option value="">Semua Jenis Program</option>
+                            @foreach($jenisKursusOptions as $jenis)
+                                <option value="{{ $jenis }}">{{ $jenis }}</option>
+                            @endforeach
+                        </select>
+                    </label>
+
+                    <label class="block text-sm text-slate-700">
+                        <span class="block mb-2 font-semibold">Tempoh Pengajian</span>
+                        <select id="tempoh-filter" name="tempoh" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-orange-400 focus:ring-orange-300 focus:outline-none">
+                            <option value="">Semua Tempoh</option>
+                            @foreach($tempohOptions as $tempoh)
+                                <option value="{{ $tempoh }}">{{ $tempoh }}</option>
+                            @endforeach
+                        </select>
+                    </label>
+
+                    <label class="block text-sm text-slate-700">
+                        <span class="block mb-2 font-semibold">Mod Pengajian</span>
+                        <select id="mod-pengajian-filter" name="mod_pengajian" class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-orange-400 focus:ring-orange-300 focus:outline-none">
+                            <option value="">Semua Mod Pengajian</option>
+                            @foreach($modPengajianOptions as $mod)
+                                <option value="{{ $mod }}">{{ $mod }}</option>
+                            @endforeach
+                        </select>
+                    </label>
+                </div>
             </div>
         </div>
 
-        <!-- COURSE VARIATIONS GRID -->
-        <div>
-            <h2 class="text-2xl font-bold text-slate-900 mb-6">Institusi yang Menawarkan Kursus Ini</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @forelse($semuaKursus as $kursus)
-                <div class="course-variation-card rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl">
-                    <!-- Institution Image -->
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="{{ asset($kursus->institusi->gambar_institusi ?? 'images/default-college.jpg') }}" 
-                             alt="{{ $kursus->institusi->nama_institusi ?? 'Institusi' }}" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">
-                            <span class="inline-flex items-center rounded-full bg-orange-600/95 px-3 py-1 text-xs font-semibold uppercase text-white shadow-sm">
-                                {{ $kursus->institusi->jenis_institusi ?? 'Institusi' }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="p-6">
-                        <!-- Institution Name -->
-                        <h3 class="text-xl font-bold text-slate-900 mb-2">
-                            {{ $kursus->institusi->nama_institusi ?? 'N/A' }}
-                        </h3>
-
-                        <!-- Course Details -->
-                        <div class="space-y-3 mb-6 text-sm">
-                            <!-- Course Code -->
-                            <div class="flex items-start gap-3 p-3 rounded-2xl bg-gray-50">
-                                <i class="fas fa-barcode text-orange-500 mt-0.5"></i>
-                                <div>
-                                    <p class="text-xs text-gray-600 font-semibold uppercase">Kod Kursus</p>
-                                    <p class="text-gray-800 font-semibold">{{ $kursus->kod_kursus }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Course Type -->
-                            <div class="flex items-start gap-3 p-3 rounded-2xl bg-gray-50">
-                                <i class="fas fa-book text-orange-500 mt-0.5"></i>
-                                <div>
-                                    <p class="text-xs text-gray-600 font-semibold uppercase">Jenis Kursus</p>
-                                    <p class="text-gray-800 font-semibold">{{ $kursus->jenis_kursus }}</p>
-                                </div>
-                            </div>
-
-                            <!-- Duration -->
-                            @if($kursus->tempoh)
-                            <div class="flex items-start gap-3 p-3 rounded-2xl bg-gray-50">
-                                <i class="fas fa-hourglass-half text-orange-500 mt-0.5"></i>
-                                <div>
-                                    <p class="text-xs text-gray-600 font-semibold uppercase">Tempoh</p>
-                                    <p class="text-gray-800 font-semibold">{{ $kursus->tempoh }}</p>
-                                </div>
-                            </div>
-                            @endif
-
-                            <!-- Quota -->
-                            <div class="flex items-start gap-3 p-3 rounded-2xl bg-gray-50">
-                                <i class="fas fa-users text-orange-500 mt-0.5"></i>
-                                <div>
-                                    <p class="text-xs text-gray-600 font-semibold uppercase">Kuota</p>
-                                    <p class="text-gray-800 font-semibold">
-                                        @if($kursus->kuota && $kursus->kuota > 0)
-                                            {{ $kursus->kuota }} {{ $kursus->kuota == 1 ? 'tempat' : 'tempat' }}
-                                        @else
-                                            <span class="text-red-600">Tiada Kuota</span>
-                                        @endif
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Registration Date -->
-                            @if($kursus->tarikh_pendaftaran)
-                            <div class="flex items-start gap-3 p-3 rounded-2xl bg-gray-50">
-                                <i class="fas fa-calendar text-orange-500 mt-0.5"></i>
-                                <div>
-                                    <p class="text-xs text-gray-600 font-semibold uppercase">Tarikh Daftar</p>
-                                    <p class="text-gray-800 font-semibold">{{ $kursus->tarikh_pendaftaran->format('d M Y') }}</p>
-                                </div>
-                            </div>
-                            @endif
-                        </div>
-
-                        <!-- Action Button -->
-                        <a href="{{ route('kursus.show', $kursus->id) }}" 
-                           class="inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition">
-                            <span>Lihat Detail</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                @empty
-                <div class="col-span-3 bg-white rounded-3xl p-10 text-center text-gray-500 shadow-sm border border-gray-100">
-                    <i class="fas fa-inbox text-4xl mb-4 opacity-50"></i>
-                    <p>Tiada institusi ditemui untuk kursus ini.</p>
-                </div>
-                @endforelse
+        <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+                <p class="text-sm uppercase tracking-[0.2em] text-slate-500">Institusi</p>
+                <h2 class="text-3xl font-bold text-slate-900">Institusi yang Menawarkan Kursus Ini</h2>
             </div>
+            <p class="text-sm text-slate-600">Hasil carian dikemas kini secara langsung apabila anda menukar pilihan.</p>
+        </div>
+
+        <div id="institusiResults">
+            @include('program._pilihankursus_institusi')
         </div>
     </section>
 
     @include('components.social-float')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const page = document.getElementById('pilihan-kursus-page');
+            if (!page) {
+                return;
+            }
+
+            const filterUrl = page.dataset.filterUrl;
+            const selects = [
+                document.getElementById('jenis-kursus-filter'),
+                document.getElementById('tempoh-filter'),
+                document.getElementById('mod-pengajian-filter')
+            ].filter(Boolean);
+            const resultsContainer = document.getElementById('institusiResults');
+
+            const updateResults = () => {
+                const params = new URLSearchParams();
+                selects.forEach(select => {
+                    if (select.value) {
+                        params.set(select.name, select.value);
+                    }
+                });
+
+                fetch(`${filterUrl}?${params.toString()}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        resultsContainer.innerHTML = data.html;
+                    })
+                    .catch(error => {
+                        console.error('Ajax filter error:', error);
+                    });
+            };
+
+            selects.forEach(select => select.addEventListener('change', updateResults));
+        });
+    </script>
 
     {{-- 🔹 FOOTER --}}
     @include('layouts.footer')
