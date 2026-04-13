@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2026 at 02:41 AM
+-- Generation Time: Apr 13, 2026 at 05:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -112,6 +112,7 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `galeris` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kod_institusi` varchar(255) NOT NULL,
+  `kod_kursus` varchar(255) DEFAULT NULL,
   `imej` varchar(255) NOT NULL,
   `penerangan` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -122,18 +123,18 @@ CREATE TABLE `galeris` (
 -- Dumping data for table `galeris`
 --
 
-INSERT INTO `galeris` (`id`, `kod_institusi`, `imej`, `penerangan`, `created_at`, `updated_at`) VALUES
-(3, 'C-21-G', 'images/galeri/c-21-g-1775713632.png', 'KAWASAN KOLEJ', '2026-04-08 21:47:12', '2026-04-08 21:47:12'),
-(4, 'C-21-G', 'images/galeri/c-21-g-1775713672.png', 'ASRAMA', '2026-04-08 21:47:52', '2026-04-08 21:47:52'),
-(5, 'C-21-G', 'images/galeri/c-21-g-1775713713.png', 'BILIK AIR', '2026-04-08 21:48:33', '2026-04-08 21:48:33'),
-(6, 'C-21-G', 'images/galeri/c-21-g-1775713815.png', 'KAWASAN PERSEKITARAN KOLEJ', '2026-04-08 21:50:15', '2026-04-08 21:50:15'),
-(7, 'C-21-G', 'images/galeri/c-21-g-1775713906.png', 'KELAS', '2026-04-08 21:51:46', '2026-04-08 21:51:46'),
-(8, 'C-21-G', 'images/galeri/c-21-g-1775714001.png', 'KAWASAN PERSEKITARAN KOLEJ', '2026-04-08 21:53:21', '2026-04-08 21:53:21'),
-(9, 'C-21-G', 'images/galeri/c-21-g-1775714071.png', 'BERDEKATAN KOLEJ', '2026-04-08 21:54:31', '2026-04-08 21:54:31'),
-(10, 'C-21-G', 'images/galeri/c-21-g-1775714140.png', 'DOBI', '2026-04-08 21:55:40', '2026-04-08 21:55:40'),
-(11, '70300', 'images/galeri/70300-1775715036.jpeg', 'KAWASAN ASRAMA', '2026-04-08 22:10:36', '2026-04-08 22:10:36'),
-(12, '70300', 'images/galeri/70300-1775715129.jpeg', 'ASRAMA', '2026-04-08 22:12:09', '2026-04-08 22:12:09'),
-(13, '70300', 'images/galeri/70300-1775715200.jpeg', 'ASRAMA', '2026-04-08 22:13:21', '2026-04-08 22:13:21');
+INSERT INTO `galeris` (`id`, `kod_institusi`, `kod_kursus`, `imej`, `penerangan`, `created_at`, `updated_at`) VALUES
+(3, 'C-21-G', NULL, 'images/galeri/c-21-g-1775713632.png', 'KAWASAN KOLEJ', '2026-04-08 21:47:12', '2026-04-08 21:47:12'),
+(4, 'C-21-G', NULL, 'images/galeri/c-21-g-1775713672.png', 'ASRAMA', '2026-04-08 21:47:52', '2026-04-08 21:47:52'),
+(5, 'C-21-G', NULL, 'images/galeri/c-21-g-1775713713.png', 'BILIK AIR', '2026-04-08 21:48:33', '2026-04-08 21:48:33'),
+(6, 'C-21-G', NULL, 'images/galeri/c-21-g-1775713815.png', 'KAWASAN PERSEKITARAN KOLEJ', '2026-04-08 21:50:15', '2026-04-08 21:50:15'),
+(7, 'C-21-G', NULL, 'images/galeri/c-21-g-1775713906.png', 'KELAS', '2026-04-08 21:51:46', '2026-04-08 21:51:46'),
+(8, 'C-21-G', NULL, 'images/galeri/c-21-g-1775714001.png', 'KAWASAN PERSEKITARAN KOLEJ', '2026-04-08 21:53:21', '2026-04-08 21:53:21'),
+(9, 'C-21-G', NULL, 'images/galeri/c-21-g-1775714071.png', 'BERDEKATAN KOLEJ', '2026-04-08 21:54:31', '2026-04-08 21:54:31'),
+(10, 'C-21-G', NULL, 'images/galeri/c-21-g-1775714140.png', 'DOBI', '2026-04-08 21:55:40', '2026-04-08 21:55:40'),
+(11, '70300', NULL, 'images/galeri/70300-1775715036.jpeg', 'KAWASAN ASRAMA', '2026-04-08 22:10:36', '2026-04-08 22:10:36'),
+(12, '70300', NULL, 'images/galeri/70300-1775715129.jpeg', 'ASRAMA', '2026-04-08 22:12:09', '2026-04-08 22:12:09'),
+(13, '70300', NULL, 'images/galeri/70300-1775715200.jpeg', 'ASRAMA', '2026-04-08 22:13:21', '2026-04-08 22:13:21');
 
 -- --------------------------------------------------------
 
@@ -396,7 +397,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (36, '2026_04_07_150435_fix_users_id_auto_increment', 16),
 (37, '2026_04_09_000000_create_event_table', 17),
 (39, '2026_04_09_000002_create_pembayaran_table', 17),
-(41, '2026_04_09_000001_create_pelajar_table', 18);
+(41, '2026_04_09_000001_create_pelajar_table', 18),
+(42, '2026_04_13_000002_add_kod_kursus_to_galeris_table', 19);
 
 -- --------------------------------------------------------
 
@@ -515,7 +517,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fOKl7N1v8k6mI2QpoA7pyI4O0WBH7RRmksTrhh31', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiN3Fnb2pibEd6ZzlmRXA3OVlLQkhEMjZyZDVNU25jSEpjZGlwNGd2aCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluIjtzOjU6InJvdXRlIjtzOjEwOiJzdGFmZi5tYWluIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1776040710);
+('qqP6zlPZ7PZoewKseO6gHosHwRyKLJhiMbXl1iKk', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiaVVza0R5R0VpRXFxRmdYS3NWZDBoRTEwMTdsRGgweXBUSVVjVzdIbyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1776046699),
+('AqQmHeW9TCWMni0Fxqt34Ihj29SAPNsTCtLxNhAo', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmU4ZTR6T3BjWU4xaU9EVlA2SmZJVlNsTlZDTXFGUFk0alZmWjFWNiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mzk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9rdXJzdXM/amVuaXM9VFZFVCI7czo1OiJyb3V0ZSI7czoxMjoia3Vyc3VzLmluZGV4Ijt9fQ==', 1776052492);
 
 -- --------------------------------------------------------
 
@@ -1029,7 +1032,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `pelajar`
