@@ -344,7 +344,11 @@
                             Senarai Kursus
                         @endif
                     </h1>
-                    <p class="mt-3 text-lg text-orange-100">Cari dan jelajahi kursus yang sesuai dengan minat anda.</p>
+                    @if(isset($selectedProgram) && $selectedProgram)
+                        <p class="mt-3 text-lg text-orange-100 max-w-3xl">{{ $selectedProgram->info_program }}</p>
+                    @else
+                        <p class="mt-3 text-lg text-orange-100">Cari dan jelajahi kursus yang sesuai dengan minat anda.</p>
+                    @endif
                 </div>
                 <button class="kursus-hero-button w-14 h-14 rounded-full bg-white text-orange-600">
                     <i class="fas fa-graduation-cap"></i>

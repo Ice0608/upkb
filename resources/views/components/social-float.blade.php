@@ -1,4 +1,4 @@
-<div class="fixed right-4 bottom-6 z-50 flex flex-col items-end gap-3">
+<div class="social-float fixed right-4 bottom-6 z-50 flex flex-col items-end gap-3" style="position: fixed !important; right: 1rem !important; bottom: 1.5rem !important; z-index: 9999 !important;">
 
     {{-- 🔹 SOCIAL HOVER --}}
     <div class="group relative">

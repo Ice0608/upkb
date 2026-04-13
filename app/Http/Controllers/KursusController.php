@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kursus;
+use App\Models\Program;
 use Dompdf\Dompdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -42,8 +43,13 @@ class KursusController extends Controller
         }
 
         $kursusList = $query->get();
+        $selectedProgram = null;
 
-        return view('program.listkursus', compact('kursusList', 'jenis'));
+        if ($jenis) {
+            $selectedProgram = Program::where('jenis_program', $jenis)->first();
+        }
+
+        return view('program.listkursus', compact('kursusList', 'jenis', 'selectedProgram'));
     }
 
     public function show($id)
