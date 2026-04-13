@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('ic_pelajar');
             $table->string('no_tel');
             $table->string('email')->nullable();
-            $table->text('alamat')->nullable();
+            $table->string('address_line1')->nullable();
+            $table->string('address_line2')->nullable();
+            $table->string('city')->nullable();
+            $table->string('region')->nullable();
+            $table->string('postcode')->nullable();
             $table->string('kod_institusi');
             $table->string('kod_kursus');
             $table->string('nama_bapa')->nullable();
