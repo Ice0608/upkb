@@ -227,7 +227,7 @@
         }
     </style>
 </head>
-<body class="faq-page text-gray-800">
+<body class="faq-page text-gray-800 bg-blocks">
     
     @include('layouts.navigation')
 

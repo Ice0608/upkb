@@ -293,7 +293,7 @@
         }
     </style>
 </head>
-<body class="contact-page text-gray-800">
+<body class="contact-page text-gray-800 bg-blocks">
 
     @include('layouts.navigation')
     

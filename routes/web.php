@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\StaffEventController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\InterviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +34,29 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/staff/event', [StaffEventController::class, 'store'])->name('staff.event.store');
     Route::get('/staff/bmd/{pelajar}', [StaffEventController::class, 'editBmd'])->name('staff.bmd.edit');
     Route::put('/staff/bmd/{pelajar}', [StaffEventController::class, 'updatePelajar'])->name('staff.bmd.update');
+    Route::patch('/staff/payment-status/{pelajar}', [StaffEventController::class, 'updatePaymentStatus'])->name('staff.update-payment-status');
+
+    // Interview routes
+    Route::get('/staff/temuduga/{pelajar}/welcome', [InterviewController::class, 'welcome'])->name('staff.temuduga.welcome');
+    Route::get('/staff/temuduga/{pelajar}/program', [InterviewController::class, 'program'])->name('staff.temuduga.program');
+    Route::get('/staff/temuduga/{pelajar}/kursus', [InterviewController::class, 'listKursus'])->name('staff.temuduga.listkursus');
+    Route::get('/staff/temuduga/{pelajar}/kursus/{nama}', [InterviewController::class, 'pilihanKursus'])->name('staff.temuduga.pilihankursus');
+    Route::get('/staff/temuduga/{pelajar}/kursus/{nama}/filter', [InterviewController::class, 'filterByName'])->name('staff.temuduga.filterByName');
+    Route::get('/staff/temuduga/{pelajar}/institusi/{kod_institusi}', [InterviewController::class, 'infoInstitusi'])->name('staff.temuduga.infoinstitusi');
+    Route::get('/staff/temuduga/{pelajar}/infokursus/{kod_kursus}', [InterviewController::class, 'infoKursus'])->name('staff.temuduga.infokursus');
+    Route::get('/staff/temuduga/{pelajar}/tabmaklumat/{kod_kursus}', [InterviewController::class, 'tabMaklumat'])->name('staff.temuduga.tabmaklumat');
+    Route::get('/staff/temuduga/{pelajar}/tabsyarat/{kod_kursus}', [InterviewController::class, 'tabSyarat'])->name('staff.temuduga.tabsyarat');
+    Route::get('/staff/temuduga/{pelajar}/tabsilibus/{kod_kursus}', [InterviewController::class, 'tabSilibus'])->name('staff.temuduga.tabsilibus');
+    Route::get('/staff/temuduga/{pelajar}/tabkerjaya/{kod_kursus}', [InterviewController::class, 'tabKerjaya'])->name('staff.temuduga.tabkerjaya');
+    Route::get('/staff/temuduga/{pelajar}/tabyuran/{kod_kursus}', [InterviewController::class, 'tabYuran'])->name('staff.temuduga.tabyuran');
+    Route::get('/staff/temuduga/{pelajar}/tabgaleri/{kod_kursus}', [InterviewController::class, 'tabGaleri'])->name('staff.temuduga.tabgaleri');
+    Route::post('/staff/temuduga/{pelajar}/apply', [InterviewController::class, 'applyNow'])->name('staff.temuduga.apply');
+    Route::get('/staff/temuduga/{pelajar}/pembayaran', [InterviewController::class, 'pembayaran'])->name('staff.temuduga.pembayaran');
+    Route::post('/staff/temuduga/{pelajar}/pembayaran', [InterviewController::class, 'storePembayaran'])->name('staff.temuduga.storepembayaran');
+    Route::get('/staff/temuduga/{pelajar}/resit', [InterviewController::class, 'resit'])->name('staff.temuduga.resit');
+    Route::get('/staff/temuduga/{pelajar}/surat-tawaran', [InterviewController::class, 'suratTawaran'])->name('staff.temuduga.surat-tawaran');
+    Route::get('/staff/temuduga/{pelajar}/download-surat', [InterviewController::class, 'downloadSuratTawaran'])->name('staff.temuduga.download-surat');
+    Route::post('/staff/temuduga/{pelajar}/complete', [InterviewController::class, 'complete'])->name('staff.temuduga.complete');
 });
 
 Route::view('/about', 'about')->name('about');

@@ -54,7 +54,7 @@
                         @error('tarikh_pendaftaran') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                     </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. Reff (Username Staff)</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. Reff/ Nama Staff</span>
                     <input type="text" name="noreff" value="{{ old('noreff', $pelajar?->noreff) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('noreff') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
@@ -250,20 +250,37 @@
             <div class="grid gap-6 sm:grid-cols-3">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Pertama (Nama Kursus)</span>
-                    <input type="text" name="pilihan_pertama" value="{{ old('pilihan_pertama', $pelajar?->pilihan_pertama) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    <select name="pilihan_pertama" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                        <option value="">Pilih Kursus</option>
+                        @foreach($namaKursusOptions as $kursus)
+                            <option value="{{ $kursus }}" {{ old('pilihan_pertama', $pelajar?->pilihan_pertama) == $kursus ? 'selected' : '' }}>{{ $kursus }}</option>
+                        @endforeach
+                    </select>
                     @error('pilihan_pertama') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Kedua (Nama Kursus)</span>
-                    <input type="text" name="pilihan_kedua" value="{{ old('pilihan_kedua', $pelajar?->pilihan_kedua) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    <select name="pilihan_kedua" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                        <option value="">Pilih Kursus</option>
+                        @foreach($namaKursusOptions as $kursus)
+                            <option value="{{ $kursus }}" {{ old('pilihan_kedua', $pelajar?->pilihan_kedua) == $kursus ? 'selected' : '' }}>{{ $kursus }}</option>
+                        @endforeach
+                    </select>
                     @error('pilihan_kedua') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Ketiga (Nama Kursus)</span>
-                    <input type="text" name="pilihan_ketiga" value="{{ old('pilihan_ketiga', $pelajar?->pilihan_ketiga) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    <select name="pilihan_ketiga" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                        <option value="">Pilih Kursus</option>
+                        @foreach($namaKursusOptions as $kursus)
+                            <option value="{{ $kursus }}" {{ old('pilihan_ketiga', $pelajar?->pilihan_ketiga) == $kursus ? 'selected' : '' }}>{{ $kursus }}</option>
+                        @endforeach
+                    </select>
                     @error('pilihan_ketiga') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
             </div>
+
+            @error('pilihan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
 
             <div class="flex flex-col gap-3 sm:flex-row sm:justify-between">
                 <div class="space-x-3">
@@ -285,6 +302,38 @@
 
 @if(request()->query('print') && isset($pelajar))
     <script>window.print();</script>
+@else
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selects = [
+                document.querySelector('select[name="pilihan_pertama"]'),
+                document.querySelector('select[name="pilihan_kedua"]'),
+                document.querySelector('select[name="pilihan_ketiga"]')
+            ];
+
+            function updateOptions() {
+                const selectedValues = selects.map(select => select.value).filter(val => val);
+
+                selects.forEach(select => {
+                    const currentValue = select.value;
+                    Array.from(select.options).forEach(option => {
+                        if (option.value && option.value !== currentValue) {
+                            option.disabled = selectedValues.includes(option.value);
+                        } else {
+                            option.disabled = false;
+                        }
+                    });
+                });
+            }
+
+            selects.forEach(select => {
+                select.addEventListener('change', updateOptions);
+            });
+
+            // Initial update
+            updateOptions();
+        });
+    </script>
 @endif
 
 </body>
