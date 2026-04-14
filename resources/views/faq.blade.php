@@ -10,13 +10,33 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        :root {
+            --xmb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --xmb-ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+            --xmb-primary: #ff7a00;
+            --xmb-primary-soft: #ffb238;
+            --xmb-primary-pale: #ffe1b8;
+            --xmb-accent: #ffcf5a;
+            --xmb-bg: #f8f4ef;
+            --xmb-bg-warm: #fff9f4;
+            --xmb-surface: rgba(255, 255, 255, 0.74);
+            --xmb-surface-strong: rgba(241, 236, 230, 0.96);
+            --xmb-border: rgba(255, 255, 255, 0.76);
+            --xmb-border-soft: rgba(28, 28, 30, 0.06);
+            --xmb-text-main: #1c1c1e;
+            --xmb-text-soft: rgba(28, 28, 30, 0.72);
+            --xmb-text-faint: rgba(28, 28, 30, 0.5);
+            --xmb-shadow: rgba(27, 29, 35, 0.08);
+            --xmb-shadow-strong: rgba(27, 29, 35, 0.14);
+            --xmb-glow: rgba(255, 122, 0, 0.28);
+            --xmb-glow-strong: rgba(255, 188, 56, 0.38);
+        }
+
         .faq-page {
             position: relative;
             min-height: 100vh;
-            background:
-                radial-gradient(circle at top left, rgba(245, 158, 11, 0.22), transparent 24%),
-                radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 26%),
-                linear-gradient(180deg, #fff1db 0%, #e8efff 100%);
+            overflow-x: hidden;
+            background: linear-gradient(180deg, var(--xmb-bg-warm) 0%, #f7f2ec 52%, #f1ebe4 100%);
         }
 
         .faq-page::before,
@@ -30,21 +50,23 @@
 
         .faq-page::before {
             background:
-                linear-gradient(120deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0) 42%),
-                repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.04) 0 1px, transparent 1px 120px);
-            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.18));
-            opacity: 0.55;
+                radial-gradient(circle at 12% 14%, rgba(255, 122, 0, 0.14), transparent 24%),
+                radial-gradient(circle at 85% 16%, rgba(255, 198, 94, 0.16), transparent 20%),
+                radial-gradient(circle at 50% 100%, rgba(255, 154, 60, 0.12), transparent 32%),
+                repeating-radial-gradient(circle at 0 0, rgba(28, 28, 30, 0.025) 0 1px, transparent 1px 4px);
+            opacity: 0.46;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.15));
         }
 
         .faq-page::after {
-            inset: auto auto 3rem 50%;
-            width: min(70rem, calc(100vw - 2rem));
-            height: 18rem;
+            inset: auto auto -6rem 50%;
+            width: min(80rem, calc(100vw - 1.5rem));
+            height: 28rem;
             transform: translateX(-50%);
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 184, 28, 0.34), rgba(255, 184, 28, 0) 66%);
-            filter: blur(34px);
-            opacity: 0.96;
+            background: radial-gradient(circle, rgba(255, 184, 63, 0.16), rgba(255, 184, 63, 0) 68%);
+            filter: blur(54px);
+            opacity: 0.74;
         }
 
         .faq-page > * {
@@ -52,204 +74,586 @@
             z-index: 1;
         }
 
+        .faq-wave-layer {
+            position: fixed;
+            inset: auto -12% -6rem;
+            height: 34rem;
+            pointer-events: none;
+            z-index: 0;
+            border-radius: 50% 50% 0 0;
+            opacity: 0.34;
+            filter: blur(10px);
+            background:
+                radial-gradient(circle at 12% 45%, rgba(255, 255, 255, 0.42), transparent 20%),
+                linear-gradient(120deg, rgba(255, 214, 163, 0.1) 8%, rgba(255, 154, 60, 0.18) 34%, rgba(255, 203, 103, 0.16) 62%, rgba(255, 255, 255, 0.08) 100%);
+            animation: faqWaveDrift 18s linear infinite alternate;
+        }
+
+        .faq-wave-layer::before,
+        .faq-wave-layer::after {
+            content: "";
+            position: absolute;
+            left: -8%;
+            width: 116%;
+            border-radius: 48% 52% 0 0;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 154, 60, 0.12), rgba(255, 207, 90, 0.1), rgba(255, 255, 255, 0.04));
+        }
+
+        .faq-wave-layer::before {
+            bottom: 8rem;
+            height: 10rem;
+            opacity: 0.26;
+            filter: blur(10px);
+            animation: faqWaveSway 12s var(--xmb-ease-soft) infinite alternate;
+        }
+
+        .faq-wave-layer::after {
+            bottom: 2rem;
+            height: 13rem;
+            opacity: 0.3;
+            filter: blur(16px);
+            animation: faqWaveSway 15s var(--xmb-ease) infinite alternate-reverse;
+        }
+
+        .faq-wave-layer-secondary {
+            inset: auto -18% -10rem;
+            height: 30rem;
+            opacity: 0.18;
+            transform: scaleX(1.08);
+            animation-duration: 24s;
+            animation-direction: alternate-reverse;
+        }
+
+        .faq-shell {
+            padding-top: 2.75rem;
+            padding-bottom: 5rem;
+        }
+
         .faq-hero {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(255, 227, 170, 0.48);
             background:
-                linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
+                linear-gradient(90deg, #ff7a00 0%, #ff9924 56%, #ffd24a 100%);
             box-shadow:
-                0 24px 70px rgba(15, 23, 42, 0.14),
-                0 0 68px rgba(255, 166, 0, 0.3),
-                0 0 130px rgba(255, 212, 59, 0.22),
-                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+                inset 0 1px 0 rgba(255, 250, 236, 0.44),
+                0 24px 55px rgba(205, 112, 24, 0.22),
+                0 0 46px rgba(255, 177, 60, 0.2);
+            backdrop-filter: blur(16px);
+            animation: faqFloat 6.6s var(--xmb-ease-soft) infinite;
         }
 
         .faq-hero::before {
             content: "";
             position: absolute;
-            top: -3rem;
-            right: 8%;
-            width: 11rem;
-            height: 11rem;
-            border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 72%);
-            border: 1px solid rgba(255, 255, 255, 0.24);
-            box-shadow:
-                0 0 36px rgba(255, 235, 140, 0.34),
-                0 0 0 18px rgba(255, 255, 255, 0.08),
-                0 0 0 40px rgba(255, 255, 255, 0.04);
+            inset: 0;
+            background:
+                radial-gradient(circle at 84% 30%, rgba(255, 249, 235, 0.3), transparent 18%),
+                linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent 72%),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 14px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 14px);
+            background-size: auto, auto, 8rem 5.8rem, 8rem 5.8rem;
+            background-position: center, center, 1.25rem calc(100% - 0.95rem), 1.25rem calc(100% - 0.95rem);
+            background-repeat: no-repeat;
+            opacity: 0.9;
             pointer-events: none;
-            animation: faqGlowPulse 7s ease-in-out infinite;
         }
 
         .faq-hero::after {
             content: "";
             position: absolute;
-            left: 4%;
-            bottom: -1.5rem;
-            width: 8rem;
-            height: 8rem;
-            border-radius: 2rem;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
-                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px),
-                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
-            transform: rotate(12deg);
-            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
-            opacity: 0.68;
+            right: 6%;
+            top: -2.25rem;
+            width: 12rem;
+            height: 12rem;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 241, 209, 0.22);
+            box-shadow:
+                0 0 0 1rem rgba(255, 241, 209, 0.08),
+                0 0 0 2rem rgba(255, 241, 209, 0.04);
+            opacity: 0.92;
             pointer-events: none;
         }
 
         .faq-hero-eyebrow {
-            color: rgba(255, 255, 255, 0.74);
+            color: rgba(255, 244, 228, 0.74);
         }
 
         .faq-hero-title {
             color: #ffffff;
-            text-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
+            text-shadow: 0 10px 22px rgba(160, 74, 0, 0.24);
         }
 
         .faq-hero-copy {
-            color: rgba(255, 255, 255, 0.84);
-            text-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+            color: rgba(255, 247, 235, 0.92);
+        }
+
+        .faq-track-label {
+            color: rgba(170, 93, 18, 0.8);
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+        }
+
+        .faq-track {
+            position: relative;
+            display: grid;
+            gap: 1.4rem;
+        }
+
+        .faq-track::before {
+            content: "";
+            position: absolute;
+            left: 1.25rem;
+            right: 1.25rem;
+            top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(232, 160, 96, 0.04), rgba(255, 154, 60, 0.26), rgba(255, 207, 90, 0.14), rgba(232, 160, 96, 0.04));
+            transform: translateY(-50%);
+            z-index: 0;
+        }
+
+        .faq-xmb-row {
+            position: relative;
+            display: grid;
+            gap: 1.25rem;
+            z-index: 1;
         }
 
         .faq-card {
             position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            isolation: isolate;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            min-height: 10rem;
+            padding: 1.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.68);
+            border-radius: 2rem;
+            text-align: left;
+            color: var(--xmb-text-main);
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.7)),
-                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+                linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 249, 243, 0.44)),
+                linear-gradient(140deg, rgba(243, 237, 231, 0.98), rgba(233, 228, 223, 0.96));
             box-shadow:
-                0 18px 40px rgba(15, 23, 42, 0.08),
-                0 0 28px rgba(255, 184, 28, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.86);
+                inset 0 1px 0 rgba(255, 255, 255, 0.96),
+                inset 0 -10px 20px rgba(255, 255, 255, 0.14),
+                0 16px 34px rgba(85, 53, 24, 0.08),
+                0 2px 10px rgba(28, 28, 30, 0.04);
             backdrop-filter: blur(14px);
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            transform: translateY(0) scale(0.98);
+            transform-origin: center;
+            opacity: 0.78;
+            filter: blur(0.8px) saturate(0.86);
+            transition:
+                transform 520ms var(--xmb-ease),
+                opacity 420ms var(--xmb-ease),
+                filter 420ms var(--xmb-ease),
+                box-shadow 520ms var(--xmb-ease),
+                border-color 420ms var(--xmb-ease),
+                background 520ms var(--xmb-ease);
+            animation: faqFloat 5.8s var(--xmb-ease-soft) infinite;
+            animation-delay: var(--float-delay, 0s);
         }
 
         .faq-card::before {
             content: "";
             position: absolute;
             inset: 0;
+            border-radius: inherit;
             background:
-                radial-gradient(circle at top right, rgba(255, 255, 255, 0.4), transparent 28%),
-                radial-gradient(circle at bottom left, rgba(251, 146, 60, 0.08), transparent 24%);
+                radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.5), transparent 22%),
+                linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.2), transparent 70%);
+            opacity: 0.78;
             pointer-events: none;
         }
 
-        .faq-card:hover {
-            transform: translateY(-6px) scale(1.01);
-            border-color: rgba(251, 146, 60, 0.18);
+        .faq-card::after {
+            content: "";
+            position: absolute;
+            inset: -12px;
+            border-radius: 2.35rem;
+            background: radial-gradient(circle, rgba(255, 164, 45, 0.28), rgba(255, 164, 45, 0) 72%);
+            opacity: 0;
+            filter: blur(12px);
+            transition: opacity 520ms var(--xmb-ease);
+            z-index: -1;
+        }
+
+        .faq-card:hover,
+        .faq-card:focus-visible,
+        .faq-card.is-focused {
+            transform: translateY(-0.75rem) scale(1.05);
+            opacity: 1;
+            filter: blur(0) saturate(1.08);
+            border-color: rgba(255, 208, 137, 0.56);
             box-shadow:
-                0 28px 60px rgba(15, 23, 42, 0.12),
-                0 0 42px rgba(249, 115, 22, 0.16),
-                0 0 70px rgba(255, 184, 28, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+                inset 0 1px 0 rgba(255, 246, 228, 0.52),
+                0 24px 54px rgba(226, 124, 30, 0.24),
+                0 0 34px rgba(255, 172, 58, 0.24),
+                0 0 90px rgba(255, 214, 163, 0.2);
+            background:
+                linear-gradient(90deg, rgba(255, 123, 6, 0.94), rgba(255, 155, 33, 0.94) 58%, rgba(255, 211, 81, 0.94));
+            outline: none;
+        }
+
+        .faq-card:hover::after,
+        .faq-card:focus-visible::after,
+        .faq-card.is-focused::after {
+            opacity: 1;
+        }
+
+        .faq-track.has-focused-item .faq-card:not(.is-focused) {
+            opacity: 0.56;
+            filter: blur(1.8px) saturate(0.72);
+            transform: scale(0.95);
         }
 
         .faq-card:active {
-            transform: translateY(-1px) scale(0.985);
+            transform: translateY(-0.2rem) scale(1.02);
         }
 
         .faq-icon-chip {
             position: relative;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 4.6rem;
+            height: 4.6rem;
+            border-radius: 1.65rem;
+            color: #ffffff;
             box-shadow:
-                0 0 28px rgba(249, 115, 22, 0.18),
-                0 14px 26px rgba(15, 23, 42, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+                inset 0 1px 0 rgba(255, 255, 255, 0.34),
+                0 16px 28px rgba(28, 28, 30, 0.12),
+                0 0 20px rgba(255, 154, 60, 0.12);
+            transition: transform 520ms var(--xmb-ease), box-shadow 520ms var(--xmb-ease);
         }
 
-        .faq-icon-chip-blue {
+        .faq-card.is-focused .faq-icon-chip,
+        .faq-card:hover .faq-icon-chip,
+        .faq-card:focus-visible .faq-icon-chip {
+            transform: scale(1.08);
             box-shadow:
-                0 0 28px rgba(37, 99, 235, 0.22),
-                0 14px 26px rgba(15, 23, 42, 0.12),
-                inset 0 1px 0 rgba(255, 255, 255, 0.22);
-        }
-
-        .faq-icon-chip::after {
-            content: "";
-            position: absolute;
-            inset: auto auto -0.65rem 50%;
-            width: 2.4rem;
-            height: 0.85rem;
-            transform: translateX(-50%);
-            border-radius: 999px;
-            background: rgba(15, 23, 42, 0.1);
-            filter: blur(10px);
-            z-index: -1;
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                0 20px 34px rgba(28, 28, 30, 0.14),
+                0 0 34px rgba(255, 154, 60, 0.18);
         }
 
         .faq-arrow {
-            transition: transform 0.3s ease, color 0.3s ease;
+            color: rgba(28, 28, 30, 0.36);
+            transition: transform 420ms var(--xmb-ease), opacity 420ms var(--xmb-ease), color 420ms var(--xmb-ease);
         }
 
-        .faq-card:hover .faq-arrow {
-            transform: translateX(4px);
-            color: #f97316;
+        .faq-card.is-focused .faq-arrow,
+        .faq-card:hover .faq-arrow,
+        .faq-card:focus-visible .faq-arrow {
+            color: rgba(255, 255, 255, 0.92);
+            transform: translateX(6px);
+            opacity: 1;
+        }
+
+        .faq-card-meta {
+            color: var(--xmb-text-faint);
+        }
+
+        .faq-card-title {
+            color: var(--xmb-text-main);
+            text-shadow: 0 8px 20px rgba(255, 255, 255, 0.16);
+        }
+
+        .faq-card-copy {
+            color: var(--xmb-text-soft);
+        }
+
+        .faq-card.is-focused .faq-card-title,
+        .faq-card:hover .faq-card-title,
+        .faq-card:focus-visible .faq-card-title,
+        .faq-card.is-focused .faq-card-copy,
+        .faq-card:hover .faq-card-copy,
+        .faq-card:focus-visible .faq-card-copy,
+        .faq-card.is-focused .faq-card-meta,
+        .faq-card:hover .faq-card-meta,
+        .faq-card:focus-visible .faq-card-meta {
+            color: rgba(255, 255, 255, 0.96);
+        }
+
+        .faq-track-hint {
+            color: rgba(122, 81, 44, 0.74);
+        }
+
+        .faq-modal-backdrop {
+            background: rgba(28, 28, 30, 0.12);
+            backdrop-filter: blur(10px);
         }
 
         .faq-modal-shell {
-            border: 1px solid rgba(255, 255, 255, 0.78);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.74);
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.8)),
-                linear-gradient(135deg, rgba(251, 146, 60, 0.06), rgba(59, 130, 246, 0.05));
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 239, 0.72)),
+                linear-gradient(140deg, rgba(255, 214, 163, 0.22), rgba(255, 198, 83, 0.08));
             box-shadow:
-                0 30px 80px rgba(15, 23, 42, 0.18),
-                0 0 52px rgba(255, 184, 28, 0.14),
-                inset 0 1px 0 rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(18px);
+                inset 0 1px 0 rgba(255, 255, 255, 0.94),
+                inset 0 14px 28px rgba(255, 255, 255, 0.22),
+                0 30px 80px rgba(28, 28, 30, 0.12),
+                0 0 40px rgba(255, 154, 60, 0.14);
+            backdrop-filter: blur(20px);
+            color: var(--xmb-text-main);
+            transition: transform 420ms var(--xmb-ease), opacity 360ms var(--xmb-ease-soft);
+            animation: faqModalFloat 6.8s var(--xmb-ease-soft) infinite;
         }
 
-        @keyframes faqGlowPulse {
-            0%, 100% {
-                opacity: 0.72;
-                transform: scale(1);
+        .faq-modal-shell::before,
+        .faq-modal-shell::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .faq-modal-shell::before {
+            inset: -18% auto auto -8%;
+            width: 13rem;
+            height: 13rem;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 70%);
+            opacity: 0.58;
+            filter: blur(10px);
+        }
+
+        .faq-modal-shell::after {
+            inset: auto -12% -16% auto;
+            width: 14rem;
+            height: 14rem;
+            border-radius: 50%;
+            opacity: 0.36;
+            filter: blur(18px);
+            animation: faqModalGlowPulse 5.8s var(--xmb-ease-soft) infinite;
+        }
+
+        .faq-modal-shell[data-tone="skm"]::after {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.46), rgba(139, 92, 246, 0) 72%);
+        }
+
+        .faq-modal-shell[data-tone="tvet"]::after {
+            background: radial-gradient(circle, rgba(245, 180, 33, 0.42), rgba(245, 180, 33, 0) 72%);
+        }
+
+        .faq-modal-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-modal-kicker {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            margin-bottom: 1rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(28, 28, 30, 0.64);
+            background: rgba(255, 255, 255, 0.58);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.78),
+                0 10px 20px rgba(28, 28, 30, 0.06);
+        }
+
+        .faq-modal-title {
+            font-size: 1.75rem;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .faq-modal-lead,
+        .faq-modal-paragraph,
+        .faq-modal-list {
+            position: relative;
+            padding: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .faq-modal-lead {
+            margin-bottom: 1rem;
+        }
+
+        .faq-modal-list {
+            padding-left: 1.5rem;
+        }
+
+        .faq-modal-list li + li {
+            margin-top: 0.7rem;
+        }
+
+        .faq-modal-paragraph + .faq-modal-paragraph {
+            margin-top: 0.95rem;
+        }
+
+        .faq-modal-shell h2 {
+            color: var(--xmb-text-main);
+        }
+
+        .faq-modal-shell p,
+        .faq-modal-shell li {
+            color: rgba(28, 28, 30, 0.78);
+            line-height: 1.9;
+        }
+
+        .faq-modal-shell li::marker {
+            color: rgba(255, 122, 0, 0.82);
+        }
+
+        @keyframes faqFloat {
+            0%,
+            100% {
+                transform: translateY(0) scale(var(--float-scale, 1));
             }
             50% {
-                opacity: 1;
-                transform: scale(1.06);
+                transform: translateY(-10px) scale(var(--float-scale, 1));
+            }
+        }
+
+        @keyframes faqWaveDrift {
+            0% {
+                transform: translate3d(-3%, 0, 0) scaleY(1);
+            }
+            50% {
+                transform: translate3d(2%, -1.5%, 0) scaleY(1.03);
+            }
+            100% {
+                transform: translate3d(6%, 0, 0) scaleY(0.98);
+            }
+        }
+
+        @keyframes faqWaveSway {
+            0% {
+                transform: translateX(-1%) scaleY(1);
+            }
+            100% {
+                transform: translateX(3%) scaleY(1.08);
+            }
+        }
+
+        @keyframes faqModalFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes faqModalGlowPulse {
+            0%,
+            100% {
+                opacity: 0.28;
+                transform: scale(0.94);
+            }
+            50% {
+                opacity: 0.46;
+                transform: scale(1.04);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .faq-shell {
+                padding-top: 3.5rem;
+            }
+
+            .faq-xmb-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: center;
+            }
+
+            .faq-card {
+                min-height: 11.5rem;
+                padding: 1.7rem 1.8rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .faq-track::before {
+                left: 0.5rem;
+                right: 0.5rem;
+                top: auto;
+                bottom: 0.35rem;
+                transform: none;
+            }
+
+            .faq-card {
+                border-radius: 1.7rem;
+            }
+
+            .faq-modal-shell {
+                padding: 1.4rem;
+            }
+
+            .faq-modal-title {
+                font-size: 1.4rem;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .faq-wave-layer,
+            .faq-wave-layer::before,
+            .faq-wave-layer::after,
+            .faq-hero,
             .faq-card,
             .faq-arrow,
             #modalBox {
+                animation: none;
                 transition: none;
             }
 
-            .faq-hero::before {
-                animation: none;
+            .faq-track.has-focused-item .faq-card:not(.is-focused) {
+                filter: none;
             }
         }
     </style>
 </head>
-<body class="faq-page text-gray-800">
+<body class="faq-page text-neutral-900">
     
     @include('layouts.navigation')
 
     <main class="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <div class="faq-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 text-center mb-14">
-            <p class="faq-hero-eyebrow font-semibold tracking-[0.1em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
+            <p class="faq-hero-eyebrow font-semibold tracking-[0.28em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
             <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl font-semibold tracking-[-0.04em]">Soalan Lazim (FAQ)</h2>
             <p class="faq-hero-copy mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-8">
                 Jawapan kepada pertanyaan yang sering diajukan oleh pelajar dan ibu bapa.
             </p>
         </div>
 
-        <div class="max-w-5xl mx-auto grid gap-6 sm:grid-cols-2">
-            <div onclick="openModal('skm')"
-                class="faq-card group rounded-[1.75rem] p-6 sm:p-7 cursor-pointer">
-                <div class="flex items-start gap-4">
-                    <div class="faq-icon-chip bg-[linear-gradient(135deg,#f97316,#fb7185)] text-white p-3.5 rounded-2xl">
-                        <i class="fa-solid fa-circle-question"></i>
-                    </div>
+        <section class="max-w-5xl mx-auto">
+            <div class="flex items-center justify-between gap-4 mb-5">
+                <p class="faq-track-label text-xs sm:text-sm">Pusat Bantuan</p>
+                <p class="faq-track-hint text-xs sm:text-sm">Pilih soalan untuk melihat jawapan penuh</p>
+            </div>
+
+            <div class="faq-track" id="faqTrack">
+                <div class="faq-xmb-row">
+                    <button
+                        type="button"
+                        data-faq-item
+                        data-faq-type="skm"
+                        class="faq-card group"
+                        style="--float-delay: 0s; --float-scale: 1;"
+                        aria-haspopup="dialog"
+                        aria-controls="faqModal"
+                    >
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#8b5cf6,#6d28d9)] text-2xl">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </div>
 
                     <div class="flex-1">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Pensijilan</p>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pensijilan</p>
                         <h3 class="font-semibold text-slate-800 text-lg sm:text-xl mt-2 tracking-[-0.02em]">
                             Apa itu Sijil Kemahiran Malaysia (SKM)?
                         </h3>
@@ -259,21 +663,26 @@
                         </p>
                     </div>
 
-                    <span class="faq-arrow text-slate-500 text-xl mt-1">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </span>
-                </div>
-            </div>
+                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </button>
 
-            <div onclick="openModal('tvet')"
-                class="faq-card group rounded-[1.75rem] p-6 sm:p-7 cursor-pointer">
-                <div class="flex items-start gap-4">
-                    <div class="faq-icon-chip faq-icon-chip-blue bg-[linear-gradient(135deg,#8b5cf6,#3b82f6)] text-white p-3.5 rounded-2xl">
-                        <i class="fa-solid fa-book-open"></i>
-                    </div>
+                    <button
+                        type="button"
+                        data-faq-item
+                        data-faq-type="tvet"
+                        class="faq-card group"
+                        style="--float-delay: 0.8s; --float-scale: 1;"
+                        aria-haspopup="dialog"
+                        aria-controls="faqModal"
+                    >
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#ffd76a,#e5a100)] text-2xl">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
 
                     <div class="flex-1">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Pendidikan Teknikal</p>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pendidikan Teknikal</p>
                         <h3 class="font-semibold text-slate-800 text-lg sm:text-xl mt-2 tracking-[-0.02em]">
                             Apa itu TVET?
                         </h3>
@@ -283,17 +692,18 @@
                         </p>
                     </div>
 
-                    <span class="faq-arrow text-slate-500 text-xl mt-1">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </span>
+                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </button>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <div id="faqModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-        <div id="modalBox" class="faq-modal-shell w-full max-w-lg rounded-[1.75rem] p-7 relative transform transition scale-95 opacity-0 mx-4">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-xl">
+    <div id="faqModal" class="faq-modal-backdrop fixed inset-0 hidden items-center justify-center z-50">
+        <div id="modalBox" class="faq-modal-shell w-full max-w-lg rounded-[1.85rem] p-7 relative transform scale-95 opacity-0 mx-4">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900 text-xl transition-colors duration-300">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -302,52 +712,89 @@
     </div>
 
     <script>
+    const transitionDelay = 18;
+    const focusableItems = Array.from(document.querySelectorAll('[data-faq-item]'));
+    const faqTrack = document.getElementById('faqTrack');
+
+    function setFocusedItem(activeItem) {
+        if (!focusableItems.length || !faqTrack) {
+            return;
+        }
+
+        focusableItems.forEach((item) => {
+            const isActive = item === activeItem;
+            item.classList.toggle('is-focused', isActive);
+            item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        faqTrack.classList.toggle('has-focused-item', Boolean(activeItem));
+    }
+
+    function focusItemByIndex(index) {
+        if (!focusableItems.length) {
+            return;
+        }
+
+        const normalizedIndex = (index + focusableItems.length) % focusableItems.length;
+        const nextItem = focusableItems[normalizedIndex];
+
+        nextItem.focus({ preventScroll: true });
+        setFocusedItem(nextItem);
+    }
+
     function openModal(type) {
         const modal = document.getElementById('faqModal');
         const box = document.getElementById('modalBox');
         const content = document.getElementById('modalContent');
 
         let html = '';
+        box.dataset.tone = type;
 
         if (type === 'skm') {
             html = `
-                <h2 class="text-xl font-bold mb-4 text-gray-800">
-                    Apa itu Sijil Kemahiran Malaysia (SKM)?
-                </h2>
+                <div class="faq-modal-content">
+                    <div class="faq-modal-kicker">Pensijilan Rasmi</div>
+                    <h2 class="faq-modal-title font-bold text-neutral-900">
+                        Apa itu Sijil Kemahiran Malaysia (SKM)?
+                    </h2>
 
                 <ul class="list-decimal pl-5 space-y-2 text-gray-600">
-                    <li><p>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</p></li>
-                    <li><p>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</p></li>
-                    <li><p>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</p></li>
-                    <li><p>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</p></li>
+                    <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
+                    <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
+                    <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
+                    <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
                 </ul>
             `;
         }
 
         if (type === 'tvet') {
             html = `
-                <h2 class="text-xl font-bold mb-4 text-gray-800">
-                    Apa itu TVET?
-                </h2>
+                <div class="faq-modal-content">
+                    <div class="faq-modal-kicker">Pendidikan Teknikal</div>
+                    <h2 class="faq-modal-title font-bold text-neutral-900">
+                        Apa itu TVET?
+                    </h2>
 
-                <p class="text-gray-600 mb-3">
-                    Pendidikan dan latihan yang bertujuan untuk menyediakan pelajar dengan kemahiran praktikal dan pengetahuan teknikal yang diperlukan untuk memasuki pasaran kerja dalam pelbagai bidang industri.
-                </p>
+                    <p class="faq-modal-lead text-neutral-700">
+                        Pendidikan dan latihan yang bertujuan untuk menyediakan pelajar dengan kemahiran praktikal dan pengetahuan teknikal yang diperlukan untuk memasuki pasaran kerja dalam pelbagai bidang industri.
+                    </p>
 
-                <p class="text-gray-600">
-                    TVET meliputi pelbagai sektor seperti teknologi maklumat, kejuruteraan, perkhidmatan, kesihatan, pertanian, dan banyak lagi. Ia menekankan pembelajaran berasaskan amali dan latihan praktikal yang berorientasikan pekerjaan.
-                </p>
+                    <p class="faq-modal-paragraph text-neutral-700">
+                        TVET meliputi pelbagai sektor seperti teknologi maklumat, kejuruteraan, perkhidmatan, kesihatan, pertanian, dan banyak lagi. Ia menekankan pembelajaran berasaskan amali dan latihan praktikal yang berorientasikan pekerjaan.
+                    </p>
+                </div>
             `;
         }
 
         content.innerHTML = html;
+        modal.setAttribute('aria-hidden', 'false');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
 
         setTimeout(() => {
             box.classList.remove('scale-95', 'opacity-0');
             box.classList.add('scale-100', 'opacity-100');
-        }, 10);
+        }, transitionDelay);
     }
 
     function closeModal() {
@@ -356,6 +803,7 @@
 
         box.classList.add('scale-95', 'opacity-0');
         box.classList.remove('scale-100', 'opacity-100');
+        modal.setAttribute('aria-hidden', 'true');
 
         setTimeout(() => {
             modal.classList.add('hidden');
@@ -371,6 +819,48 @@
                 closeModal();
             }
         });
+    }
+
+    focusableItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => setFocusedItem(item));
+        item.addEventListener('focus', () => setFocusedItem(item));
+        item.addEventListener('click', () => openModal(item.dataset.faqType));
+
+        item.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                event.preventDefault();
+                focusItemByIndex(index + 1);
+            }
+
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                event.preventDefault();
+                focusItemByIndex(index - 1);
+            }
+
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openModal(item.dataset.faqType);
+            }
+        });
+    });
+
+    if (faqTrack) {
+        faqTrack.addEventListener('mouseleave', () => {
+            const focusedElement = document.activeElement;
+            if (!focusableItems.includes(focusedElement)) {
+                setFocusedItem(focusableItems[0] ?? null);
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modalElement && !modalElement.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+    if (focusableItems.length) {
+        setFocusedItem(focusableItems[0]);
     }
     </script>
 
