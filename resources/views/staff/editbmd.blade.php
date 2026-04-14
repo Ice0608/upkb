@@ -88,7 +88,7 @@
                     @error('tarikh_pendaftaran') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. Reff (Username Staff)</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. Reff/ Nama Staff</span>
                     <input type="text" name="noreff" value="{{ old('noreff', $pelajar?->noreff) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('noreff') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
@@ -184,19 +184,6 @@
                 </label>
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2">
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
-                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
-                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-            </div>
-
                 <div class="border-t border-slate-200 pt-6">
                     <p class="text-xs uppercase tracking-[0.3em] text-slate-600">3. Maklumat Bapa & Ibu</p>
                     <h3 class="mt-2 text-lg font-semibold text-slate-900">Parents' Information</h3>
@@ -271,31 +258,43 @@
             </label>
 
             <div class="border-t border-slate-200 pt-6">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">4. Minat Program</p>
-                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Programme Interest</h3>
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">4. Kursus Dipilih</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Selected Course</h3>
             </div>
-            <div class="grid gap-6 sm:grid-cols-3">
+            <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Pertama (Nama Kursus)</span>
-                    <input type="text" name="pilihan_pertama" value="{{ old('pilihan_pertama', $pelajar?->pilihan_pertama) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('pilihan_pertama') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
+                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" readonly>
+                    @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Kedua (Nama Kursus)</span>
-                    <input type="text" name="pilihan_kedua" value="{{ old('pilihan_kedua', $pelajar?->pilihan_kedua) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('pilihan_kedua') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Ketiga (Nama Kursus)</span>
-                    <input type="text" name="pilihan_ketiga" value="{{ old('pilihan_ketiga', $pelajar?->pilihan_ketiga) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('pilihan_ketiga') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
+                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" readonly>
+                    @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
             </div>
+
+            {{-- akan terpapar apabila kursus telah dipilih pada halaman temu duga --}}
+            {{-- <div class="grid gap-6 sm:grid-cols-2"> 
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
+                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+                <label class="block">
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
+                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                    @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                </label>
+            </div> --}}
+
+            @error('pilihan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
 
             <div class="flex flex-col gap-3 sm:flex-row sm:justify-between no-print">
                 <div class="space-x-3">
                     <a href="{{ route('staff.main') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                     @if(isset($pelajar))
+                        <a href="{{ route('staff.temuduga.welcome', $pelajar->id) }}" class="inline-flex items-center justify-center rounded-full border border-blue-500 bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-600">Mulakan Temu Duga</a>
                         <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id, 'print' => 1]) }}" class="inline-flex items-center justify-center rounded-full border border-orange-500 bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak BMD</a>
                     @endif
                 </div>
@@ -311,6 +310,38 @@
 
 @if(request()->query('print') && isset($pelajar))
     <script>window.print();</script>
+@else
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selects = [
+                document.querySelector('select[name="pilihan_pertama"]'),
+                document.querySelector('select[name="pilihan_kedua"]'),
+                document.querySelector('select[name="pilihan_ketiga"]')
+            ];
+
+            function updateOptions() {
+                const selectedValues = selects.map(select => select.value).filter(val => val);
+
+                selects.forEach(select => {
+                    const currentValue = select.value;
+                    Array.from(select.options).forEach(option => {
+                        if (option.value && option.value !== currentValue) {
+                            option.disabled = selectedValues.includes(option.value);
+                        } else {
+                            option.disabled = false;
+                        }
+                    });
+                });
+            }
+
+            selects.forEach(select => {
+                select.addEventListener('change', updateOptions);
+            });
+
+            // Initial update
+            updateOptions();
+        });
+    </script>
 @endif
 
 </body>

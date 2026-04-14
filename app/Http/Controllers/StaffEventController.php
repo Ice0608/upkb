@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Kursus;
 use App\Models\Pelajar;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
@@ -79,8 +80,9 @@ class StaffEventController extends Controller
         }
 
         $pelajar = null;
+        $namaKursusOptions = \App\Models\Kursus::distinct('nama_kursus')->pluck('nama_kursus')->sort()->toArray();
 
-        return view('bmd', compact('event', 'pelajar'));
+        return view('bmd', compact('event', 'pelajar', 'namaKursusOptions'));
     }
 
     public function storeGuestPelajar(Request $request)
@@ -117,6 +119,12 @@ class StaffEventController extends Controller
             'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
 
+        // Custom validation for unique course choices
+        $pilihan = array_filter([$request->pilihan_pertama, $request->pilihan_kedua, $request->pilihan_ketiga]);
+        if (count($pilihan) !== count(array_unique($pilihan))) {
+            return back()->withErrors(['pilihan' => 'Pilihan kursus mesti berbeza antara satu sama lain.'])->withInput();
+        }
+
         $pelajar = Pelajar::create(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
         ], $data));
@@ -129,7 +137,9 @@ class StaffEventController extends Controller
     {
         abort_if(auth()->user()->level !== 'staff', 403);
 
-        return view('staff.editbmd', compact('pelajar'));
+        $namaKursusOptions = \App\Models\Kursus::distinct('nama_kursus')->pluck('nama_kursus')->sort()->toArray();
+
+        return view('staff.editbmd', compact('pelajar', 'namaKursusOptions'));
     }
 
     public function updatePelajar(Request $request, Pelajar $pelajar)
@@ -168,11 +178,30 @@ class StaffEventController extends Controller
             'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
 
+        // Custom validation for unique course choices
+        $pilihan = array_filter([$request->pilihan_pertama, $request->pilihan_kedua, $request->pilihan_ketiga]);
+        if (count($pilihan) !== count(array_unique($pilihan))) {
+            return back()->withErrors(['pilihan' => 'Pilihan kursus mesti berbeza antara satu sama lain.'])->withInput();
+        }
+
         $pelajar->update(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
         ], $data));
 
         return redirect()->route('staff.bmd.edit', $pelajar->id)
             ->with('success', 'Maklumat pelajar telah dikemaskini.');
+    }
+
+    public function updatePaymentStatus(Request $request, Pelajar $pelajar)
+    {
+        abort_if(auth()->user()->level !== 'staff', 403);
+
+        $request->validate([
+            'status' => 'required|in:pending,paid,cancel',
+        ]);
+
+        Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->update(['status' => $request->status]);
+
+        return redirect()->route('staff.main')->with('success', 'Status pembayaran dikemaskini.');
     }
 }

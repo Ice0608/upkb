@@ -532,30 +532,31 @@
                     <form method="GET" class="relative z-10 space-y-4 mb-6">
                         <!-- Negeri Select -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Negeri</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2"><p>Negeri</p></label>
+                            <p>
                             <select 
                                 name="negeri" 
                                 onchange="this.form.submit()" 
-                                class="kursus-select w-full rounded-2xl px-4 py-2 text-sm shadow-sm focus:outline-none"
-                            >
-                                <option value="">Semua Negeri</option>
-                                <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
-                                <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
-                                <option value="Kelantan" {{ request('negeri') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
-                                <option value="Melaka" {{ request('negeri') == 'Melaka' ? 'selected' : '' }}>Melaka</option>
-                                <option value="Negeri Sembilan" {{ request('negeri') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
-                                <option value="Pahang" {{ request('negeri') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
-                                <option value="Perak" {{ request('negeri') == 'Perak' ? 'selected' : '' }}>Perak</option>
-                                <option value="Perlis" {{ request('negeri') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
-                                <option value="Pulau Pinang" {{ request('negeri') == 'Pulau Pinang' ? 'selected' : '' }}>Pulau Pinang</option>
-                                <option value="Sabah" {{ request('negeri') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
-                                <option value="Sarawak" {{ request('negeri') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
-                                <option value="Selangor" {{ request('negeri') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
-                                <option value="Terengganu" {{ request('negeri') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
-                                <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
-                                <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
-                                <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
-                            </select>
+                                class="kursus-select w-full rounded-2xl px-4 py-2 text-sm shadow-sm focus:outline-none">   
+                                    <option value=""><p>Semua Negeri</p></option>
+                                    <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
+                                    <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
+                                    <option value="Kelantan" {{ request('negeri') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
+                                    <option value="Melaka" {{ request('negeri') == 'Melaka' ? 'selected' : '' }}>Melaka</option>
+                                    <option value="Negeri Sembilan" {{ request('negeri') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
+                                    <option value="Pahang" {{ request('negeri') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
+                                    <option value="Perak" {{ request('negeri') == 'Perak' ? 'selected' : '' }}>Perak</option>
+                                    <option value="Perlis" {{ request('negeri') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
+                                    <option value="Pulau Pinang" {{ request('negeri') == 'Pulau Pinang' ? 'selected' : '' }}>Pulau Pinang</option>
+                                    <option value="Sabah" {{ request('negeri') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
+                                    <option value="Sarawak" {{ request('negeri') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
+                                    <option value="Selangor" {{ request('negeri') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
+                                    <option value="Terengganu" {{ request('negeri') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
+                                    <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
+                                    <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
+                                    <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
+                                </p>
+                                </select>
                         </div>
 
                         <!-- Kuota Filter -->
@@ -620,7 +621,7 @@
                                     <span class="w-4 h-4 min-w-[1rem] min-h-[1rem] flex-shrink-0 rounded-full border-2 border-gray-300 flex items-center justify-center transition-colors">
                                     </span>
                                     
-                                    <span class="truncate">{{ $kursus->nama_kursus }}</span>
+                                    <span class="truncate"><p>{{ $kursus->nama_kursus }}</p></span>
                                 </button>
                             @endforeach
                         </div>
@@ -630,46 +631,38 @@
 
             {{-- MAIN GRID (RIGHT) - UNIQUE COURSES ONLY --}}
             <main class="lg:col-span-3">
-    <div id="courses-container" class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-        @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
-            @php 
-                $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/dummy-course.svg'; 
-            @endphp
-            
-            <article class="course-card group cursor-pointer hover:shadow-xl transition-all duration-500"
-                     data-course-name="{{ $kursus->nama_kursus }}"
-                     onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
-                
-                <div class="card-image-wrapper">
-                    <img src="{{ asset($galleryImage) }}" 
-                         alt="{{ $kursus->nama_kursus }}" 
-                         class="w-full h-full object-cover">
-                    
-                    <!-- Image Overlay Gradient -->
-                    <div class="card-overlay-gradient"></div>
-                    
-                </div>
+                <div id="courses-container" class="grid md:grid-cols-3 gap-6">
+                    @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
+                    @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
+                    <article class="group rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition course-card cursor-pointer flex flex-col h-full" 
+                             data-course-name="{{ $kursus->nama_kursus }}"
+                             onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">
+                                <span class="kursus-tag inline-flex items-center rounded-full bg-orange-600/95 px-3 py-1 text-xs font-semibold uppercase  text-white shadow-sm"><p>{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</p></span>
+                                <div class="inline-flex items-center gap-2">
+                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase  text-orange-600 shadow-sm"><p>{{ $kursus->jenis_kursus }}</p></span>
+                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase  text-orange-600 shadow-sm"><p>Kuota {{ $kursus->kuota ?? '-' }}</p></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-1">
+                            <h2 class="text-2xl font-bold text-slate-900 mb-2">{{ $kursus->nama_kursus }}</h2>
 
-                <div class="course-card-body">
-                    <div class="kuota-row">
-                        <span class="label">Baki Kuota</span>
-                        <span class="value">{{ $kursus->kuota ?? '0' }} Pelajar</span>
+                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition mt-auto">
+                                <span>Lihat Pilihan Kursus</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+                    @empty
+                    <div class="kursus-empty col-span-3 rounded-3xl p-10 text-center text-gray-500 shadow-sm">
+                        <p>Tiada kursus ditemui.</p>
                     </div>
-
-                    <h2>{{ $kursus->nama_kursus }}</h2>
+                    @endforelse
                 </div>
-            </article>
-
-        @empty
-            <div class="col-span-full py-20 flex flex-col items-center justify-center bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
-                <div class="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-4 text-slate-300">
-                    <i class="fas fa-search text-2xl"></i>
-                </div>
-                <p class="text-slate-500 font-medium">Maaf, tiada kursus ditemui buat masa ini.</p>
-            </div>
-        @endforelse
-    </div>
-</main>
+            </main>
 
         </div>
     </section>
