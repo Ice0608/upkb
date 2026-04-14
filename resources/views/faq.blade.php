@@ -233,7 +233,7 @@
 
     <main class="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <div class="faq-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 text-center mb-14">
-            <p class="faq-hero-eyebrow font-semibold tracking-[0.28em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
+            <p class="faq-hero-eyebrow font-semibold tracking-[0.1em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
             <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl font-semibold tracking-[-0.04em]">Soalan Lazim (FAQ)</h2>
             <p class="faq-hero-copy mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-8">
                 Jawapan kepada pertanyaan yang sering diajukan oleh pelajar dan ibu bapa.
@@ -249,7 +249,7 @@
                     </div>
 
                     <div class="flex-1">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pensijilan</p>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Pensijilan</p>
                         <h3 class="font-semibold text-slate-800 text-lg sm:text-xl mt-2 tracking-[-0.02em]">
                             Apa itu Sijil Kemahiran Malaysia (SKM)?
                         </h3>
@@ -273,7 +273,7 @@
                     </div>
 
                     <div class="flex-1">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pendidikan Teknikal</p>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Pendidikan Teknikal</p>
                         <h3 class="font-semibold text-slate-800 text-lg sm:text-xl mt-2 tracking-[-0.02em]">
                             Apa itu TVET?
                         </h3>
@@ -316,10 +316,10 @@
                 </h2>
 
                 <ul class="list-decimal pl-5 space-y-2 text-gray-600">
-                    <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
-                    <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
-                    <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
-                    <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
+                    <li><p>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</p></li>
+                    <li><p>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</p></li>
+                    <li><p>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</p></li>
+                    <li><p>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</p></li>
                 </ul>
             `;
         }
