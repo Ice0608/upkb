@@ -1,4 +1,4 @@
-﻿@once
+﻿﻿@once
     <style>
         .footer-ocean {
             position: relative;
@@ -170,9 +170,9 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
             <ul class="space-y-3 text-sm text-gray-400">
-                <li>+6017 921 5543</li>
-                <li>info@upkb.my</li>
-                <li>34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</li>
+                <li><p>+6017 921 5543</p></li>
+                <li><p>info@upkb.my</p></li>
+                <li><p>34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</p></li>
             </ul>
         </div>
     </div>
@@ -374,4 +374,3 @@
         })();
     </script>
 @endonce
-

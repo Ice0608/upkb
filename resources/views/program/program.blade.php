@@ -415,7 +415,7 @@
 <body class="program-page text-gray-800">
 
     @include('layouts.navigation')
-
+    
     <section class="program-shell max-w-7xl mx-auto px-4 py-8 sm:px-6">
         <div class="program-hero rounded-[2rem] p-8 sm:p-10 text-white mb-10">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
