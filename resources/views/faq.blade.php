@@ -65,7 +65,6 @@
             transform: translateX(-50%);
             border-radius: 999px;
             background: radial-gradient(circle, rgba(255, 184, 63, 0.16), rgba(255, 184, 63, 0) 68%);
-            filter: blur(54px);
             opacity: 0.74;
         }
 
@@ -82,7 +81,6 @@
             z-index: 0;
             border-radius: 50% 50% 0 0;
             opacity: 0.34;
-            filter: blur(10px);
             background:
                 radial-gradient(circle at 12% 45%, rgba(255, 255, 255, 0.42), transparent 20%),
                 linear-gradient(120deg, rgba(255, 214, 163, 0.1) 8%, rgba(255, 154, 60, 0.18) 34%, rgba(255, 203, 103, 0.16) 62%, rgba(255, 255, 255, 0.08) 100%);
@@ -103,7 +101,6 @@
             bottom: 8rem;
             height: 10rem;
             opacity: 0.26;
-            filter: blur(10px);
             animation: faqWaveSway 12s var(--xmb-ease-soft) infinite alternate;
         }
 
@@ -111,7 +108,6 @@
             bottom: 2rem;
             height: 13rem;
             opacity: 0.3;
-            filter: blur(16px);
             animation: faqWaveSway 15s var(--xmb-ease) infinite alternate-reverse;
         }
 
@@ -139,7 +135,6 @@
                 inset 0 1px 0 rgba(255, 250, 236, 0.44),
                 0 24px 55px rgba(205, 112, 24, 0.22),
                 0 0 46px rgba(255, 177, 60, 0.2);
-            backdrop-filter: blur(16px);
             animation: faqFloat 6.6s var(--xmb-ease-soft) infinite;
         }
 
@@ -240,15 +235,12 @@
                 inset 0 -10px 20px rgba(255, 255, 255, 0.14),
                 0 16px 34px rgba(85, 53, 24, 0.08),
                 0 2px 10px rgba(28, 28, 30, 0.04);
-            backdrop-filter: blur(14px);
             transform: translateY(0) scale(0.98);
             transform-origin: center;
             opacity: 0.78;
-            filter: blur(0.8px) saturate(0.86);
             transition:
                 transform 520ms var(--xmb-ease),
                 opacity 420ms var(--xmb-ease),
-                filter 420ms var(--xmb-ease),
                 box-shadow 520ms var(--xmb-ease),
                 border-color 420ms var(--xmb-ease),
                 background 520ms var(--xmb-ease);
@@ -275,7 +267,6 @@
             border-radius: 2.35rem;
             background: radial-gradient(circle, rgba(255, 164, 45, 0.28), rgba(255, 164, 45, 0) 72%);
             opacity: 0;
-            filter: blur(12px);
             transition: opacity 520ms var(--xmb-ease);
             z-index: -1;
         }
@@ -285,7 +276,6 @@
         .faq-card.is-focused {
             transform: translateY(-0.75rem) scale(1.05);
             opacity: 1;
-            filter: blur(0) saturate(1.08);
             border-color: rgba(255, 208, 137, 0.56);
             box-shadow:
                 inset 0 1px 0 rgba(255, 246, 228, 0.52),
@@ -305,7 +295,6 @@
 
         .faq-track.has-focused-item .faq-card:not(.is-focused) {
             opacity: 0.56;
-            filter: blur(1.8px) saturate(0.72);
             transform: scale(0.95);
         }
 
@@ -383,7 +372,6 @@
 
         .faq-modal-backdrop {
             background: rgba(28, 28, 30, 0.12);
-            backdrop-filter: blur(10px);
         }
 
         .faq-modal-shell {
@@ -398,7 +386,6 @@
                 inset 0 14px 28px rgba(255, 255, 255, 0.22),
                 0 30px 80px rgba(28, 28, 30, 0.12),
                 0 0 40px rgba(255, 154, 60, 0.14);
-            backdrop-filter: blur(20px);
             color: var(--xmb-text-main);
             transition: transform 420ms var(--xmb-ease), opacity 360ms var(--xmb-ease-soft);
             animation: faqModalFloat 6.8s var(--xmb-ease-soft) infinite;
@@ -418,7 +405,6 @@
             border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 70%);
             opacity: 0.58;
-            filter: blur(10px);
         }
 
         .faq-modal-shell::after {
@@ -427,7 +413,6 @@
             height: 14rem;
             border-radius: 50%;
             opacity: 0.36;
-            filter: blur(18px);
             animation: faqModalGlowPulse 5.8s var(--xmb-ease-soft) infinite;
         }
 
@@ -503,6 +488,7 @@
         .faq-modal-shell li {
             color: rgba(28, 28, 30, 0.78);
             line-height: 1.9;
+            font-weight: 400;
         }
 
         .faq-modal-shell li::marker {
@@ -622,11 +608,16 @@
     
     @include('layouts.navigation')
 
-    <main class="max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
-        <div class="faq-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 text-center mb-14">
-            <p class="faq-hero-eyebrow font-semibold tracking-[0.28em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
-            <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl font-semibold tracking-[-0.04em]">Soalan Lazim (FAQ)</h2>
-            <p class="faq-hero-copy mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-8">
+    <div class="faq-wave-layer"></div>
+    <div class="faq-wave-layer faq-wave-layer-secondary"></div>
+
+    <main class="faq-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="faq-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12">
+            <p class="faq-hero-eyebrow font-medium tracking-[0.38em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
+            <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] max-w-3xl">
+                Soalan Lazim (FAQ)
+            </h2>
+            <p class="faq-hero-copy mt-5 max-w-2xl text-base sm:text-lg leading-8">
                 Jawapan kepada pertanyaan yang sering diajukan oleh pelajar dan ibu bapa.
             </p>
         </div>
@@ -652,16 +643,15 @@
                             <i class="fa-solid fa-circle-question"></i>
                         </div>
 
-                    <div class="flex-1">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pensijilan</p>
-                        <h3 class="font-semibold text-slate-800 text-lg sm:text-xl mt-2 tracking-[-0.02em]">
-                            Apa itu Sijil Kemahiran Malaysia (SKM)?
-                        </h3>
-
-                        <p class="text-sm text-slate-500 mt-2 leading-7">
-                            Klik untuk lihat penerangan penuh
-                        </p>
-                    </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Pensijilan</p>
+                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
+                                Apa itu Sijil Kemahiran Malaysia (SKM)?
+                            </h3>
+                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
+                                Klik untuk lihat penerangan penuh
+                            </p>
+                        </div>
 
                         <span class="faq-arrow text-2xl sm:text-[1.7rem]">
                             <i class="fa-solid fa-angle-right"></i>
@@ -681,16 +671,15 @@
                             <i class="fa-solid fa-book-open"></i>
                         </div>
 
-                    <div class="flex-1">
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-400">Pendidikan Teknikal</p>
-                        <h3 class="font-semibold text-slate-800 text-lg sm:text-xl mt-2 tracking-[-0.02em]">
-                            Apa itu TVET?
-                        </h3>
-
-                        <p class="text-sm text-slate-500 mt-2 leading-7">
-                            Klik untuk lihat penerangan penuh
-                        </p>
-                    </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Pendidikan Teknikal</p>
+                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
+                                Apa itu TVET?
+                            </h3>
+                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
+                                Klik untuk lihat penerangan penuh
+                            </p>
+                        </div>
 
                         <span class="faq-arrow text-2xl sm:text-[1.7rem]">
                             <i class="fa-solid fa-angle-right"></i>
@@ -758,12 +747,13 @@
                         Apa itu Sijil Kemahiran Malaysia (SKM)?
                     </h2>
 
-                <ul class="list-decimal pl-5 space-y-2 text-gray-600">
-                    <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
-                    <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
-                    <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
-                    <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
-                </ul>
+                    <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
+                        <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
+                        <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
+                        <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
+                        <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
+                    </ul>
+                </div>
             `;
         }
 
