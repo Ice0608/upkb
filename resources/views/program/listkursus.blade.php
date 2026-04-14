@@ -233,13 +233,13 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.82);
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.82));
-            box-shadow:
-                0 18px 42px rgba(15, 23, 42, 0.08),
-                0 0 26px rgba(255, 184, 28, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.88);
+            border-radius: 2rem;
+            background: #ffffff;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08), 
+                        0 0 26px rgba(255, 184, 28, 0.08), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.88);
             transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            height: 100%;
         }
 
         .course-card::before {
@@ -259,12 +259,172 @@
         }
 
         .course-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             border-color: rgba(255, 232, 168, 0.9);
-            box-shadow:
-                0 28px 60px rgba(15, 23, 42, 0.12),
-                0 0 42px rgba(255, 166, 0, 0.16),
+            box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12), 
+                0 0 42px rgba(255, 166, 0, 0.16), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.94);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 1.5rem 1.5rem 0 0;
+            z-index: 1;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .course-card:hover .card-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* Image Overlay Gradient */
+        .card-overlay-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Like Button */
+        .card-like-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #64748b;
+            font-size: 18px;
+        }
+
+        .card-like-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            color: #ef4444;
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.2);
+        }
+
+        .card-like-button.liked {
+            color: #ef4444;
+        }
+
+        /* Institution Badge */
+        .card-institution-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            text-slate-900;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            z-index: 4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card-body {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .kuota-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .kuota-row .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        .kuota-row .value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.02em;
+        }
+
+        .course-card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+            margin: 0;
+        }
+
+        .course-card:hover h2 {
+            color: #f97316;
+        }
+
+        /* CTA & Typography */
+        .course-card h2 {
+            color: #1e293b;
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .course-card:hover h2 {
+            color: #f97316;
+        }
+
+        .baki-kuota-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+        }
+
+        .arrow-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover .arrow-btn {
+            background: #f97316;
+            color: white;
+            transform: rotate(-45deg);
         }
 
         .kursus-tag,
@@ -470,38 +630,46 @@
 
             {{-- MAIN GRID (RIGHT) - UNIQUE COURSES ONLY --}}
             <main class="lg:col-span-3">
-                <div id="courses-container" class="grid md:grid-cols-3 gap-6">
-                    @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
-                    @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
-                    <article class="group rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition course-card cursor-pointer flex flex-col h-full" 
-                             data-course-name="{{ $kursus->nama_kursus }}"
-                             onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
-                        <div class="relative h-56 overflow-hidden">
-                            <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">
-                                <span class="kursus-tag inline-flex items-center rounded-full bg-orange-600/95 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
-                                <div class="inline-flex items-center gap-2">
-                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-orange-600 shadow-sm">{{ $kursus->jenis_kursus }}</span>
-                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-orange-600 shadow-sm">Kuota {{ $kursus->kuota ?? '-' }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-1">
-                            <h2 class="text-2xl font-bold text-slate-900 mb-2">{{ $kursus->nama_kursus }}</h2>
-
-                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition mt-auto">
-                                <span>Lihat Pilihan Kursus</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </article>
-                    @empty
-                    <div class="kursus-empty col-span-3 rounded-3xl p-10 text-center text-gray-500 shadow-sm">
-                        Tiada kursus ditemui.
-                    </div>
-                    @endforelse
+    <div id="courses-container" class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
+            @php 
+                $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/dummy-course.svg'; 
+            @endphp
+            
+            <article class="course-card group cursor-pointer hover:shadow-xl transition-all duration-500"
+                     data-course-name="{{ $kursus->nama_kursus }}"
+                     onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
+                
+                <div class="card-image-wrapper">
+                    <img src="{{ asset($galleryImage) }}" 
+                         alt="{{ $kursus->nama_kursus }}" 
+                         class="w-full h-full object-cover">
+                    
+                    <!-- Image Overlay Gradient -->
+                    <div class="card-overlay-gradient"></div>
+                    
                 </div>
-            </main>
+
+                <div class="course-card-body">
+                    <div class="kuota-row">
+                        <span class="label">Baki Kuota</span>
+                        <span class="value">{{ $kursus->kuota ?? '0' }} Pelajar</span>
+                    </div>
+
+                    <h2>{{ $kursus->nama_kursus }}</h2>
+                </div>
+            </article>
+
+        @empty
+            <div class="col-span-full py-20 flex flex-col items-center justify-center bg-slate-50 rounded-[2rem] border-2 border-dashed border-slate-200">
+                <div class="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-4 text-slate-300">
+                    <i class="fas fa-search text-2xl"></i>
+                </div>
+                <p class="text-slate-500 font-medium">Maaf, tiada kursus ditemui buat masa ini.</p>
+            </div>
+        @endforelse
+    </div>
+</main>
 
         </div>
     </section>
@@ -574,6 +742,19 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Like button functionality
+        function toggleLike(button) {
+            button.classList.toggle('liked');
+            const icon = button.querySelector('i');
+            if (button.classList.contains('liked')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        }
     </script>
 
 </body>

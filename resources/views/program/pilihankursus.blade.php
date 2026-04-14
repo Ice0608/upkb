@@ -48,6 +48,14 @@
 
     <main class="flex-grow">
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="pilihan-kursus-page" data-filter-url="{{ route('kursus.filterByName', ['nama' => $namaKursus]) }}">
+
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+                                <button type="button" onclick="window.history.back()"
+                                    class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-orange-500 hover:text-orange-500">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    Kembali
+                                </button>
+                            </div>
             
             <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
                 <div class="relative group">
@@ -61,6 +69,7 @@
 
                 <div class="space-y-8">
                     <div>
+
                         <span class="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase bg-orange-100 rounded-full">
                             Kursus Pilihan
                         </span>
