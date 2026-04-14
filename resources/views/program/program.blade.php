@@ -420,7 +420,7 @@
         <div class="program-hero rounded-[2rem] p-8 sm:p-10 text-white mb-10">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <p class="text-xs sm:text-sm uppercase tracking-[0.28em] text-white/70 font-semibold">Eksplorasi Program</p>
+                    <p class="text-xs sm:text-sm uppercase tracking-[0.1em] text-white/70 font-semibold">Eksplorasi Program</p>
                     <h1 class="mt-3 text-4xl md:text-5xl font-bold leading-tight tracking-[-0.04em]">Teroka Semua Kursus</h1>
                     <p class="mt-3 text-base sm:text-lg text-white/80 max-w-2xl">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
                 </div>

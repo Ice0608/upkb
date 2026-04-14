@@ -72,9 +72,53 @@
             opacity: 0;
             visibility: hidden;
         }
+                
+        .slideshow-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1; 
+        background: #000;
+        }
+
+        .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        /* Total duration: 20s, looping infinitely */
+        animation: fadeLoop 10s infinite;
+        }
+
+        /* Staggered Delays (Total Duration / Number of Images) */
+        /* 20s / 5 = 4s intervals */
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 2s; }
+        .slide:nth-child(3) { animation-delay: 4s; }
+        .slide:nth-child(4) { animation-delay: 6s; }
+        .slide:nth-child(5) { animation-delay: 8s; }
+
+        @keyframes fadeLoop {
+        0% { opacity: 0; }
+        10% { opacity: 1; }  /* Fade in */
+        20% { opacity: 1; }  /* Stay visible */
+        30% { opacity: 0; }  /* Fade out */
+        100% { opacity: 0; } /* Stay hidden until next loop */
+        }
     </style>
 </head>
 <body class="welcome-page text-gray-800 no-bg">
+    <!-- <div class="slideshow-container">
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame1.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame2.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame3.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame4.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame5.png') }}');"></div>
+    </div> -->
     <div id="introOverlay" class="intro-overlay fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
         <div class="absolute inset-0 bg-black/95"></div>
         <div id="introStart" class="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">

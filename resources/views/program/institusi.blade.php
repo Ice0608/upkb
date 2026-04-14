@@ -103,7 +103,7 @@
 
         <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <form method="GET" class="flex w-full max-w-[520px] gap-4 items-center">
-                <select name="negeri" onchange="this.form.submit()" class="w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+                <p><select name="negeri" onchange="this.form.submit()" class="w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none"><p>
                     <option value="">Semua Negeri</option>
                     <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
                     <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
@@ -121,7 +121,7 @@
                     <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
                     <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
                     <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
-                </select>
+                </p></select>
                 @if(request('jenis'))
                     <input type="hidden" name="jenis" value="{{ request('jenis') }}">
                 @endif

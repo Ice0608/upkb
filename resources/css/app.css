@@ -27,9 +27,24 @@
     background-color: transparent !important;
   }
 
-  P {
-    font-family : 'Montserrat', sans-serif;
-    font-weight: 400;
+  p { 
+    font-family: "Lexend Deca", 
+    sans-serif; font-weight: 500;
+  }
+
+  h2 { 
+    font-family: "Montserrat", sans-serif; 
+    font-weight: 800; 
+  } 
+
+  a { 
+    font-family: "Lexend Deca", sans-serif; 
+    font-weight: 500; 
+  }
+
+  h3 { 
+    font-family: "Montserrat", sans-serif; 
+    font-weight: 500; 
   }
 }
 
