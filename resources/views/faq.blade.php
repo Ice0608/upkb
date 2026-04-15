@@ -371,12 +371,38 @@
         }
 
         .faq-modal-backdrop {
-            background: rgba(28, 28, 30, 0.12);
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(28, 28, 30, 0.32);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition:
+                opacity 240ms var(--xmb-ease-soft),
+                visibility 0ms linear 240ms;
+        }
+
+        .faq-modal-backdrop.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition:
+                opacity 240ms var(--xmb-ease-soft),
+                visibility 0ms linear 0ms;
         }
 
         .faq-modal-shell {
             position: relative;
             overflow: hidden;
+            width: min(100%, 36rem);
+            max-height: min(86vh, 42rem);
+            margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.74);
             background:
                 linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 239, 0.72)),
@@ -387,8 +413,16 @@
                 0 30px 80px rgba(28, 28, 30, 0.12),
                 0 0 40px rgba(255, 154, 60, 0.14);
             color: var(--xmb-text-main);
-            transition: transform 420ms var(--xmb-ease), opacity 360ms var(--xmb-ease-soft);
-            animation: faqModalFloat 6.8s var(--xmb-ease-soft) infinite;
+            opacity: 0;
+            transform: translateY(1rem) scale(0.96);
+            transition:
+                transform 300ms var(--xmb-ease),
+                opacity 220ms var(--xmb-ease-soft);
+        }
+
+        .faq-modal-backdrop.is-open .faq-modal-shell {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         .faq-modal-shell::before,
@@ -427,6 +461,41 @@
         .faq-modal-content {
             position: relative;
             z-index: 1;
+            overflow-y: auto;
+            max-height: min(72vh, 34rem);
+            padding-right: 0.25rem;
+        }
+
+        .faq-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.35rem;
+            height: 2.35rem;
+            border: 0;
+            border-radius: 999px;
+            color: rgba(28, 28, 30, 0.6);
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.84),
+                0 10px 18px rgba(28, 28, 30, 0.08);
+            transition:
+                transform 180ms var(--xmb-ease),
+                color 180ms var(--xmb-ease),
+                background 180ms var(--xmb-ease);
+            cursor: pointer;
+        }
+
+        .faq-modal-close:hover,
+        .faq-modal-close:focus-visible {
+            color: var(--xmb-text-main);
+            background: rgba(255, 255, 255, 0.92);
+            transform: translateY(-1px);
+            outline: none;
         }
 
         .faq-modal-kicker {
@@ -579,6 +648,7 @@
 
             .faq-modal-shell {
                 padding: 1.4rem;
+                width: 100%;
             }
 
             .faq-modal-title {
@@ -587,13 +657,14 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .faq-modal-backdrop,
             .faq-wave-layer,
             .faq-wave-layer::before,
             .faq-wave-layer::after,
             .faq-hero,
             .faq-card,
             .faq-arrow,
-            #modalBox {
+            .faq-modal-shell {
                 animation: none;
                 transition: none;
             }
@@ -690,9 +761,9 @@
         </section>
     </main>
 
-    <div id="faqModal" class="faq-modal-backdrop fixed inset-0 hidden items-center justify-center z-50">
-        <div id="modalBox" class="faq-modal-shell w-full max-w-lg rounded-[1.85rem] p-7 relative transform scale-95 opacity-0 mx-4">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-neutral-500 hover:text-neutral-900 text-xl transition-colors duration-300">
+    <div id="faqModal" class="faq-modal-backdrop fixed inset-0 z-50" aria-hidden="true">
+        <div id="modalBox" class="faq-modal-shell rounded-[1.85rem] p-7 relative mx-4" role="dialog" aria-modal="true" aria-labelledby="faqModalTitle" tabindex="-1">
+            <button type="button" id="modalCloseButton" class="faq-modal-close" aria-label="Tutup jawapan FAQ">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -701,9 +772,49 @@
     </div>
 
     <script>
-    const transitionDelay = 18;
     const focusableItems = Array.from(document.querySelectorAll('[data-faq-item]'));
     const faqTrack = document.getElementById('faqTrack');
+    const modalElement = document.getElementById('faqModal');
+    const modalBox = document.getElementById('modalBox');
+    const modalContent = document.getElementById('modalContent');
+    const modalCloseButton = document.getElementById('modalCloseButton');
+    const modalTransitionMs = 240;
+    let activeTrigger = null;
+    let closeTimerId = null;
+
+    const faqAnswers = {
+        skm: `
+            <div class="faq-modal-content">
+                <div class="faq-modal-kicker">Pensijilan Rasmi</div>
+                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
+                    Apa itu Sijil Kemahiran Malaysia (SKM)?
+                </h2>
+
+                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
+                    <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
+                    <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
+                    <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
+                    <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
+                </ul>
+            </div>
+        `,
+        tvet: `
+            <div class="faq-modal-content">
+                <div class="faq-modal-kicker">Pendidikan Teknikal</div>
+                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
+                    Apa itu TVET?
+                </h2>
+
+                <p class="faq-modal-lead text-neutral-700">
+                    Pendidikan dan latihan yang bertujuan untuk menyediakan pelajar dengan kemahiran praktikal dan pengetahuan teknikal yang diperlukan untuk memasuki pasaran kerja dalam pelbagai bidang industri.
+                </p>
+
+                <p class="faq-modal-paragraph text-neutral-700">
+                    TVET meliputi pelbagai sektor seperti teknologi maklumat, kejuruteraan, perkhidmatan, kesihatan, pertanian, dan banyak lagi. Ia menekankan pembelajaran berasaskan amali dan latihan praktikal yang berorientasikan pekerjaan.
+                </p>
+            </div>
+        `,
+    };
 
     function setFocusedItem(activeItem) {
         if (!focusableItems.length || !faqTrack) {
@@ -732,76 +843,44 @@
     }
 
     function openModal(type) {
-        const modal = document.getElementById('faqModal');
-        const box = document.getElementById('modalBox');
-        const content = document.getElementById('modalContent');
-
-        let html = '';
-        box.dataset.tone = type;
-
-        if (type === 'skm') {
-            html = `
-                <div class="faq-modal-content">
-                    <div class="faq-modal-kicker">Pensijilan Rasmi</div>
-                    <h2 class="faq-modal-title font-bold text-neutral-900">
-                        Apa itu Sijil Kemahiran Malaysia (SKM)?
-                    </h2>
-
-                    <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
-                        <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
-                        <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
-                        <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
-                        <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
-                    </ul>
-                </div>
-            `;
+        if (!modalElement || !modalBox || !modalContent || !faqAnswers[type]) {
+            return;
         }
 
-        if (type === 'tvet') {
-            html = `
-                <div class="faq-modal-content">
-                    <div class="faq-modal-kicker">Pendidikan Teknikal</div>
-                    <h2 class="faq-modal-title font-bold text-neutral-900">
-                        Apa itu TVET?
-                    </h2>
-
-                    <p class="faq-modal-lead text-neutral-700">
-                        Pendidikan dan latihan yang bertujuan untuk menyediakan pelajar dengan kemahiran praktikal dan pengetahuan teknikal yang diperlukan untuk memasuki pasaran kerja dalam pelbagai bidang industri.
-                    </p>
-
-                    <p class="faq-modal-paragraph text-neutral-700">
-                        TVET meliputi pelbagai sektor seperti teknologi maklumat, kejuruteraan, perkhidmatan, kesihatan, pertanian, dan banyak lagi. Ia menekankan pembelajaran berasaskan amali dan latihan praktikal yang berorientasikan pekerjaan.
-                    </p>
-                </div>
-            `;
+        if (closeTimerId) {
+            window.clearTimeout(closeTimerId);
+            closeTimerId = null;
         }
 
-        content.innerHTML = html;
-        modal.setAttribute('aria-hidden', 'false');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
+        activeTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        modalBox.dataset.tone = type;
+        modalContent.innerHTML = faqAnswers[type];
+        modalElement.setAttribute('aria-hidden', 'false');
+        modalElement.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
 
-        setTimeout(() => {
-            box.classList.remove('scale-95', 'opacity-0');
-            box.classList.add('scale-100', 'opacity-100');
-        }, transitionDelay);
+        window.requestAnimationFrame(() => {
+            modalCloseButton?.focus({ preventScroll: true });
+        });
     }
 
     function closeModal() {
-        const modal = document.getElementById('faqModal');
-        const box = document.getElementById('modalBox');
+        if (!modalElement || !modalBox) {
+            return;
+        }
 
-        box.classList.add('scale-95', 'opacity-0');
-        box.classList.remove('scale-100', 'opacity-100');
-        modal.setAttribute('aria-hidden', 'true');
+        modalElement.classList.remove('is-open');
+        modalElement.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
 
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }, 200);
+        closeTimerId = window.setTimeout(() => {
+            modalContent.innerHTML = '';
+            modalBox.removeAttribute('data-tone');
+            activeTrigger?.focus({ preventScroll: true });
+            activeTrigger = null;
+            closeTimerId = null;
+        }, modalTransitionMs);
     }
-
-    const modalElement = document.getElementById('faqModal');
 
     if (modalElement) {
         modalElement.addEventListener('click', function(e) {
@@ -809,6 +888,10 @@
                 closeModal();
             }
         });
+    }
+
+    if (modalCloseButton) {
+        modalCloseButton.addEventListener('click', closeModal);
     }
 
     focusableItems.forEach((item, index) => {
@@ -844,8 +927,40 @@
     }
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modalElement && !modalElement.classList.contains('hidden')) {
+        if (!modalElement || modalElement.getAttribute('aria-hidden') === 'true') {
+            return;
+        }
+
+        if (event.key === 'Escape') {
             closeModal();
+            return;
+        }
+
+        if (event.key !== 'Tab') {
+            return;
+        }
+
+        const focusableElements = Array.from(
+            modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+        ).filter((element) => !element.hasAttribute('disabled'));
+
+        if (!focusableElements.length) {
+            event.preventDefault();
+            modalBox.focus({ preventScroll: true });
+            return;
+        }
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault();
+            lastElement.focus();
+        }
+
+        if (!event.shiftKey && document.activeElement === lastElement) {
+            event.preventDefault();
+            firstElement.focus();
         }
     });
 
