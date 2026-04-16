@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('tarikh_pendaftaran');
             $table->string('noreff')->nullable(); // username staff
             $table->enum('program', ['Diploma', 'TVET', 'Sains Kesihatan'])->nullable();
+            $table->enum('status_perkahwinan', ['Bujang', 'Berkahwin', 'Duda', 'Balu/Janda/Ibu Tunggal'])->nullable();
             $table->string('nama_pelajar');
             $table->string('ic_pelajar');
             $table->double('spm_credit')->nullable();

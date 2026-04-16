@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Info Kursus - Temu Duga</title>
+    <title>UPKB - Info kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
-@include('layouts.navigation')
+@include('layouts.interviewnav')
 
     <section class="max-w-7xl mx-auto px-6 py-10">
         <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg overflow-hidden mb-10 text-white">
@@ -29,17 +29,15 @@
                     <p class="mt-6 max-w-3xl leading-relaxed text-orange-100/90">{{ $kursus->penerangan }}</p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="{{ route('staff.temuduga.pilihankursus', [$pelajar->id, $kursus->nama_kursus]) }}" class="inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
-                            <i class="fas fa-arrow-left"></i> Kembali ke Pilihan Kursus
+                        <a href="{{ route('staff.temuduga.infoinstitusi', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->institusi->kod_institusi]) }}" class="inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
+                            <i class="fas fa-arrow-left"></i> Kembali ke Institusi
                         </a>
-                        <a href="{{ route('kursus.pdf', $kursus->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
-                            <i class="fas fa-file-pdf"></i> Simpan PDF
-                        </a>
-                        <form method="POST" action="{{ route('staff.temuduga.apply', $pelajar->id) }}" class="inline">
+                        <form method="POST" action="{{ route('staff.temuduga.apply-now', $pelajar->id) }}" class="inline">
                             @csrf
+                            <input type="hidden" name="kod_institusi" value="{{ $kursus->institusi->kod_institusi }}">
                             <input type="hidden" name="kod_kursus" value="{{ $kursus->kod_kursus }}">
                             <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
-                                <i class="fas fa-check"></i> Pilih Kursus Ini
+                                <i class="fas fa-check"></i> APPLY NOW
                             </button>
                         </form>
                     </div>
@@ -93,9 +91,23 @@
             });
 
             // Load tab content via AJAX
+            const kursusId = '{{ $kursus->kod_kursus }}';
             const pelajarId = '{{ $pelajar->id }}';
-            const kodKursus = '{{ $kursus->kod_kursus }}';
-            fetch(`/staff/temuduga/${pelajarId}/tab${tab}/${kodKursus}`, {
+            const tabRoutes = {
+                'maklumat': '{{ route("staff.temuduga.tab.maklumat", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
+                'syarat': '{{ route("staff.temuduga.tab.syarat", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
+                'silibus': '{{ route("staff.temuduga.tab.silibus", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
+                'kerjaya': '{{ route("staff.temuduga.tab.kerjaya", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
+                'yuran': '{{ route("staff.temuduga.tab.yuran", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
+                'galeri': '{{ route("staff.temuduga.tab.galeri", ["pelajar" => $pelajar->id, "kod_institusi" => ""]) }}'
+            };
+            
+            let url = tabRoutes[tab] + kursusId;
+            if (tab === 'galeri') {
+                url = '{{ route("staff.temuduga.tab.galeri", ["pelajar" => $pelajar->id, "kod_institusi" => ""]) }}' + '{{ $kursus->institusi->kod_institusi }}';
+            }
+            
+            fetch(url, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -116,18 +128,6 @@
             loadTab('maklumat');
         });
     </script>
-
-</body>
-</html>
-        </div>
-    </div>
-</main>
-
-@include('components.social-float')
-
-<footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-slate-400">© {{ date('Y') }} Unit Pembangunan Kemahiran Belia.</div>
-</footer>
 
 </body>
 </html>

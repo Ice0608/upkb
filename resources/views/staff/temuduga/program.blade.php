@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
-    <title>Program - Temu Duga</title>
+    <title>UPKB - Program</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
@@ -398,24 +398,31 @@
         @media (prefers-reduced-motion: reduce) {
             .segment-wrapper .segment,
             .program-search-button,
+            .segment-label {
+                transition: none;
+            }
+
             .program-hero::before {
-                animation: none !important;
-                transition: none !important;
+                animation: none;
+            }
+
+            .segment-wrapper:hover i {
+                animation: none;
             }
         }
     </style>
 </head>
 <body class="program-page text-gray-800">
 
-    @include('layouts.navigation')
-
+    @include('layouts.interviewnav')
+    
     <section class="program-shell max-w-7xl mx-auto px-4 py-8 sm:px-6">
         <div class="program-hero rounded-[2rem] p-8 sm:p-10 text-white mb-10">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <p class="text-xs sm:text-sm uppercase tracking-[0.28em] text-white/70 font-semibold">Sesi Temu Duga</p>
-                    <h1 class="mt-3 text-4xl md:text-5xl font-bold leading-tight tracking-[-0.04em]">Pilih Program untuk {{ $pelajar->nama_pelajar }}</h1>
-                    <p class="mt-3 text-base sm:text-lg text-white/80 max-w-2xl">Pilih jenis program yang sesuai untuk pelajar ini.</p>
+                    <p class="text-xs sm:text-sm uppercase tracking-[0.1em] text-white/70 font-semibold">Eksplorasi Program</p>
+                    <h1 class="mt-3 text-4xl md:text-5xl font-bold leading-tight tracking-[-0.04em]">Teroka Semua Kursus</h1>
+                    <p class="mt-3 text-base sm:text-lg text-white/80 max-w-2xl">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
                 </div>
                 <button class="program-search-button w-14 h-14 rounded-full bg-white/95 text-orange-600">
                     <i class="fas fa-search"></i>
@@ -453,7 +460,7 @@
                         $ui = $configs[$index] ?? $configs[0];
                     @endphp
 
-                    <a href="{{ route('staff.temuduga.listkursus', [$pelajar->id, 'jenis' => $program->jenis_program]) }}" 
+                    <a href="{{ route('staff.temuduga.listkursus', ['pelajar' => $pelajar->id, 'nama' => $program->jenis_program]) }}" 
                         class="segment-wrapper group 
                         {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
                         <!-- Segment background with image overlay -->
@@ -491,7 +498,7 @@
                                         border-b-2 border-orange-600 text-white bg-orange-500 group-hover:border-orange-700 
                                         transition-all inline-block w-fit rounded px-2 py-0.5 shadow-lg"
                                  style="box-shadow: 0 0 12px 2px #ff7300;">
-                                PILIH PROGRAM <i class="fas fa-chevron-right ml-1" style="text-shadow: 0 0 8px #fff;"></i>
+                                LIHAT PROGRAM <i class="fas fa-chevron-right ml-1" style="text-shadow: 0 0 8px #fff;"></i>
                             </div>
                         </div>
                     </a>
@@ -504,3 +511,4 @@
     @include('layouts.footer')
 
 </body>
+</html>

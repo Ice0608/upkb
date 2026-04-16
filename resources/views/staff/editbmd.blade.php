@@ -106,11 +106,23 @@
                     @error('program') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Pelajar</span>
-                    <input type="text" name="nama_pelajar" value="{{ old('nama_pelajar', $pelajar?->nama_pelajar) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
-                    @error('nama_pelajar') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Status Perkahwinan</span>
+                    <select name="status_perkahwinan" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                        <option value="">Pilih Status</option>
+                        <option value="Bujang" {{ old('status_perkahwinan', $pelajar?->status_perkahwinan) == 'Bujang' ? 'selected' : '' }}>Bujang</option>
+                        <option value="Berkahwin" {{ old('status_perkahwinan', $pelajar?->status_perkahwinan) == 'Berkahwin' ? 'selected' : '' }}>Berkahwin</option>
+                        <option value="Duda" {{ old('status_perkahwinan', $pelajar?->status_perkahwinan) == 'Duda' ? 'selected' : '' }}>Duda</option>
+                        <option value="Balu/Janda/Ibu Tunggal" {{ old('status_perkahwinan', $pelajar?->status_perkahwinan) == 'Balu/Janda/Ibu Tunggal' ? 'selected' : '' }}>Balu/Janda/Ibu Tunggal</option>
+                    </select>
+                    @error('status_perkahwinan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
             </div>
+
+            <label class="block">
+                <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Pelajar</span>
+                <input type="text" name="nama_pelajar" value="{{ old('nama_pelajar', $pelajar?->nama_pelajar) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
+                @error('nama_pelajar') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+            </label>
 
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
@@ -264,29 +276,15 @@
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
-                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" readonly>
+                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none" readonly>
                     @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
-                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" readonly>
+                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none" readonly>
                     @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
             </div>
-
-            {{-- akan terpapar apabila kursus telah dipilih pada halaman temu duga --}}
-            {{-- <div class="grid gap-6 sm:grid-cols-2"> 
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
-                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
-                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-            </div> --}}
 
             @error('pilihan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
 
@@ -294,7 +292,6 @@
                 <div class="space-x-3">
                     <a href="{{ route('staff.main') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                     @if(isset($pelajar))
-                        <a href="{{ route('staff.temuduga.welcome', $pelajar->id) }}" class="inline-flex items-center justify-center rounded-full border border-blue-500 bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-600">Mulakan Temu Duga</a>
                         <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id, 'print' => 1]) }}" class="inline-flex items-center justify-center rounded-full border border-orange-500 bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak BMD</a>
                     @endif
                 </div>
@@ -303,6 +300,13 @@
             </div>
         </div>
         </form>
+
+        <!-- Mulakan Temu Duga Button -->
+        <div class="mt-6 flex justify-center no-print">
+            <a href="{{ route('staff.temuduga.welcome', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600">
+                <i class="fas fa-play"></i> Mulakan Temu Duga
+            </a>
+        </div>
     </div>
 </main>
 

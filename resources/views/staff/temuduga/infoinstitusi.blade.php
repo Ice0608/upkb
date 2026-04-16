@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Info Institusi - Temu Duga</title>
+    <title>UPKB - Info Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.interviewnav')
 
     <section class="max-w-6xl mx-auto px-6 py-10">
         <!-- Header Institusi -->
@@ -32,8 +32,8 @@
                     <p class="text-gray-700 leading-relaxed">{{ $institusi->mengenai_institusi }}</p>
                 </div>
 
-                <a href="{{ route('staff.temuduga.listkursus', [$pelajar->id, 'jenis' => 'TVET']) }}" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800">
-                    <i class="fas fa-arrow-left"></i>Kembali ke Senarai Kursus
+                <a href="javascript:history.back()" class="inline-flex items-center gap-2 text-blue-600 font-bold hover:text-blue-800">
+                    <i class="fas fa-arrow-left"></i>Kembali
                 </a>
             </div>
         </div>
@@ -69,7 +69,7 @@
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
                             <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3">
-                                <a href="{{ route('staff.temuduga.infokursus', [$pelajar->id, $kursus->kod_kursus]) }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold">Lihat detail</a>
+                                <a href="{{ route('staff.temuduga.infokursus', ['pelajar' => $pelajar->id, 'kod_institusi' => $institusi->kod_institusi, 'kod_kursus' => $kursus->kod_kursus]) }}" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold">Lihat detail</a>
                             </td>
                         </tr>
                         @endforeach
@@ -106,7 +106,7 @@
             @else
             <div class="bg-gray-50 rounded-2xl p-12 text-center text-gray-500">
                 <i class="fas fa-image text-4xl mb-4 text-gray-300"></i>
-                <p>Tiada gambar fasiliti diapaskan.</p>
+                <p>Tiada gambar fasiliti diaparkan.</p>
             </div>
             @endif
         </div>

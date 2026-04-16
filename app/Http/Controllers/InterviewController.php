@@ -7,6 +7,7 @@ use App\Models\Pelajar;
 use App\Models\Kursus;
 use App\Models\Institusi;
 use App\Models\Pembayaran;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpWord\TemplateProcessor;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Temu Duga</title>
+    <title>UPKB</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -72,9 +72,53 @@
             opacity: 0;
             visibility: hidden;
         }
+                
+        .slideshow-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1; 
+        background: #000;
+        }
+
+        .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        /* Total duration: 20s, looping infinitely */
+        animation: fadeLoop 10s infinite;
+        }
+
+        /* Staggered Delays (Total Duration / Number of Images) */
+        /* 20s / 5 = 4s intervals */
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 2s; }
+        .slide:nth-child(3) { animation-delay: 4s; }
+        .slide:nth-child(4) { animation-delay: 6s; }
+        .slide:nth-child(5) { animation-delay: 8s; }
+
+        @keyframes fadeLoop {
+        0% { opacity: 0; }
+        10% { opacity: 1; }  /* Fade in */
+        20% { opacity: 1; }  /* Stay visible */
+        30% { opacity: 0; }  /* Fade out */
+        100% { opacity: 0; } /* Stay hidden until next loop */
+        }
     </style>
 </head>
 <body class="welcome-page text-gray-800 no-bg">
+    <!-- <div class="slideshow-container">
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame1.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame2.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame3.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame4.png') }}');"></div>
+        <div class="slide" style="background-image: url('{{ asset('images/background/Frame5.png') }}');"></div>
+    </div> -->
     <div id="introOverlay" class="intro-overlay fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
         <div class="absolute inset-0 bg-black/95"></div>
         <div id="introStart" class="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
@@ -88,18 +132,18 @@
     </div>
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.interviewnav')
 
     {{-- 🔹 IKLAN SECTION --}}
     <div class="relative w-full">
-
+    
    {{-- 🔹 GLASS CONTENT --}}
-        <div class="absolute z-30
+        <div class="absolute z-30 
                     /* Mobile: Centered horizontally,*/
-                    inset-x-8 top-1/2 -translate-y-1/2 px-6
+                    inset-x-8 top-1/2 -translate-y-1/2 px-6 
                     /* Desktop: Reset to your original left-aligned look */
                     lg:left-20 lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:px-0 lg:max-w-xl">
-
+            
             <div class="bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
 
                 <p class=" text-[9px] md:text-[10px] tracking-[0.4em] text-white/70 mb-3 md:mb-4 uppercase italic">
@@ -111,7 +155,7 @@
                 </h2>
 
                 <h2 class="titleglass-2 text-3xl md:text-5xl lg:text-6xl text-orange-400 leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
-                    KEMAHIRAN
+                    KEMAHIRAN 
                 </h2>
 
                 <h2 class="titleglass-2 text-3xl md:text-5xl lg:text-6xl text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
@@ -119,7 +163,7 @@
                 </h2>
 
                 <p class="cubafont text-xs md:text-sm lg:text-sm text-white/80 mt-6 md:mt-8 max-w-sm leading-relaxed  tracking-wide border-l border-white/30 pl-4">
-                    Terokai program TVET, Diploma dan Sains Kesihatan
+                    Terokai program TVET, Diploma dan Sains Kesihatan 
                     <br>yang direka untuk meningkatkan peluang kerjaya anda.</br>
                 </p>
 
@@ -160,13 +204,13 @@
         </div>
 
         <!-- LEFT BUTTON -->
-        <button onclick="prevSlide()"
+        <button onclick="prevSlide()" 
             class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur text-white p-3 rounded-full hover:bg-white/40 transition">
             ❮
         </button>
 
         <!-- RIGHT BUTTON -->
-        <button onclick="nextSlide()"
+        <button onclick="nextSlide()" 
             class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 backdrop-blur text-white p-3 rounded-full hover:bg-white/40 transition">
             ❯
         </button>
@@ -219,7 +263,7 @@
 
     {{-- Main Layout Container: 1/3 for Cards, 2/3 for Video --}}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-
+        
         {{-- LEFT SIDE: CARDS (1/3) --}}
         <div class="flex flex-col gap-4 order-2 lg:order-1">
             <div class="flex-1 rounded-[1.75rem] border border-white/10 bg-white/80 p-6 shadow-lg backdrop-blur-sm flex flex-col justify-center">
@@ -242,7 +286,7 @@
         <div class="lg:col-span-2 order-1 lg:order-2">
             <div class="relative h-full overflow-hidden rounded-[2rem] shadow-2xl border border-white/20 bg-slate-950/80">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/20 to-transparent pointer-events-none z-10"></div>
-
+                
                 <div class="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/10 px-4 py-2 text-xs text-white backdrop-blur-sm z-20">
                     <i class="fas fa-star text-orange-400"></i>
                     <p>Koleksi Terbaik UPKB</p>
@@ -261,7 +305,7 @@
                                 Pengalaman pembelajaran yang elegan dan profesional.
                             </h3>
                         </div>
-                        <a href="{{ route('staff.temuduga.program', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition shrink-0">
+                        <a href="/program" class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:bg-orange-600 transition shrink-0">
                             Terokai
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -269,7 +313,7 @@
                 </div>
             </div>
         </div>
-
+        
     </div>
 </section>
 

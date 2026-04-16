@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Senarai Kursus - Temu Duga</title>
+    <title>UPKB - Senarai Kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .kursus-page {
@@ -233,13 +233,13 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.82);
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.82));
-            box-shadow:
-                0 18px 42px rgba(15, 23, 42, 0.08),
-                0 0 26px rgba(255, 184, 28, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.88);
+            border-radius: 2rem;
+            background: #ffffff;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08), 
+                        0 0 26px rgba(255, 184, 28, 0.08), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.88);
             transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            height: 100%;
         }
 
         .course-card::before {
@@ -259,12 +259,172 @@
         }
 
         .course-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             border-color: rgba(255, 232, 168, 0.9);
-            box-shadow:
-                0 28px 60px rgba(15, 23, 42, 0.12),
-                0 0 42px rgba(255, 166, 0, 0.16),
+            box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12), 
+                0 0 42px rgba(255, 166, 0, 0.16), 
                 inset 0 1px 0 rgba(255, 255, 255, 0.94);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: 1.5rem 1.5rem 0 0;
+            z-index: 1;
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .course-card:hover .card-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* Image Overlay Gradient */
+        .card-overlay-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 100%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Like Button */
+        .card-like-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: #64748b;
+            font-size: 18px;
+        }
+
+        .card-like-button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+            color: #ef4444;
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.2);
+        }
+
+        .card-like-button.liked {
+            color: #ef4444;
+        }
+
+        /* Institution Badge */
+        .card-institution-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            text-slate-900;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            z-index: 4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card-body {
+            width: 100%;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .kuota-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+        }
+
+        .kuota-row .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        .kuota-row .value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1e293b;
+            letter-spacing: 0.02em;
+        }
+
+        .course-card h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+            margin: 0;
+        }
+
+        .course-card:hover h2 {
+            color: #f97316;
+        }
+
+        /* CTA & Typography */
+        .course-card h2 {
+            color: #1e293b;
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .course-card:hover h2 {
+            color: #f97316;
+        }
+
+        .baki-kuota-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+        }
+
+        .arrow-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover .arrow-btn {
+            background: #f97316;
+            color: white;
+            transform: rotate(-45deg);
         }
 
         .kursus-tag,
@@ -333,16 +493,24 @@
 <body class="kursus-page text-gray-800">
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.interviewnav')
 
     <section class="kursus-shell max-w-7xl mx-auto px-6 py-10">
         <div class="kursus-hero rounded-3xl p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
-                        Kursus {{ $jenis }}
+                        @if(request('jenis'))
+                            Kursus {{ request('jenis') }}
+                        @else
+                            Senarai Kursus
+                        @endif
                     </h1>
-                    <p class="mt-3 text-lg text-orange-100">Pilih kursus yang sesuai untuk {{ $pelajar->nama_pelajar }}.</p>
+                    @if(isset($selectedProgram) && $selectedProgram)
+                        <p class="mt-3 text-lg text-orange-100 max-w-3xl">{{ $selectedProgram->info_program }}</p>
+                    @else
+                        <p class="mt-3 text-lg text-orange-100">Cari dan jelajahi kursus yang sesuai dengan minat anda.</p>
+                    @endif
                 </div>
                 <button class="kursus-hero-button w-14 h-14 rounded-full bg-white text-orange-600">
                     <i class="fas fa-graduation-cap"></i>
@@ -364,30 +532,31 @@
                     <form method="GET" class="relative z-10 space-y-4 mb-6">
                         <!-- Negeri Select -->
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Negeri</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2"><p>Negeri</p></label>
+                            <p>
                             <select 
                                 name="negeri" 
                                 onchange="this.form.submit()" 
-                                class="kursus-select w-full rounded-2xl px-4 py-2 text-sm shadow-sm focus:outline-none"
-                            >
-                                <option value="">Semua Negeri</option>
-                                <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
-                                <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
-                                <option value="Kelantan" {{ request('negeri') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
-                                <option value="Melaka" {{ request('negeri') == 'Melaka' ? 'selected' : '' }}>Melaka</option>
-                                <option value="Negeri Sembilan" {{ request('negeri') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
-                                <option value="Pahang" {{ request('negeri') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
-                                <option value="Perak" {{ request('negeri') == 'Perak' ? 'selected' : '' }}>Perak</option>
-                                <option value="Perlis" {{ request('negeri') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
-                                <option value="Pulau Pinang" {{ request('negeri') == 'Pulau Pinang' ? 'selected' : '' }}>Pulau Pinang</option>
-                                <option value="Sabah" {{ request('negeri') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
-                                <option value="Sarawak" {{ request('negeri') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
-                                <option value="Selangor" {{ request('negeri') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
-                                <option value="Terengganu" {{ request('negeri') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
-                                <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
-                                <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
-                                <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
-                            </select>
+                                class="kursus-select w-full rounded-2xl px-4 py-2 text-sm shadow-sm focus:outline-none">   
+                                    <option value=""><p>Semua Negeri</p></option>
+                                    <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
+                                    <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
+                                    <option value="Kelantan" {{ request('negeri') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
+                                    <option value="Melaka" {{ request('negeri') == 'Melaka' ? 'selected' : '' }}>Melaka</option>
+                                    <option value="Negeri Sembilan" {{ request('negeri') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
+                                    <option value="Pahang" {{ request('negeri') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
+                                    <option value="Perak" {{ request('negeri') == 'Perak' ? 'selected' : '' }}>Perak</option>
+                                    <option value="Perlis" {{ request('negeri') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
+                                    <option value="Pulau Pinang" {{ request('negeri') == 'Pulau Pinang' ? 'selected' : '' }}>Pulau Pinang</option>
+                                    <option value="Sabah" {{ request('negeri') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
+                                    <option value="Sarawak" {{ request('negeri') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
+                                    <option value="Selangor" {{ request('negeri') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
+                                    <option value="Terengganu" {{ request('negeri') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
+                                    <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
+                                    <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
+                                    <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
+                                </p>
+                                </select>
                         </div>
 
                         <!-- Kuota Filter -->
@@ -410,7 +579,7 @@
                         @if(request('negeri') || request('kuota'))
                             <div>
                                 <a 
-                                    href="{{ route('staff.temuduga.listkursus', [$pelajar->id, 'jenis' => $jenis]) }}"
+                                    href="{{ route('staff.temuduga.listkursus', ['pelajar' => $pelajar->id, 'nama' => $jenis]) }}"
                                     class="kursus-reset-link block text-center text-orange-600 hover:text-orange-700 font-semibold text-sm py-2 rounded-2xl border border-orange-300 hover:bg-orange-50 transition"
                                 >
                                     <i class="fas fa-redo mr-2"></i>Reset Filter
@@ -418,7 +587,9 @@
                             </div>
                         @endif
 
-                        <input type="hidden" name="jenis" value="{{ $jenis }}">
+                        @if(request('jenis'))
+                            <input type="hidden" name="jenis" value="{{ request('jenis') }}">
+                        @endif
                     </form>
 
                     <!-- Senarai Kursus Filter -->
@@ -450,7 +621,7 @@
                                     <span class="w-4 h-4 min-w-[1rem] min-h-[1rem] flex-shrink-0 rounded-full border-2 border-gray-300 flex items-center justify-center transition-colors">
                                     </span>
                                     
-                                    <span class="truncate">{{ $kursus->nama_kursus }}</span>
+                                    <span class="truncate"><p>{{ $kursus->nama_kursus }}</p></span>
                                 </button>
                             @endforeach
                         </div>
@@ -465,14 +636,14 @@
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
                     <article class="group rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition course-card cursor-pointer flex flex-col h-full" 
                              data-course-name="{{ $kursus->nama_kursus }}"
-                             onclick="window.location.href='{{ route('staff.temuduga.pilihankursus', [$pelajar->id, $kursus->nama_kursus]) }}'">
+                             onclick="window.location.href='{{ route('staff.temuduga.pilihankursus', ['pelajar' => $pelajar->id, 'nama' => urlencode($kursus->nama_kursus)]) }}'">>
                         <div class="relative h-56 overflow-hidden">
                             <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">
-                                <span class="kursus-tag inline-flex items-center rounded-full bg-orange-600/95 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-sm">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
+                                <span class="kursus-tag inline-flex items-center rounded-full bg-orange-600/95 px-3 py-1 text-xs font-semibold uppercase  text-white shadow-sm"><p>{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</p></span>
                                 <div class="inline-flex items-center gap-2">
-                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-orange-600 shadow-sm">{{ $kursus->jenis_kursus }}</span>
-                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-orange-600 shadow-sm">Kuota {{ $kursus->kuota ?? '-' }}</span>
+                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase  text-orange-600 shadow-sm"><p>{{ $kursus->jenis_kursus }}</p></span>
+                                    <span class="kursus-pill inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase  text-orange-600 shadow-sm"><p>Kuota {{ $kursus->kuota ?? '-' }}</p></span>
                                 </div>
                             </div>
                         </div>
@@ -487,7 +658,7 @@
                     </article>
                     @empty
                     <div class="kursus-empty col-span-3 rounded-3xl p-10 text-center text-gray-500 shadow-sm">
-                        Tiada kursus ditemui.
+                        <p>Tiada kursus ditemui.</p>
                     </div>
                     @endforelse
                 </div>
@@ -564,6 +735,20 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Like button functionality
+        function toggleLike(button) {
+            button.classList.toggle('liked');
+            const icon = button.querySelector('i');
+            if (button.classList.contains('liked')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        }
     </script>
 
 </body>
+</html>

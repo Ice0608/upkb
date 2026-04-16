@@ -1,3 +1,275 @@
+@extends('layouts.app')
+
+@section('content')
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Kaedah Pembayaran - Temu Duga</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        .payment-method {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            background: white;
+        }
+        
+        .payment-method:hover {
+            border-color: #ff9800;
+            background: #fff9f0;
+        }
+        
+        .payment-method.active {
+            border-color: #ff9800;
+            background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, rgba(255, 152, 0, 0.02) 100%);
+            box-shadow: 0 4px 20px rgba(255, 152, 0, 0.15);
+        }
+        
+        .qr-code-display {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f9ff 0%, #fff9f0 100%);
+            border-radius: 1rem;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .payment-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff9800;
+        }
+        
+        .amount-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900">
+
+@include('layouts.interviewnav')
+
+<main class="min-h-screen flex-grow">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-slate-900 mb-3">
+                <i class="fas fa-credit-card text-orange-600"></i> Pilih Kaedah Pembayaran
+            </h1>
+            <p class="text-lg text-slate-600">Sila pilih kaedah pembayaran yang sesuai untuk melanjutkan proses temu duga.</p>
+        </div>
+
+        <!-- Payment Amount -->
+        <div class="bg-white rounded-3xl shadow-lg p-8 mb-8 border border-slate-100">
+            <p class="amount-label mb-2">Jumlah Pembayaran</p>
+            <p class="payment-amount">RM {{ number_format($jumlah, 2) }}</p>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <!-- QR Code Method -->
+            <div class="payment-method" onclick="selectMethod('qr', this)">
+                <div class="text-center mb-4">
+                    <i class="fas fa-qrcode text-4xl text-orange-600 mb-3"></i>
+                    <h3 class="text-xl font-bold text-slate-900">Kod QR</h3>
+                </div>
+                <p class="text-slate-600 text-center text-sm">
+                    Imbas kod QR dengan telefon pintar anda untuk membuat pembayaran.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-200">
+                    <button type="button" class="w-full py-2 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm hover:bg-orange-200 transition">
+                        Pilih
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cash Method -->
+            <div class="payment-method" onclick="selectMethod('cash', this)">
+                <div class="text-center mb-4">
+                    <i class="fas fa-money-bill-wave text-4xl text-green-600 mb-3"></i>
+                    <h3 class="text-xl font-bold text-slate-900">Tunai</h3>
+                </div>
+                <p class="text-slate-600 text-center text-sm">
+                    Bayar secara tunai kepada kakitangan institusi anda.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-200">
+                    <button type="button" class="w-full py-2 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm hover:bg-orange-200 transition">
+                        Pilih
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bank Transfer Method -->
+            <div class="payment-method" onclick="selectMethod('transfer', this)">
+                <div class="text-center mb-4">
+                    <i class="fas fa-university text-4xl text-blue-600 mb-3"></i>
+                    <h3 class="text-xl font-bold text-slate-900">Pindahan Bank</h3>
+                </div>
+                <p class="text-slate-600 text-center text-sm">
+                    Pindahkan dana melalui akaun bank institusi.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-200">
+                    <button type="button" class="w-full py-2 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm hover:bg-orange-200 transition">
+                        Pilih
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Selected Method Details -->
+        <div id="method-details" class="hidden bg-white rounded-3xl shadow-lg p-8 mb-12">
+            <!-- QR Code Display -->
+            <div id="qr-details" class="hidden">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6">
+                    <i class="fas fa-qrcode text-orange-600"></i> Pembayaran Melalui Kod QR
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="qr-code-display">
+                        <div class="text-center">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Payment-{{ $pelajar->id }}" alt="QR Code">
+                            <p class="mt-4 text-slate-600 text-sm">Kod QR anda</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-slate-600 mb-4">Langkah pembayaran:</p>
+                        <ol class="list-decimal list-inside space-y-2 text-slate-600">
+                            <li>Buka aplikasi perbankan anda</li>
+                            <li>Pilih fungsi "Imbas Kod QR"</li>
+                            <li>Imbas kod QR di sebelah</li>
+                            <li>Sahkan jumlah: <span class="font-bold">RM {{ number_format($jumlah, 2) }}</span></li>
+                            <li>Selesaikan transaksi</li>
+                        </ol>
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <p class="text-sm text-blue-700">
+                                <i class="fas fa-info-circle"></i> 
+                                <strong>Nota:</strong> Simpan bukti pembayaran untuk rekod anda.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cash Details -->
+            <div id="cash-details" class="hidden">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6">
+                    <i class="fas fa-money-bill-wave text-green-600"></i> Pembayaran Tunai
+                </h3>
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+                    <p class="text-green-700 mb-3">
+                        <i class="fas fa-check-circle"></i> 
+                        <strong>Instruksi Pembayaran Tunai:</strong>
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600 ml-4">
+                        <li>Bayar ke pejabat institusi anda dalam waktu 3 hari</li>
+                        <li>Jumlah pembayaran: <strong>RM {{ number_format($jumlah, 2) }}</strong></li>
+                        <li>Ambil resit sebagai bukti pembayaran</li>
+                        <li>Serahkan resit kepada kakitangan temu duga</li>
+                    </ul>
+                </div>
+                <p class="text-slate-600 mb-4">Hubungi:</p>
+                <div class="space-y-2 text-slate-600">
+                    <p><i class="fas fa-phone text-orange-600"></i> <span class="font-semibold">Telefon:</span> {{ config('app.support_phone', '03-XXXX XXXX') }}</p>
+                    <p><i class="fas fa-envelope text-orange-600"></i> <span class="font-semibold">Email:</span> {{ config('app.support_email', 'support@example.com') }}</p>
+                </div>
+            </div>
+
+            <!-- Bank Transfer Details -->
+            <div id="transfer-details" class="hidden">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6">
+                    <i class="fas fa-university text-blue-600"></i> Pindahan Bank
+                </h3>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                    <p class="text-blue-700 mb-4 font-semibold">
+                        Maklumat Akaun Bank:
+                    </p>
+                    <div class="space-y-3 text-slate-700">
+                        <p><span class="font-semibold">Nama Bank:</span> Banking Institution</p>
+                        <p><span class="font-semibold">Nama Akaun:</span> {{ config('app.bank_account_name', 'Ministry/Institution Name') }}</p>
+                        <p><span class="font-semibold">No. Akaun:</span> <code class="bg-white px-2 py-1 rounded text-sm">{{ config('app.bank_account_no', 'XXXX XXXX XXXX XXXX') }}</code></p>
+                        <p><span class="font-semibold">Kod Bank (SWIFT):</span> <code class="bg-white px-2 py-1 rounded text-sm">XXXMYKL</code></p>
+                    </div>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                    <p class="text-amber-700 mb-2">
+                        <i class="fas fa-exclamation-triangle"></i> 
+                        <strong>Penting:</strong>
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-600 ml-4">
+                        <li>Jumlah pindahan: <strong>RM {{ number_format($jumlah, 2) }}</strong></li>
+                        <li>Rujukan: Gunakan No. IC Anda sebagai rujukan</li>
+                        <li>Simpan bukti pindahan (resit/bukti e-banking)</li>
+                        <li>Serahkan bukti kepada kakitangan temu duga</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden Form for Submission -->
+        <form id="payment-form" method="POST" action="{{ route('staff.temuduga.store-pembayaran', $pelajar->id) }}" class="hidden">
+            @csrf
+            <input type="hidden" name="kaedah" id="kaedah-input" value="">
+            <input type="hidden" name="jumlah" value="{{ $jumlah }}">
+        </form>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 justify-center mb-12">
+            <a href="javascript:history.back()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+                <i class="fas fa-arrow-left"></i> Kembali
+            </a>
+            <button type="submit" onclick="submitPaymentForm()" class="inline-flex items-center gap-2 rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white hover:bg-orange-700 transition disabled:opacity-50 disabled:cursor-not-allowed" id="submit-btn" disabled>
+                <i class="fas fa-check"></i> Lanjutkan
+            </button>
+        </div>
+    </div>
+</main>
+
+@include('layouts.footer')
+
+<script>
+    let selectedMethod = null;
+
+    function selectMethod(method, element) {
+        // Remove active class from all methods
+        document.querySelectorAll('.payment-method').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // Add active class to selected method
+        element.classList.add('active');
+        selectedMethod = method;
+
+        // Hide all details
+        document.querySelectorAll('[id$="-details"]').forEach(el => {
+            el.classList.add('hidden');
+        });
+
+        // Show the method details
+        document.getElementById('method-details').classList.remove('hidden');
+        document.getElementById(method + '-details').classList.remove('hidden');
+
+        // Enable submit button
+        document.getElementById('submit-btn').disabled = false;
+    }
+
+    function submitPaymentForm() {
+        if (selectedMethod) {
+            document.getElementById('kaedah-input').value = selectedMethod;
+            document.getElementById('payment-form').submit();
+        }
+    }
+</script>
+
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -191,17 +191,4 @@ class StaffEventController extends Controller
         return redirect()->route('staff.bmd.edit', $pelajar->id)
             ->with('success', 'Maklumat pelajar telah dikemaskini.');
     }
-
-    public function updatePaymentStatus(Request $request, Pelajar $pelajar)
-    {
-        abort_if(auth()->user()->level !== 'staff', 403);
-
-        $request->validate([
-            'status' => 'required|in:pending,paid,cancel',
-        ]);
-
-        Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->update(['status' => $request->status]);
-
-        return redirect()->route('staff.main')->with('success', 'Status pembayaran dikemaskini.');
-    }
 }

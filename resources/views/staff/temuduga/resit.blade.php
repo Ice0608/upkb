@@ -1,3 +1,237 @@
+@extends('layouts.app')
+
+@section('content')
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Resit Pembayaran - Temu Duga</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        .receipt-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #22c55e;
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .receipt-header {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .receipt-item:last-child {
+            border-bottom: none;
+        }
+
+        .receipt-item-label {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .receipt-item-value {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .receipt-total {
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #22c55e;
+        }
+
+        .receipt-total-label {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .receipt-total-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+            }
+            nav, footer {
+                display: none !important;
+            }
+            main {
+                padding: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .receipt-box {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900">
+
+@include('layouts.interviewnav')
+
+<main class="min-h-screen flex-grow">
+    <div class="max-w-2xl mx-auto px-4 py-12">
+        <!-- Receipt -->
+        <div class="receipt-box">
+            <div class="receipt-header">
+                <h1 class="text-3xl font-bold mb-2">
+                    <i class="fas fa-check-circle"></i> Pembayaran Berjaya!
+                </h1>
+                <p class="text-green-100">Terima kasih telah menyelesaikan pembayaran</p>
+            </div>
+
+            <!-- Receipt Details -->
+            <div class="bg-white rounded-lg p-6 mb-6">
+                <h3 class="text-xl font-bold text-slate-900 mb-4">
+                    <i class="fas fa-receipt text-green-600"></i> Butiran Resit
+                </h3>
+
+                @if($pembayaran)
+                <div class="space-y-3 text-sm">
+                    <div class="receipt-item">
+                        <span class="receipt-item-label">No. Resit:</span>
+                        <span class="receipt-item-value">#{{ $pembayaran->id }}</span>
+                    </div>
+                    
+                    <div class="receipt-item">
+                        <span class="receipt-item-label">No. Pengenalan:</span>
+                        <span class="receipt-item-value">{{ $pelajar->ic_pelajar }}</span>
+                    </div>
+
+                    <div class="receipt-item">
+                        <span class="receipt-item-label">Nama Pelajar:</span>
+                        <span class="receipt-item-value">{{ $pelajar->nama_pelajar }}</span>
+                    </div>
+
+                    <div class="receipt-item">
+                        <span class="receipt-item-label">Kaedah Pembayaran:</span>
+                        <span class="receipt-item-value">
+                            @if($pembayaran->kaedah === 'qr')
+                                <i class="fas fa-qrcode"></i> Kod QR
+                            @elseif($pembayaran->kaedah === 'cash')
+                                <i class="fas fa-money-bill-wave"></i> Tunai
+                            @elseif($pembayaran->kaedah === 'transfer')
+                                <i class="fas fa-university"></i> Pindahan Bank
+                            @else
+                                {{ ucfirst($pembayaran->kaedah) }}
+                            @endif
+                        </span>
+                    </div>
+
+                    <div class="receipt-item">
+                        <span class="receipt-item-label">Status:</span>
+                        <span class="receipt-item-value">
+                            <span class="inline-flex items-center gap-1 rounded-full bg-yellow-100 px-3 py-1 text-xs font-semibold text-yellow-700">
+                                <i class="fas fa-clock"></i> {{ ucfirst($pembayaran->status) }}
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="receipt-item">
+                        <span class="receipt-item-label">Tarikh Pembayaran:</span>
+                        <span class="receipt-item-value">{{ $pembayaran->created_at->format('d/m/Y H:i') }}</span>
+                    </div>
+                </div>
+
+                <!-- Total Amount -->
+                <div class="receipt-total">
+                    <span class="receipt-total-label">Jumlah Pembayaran:</span>
+                    <span class="receipt-total-amount">RM {{ number_format($pembayaran->jumlah, 2) }}</span>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-6">
+                    <p class="text-sm text-blue-700">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Nota:</strong> Resit ini adalah bukti pembayaran anda. Sila simpan untuk rekod peribadian.
+                    </p>
+                </div>
+                @else
+                <p class="text-slate-600">Data pembayaran tidak ditemui.</p>
+                @endif
+            </div>
+
+            <!-- Reference Information -->
+            <div class="bg-white rounded-lg p-6 mb-6">
+                <h3 class="text-lg font-bold text-slate-900 mb-3">
+                    <i class="fas fa-clipboard-list text-orange-600"></i> Maklumat Rujukan
+                </h3>
+                <div class="space-y-2 text-sm text-slate-600">
+                    <p><strong>ID Pelajar:</strong> {{ $pelajar->id }}</p>
+                    <p><strong>Kod Institusi:</strong> {{ $pelajar->kod_institusi ?? 'N/A' }}</p>
+                    <p><strong>Kod Kursus:</strong> {{ $pelajar->kod_kursus ?? 'N/A' }}</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-4 justify-center no-print">
+                <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+                    <i class="fas fa-print"></i> Cetak
+                </button>
+                <button onclick="sendEmail()" class="inline-flex items-center gap-2 rounded-full border border-orange-600 bg-orange-100 px-6 py-3 text-sm font-semibold text-orange-700 hover:bg-orange-200 transition">
+                    <i class="fas fa-envelope"></i> Hantar Email
+                </button>
+                <a href="{{ route('staff.temuduga.surat-tawaran', $pelajar->id) }}" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
+                    <i class="fas fa-arrow-right"></i> Seterusnya
+                </a>
+            </div>
+        </div>
+
+        <!-- Continue to interviews -->
+        <div class="mt-8 text-center">
+            <p class="text-slate-600 mb-3">Proses temu duga</p>
+            <div class="flex items-center justify-center gap-2 text-sm text-slate-500">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span>Pilihan Kursus</span>
+                <i class="fas fa-chevron-right mx-1"></i>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span>Pembayaran</span>
+                <i class="fas fa-chevron-right mx-1"></i>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span>Resit</span>
+                <i class="fas fa-chevron-right mx-1"></i>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-600 text-white font-bold text-xs">4</span>
+                <span>Surat Tawaran</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+@include('layouts.footer')
+
+<script>
+    function sendEmail() {
+        alert('Ciri hantar email sedang dalam pembangunan. Sila hubungi sokongan jika diperlukan.');
+        // TODO: Implement email sending functionality
+    }
+</script>
+
+@endsection
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Pilihan Kursus - Temu Duga</title>
+    <title>UPKB - {{ $namaKursus }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <style>
@@ -44,10 +44,18 @@
 <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.interviewnav')
 
     <main class="flex-grow">
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="pilihan-kursus-page" data-filter-url="{{ route('staff.temuduga.filterByName', ['pelajar' => $pelajar->id, 'nama' => $namaKursus]) }}">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="pilihan-kursus-page" data-filter-url="{{ route('staff.temuduga.filter', ['pelajar' => $pelajar->id, 'nama' => $namaKursus]) }}">
+
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+                                <button type="button" onclick="window.history.back()"
+                                    class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:border-orange-500 hover:text-orange-500">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    Kembali
+                                </button>
+                            </div>
             
             <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
                 <div class="relative group">
@@ -61,6 +69,7 @@
 
                 <div class="space-y-8">
                     <div>
+
                         <span class="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase bg-orange-100 rounded-full">
                             Kursus Pilihan
                         </span>
@@ -142,7 +151,7 @@
             </div>
 
             <div id="institusiResults" class="min-h-[400px]">
-                @include('staff.temuduga._pilihankursus_institusi')
+                @include('program._pilihankursus_institusi')
             </div>
         </section>
     </main>
@@ -225,6 +234,5 @@
             }
         });
     </script>
-
 </body>
 </html>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('pelajar', function (Blueprint $table) {
             $table->string('noreff')->nullable()->after('id');
             $table->enum('program', ['Diploma', 'TVET', 'Sains Kesihatan'])->nullable()->after('noreff');
+            $table->enum('status_perkahwinan', ['Bujang', 'Berkahwin', 'Duda', 'Balu/Janda/Ibu Tunggal'])->nullable()->after('program');
             $table->double('spm_credit')->nullable()->after('ic_pelajar');
             $table->string('pekerjaan_bapa')->nullable()->after('no_tel_bapa');
             $table->string('pekerjaan_ibu')->nullable()->after('no_tel_ibu');
@@ -29,7 +30,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('pelajar', function (Blueprint $table) {
-            $table->dropColumn(['noreff', 'program', 'spm_credit', 'pekerjaan_bapa', 'pekerjaan_ibu', 'pilihan_pertama', 'pilihan_kedua', 'pilihan_ketiga']);
+            $table->dropColumn(['noreff', 'program', 'status_perkahwinan', 'spm_credit', 'pekerjaan_bapa', 'pekerjaan_ibu', 'pilihan_pertama', 'pilihan_kedua', 'pilihan_ketiga']);
         });
     }
 };

@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('staff.temuduga.infokursus', [$pelajar->id, $kursus->kod_kursus]) }}"
+            <a href="{{ route('kursus.show', $kursus->id) }}"
                class="inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 transition mt-auto">
                 <span>Lihat Detail</span>
                 <i class="fas fa-arrow-right"></i>

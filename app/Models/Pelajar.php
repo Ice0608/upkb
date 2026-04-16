@@ -15,6 +15,7 @@ class Pelajar extends Model
         'tarikh_pendaftaran',
         'noreff',
         'program',
+        'status_perkahwinan',
         'nama_pelajar',
         'ic_pelajar',
         'spm_credit',
