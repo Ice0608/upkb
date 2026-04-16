@@ -351,15 +351,9 @@
                         </div>
                     </div>
                     <div class="p-6 sm:p-7 flex flex-col flex-1">
-                        <div class="grid gap-3 sm:grid-cols-2">
-                            <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                                <i class="fas fa-map-marker-alt mt-0.5 text-orange-500"></i>
-                                <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
-                            </div>
-                            <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                                <i class="fas fa-layer-group mt-0.5 text-orange-500"></i>
-                                <span>{{ $institusi->kursuses_count }} pilihan kursus</span>
-                            </div>
+                        <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
+                            <i class="fas fa-map-marker-alt mt-0.5 text-orange-500"></i>
+                            <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                         </div>
                         <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
                         <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">

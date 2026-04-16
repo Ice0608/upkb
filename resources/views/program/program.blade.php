@@ -159,6 +159,43 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
         }
 
+        .program-search-form {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            width: 100%;
+            max-width: 34rem;
+            margin-top: 1.75rem;
+        }
+
+        .program-search-input {
+            flex: 1;
+            min-width: 0;
+            border: 1px solid rgba(255, 255, 255, 0.48);
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.24),
+                0 18px 36px rgba(15, 23, 42, 0.12);
+            backdrop-filter: blur(12px);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .program-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.76);
+        }
+
+        .program-search-input:hover,
+        .program-search-input:focus {
+            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.72);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 22px 42px rgba(15, 23, 42, 0.14),
+                0 0 0 4px rgba(255, 255, 255, 0.14);
+            outline: none;
+        }
+
         .program-search-button:hover {
             transform: translateY(-3px) scale(1.04);
             box-shadow:
@@ -397,6 +434,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .segment-wrapper .segment,
+            .program-search-input,
             .program-search-button,
             .segment-label {
                 transition: none;
@@ -423,10 +461,20 @@
                     <p class="text-xs sm:text-sm uppercase tracking-[0.1em] text-white/70 font-semibold">Eksplorasi Program</p>
                     <h1 class="mt-3 text-4xl md:text-5xl font-bold leading-tight tracking-[-0.04em]">Teroka Semua Kursus</h1>
                     <p class="mt-3 text-base sm:text-lg text-white/80 max-w-2xl">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
+                    <form action="{{ route('kursus.index') }}" method="GET" class="program-search-form">
+                        <label class="sr-only" for="program-course-search">Cari seluruh kursus</label>
+                        <input
+                            id="program-course-search"
+                            type="search"
+                            name="search"
+                            class="program-search-input rounded-full px-5 py-3 text-sm sm:text-base"
+                            placeholder="Cari nama kursus, kod kursus atau institusi"
+                        >
+                        <button type="submit" class="program-search-button shrink-0 w-14 h-14 rounded-full bg-white/95 text-orange-600" aria-label="Cari kursus">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
                 </div>
-                <button class="program-search-button w-14 h-14 rounded-full bg-white/95 text-orange-600">
-                    <i class="fas fa-search"></i>
-                </button>
             </div>
         </div>
 

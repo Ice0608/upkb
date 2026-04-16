@@ -68,8 +68,24 @@ class KursusController extends Controller
         $jenis = $request->query('jenis');
         $negeri = $request->query('negeri');
         $kuota = $request->query('kuota');
+        $search = trim((string) $request->query('search', ''));
 
         $query = Kursus::with(['institusi', 'galeris']);
+
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_kursus', 'LIKE', '%' . $search . '%')
+                    ->orWhere('kod_kursus', 'LIKE', '%' . $search . '%')
+                    ->orWhere('jenis_kursus', 'LIKE', '%' . $search . '%')
+                    ->orWhere('tempoh', 'LIKE', '%' . $search . '%')
+                    ->orWhere('mod_pengajian', 'LIKE', '%' . $search . '%')
+                    ->orWhereHas('institusi', function ($institusiQuery) use ($search) {
+                        $institusiQuery->where('nama_institusi', 'LIKE', '%' . $search . '%')
+                            ->orWhere('alamat', 'LIKE', '%' . $search . '%')
+                            ->orWhere('jenis_institusi', 'LIKE', '%' . $search . '%');
+                    });
+            });
+        }
 
         if ($jenis) {
             $query->whereHas('institusi', function ($q) use ($jenis) {
@@ -94,7 +110,7 @@ class KursusController extends Controller
             $selectedProgram = Program::where('jenis_program', $jenis)->first();
         }
 
-        return view('program.listkursus', compact('kursusList', 'jenis', 'selectedProgram'));
+        return view('program.listkursus', compact('kursusList', 'jenis', 'selectedProgram', 'search'));
     }
 
     public function show($id)

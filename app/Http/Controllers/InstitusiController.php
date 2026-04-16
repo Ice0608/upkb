@@ -15,7 +15,7 @@ class InstitusiController extends Controller
         $negeri = $request->query('negeri');
         $kuota = $request->query('kuota');
         
-        $query = Institusi::query();
+        $query = Institusi::query()->withCount('kursuses');
         
         if ($jenis) {
             $query->where('jenis_institusi', $jenis);
