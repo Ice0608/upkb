@@ -293,8 +293,37 @@
             opacity: 1;
         }
 
+        .faq-card[data-faq-type="tvet"] {
+            border-color: rgba(240, 205, 112, 0.54);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 248, 220, 0.5),
+                inset 0 -10px 20px rgba(255, 255, 255, 0.08),
+                0 18px 38px rgba(168, 116, 8, 0.16),
+                0 0 28px rgba(212, 175, 55, 0.14);
+            background:
+                linear-gradient(90deg, rgba(168, 116, 8, 0.9), rgba(212, 175, 55, 0.9) 58%, rgba(241, 207, 99, 0.88));
+            opacity: 0.96;
+        }
+
+        .faq-card[data-faq-type="tvet"]::after {
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0) 72%);
+        }
+
         .faq-card[data-faq-type="skm"]::after {
             background: radial-gradient(circle, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0) 72%);
+        }
+
+        .faq-card[data-faq-type="tvet"]:hover,
+        .faq-card[data-faq-type="tvet"]:focus-visible,
+        .faq-card[data-faq-type="tvet"].is-focused {
+            border-color: rgba(240, 205, 112, 0.6);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 248, 220, 0.52),
+                0 24px 54px rgba(168, 116, 8, 0.24),
+                0 0 34px rgba(212, 175, 55, 0.24),
+                0 0 90px rgba(241, 207, 99, 0.22);
+            background:
+                linear-gradient(90deg, rgba(154, 106, 7, 0.96), rgba(212, 175, 55, 0.96) 58%, rgba(241, 207, 99, 0.94));
         }
 
         .faq-card[data-faq-type="skm"]:hover,
@@ -352,6 +381,25 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(139, 92, 246, 0.24);
+            }
+
+            .faq-card[data-faq-type="tvet"] .faq-card-title,
+            .faq-card[data-faq-type="tvet"] .faq-card-copy,
+            .faq-card[data-faq-type="tvet"] .faq-card-meta {
+                color: rgba(255, 255, 255, 0.96);
+            }
+
+            .faq-card[data-faq-type="tvet"] .faq-arrow {
+                color: rgba(255, 255, 255, 0.88);
+            }
+
+            .faq-card[data-faq-type="tvet"].is-focused .faq-icon-chip,
+            .faq-card[data-faq-type="tvet"]:hover .faq-icon-chip,
+            .faq-card[data-faq-type="tvet"]:focus-visible .faq-icon-chip {
+                box-shadow:
+                    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                    0 20px 34px rgba(28, 28, 30, 0.14),
+                    0 0 34px rgba(212, 175, 55, 0.24);
             }
 
         .faq-arrow {

@@ -221,6 +221,7 @@
 </head>
 @php
     $detailProgramType = strtolower((string) optional($kursus->institusi)->jenis_institusi);
+    $detailInstitusi = $kursus->institusi;
     $detailCourseName = strtolower(trim((string) $kursus->nama_kursus));
     $detailTvetCourseFallbacks = [
         'pengurusan & pentadbiran pejabat',
@@ -255,9 +256,11 @@
                     <p class="kursus-detail-soft-text mt-6 max-w-3xl leading-relaxed">{{ $kursus->penerangan }}</p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="{{ route('institusi.show', $kursus->institusi->id) }}" class="kursus-detail-primary-btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
-                            <i class="fas fa-arrow-left"></i> Kembali ke Institusi
-                        </a>
+                        @if($detailInstitusi)
+                            <a href="{{ route('institusi.show', $detailInstitusi->id) }}" class="kursus-detail-primary-btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
+                                <i class="fas fa-arrow-left"></i> Kembali ke Institusi
+                            </a>
+                        @endif
                         <a href="{{ route('kursus.pdf', $kursus->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
                             <i class="fas fa-file-pdf"></i> Simpan PDF
                         </a>
@@ -266,8 +269,8 @@
                 <div class="space-y-4">
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Institusi</h2>
-                        <p class="kursus-detail-soft-text text-sm">{{ $kursus->institusi->nama_institusi }}</p>
-                        <p class="kursus-detail-soft-text text-sm">{{ $kursus->institusi->alamat }}</p>
+                        <p class="kursus-detail-soft-text text-sm">{{ $detailInstitusi?->nama_institusi ?? 'Maklumat institusi tidak tersedia.' }}</p>
+                        <p class="kursus-detail-soft-text text-sm">{{ $detailInstitusi?->alamat ?? trim((string) $kursus->kod_institusi) }}</p>
                     </div>
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Ringkasan</h2>

@@ -16,6 +16,16 @@ class Institusi extends Model
         'mengenai_institusi',
     ];
 
+    public function getKodInstitusiAttribute($value)
+    {
+        return is_string($value) ? trim($value) : $value;
+    }
+
+    public function setKodInstitusiAttribute($value): void
+    {
+        $this->attributes['kod_institusi'] = is_string($value) ? trim($value) : $value;
+    }
+
     public function kursuses()
     {
         return $this->hasMany(Kursus::class, 'kod_institusi', 'kod_institusi');

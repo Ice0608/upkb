@@ -508,6 +508,138 @@
             box-shadow: 0 14px 28px rgba(249, 115, 22, 0.14);
         }
 
+        .institusi-results-slider {
+            position: relative;
+        }
+
+        .institusi-slider-nav {
+            position: absolute;
+            inset: 50% 0 auto;
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transform: translateY(-50%);
+            pointer-events: none;
+            padding: 0 0.35rem;
+        }
+
+        .institusi-slider-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.85rem;
+            height: 3.85rem;
+            font-size: 1.15rem;
+            border-radius: 999px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            background: rgba(255, 255, 255, 0.96);
+            color: #f97316;
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+            pointer-events: auto;
+        }
+
+        .institusi-slider-button:hover,
+        .institusi-slider-button:focus-visible {
+            transform: translateY(-1px);
+            border-color: rgba(249, 115, 22, 0.34);
+            box-shadow: 0 16px 30px rgba(249, 115, 22, 0.16);
+            outline: none;
+        }
+
+        .institusi-slider-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .institusi-shell--tvet .institusi-slider-button {
+            border-color: rgba(var(--institusi-tvet-rgb), 0.22);
+            color: var(--institusi-tvet-600);
+        }
+
+        .institusi-shell--tvet .institusi-slider-button:hover,
+        .institusi-shell--tvet .institusi-slider-button:focus-visible {
+            border-color: rgba(var(--institusi-tvet-rgb), 0.38);
+            box-shadow: 0 16px 30px rgba(var(--institusi-tvet-rgb), 0.18);
+        }
+
+        .institusi-shell--diploma .institusi-slider-button {
+            border-color: rgba(var(--institusi-diploma-rgb), 0.22);
+            color: var(--institusi-diploma-600);
+        }
+
+        .institusi-shell--diploma .institusi-slider-button:hover,
+        .institusi-shell--diploma .institusi-slider-button:focus-visible {
+            border-color: rgba(var(--institusi-diploma-rgb), 0.38);
+            box-shadow: 0 16px 30px rgba(var(--institusi-diploma-rgb), 0.18);
+        }
+
+        .institusi-shell--sains-kesihatan .institusi-slider-button {
+            border-color: rgba(var(--institusi-sains-rgb), 0.22);
+            color: var(--institusi-sains-600);
+        }
+
+        .institusi-shell--sains-kesihatan .institusi-slider-button:hover,
+        .institusi-shell--sains-kesihatan .institusi-slider-button:focus-visible {
+            border-color: rgba(var(--institusi-sains-rgb), 0.38);
+            box-shadow: 0 16px 30px rgba(var(--institusi-sains-rgb), 0.18);
+        }
+
+        .institusi-slider-row {
+            position: relative;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 0.35rem 4.7rem 1rem;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+        }
+
+        .institusi-slider-row.is-looping {
+            scroll-snap-type: none;
+        }
+
+        .institusi-slider-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .institusi-slider-track {
+            display: flex;
+            width: max-content;
+            gap: 1.5rem;
+        }
+
+        .institusi-slider-card {
+            flex: 0 0 clamp(18rem, 29vw, 20.75rem);
+            width: clamp(18rem, 29vw, 20.75rem);
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        .institusi-slider-card .institusi-card-media {
+            height: clamp(12rem, 17vw, 14rem);
+        }
+
+        .institusi-slider-card .institusi-clamp-3 {
+            -webkit-line-clamp: 2;
+        }
+
+        @keyframes institusiContinuousSlide {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
         .institusi-card {
             position: relative;
             overflow: hidden;
@@ -631,6 +763,36 @@
         .institusi-clamp-3 {
             -webkit-line-clamp: 3;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            .institusi-slider-row {
+                scroll-behavior: auto;
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .institusi-slider-row {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .institusi-slider-nav {
+                inset: auto 0 0.1rem;
+                transform: none;
+                justify-content: center;
+                gap: 0.75rem;
+                padding: 0;
+            }
+
+            .institusi-slider-button {
+                width: 3.2rem;
+                height: 3.2rem;
+                font-size: 1rem;
+                background: rgba(255, 255, 255, 0.98);
+            }
+        }
     </style>
 </head>
 @php
@@ -715,51 +877,311 @@
             </div>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch">
-            @forelse($institusis as $institusi)
-            <article class="institusi-card rounded-3xl flex flex-col h-full">
-                <a href="{{ route('institusi.show', $institusi->id) }}" class="group flex flex-col h-full text-current no-underline">
-                    <div class="institusi-card-media">
-                        <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
-                        <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
-                            <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
-                            <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
-                                <i class="fas fa-book-open mr-2 text-[0.7rem]"></i>{{ $institusi->kursuses_count }} kursus
-                            </span>
-                        </div>
-                        <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
-                            <div>
-                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
-                                <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
-                            </div>
-                            <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="p-6 sm:p-7 flex flex-col flex-1">
-                        <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
-                            <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
-                        </div>
-                        <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
-                        <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
-                            <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
-                            <span class="institusi-card-link inline-flex items-center gap-2 text-sm font-semibold">
-                                Teroka
-                                <i class="fas fa-arrow-right text-xs"></i>
-                            </span>
-                        </div>
-                    </div>
-                </a>
-            </article>
-            @empty
+        @if($institusis->isEmpty())
             <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">
                 Tiada institusi ditemui.
             </div>
-            @endforelse
-        </div>
+        @else
+            <div class="institusi-results-slider">
+                <div class="institusi-slider-nav" data-slider-nav>
+                    <button type="button" class="institusi-slider-button" data-slider-action="prev" aria-label="Institusi sebelumnya">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button type="button" class="institusi-slider-button" data-slider-action="next" aria-label="Institusi seterusnya">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="institusi-slider-row" data-institusi-slider>
+                    <div class="institusi-slider-track">
+                        @foreach($institusis as $institusi)
+                            <article class="institusi-slider-card institusi-card rounded-3xl flex flex-col h-full">
+                                <a href="{{ route('institusi.show', $institusi->id) }}" class="group flex flex-col h-full text-current no-underline">
+                                    <div class="institusi-card-media">
+                                        <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
+                                        <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
+                                            <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
+                                            <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
+                                                <i class="fas fa-book-open mr-2 text-[0.7rem]"></i>{{ $institusi->kursuses_count }} kursus
+                                            </span>
+                                        </div>
+                                        <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
+                                            <div>
+                                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
+                                                <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
+                                            </div>
+                                            <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
+                                                <i class="fas fa-arrow-right"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 sm:p-7 flex flex-col flex-1">
+                                        <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
+                                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
+                                            <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
+                                        </div>
+                                        <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
+                                        <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
+                                            <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
+                                            <span class="institusi-card-link inline-flex items-center gap-2 text-sm font-semibold">
+                                                Teroka
+                                                <i class="fas fa-arrow-right text-xs"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-institusi-slider]').forEach((sliderRow) => {
+                const slider = sliderRow.closest('.institusi-results-slider');
+                const sliderTrack = sliderRow.querySelector('.institusi-slider-track');
+                const nav = slider?.querySelector('[data-slider-nav]');
+                const prevButton = slider?.querySelector('[data-slider-action="prev"]');
+                const nextButton = slider?.querySelector('[data-slider-action="next"]');
+
+                if (!slider || !sliderTrack || !nav || !prevButton || !nextButton) {
+                    return;
+                }
+
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+                const originalCards = Array.from(sliderTrack.querySelectorAll('.institusi-slider-card'));
+                const canLoop = originalCards.length > 1;
+                const autoScrollSpeed = 32;
+                const autoScrollResumeDelay = 1800;
+                let loopWidth = 0;
+                let animationFrameId = null;
+                let lastFrameTime = 0;
+                let resumeTimerId = null;
+
+                const pauseAutoScroll = () => {
+                    if (resumeTimerId) {
+                        window.clearTimeout(resumeTimerId);
+                        resumeTimerId = null;
+                    }
+
+                    if (animationFrameId !== null) {
+                        window.cancelAnimationFrame(animationFrameId);
+                        animationFrameId = null;
+                    }
+
+                    lastFrameTime = 0;
+                };
+
+                const createLoopClone = (card) => {
+                    const clone = card.cloneNode(true);
+
+                    clone.dataset.sliderClone = 'true';
+                    clone.setAttribute('aria-hidden', 'true');
+                    clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((focusable) => {
+                        focusable.setAttribute('tabindex', '-1');
+                    });
+
+                    return clone;
+                };
+
+                if (canLoop) {
+                    const prependFragment = document.createDocumentFragment();
+                    const appendFragment = document.createDocumentFragment();
+
+                    originalCards.forEach((card) => {
+                        prependFragment.appendChild(createLoopClone(card));
+                        appendFragment.appendChild(createLoopClone(card));
+                    });
+
+                    sliderTrack.prepend(prependFragment);
+                    sliderTrack.append(appendFragment);
+                    sliderRow.classList.add('is-looping');
+                }
+
+                const getStepSize = () => {
+                    const firstCard = originalCards[0];
+
+                    if (!firstCard) {
+                        return sliderRow.clientWidth * 0.9;
+                    }
+
+                    const gapValue = parseFloat(window.getComputedStyle(sliderTrack).gap || '0');
+                    return firstCard.getBoundingClientRect().width + gapValue;
+                };
+
+                const normalizeLoopPosition = () => {
+                    if (!canLoop || loopWidth <= 0) {
+                        return;
+                    }
+
+                    if (sliderRow.scrollLeft < loopWidth) {
+                        sliderRow.scrollLeft += loopWidth;
+                    } else if (sliderRow.scrollLeft >= loopWidth * 2) {
+                        sliderRow.scrollLeft -= loopWidth;
+                    }
+                };
+
+                const measureLoopWidth = () => {
+                    if (!canLoop) {
+                        return;
+                    }
+
+                    const firstOriginalCard = sliderTrack.children[originalCards.length];
+                    const firstAppendedClone = sliderTrack.children[originalCards.length * 2];
+
+                    if (!firstOriginalCard || !firstAppendedClone) {
+                        return;
+                    }
+
+                    loopWidth = firstAppendedClone.offsetLeft - firstOriginalCard.offsetLeft;
+
+                    if (loopWidth <= 0) {
+                        return;
+                    }
+
+                    const preservedOffset = sliderRow.dataset.loopReady === 'true'
+                        ? (((sliderRow.scrollLeft - loopWidth) % loopWidth) + loopWidth) % loopWidth
+                        : 0;
+
+                    sliderRow.scrollLeft = loopWidth + preservedOffset;
+                    sliderRow.dataset.loopReady = 'true';
+                };
+
+                const runAutoScroll = (timestamp) => {
+                    if (animationFrameId === null) {
+                        return;
+                    }
+
+                    if (!lastFrameTime) {
+                        lastFrameTime = timestamp;
+                    }
+
+                    const frameDelta = timestamp - lastFrameTime;
+
+                    lastFrameTime = timestamp;
+                    sliderRow.scrollLeft += (autoScrollSpeed * frameDelta) / 1000;
+                    normalizeLoopPosition();
+                    animationFrameId = window.requestAnimationFrame(runAutoScroll);
+                };
+
+                const resumeAutoScroll = () => {
+                    if (prefersReducedMotion.matches || !canLoop || nav.hidden || animationFrameId !== null) {
+                        return;
+                    }
+
+                    animationFrameId = window.requestAnimationFrame(runAutoScroll);
+                };
+
+                const scheduleAutoScrollResume = () => {
+                    pauseAutoScroll();
+
+                    if (prefersReducedMotion.matches || !canLoop || nav.hidden) {
+                        return;
+                    }
+
+                    resumeTimerId = window.setTimeout(() => {
+                        if (!slider.matches(':hover') && !slider.contains(document.activeElement)) {
+                            resumeAutoScroll();
+                        }
+                    }, autoScrollResumeDelay);
+                };
+
+                const updateSliderState = () => {
+                    const maxScroll = Math.max(0, sliderRow.scrollWidth - sliderRow.clientWidth);
+                    const hasOverflow = maxScroll > 8;
+
+                    nav.hidden = !hasOverflow;
+
+                    if (!hasOverflow) {
+                        pauseAutoScroll();
+                        prevButton.disabled = true;
+                        nextButton.disabled = true;
+                        return;
+                    }
+
+                    if (canLoop) {
+                        normalizeLoopPosition();
+                        prevButton.disabled = false;
+                        nextButton.disabled = false;
+                        return;
+                    }
+
+                    prevButton.disabled = sliderRow.scrollLeft <= 4;
+                    nextButton.disabled = sliderRow.scrollLeft >= maxScroll - 4;
+                };
+
+                const moveSlider = (direction) => {
+                    pauseAutoScroll();
+
+                    if (canLoop && loopWidth > 0) {
+                        const stepSize = getStepSize();
+
+                        if (direction < 0 && sliderRow.scrollLeft - stepSize < loopWidth) {
+                            sliderRow.scrollLeft += loopWidth;
+                        }
+
+                        if (direction > 0 && sliderRow.scrollLeft + stepSize >= loopWidth * 2) {
+                            sliderRow.scrollLeft -= loopWidth;
+                        }
+                    }
+
+                    sliderRow.scrollBy({
+                        left: direction * getStepSize(),
+                        behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+                    });
+
+                    scheduleAutoScrollResume();
+                };
+
+                const handleMotionPreferenceChange = () => {
+                    pauseAutoScroll();
+                    updateSliderState();
+
+                    if (!prefersReducedMotion.matches) {
+                        scheduleAutoScrollResume();
+                    }
+                };
+
+                prevButton.addEventListener('click', () => moveSlider(-1));
+                nextButton.addEventListener('click', () => moveSlider(1));
+                sliderRow.addEventListener('scroll', updateSliderState, { passive: true });
+                slider.addEventListener('mouseenter', pauseAutoScroll);
+                slider.addEventListener('mouseleave', scheduleAutoScrollResume);
+                slider.addEventListener('focusin', pauseAutoScroll);
+                slider.addEventListener('focusout', () => {
+                    window.requestAnimationFrame(() => {
+                        if (!slider.contains(document.activeElement)) {
+                            scheduleAutoScrollResume();
+                        }
+                    });
+                });
+                sliderRow.addEventListener('pointerdown', pauseAutoScroll);
+                sliderRow.addEventListener('pointerup', scheduleAutoScrollResume);
+                sliderRow.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+                sliderRow.addEventListener('touchend', scheduleAutoScrollResume, { passive: true });
+                window.addEventListener('resize', () => {
+                    measureLoopWidth();
+                    updateSliderState();
+
+                    if (!prefersReducedMotion.matches) {
+                        scheduleAutoScrollResume();
+                    }
+                });
+
+                if (typeof prefersReducedMotion.addEventListener === 'function') {
+                    prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
+                } else if (typeof prefersReducedMotion.addListener === 'function') {
+                    prefersReducedMotion.addListener(handleMotionPreferenceChange);
+                }
+
+                measureLoopWidth();
+                updateSliderState();
+                scheduleAutoScrollResume();
+            });
+        });
+    </script>
 
     @include('components.social-float')
 

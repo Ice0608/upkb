@@ -11,6 +11,11 @@
 <body class="bg-gray-100 text-gray-800">
 @include('layouts.interviewnav')
 
+    @php
+        $detailInstitusi = $kursus->institusi;
+        $detailInstitusiKod = $detailInstitusi?->kod_institusi ?? trim((string) $kursus->kod_institusi);
+    @endphp
+
     <section class="max-w-7xl mx-auto px-6 py-10">
         <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg overflow-hidden mb-10 text-white">
             <div class="grid md:grid-cols-[1.8fr,0.8fr] gap-6 p-8">
@@ -29,12 +34,12 @@
                     <p class="mt-6 max-w-3xl leading-relaxed text-orange-100/90">{{ $kursus->penerangan }}</p>
 
                     <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="{{ route('staff.temuduga.infoinstitusi', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->institusi->kod_institusi]) }}" class="inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
+                        <a href="{{ route('staff.temuduga.infoinstitusi', ['pelajar' => $pelajar->id, 'kod_institusi' => $detailInstitusiKod]) }}" class="inline-flex items-center gap-2 rounded-full bg-white text-orange-600 px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
                             <i class="fas fa-arrow-left"></i> Kembali ke Institusi
                         </a>
                         <form method="POST" action="{{ route('staff.temuduga.apply-now', $pelajar->id) }}" class="inline">
                             @csrf
-                            <input type="hidden" name="kod_institusi" value="{{ $kursus->institusi->kod_institusi }}">
+                            <input type="hidden" name="kod_institusi" value="{{ $detailInstitusiKod }}">
                             <input type="hidden" name="kod_kursus" value="{{ $kursus->kod_kursus }}">
                             <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
                                 <i class="fas fa-check"></i> APPLY NOW
@@ -45,8 +50,8 @@
                 <div class="space-y-4">
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Institusi</h2>
-                        <p class="text-sm text-orange-100/90">{{ $kursus->institusi->nama_institusi }}</p>
-                        <p class="text-sm text-orange-100/90">{{ $kursus->institusi->alamat }}</p>
+                        <p class="text-sm text-orange-100/90">{{ $detailInstitusi?->nama_institusi ?? 'Maklumat institusi tidak tersedia.' }}</p>
+                        <p class="text-sm text-orange-100/90">{{ $detailInstitusi?->alamat ?? $detailInstitusiKod }}</p>
                     </div>
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Ringkasan</h2>
@@ -93,6 +98,7 @@
             // Load tab content via AJAX
             const kursusId = '{{ $kursus->kod_kursus }}';
             const pelajarId = '{{ $pelajar->id }}';
+            const institusiKod = @json($detailInstitusiKod);
             const tabRoutes = {
                 'maklumat': '{{ route("staff.temuduga.tab.maklumat", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
                 'syarat': '{{ route("staff.temuduga.tab.syarat", ["pelajar" => $pelajar->id, "kod_kursus" => ""]) }}',
@@ -104,7 +110,7 @@
             
             let url = tabRoutes[tab] + kursusId;
             if (tab === 'galeri') {
-                url = '{{ route("staff.temuduga.tab.galeri", ["pelajar" => $pelajar->id, "kod_institusi" => ""]) }}' + '{{ $kursus->institusi->kod_institusi }}';
+                url = '{{ route("staff.temuduga.tab.galeri", ["pelajar" => $pelajar->id, "kod_institusi" => ""]) }}' + institusiKod;
             }
             
             fetch(url, {

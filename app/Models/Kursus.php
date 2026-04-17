@@ -17,6 +17,7 @@ use App\Models\Elaun;
 class Kursus extends Model
 {
     protected $table = 'kursuses';
+
     protected $fillable = [
         'kod_kursus',
         'kod_institusi',
@@ -32,6 +33,26 @@ class Kursus extends Model
     protected $casts = [
         'tarikh_pendaftaran' => 'date',
     ];
+
+    public function getKodKursusAttribute($value)
+    {
+        return is_string($value) ? trim($value) : $value;
+    }
+
+    public function setKodKursusAttribute($value): void
+    {
+        $this->attributes['kod_kursus'] = is_string($value) ? trim($value) : $value;
+    }
+
+    public function getKodInstitusiAttribute($value)
+    {
+        return is_string($value) ? trim($value) : $value;
+    }
+
+    public function setKodInstitusiAttribute($value): void
+    {
+        $this->attributes['kod_institusi'] = is_string($value) ? trim($value) : $value;
+    }
 
     public function institusi()
     {

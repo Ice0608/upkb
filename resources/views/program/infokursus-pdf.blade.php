@@ -15,10 +15,11 @@
     </style>
 </head>
 <body>
+    @php($detailInstitusi = $kursus->institusi)
     <div class="page">
         <div class="section">
             <h1 class="heading">{{ $kursus->nama_kursus }}</h1>
-            <p class="small">{{ $kursus->institusi->nama_institusi }} | {{ $kursus->institusi->alamat }}</p>
+            <p class="small">{{ $detailInstitusi?->nama_institusi ?? 'Maklumat institusi tidak tersedia.' }} | {{ $detailInstitusi?->alamat ?? trim((string) $kursus->kod_institusi) }}</p>
             <p class="small">Kod: {{ $kursus->kod_kursus }} · Mod: {{ $kursus->mod_pengajian }} · Tempoh: {{ $kursus->tempoh }}</p>
         </div>
 
