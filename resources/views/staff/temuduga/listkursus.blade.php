@@ -93,12 +93,52 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.82);
-            background: linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
+                background: linear-gradient(120deg, #a87408 0%, #d4af37 42%, #f1cf63 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
-                0 0 68px rgba(255, 166, 0, 0.3),
-                0 0 130px rgba(255, 212, 59, 0.22),
+                    0 0 68px rgba(212, 175, 55, 0.3),
+                    0 0 130px rgba(241, 207, 99, 0.22),
                 inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .kursus-hero--diploma {
+            background: linear-gradient(120deg, #5b2a86 0%, #7c3aed 44%, #c084fc 100%);
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(124, 58, 237, 0.32),
+                0 0 130px rgba(192, 132, 252, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .kursus-hero--sains-kesihatan {
+            background: linear-gradient(120deg, #0f3d91 0%, #2563eb 44%, #60a5fa 100%);
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(37, 99, 235, 0.32),
+                0 0 130px rgba(96, 165, 250, 0.24),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .kursus-hero--diploma::before {
+            box-shadow:
+                0 0 36px rgba(216, 180, 254, 0.4),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+        }
+
+        .kursus-hero--sains-kesihatan::before {
+            box-shadow:
+                0 0 36px rgba(147, 197, 253, 0.4),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+        }
+
+        .kursus-hero--diploma::after {
+            box-shadow: 0 0 42px rgba(192, 132, 252, 0.34);
+        }
+
+        .kursus-hero--sains-kesihatan::after {
+            box-shadow: 0 0 42px rgba(96, 165, 250, 0.34);
         }
 
         .kursus-hero::before,
@@ -495,8 +535,12 @@
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.interviewnav')
 
+    @php
+        $heroProgramType = strtolower((string) (request('jenis') ?? ($selectedProgram->jenis_program ?? '')));
+    @endphp
+
     <section class="kursus-shell max-w-7xl mx-auto px-6 py-10">
-        <div class="kursus-hero rounded-3xl p-8 text-white mb-8">
+        <div class="kursus-hero {{ $heroProgramType === 'diploma' ? 'kursus-hero--diploma' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-hero--sains-kesihatan' : '' }} rounded-3xl p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
@@ -524,76 +568,7 @@
             {{-- SIDEBAR (LEFT) --}}
             <aside class="lg:col-span-1">
                 <div class="kursus-sidebar rounded-3xl p-6">
-                    <!-- Filter Section -->
-                    <h3 class="relative z-10 text-lg font-bold text-slate-900 mb-4">
-                        <i class="fas fa-filter mr-2 text-orange-500"></i>Filter
-                    </h3>
-                    
-                    <form method="GET" class="relative z-10 space-y-4 mb-6">
-                        <!-- Negeri Select -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2"><p>Negeri</p></label>
-                            <p>
-                            <select 
-                                name="negeri" 
-                                onchange="this.form.submit()" 
-                                class="kursus-select w-full rounded-2xl px-4 py-2 text-sm shadow-sm focus:outline-none">   
-                                    <option value=""><p>Semua Negeri</p></option>
-                                    <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
-                                    <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
-                                    <option value="Kelantan" {{ request('negeri') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
-                                    <option value="Melaka" {{ request('negeri') == 'Melaka' ? 'selected' : '' }}>Melaka</option>
-                                    <option value="Negeri Sembilan" {{ request('negeri') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
-                                    <option value="Pahang" {{ request('negeri') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
-                                    <option value="Perak" {{ request('negeri') == 'Perak' ? 'selected' : '' }}>Perak</option>
-                                    <option value="Perlis" {{ request('negeri') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
-                                    <option value="Pulau Pinang" {{ request('negeri') == 'Pulau Pinang' ? 'selected' : '' }}>Pulau Pinang</option>
-                                    <option value="Sabah" {{ request('negeri') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
-                                    <option value="Sarawak" {{ request('negeri') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
-                                    <option value="Selangor" {{ request('negeri') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
-                                    <option value="Terengganu" {{ request('negeri') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
-                                    <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
-                                    <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
-                                    <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
-                                </p>
-                                </select>
-                        </div>
-
-                        <!-- Kuota Filter -->
-                        <div>
-                            <button 
-                                type="submit" 
-                                name="kuota" 
-                                value="{{ request('kuota') ? 0 : 1 }}" 
-                                class="kursus-filter-button w-full inline-flex items-center justify-center rounded-2xl border px-4 py-2 text-sm font-semibold transition {{ request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50' }}"
-                            >
-                                <i class="fas fa-users mr-2"></i>
-                                Ada Kuota
-                                @if(request('kuota'))
-                                    <i class="fas fa-check ml-2"></i>
-                                @endif
-                            </button>
-                        </div>
-
-                        <!-- Clear Filter -->
-                        @if(request('negeri') || request('kuota'))
-                            <div>
-                                <a 
-                                    href="{{ route('staff.temuduga.listkursus', ['pelajar' => $pelajar->id, 'nama' => $jenis]) }}"
-                                    class="kursus-reset-link block text-center text-orange-600 hover:text-orange-700 font-semibold text-sm py-2 rounded-2xl border border-orange-300 hover:bg-orange-50 transition"
-                                >
-                                    <i class="fas fa-redo mr-2"></i>Reset Filter
-                                </a>
-                            </div>
-                        @endif
-
-                        @if(request('jenis'))
-                            <input type="hidden" name="jenis" value="{{ request('jenis') }}">
-                        @endif
-                    </form>
-
-                    <!-- Senarai Kursus Filter -->
-                    <div class="relative z-10 border-t border-gray-200 pt-6">
+                    <div class="relative z-10">
                         <h3 class="text-lg font-bold text-slate-900 mb-4">
                             <i class="fas fa-list-ul mr-2 text-orange-500"></i>Kategori Kursus
                         </h3>

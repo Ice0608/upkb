@@ -98,115 +98,6 @@
             opacity: 0.98;
         }
 
-        .program-hero {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            background:
-                linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
-            box-shadow:
-                0 24px 70px rgba(15, 23, 42, 0.14),
-                0 0 68px rgba(255, 166, 0, 0.3),
-                0 0 130px rgba(255, 212, 59, 0.22),
-                0 0 42px rgba(249, 115, 22, 0.22),
-                inset 0 1px 0 rgba(255, 255, 255, 0.26);
-        }
-
-        .program-hero::before,
-        .program-hero::after {
-            content: "";
-            position: absolute;
-            pointer-events: none;
-        }
-
-        .program-hero::before {
-            top: -3rem;
-            right: 8%;
-            width: 11rem;
-            height: 11rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 70%);
-            box-shadow:
-                0 0 36px rgba(255, 235, 140, 0.34),
-                0 0 0 18px rgba(255, 255, 255, 0.08),
-                0 0 0 40px rgba(255, 255, 255, 0.04);
-            animation: glowPulse 7s ease-in-out infinite;
-        }
-
-        .program-hero::after {
-            left: 4%;
-            bottom: -1.5rem;
-            width: 8rem;
-            height: 8rem;
-            border-radius: 2rem;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
-                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px),
-                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
-            transform: rotate(12deg);
-            opacity: 0.68;
-            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
-        }
-
-        .program-search-button {
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow:
-                0 0 0 6px rgba(255, 255, 255, 0.16),
-                0 0 34px rgba(255, 166, 0, 0.34),
-                0 16px 36px rgba(15, 23, 42, 0.16),
-                inset 0 1px 0 rgba(255, 255, 255, 0.88);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-        }
-
-        .program-search-form {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-            width: 100%;
-            max-width: 34rem;
-            margin-top: 1.75rem;
-        }
-
-        .program-search-input {
-            flex: 1;
-            min-width: 0;
-            border: 1px solid rgba(255, 255, 255, 0.48);
-            background: rgba(255, 255, 255, 0.18);
-            color: #ffffff;
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.24),
-                0 18px 36px rgba(15, 23, 42, 0.12);
-            backdrop-filter: blur(12px);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .program-search-input::placeholder {
-            color: rgba(255, 255, 255, 0.76);
-        }
-
-        .program-search-input:hover,
-        .program-search-input:focus {
-            transform: translateY(-1px);
-            border-color: rgba(255, 255, 255, 0.72);
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                0 22px 42px rgba(15, 23, 42, 0.14),
-                0 0 0 4px rgba(255, 255, 255, 0.14);
-            outline: none;
-        }
-
-        .program-search-button:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow:
-                0 0 0 8px rgba(255, 255, 255, 0.18),
-                0 0 42px rgba(255, 187, 51, 0.44),
-                0 22px 44px rgba(15, 23, 42, 0.18),
-                0 0 24px rgba(255, 255, 255, 0.24),
-                inset 0 1px 0 rgba(255, 255, 255, 0.92);
-            color: #0ea5e9;
-        }
-
         .program-wheel-wrap {
             position: relative;
         }
@@ -434,14 +325,8 @@
 
         @media (prefers-reduced-motion: reduce) {
             .segment-wrapper .segment,
-            .program-search-input,
-            .program-search-button,
             .segment-label {
                 transition: none;
-            }
-
-            .program-hero::before {
-                animation: none;
             }
 
             .segment-wrapper:hover i {
@@ -455,29 +340,6 @@
     @include('layouts.navigation')
     
     <section class="program-shell max-w-7xl mx-auto px-4 py-8 sm:px-6">
-        <div class="program-hero rounded-[2rem] p-8 sm:p-10 text-white mb-10">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div>
-                    <p class="text-xs sm:text-sm uppercase tracking-[0.1em] text-white/70 font-semibold">Eksplorasi Program</p>
-                    <h1 class="mt-3 text-4xl md:text-5xl font-bold leading-tight tracking-[-0.04em]">Teroka Semua Kursus</h1>
-                    <p class="mt-3 text-base sm:text-lg text-white/80 max-w-2xl">Cari program yang sesuai dengan minat dan kerjaya impian anda.</p>
-                    <form action="{{ route('kursus.index') }}" method="GET" class="program-search-form">
-                        <label class="sr-only" for="program-course-search">Cari seluruh kursus</label>
-                        <input
-                            id="program-course-search"
-                            type="search"
-                            name="search"
-                            class="program-search-input rounded-full px-5 py-3 text-sm sm:text-base"
-                            placeholder="Cari nama kursus, kod kursus atau institusi"
-                        >
-                        <button type="submit" class="program-search-button shrink-0 w-14 h-14 rounded-full bg-white/95 text-orange-600" aria-label="Cari kursus">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div class="program-wheel-wrap flex justify-center items-center py-4">
             <div class="mercedes-container relative overflow-hidden
                 w-[280px] h-[280px] 

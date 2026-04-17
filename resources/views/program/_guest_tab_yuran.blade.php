@@ -18,8 +18,8 @@
         </div>
         <div class="grid gap-6 xl:grid-cols-[1.6fr,1fr] p-6">
             <div class="grid gap-6 md:grid-cols-2">
-                <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-                    <h3 class="font-semibold text-gray-800 mb-5">Yuran Pendaftaran</h3>
+                <div class="kursus-tab-card rounded-3xl p-6">
+                    <h3 class="kursus-tab-accent-strong font-semibold mb-5">Yuran Pendaftaran</h3>
                     @if($kursus->yuranPendaftarans->isNotEmpty())
                         <div class="space-y-4">
                             @foreach($kursus->yuranPendaftarans as $fee)
@@ -38,8 +38,8 @@
                     </div>
                 </div>
 
-                <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-                    <h3 class="font-semibold text-gray-800 mb-5">Yuran Pilihan</h3>
+                <div class="kursus-tab-card rounded-3xl p-6">
+                    <h3 class="kursus-tab-accent-strong font-semibold mb-5">Yuran Pilihan</h3>
                     @if($kursus->yuranPilihans->isNotEmpty())
                         <div class="space-y-4">
                             @foreach($kursus->yuranPilihans as $fee)
@@ -59,27 +59,27 @@
                 </div>
             </div>
 
-            <div class="rounded-3xl border border-orange-200 bg-orange-50 p-6">
+            <div class="kursus-tab-card kursus-tab-card-strong rounded-3xl p-6">
                 <div class="mb-5 space-y-2">
-                    <p class="text-sm uppercase tracking-[0.2em] text-orange-700">Yuran Asrama</p>
-                    <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-900">
+                    <p class="kursus-tab-accent-strong text-sm uppercase tracking-[0.2em]">Yuran Asrama</p>
+                    <div class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold bg-white" style="border-color: var(--detail-card-border); color: var(--detail-accent-700);">
                         <span>Pilihan Baru</span>
                     </div>
                 </div>
 
-                <div class="rounded-3xl bg-white p-4 shadow-sm border border-orange-100">
+                <div class="rounded-3xl bg-white p-4 shadow-sm" style="border: 1px solid var(--detail-card-border);">
                     <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
                         <span>Perincian Pilihan Baru</span>
                         <span class="font-semibold text-gray-900">RM {{ number_format($asramaTotal, 2) }}</span>
                     </div>
                     <div class="flex items-center justify-between text-sm text-gray-500">
                         <span>Total Asrama</span>
-                        <span class="font-semibold text-orange-900">RM {{ number_format($asramaTotal, 2) }}</span>
+                        <span class="kursus-tab-accent-strong font-semibold">RM {{ number_format($asramaTotal, 2) }}</span>
                     </div>
                 </div>
 
-                <div class="mt-6 border-t border-orange-200 pt-4 text-sm uppercase tracking-[0.2em] text-orange-700">Keseluruhan (Daftar + Pilihan + Asrama)</div>
-                <div class="mt-3 text-3xl font-bold text-orange-900">RM {{ number_format($totalYuran, 2) }}</div>
+                <div class="kursus-tab-accent-strong mt-6 border-t pt-4 text-sm uppercase tracking-[0.2em]" style="border-color: var(--detail-card-border);">Keseluruhan (Daftar + Pilihan + Asrama)</div>
+                <div class="kursus-tab-accent-strong mt-3 text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</div>
             </div>
         </div>
     </div>

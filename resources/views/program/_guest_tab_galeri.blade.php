@@ -1,6 +1,6 @@
 <div class="space-y-6">
-    <div class="rounded-3xl bg-white shadow-sm border border-gray-200 p-6">
-        <h2 class="text-xl font-semibold text-gray-900 mb-3">Galeri Kursus</h2>
+    <div class="kursus-tab-card rounded-3xl p-6">
+        <h2 class="kursus-tab-accent-strong text-xl font-semibold mb-3">Galeri Kursus</h2>
         <p class="text-sm text-gray-600">Lihat imej berkaitan kursus <strong>{{ $kursus->nama_kursus }}</strong>. Gambar dikaitkan secara automatik dengan kod kursus dan institusi.</p>
     </div>
 
@@ -32,7 +32,7 @@
             @endforeach
         </div>
     @else
-        <div class="rounded-3xl border border-dashed border-gray-300 bg-gray-50 p-10 text-center">
+        <div class="kursus-tab-empty rounded-3xl p-10 text-center">
             <i class="fas fa-image text-4xl text-gray-300 mb-4"></i>
             <p class="text-lg font-semibold text-gray-700">Tiada gambar galeri buat masa ini.</p>
             <p class="text-sm text-gray-500 mt-2">Sila kembali semula apabila gambar kursus telah dimuat naik.</p>

@@ -13,6 +13,133 @@
             overflow-x: hidden;
         }
 
+        .institusi-page--tvet,
+        .institusi-shell--tvet {
+            --institusi-tvet-50: #fffbea;
+            --institusi-tvet-100: #fef3c7;
+            --institusi-tvet-500: #d4af37;
+            --institusi-tvet-600: #b88912;
+            --institusi-tvet-700: #8a6a08;
+            --institusi-tvet-rgb: 212, 175, 55;
+            --institusi-tvet-rgb-soft: 241, 207, 99;
+            --institusi-tvet-soft-text: rgba(255, 248, 214, 0.92);
+        }
+
+        .institusi-page--tvet {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(var(--institusi-tvet-rgb-soft), 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
+                linear-gradient(180deg, #fffaf5 0%, #f8fafc 44%, #f6f8fc 100%);
+        }
+
+        .institusi-page--tvet .institusi-hero {
+            background: linear-gradient(90deg, #a87408 0%, #f1cf63 100%);
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(var(--institusi-tvet-rgb), 0.3),
+                0 0 130px rgba(var(--institusi-tvet-rgb-soft), 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+        .institusi-page--tvet .institusi-hero-button {
+            color: var(--institusi-tvet-600);
+            box-shadow:
+                0 0 0 6px rgba(255, 255, 255, 0.14),
+                0 0 34px rgba(var(--institusi-tvet-rgb), 0.28),
+                0 16px 36px rgba(15, 23, 42, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        .institusi-page--tvet .institusi-toolbar {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 245, 0.92)),
+                linear-gradient(120deg, rgba(var(--institusi-tvet-rgb), 0.06), rgba(var(--institusi-tvet-rgb-soft), 0.08));
+        }
+
+        .institusi-page--tvet .institusi-toolbar::after {
+            background: radial-gradient(circle, rgba(var(--institusi-tvet-rgb), 0.18), rgba(var(--institusi-tvet-rgb), 0));
+        }
+
+        .institusi-page--tvet .institusi-filter-select:hover,
+        .institusi-page--tvet .institusi-filter-select:focus {
+            border-color: rgba(var(--institusi-tvet-rgb), 0.4);
+            box-shadow: 0 16px 32px rgba(var(--institusi-tvet-rgb), 0.12);
+        }
+
+        .institusi-page--tvet .institusi-filter-button:hover,
+        .institusi-page--tvet .institusi-filter-button:focus-visible {
+            box-shadow: 0 14px 28px rgba(var(--institusi-tvet-rgb), 0.14);
+        }
+
+        .institusi-filter-button--active-tvet {
+            background: var(--institusi-tvet-500);
+            border-color: var(--institusi-tvet-500);
+            color: #ffffff;
+        }
+
+        .institusi-filter-button--active-tvet:hover {
+            background: var(--institusi-tvet-600);
+            border-color: var(--institusi-tvet-600);
+        }
+
+        .institusi-filter-button--idle-tvet {
+            background: #ffffff;
+            border-color: rgba(var(--institusi-tvet-rgb), 0.34);
+            color: var(--institusi-tvet-600);
+        }
+
+        .institusi-filter-button--idle-tvet:hover {
+            background: var(--institusi-tvet-50);
+        }
+
+        .institusi-page--tvet .institusi-card:hover,
+        .institusi-page--tvet .institusi-card:focus-within {
+            border-color: rgba(var(--institusi-tvet-rgb-soft), 0.38);
+            box-shadow:
+                0 30px 64px rgba(15, 23, 42, 0.14),
+                0 0 32px rgba(var(--institusi-tvet-rgb-soft), 0.12);
+        }
+
+        .institusi-page--tvet .institusi-card-media::after {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
+                linear-gradient(130deg, rgba(var(--institusi-tvet-rgb), 0.36), rgba(15, 23, 42, 0));
+        }
+
+        .institusi-page--tvet .institusi-card-chip {
+            border-color: rgba(var(--institusi-tvet-rgb-soft), 0.12);
+            background: rgba(255, 251, 235, 0.84);
+        }
+
+        .institusi-page--tvet .institusi-card:hover .institusi-card-chip,
+        .institusi-page--tvet .institusi-card:focus-within .institusi-card-chip {
+            border-color: rgba(var(--institusi-tvet-rgb), 0.22);
+            background: rgba(254, 243, 199, 0.95);
+        }
+
+        .institusi-page--tvet .institusi-card:hover .institusi-card-arrow,
+        .institusi-page--tvet .institusi-card:focus-within .institusi-card-arrow {
+            background: var(--institusi-tvet-50);
+            color: var(--institusi-tvet-600);
+        }
+
+        .institusi-page--tvet .institusi-card-link {
+            color: var(--institusi-tvet-500);
+        }
+
+        .institusi-page--tvet .institusi-card:hover .institusi-card-link,
+        .institusi-page--tvet .institusi-card:focus-within .institusi-card-link {
+            color: var(--institusi-tvet-700);
+        }
+
+        .institusi-soft-text-tvet {
+            color: var(--institusi-tvet-soft-text);
+        }
+
+        .institusi-accent-tvet {
+            color: var(--institusi-tvet-500);
+        }
+
         .institusi-hero {
             position: relative;
             overflow: hidden;
@@ -252,12 +379,15 @@
         }
     </style>
 </head>
-<body class="institusi-page bg-gray-100 text-gray-800">
+@php
+    $institusiProgramType = strtolower((string) ($jenis ?? request('jenis', '')));
+@endphp
+<body class="institusi-page {{ $institusiProgramType === 'tvet' ? 'institusi-page--tvet' : 'bg-gray-100' }} text-gray-800">
     
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+    <section class="institusi-shell {{ $institusiProgramType === 'tvet' ? 'institusi-shell--tvet' : '' }} max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div class="institusi-hero rounded-3xl p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
@@ -268,9 +398,9 @@
                             Semua Institusi
                         @endif
                     </h1>
-                    <p class="mt-3 text-lg text-orange-100">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
+                    <p class="{{ $institusiProgramType === 'tvet' ? 'institusi-soft-text-tvet' : 'text-orange-100' }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
                 </div>
-                <div aria-hidden="true" class="institusi-hero-button flex items-center justify-center w-14 h-14 rounded-full bg-white text-orange-600">
+                <div aria-hidden="true" class="institusi-hero-button flex items-center justify-center w-14 h-14 rounded-full bg-white {{ $institusiProgramType === 'tvet' ? '' : 'text-orange-600' }}">
                     <i class="fas fa-building"></i>
                 </div>
             </div>
@@ -279,7 +409,7 @@
         <div class="institusi-toolbar mb-8 rounded-3xl p-4 sm:p-5">
             <div class="relative z-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-500">Paparan Institusi</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiProgramType === 'tvet' ? 'institusi-accent-tvet' : 'text-orange-500' }}">Paparan Institusi</p>
                     <h2 class="mt-2 text-2xl text-slate-900">{{ $institusis->count() }} institusi dipaparkan</h2>
                 </div>
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
@@ -320,7 +450,7 @@
                         @if(request('negeri'))
                             <input type="hidden" name="negeri" value="{{ request('negeri') }}">
                         @endif
-                        <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="institusi-filter-button inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition {{ request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50' }}">
+                        <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="institusi-filter-button inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition {{ $institusiProgramType === 'tvet' ? (request('kuota') ? 'institusi-filter-button--active-tvet' : 'institusi-filter-button--idle-tvet') : (request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50') }}">
                             {{ request('kuota') ? 'Kuota Aktif' : 'Tapis Kuota' }}
                         </button>
                     </form>
@@ -342,7 +472,7 @@
                         </div>
                         <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                             <div>
-                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-orange-100/90">Institusi</p>
+                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiProgramType === 'tvet' ? 'institusi-soft-text-tvet' : 'text-orange-100/90' }}">Institusi</p>
                                 <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                             </div>
                             <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
@@ -352,7 +482,7 @@
                     </div>
                     <div class="p-6 sm:p-7 flex flex-col flex-1">
                         <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                            <i class="fas fa-map-marker-alt mt-0.5 text-orange-500"></i>
+                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiProgramType === 'tvet' ? 'institusi-accent-tvet' : 'text-orange-500' }}"></i>
                             <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                         </div>
                         <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
