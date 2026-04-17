@@ -355,16 +355,28 @@
                                 'clip' => 'segment-top-left-clip',
                                 'bg' => 'bg-[#FF9800]',
                                 'pos' => 'top-[20%] left-[9%] sm:top-[19%] sm:left-[4%] text-right items-end',
+                                'label_bg' => 'bg-[#d4af37]',
+                                'label_border' => 'border-[#b88912]',
+                                'label_hover' => 'group-hover:border-[#8a6a08]',
+                                'label_shadow' => '#d4af37',
                             ],
                             1 => [
                                 'clip' => 'segment-top-right-clip',
                                 'bg' => 'bg-[#9C27B0]',
                                 'pos' => 'top-[20%] right-[9%] sm:top-[19%] sm:right-[4%] text-left items-start',
+                                'label_bg' => 'bg-[#8d2be2]',
+                                'label_border' => 'border-[#7a1fd1]',
+                                'label_hover' => 'group-hover:border-[#6216aa]',
+                                'label_shadow' => '#8d2be2',
                             ],
                             2 => [
                                 'clip' => 'segment-bottom-clip',
                                 'bg' => 'bg-[#2196F3]',
                                 'pos' => 'bottom-[10%] left-1/2 -translate-x-1/2 sm:bottom-[15%] text-center items-center',
+                                'label_bg' => 'bg-[#2196f3]',
+                                'label_border' => 'border-[#1d4ed8]',
+                                'label_hover' => 'group-hover:border-[#1e40af]',
+                                'label_shadow' => '#2196f3',
                             ],
                         ];
                         $ui = $configs[$index] ?? $configs[0];
@@ -405,9 +417,9 @@
                                 {{ $program->jenis_program }}
                             </h2>
                             <div class="segment-label mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
-                                        border-b-2 border-orange-600 text-white bg-orange-500 group-hover:border-orange-700 
+                                     border-b-2 {{ $ui['label_border'] }} text-white {{ $ui['label_bg'] }} {{ $ui['label_hover'] }} 
                                         transition-all inline-block w-fit rounded px-2 py-0.5 shadow-lg"
-                                 style="box-shadow: 0 0 12px 2px #ff7300;">
+                                 style="box-shadow: 0 0 12px 2px {{ $ui['label_shadow'] }};">
                                 LIHAT PROGRAM <i class="fas fa-chevron-right ml-1" style="text-shadow: 0 0 8px #fff;"></i>
                             </div>
                         </div>

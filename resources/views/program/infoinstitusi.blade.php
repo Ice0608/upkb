@@ -19,6 +19,28 @@
                 linear-gradient(180deg, #fffaf5 0%, #f8fafc 46%, #f6f8fc 100%);
         }
 
+            .institusi-info-page--diploma {
+                --institusi-info-50: #f7efff;
+                --institusi-info-100: #ede0ff;
+                --institusi-info-500: #8d2be2;
+                --institusi-info-600: #7a1fd1;
+                --institusi-info-700: #6216aa;
+                background:
+                radial-gradient(circle at 10% 12%, rgba(192, 132, 252, 0.14), transparent 24%),
+                linear-gradient(180deg, #fcf8ff 0%, #f8fafc 46%, #f6f8fc 100%);
+            }
+
+        .institusi-info-page--sains-kesihatan {
+            --institusi-info-50: #edf7ff;
+            --institusi-info-100: #dbeafe;
+            --institusi-info-500: #2196f3;
+            --institusi-info-600: #1d4ed8;
+            --institusi-info-700: #1e40af;
+            background:
+                radial-gradient(circle at 10% 12%, rgba(96, 165, 250, 0.14), transparent 24%),
+                linear-gradient(180deg, #f5fbff 0%, #f8fafc 46%, #f6f8fc 100%);
+        }
+
         .institusi-info-badge-tvet {
             background: var(--institusi-info-100);
             color: var(--institusi-info-600);
@@ -52,7 +74,7 @@
 @php
     $institusiInfoType = strtolower((string) $institusi->jenis_institusi);
 @endphp
-<body class="{{ $institusiInfoType === 'tvet' ? 'institusi-info-page--tvet' : 'bg-gray-100' }} text-gray-800">
+<body class="{{ $institusiInfoType === 'tvet' ? 'institusi-info-page--tvet' : '' }} {{ $institusiInfoType === 'diploma' ? 'institusi-info-page--diploma' : '' }} {{ $institusiInfoType === 'sains kesihatan' ? 'institusi-info-page--sains-kesihatan' : '' }} {{ ! in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'bg-gray-100' : '' }} text-gray-800">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
@@ -64,19 +86,19 @@
                 <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="w-full h-full object-cover">
             </div>
             <div class="p-8">
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide mb-4 {{ $institusiInfoType === 'tvet' ? 'institusi-info-badge-tvet' : 'bg-blue-100 text-blue-700' }}">{{ $institusi->jenis_institusi }}</span>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide mb-4 {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-badge-tvet' : 'bg-blue-100 text-blue-700' }}">{{ $institusi->jenis_institusi }}</span>
                 <h1 class="text-4xl font-bold text-slate-900 mb-2">{{ $institusi->nama_institusi }}</h1>
                 <p class="text-gray-600 mb-6"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
                 
                 <!-- Mengenai Institusi -->
-                <div class="p-6 rounded mb-6 {{ $institusiInfoType === 'tvet' ? 'institusi-info-highlight-tvet' : 'bg-orange-50 border-l-4 border-orange-500' }}">
+                <div class="p-6 rounded mb-6 {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-highlight-tvet' : 'bg-orange-50 border-l-4 border-orange-500' }}">
                     <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-800 mb-3">
-                        <i class="fas fa-info-circle {{ $institusiInfoType === 'tvet' ? 'institusi-info-accent-tvet' : 'text-orange-500' }}"></i>Mengenai Institusi
+                        <i class="fas fa-info-circle {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-accent-tvet' : 'text-orange-500' }}"></i>Mengenai Institusi
                     </h2>
                     <p class="text-gray-700 leading-relaxed">{{ $institusi->mengenai_institusi }}</p>
                 </div>
 
-                <a href="{{ route('institusi') }}" class="inline-flex items-center gap-2 font-bold {{ $institusiInfoType === 'tvet' ? 'institusi-info-link-tvet' : 'text-blue-600 hover:text-blue-800' }}">
+                <a href="{{ route('institusi') }}" class="inline-flex items-center gap-2 font-bold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-link-tvet' : 'text-blue-600 hover:text-blue-800' }}">
                     <i class="fas fa-arrow-left"></i>Kembali ke Senarai Institusi
                 </a>
             </div>
@@ -86,8 +108,8 @@
         <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 mb-10">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-800">
-                    <i class="fas fa-graduation-cap {{ $institusiInfoType === 'tvet' ? 'institusi-info-accent-tvet' : 'text-orange-500' }}"></i>Senarai kursus Ditawarkan
-                    <span class="text-sm px-3 py-1 rounded-full font-semibold {{ $institusiInfoType === 'tvet' ? 'institusi-info-count-tvet' : 'bg-orange-100 text-orange-700' }}">{{ count($kursusList) }} kursus</span>
+                    <i class="fas fa-graduation-cap {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-accent-tvet' : 'text-orange-500' }}"></i>Senarai kursus Ditawarkan
+                    <span class="text-sm px-3 py-1 rounded-full font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-count-tvet' : 'bg-orange-100 text-orange-700' }}">{{ count($kursusList) }} kursus</span>
                 </h2>
             </div>
             
@@ -108,12 +130,12 @@
                         @foreach($kursusList as $kursus)
                         <tr class="border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-4 py-3 text-gray-800 font-medium">{{ $kursus->nama_kursus }}</td>
-                            <td class="px-4 py-3 text-gray-600"><span class="px-2 py-1 rounded text-xs font-semibold {{ $institusiInfoType === 'tvet' ? 'institusi-info-code-tvet' : 'bg-blue-100 text-blue-700' }}">{{ $kursus->kod_kursus }}</span></td>
+                            <td class="px-4 py-3 text-gray-600"><span class="px-2 py-1 rounded text-xs font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-code-tvet' : 'bg-blue-100 text-blue-700' }}">{{ $kursus->kod_kursus }}</span></td>
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->mod_pengajian }}</td>
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
-                            <td class="px-4 py-3 text-gray-600 font-semibold {{ $institusiInfoType === 'tvet' ? 'institusi-info-kuota-tvet' : 'text-orange-600' }}">{{ $kursus->kuota }}</td>
+                            <td class="px-4 py-3 text-gray-600 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-kuota-tvet' : 'text-orange-600' }}">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3">
-                                <a href="{{ route('kursus.show', $kursus->id) }}" class="inline-flex items-center gap-2 font-semibold {{ $institusiInfoType === 'tvet' ? 'institusi-info-link-tvet' : 'text-blue-600 hover:text-blue-800' }}">Lihat detail</a>
+                                <a href="{{ route('kursus.show', $kursus->id) }}" class="inline-flex items-center gap-2 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-link-tvet' : 'text-blue-600 hover:text-blue-800' }}">Lihat detail</a>
                             </td>
                         </tr>
                         @endforeach
@@ -131,7 +153,7 @@
         <!-- Galeri Fasiliti -->
         <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100">
             <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-800 mb-6">
-                <i class="fas fa-images {{ $institusiInfoType === 'tvet' ? 'institusi-info-accent-tvet' : 'text-orange-500' }}"></i>Galeri Fasiliti
+                <i class="fas fa-images {{ in_array($institusiInfoType, ['tvet', 'diploma'], true) ? 'institusi-info-accent-tvet' : 'text-orange-500' }}"></i>Galeri Fasiliti
             </h2>
             
             @if(count($galeriList) > 0)

@@ -271,7 +271,7 @@
                     </div>
                     <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
                         <h2 class="text-lg font-semibold mb-3">Ringkasan</h2>
-                        <p class="kursus-detail-soft-text text-sm">{{ \\Illuminate\\Support\\Str::limit($kursus->penerangan, 160) }}</p>
+                        <p class="kursus-detail-soft-text text-sm">{{ \Illuminate\Support\Str::limit($kursus->penerangan, 160) }}</p>
                     </div>
                 </div>
             </div>

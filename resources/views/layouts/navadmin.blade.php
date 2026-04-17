@@ -337,7 +337,7 @@
 
         .site-nav-program-card-tvet {
             background-image:
-                linear-gradient(145deg, rgba(249, 115, 22, 0.84), rgba(251, 146, 60, 0.68), rgba(253, 186, 116, 0.48)),
+                linear-gradient(145deg, rgba(168, 116, 8, 0.88), rgba(212, 175, 55, 0.74), rgba(241, 207, 99, 0.56)),
                 url('{{ asset('images/tvet-vg2.jpeg') }}');
         }
 
@@ -495,7 +495,7 @@
                         Program
                     </a>
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
-                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(249,115,22,0.96)_0%,rgba(251,146,60,0.92)_60%,rgba(253,186,116,0.82)_100%)] px-4 py-4 text-white">
+                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(168,116,8,0.96)_0%,rgba(212,175,55,0.92)_60%,rgba(241,207,99,0.82)_100%)] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">TVET</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Laluan kemahiran teknikal dan praktikal.</p>

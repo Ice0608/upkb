@@ -293,6 +293,23 @@
             opacity: 1;
         }
 
+        .faq-card[data-faq-type="skm"]::after {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0) 72%);
+        }
+
+        .faq-card[data-faq-type="skm"]:hover,
+        .faq-card[data-faq-type="skm"]:focus-visible,
+        .faq-card[data-faq-type="skm"].is-focused {
+            border-color: rgba(167, 139, 250, 0.56);
+            box-shadow:
+                inset 0 1px 0 rgba(245, 243, 255, 0.52),
+                0 24px 54px rgba(109, 40, 217, 0.24),
+                0 0 34px rgba(139, 92, 246, 0.24),
+                0 0 90px rgba(196, 181, 253, 0.2);
+            background:
+                linear-gradient(90deg, rgba(109, 40, 217, 0.94), rgba(139, 92, 246, 0.94) 58%, rgba(192, 132, 252, 0.94));
+        }
+
         .faq-track.has-focused-item .faq-card:not(.is-focused) {
             opacity: 0.56;
             transform: scale(0.95);
@@ -327,6 +344,15 @@
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(255, 154, 60, 0.18);
         }
+
+            .faq-card[data-faq-type="skm"].is-focused .faq-icon-chip,
+            .faq-card[data-faq-type="skm"]:hover .faq-icon-chip,
+            .faq-card[data-faq-type="skm"]:focus-visible .faq-icon-chip {
+                box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                0 20px 34px rgba(28, 28, 30, 0.14),
+                0 0 34px rgba(139, 92, 246, 0.24);
+            }
 
         .faq-arrow {
             color: rgba(28, 28, 30, 0.36);

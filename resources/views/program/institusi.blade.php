@@ -25,11 +25,49 @@
             --institusi-tvet-soft-text: rgba(255, 248, 214, 0.92);
         }
 
+        .institusi-page--diploma,
+        .institusi-shell--diploma {
+            --institusi-diploma-50: #f7efff;
+            --institusi-diploma-100: #ede0ff;
+            --institusi-diploma-500: #8d2be2;
+            --institusi-diploma-600: #7a1fd1;
+            --institusi-diploma-700: #6216aa;
+            --institusi-diploma-rgb: 141, 43, 226;
+            --institusi-diploma-rgb-soft: 192, 132, 252;
+            --institusi-diploma-soft-text: rgba(245, 237, 255, 0.92);
+        }
+
+        .institusi-page--sains-kesihatan,
+        .institusi-shell--sains-kesihatan {
+            --institusi-sains-50: #edf7ff;
+            --institusi-sains-100: #dbeafe;
+            --institusi-sains-500: #2196f3;
+            --institusi-sains-600: #1d4ed8;
+            --institusi-sains-700: #1e40af;
+            --institusi-sains-rgb: 33, 150, 243;
+            --institusi-sains-rgb-soft: 96, 165, 250;
+            --institusi-sains-soft-text: rgba(235, 245, 255, 0.94);
+        }
+
         .institusi-page--tvet {
             background:
                 radial-gradient(circle at 8% 12%, rgba(var(--institusi-tvet-rgb-soft), 0.16), transparent 24%),
                 radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
                 linear-gradient(180deg, #fffaf5 0%, #f8fafc 44%, #f6f8fc 100%);
+        }
+
+        .institusi-page--diploma {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(var(--institusi-diploma-rgb-soft), 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(99, 102, 241, 0.08), transparent 24%),
+                linear-gradient(180deg, #fcf8ff 0%, #f8fafc 44%, #f6f8fc 100%);
+        }
+
+        .institusi-page--sains-kesihatan {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(var(--institusi-sains-rgb-soft), 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(14, 165, 233, 0.08), transparent 24%),
+                linear-gradient(180deg, #f5fbff 0%, #f8fafc 44%, #f6f8fc 100%);
         }
 
         .institusi-page--tvet .institusi-hero {
@@ -38,6 +76,24 @@
                 0 24px 70px rgba(15, 23, 42, 0.14),
                 0 0 68px rgba(var(--institusi-tvet-rgb), 0.3),
                 0 0 130px rgba(var(--institusi-tvet-rgb-soft), 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+        }
+
+            .institusi-page--diploma .institusi-hero {
+                background: linear-gradient(90deg, #6d1fb7 0%, #b56cff 100%);
+                box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(var(--institusi-diploma-rgb), 0.3),
+                0 0 130px rgba(var(--institusi-diploma-rgb-soft), 0.22),
+                inset 0 1px 0 rgba(255, 255, 255, 0.24);
+            }
+
+        .institusi-page--sains-kesihatan .institusi-hero {
+            background: linear-gradient(90deg, #0f5fd7 0%, #5cc8ff 100%);
+            box-shadow:
+                0 24px 70px rgba(15, 23, 42, 0.14),
+                0 0 68px rgba(var(--institusi-sains-rgb), 0.3),
+                0 0 130px rgba(var(--institusi-sains-rgb-soft), 0.22),
                 inset 0 1px 0 rgba(255, 255, 255, 0.24);
         }
 
@@ -50,14 +106,52 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
+            .institusi-page--diploma .institusi-hero-button {
+                color: var(--institusi-diploma-600);
+                box-shadow:
+                0 0 0 6px rgba(255, 255, 255, 0.14),
+                0 0 34px rgba(var(--institusi-diploma-rgb), 0.28),
+                0 16px 36px rgba(15, 23, 42, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            }
+
+        .institusi-page--sains-kesihatan .institusi-hero-button {
+            color: var(--institusi-sains-600);
+            box-shadow:
+                0 0 0 6px rgba(255, 255, 255, 0.14),
+                0 0 34px rgba(var(--institusi-sains-rgb), 0.28),
+                0 16px 36px rgba(15, 23, 42, 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
         .institusi-page--tvet .institusi-toolbar {
             background:
                 linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 245, 0.92)),
                 linear-gradient(120deg, rgba(var(--institusi-tvet-rgb), 0.06), rgba(var(--institusi-tvet-rgb-soft), 0.08));
         }
 
+        .institusi-page--diploma .institusi-toolbar {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(251, 247, 255, 0.92)),
+                linear-gradient(120deg, rgba(var(--institusi-diploma-rgb), 0.06), rgba(var(--institusi-diploma-rgb-soft), 0.08));
+        }
+
+        .institusi-page--sains-kesihatan .institusi-toolbar {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 251, 255, 0.92)),
+                linear-gradient(120deg, rgba(var(--institusi-sains-rgb), 0.06), rgba(var(--institusi-sains-rgb-soft), 0.08));
+        }
+
         .institusi-page--tvet .institusi-toolbar::after {
             background: radial-gradient(circle, rgba(var(--institusi-tvet-rgb), 0.18), rgba(var(--institusi-tvet-rgb), 0));
+        }
+
+        .institusi-page--diploma .institusi-toolbar::after {
+            background: radial-gradient(circle, rgba(var(--institusi-diploma-rgb), 0.18), rgba(var(--institusi-diploma-rgb), 0));
+        }
+
+        .institusi-page--sains-kesihatan .institusi-toolbar::after {
+            background: radial-gradient(circle, rgba(var(--institusi-sains-rgb), 0.18), rgba(var(--institusi-sains-rgb), 0));
         }
 
         .institusi-page--tvet .institusi-filter-select:hover,
@@ -66,9 +160,31 @@
             box-shadow: 0 16px 32px rgba(var(--institusi-tvet-rgb), 0.12);
         }
 
+        .institusi-page--diploma .institusi-filter-select:hover,
+        .institusi-page--diploma .institusi-filter-select:focus {
+            border-color: rgba(var(--institusi-diploma-rgb), 0.4);
+            box-shadow: 0 16px 32px rgba(var(--institusi-diploma-rgb), 0.12);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-filter-select:hover,
+        .institusi-page--sains-kesihatan .institusi-filter-select:focus {
+            border-color: rgba(var(--institusi-sains-rgb), 0.4);
+            box-shadow: 0 16px 32px rgba(var(--institusi-sains-rgb), 0.12);
+        }
+
         .institusi-page--tvet .institusi-filter-button:hover,
         .institusi-page--tvet .institusi-filter-button:focus-visible {
             box-shadow: 0 14px 28px rgba(var(--institusi-tvet-rgb), 0.14);
+        }
+
+        .institusi-page--diploma .institusi-filter-button:hover,
+        .institusi-page--diploma .institusi-filter-button:focus-visible {
+            box-shadow: 0 14px 28px rgba(var(--institusi-diploma-rgb), 0.14);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-filter-button:hover,
+        .institusi-page--sains-kesihatan .institusi-filter-button:focus-visible {
+            box-shadow: 0 14px 28px rgba(var(--institusi-sains-rgb), 0.14);
         }
 
         .institusi-filter-button--active-tvet {
@@ -77,9 +193,31 @@
             color: #ffffff;
         }
 
+        .institusi-filter-button--active-diploma {
+            background: var(--institusi-diploma-500);
+            border-color: var(--institusi-diploma-500);
+            color: #ffffff;
+        }
+
+        .institusi-filter-button--active-sains-kesihatan {
+            background: var(--institusi-sains-500);
+            border-color: var(--institusi-sains-500);
+            color: #ffffff;
+        }
+
         .institusi-filter-button--active-tvet:hover {
             background: var(--institusi-tvet-600);
             border-color: var(--institusi-tvet-600);
+        }
+
+        .institusi-filter-button--active-diploma:hover {
+            background: var(--institusi-diploma-600);
+            border-color: var(--institusi-diploma-600);
+        }
+
+        .institusi-filter-button--active-sains-kesihatan:hover {
+            background: var(--institusi-sains-600);
+            border-color: var(--institusi-sains-600);
         }
 
         .institusi-filter-button--idle-tvet {
@@ -88,8 +226,28 @@
             color: var(--institusi-tvet-600);
         }
 
+        .institusi-filter-button--idle-diploma {
+            background: #ffffff;
+            border-color: rgba(var(--institusi-diploma-rgb), 0.34);
+            color: var(--institusi-diploma-600);
+        }
+
+        .institusi-filter-button--idle-sains-kesihatan {
+            background: #ffffff;
+            border-color: rgba(var(--institusi-sains-rgb), 0.34);
+            color: var(--institusi-sains-600);
+        }
+
         .institusi-filter-button--idle-tvet:hover {
             background: var(--institusi-tvet-50);
+        }
+
+        .institusi-filter-button--idle-diploma:hover {
+            background: var(--institusi-diploma-50);
+        }
+
+        .institusi-filter-button--idle-sains-kesihatan:hover {
+            background: var(--institusi-sains-50);
         }
 
         .institusi-page--tvet .institusi-card:hover,
@@ -100,15 +258,53 @@
                 0 0 32px rgba(var(--institusi-tvet-rgb-soft), 0.12);
         }
 
+        .institusi-page--diploma .institusi-card:hover,
+        .institusi-page--diploma .institusi-card:focus-within {
+            border-color: rgba(var(--institusi-diploma-rgb-soft), 0.38);
+            box-shadow:
+                0 30px 64px rgba(15, 23, 42, 0.14),
+                0 0 32px rgba(var(--institusi-diploma-rgb-soft), 0.12);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card:hover,
+        .institusi-page--sains-kesihatan .institusi-card:focus-within {
+            border-color: rgba(var(--institusi-sains-rgb-soft), 0.38);
+            box-shadow:
+                0 30px 64px rgba(15, 23, 42, 0.14),
+                0 0 32px rgba(var(--institusi-sains-rgb-soft), 0.12);
+        }
+
         .institusi-page--tvet .institusi-card-media::after {
             background:
                 linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
                 linear-gradient(130deg, rgba(var(--institusi-tvet-rgb), 0.36), rgba(15, 23, 42, 0));
         }
 
+        .institusi-page--diploma .institusi-card-media::after {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
+                linear-gradient(130deg, rgba(var(--institusi-diploma-rgb), 0.36), rgba(15, 23, 42, 0));
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card-media::after {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
+                linear-gradient(130deg, rgba(var(--institusi-sains-rgb), 0.36), rgba(15, 23, 42, 0));
+        }
+
         .institusi-page--tvet .institusi-card-chip {
             border-color: rgba(var(--institusi-tvet-rgb-soft), 0.12);
             background: rgba(255, 251, 235, 0.84);
+        }
+
+        .institusi-page--diploma .institusi-card-chip {
+            border-color: rgba(var(--institusi-diploma-rgb-soft), 0.12);
+            background: rgba(247, 239, 255, 0.84);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card-chip {
+            border-color: rgba(var(--institusi-sains-rgb-soft), 0.12);
+            background: rgba(237, 247, 255, 0.88);
         }
 
         .institusi-page--tvet .institusi-card:hover .institusi-card-chip,
@@ -117,14 +313,46 @@
             background: rgba(254, 243, 199, 0.95);
         }
 
+        .institusi-page--diploma .institusi-card:hover .institusi-card-chip,
+        .institusi-page--diploma .institusi-card:focus-within .institusi-card-chip {
+            border-color: rgba(var(--institusi-diploma-rgb), 0.22);
+            background: rgba(237, 224, 255, 0.95);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card:hover .institusi-card-chip,
+        .institusi-page--sains-kesihatan .institusi-card:focus-within .institusi-card-chip {
+            border-color: rgba(var(--institusi-sains-rgb), 0.22);
+            background: rgba(219, 234, 254, 0.95);
+        }
+
         .institusi-page--tvet .institusi-card:hover .institusi-card-arrow,
         .institusi-page--tvet .institusi-card:focus-within .institusi-card-arrow {
             background: var(--institusi-tvet-50);
             color: var(--institusi-tvet-600);
         }
 
+        .institusi-page--diploma .institusi-card:hover .institusi-card-arrow,
+        .institusi-page--diploma .institusi-card:focus-within .institusi-card-arrow {
+            background: var(--institusi-diploma-50);
+            color: var(--institusi-diploma-600);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card:hover .institusi-card-arrow,
+        .institusi-page--sains-kesihatan .institusi-card:focus-within .institusi-card-arrow {
+            background: var(--institusi-sains-50);
+            color: var(--institusi-sains-600);
+        }
+
         .institusi-page--tvet .institusi-card-link {
             color: var(--institusi-tvet-500);
+        }
+
+        .institusi-page--diploma .institusi-card-link {
+            color: var(--institusi-diploma-500);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card-link {
+            color: var(--institusi-sains-500);
         }
 
         .institusi-page--tvet .institusi-card:hover .institusi-card-link,
@@ -132,12 +360,38 @@
             color: var(--institusi-tvet-700);
         }
 
+        .institusi-page--diploma .institusi-card:hover .institusi-card-link,
+        .institusi-page--diploma .institusi-card:focus-within .institusi-card-link {
+            color: var(--institusi-diploma-700);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card:hover .institusi-card-link,
+        .institusi-page--sains-kesihatan .institusi-card:focus-within .institusi-card-link {
+            color: var(--institusi-sains-700);
+        }
+
         .institusi-soft-text-tvet {
             color: var(--institusi-tvet-soft-text);
         }
 
+        .institusi-soft-text-diploma {
+            color: var(--institusi-diploma-soft-text);
+        }
+
+        .institusi-soft-text-sains-kesihatan {
+            color: var(--institusi-sains-soft-text);
+        }
+
         .institusi-accent-tvet {
             color: var(--institusi-tvet-500);
+        }
+
+        .institusi-accent-diploma {
+            color: var(--institusi-diploma-500);
+        }
+
+        .institusi-accent-sains-kesihatan {
+            color: var(--institusi-sains-500);
         }
 
         .institusi-hero {
@@ -381,13 +635,16 @@
 </head>
 @php
     $institusiProgramType = strtolower((string) ($jenis ?? request('jenis', '')));
+    $institusiIsTvet = $institusiProgramType === 'tvet';
+    $institusiIsDiploma = $institusiProgramType === 'diploma';
+    $institusiIsSainsKesihatan = $institusiProgramType === 'sains kesihatan';
 @endphp
-<body class="institusi-page {{ $institusiProgramType === 'tvet' ? 'institusi-page--tvet' : 'bg-gray-100' }} text-gray-800">
+<body class="institusi-page {{ $institusiIsTvet ? 'institusi-page--tvet' : '' }} {{ $institusiIsDiploma ? 'institusi-page--diploma' : '' }} {{ $institusiIsSainsKesihatan ? 'institusi-page--sains-kesihatan' : '' }} {{ ! $institusiIsTvet && ! $institusiIsDiploma && ! $institusiIsSainsKesihatan ? 'bg-gray-100' : '' }} text-gray-800">
     
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
 
-    <section class="institusi-shell {{ $institusiProgramType === 'tvet' ? 'institusi-shell--tvet' : '' }} max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+    <section class="institusi-shell {{ $institusiIsTvet ? 'institusi-shell--tvet' : '' }} {{ $institusiIsDiploma ? 'institusi-shell--diploma' : '' }} {{ $institusiIsSainsKesihatan ? 'institusi-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div class="institusi-hero rounded-3xl p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
@@ -398,9 +655,9 @@
                             Semua Institusi
                         @endif
                     </h1>
-                    <p class="{{ $institusiProgramType === 'tvet' ? 'institusi-soft-text-tvet' : 'text-orange-100' }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
+                    <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100')) }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
                 </div>
-                <div aria-hidden="true" class="institusi-hero-button flex items-center justify-center w-14 h-14 rounded-full bg-white {{ $institusiProgramType === 'tvet' ? '' : 'text-orange-600' }}">
+                <div aria-hidden="true" class="institusi-hero-button flex items-center justify-center w-14 h-14 rounded-full bg-white {{ $institusiIsTvet || $institusiIsDiploma || $institusiIsSainsKesihatan ? '' : 'text-orange-600' }}">
                     <i class="fas fa-building"></i>
                 </div>
             </div>
@@ -409,14 +666,14 @@
         <div class="institusi-toolbar mb-8 rounded-3xl p-4 sm:p-5">
             <div class="relative z-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiProgramType === 'tvet' ? 'institusi-accent-tvet' : 'text-orange-500' }}">Paparan Institusi</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}">Paparan Institusi</p>
                     <h2 class="mt-2 text-2xl text-slate-900">{{ $institusis->count() }} institusi dipaparkan</h2>
                 </div>
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
                     <form method="GET" class="flex w-full max-w-[520px] flex-col gap-3 sm:flex-row sm:items-center">
                         <label class="block w-full sm:min-w-[280px] sm:flex-1">
                             <span class="sr-only">Pilih negeri</span>
-                            <select name="negeri" onchange="this.form.submit()" class="institusi-filter-select w-full rounded-full bg-white px-4 py-3 text-sm text-slate-700 focus:border-orange-400 focus:outline-none">
+                            <select name="negeri" onchange="this.form.submit()" class="institusi-filter-select w-full rounded-full bg-white px-4 py-3 text-sm text-slate-700 focus:outline-none">
                     <option value="">Semua Negeri</option>
                     <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
                     <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
@@ -450,7 +707,7 @@
                         @if(request('negeri'))
                             <input type="hidden" name="negeri" value="{{ request('negeri') }}">
                         @endif
-                        <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="institusi-filter-button inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition {{ $institusiProgramType === 'tvet' ? (request('kuota') ? 'institusi-filter-button--active-tvet' : 'institusi-filter-button--idle-tvet') : (request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50') }}">
+                        <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="institusi-filter-button inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition {{ $institusiIsTvet ? (request('kuota') ? 'institusi-filter-button--active-tvet' : 'institusi-filter-button--idle-tvet') : ($institusiIsDiploma ? (request('kuota') ? 'institusi-filter-button--active-diploma' : 'institusi-filter-button--idle-diploma') : ($institusiIsSainsKesihatan ? (request('kuota') ? 'institusi-filter-button--active-sains-kesihatan' : 'institusi-filter-button--idle-sains-kesihatan') : (request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50'))) }}">
                             {{ request('kuota') ? 'Kuota Aktif' : 'Tapis Kuota' }}
                         </button>
                     </form>
@@ -472,7 +729,7 @@
                         </div>
                         <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                             <div>
-                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiProgramType === 'tvet' ? 'institusi-soft-text-tvet' : 'text-orange-100/90' }}">Institusi</p>
+                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
                                 <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                             </div>
                             <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
@@ -482,7 +739,7 @@
                     </div>
                     <div class="p-6 sm:p-7 flex flex-col flex-1">
                         <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiProgramType === 'tvet' ? 'institusi-accent-tvet' : 'text-orange-500' }}"></i>
+                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
                             <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                         </div>
                         <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
