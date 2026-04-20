@@ -778,20 +778,20 @@
                     <button
                         type="button"
                         data-faq-item
-                        data-faq-type="skm"
+                        data-faq-type="admission"
                         class="faq-card group"
                         style="--float-delay: 0s; --float-scale: 1;"
                         aria-haspopup="dialog"
                         aria-controls="faqModal"
                     >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#8b5cf6,#6d28d9)] text-2xl">
-                            <i class="fa-solid fa-circle-question"></i>
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#ff9a3c,#ff7a00)] text-2xl">
+                            <i class="fa-solid fa-user-check"></i>
                         </div>
 
                         <div class="flex-1 min-w-0">
-                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Pensijilan</p>
+                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Kemasukan</p>
                             <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Apa itu Sijil Kemahiran Malaysia (SKM)?
+                                Siapa yang layak memohon program di UPKB?
                             </h3>
                             <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
                                 Klik untuk lihat penerangan penuh
@@ -806,20 +806,76 @@
                     <button
                         type="button"
                         data-faq-item
-                        data-faq-type="tvet"
+                        data-faq-type="program"
                         class="faq-card group"
-                        style="--float-delay: 0.8s; --float-scale: 1;"
+                        style="--float-delay: 0.5s; --float-scale: 1;"
                         aria-haspopup="dialog"
                         aria-controls="faqModal"
                     >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#ffd76a,#e5a100)] text-2xl">
-                            <i class="fa-solid fa-book-open"></i>
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#38bdf8,#0ea5e9)] text-2xl">
+                            <i class="fa-solid fa-certificate"></i>
                         </div>
 
                         <div class="flex-1 min-w-0">
-                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Pendidikan Teknikal</p>
+                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Program</p>
                             <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Apa itu TVET?
+                                Apa beza SKM Tahap 1, 2 dan 3?
+                            </h3>
+                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
+                                Klik untuk lihat penerangan penuh
+                            </p>
+                        </div>
+
+                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </button>
+
+                    <button
+                        type="button"
+                        data-faq-item
+                        data-faq-type="fees"
+                        class="faq-card group"
+                        style="--float-delay: 1s; --float-scale: 1;"
+                        aria-haspopup="dialog"
+                        aria-controls="faqModal"
+                    >
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#34d399,#059669)] text-2xl">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Yuran</p>
+                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
+                                Berapa yuran dan ada bantuan kewangan?
+                            </h3>
+                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
+                                Klik untuk lihat penerangan penuh
+                            </p>
+                        </div>
+
+                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </button>
+
+                    <button
+                        type="button"
+                        data-faq-item
+                        data-faq-type="application"
+                        class="faq-card group"
+                        style="--float-delay: 1.3s; --float-scale: 1;"
+                        aria-haspopup="dialog"
+                        aria-controls="faqModal"
+                    >
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#f97316,#ea580c)] text-2xl">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+
+                        <div class="flex-1 min-w-0">
+                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Permohonan</p>
+                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
+                                Bagaimana proses permohonan program?
                             </h3>
                             <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
                                 Klik untuk lihat penerangan penuh
@@ -857,35 +913,64 @@
     let closeTimerId = null;
 
     const faqAnswers = {
-        skm: `
+        admission: `
             <div class="faq-modal-content">
-                <div class="faq-modal-kicker">Pensijilan Rasmi</div>
+                <div class="faq-modal-kicker">Kemasukan & Kelayakan</div>
                 <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Apa itu Sijil Kemahiran Malaysia (SKM)?
+                    Siapa yang layak memohon program di UPKB?
                 </h2>
 
                 <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
-                    <li>Sijil rasmi yang dikeluarkan oleh Jabatan Pembangunan Kemahiran (JPK), Kementerian Sumber Manusia (KSM)</li>
-                    <li>Sijil ini memberi pengiktirafan kemahiran dan membuktikan individu memiliki kemampuan dan kompetensi dalam bidang tertentu</li>
-                    <li>Diiktiraf oleh Kerajaan Malaysia serta diterima di dalam dan di luar negara</li>
-                    <li>Pilihan baik untuk mereka yang ingin meningkatkan kemahiran</li>
+                    <li>Warganegara Malaysia yang berminat dalam latihan kemahiran dan kerjaya praktikal.</li>
+                    <li>Lepasan sekolah (contohnya SPM) atau individu bekerja yang ingin tambah kemahiran juga digalakkan memohon.</li>
+                    <li>Syarat minimum akademik bergantung pada program dan tahap SKM yang dipilih.</li>
+                    <li>Dokumen biasa diperlukan: kad pengenalan, sijil akademik, dan dokumen sokongan lain semasa pendaftaran.</li>
                 </ul>
             </div>
         `,
-        tvet: `
+        program: `
             <div class="faq-modal-content">
-                <div class="faq-modal-kicker">Pendidikan Teknikal</div>
+                <div class="faq-modal-kicker">Program & Pensijilan</div>
                 <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Apa itu TVET?
+                    Apa beza SKM Tahap 1, 2 dan 3?
                 </h2>
 
-                <p class="faq-modal-lead text-neutral-700">
-                    Pendidikan dan latihan yang bertujuan untuk menyediakan pelajar dengan kemahiran praktikal dan pengetahuan teknikal yang diperlukan untuk memasuki pasaran kerja dalam pelbagai bidang industri.
-                </p>
+                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
+                    <li>SKM Tahap 1: asas kemahiran dan pengenalan kepada standard kerja industri.</li>
+                    <li>SKM Tahap 2: pengukuhan kompetensi teknikal untuk tugasan operasi.</li>
+                    <li>SKM Tahap 3: kemahiran lanjutan, penyelesaian masalah, dan tanggungjawab kerja yang lebih tinggi.</li>
+                    <li>Tempoh pengajian berbeza mengikut kursus, biasanya melibatkan pembelajaran teori dan latihan amali.</li>
+                </ul>
+            </div>
+        `,
+        fees: `
+            <div class="faq-modal-content">
+                <div class="faq-modal-kicker">Yuran & Bantuan Kewangan</div>
+                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
+                    Berapa yuran dan ada bantuan kewangan?
+                </h2>
 
-                <p class="faq-modal-paragraph text-neutral-700">
-                    TVET meliputi pelbagai sektor seperti teknologi maklumat, kejuruteraan, perkhidmatan, kesihatan, pertanian, dan banyak lagi. Ia menekankan pembelajaran berasaskan amali dan latihan praktikal yang berorientasikan pekerjaan.
-                </p>
+                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
+                    <li>Yuran pendaftaran dan yuran pengajian bergantung kepada program yang dipilih.</li>
+                    <li>Pembayaran boleh dibuat secara berperingkat untuk memudahkan pelajar dan ibu bapa.</li>
+                    <li>Terdapat pilihan bantuan kewangan, tajaan, atau pinjaman tertakluk kepada syarat semasa.</li>
+                    <li>Pasukan pendaftaran boleh terangkan pecahan kos penuh termasuk yuran peperiksaan atau bahan latihan jika berkaitan.</li>
+                </ul>
+            </div>
+        `,
+        application: `
+            <div class="faq-modal-content">
+                <div class="faq-modal-kicker">Proses Permohonan</div>
+                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
+                    Bagaimana proses permohonan program?
+                </h2>
+
+                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
+                    <li>Pilih program yang diminati dan semak syarat kelayakan asas.</li>
+                    <li>Lengkapkan borang permohonan dan serahkan dokumen penting seperti kad pengenalan serta sijil akademik.</li>
+                    <li>Permohonan akan disemak oleh pihak pentadbiran dalam tempoh yang ditetapkan.</li>
+                    <li>Jika layak, calon akan dihubungi untuk langkah seterusnya seperti taklimat, pengesahan tempat, dan pembayaran pendaftaran.</li>
+                </ul>
             </div>
         `,
     };

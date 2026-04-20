@@ -261,6 +261,83 @@
             line-height: 1.9;
         }
 
+        /* ── STORY SLIDE ANIMATIONS ── */
+        .story-pair-wrapper {
+            display: flex;
+            gap: clamp(1rem, 2.5vw, 2rem);
+            width: min(96vw, 1100px);
+            align-items: stretch;
+        }
+        .story-pair-wrapper .story-panel {
+            flex: 1;
+        }
+        @media (max-width: 640px) {
+            .story-pair-wrapper {
+                flex-direction: column;
+            }
+        }
+        /* Panel itself: slides up from below */
+        .story-panel {
+            opacity: 0;
+            transform: translateY(48px) scale(0.97);
+            transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1),
+                        transform 0.7s cubic-bezier(0.22,1,0.36,1);
+        }
+        /* Left panel slides from left, right panel from right */
+        .story-panel--left {
+            transform: translateX(-60px) scale(0.97);
+        }
+        .story-panel--right {
+            transform: translateX(60px) scale(0.97);
+            transition-delay: 0.12s;
+        }
+        .snap-section.is-active .story-panel {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
+        /* Label: slides in from the left */
+        .story-label {
+            display: block;
+            text-align: center;
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.55s ease 0.25s,
+                        transform 0.55s cubic-bezier(0.22,1,0.36,1) 0.25s;
+        }
+        .snap-section.is-active .story-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Accent line: expands from center */
+        .story-accent-line {
+            display: block;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, #f97316, rgba(251,146,60,0.3));
+            border-radius: 2px;
+            margin: 0.5rem auto 1.2rem;
+            transition: width 0.6s cubic-bezier(0.22,1,0.36,1) 0.45s;
+        }
+        .snap-section.is-active .story-accent-line {
+            width: 3.5rem;
+        }
+        /* Text: centered, fades up in chunks via nth-child spans */
+        .story-text-line {
+            display: block;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1);
+        }
+        .story-text-line:nth-child(1) { transition-delay: 0.55s; }
+        .story-text-line:nth-child(2) { transition-delay: 0.7s;  }
+        .story-text-line:nth-child(3) { transition-delay: 0.85s; }
+        .snap-section.is-active .story-text-line {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* ── END STORY SLIDE ANIMATIONS ── */
+
         .story-section::before {
             content: "";
             position: absolute;
@@ -467,10 +544,34 @@
         /* ── PROGRAM POPULAR SECTION ── */
         .program-section {
             background:
-                radial-gradient(ellipse at 10% 50%, rgba(251,146,60,0.09) 0%, transparent 45%),
-                radial-gradient(ellipse at 90% 50%, rgba(56,189,248,0.07) 0%, transparent 45%),
-                linear-gradient(180deg, #eef2f7 0%, #f8fafc 100%);
+                radial-gradient(ellipse at 8% 60%, rgba(251,146,60,0.09) 0%, transparent 42%),
+                radial-gradient(ellipse at 92% 30%, rgba(56,189,248,0.07) 0%, transparent 42%),
+                linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
             position: relative;
+            overflow: hidden;
+        }
+        .program-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(15,23,42,0.025) 0px, rgba(15,23,42,0.025) 1px, transparent 1px, transparent 48px),
+                repeating-linear-gradient(90deg, rgba(15,23,42,0.025) 0px, rgba(15,23,42,0.025) 1px, transparent 1px, transparent 48px);
+            pointer-events: none;
+        }
+        .program-section::after {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(249,115,22,0.07), transparent 65%);
+            top: -180px; right: -160px;
+            pointer-events: none;
+            animation: progOrbFloat 9s ease-in-out infinite;
+        }
+        @keyframes progOrbFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50%       { transform: translateY(-22px) scale(1.05); }
         }
         .program-section-heading-label {
             font-size: 0.7rem;
@@ -481,10 +582,10 @@
         }
         .program-section-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+            font-size: clamp(1.8rem, 4vw, 3rem);
             font-weight: 900;
             color: #0f172a;
-            line-height: 1.1;
+            line-height: 1.05;
         }
         .program-section-title span {
             background: linear-gradient(120deg, #ea580c 0%, #f97316 55%, #fb923c 100%);
@@ -492,169 +593,176 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .feat-card {
-            position: relative;
-            background: #ffffff;
-            border: 1px solid rgba(15,23,42,0.08);
-            border-radius: 1.25rem;
-            padding: 1.6rem 1.5rem;
+        .program-section .text-slate-500 { color: rgba(71,85,105,0.85) !important; }
+        /* ─ Feature rows (right side) ─ */
+        .prog-feat-col {
             display: flex;
             flex-direction: column;
-            gap: 0.7rem;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(15,23,42,0.06);
+            gap: 1rem;
+            justify-content: center;
+        }
+        .prog-feat-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.1rem;
+            padding: 1.2rem 1.3rem;
+            border-radius: 1.2rem;
+            background: #ffffff;
+            border: 1px solid rgba(15,23,42,0.07);
+            box-shadow: 0 2px 12px rgba(15,23,42,0.05);
             transition: transform 0.32s cubic-bezier(0.23,1,0.32,1),
-                        border-color 0.32s ease,
-                        box-shadow 0.32s ease;
+                        box-shadow 0.32s ease, border-color 0.32s ease;
             cursor: default;
         }
-        .feat-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.32s ease;
-            pointer-events: none;
+        .prog-feat-row:hover {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 12px 36px rgba(249,115,22,0.1), 0 2px 10px rgba(15,23,42,0.06);
+            border-color: rgba(249,115,22,0.28);
         }
-        .feat-card.orange::before {
-            background: radial-gradient(circle at 0% 50%, rgba(249,115,22,0.1), transparent 60%);
+        .prog-feat-row.row--cyan:hover {
+            box-shadow: 0 12px 36px rgba(56,189,248,0.1), 0 2px 10px rgba(15,23,42,0.06);
+            border-color: rgba(56,189,248,0.28);
         }
-        .feat-card.cyan::before {
-            background: radial-gradient(circle at 0% 50%, rgba(56,189,248,0.1), transparent 60%);
+        .prog-feat-row.row--slate:hover {
+            box-shadow: 0 12px 36px rgba(100,116,139,0.1), 0 2px 10px rgba(15,23,42,0.06);
+            border-color: rgba(100,116,139,0.25);
         }
-        .feat-card.slate::before {
-            background: radial-gradient(circle at 0% 50%, rgba(100,116,139,0.08), transparent 60%);
-        }
-        .feat-card:hover {
-            transform: translateX(6px);
-            border-color: rgba(249,115,22,0.35);
-            box-shadow: 0 8px 32px rgba(249,115,22,0.12), 0 2px 10px rgba(15,23,42,0.06);
-        }
-        .feat-card.cyan:hover {
-            border-color: rgba(56,189,248,0.35);
-            box-shadow: 0 8px 32px rgba(56,189,248,0.12), 0 2px 10px rgba(15,23,42,0.06);
-        }
-        .feat-card:hover::before { opacity: 1; }
-        .feat-icon-wrap {
-            width: 2.6rem;
-            height: 2.6rem;
-            border-radius: 0.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
+        .prog-feat-icon {
             flex-shrink: 0;
+            width: 2.8rem; height: 2.8rem;
+            border-radius: 0.9rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
         }
-        .feat-icon-wrap.orange { background: rgba(249,115,22,0.12); }
-        .feat-icon-wrap.cyan   { background: rgba(56,189,248,0.12); }
-        .feat-icon-wrap.slate  { background: rgba(100,116,139,0.1); }
-        .feat-card-title {
+        .prog-feat-icon.ic--orange { background: rgba(249,115,22,0.1); }
+        .prog-feat-icon.ic--cyan   { background: rgba(56,189,248,0.1); }
+        .prog-feat-icon.ic--slate  { background: rgba(100,116,139,0.08); }
+        .prog-feat-body { flex: 1; min-width: 0; }
+        .prog-feat-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             font-weight: 800;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #f97316;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+            transition: color 0.25s ease;
         }
-        .feat-card.cyan .feat-card-title { color: #0ea5e9; }
-        .feat-card.slate .feat-card-title { color: #475569; }
-        .feat-card-body {
-            font-size: 0.82rem;
-            color: rgba(15,23,42,0.56);
+        .prog-feat-row:hover .prog-feat-title { color: #f97316; }
+        .prog-feat-row.row--cyan:hover .prog-feat-title { color: #0ea5e9; }
+        .prog-feat-row.row--slate:hover .prog-feat-title { color: #475569; }
+        .prog-feat-desc {
+            font-size: 0.79rem;
+            color: rgba(15,23,42,0.50);
             line-height: 1.6;
         }
-        .feat-card-accent {
-            width: 1.8rem;
-            height: 2px;
-            border-radius: 1px;
-            background: linear-gradient(90deg, rgba(249,115,22,0.7), transparent);
+        .prog-feat-row--featured {
+            background: linear-gradient(135deg, rgba(255,247,237,0.9), rgba(255,255,255,0.95));
+            border-color: rgba(249,115,22,0.2);
+            box-shadow: 0 4px 20px rgba(249,115,22,0.09);
         }
-        .feat-card.cyan .feat-card-accent {
-            background: linear-gradient(90deg, rgba(56,189,248,0.7), transparent);
-        }
-        .feat-card.slate .feat-card-accent {
-            background: linear-gradient(90deg, rgba(100,116,139,0.5), transparent);
-        }
+        .prog-feat-row--featured .prog-feat-title { color: #f97316; }
+        /* ─ Video Panel ─ */
         .video-panel {
             position: relative;
             height: 100%;
-            min-height: 420px;
-            border-radius: 1.75rem;
+            min-height: 400px;
+            border-radius: 2rem;
             overflow: hidden;
-            box-shadow: 0 24px 64px rgba(15,23,42,0.2), 0 0 0 1px rgba(255,255,255,0.6);
-            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 32px 80px rgba(15,23,42,0.18), 0 0 0 1px rgba(255,255,255,0.55);
+            border: 1px solid rgba(255,255,255,0.55);
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.23,1,0.32,1), box-shadow 0.5s ease;
+        }
+        .video-panel:hover {
+            transform: perspective(1200px) rotateY(2deg) scale(1.015);
+            box-shadow: 0 48px 100px rgba(15,23,42,0.24),
+                        0 0 0 1px rgba(255,255,255,0.7),
+                        0 0 40px rgba(249,115,22,0.08);
         }
         .video-panel video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+            transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
         }
+        .video-panel:hover video { transform: scale(1.05); }
         .video-panel-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15,23,42,0.92) 0%, rgba(15,23,42,0.18) 46%, transparent 70%);
-            pointer-events: none;
-            z-index: 1;
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(15,23,42,0.94) 0%, rgba(15,23,42,0.14) 46%, transparent 70%);
+            pointer-events: none; z-index: 1;
+            transition: background 0.4s ease;
+        }
+        .video-panel:hover .video-panel-overlay {
+            background: linear-gradient(to top, rgba(15,23,42,0.88) 0%, rgba(15,23,42,0.06) 46%, transparent 70%);
         }
         .video-panel-badge {
-            position: absolute;
-            top: 1.25rem;
-            left: 1.25rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            position: absolute; top: 1.25rem; left: 1.25rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
             border-radius: 999px;
             background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.18);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.22);
+            backdrop-filter: blur(12px);
             padding: 0.4rem 1rem;
-            font-size: 0.72rem;
-            color: #fff;
-            font-weight: 600;
-            letter-spacing: 0.06em;
+            font-size: 0.72rem; color: #fff; font-weight: 600; letter-spacing: 0.06em;
             z-index: 2;
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
         }
+        .video-panel:hover .video-panel-badge {
+            background: rgba(249,115,22,0.22);
+            border-color: rgba(249,115,22,0.4);
+            transform: translateY(-2px);
+        }
+        /* Floating stat chips */
+        .video-chip {
+            position: absolute; z-index: 3;
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            border-radius: 0.9rem;
+            background: rgba(15,23,42,0.75);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            padding: 0.55rem 1rem;
+            font-size: 0.72rem; font-weight: 700; color: rgba(241,245,249,0.85);
+            pointer-events: none;
+            opacity: 0; transform: translateX(12px);
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.23,1,0.32,1);
+        }
+        .video-chip .chip-val {
+            font-size: 1rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            color: #fb923c;
+        }
+        .video-chip.chip-1 { top: 4.5rem; right: 1.2rem; transition-delay: 0.06s; }
+        .video-chip.chip-2 { top: 8.2rem; right: 1.2rem; transition-delay: 0.15s; }
+        .video-panel:hover .video-chip { opacity: 1; transform: translateX(0); }
         .video-panel-footer {
-            position: absolute;
-            inset-x: 0;
-            bottom: 0;
-            padding: 1.8rem 2rem;
-            z-index: 2;
+            position: absolute; inset-x: 0; bottom: 0;
+            padding: 1.8rem 2rem; z-index: 2;
         }
         .video-panel-tags {
-            font-size: 0.65rem;
-            letter-spacing: 0.28em;
+            font-size: 0.62rem; letter-spacing: 0.28em;
             text-transform: uppercase;
-            color: rgba(241,245,249,0.5);
-            margin-bottom: 0.5rem;
+            color: rgba(241,245,249,0.42); margin-bottom: 0.5rem;
         }
         .video-panel-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.35;
-            max-width: 26rem;
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-weight: 700; color: #fff; line-height: 1.3;
+            max-width: 28rem;
+            transition: transform 0.35s ease;
         }
+        .video-panel:hover .video-panel-title { transform: translateY(-3px); }
         .video-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
             border-radius: 999px;
             background: linear-gradient(120deg, rgba(249,115,22,0.95), rgba(234,88,12,1));
             padding: 0.7rem 1.5rem;
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: #fff;
+            font-size: 0.82rem; font-weight: 700; color: #fff;
             text-decoration: none;
             box-shadow: 0 8px 24px rgba(249,115,22,0.36);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease, gap 0.2s ease, box-shadow 0.2s ease;
             flex-shrink: 0;
         }
         .video-cta:hover {
             transform: translateY(-2px);
+            gap: 0.8rem;
             box-shadow: 0 14px 32px rgba(249,115,22,0.46);
         }
         /* ── END PROGRAM POPULAR SECTION ── */
@@ -742,10 +850,6 @@
             
             <div class="hero-card section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
 
-                <p class="hero-kicker text-[9px] md:text-[10px] text-white/70 mb-3 md:mb-4 uppercase italic">
-                    // Program Kemahiran
-                </p>
-
                     <h2 class="titleglass text-2xl md:text-4xl lg:text-5xl text-white leading-[0.95] uppercase tracking-tight drop-shadow-2xl">
                         UNIT PEMBANGUNAN <br class="hidden md:block"> 
                 </h2>
@@ -820,20 +924,25 @@
 </section>
 
     <section class="snap-section story-section px-6">
-        <div class="story-panel section-content">
-            <span class="hero-vision-label">Visi</span>
-            <p class="hero-vision-text">
-                UPKBN menyampaikan kepentingan pendidikan kepada golongan belia di mana Pendidikan adalah matlamat sesebuah negara memandangkan pendidikan adalah tonggak kejayaan semua.
-            </p>
-        </div>
-    </section>
-
-    <section class="snap-section story-section px-6">
-        <div class="story-panel section-content">
-            <span class="hero-vision-label">Misi</span>
-            <p class="hero-vision-text">
-                UPKB mahu melahirkan generasi yang mempunyai pendidikan dan kemahiran sekali gus mensasarkan negara menyasarkan 0% pengangguran dan 100% golongan Profesional dalam kalangan Belia di Malaysia.
-            </p>
+        <div class="story-pair-wrapper">
+            <div class="story-panel story-panel--left">
+                <span class="hero-vision-label story-label">Visi</span>
+                <span class="story-accent-line"></span>
+                <p class="hero-vision-text">
+                    <span class="story-text-line">UPKB menyampaikan kepentingan pendidikan kepada golongan belia</span>
+                    <span class="story-text-line">di mana Pendidikan adalah matlamat sesebuah negara</span>
+                    <span class="story-text-line">memandangkan pendidikan adalah tonggak kejayaan semua.</span>
+                </p>
+            </div>
+            <div class="story-panel story-panel--right">
+                <span class="hero-vision-label story-label">Misi</span>
+                <span class="story-accent-line"></span>
+                <p class="hero-vision-text">
+                    <span class="story-text-line">UPKB mahu melahirkan generasi yang mempunyai</span>
+                    <span class="story-text-line">pendidikan dan kemahiran, mensasarkan negara</span>
+                    <span class="story-text-line">mencapai 0% pengangguran dan 100% golongan Profesional Belia.</span>
+                </p>
+            </div>
         </div>
     </section>
 
@@ -843,7 +952,6 @@
 
             {{-- Heading --}}
             <div class="text-center mb-10 md:mb-14">
-                <p class="stats-heading-label mb-3">// Pencapaian Kami</p>
                 <h2 class="stats-heading-title">Angka Yang <span>Berbicara</span></h2>
                 <div class="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-60"></div>
             </div>
@@ -885,78 +993,78 @@
 
     {{-- 🔹 VIDEO SECTION --}}
     <section class="snap-section program-section flex items-center justify-center px-6">
-    <div class="w-full max-w-7xl mx-auto section-content">
+    <div class="w-full max-w-6xl mx-auto section-content">
 
         {{-- Heading --}}
-        <div class="text-center mb-10">
-            <p class="program-section-heading-label mb-3">// Koleksi Program</p>
+        <div class="text-center mb-8">
             <h2 class="program-section-title">Program <span>Popular</span> Kami</h2>
-            <div class="mx-auto mt-4 h-px w-24 bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-60"></div>
-            <p class="mx-auto mt-4 max-w-2xl text-sm text-slate-500 leading-relaxed">Program pilihan yang dilengkapi modul profesional, kemahiran abad ke-21, dan peluang kerjaya yang terjamin.</p>
+            <div class="mx-auto mt-3 h-px w-20 bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-60"></div>
+            <p class="mx-auto mt-3 max-w-xl text-sm text-slate-500 leading-relaxed">Program pilihan yang dilengkapi modul profesional, kemahiran abad ke-21, dan peluang kerjaya yang terjamin.</p>
         </div>
 
-        {{-- Main Layout --}}
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+        {{-- Main Layout: video left, features right --}}
+        <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-5 items-stretch">
 
-            {{-- LEFT: Feature Cards --}}
-            <div class="flex flex-col gap-4 order-2 lg:order-1">
+            {{-- LEFT: Video --}}
+            <div class="video-panel">
+                <div class="video-panel-overlay"></div>
 
-                <div class="feat-card orange">
-                    <div class="flex items-center gap-3">
-                        <div class="feat-icon-wrap orange">✨</div>
-                        <p class="feat-card-title">Fokus Kualiti</p>
-                    </div>
-                    <div class="feat-card-accent"></div>
-                    <p class="feat-card-body">Setiap program dirangka dengan kandungan mendalam dari pakar industri terkemuka.</p>
+                <div class="video-panel-badge">
+                    <i class="fas fa-star text-orange-400"></i>
+                    Koleksi Terbaik UPKB
                 </div>
 
-                <div class="feat-card cyan">
-                    <div class="flex items-center gap-3">
-                        <div class="feat-icon-wrap cyan">🛡️</div>
-                        <p class="feat-card-title">Mudah Dipercayai</p>
-                    </div>
-                    <div class="feat-card-accent"></div>
-                    <p class="feat-card-body">Program kami telah dipercayai oleh ribuan pelajar dan institusi di seluruh Malaysia.</p>
+                <div class="video-chip chip-1">
+                    <span class="chip-val">1000+</span> Pelajar
+                </div>
+                <div class="video-chip chip-2">
+                    <span class="chip-val">10+</span> Tahun
                 </div>
 
-                <div class="feat-card slate">
-                    <div class="flex items-center gap-3">
-                        <div class="feat-icon-wrap slate">🌟</div>
-                        <p class="feat-card-title">Nilai Tambahan</p>
-                    </div>
-                    <div class="feat-card-accent"></div>
-                    <p class="feat-card-body">Kandungan disokong oleh sokongan pelajar, panduan kerjaya dan jaringan alumni aktif.</p>
-                </div>
+                <video class="w-full h-full object-cover min-h-[340px]" controls autoplay playsinline muted>
+                    <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
+                </video>
 
+                <div class="video-panel-footer">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                            <p class="video-panel-tags">Berkualiti &nbsp;/&nbsp; Dipercayai &nbsp;/&nbsp; Berprestasi</p>
+                            <h3 class="video-panel-title">Pengalaman pembelajaran yang elegan dan profesional.</h3>
+                        </div>
+                        <a href="{{ route('staff.temuduga.program', $pelajar->id) }}" class="video-cta">
+                            Terokai <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            {{-- RIGHT: Video Panel --}}
-            <div class="lg:col-span-2 order-1 lg:order-2">
-                <div class="video-panel">
-                    <div class="video-panel-overlay"></div>
+            {{-- RIGHT: Feature rows --}}
+            <div class="prog-feat-col">
 
-                    <div class="video-panel-badge">
-                        <i class="fas fa-star text-orange-400"></i>
-                        Koleksi Terbaik UPKB
-                    </div>
-
-                    <video class="w-full h-full object-cover min-h-[380px]" controls autoplay playsinline muted>
-                        <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
-                    </video>
-
-                    <div class="video-panel-footer">
-                        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                            <div>
-                                <p class="video-panel-tags">Berkualiti &nbsp;/&nbsp; Dipercayai &nbsp;/&nbsp; Berprestasi</p>
-                                <h3 class="video-panel-title">Pengalaman pembelajaran yang elegan dan profesional.</h3>
-                            </div>
-                            <a href="{{ route('staff.temuduga.program', $pelajar->id) }}" class="video-cta">
-                                Terokai
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
+                <div class="prog-feat-row prog-feat-row--featured">
+                    <div class="prog-feat-icon ic--orange">✨</div>
+                    <div class="prog-feat-body">
+                        <p class="prog-feat-title">Fokus Kualiti</p>
+                        <p class="prog-feat-desc">Setiap program dirangka dengan kandungan mendalam dari pakar industri terkemuka.</p>
                     </div>
                 </div>
+
+                <div class="prog-feat-row row--cyan">
+                    <div class="prog-feat-icon ic--cyan">🛡️</div>
+                    <div class="prog-feat-body">
+                        <p class="prog-feat-title">Mudah Dipercayai</p>
+                        <p class="prog-feat-desc">Program kami telah dipercayai oleh ribuan pelajar dan institusi di seluruh Malaysia.</p>
+                    </div>
+                </div>
+
+                <div class="prog-feat-row row--slate">
+                    <div class="prog-feat-icon ic--slate">🌟</div>
+                    <div class="prog-feat-body">
+                        <p class="prog-feat-title">Nilai Tambahan</p>
+                        <p class="prog-feat-desc">Kandungan disokong oleh sokongan pelajar, panduan kerjaya dan jaringan alumni aktif.</p>
+                    </div>
+                </div>
+
             </div>
 
         </div>
