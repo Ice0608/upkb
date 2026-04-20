@@ -151,9 +151,9 @@
     <div class="footer-content max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
         <div>
             <a href="{{ url('/') }}" class="footer-brand-link mb-4">
-                <img src="{{ asset('images/icon/logo.jpeg') }}" class="footer-brand-logo h-12" alt="logo">
+                <img src="{{ asset('images/icon/logoSES.jpg') }}" class="footer-brand-logo h-12" alt="logo">
                 <div>
-                    <h2 class="footer-brand-title text-lg font-bold text-white">UPKB</h2>
+                    <h2 class="footer-brand-title text-lg font-bold text-white">SES</h2>
                     <p class="footer-brand-subtitle text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
                 </div>
             </a>
