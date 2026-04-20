@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2026 at 10:01 AM
+-- Generation Time: Apr 16, 2026 at 03:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -399,7 +399,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2026_04_09_000002_create_pembayaran_table', 17),
 (41, '2026_04_09_000001_create_pelajar_table', 18),
 (42, '2026_04_13_000002_add_kod_kursus_to_galeris_table', 19),
-(43, '2026_04_13_070352_add_new_fields_to_pelajar_table', 20);
+(44, '2026_04_13_070352_add_new_fields_to_pelajar_table', 20);
 
 -- --------------------------------------------------------
 
@@ -423,6 +423,7 @@ CREATE TABLE `pelajar` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `noreff` varchar(255) DEFAULT NULL,
   `program` enum('Diploma','TVET','Sains Kesihatan') DEFAULT NULL,
+  `status_perkahwinan` enum('Bujang','Berkahwin','Duda','Balu/Janda/Ibu Tunggal') DEFAULT NULL,
   `tarikh_pendaftaran` date NOT NULL,
   `nama_pelajar` varchar(255) NOT NULL,
   `ic_pelajar` varchar(255) NOT NULL,
@@ -458,8 +459,8 @@ CREATE TABLE `pelajar` (
 -- Dumping data for table `pelajar`
 --
 
-INSERT INTO `pelajar` (`id`, `noreff`, `program`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'TVET', '2026-04-14', 'FULAN BIN FULAN', '012345678990', 2.99, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', 'Security Guard', '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', 'Guru Kafa', '1500', 4, 'PENDIDIKAN AWAL KANAK-KANAK', 'PENDIDIKAN AWAL PRASEKOLAH', 'MEKANIKAL', '2026-04-12 16:27:24', '2026-04-12 23:46:08');
+INSERT INTO `pelajar` (`id`, `noreff`, `program`, `status_perkahwinan`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-04-13 16:14:26');
 
 -- --------------------------------------------------------
 
@@ -504,7 +505,10 @@ CREATE TABLE `programs` (
 INSERT INTO `programs` (`id`, `jenis_program`, `info_program`, `icon`, `created_at`, `updated_at`) VALUES
 (1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-07 00:32:34', '2026-04-07 00:32:34'),
 (2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-07 00:33:17', '2026-04-07 00:33:17'),
-(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-07 00:33:39', '2026-04-07 00:33:39');
+(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-07 00:33:39', '2026-04-07 00:33:39'),
+(4, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-13 21:58:50', '2026-04-13 21:58:50'),
+(5, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-13 21:58:50', '2026-04-13 21:58:50'),
+(6, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-13 21:58:50', '2026-04-13 21:58:50');
 
 -- --------------------------------------------------------
 
@@ -526,7 +530,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('6vrUxN79O40SsYbilohfUFFK59MfZp0Qy1QsmcpX', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRFdXZlc2YkUyV1FoVXhzT2p4aXQ4MEVkeVNUU1JrYjJLRlU2UnpLZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluIjtzOjU6InJvdXRlIjtzOjEwOiJzdGFmZi5tYWluIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1776066440);
+('rTRQ1W1R3DaNWUqiSmjsprGOxFdnRPvhbNzqHSZC', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiY3I5UXlBVFR1ZUlYUnA5ZjE4QXBtd21VY0t2NlhPZW9tRnlaUzdmdiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9ibWQvMSI7czo1OiJyb3V0ZSI7czoxNDoic3RhZmYuYm1kLmVkaXQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1776304468);
 
 -- --------------------------------------------------------
 
@@ -1040,7 +1044,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `pelajar`
@@ -1058,7 +1062,7 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `silibuses`

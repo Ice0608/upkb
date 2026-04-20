@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <title>UPKB Staff Main</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -83,7 +84,9 @@
                                 </td>
                                 <td class="px-6 py-4">{{ $pelajar->tarikh_pendaftaran?->format('d M Y') ?? '-' }}</td>
                                 <td class="px-6 py-4">
-                                    <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $statusClasses }}">{{ $statusLabel }}</span>
+                                    <button type="button" onclick="openStatusModal('{{ $pelajar->ic_pelajar }}', '{{ $statusLabel }}')" class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $statusClasses }} hover:opacity-80 cursor-pointer">
+                                        {{ $statusLabel }}
+                                    </button>
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100 px-4 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50">Temu Duga</a>
@@ -111,11 +114,29 @@
                     </div>
                 </div>
                 <a href="{{ route('bmd', ['event_id' => $selectedEvent?->id]) }}" class="mt-6 block rounded-3xl border border-slate-200 bg-slate-100 p-5 text-center transition hover:border-orange-300 hover:bg-white">
-                    <div class="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl border border-slate-300 bg-white shadow-sm">
-                        <span class="text-lg font-semibold uppercase tracking-[0.35em] text-slate-400">QR</span>
-                    </div>
+                    <div id="qrcode" class="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl border border-slate-300 bg-white shadow-sm"></div>
                 </a>
                 <p class="mt-4 text-sm leading-6 text-slate-600">QR ini membawa ke borang maklumat diri (BMD). Lengkapkan data pelajar untuk mencatat kehadiran dan cetak borang.</p>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const qrContainer = document.getElementById('qrcode');
+                        qrContainer.innerHTML = '';
+                        const eventId = {{ $selectedEvent?->id ?? 'null' }};
+                        if (eventId) {
+                            const url = "{{ route('bmd', ['event_id' => '__EVENT_ID__']) }}".replace('__EVENT_ID__', eventId);
+                            new QRCode(qrContainer, {
+                                text: url,
+                                width: 200,
+                                height: 200,
+                                colorDark: "#0f172a",
+                                colorLight: "#ffffff",
+                                correctLevel: QRCode.CorrectLevel.H
+                            });
+                        } else {
+                            qrContainer.innerHTML = '<span class="text-lg font-semibold uppercase tracking-[0.35em] text-slate-400">QR</span>';
+                        }
+                    });
+                </script>
             </div>
 
             <div class="rounded-[32px] border border-slate-200 bg-orange-500 p-6 text-white shadow-sm">
@@ -129,6 +150,46 @@
 @include('components.social-float')
 
 @include('layouts.footer')
+
+<!-- Status Edit Modal -->
+<div id="status-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50" onclick="closeStatusModal()"></div>
+    <div class="relative flex min-h-screen items-center justify-center p-4">
+        <div class="relative w-full max-w-md rounded-3xl bg-white p-6 shadow-xl">
+            <h3 class="text-xl font-semibold text-slate-900 mb-4">Kemaskini Status Pembayaran</h3>
+            <form id="status-form" method="POST">
+                @csrf
+                <input type="hidden" name="ic_pelajar" id="modal-ic-pelajar">
+                <div class="mb-4">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
+                    <select name="status" id="modal-status" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400">
+                        <option value="Belum Bayar">Belum Bayar</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="cancel">Cancel</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 justify-end">
+                    <button type="button" onclick="closeStatusModal()" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Batal</button>
+                    <button type="submit" class="inline-flex items-center rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white hover:bg-orange-600">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openStatusModal(icPelajar, currentStatus) {
+        document.getElementById('modal-ic-pelajar').value = icPelajar;
+        document.getElementById('modal-status').value = currentStatus;
+        document.getElementById('status-form').action = '{{ route("staff.payment.update-status") }}';
+        document.getElementById('status-modal').classList.remove('hidden');
+    }
+
+    function closeStatusModal() {
+        document.getElementById('status-modal').classList.add('hidden');
+    }
+</script>
 
 </body>
 </html>

@@ -132,7 +132,7 @@
     </div>
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
 
     {{-- 🔹 IKLAN SECTION --}}
     <div class="relative w-full">
@@ -321,7 +321,7 @@
     @include('components.social-float')
 
     {{-- 🔹 FOOTER --}}
-    @include('layouts.footer')
+    @include('layouts.footer-pelajar')
 
 </body>
 

@@ -33,7 +33,7 @@ class StaffEventController extends Controller
         }
 
         if ($selectedEvent) {
-            $pelajars = Pelajar::whereDate('tarikh_pendaftaran', $selectedEvent->tarikh_event)
+            $pelajars = Pelajar::where('event_id', $selectedEvent->id)
                 ->orderBy('nama_pelajar')
                 ->get();
 
@@ -80,9 +80,7 @@ class StaffEventController extends Controller
         }
 
         $pelajar = null;
-        $namaKursusOptions = \App\Models\Kursus::distinct('nama_kursus')->pluck('nama_kursus')->sort()->toArray();
-
-        return view('bmd', compact('event', 'pelajar', 'namaKursusOptions'));
+        return view('pelajar.bmd', compact('event', 'pelajar'));
     }
 
     public function storeGuestPelajar(Request $request)
@@ -101,8 +99,6 @@ class StaffEventController extends Controller
             'city' => 'nullable|string|max:100',
             'region' => 'nullable|string|max:100',
             'postcode' => 'nullable|string|max:20',
-            'kod_institusi' => 'nullable|string|max:100',
-            'kod_kursus' => 'nullable|string|max:100',
             'nama_bapa' => 'nullable|string|max:255',
             'ic_bapa' => 'nullable|string|max:50',
             'no_tel_bapa' => 'nullable|string|max:50',
@@ -114,22 +110,16 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
-            'pilihan_pertama' => 'nullable|string|max:255',
-            'pilihan_kedua' => 'nullable|string|max:255',
-            'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
 
-        // Custom validation for unique course choices
-        $pilihan = array_filter([$request->pilihan_pertama, $request->pilihan_kedua, $request->pilihan_ketiga]);
-        if (count($pilihan) !== count(array_unique($pilihan))) {
-            return back()->withErrors(['pilihan' => 'Pilihan kursus mesti berbeza antara satu sama lain.'])->withInput();
-        }
+        // Add event_id from QR code
+        $data['event_id'] = $request->input('event_id');
 
         $pelajar = Pelajar::create(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
         ], $data));
 
-        return redirect()->route('bmd', ['event_id' => $request->input('event_id')])
+        return redirect()->route('pelajar.senarainama', ['pelajar_id' => $pelajar->id])
             ->with('success', 'Maklumat pelajar telah dihantar.');
     }
 
@@ -190,5 +180,398 @@ class StaffEventController extends Controller
 
         return redirect()->route('staff.bmd.edit', $pelajar->id)
             ->with('success', 'Maklumat pelajar telah dikemaskini.');
+    }
+
+    // ========== PELAJAR ROUTES ==========
+
+    public function pelajarSenaraiNama(Request $request)
+    {
+        $pelajar = null;
+        $events = \App\Models\Event::orderBy('tarikh_event', 'desc')->get();
+        $selectedEvent = null;
+        $pelajars = collect();
+
+        if ($request->filled('pelajar_id')) {
+            $pelajar = Pelajar::find($request->pelajar_id);
+            if ($pelajar && $pelajar->event_id) {
+                $selectedEvent = Event::find($pelajar->event_id);
+            }
+        }
+
+        if ($request->filled('event_id')) {
+            $selectedEvent = Event::find($request->event_id);
+        }
+
+        if ($selectedEvent) {
+            $pelajars = Pelajar::where('event_id', $selectedEvent->id)
+                ->orderBy('nama_pelajar')
+                ->get();
+        }
+
+        return view('pelajar.senarainama', compact('pelajar', 'events', 'selectedEvent', 'pelajars'));
+    }
+
+    public function pelajarLogin(Request $request)
+    {
+        $pelajar = null;
+        if ($request->filled('pelajar_id')) {
+            $pelajar = Pelajar::find($request->pelajar_id);
+        }
+
+        $events = \App\Models\Event::orderBy('tarikh_event', 'desc')->get();
+        $selectedEvent = null;
+        $pelajars = collect();
+
+        if ($pelajar && $pelajar->event_id) {
+            $selectedEvent = Event::find($pelajar->event_id);
+            $pelajars = Pelajar::where('event_id', $selectedEvent->id)
+                ->orderBy('nama_pelajar')
+                ->get();
+        }
+
+        return view('pelajar.loginpelajar', compact('pelajar', 'events', 'selectedEvent', 'pelajars'));
+    }
+
+    public function pelajarVerifyIc(Request $request)
+    {
+        $request->validate([
+            'pelajar_id' => 'required|exists:pelajar,id',
+            'ic_pelajar' => 'required|string',
+        ]);
+
+        $pelajar = Pelajar::find($request->pelajar_id);
+
+        if ($pelajar->ic_pelajar === $request->ic_pelajar) {
+            return redirect()->route('pelajar.editbmd', $pelajar->id)
+                ->with('success', 'IC disahkan. Anda boleh mengemaskini maklumat.');
+        }
+
+        return back()->withErrors(['ic_pelajar' => 'No. IC tidak sepadan.'])->withInput();
+    }
+
+    public function pelajarEditBmd(Pelajar $pelajar)
+    {
+        $event = $pelajar->event_id ? Event::find($pelajar->event_id) : null;
+        return view('pelajar.editbmd', compact('pelajar', 'event'));
+    }
+
+    public function pelajarUpdateBmd(Request $request, Pelajar $pelajar)
+    {
+        $data = $request->validate([
+            'tarikh_pendaftaran' => 'required|date',
+            'noreff' => 'nullable|string|max:255',
+            'program' => 'nullable|string|max:100',
+            'nama_pelajar' => 'required|string|max:255',
+            'ic_pelajar' => 'required|string|max:50',
+            'spm_credit' => 'nullable|numeric|min:0',
+            'no_tel' => 'required|string|max:50',
+            'email' => 'nullable|email|max:255',
+            'address_line1' => 'nullable|string|max:255',
+            'address_line2' => 'nullable|string|max:255',
+            'city' => 'nullable|string|max:100',
+            'region' => 'nullable|string|max:100',
+            'postcode' => 'nullable|string|max:20',
+            'nama_bapa' => 'nullable|string|max:255',
+            'ic_bapa' => 'nullable|string|max:50',
+            'no_tel_bapa' => 'nullable|string|max:50',
+            'pekerjaan_bapa' => 'nullable|string|max:255',
+            'pendapatan_bapa' => 'nullable|string|max:100',
+            'nama_ibu' => 'nullable|string|max:255',
+            'ic_ibu' => 'nullable|string|max:50',
+            'no_tel_ibu' => 'nullable|string|max:50',
+            'pekerjaan_ibu' => 'nullable|string|max:255',
+            'pendapatan_ibu' => 'nullable|string|max:100',
+            'jumlah_tanggungan' => 'nullable|integer|min:0',
+        ]);
+
+        $pelajar->update(array_merge([
+            'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
+        ], $data));
+
+        return redirect()->route('pelajar.welcome', $pelajar->id)
+            ->with('success', 'Maklumat telah dikemaskini.');
+    }
+
+    public function pelajarWelcome(Pelajar $pelajar)
+    {
+        $programs = \App\Models\Program::all();
+        return view('pelajar.student-dashboard', compact('pelajar', 'programs'));
+    }
+
+    public function pelajarDashboard(Pelajar $pelajar)
+    {
+        return view('pelajar.student-dashboard', compact('pelajar'));
+    }
+
+    public function pelajarProgram(Pelajar $pelajar)
+    {
+        $programs = \App\Models\Program::all();
+        return view('pelajar.program', compact('pelajar', 'programs'));
+    }
+
+    public function pelajarProgramList(Pelajar $pelajar)
+    {
+        $programs = \App\Models\Program::all();
+        return view('pelajar.program', compact('pelajar', 'programs'));
+    }
+
+    public function pelajarListKursus(Pelajar $pelajar, $nama)
+    {
+        $query = \App\Models\Kursus::with(['institusi', 'galeris'])
+            ->where('nama_kursus', $nama);
+
+        $semuaKursus = $query->get();
+        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function pelajarPilihanKursus(Pelajar $pelajar, $nama)
+    {
+        $query = \App\Models\Kursus::with(['institusi', 'galeris'])
+            ->where('nama_kursus', $nama);
+
+        $semuaKursus = $query->get();
+        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function pelajarFilterByName(Pelajar $pelajar, $nama)
+    {
+        $query = \App\Models\Kursus::with(['institusi', 'galeris'])
+            ->where('nama_kursus', $nama);
+
+        $semuaKursus = $query->get();
+        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+
+        return response()->json(['html' => $html]);
+    }
+
+    public function pelajarInfoInstitusi(Pelajar $pelajar, $kod_institusi)
+    {
+        $institusi = \App\Models\Institusi::where('kod_institusi', $kod_institusi)->firstOrFail();
+        $kursusList = \App\Models\Kursus::where('kod_institusi', $institusi->kod_institusi)->get();
+        $galeriList = \App\Models\Galeri::where('kod_institusi', $institusi->kod_institusi)->get();
+
+        return view('pelajar.infoinstitusi', compact('pelajar', 'institusi', 'kursusList', 'galeriList'));
+    }
+
+    public function pelajarInfoKursus(Pelajar $pelajar, $kod_institusi, $kod_kursus)
+    {
+        $kursus = \App\Models\Kursus::with(['institusi', 'galeris', 'syaratKelayakans', 'silibuses', 'kerjayas', 'yuranPendaftarans', 'yuranPilihans', 'yuranAsramas', 'yuranPengajians', 'elauns'])
+            ->where('kod_kursus', $kod_kursus)
+            ->firstOrFail();
+
+        return view('pelajar.infokursus', compact('pelajar', 'kursus'));
+    }
+
+    public function pelajarTabMaklumat(Pelajar $pelajar, $kod_kursus)
+    {
+        $kursus = \App\Models\Kursus::with('syaratKelayakans')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        return view('pelajar._guest_tab_maklumat', compact('kursus'));
+    }
+
+    public function pelajarTabSyarat(Pelajar $pelajar, $kod_kursus)
+    {
+        $kursus = \App\Models\Kursus::with('syaratKelayakans')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        return view('pelajar._guest_tab_syarat', compact('kursus'));
+    }
+
+    public function pelajarTabSilibus(Pelajar $pelajar, $kod_kursus)
+    {
+        $kursus = \App\Models\Kursus::with('silibuses')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        return view('pelajar._guest_tab_silibus', compact('kursus'));
+    }
+
+    public function pelajarTabKerjaya(Pelajar $pelajar, $kod_kursus)
+    {
+        $kursus = \App\Models\Kursus::with('kerjayas')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        return view('pelajar._guest_tab_kerjaya', compact('kursus'));
+    }
+
+    public function pelajarTabYuran(Pelajar $pelajar, $kod_kursus)
+    {
+        $kursus = \App\Models\Kursus::with([
+            'yuranPendaftarans',
+            'yuranPilihans',
+            'yuranAsramas',
+            'yuranPengajians',
+            'elauns',
+        ])->where('kod_kursus', $kod_kursus)->firstOrFail();
+        return view('pelajar._guest_tab_yuran', compact('kursus'));
+    }
+
+    public function pelajarTabGaleri(Pelajar $pelajar, $kod_institusi)
+    {
+        $galeri = \App\Models\Galeri::where('kod_institusi', $kod_institusi)->get();
+        return view('pelajar._guest_tab_galeri', compact('galeri'));
+    }
+
+    public function pelajarApplyNow(Request $request, Pelajar $pelajar)
+    {
+        $request->validate([
+            'kod_institusi' => 'required|string',
+            'kod_kursus' => 'required|string',
+        ]);
+
+        $pelajar->update([
+            'kod_institusi' => $request->kod_institusi,
+            'kod_kursus' => $request->kod_kursus,
+        ]);
+
+        return redirect()->route('pelajar.editbmd', $pelajar->id)
+            ->with('success', 'Kod institusi dan kod kursus telah dikemaskini.');
+    }
+
+    public function pelajarPembayaran(Pelajar $pelajar)
+    {
+        $kursus = null;
+        if ($pelajar->kod_kursus) {
+            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)->first();
+        }
+
+        $yuranPendaftaran = $kursus ? \App\Models\YuranPendaftaran::where('kod_kursus', $kursus->kod_kursus)->first() : null;
+        $jumlah = $yuranPendaftaran ? $yuranPendaftaran->yuran : 0;
+
+        return view('pelajar.pembayaran', compact('pelajar', 'kursus', 'jumlah'));
+    }
+
+    public function pelajarStorePembayaran(Request $request, Pelajar $pelajar)
+    {
+        $request->validate([
+            'kaedah_pembayaran' => 'required|string',
+            'resit' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+        ]);
+
+        $resitPath = null;
+        if ($request->hasFile('resit')) {
+            $resitPath = $request->file('resit')->store('resit', 'public');
+        }
+
+        $jumlah = $request->input('jumlah', 0);
+
+        \App\Models\Pembayaran::create([
+            'ic_pelajar' => $pelajar->ic_pelajar,
+            'username' => 'pelajar',
+            'kaedah_pembayaran' => $request->kaedah_pembayaran,
+            'jumlah_bayaran' => $jumlah,
+            'bayaran_semasa' => $jumlah,
+            'status' => 'pending',
+            'resit' => $resitPath,
+            'tarikh_pembayaran' => now()->toDateString(),
+            'masa_pembayaran' => now()->toTimeString(),
+        ]);
+
+        return redirect()->route('pelajar.surat-tawaran', $pelajar->id)
+            ->with('success', 'Pembayaran telah direkod.');
+    }
+
+    public function pelajarResit(Pelajar $pelajar)
+    {
+        $pembayaran = \App\Models\Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
+        return view('pelajar.resit', compact('pelajar', 'pembayaran'));
+    }
+
+    public function pelajarSuratTawaran(Pelajar $pelajar)
+    {
+        $kursus = null;
+        $institusi = null;
+        $hasSuratTawaran = false;
+
+        if ($pelajar->kod_kursus) {
+            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)->first();
+            if ($kursus && $kursus->kod_institusi) {
+                $institusi = \App\Models\Institusi::where('kod_institusi', $kursus->kod_institusi)->first();
+                $suratPath = public_path("wordinstitusi/{$kursus->kod_institusi}/SURAT TAWARAN/{$kursus->kod_kursus}.docx");
+                $hasSuratTawaran = file_exists($suratPath);
+            }
+        }
+
+        return view('pelajar.surat-tawaran', compact('pelajar', 'kursus', 'institusi', 'hasSuratTawaran'));
+    }
+
+    public function pelajarDownloadSuratTawaran(Pelajar $pelajar)
+    {
+        if (!$pelajar->kod_kursus) {
+            return back()->with('error', 'Tiada kursus dipilih.');
+        }
+
+        $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)->first();
+        if (!$kursus) {
+            return back()->with('error', 'Kursus tidak ditemui.');
+        }
+
+        $templatePath = public_path("wordinstitusi/{$kursus->kod_institusi}/SURAT TAWARAN/{$kursus->kod_kursus}.docx");
+
+        if (!file_exists($templatePath)) {
+            return back()->with('error', 'Template surat tawaran tidak ditemui.');
+        }
+
+        try {
+            $processor = new \PhpOffice\PhpWord\TemplateProcessor($templatePath);
+
+            $processor->setValues([
+                'nama_pelajar' => $pelajar->nama_pelajar,
+                'ic_pelajar' => $pelajar->ic_pelajar,
+                'alamat' => ($pelajar->address_line1 ?? '') . ($pelajar->address_line2 ? ', ' . $pelajar->address_line2 : '') . ', ' . ($pelajar->city ?? '') . ' ' . ($pelajar->postcode ?? ''),
+                'tarikh_daftar' => now()->format('d/m/Y'),
+                'nama_kursus' => $kursus->nama_kursus,
+                'nama_institusi' => $institusi->nama_institusi ?? '',
+            ]);
+
+            $tempPath = storage_path('app/temp/surat_tawaran_' . $pelajar->id . '.docx');
+            $processor->saveAs($tempPath);
+
+            return response()->download($tempPath)->deleteFileAfterSend(true);
+        } catch (\Exception $e) {
+            return back()->with('error', 'Gagal menghasilkan surat tawaran: ' . $e->getMessage());
+        }
+    }
+
+    public function pelajarSendEmail(Pelajar $pelajar)
+    {
+        // Placeholder for email sending functionality
+        return redirect()->route('pelajar.complete', $pelajar->id)
+            ->with('success', 'Email telah dihantar.');
+    }
+
+    public function pelajarComplete(Pelajar $pelajar)
+    {
+        // Update payment status to pending
+        \App\Models\Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->update(['status' => 'pending']);
+
+        return view('pelajar.complete', compact('pelajar'));
+    }
+
+    // Staff: Update payment status
+    public function updatePaymentStatus(Request $request)
+    {
+        abort_if(auth()->user()->level !== 'staff', 403);
+
+        $request->validate([
+            'ic_pelajar' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        $pembayaran = Pembayaran::where('ic_pelajar', $request->ic_pelajar)->latest()->first();
+
+        if ($pembayaran) {
+            $pembayaran->update(['status' => $request->status]);
+        } else {
+            Pembayaran::create([
+                'ic_pelajar' => $request->ic_pelajar,
+                'username' => auth()->user()->name,
+                'kaedah_pembayaran' => 'Manual',
+                'jumlah_bayaran' => 0,
+                'bayaran_semasa' => 0,
+                'status' => $request->status,
+                'resit' => null,
+                'tarikh_pembayaran' => now()->toDateString(),
+                'masa_pembayaran' => now()->toTimeString(),
+            ]);
+        }
+
+        return redirect()->route('staff.main')->with('success', 'Status pembayaran telah dikemaskini.');
     }
 }
