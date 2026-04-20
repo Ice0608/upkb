@@ -220,6 +220,23 @@ class StaffEventController extends Controller
             ->with('success', 'Maklumat pelajar telah dikemaskini.');
     }
 
+    public function printBmd(Pelajar $pelajar, Request $request)
+    {
+        abort_if(auth()->user()->level !== 'staff', 403);
+
+        $html = view('staff.bmd-print', compact('pelajar'))->render();
+        
+        // If modal parameter is set, return just the content without auto-print
+        if ($request->has('modal')) {
+            return $html;
+        }
+        
+        // Send as HTML for browser printing instead of PDF
+        return response($html)
+            ->header('Content-Type', 'text/html; charset=utf-8')
+            ->header('Content-Disposition', 'inline; filename="BMD_' . $pelajar->ic_pelajar . '.html"');
+    }
+
     // ========== PELAJAR ROUTES ==========
 
     public function pelajarSenaraiNama(Request $request)

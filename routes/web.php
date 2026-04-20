@@ -66,6 +66,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/staff/event', [StaffEventController::class, 'store'])->name('staff.event.store');
     Route::get('/staff/bmd/{pelajar}', [StaffEventController::class, 'editBmd'])->name('staff.bmd.edit');
     Route::put('/staff/bmd/{pelajar}', [StaffEventController::class, 'updatePelajar'])->name('staff.bmd.update');
+    Route::get('/staff/bmd/{pelajar}/print', [StaffEventController::class, 'printBmd'])->name('staff.bmd.print');
     Route::post('/staff/payment/update-status', [StaffEventController::class, 'updatePaymentStatus'])->name('staff.payment.update-status');
 
     // Interview routes
