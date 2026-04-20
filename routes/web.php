@@ -27,6 +27,37 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/bmd', [StaffEventController::class, 'guestBmd'])->name('bmd');
 Route::post('/bmd', [StaffEventController::class, 'storeGuestPelajar'])->name('bmd.store');
 
+// Pelajar routes (public - no auth required)
+Route::get('/pelajar/senarainama/{pelajar_id?}', [StaffEventController::class, 'pelajarSenaraiNama'])->name('pelajar.senarainama');
+Route::get('/pelajar/dashboard/{pelajar}', [StaffEventController::class, 'pelajarDashboard'])->name('pelajar.dashboard');
+Route::get('/pelajar/login/{pelajar_id}', [StaffEventController::class, 'pelajarLogin'])->name('pelajar.login');
+Route::post('/pelajar/verify-ic', [StaffEventController::class, 'pelajarVerifyIc'])->name('pelajar.verify-ic');
+Route::get('/pelajar/editbmd/{pelajar}', [StaffEventController::class, 'pelajarEditBmd'])->name('pelajar.editbmd');
+Route::put('/pelajar/editbmd/{pelajar}', [StaffEventController::class, 'pelajarUpdateBmd'])->name('pelajar.updatebmd');
+Route::get('/pelajar/welcome/{pelajar}', [StaffEventController::class, 'pelajarWelcome'])->name('pelajar.welcome');
+Route::get('/pelajar/dashboard/{pelajar}', [StaffEventController::class, 'pelajarDashboard'])->name('pelajar.dashboard');
+Route::get('/pelajar/program/{pelajar}', [StaffEventController::class, 'pelajarProgram'])->name('pelajar.program');
+Route::get('/pelajar/program-list/{pelajar}', [StaffEventController::class, 'pelajarProgramList'])->name('pelajar.program-list');
+Route::get('/pelajar/listkursus/{pelajar}/{nama}', [StaffEventController::class, 'pelajarListKursus'])->name('pelajar.listkursus');
+Route::get('/pelajar/pilihankursus/{pelajar}/{nama}', [StaffEventController::class, 'pelajarPilihanKursus'])->name('pelajar.pilihankursus');
+Route::get('/pelajar/filter/{pelajar}/{nama}', [StaffEventController::class, 'pelajarFilterByName'])->name('pelajar.filter');
+Route::get('/pelajar/infoinstitusi/{pelajar}/{kod_institusi}', [StaffEventController::class, 'pelajarInfoInstitusi'])->name('pelajar.infoinstitusi');
+Route::get('/pelajar/infokursus/{pelajar}/{kod_institusi}/{kod_kursus}', [StaffEventController::class, 'pelajarInfoKursus'])->name('pelajar.infokursus');
+Route::get('/pelajar/tab/maklumat/{pelajar}/{kod_kursus}', [StaffEventController::class, 'pelajarTabMaklumat'])->name('pelajar.tab.maklumat');
+Route::get('/pelajar/tab/syarat/{pelajar}/{kod_kursus}', [StaffEventController::class, 'pelajarTabSyarat'])->name('pelajar.tab.syarat');
+Route::get('/pelajar/tab/silibus/{pelajar}/{kod_kursus}', [StaffEventController::class, 'pelajarTabSilibus'])->name('pelajar.tab.silibus');
+Route::get('/pelajar/tab/kerjaya/{pelajar}/{kod_kursus}', [StaffEventController::class, 'pelajarTabKerjaya'])->name('pelajar.tab.kerjaya');
+Route::get('/pelajar/tab/yuran/{pelajar}/{kod_kursus}', [StaffEventController::class, 'pelajarTabYuran'])->name('pelajar.tab.yuran');
+Route::get('/pelajar/tab/galeri/{pelajar}/{kod_institusi}', [StaffEventController::class, 'pelajarTabGaleri'])->name('pelajar.tab.galeri');
+Route::post('/pelajar/apply-now/{pelajar}', [StaffEventController::class, 'pelajarApplyNow'])->name('pelajar.apply-now');
+Route::get('/pelajar/pembayaran/{pelajar}', [StaffEventController::class, 'pelajarPembayaran'])->name('pelajar.pembayaran');
+Route::post('/pelajar/store-pembayaran/{pelajar}', [StaffEventController::class, 'pelajarStorePembayaran'])->name('pelajar.store-pembayaran');
+Route::get('/pelajar/resit/{pelajar}', [StaffEventController::class, 'pelajarResit'])->name('pelajar.resit');
+Route::get('/pelajar/surat-tawaran/{pelajar}', [StaffEventController::class, 'pelajarSuratTawaran'])->name('pelajar.surat-tawaran');
+Route::get('/pelajar/download-surat-tawaran/{pelajar}', [StaffEventController::class, 'pelajarDownloadSuratTawaran'])->name('pelajar.download-surat-tawaran');
+Route::post('/pelajar/send-email/{pelajar}', [StaffEventController::class, 'pelajarSendEmail'])->name('pelajar.send-email');
+Route::get('/pelajar/complete/{pelajar}', [StaffEventController::class, 'pelajarComplete'])->name('pelajar.complete');
+
 // Staff only routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/staff/main', [StaffEventController::class, 'index'])->name('staff.main');
@@ -34,6 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/staff/event', [StaffEventController::class, 'store'])->name('staff.event.store');
     Route::get('/staff/bmd/{pelajar}', [StaffEventController::class, 'editBmd'])->name('staff.bmd.edit');
     Route::put('/staff/bmd/{pelajar}', [StaffEventController::class, 'updatePelajar'])->name('staff.bmd.update');
+    Route::post('/staff/payment/update-status', [StaffEventController::class, 'updatePaymentStatus'])->name('staff.payment.update-status');
 
     // Interview routes
     Route::prefix('/staff/temuduga/{pelajar}')->name('staff.temuduga.')->group(function () {

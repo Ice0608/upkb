@@ -168,19 +168,6 @@
                 </label>
             </div>
 
-            <div class="grid gap-6 sm:grid-cols-2">
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Institusi</span>
-                    <input type="text" name="kod_institusi" value="{{ old('kod_institusi', $pelajar?->kod_institusi) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_institusi') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kod Kursus</span>
-                    <input type="text" name="kod_kursus" value="{{ old('kod_kursus', $pelajar?->kod_kursus) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                    @error('kod_kursus') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-            </div>
-
                 <div class="border-t border-slate-200 pt-6">
                     <p class="text-xs uppercase tracking-[0.3em] text-slate-600">3. Maklumat Bapa & Ibu</p>
                     <h3 class="mt-2 text-lg font-semibold text-slate-900">Parents' Information</h3>
@@ -253,46 +240,6 @@
                 <input type="number" name="jumlah_tanggungan" min="0" value="{{ old('jumlah_tanggungan', $pelajar?->jumlah_tanggungan ?? 0) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                 @error('jumlah_tanggungan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
             </label>
-
-            <div class="border-t border-slate-200 pt-6">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">4. Minat Program</p>
-                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Programme Interest</h3>
-            </div>
-
-            <div class="grid gap-6 sm:grid-cols-3">
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Pertama (Nama Kursus)</span>
-                    <select name="pilihan_pertama" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                        <option value="">Pilih Kursus</option>
-                        @foreach($namaKursusOptions as $kursus)
-                            <option value="{{ $kursus }}" {{ old('pilihan_pertama', $pelajar?->pilihan_pertama) == $kursus ? 'selected' : '' }}>{{ $kursus }}</option>
-                        @endforeach
-                    </select>
-                    @error('pilihan_pertama') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Kedua (Nama Kursus)</span>
-                    <select name="pilihan_kedua" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                        <option value="">Pilih Kursus</option>
-                        @foreach($namaKursusOptions as $kursus)
-                            <option value="{{ $kursus }}" {{ old('pilihan_kedua', $pelajar?->pilihan_kedua) == $kursus ? 'selected' : '' }}>{{ $kursus }}</option>
-                        @endforeach
-                    </select>
-                    @error('pilihan_kedua') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Pilihan Ketiga (Nama Kursus)</span>
-                    <select name="pilihan_ketiga" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
-                        <option value="">Pilih Kursus</option>
-                        @foreach($namaKursusOptions as $kursus)
-                            <option value="{{ $kursus }}" {{ old('pilihan_ketiga', $pelajar?->pilihan_ketiga) == $kursus ? 'selected' : '' }}>{{ $kursus }}</option>
-                        @endforeach
-                    </select>
-                    @error('pilihan_ketiga') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-            </div>
-
-            @error('pilihan') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
 
             <div class="flex flex-col gap-3 sm:flex-row sm:justify-between">
                 <div class="space-x-3">

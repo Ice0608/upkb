@@ -43,6 +43,7 @@ return new class extends Migration
             $table->string('pilihan_pertama')->nullable(); // nama kursus
             $table->string('pilihan_kedua')->nullable(); // nama kursus
             $table->string('pilihan_ketiga')->nullable(); // nama kursus
+            $table->foreignId('event_id')->nullable()->constrained('event')->onDelete('set null');
             $table->timestamps();
         });
     }
