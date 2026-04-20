@@ -64,13 +64,13 @@
 
         <!-- LOGO -->
         <div class="text-center mb-6">
-            <img src="{{ asset('images/icon/noBgLogo.jpeg') }}"
+            <img src="{{ asset('images/icon/SES LOGO RENEW.png') }}"
                  class="w-28 md:w-32 mx-auto mb-4 
                         drop-shadow-[0_0_35px_rgba(255,165,0,0.9)]
                         animate-pulse">
 
             <h2 class="text-2xl font-bold text-orange-400">
-                UNIT PEMBANGUNAN KEMAHIRAN BELIA
+                SMART EDUCATION SOCIETY
             </h2>
 
             <p class="text-gray-300 text-sm">

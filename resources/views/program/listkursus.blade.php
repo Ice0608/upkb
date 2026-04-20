@@ -778,7 +778,7 @@
 
                     <div class="mt-6 flex flex-wrap gap-3 text-sm">
                         <span class="inline-flex items-center rounded-full bg-white/16 px-4 py-2 font-semibold text-white/90 backdrop-blur">
-                            <i class="fas fa-layer-group mr-2 text-xs"></i>{{ $kursusList->unique('nama_kursus')->count() }} kursus unik
+                            <i class="fas fa-layer-group mr-2 text-xs"></i>{{ $kursusList->unique('nama_kursus')->count() }} kursus 
                         </span>
                     </div>
 
@@ -826,14 +826,6 @@
             </aside>
 
             <main class="kursus-results-panel min-w-0">
-                <div class="kursus-results-summary rounded-3xl px-5 py-4 sm:px-6 sm:py-5">
-                    <div>
-                        <div>
-                            <p class="kursus-section-accent text-xs font-semibold uppercase tracking-[0.28em]">Paparan Kursus</p>
-                            <p class="mt-2 text-sm text-slate-500">{{ $kursusList->unique('nama_kursus')->count() }} kursus unik dipaparkan berdasarkan carian dan filter semasa.</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div id="courses-container" class="kursus-results-grid">
                     @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
