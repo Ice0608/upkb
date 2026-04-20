@@ -57,6 +57,7 @@ Route::get('/pelajar/surat-tawaran/{pelajar}', [StaffEventController::class, 'pe
 Route::get('/pelajar/download-surat-tawaran/{pelajar}', [StaffEventController::class, 'pelajarDownloadSuratTawaran'])->name('pelajar.download-surat-tawaran');
 Route::post('/pelajar/send-email/{pelajar}', [StaffEventController::class, 'pelajarSendEmail'])->name('pelajar.send-email');
 Route::get('/pelajar/complete/{pelajar}', [StaffEventController::class, 'pelajarComplete'])->name('pelajar.complete');
+Route::post('/pelajar/logout', [StaffEventController::class, 'pelajarLogout'])->name('pelajar.logout');
 
 // Staff only routes
 Route::middleware(['auth', 'verified'])->group(function () {

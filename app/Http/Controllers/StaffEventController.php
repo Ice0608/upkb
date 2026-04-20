@@ -43,6 +43,7 @@ class StaffEventController extends Controller
             'pelajarDownloadSuratTawaran',
             'pelajarSendEmail',
             'pelajarComplete',
+            'pelajarLogout',
         ]);
     }
 
@@ -282,8 +283,8 @@ class StaffEventController extends Controller
         $pelajar = Pelajar::find($request->pelajar_id);
 
         if ($pelajar->ic_pelajar === $request->ic_pelajar) {
-            return redirect()->route('pelajar.editbmd', $pelajar->id)
-                ->with('success', 'IC disahkan. Anda boleh mengemaskini maklumat.');
+            return redirect()->route('pelajar.welcome', $pelajar->id)
+                ->with('success', 'IC disahkan. Selamat datang!');
         }
 
         return back()->withErrors(['ic_pelajar' => 'No. IC tidak sepadan.'])->withInput();
@@ -359,19 +360,31 @@ class StaffEventController extends Controller
 
     public function pelajarListKursus(Pelajar $pelajar, $nama)
     {
-        $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $nama);
+        $jenis = $nama; // Untuk kompatibilitas route lama
+        if (request()->has('jenis')) {
+            $jenis = request('jenis');
+        }
 
-        $semuaKursus = $query->get();
-        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+        $query = \App\Models\Kursus::with(['institusi', 'galeris']);
+        if ($jenis) {
+            $query->whereHas('institusi', function ($q) use ($jenis) {
+                $q->where('jenis_institusi', $jenis);
+            });
+        }
+        $kursusList = $query->get();
+        $selectedProgram = \App\Models\Program::where('jenis_program', $jenis)->first();
 
-        return response()->json(['html' => $html]);
+        // Gunakan view yang mirip guest, bisa custom jika ingin
+        return view('program.listkursus', compact('kursusList', 'jenis', 'selectedProgram'));
     }
 
     public function pelajarPilihanKursus(Pelajar $pelajar, $nama)
     {
+        // Filter courses based on the institution's jenis_institusi
         $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $nama);
+            ->whereHas('institusi', function ($q) use ($nama) {
+                $q->where('jenis_institusi', $nama);
+            });
 
         $semuaKursus = $query->get();
         $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
@@ -584,6 +597,12 @@ class StaffEventController extends Controller
         \App\Models\Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->update(['status' => 'pending']);
 
         return view('pelajar.complete', compact('pelajar'));
+    }
+
+    public function pelajarLogout()
+    {
+        return redirect()->route('pelajar.senarainama')
+            ->with('success', 'Anda telah logout.');
     }
 
     // Staff: Update payment status

@@ -72,5 +72,7 @@
     @endif
 </main>
 
+@include('layouts.navpelajar')
+
 </body>
 </html>

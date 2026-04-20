@@ -360,7 +360,7 @@
 <body class="pilihan-page text-slate-900 min-h-screen flex flex-col">
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
 
     <main class="flex-grow">
         <section class="pilihan-shell max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12" id="pilihan-kursus-page" data-filter-url="{{ route('kursus.filterByName', ['nama' => $namaKursus]) }}">

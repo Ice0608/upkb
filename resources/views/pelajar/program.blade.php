@@ -337,7 +337,7 @@
 </head>
 <body class="program-page text-gray-800">
 
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
     
     <section class="program-shell max-w-7xl mx-auto px-4 py-8 sm:px-6">
         <div class="program-wheel-wrap flex justify-center items-center py-4">
@@ -382,7 +382,7 @@
                         $ui = $configs[$index] ?? $configs[0];
                     @endphp
 
-                    <a href="{{ route('kursus.index', ['jenis' => $program->jenis_program]) }}" 
+                    <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar->id, 'jenis' => $program->jenis_program]) }}" 
                         class="segment-wrapper group 
                         {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
                         <!-- Segment background with image overlay -->

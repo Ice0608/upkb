@@ -295,7 +295,7 @@
 </head>
 <body class="contact-page text-gray-800 bg-blocks">
 
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
     
     <main class="contact-shell max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
         <div class="contact-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 mb-10">

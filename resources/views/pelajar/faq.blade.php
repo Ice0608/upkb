@@ -677,7 +677,7 @@
 </head>
 <body class="faq-page text-neutral-900">
     
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
 
     <div class="faq-wave-layer"></div>
     <div class="faq-wave-layer faq-wave-layer-secondary"></div>

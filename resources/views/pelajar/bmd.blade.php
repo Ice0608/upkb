@@ -9,7 +9,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100 text-slate-900">
-@include('layouts.navigation')
 
 <main class="max-w-6xl mx-auto px-4 py-8">
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200">
@@ -21,7 +20,7 @@
                     <p class="mt-2 text-sm text-slate-600">Event: {{ $event->nama_event }} pada {{ $event->tarikh_event?->format('d/m/Y') }}</p>
                 @endif
             </div>
-            <a href="{{ route('staff.main') }}" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali ke Main</a>
+            <a href="{{ route('pelajar.senarainama') }}" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali ke Senarai Nama</a>
         </div>
 
         @if(session('success'))

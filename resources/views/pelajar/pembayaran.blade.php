@@ -601,7 +601,7 @@
 <body class="pembayaran-page text-gray-800">
 
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
 
     <section class="pembayaran-shell max-w-7xl mx-auto px-6 py-10">
         <div class="pembayaran-hero rounded-3xl p-8 text-white mb-8">

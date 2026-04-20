@@ -462,79 +462,18 @@
 
 <nav class="site-nav">
     <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <a href="{{ url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
-            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-orange-100/90 bg-[linear-gradient(145deg,#fff7ed,#ffffff)] sm:h-14 sm:w-14">
-                <img src="{{ asset('images/icon/noBgLogo.jpeg') }}" alt="logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
-            </span>
-            <div class="site-nav-brand-copy min-w-0 leading-tight">
-                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">UPKB</p>
-                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]" style="font-family: 'Roboto Condensed', sans-serif;">Unit Pembangunan</h1>
-                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]" style="font-family: 'Roboto Condensed', sans-serif;">Kemahiran Belia</h1>
-            </div>
+        <a href="{{ $pelajar ? route('pelajar.welcome', $pelajar) : url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
+            <span class="site-nav-brand-title">Welcome</span>
         </a>
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
-            <a href="{{ route('program') }}" class="site-nav-link {{ request()->routeIs('program') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
-                Program
-            </a>
-
-            <div class="site-nav-program relative">
-                <a href="{{ route('institusi') }}" class="site-nav-link {{ request()->routeIs('institusi') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
-                    Institusi
-                </a>
-
-                <div class="site-nav-program-panel absolute left-1/2 top-full z-20 w-[min(92vw,32rem)] pt-4">
-                    <div class="site-nav-program-shell rounded-[2rem] p-3 sm:p-4">
-                        <div class="mb-4 px-2 sm:mb-5">
-                            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Cari Institusi Mengikut Program</p>
-                        </div>
-                        <div class="grid gap-3 md:grid-cols-3">
-                            <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-tvet site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0s]">
-                                <span class="site-nav-program-card-glow"></span>
-                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
-                                <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
-                                    <div>
-                                        <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">TVET</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi TVET dengan kuota tersedia.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-diploma site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.4s]">
-                                <span class="site-nav-program-card-glow"></span>
-                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
-                                <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
-                                    <div>
-                                        <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Diploma</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi diploma yang sesuai untuk anda.</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-health site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.8s]">
-                                <span class="site-nav-program-card-glow"></span>
-                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
-                                <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
-                                    <div>
-                                        <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Sains Kesihatan</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi kesihatan dan latihan klinikal.</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <a href="{{ route('faq') }}" class="site-nav-link {{ request()->routeIs('faq') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
-                FAQ
-            </a>
-            <a href="{{ route('hubungi') }}" class="site-nav-link {{ request()->routeIs('hubungi') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
-                Hubungi
-            </a>
+            <a href="{{ route('pelajar.program', $pelajar) }}" class="site-nav-link">Program</a>
+            <a href="{{ route('pelajar.dashboard', $pelajar) }}" class="site-nav-link">Dashboard</a>
+            <form method="POST" action="{{ route('pelajar.logout') }}">
+                @csrf
+                <button type="submit" class="site-nav-link">Logout</button>
+            </form>
         </div>
-
-        <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
-            <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-6 w-6 object-contain">
-        </a>
 
         <details class="site-nav-mobile ml-auto lg:hidden">
             <summary class="cursor-pointer">
@@ -549,39 +488,38 @@
 
             <div class="site-nav-mobile-panel absolute inset-x-4 top-full mt-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:inset-x-6">
                 <div class="space-y-2">
-                    <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <a href="{{ route('pelajar.program', $pelajar) }}" class="{{ request()->routeIs('pelajar.program*') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Program
                     </a>
-                    <a href="{{ route('institusi') }}" class="{{ request()->routeIs('institusi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        Institusi
-                    </a>
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
-                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'TVET']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">TVET</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi TVET.</p>
                         </a>
-                        <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'Diploma']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Diploma</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi diploma.</p>
                         </a>
-                        <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'Sains Kesihatan']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Sains Kesihatan</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi kesihatan.</p>
                         </a>
                     </div>
-                    <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        FAQ
+                    @if($pelajar)
+                    <a href="{{ route('pelajar.welcome', $pelajar) }}" class="{{ request()->routeIs('pelajar.welcome') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                        Dashboard
                     </a>
-                    <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        Hubungi
-                    </a>
-                    <a href="/login" class="mt-3 flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
-                        <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-5 w-5 object-contain">
-                        Log Masuk
-                    </a>
+                    <form method="POST" action="{{ route('pelajar.logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left {{ request()->routeIs('pelajar.logout') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} rounded-2xl px-4 py-3 text-sm font-semibold">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                        </button>
+                    </form>
+                    @endif
+                    {{-- Login button removed for student flow --}}
                 </div>
             </div>
         </details>

@@ -255,7 +255,7 @@
 <body class="institusi-page bg-gray-100 text-gray-800">
     
     {{-- 🔹 NAVIGATION --}}
-    @include('layouts.navigation')
+    @include('layouts.navpelajar')
 
     <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div class="institusi-hero rounded-3xl p-8 text-white mb-8">
