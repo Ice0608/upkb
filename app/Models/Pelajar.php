@@ -13,6 +13,7 @@ class Pelajar extends Model
 
     protected $fillable = [
         'tarikh_pendaftaran',
+        'event_id',
         'noreff',
         'program',
         'status_perkahwinan',
@@ -47,4 +48,9 @@ class Pelajar extends Model
     protected $casts = [
         'tarikh_pendaftaran' => 'date',
     ];
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
 }

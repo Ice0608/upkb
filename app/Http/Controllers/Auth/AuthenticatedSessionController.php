@@ -28,13 +28,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // Redirect based on user level
         $user = Auth::user();
-        if ($user->level === 'admin') {
-            return redirect()->intended(route('dashboard', absolute: false));
+        $level = strtolower(trim((string) $user->level));
+
+        if ($level === 'admin') {
+            return redirect()->route('dashboard');
         }
 
-        return redirect()->intended(route('staff.main', absolute: false));
+        if ($level === 'staff') {
+            return redirect()->route('staff.main');
+        }
+
+        return redirect('/');
     }
 
     /**
