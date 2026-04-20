@@ -39,6 +39,7 @@ class Pelajar extends Model
         'pekerjaan_ibu',
         'pendapatan_ibu',
         'jumlah_tanggungan',
+        'event_id',
         'pilihan_pertama',
         'pilihan_kedua',
         'pilihan_ketiga',

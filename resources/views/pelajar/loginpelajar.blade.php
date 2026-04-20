@@ -34,34 +34,42 @@
         </div>
     </div>
 
-    <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200 max-w-xl">
-        <form action="{{ route('pelajar.verify-ic') }}" method="POST" class="space-y-6">
-            @csrf
-            <input type="hidden" name="pelajar_id" value="{{ $pelajar->id }}">
+    @if($pelajar)
+        <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200 max-w-xl">
+            <form action="{{ route('pelajar.verify-ic') }}" method="POST" class="space-y-6">
+                @csrf
+                <input type="hidden" name="pelajar_id" value="{{ $pelajar->id }}">
 
-            <div>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Pelajar</span>
-                    <div class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900">
-                        {{ $pelajar->nama_pelajar }}
-                    </div>
-                </label>
-            </div>
+                <div>
+                    <label class="block">
+                        <span class="mb-2 block text-sm font-semibold text-slate-700">Nama Pelajar</span>
+                        <div class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900">
+                            {{ $pelajar->nama_pelajar }}
+                        </div>
+                    </label>
+                </div>
 
-            <div>
-                <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">No. IC</span>
-                    <input type="text" name="ic_pelajar" value="{{ old('ic_pelajar') }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
-                    @error('ic_pelajar') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
-                </label>
-            </div>
+                <div>
+                    <label class="block">
+                        <span class="mb-2 block text-sm font-semibold text-slate-700">No. IC</span>
+                        <input type="text" name="ic_pelajar" value="{{ old('ic_pelajar') }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
+                        @error('ic_pelajar') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
+                    </label>
+                </div>
 
-            <div class="flex flex-col gap-3 sm:flex-row sm:justify-between">
-                <a href="{{ route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]) }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali</a>
-                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Sahkan</button>
-            </div>
-        </form>
-    </div>
+                <div class="flex flex-col gap-3 sm:flex-row sm:justify-between">
+                    <a href="{{ route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]) }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali</a>
+                    <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Sahkan</button>
+                </div>
+            </form>
+        </div>
+    @else
+        <div class="rounded-[32px] bg-white p-8 shadow-sm border border-rose-200 text-rose-700 max-w-xl">
+            <h2 class="text-xl font-semibold mb-2">Pelajar tidak dijumpai</h2>
+            <p>Sila kembali ke senarai nama dan pilih pelajar yang sah.</p>
+            <a href="{{ route('pelajar.senarainama') }}" class="mt-4 inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali ke Senarai Nama</a>
+        </div>
+    @endif
 </main>
 
 </body>

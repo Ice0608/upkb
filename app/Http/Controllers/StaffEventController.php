@@ -12,7 +12,38 @@ class StaffEventController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'verified'])->except([
+            'guestBmd',
+            'storeGuestPelajar',
+            'pelajarSenaraiNama',
+            'pelajarLogin',
+            'pelajarVerifyIc',
+            'pelajarEditBmd',
+            'pelajarUpdateBmd',
+            'pelajarWelcome',
+            'pelajarDashboard',
+            'pelajarProgram',
+            'pelajarProgramList',
+            'pelajarListKursus',
+            'pelajarPilihanKursus',
+            'pelajarFilterByName',
+            'pelajarInfoInstitusi',
+            'pelajarInfoKursus',
+            'pelajarTabMaklumat',
+            'pelajarTabSyarat',
+            'pelajarTabSilibus',
+            'pelajarTabKerjaya',
+            'pelajarTabYuran',
+            'pelajarTabGaleri',
+            'pelajarApplyNow',
+            'pelajarPembayaran',
+            'pelajarStorePembayaran',
+            'pelajarResit',
+            'pelajarSuratTawaran',
+            'pelajarDownloadSuratTawaran',
+            'pelajarSendEmail',
+            'pelajarComplete',
+        ]);
     }
 
     public function index(Request $request)
@@ -89,6 +120,7 @@ class StaffEventController extends Controller
             'tarikh_pendaftaran' => 'required|date',
             'noreff' => 'nullable|string|max:255',
             'program' => 'nullable|string|max:100',
+            'status_perkahwinan' => 'nullable|string|max:50',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
             'spm_credit' => 'nullable|numeric|min:0',
@@ -110,10 +142,13 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'event_id' => 'nullable|integer|exists:events,id',
         ]);
 
-        // Add event_id from QR code
-        $data['event_id'] = $request->input('event_id');
+        // Add event_id from QR code if not validated
+        if (!isset($data['event_id'])) {
+            $data['event_id'] = $request->input('event_id');
+        }
 
         $pelajar = Pelajar::create(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
@@ -140,6 +175,7 @@ class StaffEventController extends Controller
             'tarikh_pendaftaran' => 'required|date',
             'noreff' => 'nullable|string|max:255',
             'program' => 'nullable|string|max:100',
+            'status_perkahwinan' => 'nullable|string|max:50',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
             'spm_credit' => 'nullable|numeric|min:0',
@@ -163,6 +199,7 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'event_id' => 'nullable|integer|exists:events,id',
             'pilihan_pertama' => 'nullable|string|max:255',
             'pilihan_kedua' => 'nullable|string|max:255',
             'pilihan_ketiga' => 'nullable|string|max:255',
@@ -211,10 +248,13 @@ class StaffEventController extends Controller
         return view('pelajar.senarainama', compact('pelajar', 'events', 'selectedEvent', 'pelajars'));
     }
 
-    public function pelajarLogin(Request $request)
+    public function pelajarLogin(Request $request, $pelajar_id = null)
     {
         $pelajar = null;
-        if ($request->filled('pelajar_id')) {
+        // Cari pelajar ikut parameter route dahulu, fallback ke query string jika perlu
+        if ($pelajar_id) {
+            $pelajar = Pelajar::find($pelajar_id);
+        } elseif ($request->filled('pelajar_id')) {
             $pelajar = Pelajar::find($request->pelajar_id);
         }
 
@@ -261,6 +301,7 @@ class StaffEventController extends Controller
             'tarikh_pendaftaran' => 'required|date',
             'noreff' => 'nullable|string|max:255',
             'program' => 'nullable|string|max:100',
+            'status_perkahwinan' => 'nullable|string|max:50',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
             'spm_credit' => 'nullable|numeric|min:0',
@@ -282,6 +323,7 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'event_id' => 'nullable|integer|exists:events,id',
         ]);
 
         $pelajar->update(array_merge([

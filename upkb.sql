@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2026 at 03:55 AM
+-- Generation Time: Apr 20, 2026 at 05:21 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -232,6 +232,50 @@ CREATE TABLE `kerjayas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `kerjayas`
+--
+
+INSERT INTO `kerjayas` (`id`, `kod_institusi`, `kod_kursus`, `bidang_kerjaya`, `created_at`, `updated_at`) VALUES
+(11, '000', 'DSI', '- Melanjutkan pengajian Ijazah Sarjana Muda di mana-mana universiti atau kolej', '2026-04-07 19:59:52', '2026-04-07 19:59:52'),
+(12, '000', 'DSI', '- Pendakwah', '2026-04-07 19:59:57', '2026-04-07 19:59:57'),
+(13, '000', 'DSI', '- Pegawai Pentadbiran', '2026-04-07 20:00:01', '2026-04-07 20:00:01'),
+(14, '000', 'DSI', '- Pendidik', '2026-04-07 20:00:04', '2026-04-07 20:00:04'),
+(15, '000', 'DEC', '- Guru Pendidikan Awal Kanak-Kanak', '2026-04-07 21:09:21', '2026-04-07 21:09:21'),
+(16, '000', 'DEC', '- Pengurus Prasekolah atau Pusat Jagaan Kanak-Kanak', '2026-04-07 21:09:29', '2026-04-07 21:09:29'),
+(17, '000', 'BA111', '- Pegawai Akauntan', '2026-04-07 21:20:57', '2026-04-07 21:20:57'),
+(18, '000', 'AC110', '- Pegawai Akauntan', '2026-04-07 21:28:39', '2026-04-07 21:28:39'),
+(19, '000', 'MQA/FA15689', '- Eksekutif Halal', '2026-04-07 22:03:02', '2026-04-07 22:03:02'),
+(20, '000', 'MQA/FA15689', '- Pegawai QA/QC (Quality Control)', '2026-04-07 22:03:34', '2026-04-07 22:03:34'),
+(21, '000', 'MQA/FA15689', '- Pegawai logistik Halal', '2026-04-07 22:03:44', '2026-04-07 22:03:44'),
+(22, '000', 'MQA/FA15689', 'Usahawan produk halal', '2026-04-07 22:04:07', '2026-04-07 22:04:07'),
+(23, 'DKU045(N)', 'MQA/FA3436', '- Pembantu Pengurusan Hospital', '2026-04-07 22:28:07', '2026-04-07 22:28:07'),
+(24, 'DKU045(N)', 'MQA/FA3436', '- Admin Klinik / Hospital', '2026-04-07 22:28:19', '2026-04-07 22:28:19'),
+(25, 'DKU045(N)', 'MQA/FA3436', '- Customer Service Healthcare', '2026-04-07 22:28:39', '2026-04-07 22:28:39'),
+(26, 'DKU045(N)', 'MQA/FA3436', '- Medical Records Officer', '2026-04-07 22:28:53', '2026-04-07 22:28:53'),
+(27, 'DKU045(N)', 'MQA/FA3436', '- Healthcare Executive', '2026-04-07 22:29:06', '2026-04-07 22:29:06'),
+(28, 'DKU045(N)', 'MQA/FA15689', '- Halal Auditor', '2026-04-07 22:32:13', '2026-04-07 22:32:13'),
+(29, 'DKU045(N)', 'MQA/FA15689', '- Eksekutif Industri Makanan / Kilang', '2026-04-07 22:32:29', '2026-04-07 22:32:29'),
+(30, 'DKU045(N)', 'MQA/FA15689', '- Eksekutif Pematuhan (Compliance Officer)', '2026-04-07 22:32:38', '2026-04-07 22:32:38'),
+(31, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Pereka Grafik', '2026-04-07 22:56:29', '2026-04-07 22:56:29'),
+(32, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Pereka Multimedia', '2026-04-07 22:56:38', '2026-04-07 22:56:38'),
+(33, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Editor Video / Animasi', '2026-04-07 22:56:52', '2026-04-07 22:56:52'),
+(34, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Pembangun Laman Web', '2026-04-07 22:57:04', '2026-04-07 22:57:04'),
+(35, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Penyiar', '2026-04-07 23:00:23', '2026-04-07 23:00:23'),
+(36, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Wartawan', '2026-04-07 23:00:31', '2026-04-07 23:00:31'),
+(37, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Pegawai Perhubungan Awam (PR)', '2026-04-07 23:00:47', '2026-04-07 23:00:47'),
+(38, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Penerbit Media', '2026-04-07 23:01:07', '2026-04-07 23:01:07'),
+(39, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pegawai Keselamatan', '2026-04-07 23:05:05', '2026-04-07 23:05:05'),
+(40, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pegawai Penguatkuasa Undang-Undang', '2026-04-07 23:05:24', '2026-04-07 23:05:24'),
+(41, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pegawai Penjara/ Kastam/ Imigresen', '2026-04-07 23:05:47', '2026-04-07 23:05:47'),
+(42, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pekerja Sektor Keselamatan Awam', '2026-04-07 23:06:05', '2026-04-07 23:06:05'),
+(44, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', '- Pengurus Pusat Jagaan', '2026-04-07 23:42:00', '2026-04-07 23:42:00'),
+(45, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', '- Guru Prasekolah / Pendidikan Awal Kanak-Kanak', '2026-04-07 23:42:43', '2026-04-07 23:42:43'),
+(46, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', '- Pembantu Pendidik atau Tutor Kanak-kanak', '2026-04-07 23:43:09', '2026-04-07 23:43:09'),
+(47, 'L02890', 'K12001/G452-002-4:2017-ST-A', '- Mekanik', '2026-04-07 23:51:55', '2026-04-07 23:51:55'),
+(48, 'L02890', 'K12001/G452-002-4:2017-ST-A', '- Pegawai Penyelenggaraan Kenderaan', '2026-04-07 23:52:22', '2026-04-07 23:52:22'),
+(49, 'L02890', 'K12001/G452-002-4:2017-ST-A', '- Penyelia Bengkel atau Pengurus Opersi Automotif', '2026-04-07 23:53:00', '2026-04-07 23:53:00');
+
 -- --------------------------------------------------------
 
 --
@@ -260,9 +304,9 @@ CREATE TABLE `kursuses` (
 INSERT INTO `kursuses` (`id`, `kod_kursus`, `kod_institusi`, `nama_kursus`, `jenis_kursus`, `mod_pengajian`, `tempoh`, `kuota`, `tarikh_pendaftaran`, `penerangan`, `created_at`, `updated_at`) VALUES
 (3, 'P854-009-4:2020S', 'C-21-G', 'PENDIDIKAN AWAL KANAK-KANAK (SINGLE TIER)', 'TAHAP 4 (SINGLE TIER)', 'SEPENUH MASA', '27 BULAN', NULL, NULL, 'Latihan profesional dalam pengurusan tadika/prasekolah dan pengajaran pendidikan awal kanak-kanak.', '2026-04-07 19:13:45', '2026-04-07 19:13:45'),
 (4, 'F432-005-2:2019 / F432-005-3:2019', '78000', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2/TAHAP 3', 'SEPENUH MASA', '12 BULAN / 12 BULAN', NULL, NULL, 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-07 19:49:11', '2026-04-07 19:49:11'),
-(5, 'HT-012-2:2012 / HT-012-3:2012', '71700 ', 'KULINARI', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 21:51:34', '2026-04-07 21:51:34'),
-(6, 'IT-020-3:2013 / IT-020-4:2013', '71700 ', 'OPERASI SISTEM KOMPUTER', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '12 BULAN / 15 BULAN', NULL, NULL, 'Program Sistem Komputer memberi fokus kepada kemahiran asas komputer dan teknologi maklumat, termasuk pemasangan, penyelenggaraan, pengendalian perkakasan, perisian dan rangkaian. Pelajar belajar troubleshoot masalah komputer, pengurusan data, serta memastikan sistem beroperasi dengan cekap dan selamat. Program ini melahirkan tenaga mahir dalam pengurusan dan sokongan sistem komputer.', '2026-04-07 21:53:36', '2026-04-07 21:53:36'),
-(7, 'N821-001-3:2020', '71700 ', 'PENGURUSAN & PENTADBIRAN PEJABAT', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Pengurusan Pejabat memberi fokus kepada kemahiran pentadbiran pejabat termasuk pengurusan dokumen, komunikasi, penggunaan perisian pejabat, pengurusan mesyuarat dan penyelenggaraan rekod. Pelajar belajar mengurus operasi pejabat dengan cekap dan profesional. Program ini melahirkan tenaga mahir yang mampu menyokong operasi organisasi dengan teratur dan berkesan.', '2026-04-07 21:54:49', '2026-04-07 21:54:49'),
+(5, 'HT-012-2:2012 / HT-012-3:2012', '71700', 'KULINARI', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 21:51:34', '2026-04-07 21:51:34'),
+(6, 'IT-020-3:2013 / IT-020-4:2013', '71700', 'OPERASI SISTEM KOMPUTER', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '12 BULAN / 15 BULAN', NULL, NULL, 'Program Sistem Komputer memberi fokus kepada kemahiran asas komputer dan teknologi maklumat, termasuk pemasangan, penyelenggaraan, pengendalian perkakasan, perisian dan rangkaian. Pelajar belajar troubleshoot masalah komputer, pengurusan data, serta memastikan sistem beroperasi dengan cekap dan selamat. Program ini melahirkan tenaga mahir dalam pengurusan dan sokongan sistem komputer.', '2026-04-07 21:53:36', '2026-04-07 21:53:36'),
+(7, 'N821-001-3:2020', '71700', 'PENGURUSAN & PENTADBIRAN PEJABAT', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Pengurusan Pejabat memberi fokus kepada kemahiran pentadbiran pejabat termasuk pengurusan dokumen, komunikasi, penggunaan perisian pejabat, pengurusan mesyuarat dan penyelenggaraan rekod. Pelajar belajar mengurus operasi pejabat dengan cekap dan profesional. Program ini melahirkan tenaga mahir yang mampu menyokong operasi organisasi dengan teratur dan berkesan.', '2026-04-07 21:54:49', '2026-04-07 21:54:49'),
 (8, 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'C-21-G', 'PERKHIDMATAN KEJURUTERAAN AUTOMASI INDUSTRI', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '2 TAHUN 9 BULAN', NULL, NULL, 'Pelajar akan mempelajari pemasangan, pengujian, pengendalian dan penyelenggaraan sistem automasi seperti PLC, sensor, panel kawalan, motor, pneumatik dan hidraulik. Latihan menekankan gabungan teori dan amali, selaras keperluan industri sebenar bagi melahirkan tenaga kerja mahir yang kompeten, berdisiplin dan berdaya saing. Graduan berpeluang bekerja sebagai Juruteknik Automasi, Juruteknik Penyelenggaraan, Automation Engineer Support atau melanjutkan kerjaya ke tahap lebih tinggi dalam bidang automasi industri.', '2026-04-07 22:29:49', '2026-04-07 22:29:49'),
 (9, '1561-005-2:2022 / 1561-005-3:2022', '47160', 'KULINARI', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '1 TAHUN 9 BULAN', NULL, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 22:36:14', '2026-04-07 22:36:14'),
 (10, 'HT-014-2:2011 / HT-014-3:2011', '47160', 'PEMBUATAN PASTRI', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '1 TAHUN 6 BULAN', 6, NULL, 'Program Pembuatan Pastri memberi fokus kepada kemahiran menyediakan pelbagai pastri, kek dan manisan. Pelajar belajar teknik asas pastri seperti menguli, membakar, menghias, kawalan suhu, penyediaan krim dan doh, serta kebersihan dapur. Program ini melahirkan pembuat pastri yang mahir, kreatif dan mampu menghasilkan produk berkualiti mengikut standard industri.', '2026-04-07 22:38:57', '2026-04-07 22:38:57'),
@@ -399,7 +443,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2026_04_09_000002_create_pembayaran_table', 17),
 (41, '2026_04_09_000001_create_pelajar_table', 18),
 (42, '2026_04_13_000002_add_kod_kursus_to_galeris_table', 19),
-(44, '2026_04_13_070352_add_new_fields_to_pelajar_table', 20);
+(44, '2026_04_13_070352_add_new_fields_to_pelajar_table', 20),
+(45, '2026_04_17_000001_trim_course_relation_codes', 21),
+(46, '2026_04_20_000000_add_event_id_to_pelajar_table', 21);
 
 -- --------------------------------------------------------
 
@@ -452,15 +498,17 @@ CREATE TABLE `pelajar` (
   `pilihan_kedua` varchar(255) DEFAULT NULL,
   `pilihan_ketiga` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `event_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pelajar`
 --
 
-INSERT INTO `pelajar` (`id`, `noreff`, `program`, `status_perkahwinan`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`) VALUES
-(1, NULL, NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-04-13 16:14:26');
+INSERT INTO `pelajar` (`id`, `noreff`, `program`, `status_perkahwinan`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`, `event_id`) VALUES
+(1, NULL, NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-04-13 16:14:26', NULL),
+(2, 'Mirul', 'TVET', NULL, '2026-04-20', 'SHAHRUL IRFAN BIN SAFARIN', '060803140221', 4, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15 BLOK D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'PUCHONG', 'Selangor', '47180', NULL, NULL, 'SAFARIN BIN RAMLI', '123456789001', '0122106612', 'SECURITY GUARD', '1500', 'SITI JULIEANA BINTI ADAN', '09876543221', '0132106613', 'GURU KAFA', '1500', 3, NULL, NULL, NULL, '2026-04-19 18:33:51', '2026-04-19 18:33:51', 4);
 
 -- --------------------------------------------------------
 
@@ -530,7 +578,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('rTRQ1W1R3DaNWUqiSmjsprGOxFdnRPvhbNzqHSZC', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiY3I5UXlBVFR1ZUlYUnA5ZjE4QXBtd21VY0t2NlhPZW9tRnlaUzdmdiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9ibWQvMSI7czo1OiJyb3V0ZSI7czoxNDoic3RhZmYuYm1kLmVkaXQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1776304468);
+('U7L6qRBMCMSwb90uuOqyuxDz779NbnQHbOT1iXCY', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoielg4dWllbkpXWURWQUVDTjRQTEt0Q3RwMHV0WjFBWUdDbnRzWFhQNCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2JtZD9ldmVudF9pZD00Ijt9czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1776654515),
+('M7XR7VtNgDgqGe0hZVV0N9cmJzctX5iplxbz87MR', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicDlmVlRVaHhSbTZsSXRVYVVkQWdCc0ZVczhLdExrWHVsVmdQbzUxOSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluP2V2ZW50X2lkPTQiO3M6NToicm91dGUiO3M6MTA6InN0YWZmLm1haW4iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1776655045);
 
 -- --------------------------------------------------------
 
@@ -624,9 +673,9 @@ INSERT INTO `yuran_asramas` (`id`, `kod_institusi`, `kod_kursus`, `item`, `amoun
 (4, 'C-21-G', 'P854-009-4:2020S', 'ASRAMA BULANAN', 200.00, '2026-04-08 17:56:10', '2026-04-08 17:56:10'),
 (6, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'ASRAMA BULANAN', 200.00, '2026-04-08 17:57:03', '2026-04-08 17:57:03'),
 (7, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:00:01', '2026-04-08 18:00:01'),
-(8, '71700 ', 'HT-012-2:2012 / HT-012-3:2012', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:01:32', '2026-04-08 18:01:32'),
-(9, '71700 ', 'IT-020-3:2013 / IT-020-4:2013', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:03:32', '2026-04-08 18:03:32'),
-(10, '71700 ', 'N821-001-3:2020', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:04:48', '2026-04-08 18:04:48'),
+(8, '71700', 'HT-012-2:2012 / HT-012-3:2012', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:01:32', '2026-04-08 18:01:32'),
+(9, '71700', 'IT-020-3:2013 / IT-020-4:2013', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:03:32', '2026-04-08 18:03:32'),
+(10, '71700', 'N821-001-3:2020', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:04:48', '2026-04-08 18:04:48'),
 (11, '47160', '1561-005-2:2022 / 1561-005-3:2022', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:08:56', '2026-04-08 18:08:56'),
 (12, '47160', 'HT-014-2:2011 / HT-014-3:2011', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:10:24', '2026-04-08 18:10:24'),
 (13, 'L01143', 'G452-002-2:2018 / G452-002-3:2018', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:13:22', '2026-04-08 18:13:22'),
@@ -704,8 +753,8 @@ INSERT INTO `yuran_pendaftarans` (`id`, `kod_institusi`, `kod_kursus`, `item`, `
 (3, 'L02054', 'T982-001-3:2017', 'PENDAFTARAN', 1900.00, '2026-04-08 04:59:31', '2026-04-08 04:59:31'),
 (5, 'C-21-G', 'P854-009-4:2020S', 'PENDAFTARAN', 1900.00, '2026-04-08 17:54:44', '2026-04-08 17:54:44'),
 (6, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 17:57:12', '2026-04-08 17:57:12'),
-(7, '71700 ', 'IT-020-3:2013 / IT-020-4:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 18:03:25', '2026-04-08 18:03:25'),
-(8, '71700 ', 'N821-001-3:2020', 'PENDAFTARAN', 1900.00, '2026-04-08 18:04:42', '2026-04-08 18:04:42'),
+(7, '71700', 'IT-020-3:2013 / IT-020-4:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 18:03:25', '2026-04-08 18:03:25'),
+(8, '71700', 'N821-001-3:2020', 'PENDAFTARAN', 1900.00, '2026-04-08 18:04:42', '2026-04-08 18:04:42'),
 (9, '47160', '1561-005-2:2022 / 1561-005-3:2022', 'PENDAFTARAN', 1900.00, '2026-04-08 18:08:00', '2026-04-08 18:08:00'),
 (10, '47160', 'HT-014-2:2011 / HT-014-3:2011', 'PENDAFTARAN', 1900.00, '2026-04-08 18:09:59', '2026-04-08 18:09:59'),
 (11, 'L01143', 'G452-002-2:2018 / G452-002-3:2018', 'PENDAFTARAN', 1900.00, '2026-04-08 18:12:11', '2026-04-08 18:12:11'),
@@ -765,6 +814,25 @@ CREATE TABLE `yuran_pengajians` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `yuran_pengajians`
+--
+
+INSERT INTO `yuran_pengajians` (`id`, `kod_institusi`, `kod_kursus`, `peringkat`, `tempoh`, `amount`, `created_at`, `updated_at`) VALUES
+(5, '000', 'DSI', 'Pinjaman PTPTN', '3 TAHUN', 18000.00, '2026-04-07 20:01:08', '2026-04-07 20:01:08'),
+(6, '000', 'DEC', 'Pinjaman PTPTN', '3 TAHUN', 18000.00, '2026-04-07 21:10:13', '2026-04-07 21:10:13'),
+(7, '000', 'DDWG', 'Pinjaman PTPTN', '3 TAHUN', 19000.00, '2026-04-07 21:13:07', '2026-04-07 21:13:07'),
+(8, '000', 'DDWF', 'Pinjaman PTPTN', '3 TAHUN', 19000.00, '2026-04-07 21:16:32', '2026-04-07 21:16:32'),
+(9, '000', 'BA111', 'Pinjaman PTPTN/Insentif Pendidikan B40', '3 TAHUN', 22800.00, '2026-04-07 21:22:51', '2026-04-07 21:22:51'),
+(10, '000', 'AC110', 'Pinjaman PTPTN/Insentif Pendidikan B40', '3 TAHUN', 22800.00, '2026-04-07 21:29:53', '2026-04-07 21:29:53'),
+(11, '000', 'BA003', 'Pinjaman PTPTN/Insentif Pendidikan B40', '3 TAHUN', 22800.00, '2026-04-07 21:32:13', '2026-04-07 21:32:13'),
+(12, 'DKU045(N)', 'MQA/FA3436', 'Pinjaman PTPTN', '3 TAHUN', 38000.00, '2026-04-07 22:31:01', '2026-04-07 22:31:01'),
+(13, 'DKU045(N)', 'MQA/FA15689', 'Pinjaman PTPTN', '3 TAHUN', 21360.00, '2026-04-07 22:31:55', '2026-04-07 22:31:55'),
+(14, 'DK030(N)', '(R3/0913/4/00560)(10,29)(MQA/FA5362)', 'yuran pengajian', '3 TAHUN', 38250.00, '2026-04-09 18:56:14', '2026-04-09 18:56:14'),
+(16, 'DK030(N)', '(R2/0414/4/044)(8,28)(MQA/FA3436)', 'yuran pengajian', '3 TAHUN', 38000.00, '2026-04-09 19:15:48', '2026-04-09 19:15:48'),
+(17, 'DK030(N)', '(N/0414/4/0018)(06/27)(MQA/FA15689)', 'yuran pengajian', '3 TAHUN', 27940.00, '2026-04-09 19:18:17', '2026-04-09 19:18:17'),
+(18, 'DK030(N)', '(R3/0913/4/0057)03,30)(MQA/FA8746)', 'yuran pengajian', '3 TAHUN', 38250.00, '2026-04-09 19:23:55', '2026-04-09 19:23:55');
+
 -- --------------------------------------------------------
 
 --
@@ -791,12 +859,12 @@ INSERT INTO `yuran_pilihans` (`id`, `kod_institusi`, `kod_kursus`, `pilihan`, `i
 (4, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'PILIHAN', 'JP', 200.00, '2026-04-08 17:57:05', '2026-04-08 17:57:05'),
 (5, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 17:59:13', '2026-04-08 17:59:13'),
 (6, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'PILIHAN', 'JP', 100.00, '2026-04-08 17:59:35', '2026-04-08 17:59:35'),
-(7, '71700 ', 'HT-012-2:2012 / HT-012-3:2012', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 18:00:59', '2026-04-08 18:00:59'),
-(8, '71700 ', 'HT-012-2:2012 / HT-012-3:2012', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:01:21', '2026-04-08 18:01:21'),
-(9, '71700 ', 'IT-020-3:2013 / IT-020-4:2013', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 18:03:55', '2026-04-08 18:03:55'),
-(10, '71700 ', 'IT-020-3:2013 / IT-020-4:2013', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:04:10', '2026-04-08 18:04:10'),
-(11, '71700 ', 'N821-001-3:2020', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 18:05:13', '2026-04-08 18:05:13'),
-(12, '71700 ', 'N821-001-3:2020', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:05:24', '2026-04-08 18:05:24'),
+(7, '71700', 'HT-012-2:2012 / HT-012-3:2012', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 18:00:59', '2026-04-08 18:00:59'),
+(8, '71700', 'HT-012-2:2012 / HT-012-3:2012', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:01:21', '2026-04-08 18:01:21'),
+(9, '71700', 'IT-020-3:2013 / IT-020-4:2013', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 18:03:55', '2026-04-08 18:03:55'),
+(10, '71700', 'IT-020-3:2013 / IT-020-4:2013', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:04:10', '2026-04-08 18:04:10'),
+(11, '71700', 'N821-001-3:2020', 'PILIHAN', 'PENDAFTARAN ASRAMA', 200.00, '2026-04-08 18:05:13', '2026-04-08 18:05:13'),
+(12, '71700', 'N821-001-3:2020', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:05:24', '2026-04-08 18:05:24'),
 (13, '47160', '1561-005-2:2022 / 1561-005-3:2022', 'PILIHAN', 'ACCESS CARD', 50.00, '2026-04-08 18:08:31', '2026-04-08 18:08:31'),
 (14, '47160', 'HT-014-2:2011 / HT-014-3:2011', 'PILIHAN', 'ACCESS CARD', 50.00, '2026-04-08 18:10:17', '2026-04-08 18:10:17'),
 (16, 'L01143', 'G452-002-2:2018 / G452-002-3:2018', 'PILIHAN', 'PENDAFTARAN ASRAMA', 300.00, '2026-04-08 18:13:11', '2026-04-08 18:13:11'),
@@ -931,7 +999,8 @@ ALTER TABLE `migrations`
 -- Indexes for table `pelajar`
 --
 ALTER TABLE `pelajar`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pelajar_event_id_foreign` (`event_id`);
 
 --
 -- Indexes for table `pembayaran`
@@ -1014,7 +1083,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `galeris`
 --
 ALTER TABLE `galeris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `institusis`
@@ -1026,7 +1095,7 @@ ALTER TABLE `institusis`
 -- AUTO_INCREMENT for table `kerjayas`
 --
 ALTER TABLE `kerjayas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `kursuses`
@@ -1044,13 +1113,13 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `pelajar`
 --
 ALTER TABLE `pelajar`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -1098,13 +1167,23 @@ ALTER TABLE `yuran_pendaftarans`
 -- AUTO_INCREMENT for table `yuran_pengajians`
 --
 ALTER TABLE `yuran_pengajians`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `yuran_pilihans`
 --
 ALTER TABLE `yuran_pilihans`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pelajar`
+--
+ALTER TABLE `pelajar`
+  ADD CONSTRAINT `pelajar_event_id_foreign` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

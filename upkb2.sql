@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2026 at 08:41 AM
+-- Generation Time: Apr 20, 2026 at 05:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,18 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `upkb2`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cache`
---
-
-CREATE TABLE `cache` (
-  `key` varchar(255) NOT NULL,
-  `value` mediumtext NOT NULL,
-  `expiration` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -70,17 +58,78 @@ CREATE TABLE `galeris` (
 --
 
 INSERT INTO `galeris` (`id`, `kod_institusi`, `imej`, `penerangan`, `created_at`, `updated_at`) VALUES
-(3, 'C-21-G', 'images/galeri/c-21-g-1775713632.png', 'KAWASAN KOLEJ', '2026-04-08 21:47:12', '2026-04-08 21:47:12'),
-(4, 'C-21-G', 'images/galeri/c-21-g-1775713672.png', 'ASRAMA', '2026-04-08 21:47:52', '2026-04-08 21:47:52'),
-(5, 'C-21-G', 'images/galeri/c-21-g-1775713713.png', 'BILIK AIR', '2026-04-08 21:48:33', '2026-04-08 21:48:33'),
-(6, 'C-21-G', 'images/galeri/c-21-g-1775713815.png', 'KAWASAN PERSEKITARAN KOLEJ', '2026-04-08 21:50:15', '2026-04-08 21:50:15'),
-(7, 'C-21-G', 'images/galeri/c-21-g-1775713906.png', 'KELAS', '2026-04-08 21:51:46', '2026-04-08 21:51:46'),
-(8, 'C-21-G', 'images/galeri/c-21-g-1775714001.png', 'KAWASAN PERSEKITARAN KOLEJ', '2026-04-08 21:53:21', '2026-04-08 21:53:21'),
-(9, 'C-21-G', 'images/galeri/c-21-g-1775714071.png', 'BERDEKATAN KOLEJ', '2026-04-08 21:54:31', '2026-04-08 21:54:31'),
-(10, 'C-21-G', 'images/galeri/c-21-g-1775714140.png', 'DOBI', '2026-04-08 21:55:40', '2026-04-08 21:55:40'),
-(11, '70300', 'images/galeri/70300-1775715036.jpeg', 'KAWASAN ASRAMA', '2026-04-08 22:10:36', '2026-04-08 22:10:36'),
-(12, '70300', 'images/galeri/70300-1775715129.jpeg', 'ASRAMA', '2026-04-08 22:12:09', '2026-04-08 22:12:09'),
-(13, '70300', 'images/galeri/70300-1775715200.jpeg', 'ASRAMA', '2026-04-08 22:13:21', '2026-04-08 22:13:21');
+(2, 'L02313', 'images/galeri/l02313-1775636699.jpeg', 'CAFE', '2026-04-08 00:24:59', '2026-04-08 00:24:59'),
+(3, 'L02313', 'images/galeri/l02313-1775636723.jpeg', 'CAFE', '2026-04-08 00:25:23', '2026-04-08 00:25:23'),
+(4, 'L02313', 'images/galeri/l02313-1775636755.jpeg', 'CAFE', '2026-04-08 00:25:55', '2026-04-08 00:25:55'),
+(5, 'L02313', 'images/galeri/l02313-1775636775.jpeg', 'KELAS', '2026-04-08 00:26:15', '2026-04-08 00:26:15'),
+(6, 'L02313', 'images/galeri/l02313-1775636788.jpeg', 'KELAS', '2026-04-08 00:26:28', '2026-04-08 00:26:28'),
+(7, 'L02313', 'images/galeri/l02313-1775636809.jpeg', 'KELAS', '2026-04-08 00:26:49', '2026-04-08 00:26:49'),
+(8, '05', 'images/galeri/05-1775636835.jpeg', 'CAFE', '2026-04-08 00:27:15', '2026-04-08 00:27:15'),
+(10, '05', 'images/galeri/05-1775636870.jpeg', 'CAFE', '2026-04-08 00:27:50', '2026-04-08 00:27:50'),
+(11, '05', 'images/galeri/05-1775636883.jpeg', 'CAFE', '2026-04-08 00:28:03', '2026-04-08 00:28:03'),
+(12, '05', 'images/galeri/05-1775636894.jpeg', 'KELAS', '2026-04-08 00:28:14', '2026-04-08 00:28:14'),
+(13, '05', 'images/galeri/05-1775636905.jpeg', 'KELAS', '2026-04-08 00:28:25', '2026-04-08 00:28:25'),
+(14, '05', 'images/galeri/05-1775636921.jpeg', 'KELAS', '2026-04-08 00:28:41', '2026-04-08 00:28:41'),
+(15, 'UE4344001', 'images/galeri/ue4344001-1775636943.jpeg', 'CAFE', '2026-04-08 00:29:03', '2026-04-08 00:29:03'),
+(16, 'UE4344001', 'images/galeri/ue4344001-1775636957.jpeg', 'CAFE', '2026-04-08 00:29:17', '2026-04-08 00:29:17'),
+(17, 'UE4344001', 'images/galeri/ue4344001-1775636970.jpeg', 'CAFE', '2026-04-08 00:29:30', '2026-04-08 00:29:30'),
+(18, 'UE4344001', 'images/galeri/ue4344001-1775636985.jpeg', 'KELAS', '2026-04-08 00:29:45', '2026-04-08 00:29:45'),
+(19, 'UE4344001', 'images/galeri/ue4344001-1775637000.jpeg', 'KELAS', '2026-04-08 00:30:00', '2026-04-08 00:30:00'),
+(20, 'UE4344001', 'images/galeri/ue4344001-1775637013.jpeg', 'KELAS', '2026-04-08 00:30:13', '2026-04-08 00:30:13'),
+(21, '01', 'images/galeri/01-1775637043.jpeg', 'CAFE', '2026-04-08 00:30:43', '2026-04-08 00:30:43'),
+(22, '01', 'images/galeri/01-1775637057.jpeg', 'CAFE', '2026-04-08 00:30:57', '2026-04-08 00:30:57'),
+(23, '01', 'images/galeri/01-1775637075.jpeg', 'CAFE', '2026-04-08 00:31:15', '2026-04-08 00:31:15'),
+(24, '01', 'images/galeri/01-1775637087.jpeg', 'KELAS', '2026-04-08 00:31:27', '2026-04-08 00:31:27'),
+(25, '01', 'images/galeri/01-1775637101.jpeg', 'KELAS', '2026-04-08 00:31:41', '2026-04-08 00:31:41'),
+(26, '01', 'images/galeri/01-1775637116.jpeg', 'KELAS', '2026-04-08 00:31:56', '2026-04-08 00:31:56'),
+(27, 'L02313', 'images/galeri/l02313-1775699731.jpeg', 'BENGKEL', '2026-04-08 17:55:31', '2026-04-08 17:55:31'),
+(28, 'L02313', 'images/galeri/l02313-1775699748.jpeg', 'BENGKEL', '2026-04-08 17:55:48', '2026-04-08 17:55:48'),
+(29, 'L02313', 'images/galeri/l02313-1775699761.jpeg', 'BENGKEL', '2026-04-08 17:56:01', '2026-04-08 17:56:01'),
+(30, 'L02313', 'images/galeri/l02313-1775699791.jpeg', 'STUDENT CENTRE', '2026-04-08 17:56:31', '2026-04-08 17:56:31'),
+(31, 'L02313', 'images/galeri/l02313-1775699809.jpeg', 'STUDENT CENTRE', '2026-04-08 17:56:49', '2026-04-08 17:56:49'),
+(32, 'L02313', 'images/galeri/l02313-1775699819.jpeg', 'STUDENT CENTRE', '2026-04-08 17:56:59', '2026-04-08 17:56:59'),
+(33, 'L02313', 'images/galeri/l02313-1775699842.jpeg', 'SURAU', '2026-04-08 17:57:22', '2026-04-08 17:57:22'),
+(34, 'L02313', 'images/galeri/l02313-1775699857.jpeg', 'SURAU', '2026-04-08 17:57:37', '2026-04-08 17:57:37'),
+(35, 'L02313', 'images/galeri/l02313-1775699873.jpeg', 'SURAU', '2026-04-08 17:57:53', '2026-04-08 17:57:53'),
+(36, 'L02313', 'images/galeri/l02313-1775699898.jpeg', 'TRANSPORT', '2026-04-08 17:58:18', '2026-04-08 17:58:18'),
+(37, 'L02313', 'images/galeri/l02313-1775699913.jpeg', 'TRANSPORT', '2026-04-08 17:58:33', '2026-04-08 17:58:33'),
+(38, 'L02313', 'images/galeri/l02313-1775699931.jpeg', 'TRANSPORT', '2026-04-08 17:58:51', '2026-04-08 17:58:51'),
+(39, '05', 'images/galeri/05-1775700008.jpeg', 'BENGKEL', '2026-04-08 18:00:08', '2026-04-08 18:00:08'),
+(40, '05', 'images/galeri/05-1775700020.jpeg', 'BENGKEL', '2026-04-08 18:00:20', '2026-04-08 18:00:20'),
+(41, '05', 'images/galeri/05-1775700035.jpeg', 'BENGKEL', '2026-04-08 18:00:35', '2026-04-08 18:00:35'),
+(42, '05', 'images/galeri/05-1775700066.jpeg', 'STUDENT CENTRE', '2026-04-08 18:01:06', '2026-04-08 18:01:06'),
+(43, '05', 'images/galeri/05-1775700077.jpeg', 'STUDENT CENTRE', '2026-04-08 18:01:17', '2026-04-08 18:01:17'),
+(44, '05', 'images/galeri/05-1775700090.jpeg', 'STUDENT CENTRE', '2026-04-08 18:01:30', '2026-04-08 18:01:30'),
+(45, '05', 'images/galeri/05-1775700122.jpeg', 'SURAU', '2026-04-08 18:02:02', '2026-04-08 18:02:02'),
+(46, '05', 'images/galeri/05-1775700137.jpeg', 'SURAU', '2026-04-08 18:02:17', '2026-04-08 18:02:17'),
+(47, '05', 'images/galeri/05-1775700148.jpeg', 'SURAU', '2026-04-08 18:02:28', '2026-04-08 18:02:28'),
+(48, '05', 'images/galeri/05-1775700171.jpeg', 'TRANSPORT', '2026-04-08 18:02:51', '2026-04-08 18:02:51'),
+(49, '05', 'images/galeri/05-1775700187.jpeg', 'TRANSPORT', '2026-04-08 18:03:07', '2026-04-08 18:03:07'),
+(50, '05', 'images/galeri/05-1775700200.jpeg', 'TRANSPORT', '2026-04-08 18:03:20', '2026-04-08 18:03:20'),
+(51, 'UE4344001', 'images/galeri/ue4344001-1775700239.jpeg', 'BENGKEL', '2026-04-08 18:03:59', '2026-04-08 18:03:59'),
+(52, 'UE4344001', 'images/galeri/ue4344001-1775700249.jpeg', 'BENGKEL', '2026-04-08 18:04:09', '2026-04-08 18:04:09'),
+(53, 'UE4344001', 'images/galeri/ue4344001-1775700260.jpeg', 'BENGKEL', '2026-04-08 18:04:20', '2026-04-08 18:04:20'),
+(54, 'UE4344001', 'images/galeri/ue4344001-1775700285.jpeg', 'STUDENT CENTRE', '2026-04-08 18:04:45', '2026-04-08 18:04:45'),
+(55, 'UE4344001', 'images/galeri/ue4344001-1775700296.jpeg', 'STUDENT CENTRE', '2026-04-08 18:04:56', '2026-04-08 18:04:56'),
+(56, 'UE4344001', 'images/galeri/ue4344001-1775700308.jpeg', 'STUDENT CENTRE', '2026-04-08 18:05:08', '2026-04-08 18:05:08'),
+(57, 'UE4344001', 'images/galeri/ue4344001-1775700329.jpeg', 'SURAU', '2026-04-08 18:05:29', '2026-04-08 18:05:29'),
+(59, 'UE4344001', 'images/galeri/ue4344001-1775700341.jpeg', 'SURAU', '2026-04-08 18:05:41', '2026-04-08 18:05:41'),
+(60, 'UE4344001', 'images/galeri/ue4344001-1775700352.jpeg', 'SURAU', '2026-04-08 18:05:52', '2026-04-08 18:05:52'),
+(61, 'UE4344001', 'images/galeri/ue4344001-1775700383.jpeg', 'TRANSPORT', '2026-04-08 18:06:23', '2026-04-08 18:06:23'),
+(62, 'UE4344001', 'images/galeri/ue4344001-1775700398.jpeg', 'TRANSPORT', '2026-04-08 18:06:38', '2026-04-08 18:06:38'),
+(63, 'UE4344001', 'images/galeri/ue4344001-1775700410.jpeg', 'TRANSPORT', '2026-04-08 18:06:50', '2026-04-08 18:06:50'),
+(64, '01', 'images/galeri/01-1775700471.jpeg', 'BENGKEL', '2026-04-08 18:07:51', '2026-04-08 18:07:51'),
+(65, '01', 'images/galeri/01-1775700482.jpeg', 'BENGKEL', '2026-04-08 18:08:02', '2026-04-08 18:08:02'),
+(66, '01', 'images/galeri/01-1775700494.jpeg', 'BENGKEL', '2026-04-08 18:08:14', '2026-04-08 18:08:14'),
+(67, '01', 'images/galeri/01-1775700515.jpeg', 'STUDENT CENTRE', '2026-04-08 18:08:35', '2026-04-08 18:08:35'),
+(68, '01', 'images/galeri/01-1775700527.jpeg', 'STUDENT CENTRE', '2026-04-08 18:08:47', '2026-04-08 18:08:47'),
+(69, '01', 'images/galeri/01-1775700541.jpeg', 'STUDENT CENTRE', '2026-04-08 18:09:01', '2026-04-08 18:09:01'),
+(70, '01', 'images/galeri/01-1775700561.jpeg', 'SURAU', '2026-04-08 18:09:21', '2026-04-08 18:09:21'),
+(71, '01', 'images/galeri/01-1775700573.jpeg', 'SURAU', '2026-04-08 18:09:33', '2026-04-08 18:09:33'),
+(72, '01', 'images/galeri/01-1775700584.jpeg', 'SURAU', '2026-04-08 18:09:44', '2026-04-08 18:09:44'),
+(73, '01', 'images/galeri/01-1775700608.jpeg', 'TRANSPORT', '2026-04-08 18:10:08', '2026-04-08 18:10:08'),
+(74, '01', 'images/galeri/01-1775700620.jpeg', 'TRANSPORT', '2026-04-08 18:10:20', '2026-04-08 18:10:20'),
+(75, '01', 'images/galeri/01-1775700630.jpeg', 'TRANSPORT', '2026-04-08 18:10:30', '2026-04-08 18:10:30');
 
 -- --------------------------------------------------------
 
@@ -105,28 +154,16 @@ CREATE TABLE `institusis` (
 --
 
 INSERT INTO `institusis` (`id`, `kod_institusi`, `nama_institusi`, `jenis_institusi`, `gambar_institusi`, `alamat`, `mengenai_institusi`, `created_at`, `updated_at`) VALUES
-(2, 'C-21-G', 'KOLEJ DAYATECH', 'TVET', 'images/institusi/kolej-dayatech-1775609988.webp', 'Pusat Komersial Arena Bintang, C21-G,1,2 Jalan Zuhal U5/179, Seksyen U5, 40150 Shah Alam, Selangor', 'Pusat Latihan Kemahiran bertauliah yang mengkhusus dalam bidang teknikal dan kejuruteraan. Menawarkan program Sijil Kemahiran Malaysia (SKM) yang berorientasikan latihan amali bagi melahirkan tenaga kerja mahir yang kompeten, profesional dan memenuhi kehendak industri masa kini.', '2026-04-07 16:59:48', '2026-04-07 22:22:16'),
-(3, '78000', 'KOLEJ TEKNIKAL BUMIPUTERA (KTEB)', 'TVET', 'images/institusi/kolej-teknikal-bumiputera-kteb-1775620045.jpeg', 'Wisma Umno, Jalan Anggerik 2, Taman Seri Bayu 2, 78000 Alor Gajah, Melaka', 'Penubuhan kolej ini telah diluluskan oleh Menteri Pendidikan sebagai Institusi Pendidikan Tinggi Swasta (IPTS) pada 11 Julai 1997 dengan nama “INSTITUT YAYASAN ALOR GAJAH”. Ia juga didaftarkan dengan Pendaftar Sekolah Melaka pada 29 September 1997. Dengan pengembangan dan penambahan peralatan dan kakitangan pengajar, “INSTITUT YAYASAN MELAKA” secara rasmi ditukar nama kepada “KOLEJ TEKNOLOGI YAYASAN ALOR GAJAH” pada 11 Mei 2002 yang dikenali sebagai KT-YAGA. KT-YAGA kemudian diambil alih pada akhir 2009 oleh nama terkenal dalam sektor pendidikan tinggi, KN Education Sdn. Bhd. Pelbagai penambahbaikan dan reformasi dicapai di bawah pengurusan ini, dan dinamakan semula sebagai institusi Kolej Teknologi Unifield yang diluluskan oleh Kementerian Pendidikan Tinggi pada 06 Januari 2011. Selaras dengan visi, satu penjenamaan semula dilakukan dan diluluskan secara rasmi pada 11 Mac 2013 dan kolej ini kini dikenali sebagai UNIFIELD INTERNATIONAL COLLEGE (UIC)', '2026-04-07 19:47:25', '2026-04-07 22:31:26'),
-(4, '71700', 'KOLEJ TEKNIKAL BUMIPUTERA (KTEB)', 'TVET', 'images/institusi/kolej-teknikal-bumiputera-kteb-1775627125.webp', 'Lot 27, Jalan Kaunselor 2, College Heights Garden Resort,\r\n71700 Pajam Mantin, Negeri Sembilan', 'Penubuhan kolej ini telah diluluskan oleh Menteri Pendidikan sebagai Institusi Pendidikan Tinggi Swasta (IPTS) pada 11 Julai 1997 dengan nama “INSTITUT YAYASAN ALOR GAJAH”. Ia juga didaftarkan dengan Pendaftar Sekolah Melaka pada 29 September 1997. Dengan pengembangan dan penambahan peralatan dan kakitangan pengajar, “INSTITUT YAYASAN MELAKA” secara rasmi dinamakan semula sebagai “KOLEJ TEKNOLOGI YAYASAN ALOR GAJAH” pada 11 Mei 2002 yang dikenali sebagai KT-YAGA. KT-YAGA kemudian diambil alih pada akhir 2009 oleh nama terkenal dalam sektor pendidikan tinggi, KN Education Sdn. Bhd. Pelbagai penambahbaikan dan pembaharuan dicapai di bawah pengurusan ini, dan dinamakan semula sebagai institusi Kolej Teknologi Unifield yang diluluskan oleh Kementerian Pendidikan Tinggi pada 06 Januari 2011. Selaras dengan visi, satu penjenamaan semula dilakukan dan diluluskan secara rasmi pada 11 Mac 2013 dan kini kolej ini dikenali sebagai UNIFIELD INTERNATIONAL COLLEGE (UIC).', '2026-04-07 21:45:25', '2026-04-07 22:33:56'),
-(5, '47160', 'SILVERSPOON INTERNATIONAL COLLEGE', 'TVET', 'images/institusi/silverspoon-international-college-1775628370.jpg', '12 & 12A, Jalan OP1/3, Pusat Perdagangan One Puchong, Off, Jalan Puchong, Bandar Puchong Jaya, 47160 Puchong, Selangor, Malaysia', 'Silverspoon International College (SSiC) telah ditubuhkan pada 2010 dengan objektif untuk menyediakan latihan vokasional yang mantap dalam kursus Seni Kulinari dan Pastri seperti yang diluluskan oleh Jabatan Pembangunan Kemahiran (JPK) di bawah Kementerian Sumber Manusia, Malaysia. Kolej Antarabangsa Silverspoon (SSiC) percaya bahawa pengalaman industri sebenar adalah bahagian penting dalam pendidikan hospitaliti. Pelajar akan berpeluang menjalani praktikum atau Koperasi di pelbagai hotel, restoran, katering syarikat penerbangan, dan lain-lain, yang diatur secara eksklusif oleh SSiC apabila permintaan meningkat untuk graduan baru untuk mengisi pelbagai jawatan dan bekerja dengan jayanya melalui pangkat.', '2026-04-07 21:58:56', '2026-04-07 22:36:57'),
-(6, 'L01143', 'NOBLE SCHOOL ENGINEERING', 'TVET', 'images/institusi/noble-school-engineering-1775629028.webp', '36 Mb2, Kampus Kejuruteraan Noble Taman Medan Bersatu 34000 Taiping, Perak', 'Noble TVET adalah merupakan kumpulan dua (2) ILKS yang telah disatukan bagi mewujudkan satu reformasi latihan berkonsepkan Industri untuk mempertingkatkan jumlah tenaga kerja terlatih di dalam IKS tempatan. Terletak di bandar Taiping – sebuah Bandar Warisan tinggalan 33 sejarah awal pembangunan Tanah Melayu sejak tahun 1800 yang dikenali sebagai ‘The Rain Town of Malaysia’ dan merupakan pemenang tempat Ke-3 Anugerah 100 Destinasi Lestari Terbaik Dunia Di International Tourismus-Borse (ITB) Berlin, Germany 2018. Dan pada 16 Disember 2022 Taiping sekali lagi telah menerima Anugerah Destinasi Rekreasi Terbaik Industri Pelancongan Malaysia 2022 (Malaysia Tourism Industry Award 2022).', '2026-04-07 22:17:08', '2026-04-07 22:17:08'),
-(7, 'L02138', 'NOBLE SCHOOL CITY CAMPUS', 'TVET', 'images/institusi/noble-school-city-campus-1775631090.jpg', '33, Jalan TBC 3, Taiping Business Centre, 34000 Taiping, Perak.', 'Noble TVET adalah merupakan kumpulan dua (2) ILKS yang telah disatukan bagi mewujudkan satu reformasi latihan berkonsepkan Industri untuk mempertingkatkan jumlah tenaga kerja terlatih di dalam IKS tempatan. Terletak di bandar Taiping – sebuah Bandar Warisan tinggalan 33 sejarah awal pembangunan Tanah Melayu sejak tahun 1800 yang dikenali sebagai ‘The Rain Town of Malaysia’ dan merupakan pemenang tempat Ke-3 Anugerah 100 Destinasi Lestari Terbaik Dunia Di International Tourismus-Borse (ITB) Berlin, Germany 2018. Dan pada 16 Disember 2022 Taiping sekali lagi telah menerima Anugerah Destinasi Rekreasi Terbaik Industri Pelancongan Malaysia 2022 (Malaysia Tourism Industry Award 2022).', '2026-04-07 22:51:30', '2026-04-07 22:51:30'),
-(8, '42000', 'WORKERS INSRITUTE TECHNOLOGY', 'TVET', 'images/institusi/workers-insritute-technology-1775632540.jpg', 'Jalan Banting, Off Jalan Pandamaran, 42000 Port Klang, Selangor Malaysia.', 'Kolej WIT sebelum ini dikenali sebagai Workers Institute of Technology, kolej kejuruteraan dan latihan teknikal berasaskan Pembangunan Sumber Manusia di Malaysia. Objektif utama WIT adalah untuk menyediakan pengajian kejuruteraan, latihan vokasional dan kemahiran teknikal yang akan membolehkan pelajar untuk maju dalam kehidupan dan membantu usaha kerajaan Malaysia dalam mencapai matlamat tinggi untuk menjadikan Malaysia sebuah negara maju menjelang tahun 2020. WIT merupakan ilham dua orang sahabat setia, Dr. V. David dan Tan Sri Zainal Rampak, daripada Kesatuan Pekerja Pengangkutan Malaysia (TWU) yang dibina pada tahun 1977 di atas 10.4 ekar tanah yang terletak di Kawasan Industri Pandamaran (Pandamaran, Klang Selangor) diatas sebidang tanah yang diberikan oleh Kerajaan Negeri Selangor dibawah kepimpinan Allahyarham Dato\' Seri Harun bin Haji Idris, Menteri Besar Selangor pada waktu itu dengan premium yang paling rendah, dikelilingi oleh perumahan, lebuh raya, pembangunan moden, kawasan perindustrian bagi memenuhi permintaan yang semakin meningkat bagi latihan teknikal untuk lepasan sekolah & komuniti korporat.', '2026-04-07 23:15:40', '2026-04-07 23:15:40'),
-(9, 'L02238', 'AZMIDA TECHNICAL COLLEGE', 'TVET', 'images/institusi/azmida-technical-college-1775633722.webp', 'Lot 16988, Jalan 2, Kawasan Industri Taman Selayang Baru, 68100 Batu Caves, Selangor, Malaysia', 'Azmida Technical College (L02238) merupakan sebuah Pusat Bertauliah yang diberi pentauliahan oleh pihak Jabatan Pembangunan Kemahiran (JPK) Kementerian Sumber Manusia Malaysia pada 28 Jun 2011. Pada tahun 2017 Pusat Bertauliah ini telah mendapat pengiktirafan sebagai sebuah Kolej Latihan Kemahiran yang menyediakan latihan berkonsepkan Latihan Teknikal & Pendidikan Vokasional (TVET) dan ditukar nama sebagai Azmida Technical College (L02238).', '2026-04-07 23:35:22', '2026-04-07 23:35:22'),
-(10, 'L02758', 'ECO AUTOTRONICS ACADEMY', 'TVET', 'images/institusi/eco-autotronics-academy-1775634578.jpg', 'NO 2 & 4, JALAN IAN 5, 76100 Durian Tunggal Malacca', 'In response to the global green technology initiative, we at Eco Autotronics Academy, we conduct programs in Go-Green Technology. Automobiles have ventured into the realm of hybrid cars and electric vehicles globally. The demand for professional services has surged. Thus, we have planned and developed programme courses to meet the requirements. To help provide the best EV service training programme, we have qualified instructors. These courses are tailored for hybrid projects and current and future vehicles. In order to promote an ideal learning atmosphere, our campus/academy ground is over 10,000 square feet, including a practical area, air-conditioned classrooms, and electronics rooms and more.', '2026-04-07 23:46:26', '2026-04-07 23:49:38'),
-(11, 'L02080', 'AF TVET ACADEMY', 'TVET', 'images/institusi/af-tvet-academy-1775636197.jpg', 'Jalan Putra 2 43000 Kajang', 'Pusat Latihan Kemahiran TVET bertauliah yang menawarkan program latihan industri, Sijil Kemahiran & kursus pendek. Melahirkan tenaga mahir, berdaya saing dan diiktiraf.', '2026-04-08 00:16:37', '2026-04-08 00:16:37'),
-(12, '144465-D', 'FUTURE EDGE COLLEGE', 'TVET', 'images/institusi/future-edge-college-1775636788.jpg', 'No. B2-01, Jalan Teknologi 2/1D, PJU 5, Kota Damansara, 47810 Petaling Jaya, Selangor Darul Ehsan, Malays', 'Kolej FutureEdge adalah pintu masuk anda kepada program TVET berasaskan kemahiran yang praktikal. Pendekatan kami yang bersifat hands-on membekalkan anda dengan kepakaran yang diperlukan untuk kerjaya yang tinggi permintaan, memastikan anda bersedia bekerja dari hari pertama', '2026-04-08 00:26:28', '2026-04-08 00:26:28'),
-(13, '53100', 'S.T.I COLLEGE MALAYSIA', 'TVET', 'images/institusi/sti-college-malaysia-1775637778.jpg', '243-A, 243-B, & 243C,\r\nJalan Bandar 13, Taman Melawati,\r\n53100 Kuala Lumpur, W. P. Kuala Lumpur, Malaysia.', 'Pusat Latihan Kemahiran bertauliah yang mengkhusus dalam bidang teknikal dan kejuruteraan. Menawarkan program Sijil Kemahiran Malaysia (SKM) yang berorientasikan latihan amali bagi melahirkan tenaga kerja mahir yang kompeten, profesional dan memenuhi kehendak industri masa kini.', '2026-04-08 00:41:44', '2026-04-08 00:42:58'),
-(14, 'L02882', 'TITAN SKILL COLLEGE', 'TVET', 'images/institusi/titan-skill-college-1775649997.webp', '6, Jln Perusahaan Amari, Kuala Lumpur, Malaysia', 'Pusat Bertauliah Jabatan Pembangunan Kemahiran (JPK)', '2026-04-08 04:06:37', '2026-04-08 04:06:37'),
-(15, 'L02163', 'JV SKILL TRAINING CENTRE', 'TVET', 'images/institusi/jv-skill-training-centre-1775650435.jpg', 'No 6-01,6-02,6-03,8-01,10-01 Jalan Pandan Ria 4, Pusat Perdagangan Pandan, 81100 Johor Bahru Premis Tambahan: No.6, Jalan Sri Purnama 2/1 Kangkar Tebrau 81100 Johor Bahru,', 'Pusat Latihan Kemahiran JV ditubuhkan pada 22 Ogos 2009 dengan kurikulum yang relevan dengan industri berdasarkan pembelajaran berasaskan pengalaman bagi menghasilkan graduan yang berkemahiran dan berkelayakan yang memenuhi keperluan industri. JV Skill adalah pusat bertauliah di bawah Jabatan Pembangunan Kemahiran (DSD) di bawah Kementerian Sumber Manusia, Malaysia. Pada Julai 2013, Kolej JV Skill telah diberi penarafan 5-Bintang oleh Jabatan Pembangunan Kemahiran (DSD) di bawah Kementerian Sumber Manusia, Malaysia.', '2026-04-08 04:13:55', '2026-04-08 04:14:58'),
-(16, '70300', 'AMBITIOUS ACADEMY', 'TVET', 'images/institusi/ambitious-academy-1775650876.jpeg', 'No. 648-654, Jalan Haruan 4/9, Oakland Commercial Center, 70300 Seremban, Negeri Sembilan.', 'Ambitious Infinite Resources Sdn.Bhd. (AIRSB) mula beroperasi di Setia Tropika, Johor Bahru pada Januari 2014, yang bepindah ke Wisma HYH yang terletak di pusat bandar Johor Bahru pada September 2014. Ambitious Academy Sdn. Bhd. (AASB) kemudiannya mengikuti operasi pertamanya di bangunan yang sama pada Februari 2015. Ambitious Education Group selama bertahun-tahun telah membina reputasi dan rekod pretasi yang boleh dipercayai dalam pelbagai perniagaan yang dikendalikannya. Ini termasuk pendidikan dan latihan, pembangunan kemahiran, perkongsian belajar-kerja, perkhidmatan pengambilan, penyumberan strategik untuk pengurusan tenaga kerja luar jangka dan perundingan. Ia ditugaskan dengan tujuan khusus untuk memenuhi permintaan yang semakin meningkat untuk profesional terlatih dalam masakan, syarikat penerbangan, pelayaran, hotel dan industri lain yang berkaitan. Pada masa ini terletak di bangunan dua setengah tingkat di Skudai Johor Bahru, AIRSB menawarkan kemudahan moden dengan kemudahan seni terkini untuk pelajarnya, menggabungkan ke dalam persekitaran semula jadi dan luas. Dengan Pejabat Pendtadbiran Korporatnya di Seremban, Negeri Sembilan, ia telah melangkah jauh, muncul sebagai salah satu pesaing utama untuk kecemerlangan masakan, hospitaliti, perniagaan dan penerbangan.', '2026-04-08 04:21:16', '2026-04-08 04:21:16'),
-(17, 'P13A-1', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) TEMERLOH', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-temerloh-1775651288.webp', 'No. P13A-1, 1, Jalan Lama Bentong - Karak, 28600 Karak, Pahang, Malaysia', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:28:08', '2026-04-08 04:28:08'),
-(18, '28600', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) KARAK', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-karak-1775651678.webp', 'No. P13A-1, 1, Jalan Lama Bentong - Karak, 28600 Karak, Pahang, Malaysia', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:34:38', '2026-04-08 04:34:38'),
-(19, 'P13A', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) BENTONG', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-bentong-1775652498.webp', 'No. P13A-1, 1, Jalan Lama Bentong - Karak, 28600 Karak, Pahang, Malaysia.', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:48:18', '2026-04-08 04:48:48'),
-(20, 'L02054', 'DUAL TRAINING INSTITUTE (DTI)', 'TVET', 'images/institusi/dual-training-institute-dti-1775653038.webp', 'Lot 158 Jalan S2b3 Green Technology Park Seremban 2 70300 Seremban Ns', 'Institut Latihan Dual adalah sebuah institusi pendidikan yang menggabungkan pengetahuan teori dengan latihan praktikal.', '2026-04-08 04:57:18', '2026-04-08 04:57:18'),
-(21, 'TP-060-3:2013', 'MEATECH COLLEGE', 'TVET', 'images/institusi/meatech-college-1775653602.jpg', 'L2-11 & L2-12, Tingkat 2, Tower B (Begonia), Youth City Residence, Vision City, Persiaran Pusat Bandar, Bandar Baru Nilai 71800 Nilai Negeri Sembilan', 'Bermula 2002 apabila kumpulan meraka dimulakan sebagai Approved Training Provider (ATP) yang diiktiraf oleh Jabatan Pembangunan Kemahiran (DSD), Kementerian Sumber Manusia Malaysia. - Selama bertahun-tahun, Syarikat ini telah melaksanakan banyak projek yang mencabar dan kemahiran terkumpul, pengetahuan dan pengalaman dalam TVET. - Mereka telah melatih sejumlah besar mekanik, pengendali dan juruteknik yang telah memberikan sumbangan besar kepada industri dan kejayaan ekonomi syarikat. - Ogos 2011, Meatech ATC Sdn. Bhd. (MATC) telah diperbadankan, memberi tumpuan terutamanya kepada penyediaan latihan TVET dalam program latihan berkaitan penerbangan. - Pada 2015, MEATECH ATC Sdn. Bhd. menandatangani Memorandum Persefahaman (MoU) dengan Pusat Latihan Penerbangan AERO-Bildung, dan institusi pendidikan yang berpangkalan di Jerman dalam membangunkan kursus latihan pensijilan profesional yang diiktiraf oleh Agensi Keselamatan Penerbangan Eropah (EASA). - Tujuan mereka ialah melahirkan kakitangan pesawat yang berkemahiran tinggi dengan keupayaan untuk melakukan pelbagai aktiviti penyelenggaraan. - Mereka menawarkan 2 program iaitu “AVIATION – AIRCRAFT MAINTENANCE TRAINING” dan “AVIATION – IN-FLIGHT CABIN SERVICES”', '2026-04-08 05:06:42', '2026-04-08 05:06:42'),
-(22, '47650', 'MYBUSINESS ACADEMY', 'TVET', 'images/institusi/mybusiness-academy-1775654201.jpg', '2 Jalan Putra Mahkota 7/7A 47650 Subang Jaya', 'Memberi peluang dan laluan kerjaya bagi calon bekerja dan menimba pengalaman dalam industri. - Melaksanakan pantauan pihak akademi bagi penuhi kelayakan (SKM 3) & (DKM) ikut tempoh pengiktirafan pengalaman terdahulu mengikut kod program yang dipilih. - Jurus ke arah kemahiran profesional & releven kepada industry dengan bekalkan calon kepada industry mengikut kod program bersesuaian. - Jalankan kerjasama dengan COLLEGE OF BIRMINGHAM, UNITED KINGDOM. Berasaskan kemahiran & Pembangunan profesional. - MBA merupakan sebuah pusat bertauliah yang berdaftar dengan Jabatan Pembangunan Kemahiran serta melakukan program aperantis.', '2026-04-08 05:16:41', '2026-04-08 05:16:41'),
-(23, 'L02723', 'ACADEMY ADELPHI WORLDWIDE', 'TVET', 'images/institusi/academy-adelphi-worldwide-1775654681.jpg', 'No 31, Jalan Durian Emas 4, Betaria Business Centre,701 00 Seremban, N. Sembilan', 'Academy Adelphi Worldwide Hotels Sdn Bhd (Seremban) ialah cawangan kedua selepas cawangan Skudai JB, menawarkan kursus Seni Kulinari, Automotif, Pendidikan Awal Kanak-Kanak, Pengurusan Pejabat dan Pastri yang direka untuk menampung pelajar daripada keluarga berpendapatan rendah melalui Jabatan Pembangunan Kemahiran.', '2026-04-08 05:24:41', '2026-04-08 05:25:50');
+(2, 'L02313', 'Unifield International College (UIC)', 'Diploma', 'images/institusi/unifield-international-college-uic-1775618872.webp', '2, Jalan Kaunselor, College Heights Garden Resort, 71700 Mantin, Negeri Sembilan', 'Unifield International College ialah sebuah institusi pengajian tinggi swasta yang ditubuhkan pada tahun 1997. Kolej ini telah melalui beberapa perubahan nama dan pengurusan sebelum dikenali sebagai Unifield International College pada tahun 2013. Kini institusi ini beroperasi di Pajam dan menawarkan pelbagai program pendidikan kepada pelajar tempatan dan antarabangsa', '2026-04-07 17:01:47', '2026-04-07 22:13:48'),
+(3, '05', 'UNIVERSITI TEKNOLOGI MALAYSIA', 'Diploma', 'images/institusi/universiti-teknologi-malaysia-1775619641.jpg', 'UTM Johor Bahru (Kampus Utama):\r\nUniversiti Teknologi Malaysia,\r\n81310 UTM Johor Bahru,\r\nJohor Darul Ta\'zim, Malaysia.', 'Sebuah universiti awam di Malaysia yang terkenal dalam bidang kejuruteraan, sains dan teknologi. UTM ditubuhkan pada tahun 1972 dan mempunyai kampus utama di Skudai serta kampus di Kuala Lumpur. Universiti ini menawarkan pelbagai program pengajian dan memberi tumpuan kepada penyelidikan serta pembangunan teknologi.', '2026-04-07 19:40:41', '2026-04-07 22:11:49'),
+(4, 'UE4344001', 'UNIVERSITI TEKNOLOGI MARA (UITM)', 'Diploma', 'images/institusi/universiti-teknologi-mara-uitm-1775620480.jpg', 'jalan Ilmu 1/1, 40450 Shah Alam, Selangor', 'Universiti awam di Malaysia yang ditubuhkan untuk menyediakan peluang pendidikankepada masyarakat, khususnya Bumiputera. Menawarkan pelbagai program pengajian dalam bidang seperti perniagaan, kejuruteraan, sains, teknologi dan seni. Kampus utamanya terletak di Shah Alam dan mempunyai banyak kampus cawangan di seluruh negara.', '2026-04-07 19:54:40', '2026-04-07 22:15:22'),
+(6, '01', 'Universiti Malaya (UM)', 'Diploma', 'images/institusi/universiti-malaya-um-1775627041.webp', 'Universiti Malaya, 50603 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur', 'Universiti awam tertua di Malaysia, ditubuhkan pada tahun 1905. UM terkenal dengan kecemerlangan akademik dan penyelidikan dalam pelbagai bidang seperti sains, kejuruteraan, perubatan, dan seni. Kampus utamanya terletak di Kuala Lumpur dan menyediakan pelbagai program pengajian untuk pelajar tempatan dan antarabangsa.', '2026-04-07 21:44:01', '2026-04-07 22:16:16'),
+(7, 'DKU045(N)', 'MURNI INTERNATIONAL COLLEGE', 'Diploma', 'images/institusi/murni-international-college-1775628024.jpg', 'PT. 12914, Jalan BBN 1/7f Persiaran Pusat Bandar Bandar Baru Nilai, 12910, Jalan BBN 1/7f, Bandar Baru Nilai, 71800 Nilai, Negeri Sembilan', 'Institusi pendidikan swasta yang menawarkan program diploma dan sijil dalam pelbagai bidang seperti perniagaan, pengurusan, keusahawanan dan kepimpinan. Bertujuan untuk menyediakan pelajar dengan pengetahuan praktikal dan kemahiran profesional yang relevan untuk memasuki pasaran kerja. Kolej ini juga menekankan pembangunan menyeluruh pelajar melalui latihan industri, pembelajaran berorientasikan kerjaya dan sokongan pembangunan diri.', '2026-04-07 22:00:24', '2026-04-07 22:17:42'),
+(8, 'DK268(W)', 'IHM COLLEGE', 'Diploma', 'images/institusi/ihm-college-1775631032.jpg', '15, Jalan Raja Chulan, Bukit Bintang, 50200 Kuala Lumpur, Wilayah Persekutuan Kuala Lumpur', 'kolej swasta di Kuala Lumpur yang ditubuhkan pada tahun 1993 dan sebelum ini dikenali sebagai In-House Multimedia College. Kolej ini menawarkan pelbagai program seperti diploma dalam bidang multimedia, komunikasi massa dan sains komputer, dengan penekanan kepada kemahiran praktikal serta keperluan industri bagi menyediakan pelajar untuk dunia pekerjaan.', '2026-04-07 22:50:32', '2026-04-07 22:50:32'),
+(9, 'L02922', 'MALAYSIA BUSINESS ACADEMY (MBA)', 'TVET', 'images/institusi/malaysia-business-academy-mba-1775633845.webp', 'No. 1-G, Jalan Putra Mahkota 7/8C, Putra Heights, 47650 Subang Jaya, Selangor, Malaysia', 'My Business Academy ialah sebuah pusat latihan kemahiran & pengembangan profesional di Malaysia, yang menawarkan kursus kemahiran, latihan industri dan program latihan kerjaya dalam bidang perniagaan, pendidikan awal, pemasaran dan pembangunan profesional. Ia beroperasi sebagai pembekal latihan yang diluluskan untuk kursus kemahiran (TVET)', '2026-04-07 23:37:25', '2026-04-07 23:37:25'),
+(10, 'L02890', 'IMAN MOTORS ACADEMY', 'TVET', 'images/institusi/iman-motors-academy-1775634492.webp', 'Pusat komersial, 1280-1, Jalan Suriaman Biz 3, Persiaran Suriaman, 71950 Sendayan, Negeri Sembilan', 'Pusat latihan automotif yang menawarkan kursus praktikal dan TVET dalam penyelenggaraan kereta, mekanik, dan teknologi automotif untuk melahirkan tenaga kerja mahir bagi industri automotif.', '2026-04-07 23:48:12', '2026-04-07 23:48:12'),
+(11, 'L02650', 'EAKON ACADEMY', 'TVET', 'images/institusi/eakon-academy-1775635111.webp', 'Lot 27737, Jalan 5/10 Bandar Rinching Seksyen 5, Semenyih, 43500 Selangor', 'Pusat latihan yang menawarkan kursus keusahawanan, pembangunan kemahiran profesional dan latihan vokasional, dengan fokus kepada latihan praktikal untuk meningkatkan kebolehan kerjaya dan keperluan industri.', '2026-04-07 23:58:31', '2026-04-07 23:59:53'),
+(12, 'DK030(N)', 'MURNI INTERNATIONAL COLLEGE', 'SAINS KESIHATAN', 'images/institusi/murni-international-college-1775788625.jpg', 'PT. 12914, Jalan BBN 1/7f Persiaran Pusat Bandar Bandar Baru Nilai, 12910, Jalan BBN 1/7f, Bandar Baru Nilai, 71800 Nilai, Negeri Sembilan', 'Institusi pendidikan swasta yang menawarkan program diploma dan sijil dalam pelbagai bidang seperti perniagaan, pengurusan, keusahawanan dan kepimpinan. Bertujuan untuk menyediakan pelajar dengan pengetahuan praktikal dan kemahiran profesional yang relevan untuk memasuki pasaran kerja. Kolej ini juga menekankan pembangunan menyeluruh pelajar melalui latihan industri, pembelajaran berorientasikan kerjaya dan sokongan pembangunan diri.', '2026-04-09 18:37:05', '2026-04-09 18:37:34');
 
 -- --------------------------------------------------------
 
@@ -142,6 +179,50 @@ CREATE TABLE `kerjayas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kerjayas`
+--
+
+INSERT INTO `kerjayas` (`id`, `kod_institusi`, `kod_kursus`, `bidang_kerjaya`, `created_at`, `updated_at`) VALUES
+(11, '000', 'DSI', '- Melanjutkan pengajian Ijazah Sarjana Muda di mana-mana universiti atau kolej', '2026-04-07 19:59:52', '2026-04-07 19:59:52'),
+(12, '000', 'DSI', '- Pendakwah', '2026-04-07 19:59:57', '2026-04-07 19:59:57'),
+(13, '000', 'DSI', '- Pegawai Pentadbiran', '2026-04-07 20:00:01', '2026-04-07 20:00:01'),
+(14, '000', 'DSI', '- Pendidik', '2026-04-07 20:00:04', '2026-04-07 20:00:04'),
+(15, '000', 'DEC', '- Guru Pendidikan Awal Kanak-Kanak', '2026-04-07 21:09:21', '2026-04-07 21:09:21'),
+(16, '000', 'DEC', '- Pengurus Prasekolah atau Pusat Jagaan Kanak-Kanak', '2026-04-07 21:09:29', '2026-04-07 21:09:29'),
+(17, '000', 'BA111', '- Pegawai Akauntan', '2026-04-07 21:20:57', '2026-04-07 21:20:57'),
+(18, '000', 'AC110', '- Pegawai Akauntan', '2026-04-07 21:28:39', '2026-04-07 21:28:39'),
+(19, '000', 'MQA/FA15689', '- Eksekutif Halal', '2026-04-07 22:03:02', '2026-04-07 22:03:02'),
+(20, '000', 'MQA/FA15689', '- Pegawai QA/QC (Quality Control)', '2026-04-07 22:03:34', '2026-04-07 22:03:34'),
+(21, '000', 'MQA/FA15689', '- Pegawai logistik Halal', '2026-04-07 22:03:44', '2026-04-07 22:03:44'),
+(22, '000', 'MQA/FA15689', 'Usahawan produk halal', '2026-04-07 22:04:07', '2026-04-07 22:04:07'),
+(23, 'DKU045(N)', 'MQA/FA3436', '- Pembantu Pengurusan Hospital', '2026-04-07 22:28:07', '2026-04-07 22:28:07'),
+(24, 'DKU045(N)', 'MQA/FA3436', '- Admin Klinik / Hospital', '2026-04-07 22:28:19', '2026-04-07 22:28:19'),
+(25, 'DKU045(N)', 'MQA/FA3436', '- Customer Service Healthcare', '2026-04-07 22:28:39', '2026-04-07 22:28:39'),
+(26, 'DKU045(N)', 'MQA/FA3436', '- Medical Records Officer', '2026-04-07 22:28:53', '2026-04-07 22:28:53'),
+(27, 'DKU045(N)', 'MQA/FA3436', '- Healthcare Executive', '2026-04-07 22:29:06', '2026-04-07 22:29:06'),
+(28, 'DKU045(N)', 'MQA/FA15689', '- Halal Auditor', '2026-04-07 22:32:13', '2026-04-07 22:32:13'),
+(29, 'DKU045(N)', 'MQA/FA15689', '- Eksekutif Industri Makanan / Kilang', '2026-04-07 22:32:29', '2026-04-07 22:32:29'),
+(30, 'DKU045(N)', 'MQA/FA15689', '- Eksekutif Pematuhan (Compliance Officer)', '2026-04-07 22:32:38', '2026-04-07 22:32:38'),
+(31, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Pereka Grafik', '2026-04-07 22:56:29', '2026-04-07 22:56:29'),
+(32, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Pereka Multimedia', '2026-04-07 22:56:38', '2026-04-07 22:56:38'),
+(33, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Editor Video / Animasi', '2026-04-07 22:56:52', '2026-04-07 22:56:52'),
+(34, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', '- Pembangun Laman Web', '2026-04-07 22:57:04', '2026-04-07 22:57:04'),
+(35, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Penyiar', '2026-04-07 23:00:23', '2026-04-07 23:00:23'),
+(36, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Wartawan', '2026-04-07 23:00:31', '2026-04-07 23:00:31'),
+(37, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Pegawai Perhubungan Awam (PR)', '2026-04-07 23:00:47', '2026-04-07 23:00:47'),
+(38, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', '- Penerbit Media', '2026-04-07 23:01:07', '2026-04-07 23:01:07'),
+(39, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pegawai Keselamatan', '2026-04-07 23:05:05', '2026-04-07 23:05:05'),
+(40, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pegawai Penguatkuasa Undang-Undang', '2026-04-07 23:05:24', '2026-04-07 23:05:24'),
+(41, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pegawai Penjara/ Kastam/ Imigresen', '2026-04-07 23:05:47', '2026-04-07 23:05:47'),
+(42, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', '- Pekerja Sektor Keselamatan Awam', '2026-04-07 23:06:05', '2026-04-07 23:06:05'),
+(44, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', '- Pengurus Pusat Jagaan', '2026-04-07 23:42:00', '2026-04-07 23:42:00'),
+(45, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', '- Guru Prasekolah / Pendidikan Awal Kanak-Kanak', '2026-04-07 23:42:43', '2026-04-07 23:42:43'),
+(46, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', '- Pembantu Pendidik atau Tutor Kanak-kanak', '2026-04-07 23:43:09', '2026-04-07 23:43:09'),
+(47, 'L02890', 'K12001/G452-002-4:2017-ST-A', '- Mekanik', '2026-04-07 23:51:55', '2026-04-07 23:51:55'),
+(48, 'L02890', 'K12001/G452-002-4:2017-ST-A', '- Pegawai Penyelenggaraan Kenderaan', '2026-04-07 23:52:22', '2026-04-07 23:52:22'),
+(49, 'L02890', 'K12001/G452-002-4:2017-ST-A', '- Penyelia Bengkel atau Pengurus Opersi Automotif', '2026-04-07 23:53:00', '2026-04-07 23:53:00');
 
 -- --------------------------------------------------------
 
@@ -169,131 +250,55 @@ CREATE TABLE `kursuses` (
 --
 
 INSERT INTO `kursuses` (`id`, `kod_kursus`, `kod_institusi`, `nama_kursus`, `jenis_kursus`, `mod_pengajian`, `tempoh`, `kuota`, `tarikh_pendaftaran`, `penerangan`, `created_at`, `updated_at`) VALUES
-(3, 'P854-009-4:2020S', 'C-21-G', 'PENDIDIKAN AWAL KANAK-KANAK (SINGLE TIER)', 'TAHAP 4 (SINGLE TIER)', 'SEPENUH MASA', '27 BULAN', NULL, NULL, 'Latihan profesional dalam pengurusan tadika/prasekolah dan pengajaran pendidikan awal kanak-kanak.', '2026-04-07 19:13:45', '2026-04-07 19:13:45'),
-(4, 'F432-005-2:2019 / F432-005-3:2019', '78000', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2/TAHAP 3', 'SEPENUH MASA', '12 BULAN / 12 BULAN', NULL, NULL, 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-07 19:49:11', '2026-04-07 19:49:11'),
-(5, 'HT-012-2:2012 / HT-012-3:2012', '71700 ', 'KULINARI', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 21:51:34', '2026-04-07 21:51:34'),
-(6, 'IT-020-3:2013 / IT-020-4:2013', '71700 ', 'OPERASI SISTEM KOMPUTER', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '12 BULAN / 15 BULAN', NULL, NULL, 'Program Sistem Komputer memberi fokus kepada kemahiran asas komputer dan teknologi maklumat, termasuk pemasangan, penyelenggaraan, pengendalian perkakasan, perisian dan rangkaian. Pelajar belajar troubleshoot masalah komputer, pengurusan data, serta memastikan sistem beroperasi dengan cekap dan selamat. Program ini melahirkan tenaga mahir dalam pengurusan dan sokongan sistem komputer.', '2026-04-07 21:53:36', '2026-04-07 21:53:36'),
-(7, 'N821-001-3:2020', '71700 ', 'PENGURUSAN & PENTADBIRAN PEJABAT', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Pengurusan Pejabat memberi fokus kepada kemahiran pentadbiran pejabat termasuk pengurusan dokumen, komunikasi, penggunaan perisian pejabat, pengurusan mesyuarat dan penyelenggaraan rekod. Pelajar belajar mengurus operasi pejabat dengan cekap dan profesional. Program ini melahirkan tenaga mahir yang mampu menyokong operasi organisasi dengan teratur dan berkesan.', '2026-04-07 21:54:49', '2026-04-07 21:54:49'),
-(8, 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'C-21-G', 'PERKHIDMATAN KEJURUTERAAN AUTOMASI INDUSTRI', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '2 TAHUN 9 BULAN', NULL, NULL, 'Pelajar akan mempelajari pemasangan, pengujian, pengendalian dan penyelenggaraan sistem automasi seperti PLC, sensor, panel kawalan, motor, pneumatik dan hidraulik. Latihan menekankan gabungan teori dan amali, selaras keperluan industri sebenar bagi melahirkan tenaga kerja mahir yang kompeten, berdisiplin dan berdaya saing. Graduan berpeluang bekerja sebagai Juruteknik Automasi, Juruteknik Penyelenggaraan, Automation Engineer Support atau melanjutkan kerjaya ke tahap lebih tinggi dalam bidang automasi industri.', '2026-04-07 22:29:49', '2026-04-07 22:29:49'),
-(9, '1561-005-2:2022 / 1561-005-3:2022', '47160', 'KULINARI', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '1 TAHUN 9 BULAN', NULL, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 22:36:14', '2026-04-07 22:36:14'),
-(10, 'HT-014-2:2011 / HT-014-3:2011', '47160', 'PEMBUATAN PASTRI', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '1 TAHUN 6 BULAN', 6, NULL, 'Program Pembuatan Pastri memberi fokus kepada kemahiran menyediakan pelbagai pastri, kek dan manisan. Pelajar belajar teknik asas pastri seperti menguli, membakar, menghias, kawalan suhu, penyediaan krim dan doh, serta kebersihan dapur. Program ini melahirkan pembuat pastri yang mahir, kreatif dan mampu menghasilkan produk berkualiti mengikut standard industri.', '2026-04-07 22:38:57', '2026-04-07 22:38:57'),
-(11, 'G452-002-2:2018 / G452-002-3:2018', 'L01143', 'AUTOMOTIF', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', 'SEPENUH MASA', 3, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-07 22:40:45', '2026-04-07 22:40:45'),
-(12, 'MC-024-3:2012', 'L01143', 'PROSES KIMPALAN ARKA KEPINGAN LOGAM', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', 4, '2026-05-19', 'Program Kimpalan melatih pelajar dalam teknik mengimpal struktur logam menggunakan kaedah seperti SMAW, GTAW dan GMAW. Pelajar belajar membaca lukisan teknikal, menyediakan bahan, mengawal mesin kimpal serta mengutamakan keselamatan bengkel. Program ini melahirkan tenaga mahir yang mampu melakukan kerja fabrikasi dan penyambungan logam mengikut standard industri.', '2026-04-07 22:43:10', '2026-04-07 22:43:10'),
-(13, 'S960-002-3:2020S', 'L01143', 'PERKHIDMATAN AUTOMASI INDUSTRI', 'TAHAP 2', 'SEPENUH MASA', '6 BULAN', NULL, NULL, 'Program Automasi memberi fokus kepada penggunaan sistem kawalan, sensor, PLC, robotik dan mesin automatik dalam industri. Pelajar belajar memasang, menguji, menyelenggara dan menambah baik sistem automasi bagi meningkatkan kecekapan pengeluaran. Program ini melahirkan tenaga mahir yang mampu mengendalikan peralatan automasi moden dengan selamat dan profesional.', '2026-04-07 22:44:47', '2026-04-07 22:44:47'),
-(14, 'HT-013-3-2011', 'L02138', 'PEMBUATAN ROTI (SINGLE TIER)', 'SINGLE TIER', 'SEPENUH MASA', '15 BULAN', 15, '2026-05-09', 'Program Pembuatan Roti memberi fokus kepada kemahiran menghasilkan pelbagai jenis roti, bun dan pastri asas. Pelajar belajar menyediakan doh, teknik menguli, proses penapaian, membakar dengan betul serta kawalan kualiti dan kebersihan dapur. Program ini melahirkan pembuat roti yang mahir, cekap dan memenuhi standard industri bakeri.', '2026-04-07 22:53:05', '2026-04-07 22:53:05'),
-(15, 'HT-012-3-2012S', 'L02138', 'PENYEDIAAN & PENGELUARAN MAKANAN (SINGGLE TIER)', 'SINGLE TIER', 'SEPENUH MASA', '12 BULAN', 3, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 22:54:35', '2026-04-07 22:54:35'),
-(16, 'F432-005-3-2019', 'L02138', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK (SINGLE TIER)', 'SINGLE TIER', 'SEPENUH MASA', '1 TAHUN 4 BULAN', 4, '2026-04-11', 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-07 22:56:00', '2026-04-07 22:56:00'),
-(17, 'I561-005-3:2022S', 'L02138', 'OPERASI SENI KULINARI', 'SINGLE TIER', 'SEPENUH MASA', '17 BULAN', 8, '2026-04-11', 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 22:57:58', '2026-04-07 22:57:58'),
-(18, 'S960-002-3:2020', 'L02138', 'PERKHIDMATAN ESTETIK (SINGLE TI)', 'SINGLE TIER', 'SEPENUH MASA', '17 BULAN', 2, '2026-04-11', 'Program Kecantikan Estetik memberikan latihan dalam penjagaan kulit, rawatan wajah, asas dermatologi, penggunaan peralatan estetik, teknik spa serta penjagaan diri. Pelajar belajar melakukan rawatan kecantikan dengan kaedah yang selamat, profesional dan mengikut standard industri. Program ini melahirkan tenaga mahir dalam perkhidmatan kecantikan dan estetika moden.', '2026-04-07 23:00:48', '2026-04-07 23:00:48'),
-(19, 'I561-005-2:2022 / I561-005-3:2022 / HT-012-4:2011', 'L02138', 'PENYEDIAAN & PENGELUARAN MAKANAN', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '8 BULAN / 9 BULAN / 10 BULAN', 4, NULL, 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-07 23:02:22', '2026-04-07 23:02:22'),
-(20, 'F432-005-2:2019 / F432-005-3:2019', 'L02138', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '8 BULAN / 9 BULAN', 6, '2026-04-11', 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-07 23:04:27', '2026-04-07 23:04:27'),
-(21, 'MC-024-3:2012', '42000', 'KIMPALAN', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, '2026-05-19', 'Program ini memberikan kemahiran lanjutan dalam kimpalan arka logam menggunakan teknik shielded metal arc welding (SMAW). Pelajar akan mempelajari cara menyediakan bahan dan peralatan kimpalan, melaksanakan kimpalan pada pelbagai posisi dan jenis sambungan, mematuhi prosedur keselamatan industri, serta melakukan pemeriksaan dan penilaian kualiti hasil kimpalan.', '2026-04-07 23:18:04', '2026-04-07 23:18:04'),
-(22, 'G452-002-2:2018 / G452-002-3:2018 / G452-002-4:2017', '42000', 'AUTOMOTIF', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '12 BULAN / 12 BULAN / 15 BULAN', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-07 23:19:33', '2026-04-07 23:19:33'),
-(23, 'F432-005-2:2019 / F432-005-3:2019 / F432-005-4:2019', '42000', 'ELEKTRIK', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '12 BULAN / 12 BULAN / 18 BULAN', NULL, NULL, 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-07 23:20:56', '2026-04-07 23:20:56'),
-(24, 'S960-002-2:2020 / S960-002-3:2020 / S960-002-4:2020', '42000', 'PERKHIDMATAN KECANTIKAN', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '6 BULAN / 6 BULAN / 12 BULAN', NULL, NULL, 'Program Kecantikan Estetik memberikan latihan dalam penjagaan kulit, rawatan wajah, asas dermatologi, penggunaan peralatan estetik, teknik spa serta penjagaan diri. Pelajar belajar melakukan rawatan kecantikan dengan kaedah yang selamat, profesional dan mengikut standard industri. Program ini melahirkan tenaga mahir dalam perkhidmatan kecantikan dan estetika moden.', '2026-04-07 23:24:14', '2026-04-07 23:24:14'),
-(25, 'IT-020-3:2013 / IT-020-4:2013', '42000', 'OPERASI SISTEM KOMPUTER', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '12 BULAN / 21 BULAN', NULL, NULL, 'Program Sistem Komputer memberi fokus kepada kemahiran asas komputer dan teknologi maklumat, termasuk pemasangan, penyelenggaraan, pengendalian perkakasan, perisian dan rangkaian. Pelajar belajar troubleshoot masalah komputer, pengurusan data, serta memastikan sistem beroperasi dengan cekap dan selamat. Program ini melahirkan tenaga mahir dalam pengurusan dan sokongan sistem komputer.', '2026-04-07 23:25:19', '2026-04-07 23:25:19'),
-(26, 'F432-005-2:2019 / F432-005-3:2019', 'L02238', 'ELEKTRIK & ELEKTRONIK', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'Program ini menyediakan kemahiran asas dalam pemasangan, pendawaian dan penyelenggaraan sistem elektrik satu fasa di bangunan kediaman atau komersial kecil. Pelajar akan mempelajari pemasangan litar elektrik mengikut piawaian keselamatan, penyelenggaraan sistem elektrik termasuk pengesanan kerosakan dan pembaikan asas, serta amalan keselamatan kerja semasa bekerja dengan elektrik.', '2026-04-07 23:36:56', '2026-04-07 23:36:56'),
-(27, 'ME-011-3:2014', 'L02238', 'OPERASI DAN PENYELENGGARAAN BOILER', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, NULL, 'Program ini memberi latihan kemahiran dalam mengendalikan, memantau dan menyelenggara sistem boiler yang digunakan di industri seperti kilang, loji dan fasiliti komersial. Pelajar akan mempelajari asas operasi boiler, kawalan tekanan dan suhu, langkah keselamatan, prosedur permulaan dan penutupan boiler, pengesanan masalah, serta kerja penyelenggaraan berkala supaya sistem boiler sentiasa beroperasi dengan selamat, cekap dan mengikut piawaian industri.', '2026-04-07 23:38:03', '2026-04-07 23:38:03'),
-(28, 'G452-002-2:2018 / G452-002-3:2018', 'L02758', 'AUTOMOTIF', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-07 23:52:01', '2026-04-07 23:52:01'),
-(29, 'S960-002-1:2020/S960-002-2:2020', 'L02080', 'KECANTIKAN & PENJAGAAN PERIBADI', 'TAHAP 1 / TAHAP 2', 'SEPENUH MASA', '5 BULAN / 6 BULAN', 3, NULL, 'Program Kecantikan Estetik memberikan latihan dalam penjagaan kulit, rawatan wajah, asas dermatologi, penggunaan peralatan estetik, teknik spa serta penjagaan diri. Pelajar belajar melakukan rawatan kecantikan dengan kaedah yang selamat, profesional dan mengikut standard industri. Program ini melahirkan tenaga mahir dalam perkhidmatan kecantikan dan estetika moden.', '2026-04-08 00:18:15', '2026-04-08 00:18:15'),
-(30, 'IT-0583:3:2012', 'L02080', 'REKABENTUK GRAFIK (DIGITAL)', 'TAHAP 2', 'SEPENUH MASA', '12 BULAN', NULL, NULL, 'Program ini memberi pendedahan dan latihan dalam penghasilan reka bentuk visual menggunakan perisian digital. Pelajar akan belajar cara menghasilkan grafik seperti poster, logo, banner, media sosial, bahan promosi dan lain-lain menggunakan prinsip rekabentuk yang betul seperti warna, tipografi, komposisi dan kreativiti. Latihan turut merangkumi penggunaan perisian rekabentuk grafik, pengurusan fail digital serta keperluan asas industri kreatif supaya pelajar mampu menghasilkan hasil kerja yang kemas, menarik dan profesional.', '2026-04-08 00:19:18', '2026-04-08 00:19:18'),
-(31, 'MC-024-3:2012', '144465-D', 'KIMPALAN', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, '2026-05-19', 'Program Kimpalan melatih pelajar dalam teknik mengimpal struktur logam menggunakan kaedah seperti SMAW, GTAW dan GMAW. Pelajar belajar membaca lukisan teknikal, menyediakan bahan, mengawal mesin kimpal serta mengutamakan keselamatan bengkel. Program ini melahirkan tenaga mahir yang mampu melakukan kerja fabrikasi dan penyambungan logam mengikut standard industri.', '2026-04-08 00:29:38', '2026-04-08 00:29:38'),
-(32, 'FB-025-3:2012', '144465-D', 'SETIAUSAHA KORPORAT', 'TAHAP 3', 'SEPENUH MASA', '1 TAHUN', NULL, NULL, 'Program Setiausaha Korporat memberi fokus kepada kemahiran pentadbiran korporat, pengurusan dokumen rasmi, pematuhan undang-undang dan prosedur syarikat, serta komunikasi profesional. Pelajar belajar menyokong operasi organisasi, memastikan pentadbiran syarikat teratur dan mematuhi peraturan. Program ini melahirkan tenaga mahir yang cekap, teratur dan beretika dalam urusan korporat.', '2026-04-08 00:30:56', '2026-04-08 00:30:56'),
-(33, 'IT-020-3:2013', '144465-D', 'RANGKAIAN KOMPUTER', 'TAHAP 3', 'SEPENUH MASA', '1 TAHUN', NULL, NULL, 'Program Rangkaian Komputer memberi fokus kepada pemasangan, penyelenggaraan dan pengurusan rangkaian komputer. Pelajar belajar konfigurasi router dan switch, keselamatan rangkaian, troubleshooting serta pengurusan trafik data. Program ini melahirkan tenaga mahir yang mampu memastikan rangkaian beroperasi dengan cekap, selamat dan mengikut piawaian industri.', '2026-04-08 00:31:58', '2026-04-08 00:31:58'),
-(34, 'F432-005-3:2019S', '144465-D', 'ELEKTRIK', 'TAHAP 3', 'SEPENUH MASA', '1 TAHUN 4 BULAN', 3, '2026-04-11', 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-08 00:33:10', '2026-04-08 00:33:10'),
-(35, 'G452-002-2/3:2028', '144465-D', 'AUTOMOTIF', 'SINGLE TIER', 'SEPENUH MASA', '1 TAHUN 3 BULAN', 2, '2026-05-18', 'Kursus automotif ialah kursus yang memberi pendedahan kepada pelajar tentang penyelenggaraan, pemeriksaan dan pembaikan kenderaan. Pelajar akan belajar secara teori dan praktikal berkaitan enjin, sistem brek, transmisi, elektrik kenderaan, suspensi serta penggunaan peralatan bengkel. Kursus ini sesuai untuk mereka yang minat kerja hands-on, suka kenderaan dan ingin membina kemahiran dalam bidang teknikal. Selepas tamat pengajian, pelajar berpeluang bekerja sebagai juruteknik automotif, mekanik, penasihat servis atau menceburi industri berkaitan kenderaan', '2026-04-08 00:34:57', '2026-04-08 00:34:57'),
-(36, '1561-005-2/3:2022', '144465-D', 'OPERASI SENI KULINARI', 'SINGLE TIER', 'SEPENUH MASA', '18 BULAN', NULL, '2026-04-11', 'Memberi latihan dalam penyediaan dan pembuatan makanan, termasuk teknik memasak, kebersihan dan keselamatan makanan, kawalan kualiti hidangan serta pengurusan asas operasi dapur. Kursus ini sesuai untuk pelajar yang minat memasak dan ingin bekerja dalam bidang kulinari, katering, restoran atau hotel.', '2026-04-08 00:36:08', '2026-04-08 00:36:08'),
-(37, 'G452-007-3:2019S', '144465-D', 'SERVIS KERETA ELEKTRIK & HIBRID (EV)', 'SINGLE TIER', 'SEPENUH MASA', '1 TAHUN 3 BULAN', 6, '2026-05-18', 'Kursus G452-007-3:2019S Servis Kereta Elektrik & Hibrid (EV) ialah latihan kemahiran untuk melahirkan juruteknik yang mampu melakukan pemeriksaan, diagnosis, servis dan pembaikan bagi kenderaan EV dan hibrid mengikut prosedur bengkel serta piawaian keselamatan voltan tinggi. Peserta akan didedahkan kepada kerja selamat sistem HV, penggunaan alat diagnostik seperti scan tool, serta servis komponen utama seperti bateri dan sistem pengecasan, motor elektrik, inverter/convertor, kabel voltan tinggi dan subsistem sokongan kenderaan. Selepas tamat kursus, peserta lebih bersedia untuk bekerja dalam bidang servis EV/Hybrid di pusat servis atau bengkel automotif, termasuk tugasan diagnostik dan penyelenggaraan sistem utama EV.', '2026-04-08 00:37:26', '2026-04-08 00:37:26'),
-(38, 'F432-005-2:2019', '53100', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, '2026-04-11', 'Program Pemasangan & Penyelenggaraan Elektrik direka untuk melatih pelajar dalam kemahiran teknikal pendawaian elektrik domestik dan industri. Melalui latihan amali yang intensif, pelajar akan menguasai teknik pemasangan sistem satu fasa dan tiga fasa, penyelenggaraan perkakas suis, serta pengujian litar mengikut piawaian Suruhanjaya Tenaga. Program ini menyediakan landasan kukuh bagi melahirkan teknisi yang kompeten untuk memenuhi keperluan sektor pembinaan dan fasiliti negara.', '2026-04-08 00:44:27', '2026-04-08 00:44:27'),
-(39, '1561-002:2:2018', '53100', 'OPERASI SERVIS MAKANAN', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '1 TAHUN 9 BULAN', NULL, NULL, 'Program Operasi Servis Makanan direka untuk melatih pelajar dalam kemahiran hospitaliti dan pengurusan restoran secara profesional. Melalui latihan amali yang intensif, pelajar akan menguasai teknik penyediaan ruang makan (Mise-en-place), gaya servis makanan (American, French, & Buffet), serta kemahiran layanan pelanggan yang berkualiti tinggi. Program ini memfokuskan kepada standard kebersihan dan keselamatan makanan (HACCP) bagi melahirkan tenaga kerja mahir yang kompeten untuk industri perhotelan dan katering.', '2026-04-08 00:45:34', '2026-04-08 00:45:34'),
-(40, 'G452-002-3:2018', 'L02882', 'SERVIS KENDERAAN RINGAN - AUTOMOTIF (SINGLE TIER)', 'TAHAP 3', 'SEPENUH MASA', '21 BULAN', NULL, NULL, 'Kursus ini memberi pengetahuan teori dan latihan praktikal tentang sistem utama kenderaan. Pelajar akan belajar bagaimana kenderaan berfungsi serta cara melakukan servis dan pembaikan dengan menggunakan peralatan bengkel. Latihan biasanya dijalankan di bengkel automotif, makmal latihan, dan latihan industri supaya pelajar mendapat pengalaman sebenar bekerja dengan kenderaan.', '2026-04-08 04:08:10', '2026-04-08 04:08:10'),
-(41, 'G452-002-2:2018 / G452-002-3:2018', 'L02882', 'PERKHIDMATAN PEMBAIKAN – KENDERAAAN RINGAN (AUTOMOTIF)', 'SINGLE TIER', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-08 04:09:21', '2026-04-08 04:09:21'),
-(42, 'G452-002-2:2018 / G452-002-3:2018', 'L02163', 'AUTOMOTIF', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-08 04:16:18', '2026-04-08 04:16:18'),
-(43, 'MC-091-2:2016 / MC-091-3:2016 / MC-091-4:2016', 'L02163', 'AUTOMASI INDUSTRI', 'TAHAP 2 / TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '6 BULAN / 12 BULAN / 15 BULAN', NULL, NULL, 'Program Automasi memberi fokus kepada penggunaan sistem kawalan, sensor, PLC, robotik dan mesin automatik dalam industri. Pelajar belajar memasang, menguji, menyelenggara dan menambah baik sistem automasi bagi meningkatkan kecekapan pengeluaran. Program ini melahirkan tenaga mahir yang mampu mengendalikan peralatan automasi moden dengan selamat dan profesional.', '2026-04-08 04:17:10', '2026-04-08 04:17:10'),
-(44, 'T982-001-3:2017 | T982-001-4:2018', '70300', 'PENGURUSAN PENJAGAAN DAN PENDIDIKAN KANAK-KANAK AWAL', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '27 BULAN', NULL, '2026-04-03', 'Program ini memberi fokus kepada kemahiran mengasuh, mendidik dan mengurus perkembangan awal kanak-kanak dari segi kognitif, sosial, emosi dan fizikal. Pelajar belajar perancangan aktiviti pembelajaran, keselamatan dan kesihatan kanak-kanak, komunikasi berkesan serta pengurusan pusat asuhan. Program ini melahirkan pengasuh dan pendidik awal kanak-kanak yang profesional, penyayang dan beretika.', '2026-04-08 04:22:25', '2026-04-08 04:22:25'),
-(45, '1561-005-3:2022', '70300', 'OPERASI SENI KULINARI', 'TAHAP 2 / TAHAP 3', 'SEPENUH MASA', '18 BULAN', 0, '2026-04-11', 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-08 04:23:42', '2026-04-08 04:23:42'),
-(46, 'MC-024-3:2012', 'P13A-1', 'KIMPALAN', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, NULL, 'Program Kimpalan melatih pelajar dalam teknik mengimpal struktur logam menggunakan kaedah seperti SMAW, GTAW dan GMAW. Pelajar belajar membaca lukisan teknikal, menyediakan bahan, mengawal mesin kimpal serta mengutamakan keselamatan bengkel. Program ini melahirkan tenaga mahir yang mampu melakukan kerja fabrikasi dan penyambungan logam mengikut standard industri.', '2026-04-08 04:29:12', '2026-04-08 04:29:12'),
-(47, 'G452-002-3:2018-S', 'P13A-1', 'AUTOMOTIF', 'SINGLE TIER', 'SEPENUH MASA', '24 BULAN', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-08 04:30:18', '2026-04-08 04:30:18'),
-(48, 'F432-005-3-2019S', 'P13A-1', 'ELEKTRIK', 'TAHAP 2 / TAHAP 3 (ST)', 'SEPENUH MASA', '16 BULAN', NULL, NULL, 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-08 04:31:27', '2026-04-08 04:31:27'),
-(49, 'MC-024-3:2012', '28600', 'KIMPALAN', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, NULL, 'Program Kimpalan melatih pelajar dalam teknik mengimpal struktur logam menggunakan kaedah seperti SMAW, GTAW dan GMAW. Pelajar belajar membaca lukisan teknikal, menyediakan bahan, mengawal mesin kimpal serta mengutamakan keselamatan bengkel. Program ini melahirkan tenaga mahir yang mampu melakukan kerja fabrikasi dan penyambungan logam mengikut standard industri.', '2026-04-08 04:35:33', '2026-04-08 04:35:33'),
-(50, 'ET-012-3:2012', '28600', 'PENTADBIRAN PRA SEKOLAH', 'TAHAP 3 / TAHAP 4', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'Pentadbiran Pra Sekolah ialah kursus yang memberi pendedahan tentang pengurusan, pentadbiran dan pendidikan awal kanak-kanak di peringkat prasekolah atau tadika. Kursus ini bertujuan melatih pelajar supaya memahami cara mengurus operasi prasekolah serta membimbing perkembangan kanak-kanak secara menyeluruh. Dalam kursus ini, pelajar akan mempelajari asas pendidikan awal kanak-kanak, teknik pengajaran yang sesuai, serta cara mengurus aktiviti pembelajaran yang menyeronokkan dan berkesan untuk kanak-kanak.', '2026-04-08 04:36:43', '2026-04-08 04:40:47'),
-(51, 'G452-002-3:2018S', '28600', 'AUTOMOTIF', 'TAHAP 2 / TAHAP 3 (ST)', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-08 04:37:59', '2026-04-08 04:37:59'),
-(52, 'F432-005-3:2019S', '28600', 'ELEKTRIK', 'TAHAP 2 / TAHAP 3 (ST)', 'SEPENUH MASA', '16 BULAN', NULL, NULL, 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-08 04:39:09', '2026-04-08 04:39:09'),
-(53, '7982-001-3:2017', '28600', 'PENDIDIKAN AWAL KANAK-KANAK', 'TAHAP 3', 'SEPENUH MASA', '1 TAHUN', NULL, '2026-04-03', 'Program ini memberi fokus kepada kemahiran mengasuh, mendidik dan mengurus perkembangan awal kanak-kanak dari segi kognitif, sosial, emosi dan fizikal. Pelajar belajar perancangan aktiviti pembelajaran, keselamatan dan kesihatan kanak-kanak, komunikasi berkesan serta pengurusan pusat asuhan. Program ini melahirkan pengasuh dan pendidik awal kanak-kanak yang profesional, penyayang dan beretika.', '2026-04-08 04:40:17', '2026-04-08 04:40:17'),
-(54, 'MC-024-3:2022', 'P13A', 'KIMPALAN', 'TAHAP 3', 'SEPENUH MASA', '18 BULAN', NULL, NULL, 'Program Kimpalan melatih pelajar dalam teknik mengimpal struktur logam menggunakan kaedah seperti SMAW, GTAW dan GMAW. Pelajar belajar membaca lukisan teknikal, menyediakan bahan, mengawal mesin kimpal serta mengutamakan keselamatan bengkel. Program ini melahirkan tenaga mahir yang mampu melakukan kerja fabrikasi dan penyambungan logam mengikut standard industri', '2026-04-08 04:50:36', '2026-04-08 04:50:36'),
-(55, 'I561-005-3:2022', 'P13A', 'OPERASI SENI KULINARI', 'TAHAP 2 / TAHAP 3 (ST)', 'SEPENUH MASA', '18 BULAN', NULL, '2026-04-11', 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-08 04:51:32', '2026-04-08 04:51:32'),
-(56, 'F432-005-3-2019S', 'P13A', 'ELEKTRIK', 'TAHAP 2 / TAHAP 3 (ST)', 'SEPENUH MASA', '16 BULAN', NULL, NULL, 'Program Elektrik memberi fokus kepada kemahiran memasang, menyelenggara dan membaiki sistem pendawaian serta peralatan elektrik. Pelajar akan belajar asas litar elektrik, pendawaian domestik, penggunaan alat pengujian, pematuhan keselamatan dan standard kerja. Program ini melahirkan tenaga mahir yang mampu melakukan kerja pemasangan dan penyelenggaraan elektrik dengan selamat dan betul.', '2026-04-08 04:52:28', '2026-04-08 04:52:28'),
-(57, 'T982-001-3:2017', 'L02054', 'PENDIDIKAN AWAL KANAK-KANAK', 'TAHAP 3', 'SEPENUH MASA', '12 BULAN', 1, '2026-04-03', 'Program ini memberi fokus kepada kemahiran mengasuh, mendidik dan mengurus perkembangan awal kanak-kanak dari segi kognitif, sosial, emosi dan fizikal. Pelajar belajar perancangan aktiviti pembelajaran, keselamatan dan kesihatan kanak-kanak, komunikasi berkesan serta pengurusan pusat asuhan. Program ini melahirkan pengasuh dan pendidik awal kanak-kanak yang profesional, penyayang dan beretika.', '2026-04-08 04:58:30', '2026-04-08 04:58:30'),
-(58, 'PERKHIDMATAN DALAM PENERBANGAN', 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Inflight Services memberi fokus kepada kemahiran layanan penumpang, keselamatan kabin, pengurusan makanan dan minuman, komunikasi berkesan serta prosedur kecemasan di dalam penerbangan. Pelajar dilatih untuk menjadi kru kabin profesional yang ramah, cekap dan memastikan pengalaman penerbangan selesa dan selamat.', '2026-04-08 05:09:26', '2026-04-08 05:09:26'),
-(59, 'TP-060-4:2013', 'TP-060-3:2013', 'PENYELENGGARAAN PESAWAT', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Aircraft Maintenance memberi fokus kepada penyelenggaraan dan pembaikan pesawat. Pelajar belajar memeriksa enjin, sistem hidraulik, elektrik, avionik dan struktur pesawat, serta mematuhi prosedur keselamatan dan standard penerbangan. Program ini melahirkan tenaga mahir yang mampu memastikan pesawat beroperasi dengan selamat dan cekap mengikut piawaian industri penerbangan.', '2026-04-08 05:10:20', '2026-04-08 05:10:20'),
-(60, 'T982-001-3:2017', '47650', 'PENGURUSAN AWAL KANAK-KANAK', 'TAHAP 3', 'SEPENUH MASA', '1 TAHUN', NULL, '2026-04-03', 'Program ini memberi fokus kepada kemahiran mengasuh, mendidik dan mengurus perkembangan awal kanak-kanak dari segi kognitif, sosial, emosi dan fizikal. Pelajar belajar perancangan aktiviti pembelajaran, keselamatan dan kesihatan kanak-kanak, komunikasi berkesan serta pengurusan pusat asuhan. Program ini melahirkan pengasuh dan pendidik awal kanak-kanak yang profesional, penyayang dan beretika.', '2026-04-08 05:18:05', '2026-04-08 05:18:05'),
-(61, 'G452-002-3:2018', 'L02723', 'OPERASI SENI KULINARI', 'TAHAP 2 / TAHAP 3 (ST)', 'SEPENUH MASA', '2 TAHUN', NULL, '2026-04-11', 'Program Kulinari memberi latihan dalam kemahiran penyediaan makanan, teknik masakan, kawalan kebersihan, keselamatan dapur dan pengurusan asas dapur. Pelajar belajar memasak pelbagai hidangan, menyedia bahan, menghias makanan serta mematuhi standard kebersihan makanan. Program ini melahirkan tukang masak yang mahir, kreatif dan profesional untuk industri makanan dan perhotelan.', '2026-04-08 05:27:37', '2026-04-08 05:27:37'),
-(62, 'N821-001-3:2020 / FB-025-4:2012', 'L02723', 'PENGURUSAN PEJABAT', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Pengurusan Pejabat memberi fokus kepada kemahiran pentadbiran pejabat termasuk pengurusan dokumen, komunikasi, penggunaan perisian pejabat, pengurusan mesyuarat dan penyelenggaraan rekod. Pelajar belajar mengurus operasi pejabat dengan cekap dan profesional. Program ini melahirkan tenaga mahir yang mampu menyokong operasi organisasi dengan teratur dan berkesan.', '2026-04-08 05:28:47', '2026-04-08 05:28:47'),
-(63, 'HT-041-2:2011 / HT-041-3:2011', 'L02723', 'PEMBUATAN PASTRI', '-', 'SEPENUH MASA', '-', NULL, NULL, 'Program Pembuatan Pastri memberi fokus kepada kemahiran menyediakan pelbagai pastri, kek dan manisan. Pelajar belajar teknik asas pastri seperti menguli, membakar, menghias, kawalan suhu, penyediaan krim dan doh, serta kebersihan dapur. Program ini melahirkan pembuat pastri yang mahir, kreatif dan mampu menghasilkan produk berkualiti mengikut standard industri.', '2026-04-08 05:29:53', '2026-04-08 05:29:53'),
-(64, 'G452-002-3:2018', 'L02723', 'AUTOMOTIF', 'TAHAP 3 / TAHAP 4 (ST)', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'Program ini memfokuskan kepada kemahiran asas automotif seperti servis dan baiki kenderaan. Pelajar belajar penyelenggaraan enjin, sistem brek, suspensi, elektrik asas dan keselamatan bengkel. Matlamatnya melahirkan individu yang mahir melakukan kerja servis asas, pemeriksaan dan pembaikan kenderaan ringan.', '2026-04-08 05:30:42', '2026-04-08 05:30:42'),
-(65, 'T982-001-3:2017 / T982-001-4:2018', 'L02723', 'PENGURUSAN AWAL KANAK-KANAK', 'TAHAP 3 / TAHAP 4 (ST)', 'SEPENUH MASA', '27 BULAN', NULL, NULL, 'Program ini memberi fokus kepada kemahiran mengasuh, mendidik dan mengurus perkembangan awal kanak-kanak dari segi kognitif, sosial, emosi dan fizikal. Pelajar belajar perancangan aktiviti pembelajaran, keselamatan dan kesihatan kanak-kanak, komunikasi berkesan serta pengurusan pusat asuhan. Program ini melahirkan pengasuh dan pendidik awal kanak-kanak yang profesional, penyayang dan beretika.', '2026-04-08 05:31:51', '2026-04-08 05:31:51');
+(6, 'DSI', 'L02313', 'DIPLOMA SYARIAH ISLAMIAH', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Syariah Islamiah memberi pengetahuan tentang hukum-hukum Islam berdasarkan Al-Quran dan Hadis. Kursus ini merangkumi bidang seperti fiqh, akidah, ibadah, muamalat serta undang-undang Islam bagi melahirkan pelajar yang memahami dan mampu mengamalkan syariah dalam kehidupan serta kerjaya.', '2026-04-07 19:59:12', '2026-04-09 19:41:10'),
+(7, 'DEC', 'L02313', 'DIPLOMA PENDIDIKAN AWAL KANAK-KANAK', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pendidikan Awal Kanak-Kanak memberi pengetahuan dan kemahiran dalam perkembangan serta pendidikan kanak-kanak dari usia awal. Kursus ini merangkumi aspek penjagaan, psikologi kanak-kanak, kaedah pengajaran dan aktiviti pembelajaran untuk melatih pelajar menjadi pendidik atau penjaga kanak-kanak yang profesional.', '2026-04-07 21:07:25', '2026-04-09 19:41:39'),
+(8, 'DDWG', '05', 'DIPLOMA PENGURUSAN TEKNOLOGI MAKLUMAT', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Teknologi Maklumat memberi pengetahuan tentang penggunaan teknologi dalam pengurusan sistem dan organisasi. Kursus ini merangkumi asas pengaturcaraan, pangkalan data, rangkaian komputer serta pengurusan sistem maklumat untuk melatih pelajar mengurus dan menyokong keperluan teknologi dalam sesebuah organisasi.', '2026-04-07 21:11:52', '2026-04-09 19:40:07'),
+(9, 'DDWF', '05', 'DIPLOMA PENGURUSAN HARTANAH', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Hartanah memberi pengetahuan tentang pengurusan, penilaian dan pentadbiran hartanah seperti rumah, bangunan dan tanah. Kursus ini merangkumi aspek perundangan hartanah, penilaian aset, pengurusan sewaan serta pembangunan hartanah bagi melatih pelajar dalam bidang pengurusan hartanah secara profesional.', '2026-04-07 21:15:10', '2026-04-09 19:40:36'),
+(10, 'BA111', 'UE4344001', 'DIPLOMA PENGAJIAN PERNIAGAAN', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengajian Perniagaan memberi pengetahuan asas tentang dunia perniagaan dan pengurusan. Kursus ini merangkumi bidang seperti pemasaran, kewangan, ekonomi, pengurusan organisasi dan keusahawanan bagi melatih pelajar memahami operasi serta fungsi sesebuah perniagaan.', '2026-04-07 21:19:08', '2026-04-09 19:38:23'),
+(11, 'AC110', 'UE4344001', 'DIPLOMA PERAKAUNAN', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Perakaunan memberi pengetahuan dan kemahiran dalam merekod, menganalisis dan menyediakan penyata kewangan. Kursus ini merangkumi asas perakaunan, percukaian, audit serta pengurusan kewangan untuk melatih pelajar dalam mengurus rekod kewangan organisasi dengan tepat dan sistematik.', '2026-04-07 21:26:34', '2026-04-09 19:38:58'),
+(12, 'BA003', 'UE4344001', 'PRA DIPLOMA PERDAGANGAN', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Pra Diploma Perdagangan ialah program asas yang menyediakan pelajar sebelum melanjutkan pengajian ke peringkat diploma dalam bidang perniagaan. Kursus ini memberi pendedahan awal kepada subjek seperti asas perniagaan, matematik, bahasa dan kemahiran belajar bagi membantu pelajar bersedia untuk pengajian di peringkat yang lebih tinggi.', '2026-04-07 21:30:45', '2026-04-09 19:39:29'),
+(13, 'MQA/SWA0628', '01', 'DIPLOMA PENGURUSAN', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan memberi pengetahuan asas dalam bidang pengurusan organisasi seperti perniagaan, pentadbiran, kewangan dan sumber manusia. Kursus ini melatih pelajar dalam kemahiran pengurusan, komunikasi dan membuat keputusan untuk menyediakan mereka kepada kerjaya dalam sektor awam mahupun swasta.', '2026-04-07 21:51:33', '2026-04-09 19:36:40'),
+(14, 'MQA/SWA0630', '01', 'DIPLOMA PENGURUSAN SUMBER MANUSIA', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Sumber Manusia memberi pengetahuan tentang pengurusan pekerja dalam sesebuah organisasi. Kursus ini merangkumi aspek pengambilan pekerja, latihan, pentadbiran gaji, hubungan industri serta pembangunan tenaga kerja bagi memastikan pengurusan sumber manusia yang efektif dalam organisasi.', '2026-04-07 21:52:39', '2026-04-09 19:37:09'),
+(15, 'MQA/SWA0629', '01', 'DIPLOMA PENGURUSAN PERNIAGAAN', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Perniagaan memberi pengetahuan asas dalam bidang perniagaan seperti pengurusan, pemasaran, kewangan dan keusahawanan. Kursus ini melatih pelajar dengan kemahiran mengurus operasi perniagaan serta membuat keputusan untuk mempersiapkan mereka dalam dunia pekerjaan atau menjadi usahawan.', '2026-04-07 21:53:46', '2026-04-09 19:37:40'),
+(16, 'MQA/FA15689', 'DKU045(N)', 'DIPLOMA PENGURUSAN INDUSTRI HALAL', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Industri Halal memberi pengetahuan tentang pengurusan, operasi dan piawaian dalam industri halal. Kursus ini meliputi aspek seperti pensijilan halal, pengurusan produk halal, kawalan kualiti serta pengurusan perniagaan yang mematuhi prinsip syariah bagi memenuhi keperluan pasaran halal.', '2026-04-07 22:01:38', '2026-04-09 19:35:08'),
+(17, 'MQA/FA3436', 'DKU045(N)', 'DIPLOMA PENGURUSAN PENJAGAAN KESIHATAN', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Penjagaan Kesihatan memberi pengetahuan dan kemahiran dalam pengurusan perkhidmatan kesihatan seperti hospital, klinik dan pusat perubatan. Kursus ini merangkumi aspek pentadbiran kesihatan, pengurusan operasi, perkhidmatan pesakit serta sistem pengurusan dalam sektor penjagaan kesihatan.', '2026-04-07 22:26:40', '2026-04-09 19:35:26'),
+(18, 'R2/213/4/0359 (MQA/A6023)', 'DK268(W)', 'DIPLOMA REKA BENTUK MULTIMEDIA', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Reka Bentuk Multimedia memberi pengetahuan dan kemahiran dalam menghasilkan kandungan kreatif digital seperti grafik, animasi, video dan reka bentuk laman web. Kursus ini menggabungkan elemen seni, kreativiti dan teknologi untuk melatih pelajar menjadi profesional dalam industri multimedia dan media digital.', '2026-04-07 22:54:18', '2026-04-09 19:33:09'),
+(19, '(R/321/4/0029) – MQA/FA0611', 'DK268(W)', 'DIPLOMA KOMUNIKASI MASSA', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Komunikasi Massa memberi pengetahuan tentang bidang media dan komunikasi seperti kewartawanan, penyiaran, perhubungan awam dan media digital. Kursus ini melatih pelajar dalam kemahiran menulis, penyuntingan, penghasilan kandungan serta pengurusan media untuk industri komunikasi moden.', '2026-04-07 22:59:20', '2026-04-09 19:33:43'),
+(20, 'R2/861/4/0003 – MQA/FA10855', 'DK268(W)', 'DIPLOMA PENGURUSAN KESELAMATAN & PENGUATKUASAAN UNDANG-UNDANG', 'Diploma', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Keselamatan & Penguatkuasaan Undang-Undang memberi pengetahuan dan kemahiran dalam bidang keselamatan, penguatkuasaan serta sistem undang-undang. Kursus ini merangkumi aspek pengurusan keselamatan, pencegahan jenayah, operasi penguatkuasaan dan undang-undang asas bagi melahirkan graduan yang berkemahiran dalam sektor keselamatan dan agensi penguatkuasaan.', '2026-04-07 23:04:04', '2026-04-09 19:34:12'),
+(21, 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', 'L02922', 'PENJAGAAN & PENDIDIKAN AWAL KANAK-KANAK', 'TVET', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'KEMUDAHAN FASILITI', '2026-04-07 23:40:38', '2026-04-07 23:40:38'),
+(22, 'K12001/G452-002-4:2017-ST-A', 'L02890', 'TEKNOLOGI AUTOMOTIF', 'TVET', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'KEMUDAHAN FASILITI', '2026-04-07 23:50:59', '2026-04-07 23:50:59'),
+(23, 'K12001/G452-002-4:2017-ST-A', 'L02890', 'TEKNOLOGI AUTOMOTIF', 'TVET', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'KEMUDAHAN FASILITI', '2026-04-07 23:50:59', '2026-04-07 23:50:59'),
+(24, 'S960-002-2:2020', 'L02650', 'PENYAMANAN UDARA & PENYEJUKAN (HVAC)', 'TVET', 'SEPENUH MASA', '2 TAHUN', NULL, NULL, 'KEMUDAHAN FASILITI', '2026-04-08 00:15:47', '2026-04-08 00:15:47'),
+(25, '(R3/0913/4/00560)(10,29)(MQA/FA5362)', 'DK030(N)', 'DIPLOMA KEJURURAWATAN', 'SAINS KESIHATAN', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Kejururawatan melatih pelajar menjadi jururawat profesional yang mahir dalam penjagaan pesakit. Kursus ini merangkumi pengetahuan tentang penjagaan kesihatan, rawatan pesakit, kemahiran klinikal serta latihan praktikal di hospital atau pusat kesihatan. Graduan program ini boleh bekerja sebagai jururawat di hospital, klinik dan institusi kesihatan.', '2026-04-09 18:51:38', '2026-04-09 19:32:19'),
+(26, '(R3/0913/4/0057)03,30)(MQA/FA8746)', 'DK030(N)', 'DIPLOMA SAINS PERUBATAN DAN KESIHATAN', 'SAINS KESIHATAN', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Sains Perubatan dan Kesihatan memberi pengetahuan asas tentang bidang perubatan dan kesihatan. Kursus ini merangkumi topik seperti asas sains perubatan, penjagaan kesihatan, anatomi dan fisiologi manusia serta kemahiran asas yang berkaitan dengan perkhidmatan kesihatan.', '2026-04-09 18:59:38', '2026-04-09 19:31:06'),
+(27, '(R2/0414/4/044)(8,28)(MQA/FA3436)', 'DK030(N)', 'DIPLOMA PENGURUSAN PENJAGAAN KESIHATAN', 'SAINS KESIHATAN', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Penjagaan Kesihatan memberi pengetahuan dan kemahiran dalam pengurusan perkhidmatan kesihatan seperti hospital, klinik dan pusat perubatan. Kursus ini merangkumi aspek pentadbiran kesihatan, pengurusan operasi, perkhidmatan pesakit serta sistem pengurusan dalam sektor penjagaan kesihatan.', '2026-04-09 19:13:44', '2026-04-09 19:30:31'),
+(28, '(N/0414/4/0018)(06/27)(MQA/FA15689)', 'DK030(N)', 'DIPLOMA PENGURUSAN INDUSTRI HALAL', 'SAINS KESIHATAN', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Diploma Pengurusan Industri Halal memberi pengetahuan tentang pengurusan, operasi dan piawaian dalam industri halal. Kursus ini meliputi aspek seperti pensijilan halal, pengurusan produk halal, kawalan kualiti serta pengurusan perniagaan yang mematuhi prinsip syariah bagi memenuhi keperluan pasaran halal.', '2026-04-09 19:17:13', '2026-04-09 19:29:56'),
+(29, 'JPT-DK030(N)', 'DK030(N)', 'SIJIL PEMBANTU PENJAGAAN PESAKIT', 'SAINS KESIHATAN', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Sijil Pembantu Penjagaan Pesakit merupakan kursus yang melatih pelajar untuk membantu dalam penjagaan pesakit di hospital, klinik atau pusat penjagaan kesihatan. Kursus ini memberi pengetahuan asas tentang penjagaan pesakit, kebersihan diri pesakit, bantuan pergerakan pesakit serta sokongan kepada jururawat dan kakitangan perubatan dalam memastikan keselesaan dan keselamatan pesakit.', '2026-04-09 19:20:02', '2026-04-09 19:29:08'),
+(30, '(MQA/PA16868) (N/0913/2/0018)', 'DK030(N)', 'POST BASIC IN RENAL CARE NURSING', 'SAINS KESIHATAN', 'SEPENUH MASA', '3 TAHUN', NULL, NULL, 'Program Post Basic in Renal Care Nursing merupakan kursus lanjutan untuk jururawat yang memberi pengetahuan dan kemahiran khusus dalam penjagaan pesakit yang mengalami penyakit buah pinggang. Kursus ini memberi tumpuan kepada rawatan seperti dialisis, pemantauan pesakit renal serta pengurusan penjagaan kesihatan bagi pesakit yang mengalami kegagalan buah pinggang.', '2026-04-09 19:28:18', '2026-04-09 19:29:30');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Table structure for table `programs`
 --
 
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+CREATE TABLE `programs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `jenis_program` varchar(255) NOT NULL,
+  `info_program` text NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Dumping data for table `programs`
 --
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(5, '0001_01_01_000000_create_users_table', 1),
-(6, '0001_01_01_000001_create_cache_table', 1),
-(7, '0001_01_01_000002_create_jobs_table', 1),
-(8, '2025_04_06_000000_create_messages_table', 1),
-(9, '2026_04_03_101232_create_programs_table', 2),
-(10, '2026_04_03_101236_create_institusis_table', 2),
-(11, '2026_04_03_101239_create_kursuses_table', 2),
-(12, '2026_04_03_101244_create_silibuses_table', 2),
-(13, '2026_04_03_101247_create_kerjayas_table', 2),
-(14, '2026_04_03_101251_create_yuran_pendaftarans_table', 2),
-(15, '2026_04_03_101254_create_yuran_asramas_table', 2),
-(16, '2026_04_03_101302_create_yuran_pilihans_table', 2),
-(17, '2026_04_03_101305_create_yuran_pengajians_table', 2),
-(18, '2026_04_03_101308_create_elauns_table', 2),
-(19, '2026_04_03_101312_create_galeris_table', 2),
-(20, '2026_04_03_114635_drop_kod_institusi_from_programs_table', 2),
-(21, '2026_04_04_000000_update_institusis_table_add_gambar_and_rename_jenis', 3),
-(22, '2025_04_06_000001_add_comment_to_messages_table', 4),
-(23, '2026_04_07_000001_fix_programs_id_auto_increment', 5),
-(24, '2026_04_07_000002_fix_auto_increment_ids', 6),
-(25, '2026_04_07_000003_fix_kursuses_id_auto_increment', 7),
-(26, '2026_04_07_000004_nullable_tarikh_pendaftaran_on_kursuses', 8),
-(27, '2026_04_07_000005_fix_missing_auto_increment_on_child_tables', 9),
-(28, '2026_04_04_000001_update_galeris_add_penerangan_drop_kod_khusus', 10),
-(29, '2026_04_05_000000_create_syarat_kelayakans_table', 11),
-(30, '2026_04_07_000000_make_kuota_and_tarikh_pendaftaran_nullable_in_kursuses_table', 11),
-(31, '2026_04_07_000006_rename_kod_khusus_to_kod_kursus_in_child_tables', 11),
-(32, '2026_04_07_123032_fix_yuran_asramas_id_auto_increment', 12),
-(33, '2026_04_07_124937_fix_messages_id_auto_increment', 13),
-(34, '2026_04_07_133220_add_username_and_level_to_users_table', 14),
-(35, '2026_04_07_150110_modify_users_table_for_username_and_level', 15),
-(36, '2026_04_07_150435_fix_users_id_auto_increment', 16);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_reset_tokens`
---
-
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+INSERT INTO `programs` (`id`, `jenis_program`, `info_program`, `icon`, `created_at`, `updated_at`) VALUES
+(1, 'TVET', 'Pendidikan Teknikal dan Latihan Vokasional untuk kerjaya berasaskan kemahiran industri.', 'fas fa-tools', '2026-04-07 00:32:34', '2026-04-07 00:32:34'),
+(2, 'Diploma', 'Program Akademik dan Profesional untuk laluan ke peringkat ijazah dan kerjaya profesional.', 'fas fa-graduation-cap', '2026-04-07 00:33:17', '2026-04-07 00:33:17'),
+(3, 'Sains Kesihatan', 'Program Sains Kesihatan untuk pembangunan kompetensi klinikal dan penyelidikan dalam bidang kesihatan.', 'fas fa-heartbeat', '2026-04-07 00:33:39', '2026-04-07 00:33:39');
 
 -- --------------------------------------------------------
 
@@ -333,7 +338,52 @@ CREATE TABLE `syarat_kelayakans` (
 INSERT INTO `syarat_kelayakans` (`id`, `kod_institusi`, `kod_kursus`, `syarat_kelayakan`, `created_at`, `updated_at`) VALUES
 (1, 'T3ST1NG', 'F432-005-2:2019', 'layak', '2026-04-04 21:30:55', '2026-04-04 21:30:55'),
 (2, 'T3ST1NG', '1234', 'orang', '2026-04-07 04:05:48', '2026-04-07 04:05:48'),
-(3, 'T3ST1NG', '1234', 'aa', '2026-04-07 04:37:51', '2026-04-07 04:37:51');
+(3, 'T3ST1NG', '1234', 'aa', '2026-04-07 04:37:51', '2026-04-07 04:37:51'),
+(4, '000', 'DSI', '1. Mempunyai 3 kredit (BM + 2 subjek lain)', '2026-04-07 19:14:28', '2026-04-07 19:14:28'),
+(5, '000', 'DEC', 'Sejarah wajib lulus.', '2026-04-07 19:31:12', '2026-04-07 19:31:12'),
+(7, '000', 'DDWF', 'Sejarah wajib lulus', '2026-04-07 21:15:35', '2026-04-07 21:15:35'),
+(8, '000', 'AC110', 'Mempunyai 3 kredit (BM, BI, MT wajib kredit)', '2026-04-07 21:27:26', '2026-04-07 21:27:26'),
+(9, '000', 'BA003', 'Mempunyai 3 kredit (BM kredit, BI, MATH lulus)', '2026-04-07 21:31:26', '2026-04-07 21:31:26'),
+(10, '000', 'DDWG', '- Mempunyai 3 kredit (BM kredit, BI , Math lulus)', '2026-04-07 21:33:25', '2026-04-07 21:33:25'),
+(11, '000', 'MQA/FA15689', 'lulus SPM 3 kredit apa-apa subjek', '2026-04-07 22:02:49', '2026-04-07 22:02:49'),
+(12, 'DKU045(N)', 'MQA/FA3436', '3 kredit : MT atau SCI & 2SL\r\nlulus BM, BI dan SEJ', '2026-04-07 22:27:43', '2026-04-07 22:27:43'),
+(13, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'Lulus SPM', '2026-04-07 22:55:34', '2026-04-07 22:55:34'),
+(14, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'Mempunyai sekurang-kurangnya 3 kredit dalam mana-mana mata pelajaran', '2026-04-07 22:56:16', '2026-04-07 22:56:16'),
+(15, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'Lulus SPM atau setaraf', '2026-04-07 22:59:44', '2026-04-07 22:59:44'),
+(16, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'Mempunyai sekurang-kurangnya 3 kredit dalam mana-mana mata pelajaran', '2026-04-07 23:00:15', '2026-04-07 23:00:15'),
+(17, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'Lulus SPM atau setaraf', '2026-04-07 23:04:22', '2026-04-07 23:04:22'),
+(18, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'Sekurang-kurangnya 3 kredit dalam mana-mana mata pelajaran', '2026-04-07 23:04:50', '2026-04-07 23:04:50'),
+(19, 'L02890', 'K12001/G452-002-4:2017-ST-A', 'Lulus SPM atau setaraf, atau memiliki sijil kemahiran asas', '2026-04-07 23:51:48', '2026-04-07 23:51:48'),
+(20, 'DK030(N)', '(R3/0913/4/00560)(10,29)(MQA/FA5362)', '5 Kredit (Math, Bio/Fizik/Kimia, BM + SUB lain.(BI lulus)', '2026-04-09 18:53:47', '2026-04-09 18:53:47'),
+(22, 'DK030(N)', '(R2/0414/4/044)(8,28)(MQA/FA3436)', '3 Kredit \r\nMath, Bio/Fizik/Kimia + 2 Sub lain (BM, BI lulus)', '2026-04-09 19:15:30', '2026-04-09 19:15:30'),
+(23, 'DK030(N)', '(N/0414/4/0018)(06/27)(MQA/FA15689)', '3 Kredit (Mana-mana subjek)', '2026-04-09 19:17:51', '2026-04-09 19:17:51'),
+(24, 'DK030(N)', '(R3/0913/4/0057)03,30)(MQA/FA8746)', '5 Kredit \r\nMath, Bio/Fizik/Kimia, BM + 2 Sub lain(BI lulus)', '2026-04-09 19:23:24', '2026-04-09 19:23:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `level` enum('admin','staff') NOT NULL DEFAULT 'staff',
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'Administrator', 'admin', '$2y$12$H19mAPrdXLYpiz1r/SScaO2.smzvdTdW0lS560xxxUtpEPZEEuWGC', 'admin', NULL, '2026-04-07 07:05:08', '2026-04-07 07:05:08'),
+(4, 'Staff Member', 'staff', '$2y$12$25XfLH49TjxriBWnD8uzLukkZTw.DpRi6hdJ2s63kZZuzqoCQ9pDy', 'staff', NULL, '2026-04-07 07:05:08', '2026-04-07 07:05:08'),
+(5, 'SHAHRUL IRFAN BIN SAFARIN', 'SIS0221', '$2y$12$323mcVuZEWkMgIuos2UOMO.PXNS6DoV672/nobFYUyZf7aOoEZUv6', 'admin', NULL, '2026-04-07 07:36:53', '2026-04-07 07:36:53');
 
 -- --------------------------------------------------------
 
@@ -356,65 +406,36 @@ CREATE TABLE `yuran_asramas` (
 --
 
 INSERT INTO `yuran_asramas` (`id`, `kod_institusi`, `kod_kursus`, `item`, `amount`, `created_at`, `updated_at`) VALUES
-(2, '28600', 'ET-012-3:2012', 'ASRAMA BULANAN', 120.00, '2026-04-08 04:43:20', '2026-04-08 04:43:20'),
-(3, 'L02054', 'T982-001-3:2017', 'ASRAMA BULANAN', 100.00, '2026-04-08 04:59:57', '2026-04-08 04:59:57'),
-(4, 'C-21-G', 'P854-009-4:2020S', 'ASRAMA BULANAN', 200.00, '2026-04-08 17:56:10', '2026-04-08 17:56:10'),
-(6, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'ASRAMA BULANAN', 200.00, '2026-04-08 17:57:03', '2026-04-08 17:57:03'),
-(7, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:00:01', '2026-04-08 18:00:01'),
-(8, '71700 ', 'HT-012-2:2012 / HT-012-3:2012', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:01:32', '2026-04-08 18:01:32'),
-(9, '71700 ', 'IT-020-3:2013 / IT-020-4:2013', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:03:32', '2026-04-08 18:03:32'),
-(10, '71700 ', 'N821-001-3:2020', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:04:48', '2026-04-08 18:04:48'),
-(11, '47160', '1561-005-2:2022 / 1561-005-3:2022', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:08:56', '2026-04-08 18:08:56'),
-(12, '47160', 'HT-014-2:2011 / HT-014-3:2011', 'ASRAMA BULANAN', 200.00, '2026-04-08 18:10:24', '2026-04-08 18:10:24'),
-(13, 'L01143', 'G452-002-2:2018 / G452-002-3:2018', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:13:22', '2026-04-08 18:13:22'),
-(14, 'L01143', 'MC-024-3:2012', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:14:11', '2026-04-08 18:14:11'),
-(15, 'L01143', 'S960-002-3:2020S', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:15:41', '2026-04-08 18:15:41'),
-(16, 'L02138', 'HT-013-3-2011', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:16:45', '2026-04-08 18:16:45'),
-(17, 'L02138', 'HT-012-3-2012S', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:17:17', '2026-04-08 18:17:17'),
-(18, 'L02138', 'F432-005-3-2019', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:18:03', '2026-04-08 18:18:03'),
-(19, 'L02138', 'I561-005-3:2022S', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:19:27', '2026-04-08 18:19:27'),
-(20, 'L02138', 'S960-002-3:2020', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:19:56', '2026-04-08 18:19:56'),
-(21, 'L02138', 'I561-005-2:2022 / I561-005-3:2022 / HT-012-4:2011', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:20:29', '2026-04-08 18:20:29'),
-(22, '42000', 'G452-002-2:2018 / G452-002-3:2018 / G452-002-4:2017', 'ASRAMA BULANAN', 130.00, '2026-04-08 18:25:50', '2026-04-08 18:25:50'),
-(23, '42000', 'F432-005-2:2019 / F432-005-3:2019 / F432-005-4:2019', 'ASRAMA BULANAN', 130.00, '2026-04-08 18:26:58', '2026-04-08 18:26:58'),
-(24, '42000', 'S960-002-2:2020 / S960-002-3:2020 / S960-002-4:2020', 'ASRAMA BULANAN', 130.00, '2026-04-08 18:28:12', '2026-04-08 18:28:12'),
-(25, '42000', 'IT-020-3:2013 / IT-020-4:2013', 'ASRAMA BULANAN', 130.00, '2026-04-08 18:29:12', '2026-04-08 18:29:12'),
-(26, 'L02238', 'ME-011-3:2014', 'ASRAMA BULANAN', 180.00, '2026-04-08 18:31:21', '2026-04-08 18:31:21'),
-(27, 'L02080', 'S960-002-1:2020/S960-002-2:2020', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:34:50', '2026-04-08 18:34:50'),
-(28, 'L02080', 'IT-0583:3:2012', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:35:29', '2026-04-08 18:35:29'),
-(30, '144465-D', 'FB-025-3:2012', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 18:39:42', '2026-04-08 18:39:42'),
-(32, '144465-D', 'FB-025-3:2012', 'ASRAMA BULANAN (A)', 350.00, '2026-04-08 18:40:23', '2026-04-08 18:40:23'),
-(33, '144465-D', 'IT-020-3:2013', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 18:41:38', '2026-04-08 18:41:38'),
-(34, '144465-D', 'IT-020-3:2013', 'ASRAMA BULANAN (A)', 350.00, '2026-04-08 18:41:52', '2026-04-08 18:41:52'),
-(35, '144465-D', 'F432-005-3:2019S', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 18:42:53', '2026-04-08 18:42:53'),
-(36, '144465-D', 'F432-005-3:2019S', 'ASRAMA BULANAN (A)', 350.00, '2026-04-08 18:43:06', '2026-04-08 18:43:06'),
-(37, '144465-D', 'G452-002-2/3:2028', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 18:44:24', '2026-04-08 18:44:24'),
-(38, '144465-D', 'G452-002-2/3:2028', 'ASRAMA BULANAN (A)', 350.00, '2026-04-08 18:44:34', '2026-04-08 18:44:34'),
-(39, '144465-D', '1561-005-2/3:2022', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 18:45:29', '2026-04-08 18:45:29'),
-(40, '144465-D', '1561-005-2/3:2022', 'ASRAMA BULANAN (A)', 350.00, '2026-04-08 18:45:41', '2026-04-08 18:45:41'),
-(41, '144465-D', 'G452-007-3:2019S', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 18:46:38', '2026-04-08 18:46:38'),
-(42, '144465-D', 'G452-007-3:2019S', 'ASRAMA BULANAN (A)', 350.00, '2026-04-08 18:46:50', '2026-04-08 18:46:50'),
-(45, '53100', 'F432-005-2:2019', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:51:47', '2026-04-08 18:51:47'),
-(46, '53100', '1561-002:2:2018', 'ASRAMA BULANAN', 150.00, '2026-04-08 18:52:18', '2026-04-08 18:52:18'),
-(47, 'L02882', 'G452-002-3:2018', 'ASRAMA BULANAN', 300.00, '2026-04-08 18:54:23', '2026-04-08 18:54:23'),
-(48, 'L02163', 'MC-091-2:2016 / MC-091-3:2016 / MC-091-4:2016', 'ASRAMA BULANAN', 260.00, '2026-04-08 18:57:28', '2026-04-08 18:57:28'),
-(49, '70300', 'T982-001-3:2017 | T982-001-4:2018', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 19:00:05', '2026-04-08 19:00:05'),
-(50, '70300', 'T982-001-3:2017 | T982-001-4:2018', 'ASRAMA BULANAN (B)', 250.00, '2026-04-08 19:00:18', '2026-04-08 19:00:18'),
-(51, '70300', '1561-005-3:2022', 'ASRAMA BULANAN (D)', 200.00, '2026-04-08 19:01:26', '2026-04-08 19:01:26'),
-(52, '70300', '1561-005-3:2022', 'ASRAMA BULANAN (B)', 250.00, '2026-04-08 19:01:44', '2026-04-08 19:01:44'),
-(53, 'P13A-1', 'G452-002-3:2018-S', 'ASRAMA BULANAN', 120.00, '2026-04-08 19:08:40', '2026-04-08 19:08:40'),
-(54, 'P13A-1', 'F432-005-3-2019S', 'ASRAMA BULANAN', 120.00, '2026-04-08 19:09:54', '2026-04-08 19:09:54'),
-(55, '28600', 'G452-002-3:2018S', 'ASRAMA BULANAN', 120.00, '2026-04-08 19:12:40', '2026-04-08 19:12:40'),
-(56, '28600', '7982-001-3:2017', 'ASRAMA BULANAN', 120.00, '2026-04-08 19:14:33', '2026-04-08 19:14:33'),
-(57, 'P13A', 'MC-024-3:2022', 'ASRAMA BULANAN', 120.00, '2026-04-08 19:15:27', '2026-04-08 19:15:27'),
-(58, 'P13A', 'I561-005-3:2022', 'ASRAMA BULANAN', 120.00, '2026-04-08 19:15:57', '2026-04-08 19:15:57'),
-(59, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', 'ASRAMA BULANAN', 180.00, '2026-04-08 19:18:31', '2026-04-08 19:18:31'),
-(60, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', 'ASRAMA BULANAN', 180.00, '2026-04-08 19:18:31', '2026-04-08 19:18:31'),
-(61, 'TP-060-3:2013', 'TP-060-4:2013', 'ASRAMA BULANAN', 180.00, '2026-04-08 19:19:04', '2026-04-08 19:19:04'),
-(62, '47650', 'T982-001-3:2017', 'ASRAMA BULANAN', 180.00, '2026-04-08 19:26:01', '2026-04-08 19:26:01'),
-(63, 'L02723', 'N821-001-3:2020 / FB-025-4:2012', 'ASRAMA BULANAN', 200.00, '2026-04-08 19:27:58', '2026-04-08 19:27:58'),
-(64, 'L02723', 'HT-041-2:2011 / HT-041-3:2011', 'ASRAMA BULANAN', 200.00, '2026-04-08 19:28:37', '2026-04-08 19:28:37'),
-(66, 'L02723', 'T982-001-3:2017 / T982-001-4:2018', 'ASRAMA BULANAN', 200.00, '2026-04-08 19:29:47', '2026-04-08 19:29:47');
+(8, '000', 'DSI', 'Daftar Asrama', 120.00, '2026-04-07 20:00:41', '2026-04-07 20:00:41'),
+(9, '000', 'DSI', 'Asrama Bulanan', 150.00, '2026-04-07 20:00:51', '2026-04-07 20:00:51'),
+(10, '000', 'DEC', 'Daftar Asrama', 120.00, '2026-04-07 21:09:54', '2026-04-07 21:09:54'),
+(11, '000', 'DEC', 'Asrama Bulanan', 150.00, '2026-04-07 21:10:01', '2026-04-07 21:10:01'),
+(12, '000', 'DDWG', 'Daftar Asrama', 120.00, '2026-04-07 21:12:43', '2026-04-07 21:12:43'),
+(13, '000', 'DDWG', 'Asrama Bulanan', 150.00, '2026-04-07 21:12:50', '2026-04-07 21:12:50'),
+(14, '000', 'DDWF', 'Daftar Asrama', 120.00, '2026-04-07 21:16:12', '2026-04-07 21:16:12'),
+(15, '000', 'DDWF', 'Asrama Bulanan', 150.00, '2026-04-07 21:16:17', '2026-04-07 21:16:17'),
+(16, '000', 'BA111', 'Daftar Asrama', 120.00, '2026-04-07 21:21:31', '2026-04-07 21:21:31'),
+(17, '000', 'BA111', 'Asrama Bulanan', 150.00, '2026-04-07 21:21:39', '2026-04-07 21:21:39'),
+(18, '000', 'AC110', 'Daftar Asrama', 120.00, '2026-04-07 21:29:32', '2026-04-07 21:29:32'),
+(19, '000', 'AC110', 'Asrama Bulanan', 150.00, '2026-04-07 21:29:39', '2026-04-07 21:29:39'),
+(20, '000', 'BA003', 'Daftar Asrama', 120.00, '2026-04-07 21:31:53', '2026-04-07 21:31:53'),
+(21, '000', 'BA003', 'Asrama Bulanan', 150.00, '2026-04-07 21:31:59', '2026-04-07 21:31:59'),
+(22, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', 'Daftar Asrama', 180.00, '2026-04-07 23:43:42', '2026-04-07 23:43:42'),
+(23, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', 'Asrama Bulanan', 180.00, '2026-04-07 23:43:51', '2026-04-07 23:43:51'),
+(24, 'L02890', 'K12001/G452-002-4:2017-ST-A', 'Daftar Asrama', 300.00, '2026-04-07 23:53:32', '2026-04-07 23:53:32'),
+(25, 'L02890', 'K12001/G452-002-4:2017-ST-A', 'Asrama Bulanan', 150.00, '2026-04-07 23:53:51', '2026-04-07 23:53:51'),
+(26, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'Daftar Asrama', 120.00, '2026-04-08 16:51:42', '2026-04-08 16:51:42'),
+(27, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'Asrama Bulanan', 150.00, '2026-04-08 16:51:48', '2026-04-08 16:51:48'),
+(28, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'Daftar Asrama', 120.00, '2026-04-08 16:52:17', '2026-04-08 16:52:17'),
+(29, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'Asrama Bulanan', 150.00, '2026-04-08 16:52:23', '2026-04-08 16:52:23'),
+(30, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'Daftar Asrama', 120.00, '2026-04-08 16:52:48', '2026-04-08 16:52:48'),
+(31, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'Asrama Bulanan', 150.00, '2026-04-08 16:52:55', '2026-04-08 16:52:55'),
+(32, '01', 'MQA/SWA0628', 'Daftar Asrama', 120.00, '2026-04-08 22:04:27', '2026-04-08 22:04:27'),
+(33, '01', 'MQA/SWA0628', 'Asrama Bulanan', 150.00, '2026-04-08 22:04:38', '2026-04-08 22:04:38'),
+(34, '01', 'MQA/SWA0630', 'Daftar Asrama', 120.00, '2026-04-08 22:05:28', '2026-04-08 22:05:28'),
+(35, '01', 'MQA/SWA0630', 'Asrama Bulanan', 150.00, '2026-04-08 22:05:36', '2026-04-08 22:05:36'),
+(36, '01', 'MQA/SWA0629', 'Daftar Asrama', 120.00, '2026-04-08 22:06:05', '2026-04-08 22:06:05'),
+(37, '01', 'MQA/SWA0629', 'Asrama Bulanan', 150.00, '2026-04-08 22:06:16', '2026-04-08 22:06:16');
 
 -- --------------------------------------------------------
 
@@ -437,53 +458,33 @@ CREATE TABLE `yuran_pendaftarans` (
 --
 
 INSERT INTO `yuran_pendaftarans` (`id`, `kod_institusi`, `kod_kursus`, `item`, `amount`, `created_at`, `updated_at`) VALUES
-(2, '28600', 'ET-012-3:2012', 'PENDAFTARAN', 1600.00, '2026-04-08 04:42:03', '2026-04-08 04:42:03'),
-(3, 'L02054', 'T982-001-3:2017', 'PENDAFTARAN', 1900.00, '2026-04-08 04:59:31', '2026-04-08 04:59:31'),
-(5, 'C-21-G', 'P854-009-4:2020S', 'PENDAFTARAN', 1900.00, '2026-04-08 17:54:44', '2026-04-08 17:54:44'),
-(6, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 17:57:12', '2026-04-08 17:57:12'),
-(7, '71700 ', 'IT-020-3:2013 / IT-020-4:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 18:03:25', '2026-04-08 18:03:25'),
-(8, '71700 ', 'N821-001-3:2020', 'PENDAFTARAN', 1900.00, '2026-04-08 18:04:42', '2026-04-08 18:04:42'),
-(9, '47160', '1561-005-2:2022 / 1561-005-3:2022', 'PENDAFTARAN', 1900.00, '2026-04-08 18:08:00', '2026-04-08 18:08:00'),
-(10, '47160', 'HT-014-2:2011 / HT-014-3:2011', 'PENDAFTARAN', 1900.00, '2026-04-08 18:09:59', '2026-04-08 18:09:59'),
-(11, 'L01143', 'G452-002-2:2018 / G452-002-3:2018', 'PENDAFTARAN', 1900.00, '2026-04-08 18:12:11', '2026-04-08 18:12:11'),
-(13, 'L01143', 'S960-002-3:2020S', 'PENDAFTARAN', 1900.00, '2026-04-08 18:15:22', '2026-04-08 18:15:22'),
-(14, 'L02138', 'HT-013-3-2011', 'PENDAFTARAN', 1900.00, '2026-04-08 18:16:35', '2026-04-08 18:16:35'),
-(15, 'L02138', 'HT-012-3-2012S', 'PENDAFTARAN', 1900.00, '2026-04-08 18:17:07', '2026-04-08 18:17:07'),
-(16, 'L02138', 'F432-005-3-2019', 'PENDAFTARAN', 1900.00, '2026-04-08 18:17:37', '2026-04-08 18:17:37'),
-(17, 'L02138', 'I561-005-3:2022S', 'PENDAFTARAN', 1900.00, '2026-04-08 18:19:16', '2026-04-08 18:19:16'),
-(18, 'L02138', 'S960-002-3:2020', 'PENDAFTARAN', 1900.00, '2026-04-08 18:19:47', '2026-04-08 18:19:47'),
-(19, 'L02138', 'I561-005-2:2022 / I561-005-3:2022 / HT-012-4:2011', 'PENDAFTARAN', 1900.00, '2026-04-08 18:20:16', '2026-04-08 18:20:16'),
-(20, 'L02138', 'F432-005-2:2019 / F432-005-3:2019', 'PENDAFTARAN', 1900.00, '2026-04-08 18:21:53', '2026-04-08 18:21:53'),
-(21, '42000', 'G452-002-2:2018 / G452-002-3:2018 / G452-002-4:2017', 'PENDAFTARAN', 1900.00, '2026-04-08 18:24:45', '2026-04-08 18:24:45'),
-(22, '42000', 'F432-005-2:2019 / F432-005-3:2019 / F432-005-4:2019', 'PENDAFTARAN', 1900.00, '2026-04-08 18:26:09', '2026-04-08 18:26:09'),
-(23, '42000', 'S960-002-2:2020 / S960-002-3:2020 / S960-002-4:2020', 'PENDAFTARAN', 1900.00, '2026-04-08 18:27:23', '2026-04-08 18:27:23'),
-(24, 'L02238', 'ME-011-3:2014', 'PENDAFTARAN', 1900.00, '2026-04-08 18:30:34', '2026-04-08 18:30:34'),
-(25, 'L02080', 'S960-002-1:2020/S960-002-2:2020', 'PENDAFTARAN', 1900.00, '2026-04-08 18:34:23', '2026-04-08 18:34:23'),
-(26, 'L02080', 'IT-0583:3:2012', 'PENDAFTARAN', 1900.00, '2026-04-08 18:35:18', '2026-04-08 18:35:18'),
-(27, '144465-D', 'FB-025-3:2012', 'PENDAFTARAN', 1900.00, '2026-04-08 18:36:42', '2026-04-08 18:36:42'),
-(28, '144465-D', 'IT-020-3:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 18:40:47', '2026-04-08 18:40:47'),
-(29, '144465-D', 'F432-005-3:2019S', 'PENDAFTARAN', 1900.00, '2026-04-08 18:42:13', '2026-04-08 18:42:13'),
-(30, '144465-D', 'G452-002-2/3:2028', 'PENDAFTARAN', 1900.00, '2026-04-08 18:43:32', '2026-04-08 18:43:32'),
-(31, '144465-D', '1561-005-2/3:2022', 'PENDAFTARAN', 1900.00, '2026-04-08 18:44:54', '2026-04-08 18:44:54'),
-(32, '144465-D', 'G452-007-3:2019S', 'PENDAFTARAN', 1900.00, '2026-04-08 18:46:05', '2026-04-08 18:46:05'),
-(34, '53100', 'F432-005-2:2019', 'PENDAFTARAN', 1900.00, '2026-04-08 18:51:12', '2026-04-08 18:51:12'),
-(35, '53100', '1561-002:2:2018', 'PENDAFTARAN', 1900.00, '2026-04-08 18:52:08', '2026-04-08 18:52:08'),
-(36, 'L02882', 'G452-002-3:2018', 'PENDAFTARAN', 1900.00, '2026-04-08 18:53:50', '2026-04-08 18:53:50'),
-(37, 'L02163', 'MC-091-2:2016 / MC-091-3:2016 / MC-091-4:2016', 'PENDAFTARAN', 1900.00, '2026-04-08 18:56:50', '2026-04-08 18:56:50'),
-(38, '70300', 'T982-001-3:2017 | T982-001-4:2018', 'PENDAFTARAN', 1900.00, '2026-04-08 18:59:06', '2026-04-08 18:59:06'),
-(39, '70300', '1561-005-3:2022', 'PENDAFTARAN', 1900.00, '2026-04-08 19:00:37', '2026-04-08 19:00:37'),
-(40, 'P13A-1', 'MC-024-3:2012', 'PENDAFTARAN', 1900.00, '2026-04-08 19:05:33', '2026-04-08 19:05:33'),
-(41, 'P13A-1', 'G452-002-3:2018-S', 'PENDAFTARAN', 1600.00, '2026-04-08 19:07:52', '2026-04-08 19:07:52'),
-(42, 'P13A-1', 'F432-005-3-2019S', 'PENDAFTARAN', 1600.00, '2026-04-08 19:09:39', '2026-04-08 19:09:39'),
-(43, '28600', 'G452-002-3:2018S', 'PENDAFTARAN', 1600.00, '2026-04-08 19:12:26', '2026-04-08 19:12:26'),
-(44, '28600', '7982-001-3:2017', 'PENDAFTARAN', 1600.00, '2026-04-08 19:14:09', '2026-04-08 19:14:09'),
-(45, 'P13A', 'MC-024-3:2022', 'PENDAFTARAN', 1600.00, '2026-04-08 19:15:16', '2026-04-08 19:15:16'),
-(46, 'P13A', 'I561-005-3:2022', 'PENDAFTARAN', 1600.00, '2026-04-08 19:15:46', '2026-04-08 19:15:46'),
-(47, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', 'PENDAFTARAN', 1900.00, '2026-04-08 19:17:57', '2026-04-08 19:17:57'),
-(48, 'TP-060-3:2013', 'TP-060-4:2013', 'PENDAFTARAN', 1900.00, '2026-04-08 19:18:58', '2026-04-08 19:18:58'),
-(49, 'L02723', 'N821-001-3:2020 / FB-025-4:2012', 'PENDAFTARAN', 2050.00, '2026-04-08 19:27:29', '2026-04-08 19:27:29'),
-(50, 'L02723', 'HT-041-2:2011 / HT-041-3:2011', 'PENDAFTARAN', 2050.00, '2026-04-08 19:28:25', '2026-04-08 19:28:25'),
-(51, 'L02723', 'T982-001-3:2017 / T982-001-4:2018', 'PENDAFTARAN', 2050.00, '2026-04-08 19:29:36', '2026-04-08 19:29:36');
+(21, '000', 'DSI', 'Pendaftaran', 1300.00, '2026-04-07 20:00:29', '2026-04-07 20:00:29'),
+(22, '000', 'DEC', 'Pendaftaran', 1300.00, '2026-04-07 21:09:43', '2026-04-07 21:09:43'),
+(23, '000', 'DDWG', 'Pendaftaran', 1300.00, '2026-04-07 21:12:35', '2026-04-07 21:12:35'),
+(24, '000', 'DDWF', 'Pendaftaran', 1300.00, '2026-04-07 21:16:03', '2026-04-07 21:16:03'),
+(25, '000', 'BA111', 'Pendaftaran', 1300.00, '2026-04-07 21:21:22', '2026-04-07 21:21:22'),
+(26, '000', 'AC110', 'Pendaftaran', 1300.00, '2026-04-07 21:29:12', '2026-04-07 21:29:12'),
+(27, '000', 'BA003', 'Pendaftaran', 1300.00, '2026-04-07 21:31:47', '2026-04-07 21:31:47'),
+(28, '000', 'MQA/FA15689', 'Pendaftaran', 1800.00, '2026-04-07 22:04:33', '2026-04-07 22:04:33'),
+(29, '000', 'MQA/FA15689', 'Uniform', 150.00, '2026-04-07 22:05:21', '2026-04-07 22:05:21'),
+(30, '000', 'MQA/FA15689', 'Buku Kokurikulum', 6.00, '2026-04-07 22:05:35', '2026-04-07 22:05:35'),
+(31, '000', 'MQA/FA15689', 'Kad Matrik', 20.00, '2026-04-07 22:06:10', '2026-04-07 22:06:10'),
+(32, 'DKU045(N)', 'MQA/FA3436', 'Pendaftaran', 1800.00, '2026-04-07 22:29:21', '2026-04-07 22:29:21'),
+(33, 'DKU045(N)', 'MQA/FA3436', 'Uniform', 150.00, '2026-04-07 22:29:28', '2026-04-07 22:29:28'),
+(34, 'DKU045(N)', 'MQA/FA3436', 'Buku Kokurikulum', 6.00, '2026-04-07 22:29:36', '2026-04-07 22:29:36'),
+(35, 'DKU045(N)', 'MQA/FA3436', 'Kad Matrik', 20.00, '2026-04-07 22:29:53', '2026-04-07 22:29:53'),
+(36, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', 'Pendaftaran', 1850.00, '2026-04-07 23:43:31', '2026-04-07 23:43:31'),
+(37, 'L02890', 'K12001/G452-002-4:2017-ST-A', 'Pendaftaran', 1850.00, '2026-04-07 23:53:24', '2026-04-07 23:53:24'),
+(38, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'Pendaftaran', 1300.00, '2026-04-08 16:51:28', '2026-04-08 16:51:28'),
+(39, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'Pendaftaran', 1300.00, '2026-04-08 16:52:08', '2026-04-08 16:52:08'),
+(40, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'Pendaftaran', 1300.00, '2026-04-08 16:52:39', '2026-04-08 16:52:39'),
+(41, '01', 'MQA/SWA0628', 'Pendaftaran', 1300.00, '2026-04-08 22:04:16', '2026-04-08 22:04:16'),
+(42, '01', 'MQA/SWA0630', 'Pendaftaran', 1300.00, '2026-04-08 22:05:19', '2026-04-08 22:05:19'),
+(43, '01', 'MQA/SWA0629', 'Pendaftaran', 1300.00, '2026-04-08 22:05:55', '2026-04-08 22:05:55'),
+(44, 'DK030(N)', '(R3/0913/4/00560)(10,29)(MQA/FA5362)', 'Pendaftaran', 1500.00, '2026-04-09 18:56:52', '2026-04-09 18:56:52'),
+(45, 'DK030(N)', '(R3/0913/4/0057)03,30)(MQA/FA8746)', 'Pendaftaran', 1500.00, '2026-04-09 19:02:01', '2026-04-09 19:02:01'),
+(46, 'DK030(N)', '(R2/0414/4/044)(8,28)(MQA/FA3436)', 'Pendaftaran', 1500.00, '2026-04-09 19:16:02', '2026-04-09 19:16:02'),
+(47, 'DK030(N)', '(N/0414/4/0018)(06/27)(MQA/FA15689)', 'Pendaftaran', 1500.00, '2026-04-09 19:18:30', '2026-04-09 19:18:30');
 
 -- --------------------------------------------------------
 
@@ -501,6 +502,25 @@ CREATE TABLE `yuran_pengajians` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `yuran_pengajians`
+--
+
+INSERT INTO `yuran_pengajians` (`id`, `kod_institusi`, `kod_kursus`, `peringkat`, `tempoh`, `amount`, `created_at`, `updated_at`) VALUES
+(5, '000', 'DSI', 'Pinjaman PTPTN', '3 TAHUN', 18000.00, '2026-04-07 20:01:08', '2026-04-07 20:01:08'),
+(6, '000', 'DEC', 'Pinjaman PTPTN', '3 TAHUN', 18000.00, '2026-04-07 21:10:13', '2026-04-07 21:10:13'),
+(7, '000', 'DDWG', 'Pinjaman PTPTN', '3 TAHUN', 19000.00, '2026-04-07 21:13:07', '2026-04-07 21:13:07'),
+(8, '000', 'DDWF', 'Pinjaman PTPTN', '3 TAHUN', 19000.00, '2026-04-07 21:16:32', '2026-04-07 21:16:32'),
+(9, '000', 'BA111', 'Pinjaman PTPTN/Insentif Pendidikan B40', '3 TAHUN', 22800.00, '2026-04-07 21:22:51', '2026-04-07 21:22:51'),
+(10, '000', 'AC110', 'Pinjaman PTPTN/Insentif Pendidikan B40', '3 TAHUN', 22800.00, '2026-04-07 21:29:53', '2026-04-07 21:29:53'),
+(11, '000', 'BA003', 'Pinjaman PTPTN/Insentif Pendidikan B40', '3 TAHUN', 22800.00, '2026-04-07 21:32:13', '2026-04-07 21:32:13'),
+(12, 'DKU045(N)', 'MQA/FA3436', 'Pinjaman PTPTN', '3 TAHUN', 38000.00, '2026-04-07 22:31:01', '2026-04-07 22:31:01'),
+(13, 'DKU045(N)', 'MQA/FA15689', 'Pinjaman PTPTN', '3 TAHUN', 21360.00, '2026-04-07 22:31:55', '2026-04-07 22:31:55'),
+(14, 'DK030(N)', '(R3/0913/4/00560)(10,29)(MQA/FA5362)', 'yuran pengajian', '3 TAHUN', 38250.00, '2026-04-09 18:56:14', '2026-04-09 18:56:14'),
+(16, 'DK030(N)', '(R2/0414/4/044)(8,28)(MQA/FA3436)', 'yuran pengajian', '3 TAHUN', 38000.00, '2026-04-09 19:15:48', '2026-04-09 19:15:48'),
+(17, 'DK030(N)', '(N/0414/4/0018)(06/27)(MQA/FA15689)', 'yuran pengajian', '3 TAHUN', 27940.00, '2026-04-09 19:18:17', '2026-04-09 19:18:17'),
+(18, 'DK030(N)', '(R3/0913/4/0057)03,30)(MQA/FA8746)', 'yuran pengajian', '3 TAHUN', 38250.00, '2026-04-09 19:23:55', '2026-04-09 19:23:55');
 
 -- --------------------------------------------------------
 
@@ -552,7 +572,6 @@ INSERT INTO `yuran_pilihans` (`id`, `kod_institusi`, `kod_kursus`, `pilihan`, `i
 (29, '42000', 'S960-002-2:2020 / S960-002-3:2020 / S960-002-4:2020', 'PILIHAN', 'PENDAFTARAN ASRAMA', 130.00, '2026-04-08 18:27:36', '2026-04-08 18:27:36'),
 (31, '42000', 'S960-002-2:2020 / S960-002-3:2020 / S960-002-4:2020', 'PILIHAN', 'TSHIRT', 30.00, '2026-04-08 18:28:06', '2026-04-08 18:28:06'),
 (32, '42000', 'IT-020-3:2013 / IT-020-4:2013', 'PILIHAN', 'TSHIRT', 30.00, '2026-04-08 18:29:00', '2026-04-08 18:29:00'),
-(33, 'L02238', 'ME-011-3:2014', 'PILIHAN', 'PENDAFTARAN ASRAMA', 180.00, '2026-04-08 18:30:50', '2026-04-08 18:30:50'),
 (34, 'L02238', 'ME-011-3:2014', 'PILIHAN', 'PENDAFTARAN ASRAMA', 180.00, '2026-04-08 18:30:52', '2026-04-08 18:30:52'),
 (35, 'L02238', 'ME-011-3:2014', 'PILIHAN', 'ACCESS CARD', 50.00, '2026-04-08 18:31:10', '2026-04-08 18:31:10'),
 (36, 'L02080', 'S960-002-1:2020/S960-002-2:2020', 'PILIHAN', 'JPK', 100.00, '2026-04-08 18:34:39', '2026-04-08 18:34:39'),
@@ -589,18 +608,29 @@ INSERT INTO `yuran_pilihans` (`id`, `kod_institusi`, `kod_kursus`, `pilihan`, `i
 (71, 'L02723', 'N821-001-3:2020 / FB-025-4:2012', 'PILIHAN', 'JPK', 100.00, '2026-04-08 19:27:43', '2026-04-08 19:27:43'),
 (72, 'L02723', 'HT-041-2:2011 / HT-041-3:2011', 'PILIHAN', 'JPK', 100.00, '2026-04-08 19:28:31', '2026-04-08 19:28:31'),
 (73, 'L02723', 'T982-001-3:2017 / T982-001-4:2018', 'PILIHAN', 'JPK', 100.00, '2026-04-08 19:29:41', '2026-04-08 19:29:41'),
-(74, 'C-21-G', 'P854-009-4:2020S', 'PILIHAN', 'JPK', 200.00, '2026-04-08 19:33:33', '2026-04-08 19:33:33');
+(74, 'C-21-G', 'P854-009-4:2020S', 'PILIHAN', 'JPK', 200.00, '2026-04-08 19:33:33', '2026-04-08 19:33:33'),
+(75, 'L02138', 'F432-005-2:2019 / F432-005-3:2019', 'PILIHAN', 'PENDAFTARAN ASRAMA', 300.00, '2026-04-09 18:03:52', '2026-04-09 18:03:52'),
+(76, '42000', 'MC-024-3:2012', 'PILIHAN', 'PENDAFTARAN ASRAMA', 150.00, '2026-04-09 18:12:15', '2026-04-09 18:12:15'),
+(78, 'L01143', 'MC-024-3:2012', 'PILIHAN', 'TSHIRT', 30.00, '2026-04-09 18:13:31', '2026-04-09 18:13:31'),
+(79, '42000', 'IT-020-3:2013 / IT-020-4:2013', 'PILIHAN', 'PENDAFTARAN ASRAMA', 130.00, '2026-04-09 18:15:36', '2026-04-09 18:15:36'),
+(80, 'L02238', 'F432-005-2:2019 / F432-005-3:2019', 'PILIHAN', 'PENDAFTARAN ASRAMA', 180.00, '2026-04-09 18:23:26', '2026-04-09 18:23:26'),
+(81, 'L02238', 'F432-005-2:2019 / F432-005-3:2019', 'PILIHAN', 'ACCESS CARD', 50.00, '2026-04-09 18:23:43', '2026-04-09 18:23:43'),
+(82, 'L02758', 'G452-002-2:2018 / G452-002-3:2018', 'PILIHAN', 'DEPOSIT ULTILITI', 100.00, '2026-04-09 18:25:58', '2026-04-09 18:25:58'),
+(83, 'L02758', 'G452-002-2:2018 / G452-002-3:2018', 'PILIHAN', 'PENGANGKUTAN', 100.00, '2026-04-09 18:28:09', '2026-04-09 18:28:09'),
+(84, '144465-D', 'MC-024-3:2012', 'PILIHAN', 'PENDAFTARAN ASRAMA', 400.00, '2026-04-09 18:30:13', '2026-04-09 18:30:13'),
+(85, '144465-D', 'MC-024-3:2012', 'PILIHAN', 'JPK', 100.00, '2026-04-09 18:31:03', '2026-04-09 18:31:03'),
+(86, 'L02882', 'G452-002-2:2018 / G452-002-3:2018', 'PILIHAN', 'PENDAFTARAN ASRAMA', 300.00, '2026-04-09 18:35:50', '2026-04-09 18:35:50'),
+(87, 'L02163', 'G452-002-2:2018 / G452-002-3:2018', 'PILIHAN', 'PENDAFTARAN ASRAMA (B)', 260.00, '2026-04-09 18:37:56', '2026-04-09 18:37:56'),
+(88, 'L02163', 'G452-002-2:2018 / G452-002-3:2018', 'PILIHAN', 'PENDAFTARAN ASRAMA (D)', 260.00, '2026-04-09 18:38:22', '2026-04-09 18:38:22'),
+(89, 'P13A-1', 'MC-024-3:2012', 'PILIHAN', 'JPK', 300.00, '2026-04-09 18:45:39', '2026-04-09 18:45:39'),
+(90, '28600', 'MC-024-3:2012', 'PILIHAN', 'JPK', 300.00, '2026-04-09 18:49:33', '2026-04-09 18:49:33'),
+(91, '28600', 'F432-005-3:2019S', 'PILIHAN', 'JPK', 300.00, '2026-04-09 18:51:45', '2026-04-09 18:51:45'),
+(92, 'L02723', 'G452-002-3:2018', 'PILIHAN', 'JPK', 100.00, '2026-04-09 18:53:54', '2026-04-09 18:53:54'),
+(93, 'L02723', 'G452-002-3:2018', 'PILIHAN', 'JPK', 100.00, '2026-04-09 18:55:20', '2026-04-09 18:55:20');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `cache`
---
-ALTER TABLE `cache`
-  ADD PRIMARY KEY (`key`),
-  ADD KEY `cache_expiration_index` (`expiration`);
 
 --
 -- Indexes for table `elauns`
@@ -633,9 +663,9 @@ ALTER TABLE `kursuses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Indexes for table `programs`
 --
-ALTER TABLE `migrations`
+ALTER TABLE `programs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -649,6 +679,13 @@ ALTER TABLE `silibuses`
 --
 ALTER TABLE `syarat_kelayakans`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_username_unique` (`username`);
 
 --
 -- Indexes for table `yuran_asramas`
@@ -688,31 +725,31 @@ ALTER TABLE `elauns`
 -- AUTO_INCREMENT for table `galeris`
 --
 ALTER TABLE `galeris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `institusis`
 --
 ALTER TABLE `institusis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `kerjayas`
 --
 ALTER TABLE `kerjayas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `kursuses`
 --
 ALTER TABLE `kursuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT for table `programs`
 --
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+ALTER TABLE `programs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `silibuses`
@@ -724,31 +761,37 @@ ALTER TABLE `silibuses`
 -- AUTO_INCREMENT for table `syarat_kelayakans`
 --
 ALTER TABLE `syarat_kelayakans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `yuran_asramas`
 --
 ALTER TABLE `yuran_asramas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `yuran_pendaftarans`
 --
 ALTER TABLE `yuran_pendaftarans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `yuran_pengajians`
 --
 ALTER TABLE `yuran_pengajians`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `yuran_pilihans`
 --
 ALTER TABLE `yuran_pilihans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
