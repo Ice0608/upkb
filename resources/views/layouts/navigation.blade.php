@@ -101,7 +101,6 @@
 
         .site-nav-brand-kicker,
         .site-nav-brand-title {
-            font-family: 'Roboto Condensed', sans-serif !important;
             transition: transform 0.25s ease, letter-spacing 0.25s ease, color 0.25s ease;
         }
 
@@ -468,8 +467,8 @@
             </span>
             <div class="site-nav-brand-copy min-w-0 leading-tight">
                 <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">SES</p>
-                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]" style="font-family: 'Roboto Condensed', sans-serif;">SMART Education</h1>
-                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]" style="font-family: 'Roboto Condensed', sans-serif;">Society</h1>
+                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">SMART Education</h1>
+                <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">Society</h1>
             </div>
         </a>
 
