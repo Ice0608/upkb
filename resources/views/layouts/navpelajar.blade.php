@@ -237,6 +237,8 @@
         .site-nav-mobile-panel {
             opacity: 0;
             transform: translateY(-6px);
+            max-height: 80vh; 
+            overflow-y: auto; 
         }
 
         .site-nav-mobile[open] .site-nav-mobile-panel {
