@@ -13,26 +13,31 @@
 
     <section class="max-w-4xl mx-auto px-6 py-10">
         <div class="bg-white rounded-3xl shadow-lg p-8">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Add New Program</h1>
+            <h1 class="text-3xl font-bold text-orange-600 mb-6">Tambah Program Baru</h1>
 
-            <form action="{{ route('admin.storeprogram') }}" method="POST">
+            <form action="{{ route('admin.storeprogram') }}" method="POST" class="space-y-6">
                 @csrf
-                <div class="mb-4">
-                    <label for="jenis_program" class="block text-sm font-medium text-gray-700">Jenis Program</label>
-                    <input type="text" name="jenis_program" id="jenis_program" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="jenis_program" class="block text-sm font-medium text-gray-700">Jenis Program</label>
+                        <input type="text" name="jenis_program" id="jenis_program" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Masukkan jenis program" required>
+                    </div>
+
+                    <div>
+                        <label for="icon" class="block text-sm font-medium text-gray-700">Icon</label>
+                        <input type="text" name="icon" id="icon" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Contoh: fas fa-star" required>
+                    </div>
                 </div>
 
-                <div class="mb-4">
+                <div>
                     <label for="info_program" class="block text-sm font-medium text-gray-700">Info Program</label>
-                    <textarea name="info_program" id="info_program" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
+                    <textarea name="info_program" id="info_program" rows="4" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500" placeholder="Masukkan informasi tentang program" required></textarea>
                 </div>
 
-                <div class="mb-4">
-                    <label for="icon" class="block text-sm font-medium text-gray-700">Icon (FontAwesome class)</label>
-                    <input type="text" name="icon" id="icon" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition">Batal</button>
+                    <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Simpan Program</button>
                 </div>
-
-                <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Add Program</button>
             </form>
         </div>
     </section>
@@ -40,43 +45,7 @@
     @include('components.social-float')
 
     {{-- 🔹 FOOTER --}}
-    <footer class="bg-gray-900 text-gray-300 mt-16">
-        <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ asset('images/logo.jpeg') }}" class="h-12" alt="logo">
-                    <div>
-                        <h2 class="text-lg font-bold text-white">UPKB</h2>
-                        <p class="text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
-                    </div>
-                </div>
-                <p class="text-sm text-gray-400 leading-relaxed">Bantu pelajar dan ibu bapa melihat pilihan pusat, program, kuota semasa dan maklumat penting dengan lebih jelas dalam satu tempat.</p>
-            </div>
-            <div>
-                <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
-                <div class="grid grid-cols-2 gap-2 text-sm">
-                    <a href="{{ url('/') }}" class="hover:text-orange-400">Utama</a>
-                    <a href="{{ route('program') }}" class="hover:text-orange-400">Program</a>
-                    <a href="{{ route('kuota') }}" class="hover:text-orange-400">Program Berkuota</a>
-                    <a href="{{ route('faq') }}" class="hover:text-orange-400">Soalan Lazim</a>
-                    <a href="{{ route('galeri') }}" class="hover:text-orange-400">Galeri</a>
-                    <a href="{{ route('hubungi') }}" class="hover:text-orange-400">Hubungi Kami</a>
-                </div>
-            </div>
-            <div>
-                <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li>📞 +6017 921 5543</li>
-                    <li>✉️ info@upkb.my</li>
-                    <li>📍 34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-700"></div>
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm">
-            <p class="text-gray-400">© {{ date('Y') }} Unit Pembangunan Kemahiran Belia.</p>
-        </div>
-    </footer>
+    @include('layouts.footer-admin')
 
 </body>
 </html>
