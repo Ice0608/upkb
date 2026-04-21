@@ -878,7 +878,7 @@
 
             <!-- SLIDE 1 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/diploma.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/stack-diplomas-antique-bookshelf-background-generated-by-ai.jpg') }}" class="w-full h-[100svh] object-cover">
 
                 <!-- DARK OVERLAY -->
                 <div class="absolute inset-0 bg-black/30"></div>
@@ -886,14 +886,14 @@
 
             <!-- SLIDE 2 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/tvet.png') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/tvet.jpg') }}" class="w-full h-[100svh] object-cover">
 
                 <div class="absolute inset-0 bg-black/30"></div>
             </div>
 
             <!-- SLIDE 3 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/sainsKesihatan.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/doctors-with-laptop-whiteboard.jpg') }}" class="w-full h-[100svh] object-cover">
 
                 <div class="absolute inset-0 bg-black/30"></div>
             </div>

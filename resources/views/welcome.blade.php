@@ -245,20 +245,60 @@
         .story-panel {
             width: min(92vw, 960px);
             border-radius: 2rem;
-            border: 1px solid rgba(251, 146, 60, 0.36);
-            background: linear-gradient(145deg, rgba(15, 23, 42, 0.84), rgba(30, 41, 59, 0.62));
-            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.34);
+            background:
+                linear-gradient(145deg, rgba(15, 23, 42, 0.58), rgba(30, 41, 59, 0.38)),
+                linear-gradient(120deg, rgba(249, 115, 22, 0.12), rgba(56, 189, 248, 0.06));
+            backdrop-filter: blur(22px) saturate(140%);
+            -webkit-backdrop-filter: blur(22px) saturate(140%);
             padding: clamp(1.4rem, 3vw, 2.5rem);
-            box-shadow: 0 26px 64px rgba(15, 23, 42, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            box-shadow:
+                0 26px 64px rgba(15, 23, 42, 0.26),
+                inset 0 1px 0 rgba(255, 255, 255, 0.34),
+                inset 0 -12px 24px rgba(15, 23, 42, 0.14);
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+        }
+
+        .story-panel::before,
+        .story-panel::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .story-panel::before {
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.02) 32%, rgba(255, 255, 255, 0) 62%);
+            z-index: 0;
+        }
+
+        .story-panel::after {
+            width: 14rem;
+            height: 14rem;
+            top: -4.5rem;
+            right: -3.5rem;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 176, 94, 0.44), rgba(255, 176, 94, 0) 72%);
+            opacity: 0.62;
+            animation: heroGlow 8s ease-in-out infinite;
         }
 
         .story-panel .hero-vision-label {
             margin-bottom: 0.9rem;
+            letter-spacing: 0.18em;
+            text-shadow: 0 4px 18px rgba(249, 115, 22, 0.22);
         }
 
         .story-panel .hero-vision-text {
             font-size: clamp(0.95rem, 1.45vw, 1.2rem);
             line-height: 1.9;
+            color: rgba(241, 245, 249, 0.94);
+            text-shadow: 0 8px 22px rgba(15, 23, 42, 0.22);
         }
 
         /* ── STORY SLIDE ANIMATIONS ── */
@@ -285,15 +325,24 @@
         }
         /* Left panel slides from left, right panel from right */
         .story-panel--left {
-            transform: translateX(-60px) scale(0.97);
+            transform: translateX(-60px) rotate(-0.8deg) scale(0.97);
         }
         .story-panel--right {
-            transform: translateX(60px) scale(0.97);
+            transform: translateX(60px) rotate(0.8deg) scale(0.97);
             transition-delay: 0.12s;
         }
         .snap-section.is-active .story-panel {
             opacity: 1;
-            transform: translateX(0) scale(1);
+            transform: translateX(0) rotate(0deg) scale(1);
+        }
+
+        .snap-section.is-active .story-panel:hover {
+            transform: translateY(-8px) scale(1.015);
+            border-color: rgba(255, 255, 255, 0.48);
+            box-shadow:
+                0 32px 68px rgba(15, 23, 42, 0.32),
+                inset 0 1px 0 rgba(255, 255, 255, 0.36),
+                inset 0 -14px 28px rgba(15, 23, 42, 0.16);
         }
         /* Label: slides in from the left */
         .story-label {
@@ -313,9 +362,10 @@
             display: block;
             height: 3px;
             width: 0;
-            background: linear-gradient(90deg, #f97316, rgba(251,146,60,0.3));
+            background: linear-gradient(90deg, rgba(255, 147, 72, 0.96), rgba(255, 233, 186, 0.72), rgba(255, 147, 72, 0.2));
             border-radius: 2px;
             margin: 0.5rem auto 1.2rem;
+            box-shadow: 0 0 18px rgba(255, 147, 72, 0.35);
             transition: width 0.6s cubic-bezier(0.22,1,0.36,1) 0.45s;
         }
         .snap-section.is-active .story-accent-line {
@@ -327,6 +377,7 @@
             text-align: center;
             opacity: 0;
             transform: translateY(18px);
+            letter-spacing: 0.01em;
             transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22,1,0.36,1);
         }
         .story-text-line:nth-child(1) { transition-delay: 0.55s; }
@@ -878,7 +929,7 @@
 
             <!-- SLIDE 1 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/diploma.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/stack-diplomas-antique-bookshelf-background-generated-by-ai.jpg') }}" class="w-full h-[100svh] object-cover">
 
                 <!-- DARK OVERLAY -->
                 <div class="absolute inset-0 bg-black/30"></div>
@@ -886,14 +937,14 @@
 
             <!-- SLIDE 2 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/tvet.png') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/tvet.jpg') }}" class="w-full h-[100svh] object-cover">
 
                 <div class="absolute inset-0 bg-black/30"></div>
             </div>
 
             <!-- SLIDE 3 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/sainsKesihatan.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/doctors-with-laptop-whiteboard.jpg') }}" class="w-full h-[100svh] object-cover">
 
                 <div class="absolute inset-0 bg-black/30"></div>
             </div>

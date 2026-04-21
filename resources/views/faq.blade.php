@@ -217,6 +217,7 @@
         .faq-card {
             position: relative;
             isolation: isolate;
+            overflow: hidden;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -255,9 +256,12 @@
             border-radius: inherit;
             background:
                 radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.5), transparent 22%),
-                linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.2), transparent 70%);
+                linear-gradient(110deg, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.36) 50%, rgba(255, 255, 255, 0) 66%);
+            background-size: 100% 100%, 250% 100%;
+            background-position: 0 0, -180% 0;
             opacity: 0.78;
             pointer-events: none;
+            animation: faqShineSweep 4s linear infinite;
         }
 
         .faq-card::after {
@@ -291,6 +295,13 @@
         .faq-card:focus-visible::after,
         .faq-card.is-focused::after {
             opacity: 1;
+        }
+
+        .faq-card:hover::before,
+        .faq-card:focus-visible::before,
+        .faq-card.is-focused::before {
+            animation-duration: 2.6s;
+            opacity: 0.92;
         }
 
         .faq-card[data-faq-type="tvet"] {
@@ -691,6 +702,15 @@
             }
         }
 
+        @keyframes faqShineSweep {
+            0% {
+                background-position: 0 0, -180% 0;
+            }
+            100% {
+                background-position: 0 0, 180% 0;
+            }
+        }
+
         @media (min-width: 768px) {
             .faq-shell {
                 padding-top: 3.5rem;
@@ -737,6 +757,7 @@
             .faq-wave-layer::after,
             .faq-hero,
             .faq-card,
+            .faq-card::before,
             .faq-arrow,
             .faq-modal-shell {
                 animation: none;
