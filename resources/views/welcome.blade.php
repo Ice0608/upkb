@@ -224,6 +224,11 @@
             padding: 5rem 0 2rem;
         }
 
+        /* Hero section (first slide) — no top padding, image fills edge-to-edge */
+        .snap-section:first-child {
+            padding-top: 0;
+        }
+
         .snap-section.footer-slide {
             min-height: unset;
             height: auto;
@@ -403,6 +408,10 @@
         @media (max-width: 1024px) {
             .snap-section {
                 padding-top: 4.5rem;
+            }
+            /* Hero slide always edge-to-edge */
+            .snap-section:first-child {
+                padding-top: 0;
             }
         }
 
@@ -818,6 +827,8 @@
             box-shadow: 0 14px 32px rgba(249,115,22,0.46);
         }
         /* ── END PROGRAM POPULAR SECTION ── */
+
+        .intro-overlay {
             transition: opacity 0.6s ease, visibility 0.6s ease;
             opacity: 1;
             visibility: visible;
@@ -1390,11 +1401,19 @@ function prevSlide() {
 function hideIntroOverlay() {
     if (!introOverlay) return;
 
+    // Stop & reset the video so it doesn't stay stuck on last frame
+    if (introVideo) {
+        introVideo.pause();
+        introVideo.currentTime = 0;
+        introVideo.classList.add('hidden');
+    }
+
     introOverlay.classList.add('hide');
-    introOverlay.addEventListener('transitionend', function onTransitionEnd() {
+
+    // Use setTimeout as reliable fallback — transitionend may not fire in all browsers
+    setTimeout(function() {
         introOverlay.style.display = 'none';
-        introOverlay.removeEventListener('transitionend', onTransitionEnd);
-    });
+    }, 650); // slightly longer than the 0.6s CSS transition
 
     document.body.style.overflow = '';
     localStorage.setItem('upkbIntroSeen', '1');
