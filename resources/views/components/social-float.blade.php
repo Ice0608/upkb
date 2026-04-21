@@ -51,7 +51,7 @@
 {{-- 🔥 MODAL --}}
 <div id="supportModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
 
-    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
+    <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-fadeIn">
 
         {{-- HEADER --}}
         <div class="bg-purple-600 text-white px-5 py-4 flex justify-between items-center">
@@ -68,14 +68,14 @@
         <form onsubmit="submitForm(event)" class="p-5 space-y-4">
 
             <input id="name" type="text" placeholder="Name"
-                class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-purple-500 outline-none">
+                class="w-full border dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg p-2 focus:ring-2 focus:ring-purple-500 outline-none">
 
             <input id="phone" type="text" placeholder="Phone"
-                class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-purple-500 outline-none">
+                class="w-full border dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg p-2 focus:ring-2 focus:ring-purple-500 outline-none">
 
             <textarea id="message" rows="3"
                 placeholder="Your message..."
-                class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-purple-500 outline-none"></textarea>
+                class="w-full border dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg p-2 focus:ring-2 focus:ring-purple-500 outline-none"></textarea>
 
             <button class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700">
                 Submit

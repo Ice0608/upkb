@@ -456,6 +456,62 @@
             }
         }
         
+        /* ── DARK MODE OVERRIDES ── */
+        html.dark .site-nav {
+            background: rgba(15, 23, 42, 0.94);
+            border-bottom-color: rgba(51, 65, 85, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        html.dark .site-nav-brand {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.97) 52%, rgba(30, 41, 59, 0.9));
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+        html.dark .site-nav-brand-badge {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+        html.dark .site-nav-brand-badge::before {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.88));
+        }
+        html.dark .site-nav-brand-title {
+            color: #e2e8f0;
+        }
+        html.dark .site-nav-brand:hover .site-nav-brand-title {
+            color: #f8fafc;
+        }
+        html.dark .site-nav-login, html.dark .site-nav-menu-icon {
+            background: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+        html.dark .site-nav-login:hover, html.dark .site-nav-menu-icon:hover, html.dark .site-nav-mobile[open] .site-nav-menu-icon {
+            background: #0f172a;
+            border-color: rgba(249, 115, 22, 0.4);
+            color: #f97316;
+        }
+        html.dark .site-nav-program-shell, html.dark .site-nav-mobile-panel {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html.dark .site-nav-link {
+            color: #cbd5e1;
+        }
+        html.dark .site-nav-link:hover, html.dark .site-nav-link.is-active {
+            color: #ffffff;
+        }
+        html.dark .site-nav-link:not(.is-active) {
+            background: transparent;
+        }
+        html.dark .site-nav-mobile-panel a, html.dark .site-nav-mobile-panel button {
+            color: #cbd5e1;
+        }
+        html.dark .site-nav-mobile-panel a:hover, html.dark .site-nav-mobile-panel button:hover, html.dark .site-nav-mobile-panel a.bg-orange-50 {
+            background: #0f172a;
+            color: #f97316;
+        }
+        html.dark .site-nav-mobile-panel .bg-slate-50\/90 {
+            background: #0f172a;
+        }
     </style>
 @endonce
 
@@ -531,6 +587,11 @@
             </a>
         </div>
 
+        <button id="theme-toggle" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Toggle Dark Mode">
+            <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
+            <i id="theme-toggle-light-icon" class="hidden fas fa-sun"></i>
+        </button>
+
         <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
             <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-6 w-6 object-contain">
         </a>
@@ -581,8 +642,65 @@
                         <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-5 w-5 object-contain">
                         Log Masuk
                     </a>
+                    <button id="theme-toggle-mobile" class="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
+                        <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
+                        <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
+                        <span id="theme-toggle-text-mobile">Tukar Mod Tema</span>
+                    </button>
                 </div>
             </div>
         </details>
     </div>
 </nav>
+
+<script>
+    // Theme toggle script — runs ONCE on DOMContentLoaded only
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        const themeToggleDarkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        const themeToggleLightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+
+        // Sync icons to current theme (set by dark-mode-init.blade.php in <head>)
+        function syncIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                // Currently dark — show sun icon (click to go light)
+                if (themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+                if (themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+                if (themeToggleLightIconMobile) themeToggleLightIconMobile.classList.remove('hidden');
+                if (themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.add('hidden');
+            } else {
+                // Currently light — show moon icon (click to go dark)
+                if (themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+                if (themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
+                if (themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.remove('hidden');
+                if (themeToggleLightIconMobile) themeToggleLightIconMobile.classList.add('hidden');
+            }
+        }
+
+        syncIcons();
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        }
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', toggleTheme);
+        }
+        if (themeToggleBtnMobile) {
+            themeToggleBtnMobile.addEventListener('click', toggleTheme);
+        }
+    });
+</script>

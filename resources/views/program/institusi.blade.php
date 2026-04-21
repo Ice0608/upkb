@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
 
     <style>
         .institusi-page {
@@ -793,6 +794,40 @@
                 background: rgba(255, 255, 255, 0.98);
             }
         }
+        /* ── DARK MODE ── */
+        html.dark .institusi-page--tvet,
+        html.dark .institusi-page--diploma,
+        html.dark .institusi-page--sains-kesihatan {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
+        }
+        html.dark .institusi-card {
+            background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .institusi-toolbar {
+            background: rgba(15,23,42,0.94) !important;
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .institusi-filter-button--idle-tvet,
+        html.dark .institusi-filter-button--idle-diploma,
+        html.dark .institusi-filter-button--idle-sains-kesihatan {
+            background: #1e293b;
+            color: #cbd5e1;
+        }
+        html.dark .institusi-slider-button {
+            background: rgba(30,41,59,0.96);
+        }
+        html.dark .institusi-filter-select {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-color: rgba(255,255,255,0.1);
+        }
+        html.dark .text-slate-900 { color: #f1f5f9 !important; }
+        html.dark .text-slate-700 { color: #cbd5e1 !important; }
+        html.dark .text-slate-500 { color: #94a3b8 !important; }
     </style>
 </head>
 @php

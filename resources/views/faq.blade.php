@@ -8,6 +8,7 @@
     <title>UPKB - FAQ</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
 
     <style>
         :root {
@@ -768,9 +769,38 @@
                 filter: none;
             }
         }
+        /* ── DARK MODE ── */
+        html.dark .faq-page {
+            background: linear-gradient(180deg, #0f172a 0%, #1a1a2e 52%, #0f172a 100%);
+        }
+        html.dark .faq-wave-layer { opacity: 0.12; }
+        html.dark .faq-card {
+            background:
+                linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+            border-color: rgba(255,255,255,0.08);
+            color: #f1f5f9;
+        }
+        html.dark .faq-card-title { color: #f1f5f9; text-shadow: none; }
+        html.dark .faq-card-copy { color: rgba(203,213,225,0.85); }
+        html.dark .faq-card-meta { color: rgba(148,163,184,0.8); }
+        html.dark .faq-track-label { color: rgba(251,146,60,0.8); }
+        html.dark .faq-track-hint { color: rgba(148,163,184,0.7); }
+        html.dark .faq-modal-shell {
+            background: linear-gradient(135deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
+            border-color: rgba(255,255,255,0.1);
+            color: #f1f5f9;
+        }
+        html.dark .faq-modal-shell h2 { color: #f1f5f9; }
+        html.dark .faq-modal-shell p,
+        html.dark .faq-modal-shell li { color: rgba(203,213,225,0.9); }
+        html.dark .faq-modal-close {
+            background: rgba(30,41,59,0.9);
+            color: #cbd5e1;
+        }
+        html.dark .faq-modal-close:hover { background: rgba(51,65,85,0.9); }
     </style>
 </head>
-<body class="faq-page text-neutral-900">
+<body class="faq-page text-neutral-900 transition-colors duration-300">
     
     @include('layouts.navigation')
 

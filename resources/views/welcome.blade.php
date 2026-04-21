@@ -8,6 +8,7 @@
     <title>UPKB</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
@@ -863,9 +864,61 @@
         30% { opacity: 0; }  /* Fade out */
         100% { opacity: 0; } /* Stay hidden until next loop */
         }
+        /* ── DARK MODE OVERRIDES ── */
+        html.dark .welcome-page {
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 20%),
+                radial-gradient(circle at top right, rgba(251, 146, 60, 0.08), transparent 23%),
+                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.06), transparent 24%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 48%, #0f172a 100%);
+        }
+        html.dark .stats-section {
+            background:
+                radial-gradient(ellipse at 15% 50%, rgba(251,146,60,0.06) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 50%, rgba(56,189,248,0.05) 0%, transparent 45%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+        html.dark .program-section {
+            background:
+                radial-gradient(ellipse at 8% 60%, rgba(251,146,60,0.06) 0%, transparent 42%),
+                radial-gradient(ellipse at 92% 30%, rgba(56,189,248,0.05) 0%, transparent 42%),
+                linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+        }
+        html.dark .stats-heading-title,
+        html.dark .program-section-title {
+            color: #f8fafc;
+        }
+        html.dark .stat-card,
+        html.dark .prog-feat-row {
+            background: #1e293b;
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        }
+        html.dark .stat-label {
+            color: rgba(248,250,252,0.7);
+        }
+        html.dark .prog-feat-title {
+            color: #f8fafc;
+        }
+        html.dark .prog-feat-desc {
+            color: rgba(248,250,252,0.6);
+        }
+        html.dark .prog-feat-row--featured {
+            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+            border-color: rgba(249,115,22,0.4);
+        }
+        html.dark .program-section .text-slate-500 {
+            color: rgba(148,163,184,0.85) !important;
+        }
+        html.dark .stats-section::before,
+        html.dark .program-section::before {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        }
     </style>
 </head>
-<body class="welcome-page text-gray-800 no-bg">
+<body class="welcome-page text-slate-800 dark:text-slate-200 no-bg transition-colors duration-300">
     <!-- <div class="slideshow-container">
         <div class="slide" style="background-image: url('{{ asset('images/background/Frame1.png') }}');"></div>
         <div class="slide" style="background-image: url('{{ asset('images/background/Frame2.png') }}');"></div>

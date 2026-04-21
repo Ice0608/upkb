@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Hubungi Kami - UPKB</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
 
     <style>
         .contact-page {
@@ -291,9 +292,33 @@
                 animation: none;
             }
         }
+        /* ── DARK MODE ── */
+        html.dark .contact-page {
+            background:
+                radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 20%),
+                radial-gradient(circle at top right, rgba(168, 85, 247, 0.08), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.08), transparent 24%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 48%, #0f172a 100%);
+        }
+        html.dark .contact-card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95));
+            border-color: rgba(255,255,255,0.08);
+            box-shadow: 0 22px 55px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        html.dark .contact-card h2 { color: #f1f5f9; }
+        html.dark .contact-card .text-slate-900 { color: #f1f5f9 !important; }
+        html.dark .contact-card .text-slate-500 { color: rgba(148,163,184,0.85) !important; }
+        html.dark .contact-card .text-slate-700 { color: rgba(203,213,225,0.85) !important; }
+        html.dark .contact-card .text-slate-400 { color: rgba(100,116,139,0.9) !important; }
+        html.dark .contact-input {
+            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.8));
+            border-color: rgba(255,255,255,0.1);
+            color: #f1f5f9;
+        }
+        html.dark .contact-input::placeholder { color: rgba(148,163,184,0.6); }
     </style>
 </head>
-<body class="contact-page text-gray-800 bg-blocks">
+<body class="contact-page text-gray-800 transition-colors duration-300">
 
     @include('layouts.navigation')
     

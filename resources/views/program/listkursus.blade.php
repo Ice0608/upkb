@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Senarai Kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     <style>
         .kursus-page {
             position: relative;
@@ -743,9 +744,44 @@
                 animation: none;
             }
         }
+        /* ── DARK MODE ── */
+        html.dark .kursus-page {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(251,146,60,0.08), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(59,130,246,0.06), transparent 22%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 44%, #eef4ff 100%);
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+        html.dark .kursus-sidebar {
+            background: rgba(15,23,42,0.94);
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .kursus-sidebar-section-title { color: #f1f5f9; }
+        html.dark .kursus-sidebar-search-input,
+        html.dark .kursus-select {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-color: rgba(255,255,255,0.1);
+        }
+        html.dark .category-btn { color: #94a3b8; }
+        html.dark .course-card {
+            background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .course-card-title { color: #f1f5f9; }
+        html.dark .course-card-meta-value { color: #e2e8f0; }
+        html.dark .course-card-meta-label { color: #64748b; }
+        html.dark .kursus-results-summary {
+            background: rgba(15,23,42,0.9);
+            border-color: rgba(255,255,255,0.08);
+            color: #e2e8f0;
+        }
+        html.dark .text-slate-900, html.dark .text-gray-800 { color: #f1f5f9 !important; }
+        html.dark .text-slate-700 { color: #cbd5e1 !important; }
+        html.dark .text-slate-500 { color: #94a3b8 !important; }
     </style>
 </head>
-<body class="kursus-page text-gray-800">
+<body class="kursus-page text-gray-800 transition-colors duration-300">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
