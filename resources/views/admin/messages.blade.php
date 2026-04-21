@@ -7,6 +7,68 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Urus Mesej</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+
+        .mesej-hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 227, 170, 0.48);
+            background:
+                linear-gradient(90deg, #ff7a00 0%, #ff9924 56%, #ffd24a 100%);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 250, 236, 0.44),
+                0 24px 55px rgba(205, 112, 24, 0.22),
+                0 0 46px rgba(255, 177, 60, 0.2);
+            animation: faqFloat 6.6s var(--xmb-ease-soft) infinite;
+        }
+
+        .mesej-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 84% 30%, rgba(255, 249, 235, 0.3), transparent 18%),
+                linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent 72%),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 14px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 14px);
+            background-size: auto, auto, 8rem 5.8rem, 8rem 5.8rem;
+            background-position: center, center, 1.25rem calc(100% - 0.95rem), 1.25rem calc(100% - 0.95rem);
+            background-repeat: no-repeat;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .mesej-hero::after {
+            content: "";
+            position: absolute;
+            right: 6%;
+            top: -2.25rem;
+            width: 12rem;
+            height: 12rem;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 241, 209, 0.22);
+            box-shadow:
+                0 0 0 1rem rgba(255, 241, 209, 0.08),
+                0 0 0 2rem rgba(255, 241, 209, 0.04);
+            opacity: 0.92;
+            pointer-events: none;
+        }
+
+        .mesej-hero-eyebrow {
+            color: rgba(255, 244, 228, 0.74);
+        }
+
+        .mesej-hero-title {
+            color: #ffffff;
+            text-shadow: 0 10px 22px rgba(160, 74, 0, 0.24);
+        }
+
+        .mesej-hero-copy {
+            color: rgba(255, 247, 235, 0.92);
+        }
+
+    </style>
 </head>
 <body class="bg-[#FBFCFE] text-slate-900">
 
@@ -14,13 +76,13 @@
 
     <section class="max-w-7xl mx-auto px-6 py-12">
 
-        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                <div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Urus Mesej Pelanggan</h1>
-                    <p class="mt-3 text-lg text-orange-100">Lihat dan urus semua mesej yang diterima dari ruangan hubungi.</p>
-                </div>
-            </div>
+        <div class="mesej-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12">
+            <h2 class="mesej-hero-title text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
+                Urus Mesej Pelanggan
+            </h2>
+            <p class="mesej-hero-copy mt-5 max-w-2xl text-base sm:text-lg leading-8">
+                Lihat dan urus semua mesej yang diterima dari ruangan hubungi.
+            </p>
         </div>
 
         @if ($message = Session::get('success'))

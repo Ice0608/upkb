@@ -780,7 +780,7 @@
     <main class="faq-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="faq-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12">
             <p class="faq-hero-eyebrow font-medium tracking-[0.38em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
-            <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[-0.05em] max-w-3xl">
+            <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
                 Soalan Lazim (FAQ)
             </h2>
             <p class="faq-hero-copy mt-5 max-w-2xl text-base sm:text-lg leading-8">
