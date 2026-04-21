@@ -161,6 +161,7 @@
                 0 28px 70px rgba(15, 23, 42, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8),
                 inset 0 -1px 0 rgba(255, 255, 255, 0.35);
+                inset 0 -1px 0 rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(22px);
         }
 
@@ -233,6 +234,9 @@
             background:
                 linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.04) 42%, rgba(255, 255, 255, 0.02)),
                 linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+                linear-gradient(115deg, rgba(255, 255, 255, 0) 36%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 64%);
+            transform: translateX(-16%);            
+            transition: transform 0.45s ease, opacity 0.45s ease;
             pointer-events: none;
         }
 
@@ -249,14 +253,15 @@
 
         .site-nav-program-card:hover,
         .site-nav-program-card:focus-visible {
-            transform: translateY(-8px) scale(1.035) rotateX(1deg);
+            transform: translateY(-10px) scale(1.04) rotateX(4deg) rotateY(-3deg);
             border-color: rgba(255, 255, 255, 0.44);
             box-shadow:
-                0 30px 56px rgba(15, 23, 42, 0.22),
+                0 34px 60px rgba(15, 23, 42, 0.24),
+                0 0 40px rgba(255, 255, 255, 0.12),
+                0 0 60px rgba(249, 115, 22, 0.12),
                 0 0 0 1px rgba(255, 255, 255, 0.1),
-                0 0 30px rgba(255, 255, 255, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.34);
-            filter: saturate(1.06);
+            filter: saturate(1.1) brightness(1.02);
         }
 
         .site-nav-program-card:active {
@@ -270,6 +275,11 @@
         .site-nav-program-card:hover::after {
             opacity: 0.9;
             transform: scale(1.06);
+        }
+
+        .site-nav-program-card:hover::before,
+        .site-nav-program-card:focus-visible::before {
+            transform: translateX(16%);
         }
 
         .site-nav-program-card-badge,
@@ -296,45 +306,6 @@
             text-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
         }
 
-        .site-nav-program-card-arrow {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .site-nav-program-card:hover .site-nav-program-card-arrow {
-            opacity: 1;
-            transform: translate3d(4px, -2px, 0);
-            background: rgba(255, 255, 255, 0.18);
-            box-shadow:
-                0 12px 24px rgba(15, 23, 42, 0.14),
-                inset 0 1px 0 rgba(255, 255, 255, 0.26);
-        }
-
-        .site-nav-program-card-glow {
-            position: absolute;
-            inset: auto auto -2rem -1.75rem;
-            width: 7rem;
-            height: 7rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.18);
-            filter: blur(22px);
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .site-nav-program-card-floating {
-            animation: siteNavCardFloat 5.5s ease-in-out infinite;
-        }
-
         .site-nav-program-card-tvet {
             background-image:
                 linear-gradient(145deg, rgba(168, 116, 8, 0.88), rgba(212, 175, 55, 0.74), rgba(241, 207, 99, 0.56)),
@@ -353,6 +324,54 @@
                 url('{{ asset('images/sains.jpg') }}');
         }
 
+        .site-nav-program-card-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .site-nav-program-card:hover .site-nav-program-card-arrow {
+            opacity: 1;
+            transform: translate3d(6px, -3px, 0) scale(1.05);
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow:
+                0 14px 28px rgba(15, 23, 42, 0.16),
+                0 0 20px rgba(255, 255, 255, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.26);
+        }
+
+        .site-nav-program-card-glow {
+            position: absolute;
+            inset: auto auto -2rem -1.75rem;
+            width: 7rem;
+            height: 7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.18);
+            filter: blur(22px);
+            opacity: 0.8;
+            pointer-events: none;
+            transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+        }
+
+        .site-nav-program-card:hover .site-nav-program-card-glow,
+        .site-nav-program-card:focus-visible .site-nav-program-card-glow {
+            transform: scale(1.18) translate3d(0.6rem, -0.35rem, 0);
+            opacity: 1;
+            filter: blur(28px);
+        }
+
+        .site-nav-program-card-floating {
+            animation: siteNavCardFloat 5.5s ease-in-out infinite;
+        }
+        
         .site-nav-mobile-program-card {
             position: relative;
             overflow: hidden;
@@ -409,10 +428,10 @@
         </a>
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
-            <div class="site-nav-program relative">
-                <a href="{{ route('dashboard') }}" class="site-nav-link {{ request()->routeIs('dashboard') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('dashboard') }}" class="site-nav-link {{ request()->routeIs('dashboard') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                     Dashboard
                 </a>
+            <div class="site-nav-program relative">
                 <a href="{{ route('admin.programs') }}" class="site-nav-link {{ request()->routeIs('admin.programs') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                     Program
                 </a>
@@ -420,40 +439,37 @@
                 <div class="site-nav-program-panel absolute left-1/2 top-full z-20 w-[min(92vw,32rem)] pt-4">
                     <div class="site-nav-program-shell rounded-[2rem] p-3 sm:p-4">
                         <div class="mb-4 px-2 sm:mb-5">
-                            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Kategori Program</p>
+                            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Cari Institusi Mengikut Program</p>
                         </div>
                         <div class="grid gap-3 md:grid-cols-3">
                             <a href="{{ route('admin.institusis', ['jenis' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-tvet site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0s]">
                                 <span class="site-nav-program-card-glow"></span>
-                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Kategori</span>
+                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">TVET</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Laluan kemahiran teknikal dan praktikal.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi TVET dengan kuota tersedia.</p>
                                     </div>
-                                    <span class="site-nav-program-card-arrow text-lg text-white/85">&rarr;</span>
                                 </div>
                             </a>
                             <a href="{{ route('admin.institusis', ['jenis' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-diploma site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.4s]">
                                 <span class="site-nav-program-card-glow"></span>
-                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Kategori</span>
+                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Diploma</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Program akademik untuk kemajuan kerjaya.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi diploma yang sesuai untuk anda.</p>
                                     </div>
-                                    <span class="site-nav-program-card-arrow text-lg text-white/85">&rarr;</span>
                                 </div>
                             </a>
                             <a href="{{ route('admin.institusis', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-health site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.8s]">
                                 <span class="site-nav-program-card-glow"></span>
-                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Kategori</span>
+                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Sains Kesihatan</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Fokus kepada latihan kesihatan dan klinikal.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi kesihatan dan latihan klinikal.</p>
                                     </div>
-                                    <span class="site-nav-program-card-arrow text-lg text-white/85">&rarr;</span>
                                 </div>
                             </a>
                         </div>
