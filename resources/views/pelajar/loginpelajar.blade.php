@@ -9,6 +9,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100 text-slate-800">
+
+@include('layouts.navpelajar')
+
 <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
     @if(session('success'))
         <div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700 shadow-sm">
@@ -72,7 +75,7 @@
     @endif
 </main>
 
-@include('layouts.navpelajar')
+@include('layouts.footer-pelajar')
 
 </body>
 </html>

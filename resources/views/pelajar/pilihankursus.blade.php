@@ -363,7 +363,7 @@
     @include('layouts.navpelajar')
 
     <main class="flex-grow">
-        <section class="pilihan-shell max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12" id="pilihan-kursus-page" data-filter-url="{{ route('kursus.filterByName', ['nama' => $namaKursus]) }}">
+        <section class="pilihan-shell max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12" id="pilihan-kursus-page" data-filter-url="{{ route('pelajar.filter', ['pelajar' => $pelajar->id, 'nama' => $namaKursus]) }}">
 
             <div class="flex flex-wrap items-center gap-3 mb-4">
                 <button type="button" onclick="window.history.back()"
@@ -489,7 +489,7 @@
 
     {{-- 🔹 FOOTER (FULL WIDTH) --}}
     <footer class="w-full mt-auto">
-        @include('layouts.footer')
+        @include('layouts.footer-pelajar')
     </footer>
 
     <script>

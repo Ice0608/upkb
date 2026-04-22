@@ -382,7 +382,7 @@
                         $ui = $configs[$index] ?? $configs[0];
                     @endphp
 
-                    <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar->id, 'jenis' => $program->jenis_program]) }}" 
+                    <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar->id, 'nama' => $program->jenis_program]) }}" 
                         class="segment-wrapper group 
                         {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
                         <!-- Segment background with image overlay -->
@@ -430,7 +430,7 @@
     </section>
 
     @include('components.social-float')
-    @include('layouts.footer')
+    @include('layouts.footer-pelajar')
 
 </body>
 </html>

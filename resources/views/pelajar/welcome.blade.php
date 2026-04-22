@@ -965,7 +965,7 @@
 
 <section class="snap-section footer-slide">
     <div class="w-full">
-        @include('layouts.footer')
+        @include('layouts.footer-pelajar')
     </div>
 </section>
 

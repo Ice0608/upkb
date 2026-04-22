@@ -377,7 +377,7 @@
     @include('components.social-float')
 
     {{-- 🔹 FOOTER --}}
-    @include('layouts.footer')
+    @include('layouts.footer-pelajar')
 
 </body>
 </html>

@@ -143,7 +143,7 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
-            'event_id' => 'nullable|integer|exists:events,id',
+            'event_id' => 'nullable|integer|exists:event,id',
         ]);
 
         // Add event_id from QR code if not validated
@@ -200,7 +200,7 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
-            'event_id' => 'nullable|integer|exists:events,id',
+            'event_id' => 'nullable|integer|exists:event,id',
             'pilihan_pertama' => 'nullable|string|max:255',
             'pilihan_kedua' => 'nullable|string|max:255',
             'pilihan_ketiga' => 'nullable|string|max:255',
@@ -300,8 +300,8 @@ class StaffEventController extends Controller
         $pelajar = Pelajar::find($request->pelajar_id);
 
         if ($pelajar->ic_pelajar === $request->ic_pelajar) {
-            return redirect()->route('pelajar.welcome', $pelajar->id)
-                ->with('success', 'IC disahkan. Selamat datang!');
+            return redirect()->route('pelajar.editbmd', $pelajar->id)
+                ->with('success', 'IC disahkan. Sila kemaskini maklumat anda.');
         }
 
         return back()->withErrors(['ic_pelajar' => 'No. IC tidak sepadan.'])->withInput();
@@ -341,7 +341,7 @@ class StaffEventController extends Controller
             'pekerjaan_ibu' => 'nullable|string|max:255',
             'pendapatan_ibu' => 'nullable|string|max:100',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
-            'event_id' => 'nullable|integer|exists:events,id',
+            'event_id' => 'nullable|integer|exists:event,id',
         ]);
 
         $pelajar->update(array_merge([
@@ -391,22 +391,51 @@ class StaffEventController extends Controller
         $kursusList = $query->get();
         $selectedProgram = \App\Models\Program::where('jenis_program', $jenis)->first();
 
-        // Gunakan view yang mirip guest, bisa custom jika ingin
-        return view('program.listkursus', compact('kursusList', 'jenis', 'selectedProgram'));
+        // Render pelajar-specific view dan sertakan objek pelajar
+        return view('pelajar.listkursus', compact('pelajar', 'kursusList', 'jenis', 'selectedProgram'));
     }
 
     public function pelajarPilihanKursus(Pelajar $pelajar, $nama)
     {
-        // Filter courses based on the institution's jenis_institusi
-        $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->whereHas('institusi', function ($q) use ($nama) {
-                $q->where('jenis_institusi', $nama);
-            });
+        // If AJAX request, return the partial HTML (used by the frontend filters)
+        if (request()->ajax() || request()->wantsJson()) {
+            $namaKursus = urldecode($nama);
+            $query = \App\Models\Kursus::with(['institusi', 'galeris'])
+                ->where('nama_kursus', $namaKursus);
 
-        $semuaKursus = $query->get();
-        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+            $semuaKursus = $query->get();
+            $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
 
-        return response()->json(['html' => $html]);
+            return response()->json(['html' => $html]);
+        }
+
+        // Non-AJAX: render the full pilihan-kursus page (behaviour like KursusController/InterviewController)
+        $namaKursus = urldecode($nama);
+        $semuaKursus = \App\Models\Kursus::with(['institusi', 'galeris'])
+            ->where('nama_kursus', $namaKursus)
+            ->get();
+
+        $selectedCourse = $semuaKursus->first();
+        $heroImage = optional($selectedCourse?->galeris->first())->imej
+            ?? optional($selectedCourse?->institusi)->gambar_institusi
+            ?? 'images/default-course.jpg';
+        $selectedDescription = $selectedCourse?->penerangan
+            ?? 'Penerangan kursus tidak tersedia pada masa ini.';
+
+        $jenisKursusOptions = $semuaKursus->pluck('jenis_kursus')->filter()->unique()->values();
+        $tempohOptions = $semuaKursus->pluck('tempoh')->filter()->unique()->values();
+        $modPengajianOptions = $semuaKursus->pluck('mod_pengajian')->filter()->unique()->values();
+
+        return view('pelajar.pilihankursus', compact(
+            'pelajar',
+            'semuaKursus',
+            'namaKursus',
+            'heroImage',
+            'selectedDescription',
+            'jenisKursusOptions',
+            'tempohOptions',
+            'modPengajianOptions'
+        ));
     }
 
     public function pelajarFilterByName(Pelajar $pelajar, $nama)
@@ -560,7 +589,9 @@ class StaffEventController extends Controller
             }
         }
 
-        return view('pelajar.surat-tawaran', compact('pelajar', 'kursus', 'institusi', 'hasSuratTawaran'));
+        // View expects variable named $hasSurat — provide both for compatibility
+        $hasSurat = $hasSuratTawaran;
+        return view('pelajar.surat-tawaran', compact('pelajar', 'kursus', 'institusi', 'hasSurat'));
     }
 
     public function pelajarDownloadSuratTawaran(Pelajar $pelajar)
@@ -582,11 +613,14 @@ class StaffEventController extends Controller
 
         try {
             $processor = new \PhpOffice\PhpWord\TemplateProcessor($templatePath);
+            $institusi = \App\Models\Institusi::where('kod_institusi', $kursus->kod_institusi)->first();
 
             $processor->setValues([
                 'nama_pelajar' => $pelajar->nama_pelajar,
                 'ic_pelajar' => $pelajar->ic_pelajar,
                 'alamat' => ($pelajar->address_line1 ?? '') . ($pelajar->address_line2 ? ', ' . $pelajar->address_line2 : '') . ', ' . ($pelajar->city ?? '') . ' ' . ($pelajar->postcode ?? ''),
+                'tarikh_hari_ini' => now()->format('d/m/Y'),
+                'tarikh_pendaftaran' => $pelajar->tarikh_pendaftaran ? $pelajar->tarikh_pendaftaran->format('d/m/Y') : now()->format('d/m/Y'),
                 'tarikh_daftar' => now()->format('d/m/Y'),
                 'nama_kursus' => $kursus->nama_kursus,
                 'nama_institusi' => $institusi->nama_institusi ?? '',

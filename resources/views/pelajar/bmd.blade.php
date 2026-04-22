@@ -10,6 +10,8 @@
 </head>
 <body class="bg-slate-100 text-slate-900">
 
+@include('layouts.navpelajar')
+
 <main class="max-w-6xl mx-auto px-4 py-8">
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -254,9 +256,7 @@
 
 @include('components.social-float')
 
-<footer class="bg-gray-900 text-gray-300">
-    <div class="max-w-7xl mx-auto px-6 py-10 text-sm text-slate-400">© {{ date('Y') }} Unit Pembangunan Kemahiran Belia.</div>
-</footer>
+@include('layouts.footer-pelajar')
 
 @if(request()->query('print') && isset($pelajar))
     <script>window.print();</script>

@@ -970,7 +970,7 @@
     </script>
 
     @include('components.social-float')
-    @include('layouts.footer')
+    @include('layouts.footer-pelajar')
 
 </body>
 </html>

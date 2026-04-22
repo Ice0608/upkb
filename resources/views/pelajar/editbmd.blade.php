@@ -45,6 +45,7 @@
     </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
+
 @include('layouts.navpelajar')
 
 <main class="max-w-6xl mx-auto px-4 py-8">
@@ -57,7 +58,7 @@
                     <p class="mt-2 text-sm text-slate-600">Event: {{ $event->nama_event }} pada {{ $event->tarikh_event?->format('d/m/Y') }}</p>
                 @endif
             </div>
-            <a href="{{ route('pelajar.welcome', $pelajar->id) }}" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali ke Welcome</a>
+            <a href="{{ route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]) }}" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali</a>
         </div>
 
         @if(session('success'))
@@ -290,10 +291,7 @@
 
             <div class="flex flex-col gap-3 sm:flex-row sm:justify-between no-print">
                 <div class="space-x-3">
-                    <a href="{{ route('staff.main') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
-                    @if(isset($pelajar))
-                        <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id, 'print' => 1]) }}" class="inline-flex items-center justify-center rounded-full border border-orange-500 bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak BMD</a>
-                    @endif
+                    <a href="{{ route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]) }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                 </div>
 
                 <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Simpan Maklumat</button>
@@ -301,52 +299,26 @@
         </div>
         </form>
 
-        <!-- Mulakan Temu Duga Button -->
-        <div class="mt-6 flex justify-center no-print">
-            <a href="{{ route('pelajar.welcome', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600">
+        <!-- Temu Duga / Pembayaran Buttons -->
+        <div class="mt-6 flex justify-center gap-4 no-print">
+            <a href="{{ route('pelajar.welcome', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-blue-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-600">
                 <i class="fas fa-play"></i> Mulakan Temu Duga
             </a>
+            
+            @if($pelajar->kod_institusi && $pelajar->kod_kursus)
+                <a href="{{ route('pelajar.pembayaran', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-600">
+                    <i class="fas fa-money-bill-wave"></i> Teruskan ke Pembayaran
+                </a>
+            @endif
         </div>
     </div>
 </main>
 
-@include('layouts.footer-pelajar')
-
 @if(request()->query('print') && isset($pelajar))
     <script>window.print();</script>
-@else
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const selects = [
-                document.querySelector('select[name="pilihan_pertama"]'),
-                document.querySelector('select[name="pilihan_kedua"]'),
-                document.querySelector('select[name="pilihan_ketiga"]')
-            ];
-
-            function updateOptions() {
-                const selectedValues = selects.map(select => select.value).filter(val => val);
-
-                selects.forEach(select => {
-                    const currentValue = select.value;
-                    Array.from(select.options).forEach(option => {
-                        if (option.value && option.value !== currentValue) {
-                            option.disabled = selectedValues.includes(option.value);
-                        } else {
-                            option.disabled = false;
-                        }
-                    });
-                });
-            }
-
-            selects.forEach(select => {
-                select.addEventListener('change', updateOptions);
-            });
-
-            // Initial update
-            updateOptions();
-        });
-    </script>
 @endif
+
+@include('layouts.footer-pelajar')
 
 </body>
 </html>

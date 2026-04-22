@@ -745,7 +745,7 @@
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
                     <article class="course-card h-full" 
                              data-course-name="{{ $kursus->nama_kursus }}"
-                             onclick="window.location.href='{{ route('pelajar.pilihankursus', ['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => urlencode($kursus->nama_kursus)]) }}'">
+                             onclick="window.location.href='{{ route('pelajar.pilihankursus', ['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $kursus->nama_kursus]) }}'">
                         <div class="course-card-media">
                             <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">
