@@ -300,8 +300,25 @@ class StaffEventController extends Controller
         $pelajar = Pelajar::find($request->pelajar_id);
 
         if ($pelajar->ic_pelajar === $request->ic_pelajar) {
-            return redirect()->route('pelajar.editbmd', $pelajar->id)
-                ->with('success', 'IC disahkan. Sila kemaskini maklumat anda.');
+            // Prefer pelajar's first choice
+            if ($pelajar->pilihan_pertama) {
+                $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->pilihan_pertama)->first();
+                if ($kursus) {
+                    return redirect()->route('pelajar.infokursus', [$pelajar->id, $kursus->kod_institusi, $pelajar->pilihan_pertama])
+                        ->with('success', 'IC disahkan. Melangkah ke maklumat kursus pilihan.');
+                }
+            }
+
+            // Fallback to first available kursus
+            $kursus = \App\Models\Kursus::first();
+            if ($kursus) {
+                return redirect()->route('pelajar.infokursus', [$pelajar->id, $kursus->kod_institusi, $kursus->kod_kursus])
+                    ->with('success', 'IC disahkan. Melangkah ke maklumat kursus pertama.');
+            }
+
+            // Ultimate fallback
+            return redirect()->route('pelajar.program', $pelajar->id)
+                ->with('success', 'IC disahkan. Sila pilih program.');
         }
 
         return back()->withErrors(['ic_pelajar' => 'No. IC tidak sepadan.'])->withInput();

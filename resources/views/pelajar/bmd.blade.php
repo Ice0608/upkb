@@ -10,8 +10,6 @@
 </head>
 <body class="bg-slate-100 text-slate-900">
 
-@include('layouts.navpelajar')
-
 <main class="max-w-6xl mx-auto px-4 py-8">
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
