@@ -68,8 +68,11 @@
 
         <!-- Payment Amount -->
         <div class="bg-white rounded-3xl shadow-lg p-8 mb-8 border border-slate-100">
-            <p class="amount-label mb-2">Jumlah Pembayaran</p>
-            <p class="payment-amount">RM {{ number_format($jumlah, 2) }}</p>
+            <label for="jumlah-input" class="amount-label mb-2 inline-block">Jumlah Pembayaran (RM)</label>
+            <div class="mt-2">
+                <input id="jumlah-input" name="jumlah_visible" type="number" step="0.01" min="0" value="{{ number_format($jumlah, 2, '.', '') }}" class="w-48 px-4 py-3 rounded-xl border border-slate-200 text-2xl font-bold text-orange-600 payment-amount" />
+                <p class="text-sm text-slate-500 mt-2">Masukkan jumlah yang anda ingin bayar. Contoh: 50.00</p>
+            </div>
         </div>
 
         <!-- Payment Methods -->
@@ -143,7 +146,7 @@
                             <li>Buka aplikasi perbankan anda</li>
                             <li>Pilih fungsi "Imbas Kod QR"</li>
                             <li>Imbas kod QR di sebelah</li>
-                            <li>Sahkan jumlah: <span class="font-bold">RM {{ number_format($jumlah, 2) }}</span></li>
+                            <li>Sahkan jumlah: <span class="font-bold method-amount-display">RM {{ number_format($jumlah, 2) }}</span></li>
                             <li>Selesaikan transaksi</li>
                         </ol>
                         <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
@@ -168,7 +171,7 @@
                     </p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 ml-4">
                         <li>Bayar ke pejabat institusi anda dalam waktu 3 hari</li>
-                        <li>Jumlah pembayaran: <strong>RM {{ number_format($jumlah, 2) }}</strong></li>
+                        <li>Jumlah pembayaran: <strong class="method-amount-display">RM {{ number_format($jumlah, 2) }}</strong></li>
                         <li>Ambil resit sebagai bukti pembayaran</li>
                         <li>Serahkan resit kepada kakitangan temu duga</li>
                     </ul>
@@ -202,7 +205,7 @@
                         <strong>Penting:</strong>
                     </p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 ml-4">
-                        <li>Jumlah pindahan: <strong>RM {{ number_format($jumlah, 2) }}</strong></li>
+                        <li>Jumlah pindahan: <strong class="method-amount-display">RM {{ number_format($jumlah, 2) }}</strong></li>
                         <li>Rujukan: Gunakan No. IC Anda sebagai rujukan</li>
                         <li>Simpan bukti pindahan (resit/bukti e-banking)</li>
                         <li>Serahkan bukti kepada kakitangan temu duga</li>
@@ -233,7 +236,7 @@
         <form id="payment-form" method="POST" action="{{ route('pelajar.store-pembayaran', $pelajar->id) }}" class="hidden" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="kaedah_pembayaran" id="kaedah-input" value="">
-            <input type="hidden" name="jumlah" value="{{ $jumlah }}">
+            <input type="hidden" name="jumlah" id="jumlah-hidden" value="{{ $jumlah }}">
         </form>
 
         <!-- Action Buttons -->
@@ -252,6 +255,27 @@
 
 <script>
     let selectedMethod = null;
+
+        // Sync visible jumlah input to hidden field and update displayed amounts
+        document.addEventListener('DOMContentLoaded', function () {
+            const jumlahVisible = document.getElementById('jumlah-input');
+            const jumlahHidden = document.getElementById('jumlah-hidden');
+            const updateDisplayedAmounts = () => {
+                const val = parseFloat(jumlahVisible.value) || 0;
+                jumlahHidden.value = val.toFixed(2);
+
+                // Update instances inside method detail areas (if present)
+                document.querySelectorAll('.method-amount-display').forEach(el => {
+                    el.textContent = 'RM ' + val.toFixed(2);
+                });
+            };
+
+            if (jumlahVisible) {
+                jumlahVisible.addEventListener('input', updateDisplayedAmounts);
+                // initialize
+                updateDisplayedAmounts();
+            }
+        });
 
     function selectMethod(method, element) {
         // Remove active class from all methods
@@ -326,4 +350,4 @@
             document.getElementById('resit-file-name').classList.remove('hidden');
         }
     }
-</script>
+</script>
