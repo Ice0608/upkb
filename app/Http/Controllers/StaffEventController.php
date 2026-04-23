@@ -404,7 +404,7 @@ class StaffEventController extends Controller
                 ->where('nama_kursus', $namaKursus);
 
             $semuaKursus = $query->get();
-            $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+            $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus', 'pelajar'))->render();
 
             return response()->json(['html' => $html]);
         }
@@ -444,7 +444,7 @@ class StaffEventController extends Controller
             ->where('nama_kursus', $nama);
 
         $semuaKursus = $query->get();
-        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus'))->render();
+        $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus', 'pelajar'))->render();
 
         return response()->json(['html' => $html]);
     }

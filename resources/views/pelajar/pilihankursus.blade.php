@@ -480,7 +480,7 @@
             </div>
 
             <div id="institusiResults" class="pilihan-results min-h-[400px]" data-loading="false">
-                @include('program._pilihankursus_institusi')
+                @include('pelajar._pilihankursus_institusi')
             </div>
         </section>
     </main>

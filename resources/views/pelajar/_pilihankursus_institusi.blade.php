@@ -18,7 +18,11 @@
 <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
     @foreach($semuaKursus as $kursus)
     <article class="course-result-card rounded-3xl flex flex-col h-full">
-        <a href="{{ route('kursus.show', $kursus->id) }}" class="group flex h-full flex-col text-current no-underline">
+        @if(isset($pelajar) && $kursus->institusi)
+            <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->institusi->kod_institusi, 'kod_kursus' => $kursus->kod_kursus]) }}" class="group flex h-full flex-col text-current no-underline">
+        @else
+            <a href="{{ route('kursus.show', $kursus->id) }}" class="group flex h-full flex-col text-current no-underline">
+        @endif
         <div class="course-result-media">
             <img src="{{ asset(optional($kursus->galeris->first())->imej ?? $kursus->institusi->gambar_institusi ?? 'images/default-course.jpg') }}"
                  alt="{{ $kursus->institusi->nama_institusi ?? 'Institusi' }}"
