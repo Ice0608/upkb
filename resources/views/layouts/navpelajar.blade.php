@@ -475,12 +475,14 @@
         </a>
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
+            @if($pelajar)
             <a href="{{ route('pelajar.program', $pelajar) }}" class="site-nav-link">Program</a>
             <a href="{{ route('pelajar.dashboard', $pelajar) }}" class="site-nav-link">Dashboard</a>
             <form method="POST" action="{{ route('pelajar.logout') }}">
                 @csrf
                 <button type="submit" class="site-nav-link">Logout</button>
             </form>
+            @endif
         </div>
 
         <details class="site-nav-mobile ml-auto lg:hidden">
@@ -496,9 +498,11 @@
 
             <div class="site-nav-mobile-panel absolute inset-x-4 top-full mt-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:inset-x-6">
                 <div class="space-y-2">
+                    @if($pelajar)
                     <a href="{{ route('pelajar.program', $pelajar) }}" class="{{ request()->routeIs('pelajar.program*') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Program
                     </a>
+                    @endif
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
                         <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'TVET']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>

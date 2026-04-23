@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Kursus;
 use App\Models\Pelajar;
 use App\Models\Pembayaran;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class StaffEventController extends Controller
@@ -222,7 +223,7 @@ class StaffEventController extends Controller
 
     public function printBmd(Pelajar $pelajar, Request $request)
     {
-        abort_if(auth()->user()->level !== 'staff', 403);
+        abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
         $html = view('staff.bmd-print', compact('pelajar'))->render();
         
@@ -231,10 +232,10 @@ class StaffEventController extends Controller
             return $html;
         }
         
-        // Send as HTML for browser printing instead of PDF
-        return response($html)
-            ->header('Content-Type', 'text/html; charset=utf-8')
-            ->header('Content-Disposition', 'inline; filename="BMD_' . $pelajar->ic_pelajar . '.html"');
+        // Generate PDF for consistent output
+        $pdf = Pdf::loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
     }
 
     // ========== PELAJAR ROUTES ==========

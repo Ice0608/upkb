@@ -337,18 +337,22 @@
 
 <script>
 function openPrintModal() {
-    const pelajarId = "{{ $pelajar->id }}";
+    console.log('openPrintModal called');
     const modal = document.getElementById('printModal');
     const printContent = document.getElementById('printContent');
     
+    modal.classList.remove('hidden'); // Show modal immediately
+    
     // Fetch the print content
-    fetch(`{{ route('staff.bmd.print', ['pelajar' => '__PELAJAR_ID__']) }}`.replace('__PELAJAR_ID__', pelajarId) + '?modal=1')
+    fetch(`{{ route('staff.bmd.print', $pelajar) }}?modal=1`)
         .then(response => response.text())
         .then(html => {
             printContent.innerHTML = html;
-            modal.classList.remove('hidden');
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.error('Error:', error);
+            printContent.innerHTML = '<p>Error loading preview. Please check your connection and try again.</p>';
+        });
 }
 
 function closePrintModal() {
@@ -357,17 +361,14 @@ function closePrintModal() {
 }
 
 function printContent() {
-    const printFrame = document.createElement('iframe');
-    printFrame.style.display = 'none';
-    document.body.appendChild(printFrame);
-    
-    const content = document.getElementById('printContent');
-    const printDoc = printFrame.contentDocument;
-    printDoc.write(content.innerHTML);
-    printDoc.close();
-    
-    printFrame.contentWindow.focus();
-    printFrame.contentWindow.print();
+    // Create a link to download the PDF
+    const link = document.createElement('a');
+    link.href = `{{ route('staff.bmd.print', $pelajar) }}`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
     
     // Cleanup after print
     setTimeout(() => document.body.removeChild(printFrame), 500);
