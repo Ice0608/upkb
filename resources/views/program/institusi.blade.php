@@ -913,6 +913,7 @@
             </div>
         </div>
 
+        @unless($institusiIsSainsKesihatan)
         <div class="institusi-toolbar mb-8 rounded-3xl p-4 sm:p-5">
             <div class="relative z-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
@@ -964,6 +965,7 @@
                 </div>
             </div>
         </div>
+        @endunless
 
         @if($institusis->isEmpty())
             <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">
