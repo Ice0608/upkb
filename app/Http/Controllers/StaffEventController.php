@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Kursus;
 use App\Models\Pelajar;
 use App\Models\Pembayaran;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class StaffEventController extends Controller
@@ -222,7 +223,7 @@ class StaffEventController extends Controller
 
     public function printBmd(Pelajar $pelajar, Request $request)
     {
-        abort_if(auth()->user()->level !== 'staff', 403);
+        abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
         $html = view('staff.bmd-print', compact('pelajar'))->render();
         
@@ -231,10 +232,10 @@ class StaffEventController extends Controller
             return $html;
         }
         
-        // Send as HTML for browser printing instead of PDF
-        return response($html)
-            ->header('Content-Type', 'text/html; charset=utf-8')
-            ->header('Content-Disposition', 'inline; filename="BMD_' . $pelajar->ic_pelajar . '.html"');
+        // Generate PDF for consistent output
+        $pdf = Pdf::loadHtml($html);
+        $pdf->setPaper('A4', 'portrait');
+        return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
     }
 
     // ========== PELAJAR ROUTES ==========
@@ -560,6 +561,7 @@ class StaffEventController extends Controller
         $request->validate([
             'kaedah_pembayaran' => 'required|string',
             'resit' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+            'jumlah' => 'required|numeric|min:0.01',
         ]);
 
         $resitPath = null;
@@ -677,23 +679,36 @@ class StaffEventController extends Controller
     public function updatePaymentStatus(Request $request)
     {
         abort_if(auth()->user()->level !== 'staff', 403);
-
         $request->validate([
             'ic_pelajar' => 'required|string',
             'status' => 'required|string',
+            'jumlah_bayaran' => 'nullable|numeric|min:0',
+            'bayaran_semasa' => 'nullable|numeric|min:0',
         ]);
 
         $pembayaran = Pembayaran::where('ic_pelajar', $request->ic_pelajar)->latest()->first();
 
+        $dataToUpdate = [
+            'status' => $request->status,
+        ];
+
+        if ($request->filled('jumlah_bayaran')) {
+            $dataToUpdate['jumlah_bayaran'] = $request->input('jumlah_bayaran');
+        }
+
+        if ($request->filled('bayaran_semasa')) {
+            $dataToUpdate['bayaran_semasa'] = $request->input('bayaran_semasa');
+        }
+
         if ($pembayaran) {
-            $pembayaran->update(['status' => $request->status]);
+            $pembayaran->update(array_merge($dataToUpdate, ['username' => auth()->user()->name]));
         } else {
             Pembayaran::create([
                 'ic_pelajar' => $request->ic_pelajar,
                 'username' => auth()->user()->name,
                 'kaedah_pembayaran' => 'Manual',
-                'jumlah_bayaran' => 0,
-                'bayaran_semasa' => 0,
+                'jumlah_bayaran' => $request->input('jumlah_bayaran', 0),
+                'bayaran_semasa' => $request->input('bayaran_semasa', 0),
                 'status' => $request->status,
                 'resit' => null,
                 'tarikh_pembayaran' => now()->toDateString(),
