@@ -20,6 +20,39 @@
                 linear-gradient(180deg, #fff6e8 0%, #f8fafc 44%, #eef4ff 100%);
         }
 
+        .kursus-page--tvet {
+            background:
+                url('/images/TVET-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(241, 207, 99, 0.18), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
+        .kursus-page--diploma {
+            background:
+                url('/images/DIP-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(192, 132, 252, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(99, 102, 241, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
+        .kursus-page--sains-kesihatan {
+            background:
+                url('/images/SK-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(96, 165, 250, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(33, 150, 243, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
         .kursus-page::before,
         .kursus-page::after {
             content: "";
@@ -749,8 +782,38 @@
             background:
                 radial-gradient(circle at 8% 12%, rgba(251,146,60,0.08), transparent 22%),
                 radial-gradient(circle at 88% 14%, rgba(59,130,246,0.06), transparent 22%),
-                linear-gradient(180deg, #0f172a 0%, #1e293b 44%, #eef4ff 100%);
+                linear-gradient(180deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
             background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+        html.dark .kursus-page--tvet {
+            background:
+                url('/images/TVET-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        html.dark .kursus-page--diploma {
+            background:
+                url('/images/DIP-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        html.dark .kursus-page--sains-kesihatan {
+            background:
+                url('/images/SK-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
         html.dark .kursus-sidebar {
             background: rgba(15,23,42,0.94);
@@ -781,14 +844,16 @@
         html.dark .text-slate-500 { color: #94a3b8 !important; }
     </style>
 </head>
-<body class="kursus-page text-gray-800 transition-colors duration-300">
+@php
+    $heroProgramType = strtolower((string) (request('jenis') ?? ($selectedProgram->jenis_program ?? '')));
+    $kursusIsTvet = $heroProgramType === 'tvet';
+    $kursusIsDiploma = $heroProgramType === 'diploma';
+    $kursusIsSainsKesihatan = $heroProgramType === 'sains kesihatan';
+@endphp
+<body class="kursus-page no-bg {{ $kursusIsTvet ? 'kursus-page--tvet' : '' }} {{ $kursusIsDiploma ? 'kursus-page--diploma' : '' }} {{ $kursusIsSainsKesihatan ? 'kursus-page--sains-kesihatan' : '' }} text-gray-800 transition-colors duration-300">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
-
-    @php
-        $heroProgramType = strtolower((string) (request('jenis') ?? ($selectedProgram->jenis_program ?? '')));
-    @endphp
 
     <section class="kursus-shell max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div class="kursus-hero {{ $heroProgramType === 'diploma' ? 'kursus-hero--diploma' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-hero--sains-kesihatan' : '' }} rounded-[2rem] p-6 sm:p-8 text-white mb-8">

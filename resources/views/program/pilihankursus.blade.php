@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - {{ $namaKursus }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     
     <style>
         .pilihan-page,
@@ -92,6 +93,39 @@
             --pilihan-soft-label: rgba(219, 234, 254, 0.95);
             --pilihan-live-bg: rgba(239, 246, 255, 0.94);
             --pilihan-live-text: #2563eb;
+        }
+
+        .pilihan-page--tvet {
+            background:
+                url('/images/TVET-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(241, 207, 99, 0.18), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
+        .pilihan-page--diploma {
+            background:
+                url('/images/DIP-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(192, 132, 252, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(99, 102, 241, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
+        .pilihan-page--sains-kesihatan {
+            background:
+                url('/images/SK-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(96, 165, 250, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(33, 150, 243, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
         .pilihan-shell::before,
@@ -467,6 +501,39 @@
                 grid-template-columns: minmax(0, 1fr);
             }
         }
+
+        html.dark .pilihan-page--tvet {
+            background:
+                url('/images/TVET-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        html.dark .pilihan-page--diploma {
+            background:
+                url('/images/DIP-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        html.dark .pilihan-page--sains-kesihatan {
+            background:
+                url('/images/SK-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
     </style>
 </head>
 @php
@@ -493,7 +560,7 @@
         $pilihanProgramType = 'tvet';
     }
 @endphp
-<body class="pilihan-page {{ $pilihanProgramType === 'tvet' ? 'pilihan-page--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-page--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-page--sains-kesihatan' : '' }} text-slate-900 min-h-screen flex flex-col">
+<body class="pilihan-page no-bg {{ $pilihanProgramType === 'tvet' ? 'pilihan-page--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-page--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-page--sains-kesihatan' : '' }} text-slate-900 min-h-screen flex flex-col">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')

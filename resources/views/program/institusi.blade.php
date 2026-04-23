@@ -11,7 +11,14 @@
 
     <style>
         .institusi-page {
-            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: clip;
+            background:
+                radial-gradient(circle at 12% 16%, rgba(255, 166, 0, 0.26), transparent 24%),
+                radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.14), transparent 28%),
+                radial-gradient(circle at 50% 56%, rgba(255, 255, 255, 0.78), transparent 24%),
+                linear-gradient(135deg, #fff0d9 0%, #edf4ff 44%, #dfe9ff 100%);
         }
 
         .institusi-page--tvet,
@@ -52,23 +59,35 @@
 
         .institusi-page--tvet {
             background:
-                radial-gradient(circle at 8% 12%, rgba(var(--institusi-tvet-rgb-soft), 0.16), transparent 24%),
+                url('/images/TVET-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(var(--institusi-tvet-rgb-soft), 0.18), transparent 24%),
                 radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
-                linear-gradient(180deg, #fffaf5 0%, #f8fafc 44%, #f6f8fc 100%);
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
         .institusi-page--diploma {
             background:
+                url('/images/DIP-LIGHT.jpg'),
                 radial-gradient(circle at 8% 12%, rgba(var(--institusi-diploma-rgb-soft), 0.16), transparent 24%),
                 radial-gradient(circle at 90% 18%, rgba(99, 102, 241, 0.08), transparent 24%),
-                linear-gradient(180deg, #fcf8ff 0%, #f8fafc 44%, #f6f8fc 100%);
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
-        .institusi-page--sains-kesihatan {
+        .institusi-page--sains-kesihatan{
             background:
+                url('/images/SK-LIGHT.jpg'),
                 radial-gradient(circle at 8% 12%, rgba(var(--institusi-sains-rgb-soft), 0.16), transparent 24%),
-                radial-gradient(circle at 90% 18%, rgba(14, 165, 233, 0.08), transparent 24%),
-                linear-gradient(180deg, #f5fbff 0%, #f8fafc 44%, #f6f8fc 100%);
+                radial-gradient(circle at 90% 18%, rgba(33, 150, 243, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
         .institusi-page--tvet .institusi-hero {
@@ -795,13 +814,47 @@
             }
         }
         /* ── DARK MODE ── */
-        html.dark .institusi-page--tvet,
-        html.dark .institusi-page--diploma,
-        html.dark .institusi-page--sains-kesihatan {
+
+        html.dark .institusi-page{
             background:
+                radial-gradient(circle at 12% 16%, rgba(251, 146, 60, 0.12), transparent 24%),
+                radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.08), transparent 28%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
+        }
+
+        html.dark .institusi-page--tvet {
+            background:
+                url('/images/TVET-DARK.jpg'),
                 radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
                 radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
-                linear-gradient(180deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        html.dark .institusi-page--diploma{
+            background:
+                url('/images/DIP-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        
+        }
+
+        html.dark .institusi-page--sains-kesihatan {
+            background:
+                url('/images/SK-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        
         }
         html.dark .institusi-card {
             background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Info Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     <style>
         .institusi-info-page--tvet {
             --institusi-info-50: #fffbea;
@@ -15,20 +16,30 @@
             --institusi-info-600: #b88912;
             --institusi-info-700: #8a6a08;
             background:
-                radial-gradient(circle at 10% 12%, rgba(241, 207, 99, 0.14), transparent 24%),
-                linear-gradient(180deg, #fffaf5 0%, #f8fafc 46%, #f6f8fc 100%);
+                url('/images/TVET-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(241, 207, 99, 0.18), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
-            .institusi-info-page--diploma {
-                --institusi-info-50: #f7efff;
-                --institusi-info-100: #ede0ff;
-                --institusi-info-500: #8d2be2;
-                --institusi-info-600: #7a1fd1;
-                --institusi-info-700: #6216aa;
-                background:
-                radial-gradient(circle at 10% 12%, rgba(192, 132, 252, 0.14), transparent 24%),
-                linear-gradient(180deg, #fcf8ff 0%, #f8fafc 46%, #f6f8fc 100%);
-            }
+        .institusi-info-page--diploma {
+            --institusi-info-50: #f7efff;
+            --institusi-info-100: #ede0ff;
+            --institusi-info-500: #8d2be2;
+            --institusi-info-600: #7a1fd1;
+            --institusi-info-700: #6216aa;
+            background:
+                url('/images/DIP-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(192, 132, 252, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(99, 102, 241, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
 
         .institusi-info-page--sains-kesihatan {
             --institusi-info-50: #edf7ff;
@@ -37,8 +48,13 @@
             --institusi-info-600: #1d4ed8;
             --institusi-info-700: #1e40af;
             background:
-                radial-gradient(circle at 10% 12%, rgba(96, 165, 250, 0.14), transparent 24%),
-                linear-gradient(180deg, #f5fbff 0%, #f8fafc 46%, #f6f8fc 100%);
+                url('/images/SK-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(96, 165, 250, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(33, 150, 243, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
         .institusi-info-badge-tvet {
@@ -69,12 +85,47 @@
         .institusi-info-accent-tvet {
             color: var(--institusi-info-500);
         }
+
+        /* dark mode */
+
+        html.dark .institusi-info-page--tvet {
+            background:
+                url('/images/TVET-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        html.dark .institusi-info-page--diploma {
+            background:
+                url('/images/DIP-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        html.dark .institusi-info-page--sains-kesihatan {
+            background:
+                url('/images/SK-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
     </style>
 </head>
 @php
     $institusiInfoType = strtolower((string) $institusi->jenis_institusi);
 @endphp
-<body class="{{ $institusiInfoType === 'tvet' ? 'institusi-info-page--tvet' : '' }} {{ $institusiInfoType === 'diploma' ? 'institusi-info-page--diploma' : '' }} {{ $institusiInfoType === 'sains kesihatan' ? 'institusi-info-page--sains-kesihatan' : '' }} {{ ! in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'bg-gray-100' : '' }} text-gray-800">
+<body class="no-bg {{ $institusiInfoType === 'tvet' ? 'institusi-info-page--tvet' : '' }} {{ $institusiInfoType === 'diploma' ? 'institusi-info-page--diploma' : '' }} {{ $institusiInfoType === 'sains kesihatan' ? 'institusi-info-page--sains-kesihatan' : '' }} {{ ! in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'bg-gray-100' : '' }} text-gray-800">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navigation')
