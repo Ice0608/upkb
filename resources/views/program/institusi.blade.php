@@ -1107,9 +1107,13 @@
                     }
 
                     if (sliderRow.scrollLeft < loopWidth) {
+                        sliderRow.style.scrollBehavior = 'auto';
                         sliderRow.scrollLeft += loopWidth;
+                        sliderRow.style.scrollBehavior = '';
                     } else if (sliderRow.scrollLeft >= loopWidth * 2) {
+                        sliderRow.style.scrollBehavior = 'auto';
                         sliderRow.scrollLeft -= loopWidth;
+                        sliderRow.style.scrollBehavior = '';
                     }
                 };
 
@@ -1135,7 +1139,9 @@
                         ? (((sliderRow.scrollLeft - loopWidth) % loopWidth) + loopWidth) % loopWidth
                         : 0;
 
+                    sliderRow.style.scrollBehavior = 'auto';
                     sliderRow.scrollLeft = loopWidth + preservedOffset;
+                    sliderRow.style.scrollBehavior = '';
                     sliderRow.dataset.loopReady = 'true';
                 };
 

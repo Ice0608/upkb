@@ -336,13 +336,19 @@
             --story-ambient: 0;
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: clamp(1rem, 2.2vw, 1.35rem);
             width: min(96vw, 1180px);
+            margin-inline: auto;
         }
 
         .story-panel {
             --story-stagger: 0s;
             --panel-scroll: 0;
+            --card-rx: 0deg;
+            --card-ry: 0deg;
+            --card-mx: 50%;
+            --card-my: 50%;
             display: grid;
             grid-template-columns: minmax(16.5rem, 33%) minmax(0, 1fr);
             align-items: stretch;
@@ -350,8 +356,13 @@
             border-radius: clamp(2.2rem, 4vw, 3rem);
             border: 1px solid rgba(244, 163, 88, 0.48);
             background: rgba(4, 6, 10, 0.94);
-            box-shadow: 0 26px 62px rgba(0, 0, 0, 0.52);
+            box-shadow:
+                0 26px 62px rgba(0, 0, 0, 0.52),
+                inset 0 1px 0 rgba(255, 255, 255, 0.07),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.4);
             overflow: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
             opacity: 0;
             transform: translateY(52px) scale(0.965);
             filter: blur(8px);
@@ -362,10 +373,44 @@
                         border-color 0.35s ease;
         }
 
-        .story-panel::before,
-        .story-panel::after {
-            display: none;
+        /* Specular gloss highlight — tracks mouse */
+        .story-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle at var(--card-mx, 50%) var(--card-my, 50%),
+                rgba(255, 255, 255, 0.14) 0%,
+                rgba(255, 255, 255, 0.05) 28%,
+                rgba(255, 255, 255, 0) 62%
+            );
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.22s ease;
         }
+
+        /* Ambient colour glow — tracks mouse */
+        .story-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: inherit;
+            background: radial-gradient(
+                circle at var(--card-mx, 50%) var(--card-my, 50%),
+                rgba(244, 163, 88, 0.20) 0%,
+                rgba(168, 85, 247, 0.10) 42%,
+                rgba(244, 163, 88, 0) 70%
+            );
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.22s ease;
+        }
+
+        .story-panel:hover::before { opacity: 1; }
+        .story-panel:hover::after  { opacity: 1; }
 
         .story-panel--left {
             --story-stagger: 0.08s;
@@ -385,7 +430,7 @@
             justify-content: center;
             gap: 0.5rem;
             border-right: 1px solid rgba(255, 255, 255, 0.07);
-            transform: translateY(calc((1 - var(--panel-scroll)) * 10px));
+            transform: translateZ(28px) translateY(calc((1 - var(--panel-scroll)) * 10px));
             transition: transform 0.16s linear;
         }
 
@@ -417,7 +462,7 @@
             align-items: center;
             color: rgba(241, 245, 249, 0.95);
             background: rgba(0, 0, 0, 0.28);
-            transform: translateY(calc((1 - var(--panel-scroll)) * 12px));
+            transform: translateZ(10px) translateY(calc((1 - var(--panel-scroll)) * 12px));
             transition: transform 0.16s linear;
         }
 
@@ -434,9 +479,20 @@
             font-size: clamp(1.9rem, 3.1vw, 3rem);
             font-weight: 800;
             line-height: 1.04;
-            color: #ffffff;
+            background: linear-gradient(135deg, #ffffff 18%, rgba(244, 163, 88, 0.95) 50%, #ffffff 82%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 220% 100%;
+            animation: storyRoleShimmer 5s ease-in-out infinite;
             position: relative;
             z-index: 1;
+        }
+
+        @keyframes storyRoleShimmer {
+            0%   { background-position: 180% center; }
+            50%  { background-position: -80% center; }
+            100% { background-position: 180% center; }
         }
 
         .story-panel-head > *,
@@ -453,7 +509,11 @@
         .snap-section.is-active .story-panel {
             opacity: 1;
             filter: blur(0);
-            transform: translateY(calc((1 - var(--panel-scroll)) * 18px)) scale(calc(0.988 + (var(--panel-scroll) * 0.012)));
+            transform: perspective(1200px)
+                       rotateX(var(--card-rx, 0deg))
+                       rotateY(var(--card-ry, 0deg))
+                       translateY(calc((1 - var(--panel-scroll)) * 18px))
+                       scale(calc(0.988 + (var(--panel-scroll) * 0.012)));
             transition-delay: var(--story-stagger);
         }
 
@@ -464,8 +524,16 @@
         }
 
         .snap-section.is-active .story-panel:hover {
-            transform: translateY(-4px) scale(1.005);
-            box-shadow: 0 36px 82px rgba(0, 0, 0, 0.62), 0 0 36px rgba(244, 163, 88, 0.14);
+            transform: perspective(1200px)
+                       rotateX(var(--card-rx, 0deg))
+                       rotateY(var(--card-ry, 0deg))
+                       translateY(-4px) scale(1.008);
+            box-shadow:
+                0 52px 100px rgba(0, 0, 0, 0.72),
+                0 0 56px rgba(244, 163, 88, 0.2),
+                0 0 0 1.5px rgba(244, 163, 88, 0.55),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            border-color: rgba(244, 163, 88, 0.9);
         }
 
         @media (max-width: 920px) {
@@ -1285,7 +1353,7 @@
 
 </section>
 
-    <section class="snap-section story-section px-6">
+    <section class="snap-section story-section flex items-center justify-center px-6">
         <div class="story-pair-wrapper">
             <div class="story-panel story-panel--left">
                 <div class="story-panel-head">
@@ -1509,6 +1577,45 @@ function getNearestSectionIndex() {
     return nearestIndex;
 }
 
+function initStoryPanelTilt() {
+    const MAX_TILT = 8;
+    document.querySelectorAll('.story-panel').forEach((panel) => {
+        const FAST_T = [
+            'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+            'filter 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+            'transform 0.07s linear',
+            'box-shadow 0.10s ease',
+            'border-color 0.10s ease'
+        ].join(', ');
+        const SLOW_T = [
+            'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+            'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)',
+            'filter 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
+            'box-shadow 0.45s ease',
+            'border-color 0.35s ease'
+        ].join(', ');
+
+        panel.addEventListener('mousemove', (e) => {
+            const rect = panel.getBoundingClientRect();
+            const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+            const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+            panel.style.setProperty('--card-rx', `${(-dy * MAX_TILT * 0.62).toFixed(2)}deg`);
+            panel.style.setProperty('--card-ry', `${( dx * MAX_TILT).toFixed(2)}deg`);
+            panel.style.setProperty('--card-mx', `${((dx + 1) / 2 * 100).toFixed(1)}%`);
+            panel.style.setProperty('--card-my', `${((dy + 1) / 2 * 100).toFixed(1)}%`);
+            panel.style.transition = FAST_T;
+        }, { passive: true });
+
+        panel.addEventListener('mouseleave', () => {
+            panel.style.setProperty('--card-rx', '0deg');
+            panel.style.setProperty('--card-ry', '0deg');
+            panel.style.setProperty('--card-mx', '50%');
+            panel.style.setProperty('--card-my', '50%');
+            panel.style.transition = SLOW_T;
+        }, { passive: true });
+    });
+}
+
 function updateStoryScrollAnimation() {
     const storySection = document.querySelector('.story-section');
     if (!storySection) return;
@@ -1688,6 +1795,7 @@ showIntroOverlayIfNeeded();
 
 document.addEventListener('DOMContentLoaded', () => {
     initSnapNavigation();
+    initStoryPanelTilt();
     window.addEventListener('resize', updateStoryScrollAnimation, { passive: true });
 });
 
