@@ -299,12 +299,6 @@
     <div class="section-title">6. Kursus Dipilih / Selected Course</div>
     <table class="info-table" style="margin-top: 5px;">
         <tr>
-            <td class="label" style="width: 25%;">Nama Kursus / <span class="label-sub">Course Name:</span></td>
-            <td colspan="3" class="value" style="font-weight: bold; font-size: 11px;">
-                {{ $pelajar->pilihan_pertama ?? '-' }}
-            </td>
-        </tr>
-        <tr>
             <td class="label">Kod Institusi / <span class="label-sub">Institution Code:</span></td>
             <td class="value">{{ $pelajar->kod_institusi ?? '-' }}</td>
             <td class="label">Kod Kursus / <span class="label-sub">Course Code:</span></td>
