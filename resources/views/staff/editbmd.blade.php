@@ -369,10 +369,6 @@ function printContent() {
     link.click();
     document.body.removeChild(link);
 }
-    
-    // Cleanup after print
-    setTimeout(() => document.body.removeChild(printFrame), 500);
-}
 
 // Update button onclick
 document.addEventListener('DOMContentLoaded', function() {
