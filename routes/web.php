@@ -94,6 +94,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
+Route::get('/receipt', function () {
+    // Check if this is a modal request
+    $isModal = request('modal');
+    
+    // Return only the page content for modal, full HTML for standalone
+    if ($isModal) {
+        return view('receipt-content');
+    }
+    
+    return view('receipt');
+})->name('receipt');
+
 Route::view('/about', 'about')->name('about');
 
 Route::get('/program', [ProgramController::class, 'index'])->name('program');

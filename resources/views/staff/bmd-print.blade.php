@@ -178,7 +178,18 @@
     }
 
     @media print {
-        body { -webkit-print-color-adjust: exact; }
+        body { 
+            -webkit-print-color-adjust: exact;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            page-break-after: avoid;
+            page-break-inside: avoid;
+        }
+        * {
+            page-break-inside: avoid !important;
+        }
     }
 </style>
 </head>

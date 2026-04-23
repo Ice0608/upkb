@@ -293,6 +293,7 @@
                     <a href="{{ route('staff.main') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                     @if(isset($pelajar))
                         <button type="button" onclick="openPrintModal()" class="inline-flex items-center justify-center rounded-full border border-orange-500 bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak BMD</button>
+                        <button type="button" onclick="openReceiptModal()" class="inline-flex items-center justify-center rounded-full border border-blue-500 bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-600">Cetak Resit</button>
                     @endif
                 </div>
 
@@ -335,6 +336,29 @@
     </div>
 </div>
 
+<!-- Receipt Modal -->
+<div id="receiptModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden overflow-y-auto">
+    <div class="flex items-start justify-center min-h-screen pt-4 px-4">
+        <div class="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-xl">
+            <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+                <h3 class="text-lg font-semibold">Preview Resit</h3>
+                <button onclick="closeReceiptModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="receiptContent" class="p-6">
+                <!-- Content will be loaded here -->
+            </div>
+            <div class="sticky bottom-0 bg-white border-t border-gray-200 p-4 flex gap-3 justify-end">
+                <button onclick="closeReceiptModal()" class="px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50">Tutup</button>
+                <button onclick="printReceiptModal()" class="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600">Cetak / Simpan PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 function openPrintModal() {
     console.log('openPrintModal called');
@@ -361,13 +385,89 @@ function closePrintModal() {
 }
 
 function printContent() {
-    // Create a link to download the PDF
-    const link = document.createElement('a');
-    link.href = `{{ route('staff.bmd.print', $pelajar) }}`;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Open print dialog for BMD content
+    const printContent = document.getElementById('printContent');
+    const printWindow = window.open('', '', 'height=600,width=800');
+    
+    printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>');
+    printWindow.document.write(`
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+        }
+    `);
+    printWindow.document.write('</style></head><body>');
+    printWindow.document.write(printContent.innerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    
+    setTimeout(() => {
+        printWindow.print();
+    }, 250);
+}
+
+// Receipt Modal Functions
+function openReceiptModal() {
+    console.log('openReceiptModal called');
+    const modal = document.getElementById('receiptModal');
+    const receiptContent = document.getElementById('receiptContent');
+    
+    modal.classList.remove('hidden'); // Show modal immediately
+    
+    // Fetch the receipt content
+    fetch(`{{ route('receipt') }}?modal=1`)
+        .then(response => response.text())
+        .then(html => {
+            receiptContent.innerHTML = html;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            receiptContent.innerHTML = '<p>Error loading preview. Please check your connection and try again.</p>';
+        });
+}
+
+function closeReceiptModal() {
+    const modal = document.getElementById('receiptModal');
+    modal.classList.add('hidden');
+}
+
+function printReceiptModal() {
+    const receiptContent = document.getElementById('receiptContent');
+    const printWindow = window.open('', '', 'height=600,width=800');
+    
+    printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>');
+    printWindow.document.write(`
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        @media print {
+            body {
+                background-color: white;
+            }
+        }
+    `);
+    printWindow.document.write('</style></head><body>');
+    printWindow.document.write(receiptContent.innerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    
+    setTimeout(() => {
+        printWindow.print();
+    }, 250);
 }
 
 // Update button onclick
