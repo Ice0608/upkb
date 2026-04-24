@@ -7,6 +7,7 @@
     <title>UPKB - Program</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     
     <style>
         .program-page {
@@ -333,9 +334,18 @@
                 animation: none;
             }
         }
+
+        /* DARK MODE */
+        html.dark body.program-page { color: #e2e8f0; }
+        html.dark .program-page {
+            background:
+                radial-gradient(circle at 12% 16%, rgba(251, 146, 60, 0.12), transparent 24%),
+                radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.08), transparent 28%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
+        }
     </style>
 </head>
-<body class="program-page text-gray-800">
+<body class="program-page text-gray-800 transition-colors duration-300">
 
     @include('layouts.navpelajar')
     

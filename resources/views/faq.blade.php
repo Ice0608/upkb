@@ -351,6 +351,78 @@
                 linear-gradient(90deg, rgba(109, 40, 217, 0.94), rgba(139, 92, 246, 0.94) 58%, rgba(192, 132, 252, 0.94));
         }
 
+        /* admission — orange (matches icon #ff9a3c → #ff7a00) */
+        .faq-card[data-faq-type="admission"]::after {
+            background: radial-gradient(circle, rgba(255, 122, 0, 0.3), rgba(255, 122, 0, 0) 72%);
+        }
+
+        .faq-card[data-faq-type="admission"]:hover,
+        .faq-card[data-faq-type="admission"]:focus-visible,
+        .faq-card[data-faq-type="admission"].is-focused {
+            border-color: rgba(255, 208, 137, 0.56);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 246, 228, 0.52),
+                0 24px 54px rgba(226, 88, 0, 0.24),
+                0 0 34px rgba(255, 122, 0, 0.24),
+                0 0 90px rgba(255, 172, 80, 0.2);
+            background:
+                linear-gradient(90deg, rgba(200, 78, 0, 0.94), rgba(255, 122, 0, 0.94) 58%, rgba(255, 154, 60, 0.94));
+        }
+
+        /* program — sky blue (matches icon #38bdf8 → #0ea5e9) */
+        .faq-card[data-faq-type="program"]::after {
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.3), rgba(14, 165, 233, 0) 72%);
+        }
+
+        .faq-card[data-faq-type="program"]:hover,
+        .faq-card[data-faq-type="program"]:focus-visible,
+        .faq-card[data-faq-type="program"].is-focused {
+            border-color: rgba(125, 211, 252, 0.56);
+            box-shadow:
+                inset 0 1px 0 rgba(240, 249, 255, 0.52),
+                0 24px 54px rgba(2, 132, 199, 0.24),
+                0 0 34px rgba(14, 165, 233, 0.24),
+                0 0 90px rgba(56, 189, 248, 0.2);
+            background:
+                linear-gradient(90deg, rgba(2, 132, 199, 0.94), rgba(14, 165, 233, 0.94) 58%, rgba(56, 189, 248, 0.94));
+        }
+
+        /* fees — emerald green (matches icon #34d399 → #059669) */
+        .faq-card[data-faq-type="fees"]::after {
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.3), rgba(5, 150, 105, 0) 72%);
+        }
+
+        .faq-card[data-faq-type="fees"]:hover,
+        .faq-card[data-faq-type="fees"]:focus-visible,
+        .faq-card[data-faq-type="fees"].is-focused {
+            border-color: rgba(110, 231, 183, 0.56);
+            box-shadow:
+                inset 0 1px 0 rgba(236, 253, 245, 0.52),
+                0 24px 54px rgba(4, 120, 87, 0.24),
+                0 0 34px rgba(5, 150, 105, 0.24),
+                0 0 90px rgba(52, 211, 153, 0.2);
+            background:
+                linear-gradient(90deg, rgba(4, 120, 87, 0.94), rgba(5, 150, 105, 0.94) 58%, rgba(52, 211, 153, 0.94));
+        }
+
+        /* application — orange-red (matches icon #f97316 → #ea580c) */
+        .faq-card[data-faq-type="application"]::after {
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.3), rgba(249, 115, 22, 0) 72%);
+        }
+
+        .faq-card[data-faq-type="application"]:hover,
+        .faq-card[data-faq-type="application"]:focus-visible,
+        .faq-card[data-faq-type="application"].is-focused {
+            border-color: rgba(253, 186, 116, 0.56);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 247, 237, 0.52),
+                0 24px 54px rgba(194, 65, 12, 0.24),
+                0 0 34px rgba(249, 115, 22, 0.24),
+                0 0 90px rgba(251, 146, 60, 0.2);
+            background:
+                linear-gradient(90deg, rgba(194, 65, 12, 0.94), rgba(234, 88, 12, 0.94) 58%, rgba(249, 115, 22, 0.94));
+        }
+
         .faq-track.has-focused-item .faq-card:not(.is-focused) {
             opacity: 0.56;
             transform: scale(0.95);
@@ -394,6 +466,24 @@
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(139, 92, 246, 0.24);
             }
+
+        .faq-card[data-faq-type="program"].is-focused .faq-icon-chip,
+        .faq-card[data-faq-type="program"]:hover .faq-icon-chip,
+        .faq-card[data-faq-type="program"]:focus-visible .faq-icon-chip {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                0 20px 34px rgba(28, 28, 30, 0.14),
+                0 0 34px rgba(14, 165, 233, 0.28);
+        }
+
+        .faq-card[data-faq-type="fees"].is-focused .faq-icon-chip,
+        .faq-card[data-faq-type="fees"]:hover .faq-icon-chip,
+        .faq-card[data-faq-type="fees"]:focus-visible .faq-icon-chip {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                0 20px 34px rgba(28, 28, 30, 0.14),
+                0 0 34px rgba(52, 211, 153, 0.28);
+        }
 
             .faq-card[data-faq-type="tvet"] .faq-card-title,
             .faq-card[data-faq-type="tvet"] .faq-card-copy,

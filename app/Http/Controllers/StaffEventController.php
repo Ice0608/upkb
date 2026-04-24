@@ -25,6 +25,7 @@ class StaffEventController extends Controller
             'pelajarDashboard',
             'pelajarProgram',
             'pelajarProgramList',
+            'pelajarInstitusi',
             'pelajarListKursus',
             'pelajarPilihanKursus',
             'pelajarFilterByName',
@@ -399,6 +400,33 @@ class StaffEventController extends Controller
         return view('pelajar.program', compact('pelajar', 'programs'));
     }
 
+    public function pelajarInstitusi(Pelajar $pelajar, Request $request)
+    {
+        $jenis = $request->query('jenis');
+        $negeri = $request->query('negeri');
+        $kuota = $request->query('kuota');
+
+        $query = \App\Models\Institusi::query()->withCount('kursuses');
+
+        if ($jenis) {
+            $query->where('jenis_institusi', $jenis);
+        }
+
+        if ($negeri) {
+            $query->where('alamat', 'LIKE', '%' . $negeri . '%');
+        }
+
+        if ($kuota) {
+            $query->whereHas('kursuses', function ($q) {
+                $q->where('kuota', '>', 0);
+            });
+        }
+
+        $institusis = $query->get();
+
+        return view('pelajar.institusi', compact('pelajar', 'institusis', 'jenis'));
+    }
+
     public function pelajarListKursus(Pelajar $pelajar, $nama)
     {
         $jenis = $nama; // Untuk kompatibilitas route lama
@@ -529,8 +557,24 @@ class StaffEventController extends Controller
 
     public function pelajarTabGaleri(Pelajar $pelajar, $kod_institusi)
     {
-        $galeri = \App\Models\Galeri::where('kod_institusi', $kod_institusi)->get();
-        return view('pelajar._guest_tab_galeri', compact('galeri'));
+        $galleries = \App\Models\Galeri::where('kod_institusi', $kod_institusi)->get();
+
+        // Try to resolve the currently selected course for title context in the gallery partial.
+        $kursus = null;
+        if (!empty($pelajar->kod_kursus)) {
+            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)
+                ->where('kod_institusi', $kod_institusi)
+                ->first();
+        }
+
+        if (!$kursus) {
+            $kursus = \App\Models\Kursus::where('kod_institusi', $kod_institusi)->first();
+        }
+
+        // Keep legacy variable name ($galeri) for compatibility with existing views.
+        $galeri = $galleries;
+
+        return view('pelajar._guest_tab_galeri', compact('kursus', 'galleries', 'galeri'));
     }
 
     public function pelajarApplyNow(Request $request, Pelajar $pelajar)
