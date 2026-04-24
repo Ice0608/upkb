@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
 
     <style>
         .institusi-page {
@@ -250,9 +251,106 @@
         .institusi-clamp-3 {
             -webkit-line-clamp: 3;
         }
+
+        /* DARK MODE */
+        html.dark .institusi-page {
+            background:
+                radial-gradient(circle at 12% 16%, rgba(251, 146, 60, 0.1), transparent 24%),
+                radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.08), transparent 28%),
+                linear-gradient(135deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
+        }
+
+        html.dark .institusi-toolbar {
+            border-color: rgba(255, 255, 255, 0.08);
+            background:
+                linear-gradient(180deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.94)),
+                linear-gradient(120deg, rgba(249, 115, 22, 0.08), rgba(59, 130, 246, 0.08));
+            box-shadow:
+                0 24px 50px rgba(0, 0, 0, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        html.dark .institusi-filter-select {
+            background: #1e293b;
+            border-color: rgba(148, 163, 184, 0.2);
+            color: #e2e8f0;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+        }
+
+        html.dark .institusi-filter-select:hover,
+        html.dark .institusi-filter-select:focus {
+            border-color: rgba(249, 115, 22, 0.48);
+            box-shadow: 0 16px 32px rgba(249, 115, 22, 0.18);
+        }
+
+        html.dark .institusi-card {
+            border-color: rgba(51, 65, 85, 0.92);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .institusi-card:hover,
+        html.dark .institusi-card:focus-within {
+            border-color: rgba(249, 115, 22, 0.32);
+            box-shadow:
+                0 30px 64px rgba(0, 0, 0, 0.4),
+                0 0 28px rgba(249, 115, 22, 0.14);
+        }
+
+        html.dark .institusi-card-chip {
+            border-color: rgba(249, 115, 22, 0.2);
+            background: rgba(30, 41, 59, 0.88);
+            color: #cbd5e1;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        html.dark .institusi-card:hover .institusi-card-chip,
+        html.dark .institusi-card:focus-within .institusi-card-chip {
+            border-color: rgba(249, 115, 22, 0.3);
+            background: rgba(51, 65, 85, 0.9);
+        }
+
+        html.dark .institusi-card:hover .institusi-card-arrow,
+        html.dark .institusi-card:focus-within .institusi-card-arrow {
+            background: #1e293b;
+            color: #f97316;
+        }
+
+        html.dark .institusi-card-link {
+            color: #fb923c;
+        }
+
+        html.dark .institusi-card:hover .institusi-card-link,
+        html.dark .institusi-card:focus-within .institusi-card-link {
+            color: #fdba74;
+        }
+
+        html.dark .text-slate-900,
+        html.dark .text-slate-800,
+        html.dark .text-gray-800 {
+            color: #f1f5f9 !important;
+        }
+
+        html.dark .text-slate-700,
+        html.dark .text-slate-600,
+        html.dark .text-gray-500 {
+            color: #cbd5e1 !important;
+        }
+
+        html.dark .border-slate-200\/80 {
+            border-color: rgba(148, 163, 184, 0.2) !important;
+        }
+
+        html.dark .bg-white {
+            background-color: #1e293b !important;
+        }
+
+        html.dark .bg-gray-100 {
+            background-color: transparent !important;
+        }
     </style>
 </head>
-<body class="institusi-page bg-gray-100 text-gray-800">
+<body class="institusi-page bg-gray-100 text-gray-800 transition-colors duration-300">
     
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navpelajar')

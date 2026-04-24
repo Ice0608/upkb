@@ -346,7 +346,7 @@
 
         .site-nav-program-card-tvet {
             background-image:
-                linear-gradient(145deg, rgba(249, 115, 22, 0.84), rgba(251, 146, 60, 0.68), rgba(253, 186, 116, 0.48)),
+                linear-gradient(145deg, rgba(168, 116, 8, 0.88), rgba(212, 175, 55, 0.74), rgba(241, 207, 99, 0.56)),
                 url('{{ asset('images/tvet-vg2.jpeg') }}');
         }
 
@@ -457,7 +457,64 @@
                 animation: none;
             }
         }
-        
+
+        /* DARK MODE OVERRIDES */
+        html.dark .site-nav {
+            background: rgba(15, 23, 42, 0.94);
+            border-bottom-color: rgba(51, 65, 85, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        html.dark .site-nav-brand {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.97) 52%, rgba(30, 41, 59, 0.9));
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+        html.dark .site-nav-brand-badge {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border-color: rgba(249, 115, 22, 0.2);
+        }
+        html.dark .site-nav-brand-badge::before {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.88));
+        }
+        html.dark .site-nav-brand-title {
+            color: #e2e8f0;
+        }
+        html.dark .site-nav-brand:hover .site-nav-brand-title {
+            color: #f8fafc;
+        }
+        html.dark .site-nav-login, html.dark .site-nav-menu-icon {
+            background: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+        html.dark .site-nav-login:hover, html.dark .site-nav-menu-icon:hover, html.dark .site-nav-mobile[open] .site-nav-menu-icon {
+            background: #0f172a;
+            border-color: rgba(249, 115, 22, 0.4);
+            color: #f97316;
+        }
+        html.dark .site-nav-program-shell, html.dark .site-nav-mobile-panel {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html.dark .site-nav-link {
+            color: #cbd5e1;
+        }
+        html.dark .site-nav-link:hover, html.dark .site-nav-link.is-active {
+            color: #ffffff;
+        }
+        html.dark .site-nav-link:not(.is-active) {
+            background: transparent;
+        }
+        html.dark .site-nav-mobile-panel a, html.dark .site-nav-mobile-panel button {
+            color: #cbd5e1;
+        }
+        html.dark .site-nav-mobile-panel a:hover, html.dark .site-nav-mobile-panel button:hover, html.dark .site-nav-mobile-panel a.bg-orange-50 {
+            background: #0f172a;
+            color: #f97316;
+        }
+        html.dark .site-nav-mobile-panel .bg-slate-50\/90 {
+            background: #0f172a;
+        }
+
     </style>
 @endonce
 
@@ -476,14 +533,72 @@
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
             @if($pelajar)
-            <a href="{{ route('pelajar.program', $pelajar) }}" class="site-nav-link">Program</a>
-            <a href="{{ route('pelajar.dashboard', $pelajar) }}" class="site-nav-link">Dashboard</a>
+            <div class="site-nav-program relative">
+                <a href="{{ route('pelajar.program', $pelajar) }}" class="site-nav-link {{ request()->routeIs('pelajar.program*') || request()->routeIs('pelajar.listkursus*') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                    Program
+                </a>
+
+                <div class="site-nav-program-panel absolute left-1/2 top-full z-20 w-[min(92vw,32rem)] pt-4">
+                    <div class="site-nav-program-shell rounded-[2rem] p-3 sm:p-4">
+                        <div class="mb-4 px-2 sm:mb-5">
+                            <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Cari Kursus Mengikut Program</p>
+                        </div>
+                        <div class="grid gap-3 md:grid-cols-3">
+                            <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar, 'nama' => 'TVET']) }}" class="site-nav-program-card site-nav-program-card-tvet site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0s]">
+                                <span class="site-nav-program-card-glow"></span>
+                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
+                                <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
+                                    <div>
+                                        <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">TVET</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Lihat senarai kursus TVET.</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar, 'nama' => 'Diploma']) }}" class="site-nav-program-card site-nav-program-card-diploma site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.4s]">
+                                <span class="site-nav-program-card-glow"></span>
+                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
+                                <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
+                                    <div>
+                                        <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Diploma</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Lihat senarai kursus diploma.</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar, 'nama' => 'Sains Kesihatan']) }}" class="site-nav-program-card site-nav-program-card-health site-nav-program-card-floating rounded-[1.9rem] px-5 py-5 text-white [animation-delay:0.8s]">
+                                <span class="site-nav-program-card-glow"></span>
+                                <span class="site-nav-program-card-badge inline-flex rounded-full bg-white/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">Program</span>
+                                <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
+                                    <div>
+                                        <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Sains Kesihatan</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Lihat senarai kursus sains kesihatan.</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{{ route('pelajar.institusi', $pelajar) }}" class="site-nav-link {{ request()->routeIs('pelajar.institusi*') || request()->routeIs('pelajar.infoinstitusi*') || request()->routeIs('pelajar.infokursus*') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                Institusi
+            </a>
+
+            <a href="{{ route('pelajar.dashboard', $pelajar) }}" class="site-nav-link {{ request()->routeIs('pelajar.dashboard') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                Dashboard
+            </a>
             <form method="POST" action="{{ route('pelajar.logout') }}">
                 @csrf
-                <button type="submit" class="site-nav-link">Logout</button>
+                <button type="submit" class="site-nav-link inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-orange-500">
+                    Logout
+                </button>
             </form>
             @endif
         </div>
+
+        <button id="theme-toggle" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Toggle Dark Mode">
+            <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
+            <i id="theme-toggle-light-icon" class="hidden fas fa-sun"></i>
+        </button>
 
         <details class="site-nav-mobile ml-auto lg:hidden">
             <summary class="cursor-pointer">
@@ -502,19 +617,22 @@
                     <a href="{{ route('pelajar.program', $pelajar) }}" class="{{ request()->routeIs('pelajar.program*') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Program
                     </a>
+                    <a href="{{ route('pelajar.institusi', $pelajar) }}" class="{{ request()->routeIs('pelajar.institusi*') || request()->routeIs('pelajar.infoinstitusi*') || request()->routeIs('pelajar.infokursus*') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                        Institusi
+                    </a>
                     @endif
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
-                        <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'TVET']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ $pelajar ? route('pelajar.listkursus', ['pelajar' => $pelajar, 'nama' => 'TVET']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-tvet rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">TVET</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi TVET.</p>
                         </a>
-                        <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'Diploma']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ $pelajar ? route('pelajar.listkursus', ['pelajar' => $pelajar, 'nama' => 'Diploma']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-diploma rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Diploma</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi diploma.</p>
                         </a>
-                        <a href="{{ $pelajar ? route('pelajar.program-list', ['pelajar' => $pelajar, 'nama' => 'Sains Kesihatan']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
+                        <a href="{{ $pelajar ? route('pelajar.listkursus', ['pelajar' => $pelajar, 'nama' => 'Sains Kesihatan']) : '#' }}" class="site-nav-mobile-program-card site-nav-program-card-health rounded-[1.5rem] px-4 py-4 text-white">
                             <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Program</span>
                             <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Sains Kesihatan</p>
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi kesihatan.</p>
@@ -531,9 +649,65 @@
                         </button>
                     </form>
                     @endif
-                    {{-- Login button removed for student flow --}}
+                    <button id="theme-toggle-mobile" class="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
+                        <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
+                        <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
+                        <span id="theme-toggle-text-mobile">Tukar Mod Tema</span>
+                    </button>
                 </div>
             </div>
         </details>
     </div>
 </nav>
+
+<script>
+    // Theme toggle script - runs ONCE on DOMContentLoaded only
+    document.addEventListener('DOMContentLoaded', function() {
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        const themeToggleDarkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        const themeToggleLightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+
+        // Sync icons to current theme (set by dark-mode-init.blade.php in <head>)
+        function syncIcons() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                // Currently dark - show sun icon (click to go light)
+                if (themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
+                if (themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
+                if (themeToggleLightIconMobile) themeToggleLightIconMobile.classList.remove('hidden');
+                if (themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.add('hidden');
+            } else {
+                // Currently light - show moon icon (click to go dark)
+                if (themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
+                if (themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
+                if (themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.remove('hidden');
+                if (themeToggleLightIconMobile) themeToggleLightIconMobile.classList.add('hidden');
+            }
+        }
+
+        syncIcons();
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            if (isDark) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+            syncIcons();
+        }
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', toggleTheme);
+        }
+        if (themeToggleBtnMobile) {
+            themeToggleBtnMobile.addEventListener('click', toggleTheme);
+        }
+    });
+</script>

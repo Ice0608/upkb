@@ -38,6 +38,7 @@ Route::get('/pelajar/welcome/{pelajar}', [StaffEventController::class, 'pelajarW
 Route::get('/pelajar/dashboard/{pelajar}', [StaffEventController::class, 'pelajarDashboard'])->name('pelajar.dashboard');
 Route::get('/pelajar/program/{pelajar}', [StaffEventController::class, 'pelajarProgram'])->name('pelajar.program');
 Route::get('/pelajar/program-list/{pelajar}', [StaffEventController::class, 'pelajarProgramList'])->name('pelajar.program-list');
+Route::get('/pelajar/institusi/{pelajar}', [StaffEventController::class, 'pelajarInstitusi'])->name('pelajar.institusi');
 Route::get('/pelajar/listkursus/{pelajar}/{nama}', [StaffEventController::class, 'pelajarListKursus'])->name('pelajar.listkursus');
 Route::get('/pelajar/pilihankursus/{pelajar}/{nama}', [StaffEventController::class, 'pelajarPilihanKursus'])->name('pelajar.pilihankursus');
 Route::get('/pelajar/filter/{pelajar}/{nama}', [StaffEventController::class, 'pelajarFilterByName'])->name('pelajar.filter');

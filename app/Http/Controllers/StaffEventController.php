@@ -25,6 +25,7 @@ class StaffEventController extends Controller
             'pelajarDashboard',
             'pelajarProgram',
             'pelajarProgramList',
+            'pelajarInstitusi',
             'pelajarListKursus',
             'pelajarPilihanKursus',
             'pelajarFilterByName',
@@ -391,6 +392,33 @@ class StaffEventController extends Controller
     {
         $programs = \App\Models\Program::all();
         return view('pelajar.program', compact('pelajar', 'programs'));
+    }
+
+    public function pelajarInstitusi(Pelajar $pelajar, Request $request)
+    {
+        $jenis = $request->query('jenis');
+        $negeri = $request->query('negeri');
+        $kuota = $request->query('kuota');
+
+        $query = \App\Models\Institusi::query()->withCount('kursuses');
+
+        if ($jenis) {
+            $query->where('jenis_institusi', $jenis);
+        }
+
+        if ($negeri) {
+            $query->where('alamat', 'LIKE', '%' . $negeri . '%');
+        }
+
+        if ($kuota) {
+            $query->whereHas('kursuses', function ($q) {
+                $q->where('kuota', '>', 0);
+            });
+        }
+
+        $institusis = $query->get();
+
+        return view('pelajar.institusi', compact('pelajar', 'institusis', 'jenis'));
     }
 
     public function pelajarListKursus(Pelajar $pelajar, $nama)
