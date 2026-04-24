@@ -238,6 +238,12 @@ class StaffEventController extends Controller
         return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
     }
 
+    public function staffResit(Pelajar $pelajar)
+    {
+        abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
+        return view('staff.resit', compact('pelajar'));
+    }
+
     // ========== PELAJAR ROUTES ==========
 
     public function pelajarSenaraiNama(Request $request)

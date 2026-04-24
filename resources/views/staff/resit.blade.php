@@ -85,6 +85,23 @@
             min-width: 45mm;
         }
 
+        .resit-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            padding: 0.9rem 1.5rem;
+            background: #111;
+            color: #fff;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-top: 6mm;
+            margin-bottom: 6mm;
+        }
+
         .header-field {
             display: flex;
             justify-content: space-between;
@@ -103,119 +120,127 @@
         }
 
         /* CONTENT */
-        .content {
+        .details {
             display: flex;
-            gap: 8mm;
-            margin-bottom: 4mm;
+            flex-direction: column;
+            gap: 4mm;
+            margin-bottom: 6mm;
             font-size: 9px;
-            flex: 1;
         }
 
-        .left-section {
-            flex: 1;
-        }
-
-        .right-section {
-            flex: 1;
-        }
-
-        .form-row {
+        .details-row {
             display: flex;
-            gap: 2mm;
-            margin-bottom: 3mm;
+            gap: 5mm;
+            align-items: flex-end;
+            justify-content: space-between;
         }
 
-        .form-field {
+        .detail-field {
+            display: flex;
+            align-items: center;
+            gap: 4mm;
             flex: 1;
+            min-width: 0;
         }
 
-        .form-label {
+        .detail-label {
             font-weight: bold;
-            font-size: 8px;
-            margin-bottom: 1mm;
-            display: block;
+            font-size: 9px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .form-line {
+        .detail-line {
             border-bottom: 1px solid #000;
-            min-height: 4mm;
+            flex: 1;
+            min-height: 5mm;
             padding: 1mm 0;
             font-size: 8px;
+            line-height: 1.3;
         }
 
-        /* PAYMENT SECTION */
-        .payment-section {
-            margin-bottom: 4mm;
-            border: 1px solid #000;
-            padding: 3mm;
-        }
-
-        .payment-title {
-            font-weight: bold;
+        .payment-row {
+            display: flex;
+            align-items: center;
+            gap: 10mm;
+            flex-wrap: wrap;
+            margin-bottom: 6mm;
             font-size: 9px;
-            margin-bottom: 2mm;
-            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .payment-row .label {
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .payment-item {
             display: flex;
             align-items: center;
-            gap: 2mm;
-            margin-bottom: 2mm;
-            font-size: 8px;
-        }
-
-        .checkbox {
-            width: 3.5mm;
-            height: 3.5mm;
-            border: 1px solid #000;
-            flex-shrink: 0;
-        }
-
-        .payment-label {
+            gap: 3mm;
+            min-width: 0;
             flex: 1;
+        }
+
+        .payment-item span {
+            white-space: nowrap;
         }
 
         .payment-amount {
             border-bottom: 1px solid #000;
-            min-width: 25mm;
+            min-width: 18mm;
+            max-width: 22mm;
+            padding: 1mm 0;
             text-align: right;
-            padding-right: 2mm;
+            font-size: 8px;
             font-weight: bold;
+            flex-shrink: 0;
         }
 
-        /* TOTAL SECTION */
-        .total-section {
-            border-top: 2px solid #000;
-            border-bottom: 2px solid #000;
-            padding: 3mm 0;
-            margin-bottom: 4mm;
+        .payment-item .checkbox {
+            width: 4.5mm;
+            height: 4.5mm;
+        }
+
+        .total-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
-            font-weight: bold;
+            gap: 10mm;
+            margin-bottom: 3mm;
         }
 
-        .total-label {
-            font-weight: bold;
+        .total-left {
+            display: flex;
+            align-items: center;
+            gap: 6mm;
+            flex: 1;
+            min-width: 0;
         }
 
-        .total-amount {
+        .rm-label {
+            font-size: 26px;
+            font-weight: bold;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .rm-value {
             border-bottom: 1px solid #000;
-            min-width: 50mm;
+            min-width: 28mm;
+            max-width: 38mm;
+            padding: 1mm 0;
             text-align: right;
-            padding-right: 5mm;
-        }
-
-        .payment-method {
-            text-align: center;
-            font-size: 8px;
+            font-size: 18px;
             font-weight: bold;
-            margin-top: 1mm;
         }
 
-        /* FOOTER DISCLAIMER */
+        .signature-block {
+            text-align: center;
+            min-width: 55mm;
+            flex-shrink: 0;
+        }
+
         .disclaimer {
             text-align: center;
             font-size: 7px;
@@ -224,7 +249,14 @@
             line-height: 1.4;
         }
 
-        /* SIGNATURE SECTION */
+        .disclaimer {
+            text-align: center;
+            font-size: 7px;
+            font-weight: bold;
+            margin-bottom: 4mm;
+            line-height: 1.4;
+        }
+
         .signature-section {
             display: flex;
             justify-content: flex-end;
@@ -234,7 +266,7 @@
 
         .signature-block {
             text-align: center;
-            min-width: 45mm;
+            min-width: 55mm;
         }
 
         .signature-image {
@@ -245,6 +277,7 @@
 
         .signature-line {
             border-bottom: 1px solid #000;
+            width: 90mm;
             height: 8mm;
             margin-bottom: 2mm;
         }
@@ -308,80 +341,71 @@
             </div>
         </div>
 
-        <!-- CONTENT -->
-        <div class="content">
-            <div class="left-section">
-                <div class="form-row">
-                    <div class="form-field">
-                        <span class="form-label">Diterima Daripada:</span>
-                        <div class="form-line">{{ $pelajar->nama_pelajar ?? '' }}</div>
-                    </div>
-                </div>
+        <div class="resit-label">Resit Rasmi</div>
 
-                <div class="form-row">
-                    <div class="form-field">
-                        <span class="form-label">No Kad Pengenalan:</span>
-                        <div class="form-line">{{ $pelajar->ic_pelajar ?? '' }}</div>
-                    </div>
+        <div class="details">
+            <div class="details-row">
+                <div class="detail-field">
+                    <span class="detail-label">DITERIMA DARIPADA:</span>
+                    <span class="detail-line">{{ $pelajar->nama_pelajar ?? '' }}</span>
+                </div>
+                <div class="detail-field">
+                    <span class="detail-label">NO KAD PENGENALAN:</span>
+                    <span class="detail-line">{{ $pelajar->ic_pelajar ?? '' }}</span>
                 </div>
             </div>
-
-            <div class="right-section">
-                <div class="form-row">
-                    <div class="form-field">
-                        <span class="form-label">Institusi:</span>
-                        <div class="form-line">{{ $pelajar->institusi ?? '' }}</div>
-                    </div>
+            <div class="details-row">
+                <div class="detail-field">
+                    <span class="detail-label">INSTITUSI:</span>
+                    <span class="detail-line">{{ $pelajar->institusi->nama_institusi ?? $pelajar->institusi ?? '-' }}</span>
                 </div>
-
-                <div class="form-row">
-                    <div class="form-field">
-                        <span class="form-label">Kursus Pilihan:</span>
-                        <div class="form-line">{{ $pelajar->pilihan_pertama ?? '' }}</div>
-                    </div>
+                <div class="detail-field">
+                    <span class="detail-label">KURSUS PILIHAN:</span>
+                    <span class="detail-line">{{ $pelajar->kursus->nama_kursus ?? $pelajar->pilihan_pertama ?? '-' }}</span>
                 </div>
             </div>
         </div>
 
-        <!-- PAYMENT SECTION -->
-        <div class="payment-section">
-            <div class="payment-title">BUTIRAN PEMBAYARAN</div>
-            
+        @php
+            $yuran_proses = $pelajar->yuran_proses ?? 100.00;
+            $yuran_pra = $pelajar->yuran_pendaftaran ?? 200.00;
+            $jumlah_bayaran = $yuran_proses + $yuran_pra;
+            $bayaran_semasa = $pelajar->bayaran_semasa ?? $jumlah_bayaran;
+        @endphp
+        <div class="payment-row">
+            <span class="label">BAYARAN UNTUK:</span>
             <div class="payment-item">
-                <div class="checkbox"></div>
-                <div class="payment-label">Wang Proses</div>
-                <div class="payment-amount">RM {{ number_format($pelajar->yuran_proses ?? 100.00, 2) }}</div>
+                <input type="checkbox" class="checkbox" style="accent-color:#000" {{ $bayaran_semasa < $jumlah_bayaran ? 'checked' : '' }} disabled>
+                <span>WANG PROSES :</span>
+                <span class="payment-amount">RM {{ number_format($yuran_proses, 2) }}</span>
             </div>
-
             <div class="payment-item">
-                <div class="checkbox"></div>
-                <div class="payment-label">Pra Pendaftaran</div>
-                <div class="payment-amount">RM {{ number_format($pelajar->yuran_pendaftaran ?? 200.00, 2) }}</div>
+                <input type="checkbox" class="checkbox" style="accent-color:#000" {{ $bayaran_semasa >= $jumlah_bayaran ? 'checked' : '' }} disabled>
+                <span>PRA PENDAFTARAN :</span>
+                <span class="payment-amount">RM {{ number_format($yuran_pra, 2) }}</span>
             </div>
         </div>
 
-        <!-- TOTAL SECTION -->
-        <div class="total-section">
-            <div class="total-label">JUMLAH TOTAL:</div>
-            <div class="total-amount">RM {{ number_format(($pelajar->yuran_proses ?? 100.00) + ($pelajar->yuran_pendaftaran ?? 200.00), 2) }}</div>
+        <div class="total-row">
+            <div class="total-left">
+                <span class="rm-label">RM</span>
+                <span class="rm-value">{{ number_format($jumlah_bayaran, 2) }}</span>
+            </div>
+            <div class="signature-block" style="position:relative;">
+                <div class="signature-line" style="position:relative; z-index:1;"></div>
+                @if(file_exists(public_path('images/signature/en. amri signature.png')))
+                    <img src="{{ asset('images/signature/en. amri signature.png') }}" alt="Signature" class="signature-image" style="position:absolute; left:50%; top:0; transform:translate(-50%,-60%); z-index:2; pointer-events:none;">
+                @endif
+                <div class="signature-name">PEGAWAI BERTUGAS</div>
+            </div>
         </div>
 
-        <div class="payment-method">TUNAI & LAIN-LAIN</div>
-
-        <!-- DISCLAIMER -->
         <div class="disclaimer">
             ** BAYARAN YANG TELAH DITERIMA TIDAK AKAN DIKEMBALIKAN **
         </div>
-
-        <!-- SIGNATURE SECTION -->
-        <div class="signature-section">
-            <div class="signature-block">
-                @if(file_exists(public_path('images/signature/en. amri signature.png')))
-                    <img src="{{ asset('images/signature/en. amri signature.png') }}" alt="Signature" class="signature-image">
-                @else
-                    <div class="signature-line"></div>
-                @endif
-                <div class="signature-name">PEGAWAI BERTUGAS</div>
+        <div style="display:flex; justify-content:flex-end; margin-top:2mm; font-size:10px;">
+            <div>
+                <b>BAYARAN SEMASA:</b> RM {{ number_format($bayaran_semasa, 2) }}
             </div>
         </div>
     </div>
