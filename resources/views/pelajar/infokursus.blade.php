@@ -258,6 +258,17 @@
             color: #cbd5e1;
         }
 
+        html.dark .tab-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+        }
+
+        html.dark .tab-link.is-active {
+            background: linear-gradient(135deg, rgba(var(--detail-accent-rgb), 0.35), rgba(var(--detail-accent-rgb), 0.18));
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(var(--detail-accent-rgb), 0.20);
+        }
+
         html.dark #tab-content {
             color: #e2e8f0;
         }
