@@ -242,7 +242,12 @@ class StaffEventController extends Controller
     public function staffResit(Pelajar $pelajar)
     {
         abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
-        return view('staff.resit', compact('pelajar'));
+
+        $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
+        $kursus = Kursus::with('institusi')->where('kod_kursus', $pelajar->kod_kursus)->first();
+        $institusi = $kursus?->institusi;
+
+        return view('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi'));
     }
 
     // ========== PELAJAR ROUTES ==========

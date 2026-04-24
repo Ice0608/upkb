@@ -100,7 +100,13 @@
                                 <td class="px-6 py-4">
                                     <div class="flex flex-wrap gap-2">
                                         <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="inline-flex items-center gap-2 rounded-full bg-slate-800 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-900">BMD</a>
-                                        <a href="{{ route('staff.bmd.resit', ['pelajar' => $pelajar->id]) }}" class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700">Resit</a>
+                                        <a
+                                            href="{{ route('staff.bmd.resit', ['pelajar' => $pelajar->id]) }}"
+                                            onclick="openReceiptModal(event, '{{ route('staff.bmd.resit', ['pelajar' => $pelajar->id]) }}')"
+                                            class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700"
+                                        >
+                                            Resit
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -197,6 +203,31 @@
     </div>
 </div>
 
+<!-- Receipt Preview Modal -->
+<div id="receipt-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/50">
+    <div class="flex min-h-screen items-start justify-center px-4 pt-4">
+        <div class="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-3xl bg-white shadow-xl">
+            <div class="sticky top-0 flex items-center justify-between border-b border-slate-200 bg-white p-4">
+                <h3 class="text-lg font-semibold text-slate-900">Preview Resit</h3>
+                <button type="button" onclick="closeReceiptModal()" class="text-slate-400 transition hover:text-slate-600" aria-label="Tutup preview resit">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="receipt-modal-content" class="p-6">
+                <p class="text-sm text-slate-500">Memuatkan preview resit...</p>
+            </div>
+
+            <div class="sticky bottom-0 flex justify-end gap-3 border-t border-slate-200 bg-white p-4">
+                <button type="button" onclick="closeReceiptModal()" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Tutup</button>
+                <button type="button" onclick="printReceiptModal()" class="inline-flex items-center rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak / Simpan PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     function openStatusModal(icPelajar, currentStatus, jumlah = 0, bayaran = 0) {
         document.getElementById('modal-ic-pelajar').value = icPelajar;
@@ -212,6 +243,69 @@
 
     function closeStatusModal() {
         document.getElementById('status-modal').classList.add('hidden');
+    }
+
+    function openReceiptModal(event, url) {
+        if (event) {
+            event.preventDefault();
+        }
+
+        const modal = document.getElementById('receipt-modal');
+        const content = document.getElementById('receipt-modal-content');
+
+        content.innerHTML = '<p class="text-sm text-slate-500">Memuatkan preview resit...</p>';
+        modal.classList.remove('hidden');
+
+        fetch(`${url}?modal=1`)
+            .then(response => response.text())
+            .then(html => {
+                content.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading receipt preview:', error);
+                content.innerHTML = '<p class="text-sm text-rose-600">Preview resit tidak dapat dimuatkan. Sila cuba lagi.</p>';
+            });
+    }
+
+    function closeReceiptModal() {
+        document.getElementById('receipt-modal').classList.add('hidden');
+    }
+
+    function printReceiptModal() {
+        const receiptContent = document.getElementById('receipt-modal-content');
+        const printWindow = window.open('', '', 'height=600,width=900');
+
+        if (!printWindow) {
+            return;
+        }
+
+        printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview Resit</title><style>');
+        printWindow.document.write(`
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Arial', sans-serif;
+                background: white;
+            }
+
+            @media print {
+                body {
+                    background: white;
+                }
+            }
+        `);
+        printWindow.document.write('</style></head><body>');
+        printWindow.document.write(receiptContent.innerHTML);
+        printWindow.document.write('</body></html>');
+        printWindow.document.close();
+
+        setTimeout(() => {
+            printWindow.print();
+        }, 250);
     }
 </script>
 
