@@ -189,7 +189,7 @@
         .payment-amount {
             border-bottom: 1px solid #000;
             min-width: 18mm;
-            max-width: 22mm;
+            max-width: 28mm;
             padding: 1mm 0;
             text-align: right;
             font-size: 8px;
@@ -227,8 +227,7 @@
 
         .rm-value {
             border-bottom: 1px solid #000;
-            min-width: 28mm;
-            max-width: 38mm;
+            width: 24mm;
             padding: 1mm 0;
             text-align: right;
             font-size: 18px;
@@ -270,16 +269,23 @@
         }
 
         .signature-image {
-            width: 30mm;
+            width: 34mm;
             height: auto;
-            margin-bottom: 2mm;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -58%);
+            z-index: 2;
+            pointer-events: none;
         }
 
         .signature-line {
             border-bottom: 1px solid #000;
-            width: 90mm;
+            width: 66mm;
             height: 8mm;
             margin-bottom: 2mm;
+            position: relative;
+            z-index: 1;
         }
 
         .signature-name {
@@ -320,8 +326,7 @@
                 <div class="org-presenting">PRESENTING</div>
                 <div class="org-name">SMART EDUCATION SOCIETY</div>
                 <div class="org-address">
-                    No. 1, Jalan Guru, Taman Pendidikan,<br>
-                    58100 Kuala Lumpur
+                    NO 34 JALAN MPK 4 KEPAYANG COMMERCE SQUARE 70300 SEREMBAN NEGERI SEMBILAN
                 </div>
             </div>
 
@@ -343,6 +348,21 @@
 
         <div class="resit-label">Resit Rasmi</div>
 
+        @php
+            $institusi_nama = $institusi?->nama_institusi
+                ?? $kursus?->institusi?->nama_institusi
+                ?? '-';
+            $kursus_nama = $kursus?->nama_kursus
+                ?? $pelajar->pilihan_pertama
+                ?? '-';
+
+            $jumlah_bayaran = (float) ($pembayaran?->jumlah_bayaran ?? (($pelajar->yuran_proses ?? 100.00) + ($pelajar->yuran_pendaftaran ?? 200.00)));
+            $bayaran_semasa = (float) ($pembayaran?->bayaran_semasa ?? $jumlah_bayaran);
+            $bayaran_penuh = $jumlah_bayaran > 0 && $bayaran_semasa >= $jumlah_bayaran;
+            $wang_proses_nilai = $bayaran_penuh ? null : $bayaran_semasa;
+            $pra_pendaftaran_nilai = $bayaran_penuh ? $bayaran_semasa : null;
+        @endphp
+
         <div class="details">
             <div class="details-row">
                 <div class="detail-field">
@@ -357,44 +377,46 @@
             <div class="details-row">
                 <div class="detail-field">
                     <span class="detail-label">INSTITUSI:</span>
-                    <span class="detail-line">{{ $pelajar->institusi->nama_institusi ?? $pelajar->institusi ?? '-' }}</span>
+                    <span class="detail-line">{{ $institusi_nama }}</span>
                 </div>
                 <div class="detail-field">
                     <span class="detail-label">KURSUS PILIHAN:</span>
-                    <span class="detail-line">{{ $pelajar->kursus->nama_kursus ?? $pelajar->pilihan_pertama ?? '-' }}</span>
+                    <span class="detail-line">{{ $kursus_nama }}</span>
                 </div>
             </div>
         </div>
 
-        @php
-            $yuran_proses = $pelajar->yuran_proses ?? 100.00;
-            $yuran_pra = $pelajar->yuran_pendaftaran ?? 200.00;
-            $jumlah_bayaran = $yuran_proses + $yuran_pra;
-            $bayaran_semasa = $pelajar->bayaran_semasa ?? $jumlah_bayaran;
-        @endphp
         <div class="payment-row">
             <span class="label">BAYARAN UNTUK:</span>
             <div class="payment-item">
-                <input type="checkbox" class="checkbox" style="accent-color:#000" {{ $bayaran_semasa < $jumlah_bayaran ? 'checked' : '' }} disabled>
+                <input type="checkbox" class="checkbox" style="accent-color:#000" {{ ! $bayaran_penuh ? 'checked' : '' }} disabled>
                 <span>WANG PROSES :</span>
-                <span class="payment-amount">RM {{ number_format($yuran_proses, 2) }}</span>
+                <span class="payment-amount">
+                    @if(! is_null($wang_proses_nilai))
+                        RM {{ number_format($wang_proses_nilai, 2) }}
+                    @endif
+                </span>
             </div>
             <div class="payment-item">
-                <input type="checkbox" class="checkbox" style="accent-color:#000" {{ $bayaran_semasa >= $jumlah_bayaran ? 'checked' : '' }} disabled>
+                <input type="checkbox" class="checkbox" style="accent-color:#000" {{ $bayaran_penuh ? 'checked' : '' }} disabled>
                 <span>PRA PENDAFTARAN :</span>
-                <span class="payment-amount">RM {{ number_format($yuran_pra, 2) }}</span>
+                <span class="payment-amount">
+                    @if(! is_null($pra_pendaftaran_nilai))
+                        RM {{ number_format($pra_pendaftaran_nilai, 2) }}
+                    @endif
+                </span>
             </div>
         </div>
 
         <div class="total-row">
             <div class="total-left">
                 <span class="rm-label">RM</span>
-                <span class="rm-value">{{ number_format($jumlah_bayaran, 2) }}</span>
+                <span class="rm-value">{{ number_format($bayaran_semasa, 2) }}</span>
             </div>
             <div class="signature-block" style="position:relative;">
-                <div class="signature-line" style="position:relative; z-index:1;"></div>
-                @if(file_exists(public_path('images/signature/en. amri signature.png')))
-                    <img src="{{ asset('images/signature/en. amri signature.png') }}" alt="Signature" class="signature-image" style="position:absolute; left:50%; top:0; transform:translate(-50%,-60%); z-index:2; pointer-events:none;">
+                <div class="signature-line"></div>
+                @if(file_exists(public_path('images/signature.png')))
+                    <img src="{{ asset('images/signature.png') }}" alt="Signature" class="signature-image">
                 @endif
                 <div class="signature-name">PEGAWAI BERTUGAS</div>
             </div>
@@ -403,11 +425,13 @@
         <div class="disclaimer">
             ** BAYARAN YANG TELAH DITERIMA TIDAK AKAN DIKEMBALIKAN **
         </div>
-        <div style="display:flex; justify-content:flex-end; margin-top:2mm; font-size:10px;">
+        {{-- <div style="display:flex; justify-content:flex-end; margin-top:2mm; font-size:10px;">
             <div>
                 <b>BAYARAN SEMASA:</b> RM {{ number_format($bayaran_semasa, 2) }}
+                &nbsp;&nbsp;&nbsp;
+                <b>JUMLAH BAYARAN:</b> RM {{ number_format($jumlah_bayaran, 2) }}
             </div>
-        </div>
+        </div> --}}
     </div>
 </body>
 </html>
