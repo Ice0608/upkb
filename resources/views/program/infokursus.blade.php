@@ -328,8 +328,8 @@
                                 <i class="fas fa-arrow-left"></i> Kembali ke Institusi
                             </a>
                         @endif
-                        <a href="{{ route('pelajar.senarainama', $kursus->id) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
-                            <i class="fas fa-user"></i> Senarai Nama
+                        <a href="{{ route('bmd', ['set_kursus_redirect' => $kursus->kod_kursus, 'kod_institusi' => $kursus->kod_institusi]) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
+                            <i class="fas fa-user"></i> Daftar Sekarang
                         </a>
                     </div>
                 </div>

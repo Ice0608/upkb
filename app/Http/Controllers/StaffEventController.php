@@ -113,6 +113,16 @@ class StaffEventController extends Controller
             $event = Event::find($request->event_id);
         }
 
+        // If user clicked "Daftar Sekarang" from a kursus page, remember the selected kursus
+        if ($request->filled('set_kursus_redirect')) {
+            session([
+                'guest_course_redirect' => [
+                    'kod_kursus' => $request->input('set_kursus_redirect'),
+                    'kod_institusi' => $request->input('kod_institusi'),
+                ],
+            ]);
+        }
+
         $pelajar = null;
         return view('pelajar.bmd', compact('event', 'pelajar'));
     }
@@ -153,9 +163,18 @@ class StaffEventController extends Controller
             $data['event_id'] = $request->input('event_id');
         }
 
+        // If user came from a course page, save the selected course
+        $extraData = [];
+        if (session()->has('guest_course_redirect')) {
+            $courseRedirect = session('guest_course_redirect');
+            $extraData['kod_kursus'] = $courseRedirect['kod_kursus'] ?? null;
+            $extraData['kod_institusi'] = $courseRedirect['kod_institusi'] ?? null;
+            // Keep session alive so pelajarVerifyIc can use it, clear it only after login
+        }
+
         $pelajar = Pelajar::create(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
-        ], $data));
+        ], $data, $extraData));
 
         return redirect()->route('pelajar.senarainama', ['pelajar_id' => $pelajar->id])
             ->with('success', 'Maklumat pelajar telah dihantar.');
@@ -308,25 +327,24 @@ class StaffEventController extends Controller
         $pelajar = Pelajar::find($request->pelajar_id);
 
         if ($pelajar->ic_pelajar === $request->ic_pelajar) {
-            // Prefer pelajar's first choice
-            if ($pelajar->pilihan_pertama) {
-                $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->pilihan_pertama)->first();
-                if ($kursus) {
-                    return redirect()->route('pelajar.infokursus', [$pelajar->id, $kursus->kod_institusi, $pelajar->pilihan_pertama])
-                        ->with('success', 'IC disahkan. Melangkah ke maklumat kursus pilihan.');
+            // Guest browsing flow: user clicked "Daftar Sekarang" from a course page
+            if (session()->has('guest_course_redirect')) {
+                $courseRedirect = session('guest_course_redirect');
+                $kod_kursus = $courseRedirect['kod_kursus'] ?? null;
+                $kod_institusi = $courseRedirect['kod_institusi'] ?? null;
+
+                // Clear the session now that we're using it
+                session()->forget('guest_course_redirect');
+
+                if ($kod_kursus && $kod_institusi) {
+                    return redirect()->route('pelajar.infokursus', [$pelajar->id, $kod_institusi, $kod_kursus])
+                        ->with('success', 'IC disahkan. Melangkah ke maklumat kursus yang anda pilih.');
                 }
             }
 
-            // Fallback to first available kursus
-            $kursus = \App\Models\Kursus::first();
-            if ($kursus) {
-                return redirect()->route('pelajar.infokursus', [$pelajar->id, $kursus->kod_institusi, $kursus->kod_kursus])
-                    ->with('success', 'IC disahkan. Melangkah ke maklumat kursus pertama.');
-            }
-
-            // Ultimate fallback
-            return redirect()->route('pelajar.program', $pelajar->id)
-                ->with('success', 'IC disahkan. Sila pilih program.');
+            // QR / direct access flow: go to pelajar dashboard
+            return redirect()->route('pelajar.welcome', $pelajar->id)
+                ->with('success', 'IC disahkan. Selamat datang ke dashboard pelajar.');
         }
 
         return back()->withErrors(['ic_pelajar' => 'No. IC tidak sepadan.'])->withInput();
