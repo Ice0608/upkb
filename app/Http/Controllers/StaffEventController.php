@@ -551,8 +551,24 @@ class StaffEventController extends Controller
 
     public function pelajarTabGaleri(Pelajar $pelajar, $kod_institusi)
     {
-        $galeri = \App\Models\Galeri::where('kod_institusi', $kod_institusi)->get();
-        return view('pelajar._guest_tab_galeri', compact('galeri'));
+        $galleries = \App\Models\Galeri::where('kod_institusi', $kod_institusi)->get();
+
+        // Try to resolve the currently selected course for title context in the gallery partial.
+        $kursus = null;
+        if (!empty($pelajar->kod_kursus)) {
+            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)
+                ->where('kod_institusi', $kod_institusi)
+                ->first();
+        }
+
+        if (!$kursus) {
+            $kursus = \App\Models\Kursus::where('kod_institusi', $kod_institusi)->first();
+        }
+
+        // Keep legacy variable name ($galeri) for compatibility with existing views.
+        $galeri = $galleries;
+
+        return view('pelajar._guest_tab_galeri', compact('kursus', 'galleries', 'galeri'));
     }
 
     public function pelajarApplyNow(Request $request, Pelajar $pelajar)

@@ -429,7 +429,7 @@
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch">
             @forelse($institusis as $institusi)
             <article class="institusi-card rounded-3xl flex flex-col h-full">
-                <a href="{{ route('institusi.show', $institusi->id) }}" class="group flex flex-col h-full text-current no-underline">
+                <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar, 'kod_institusi' => $institusi->kod_institusi]) }}" class="group flex flex-col h-full text-current no-underline">
                     <div class="institusi-card-media">
                         <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
                         <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">

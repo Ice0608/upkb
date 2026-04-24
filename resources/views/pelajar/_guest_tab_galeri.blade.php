@@ -1,12 +1,17 @@
+@php
+    $galeriItems = $galleries ?? $galeri ?? collect();
+    $kursusNama = $kursus->nama_kursus ?? 'kursus ini';
+@endphp
+
 <div class="space-y-6">
     <div class="rounded-3xl bg-white shadow-sm border border-gray-200 p-6">
         <h2 class="text-xl font-semibold text-gray-900 mb-3">Galeri Kursus</h2>
-        <p class="text-sm text-gray-600">Lihat imej berkaitan kursus <strong>{{ $kursus->nama_kursus }}</strong>. Gambar dikaitkan secara automatik dengan kod kursus dan institusi.</p>
+        <p class="text-sm text-gray-600">Lihat imej berkaitan kursus <strong>{{ $kursusNama }}</strong>. Gambar dikaitkan secara automatik dengan kod kursus dan institusi.</p>
     </div>
 
-    @if(isset($galleries) && $galleries->count() > 0)
+    @if($galeriItems->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            @foreach($galleries as $gallery)
+            @foreach($galeriItems as $gallery)
                 @php
                     $extension = strtolower(pathinfo($gallery->imej, PATHINFO_EXTENSION));
                     $isVideo = in_array($extension, ['mp4', 'webm', 'ogg']);
@@ -19,7 +24,7 @@
                                 Your browser does not support the video tag.
                             </video>
                         @else
-                            <img src="{{ asset($gallery->imej) }}" alt="Galeri {{ $kursus->nama_kursus }}" class="w-full h-56 object-cover transition duration-300 group-hover:scale-105">
+                            <img src="{{ asset($gallery->imej) }}" alt="Galeri {{ $kursusNama }}" class="w-full h-56 object-cover transition duration-300 group-hover:scale-105">
                         @endif
                     </a>
                     <div class="p-4">
