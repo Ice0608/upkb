@@ -408,6 +408,8 @@
         </div>
     </section>
 
+    @include('layouts.footer-pelajar')
+
     <script>
         let currentTab = 'maklumat';
 
