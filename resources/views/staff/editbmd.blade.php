@@ -9,37 +9,150 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         @media print {
+            * {
+                margin: 0 !important;
+                padding: 0 !important;
+                box-sizing: border-box;
+            }
+            
+            html, body {
+                height: auto !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
             body {
-                background-color: white;
+                background-color: white !important;
+                font-size: 9px !important;
+                line-height: 1.1 !important;
             }
-            nav, footer {
+            
+            nav, footer, .no-print {
                 display: none !important;
             }
+            
             main {
-                padding: 0;
+                padding: 5px !important;
+                margin: 0 !important;
+                max-width: 100% !important;
             }
+            
             .rounded-\[32px\] {
-                border: none;
-                box-shadow: none;
-                padding: 0;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                padding: 3px !important;
+                margin: 0 !important;
+                page-break-inside: avoid !important;
             }
+            
+            .flex, .grid {
+                margin: 0 !important;
+                gap: 0 !important;
+            }
+            
+            .flex.flex-col.gap-3, 
             .flex.flex-col.gap-3.sm\:flex-row.sm\:items-center.sm\:justify-between {
-                display: none;
-            }
-            .no-print {
                 display: none !important;
             }
-            .mt-6 {
-                display: none;
+            
+            .mt-6, .mt-2, .mt-8, .mb-2, .mb-4 {
+                margin: 0 !important;
             }
-            .bg-white {
-                background-color: white;
+            
+            .space-y-6 > * + * {
+                margin-top: 1px !important;
             }
-            .grid.gap-6 {
-                page-break-inside: avoid;
+            
+            .space-y-6, .space-y-4 {
+                gap: 0 !important;
             }
-            .grid.gap-6.sm\:grid-cols-2 {
-                page-break-inside: avoid;
+            
+            .p-8 { padding: 2px !important; }
+            .p-6 { padding: 1px !important; }
+            .p-4 { padding: 1px !important; }
+            .py-8, .py-6, .py-4, .py-3 { padding-top: 0 !important; padding-bottom: 0 !important; }
+            .px-4, .px-5, .px-6 { padding-left: 2px !important; padding-right: 2px !important; }
+            
+            .pb-4, .pb-6 {
+                padding-bottom: 1px !important;
+                margin-bottom: 1px !important;
+            }
+            
+            input, select, textarea {
+                padding: 1px 2px !important;
+                font-size: 8px !important;
+                border: 0.5px solid #999 !important;
+                margin: 0 !important;
+            }
+            
+            label {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            h1 {
+                font-size: 14px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            h2 {
+                font-size: 11px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            h3 {
+                font-size: 10px !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            p, span {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .text-xs { font-size: 7px !important; }
+            .text-sm { font-size: 8px !important; }
+            .text-lg { font-size: 10px !important; }
+            .text-2xl { font-size: 12px !important; }
+            .text-3xl { font-size: 14px !important; }
+            
+            .border-b { 
+                border-bottom: 0.5px solid #ccc !important; 
+                padding-bottom: 1px !important;
+            }
+            
+            button, a, [type="button"], [type="submit"] {
+                display: none !important;
+            }
+            
+            .grid.gap-6 { 
+                display: grid !important; 
+                gap: 0 !important; 
+                page-break-inside: avoid !important;
+            }
+            
+            .sm\:grid-cols-2 {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0 !important;
+            }
+            
+            .max-w-6xl {
+                max-width: 100% !important;
+            }
+            
+            @page {
+                size: A4 portrait;
+                margin: 3mm;
+            }
+            
+            /* Hide error messages and success messages */
+            .border-emerald-200, .bg-emerald-50, .text-rose-600 {
+                display: none !important;
             }
         }
     </style>
@@ -329,7 +442,7 @@
             </div>
             <div class="sticky bottom-0 bg-white border-t border-gray-200 p-4 flex gap-3 justify-end">
                 <button onclick="closePrintModal()" class="px-6 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50">Tutup</button>
-                <button onclick="printContent()" class="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600">Cetak / Simpan PDF</button>
+                <button onclick="printBmdModal()" class="px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600">Cetak / Simpan PDF</button>
             </div>
         </div>
     </div>
@@ -359,6 +472,56 @@
 </div>
 
 <script>
+function printHtmlFragment(title, html) {
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    document.body.appendChild(iframe);
+
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDoc.open();
+    iframeDoc.write(`<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <title>${title}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+        }
+    </style>
+</head>
+<body>${html}</body>
+</html>`);
+    iframeDoc.close();
+
+    setTimeout(() => {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+
+        setTimeout(() => {
+            iframe.remove();
+        }, 1000);
+    }, 250);
+}
+
 function openPrintModal() {
     console.log('openPrintModal called');
     const modal = document.getElementById('printModal');
@@ -383,35 +546,9 @@ function closePrintModal() {
     modal.classList.add('hidden');
 }
 
-function printContent() {
-    // Open print dialog for BMD content
+function printBmdModal() {
     const printContent = document.getElementById('printContent');
-    const printWindow = window.open('', '', 'height=600,width=800');
-    
-    printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>');
-    printWindow.document.write(`
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-        @media print {
-            body {
-                background-color: white;
-            }
-        }
-    `);
-    printWindow.document.write('</style></head><body>');
-    printWindow.document.write(printContent.innerHTML);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    
-    setTimeout(() => {
-        printWindow.print();
-    }, 250);
+    printHtmlFragment('Preview BMD', printContent.innerHTML);
 }
 
 // Receipt Modal Functions
@@ -441,32 +578,7 @@ function closeReceiptModal() {
 
 function printReceiptModal() {
     const receiptContent = document.getElementById('receiptContent');
-    const printWindow = window.open('', '', 'height=600,width=800');
-    
-    printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>');
-    printWindow.document.write(`
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-        }
-        @media print {
-            body {
-                background-color: white;
-            }
-        }
-    `);
-    printWindow.document.write('</style></head><body>');
-    printWindow.document.write(receiptContent.innerHTML);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    
-    setTimeout(() => {
-        printWindow.print();
-    }, 250);
+    printHtmlFragment('Preview Resit', receiptContent.innerHTML);
 }
 
 // Update button onclick

@@ -245,14 +245,12 @@ class StaffEventController extends Controller
     {
         abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
-        $html = view('staff.bmd-print', compact('pelajar'))->render();
-        
-        // If modal parameter is set, return just the content without auto-print
         if ($request->has('modal')) {
-            return $html;
+            return view('staff.partials.bmd-print-content', compact('pelajar'));
         }
-        
-        // Generate PDF for consistent output
+
+        $html = view('staff.bmd-print', compact('pelajar'))->render();
+
         $pdf = Pdf::loadHtml($html);
         $pdf->setPaper('A4', 'portrait');
         return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');

@@ -273,38 +273,48 @@
 
     function printReceiptModal() {
         const receiptContent = document.getElementById('receipt-modal-content');
-        const printWindow = window.open('', '', 'height=600,width=900');
+        
+        // Create a hidden iframe for printing
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
 
-        if (!printWindow) {
-            return;
+        // Write content to iframe
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.write(`<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Preview Resit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        printWindow.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Preview Resit</title><style>');
-        printWindow.document.write(`
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+        }
 
+        @media print {
             body {
-                font-family: 'Arial', sans-serif;
                 background: white;
             }
+        }
+    </style>
+</head>
+<body>
+    ${receiptContent.innerHTML}
+</body>
+</html>`);
+        iframeDoc.close();
 
-            @media print {
-                body {
-                    background: white;
-                }
-            }
-        `);
-        printWindow.document.write('</style></head><body>');
-        printWindow.document.write(receiptContent.innerHTML);
-        printWindow.document.write('</body></html>');
-        printWindow.document.close();
-
+        // Print and then remove iframe
         setTimeout(() => {
-            printWindow.print();
+            iframe.contentWindow.print();
+            document.body.removeChild(iframe);
         }, 250);
     }
 </script>
