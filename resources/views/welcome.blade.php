@@ -474,6 +474,45 @@
             letter-spacing: 0.004em;
         }
 
+        .mission-story {
+            width: 100%;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .mission-story-item {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 0.8rem;
+            align-items: start;
+            padding: 0;
+        }
+
+        .mission-story-index {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(248, 180, 112, 0.28);
+            background: rgba(249, 115, 22, 0.1);
+            color: #f8fafc;
+            font-family: 'Sora', 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .mission-story-text {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', 'Lexend Deca', sans-serif;
+            font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+            line-height: 1.62;
+            letter-spacing: 0.004em;
+            color: rgba(241, 245, 249, 0.96);
+        }
+
         .story-role {
             font-family: 'Sora', 'Montserrat', sans-serif;
             font-size: clamp(1.9rem, 3.1vw, 3rem);
@@ -505,6 +544,8 @@
         .story-panel-head > :nth-child(1) { transition-delay: calc(var(--story-stagger) + 0.28s); }
         .story-panel-head > :nth-child(2) { transition-delay: calc(var(--story-stagger) + 0.4s); }
         .story-panel-body > :nth-child(1) { transition-delay: calc(var(--story-stagger) + 0.62s); }
+        .story-panel-body > :nth-child(2) { transition-delay: calc(var(--story-stagger) + 0.74s); }
+        .story-panel-body > :nth-child(3) { transition-delay: calc(var(--story-stagger) + 0.86s); }
 
         .snap-section.is-active .story-panel {
             opacity: 1;
@@ -521,6 +562,19 @@
         .snap-section.is-active .story-panel-body > * {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .mission-story-item {
+                grid-template-columns: 1fr;
+                gap: 0.55rem;
+            }
+
+            .mission-story-index {
+                min-width: 1.75rem;
+                width: 1.75rem;
+                height: 1.75rem;
+            }
         }
 
         .snap-section.is-active .story-panel:hover {
@@ -1361,17 +1415,17 @@
             <div class="hero-card section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
 
                     <h2 class="titleglass text-2xl md:text-4xl lg:text-5xl text-white leading-[0.95] uppercase tracking-tight drop-shadow-2xl">
-                        UNIT PEMBANGUNAN <br class="hidden md:block"> 
+                        SMART <br class="hidden md:block"> 
                 </h2>
 
                     <h2 class="titleglass-2 text-2xl md:text-4xl lg:text-5xl text-orange-400 leading-[0.95] uppercase tracking-tight drop-shadow-2xl">
-                        KEMAHIRAN BELIA
+                        EDUCATION SOCIETY
                 </h2>
 
                     <p class="hero-body cubafont text-xs md:text-sm lg:text-sm text-white/80 mt-6 md:mt-8 max-w-md lg:max-w-lg leading-relaxed tracking-wide border-l border-white/30 pl-4">
-                        UNIT PEMBANGUNAN KEMAHIRAN BELIA adalah Kumpulan untuk menyebarkan dan menawarkan peluang pendidikan kepada Lepasan SPM terutamanya kepada mereka yang gagal mendapat tempat di IPTA kerana kelayakan rendah atau gagal SPM.
+                        SMART EDUCATION SOCIETY (SES) merupakan entiti strategik yang ditubuhkan sebagai platform rujukan dan bimbingan bagi membantu klien membuat keputusan tepat sebelum melangkah ke peringkat pendidikan tinggi.
                         <br><br>
-                        Program yang difokuskan oleh UPKBN ialah Pengajian Peringkat Diploma Sepenuh Masa, Pengajian Sijil Kemahiran Malaysia (TVET) dan Program Laluan Pantas SPM untuk pelajar lepasan Tahfiz/Madrasah yang ingin memperolehi kelayakan akademik SPM.
+                        Kami bukan sekadar penasihat, kami membina keyakinan, merangka strategi dan membuka perspektif baharu agar setiap individu mampu mengenal pasti potensi sebenar mereka. Kami percaya bahawa setiap keputusan yang diambil hari ini akan mencorak masa depan.
                 </p>
 
                 <a href="{{ route('program') }}"
@@ -1440,7 +1494,7 @@
                     <h3 class="story-role">Visi</h3>
                 </div>
                 <div class="story-panel-body">
-                    <p>UPKB menyampaikan kepentingan pendidikan kepada golongan belia di mana pendidikan adalah matlamat sesebuah negara, memandangkan pendidikan adalah tonggak kejayaan semua.</p>
+                    <p>Menjadi pusat rujukan utama dan pilihan alternatif terbaik dalam membantu klien membuat keputusan yang tepat bagi menentukan hala tuju pendidikan dan kerjaya masa depan mereka.</p>
                 </div>
             </div>
             <div class="story-panel story-panel--right">
@@ -1448,7 +1502,20 @@
                     <h3 class="story-role">Misi</h3>
                 </div>
                 <div class="story-panel-body">
-                    <p>UPKB mahu melahirkan generasi yang mempunyai pendidikan dan kemahiran, mensasarkan negara mencapai 0% pengangguran dan 100% golongan Profesional Belia.</p>
+                    <div class="mission-story">
+                        <article class="mission-story-item">
+                            <span class="mission-story-index">01</span>
+                            <p class="mission-story-text">Menjangkau setiap individu yang tekad membuktikan bahawa kejayaan masih milik mereka, meskipun bermula dari titik paling belakang.</p>
+                        </article>
+                        <article class="mission-story-item">
+                            <span class="mission-story-index">02</span>
+                            <p class="mission-story-text">Membentuk minda pejuang sejati, kerana kejayaan sebenar tidak bergantung kepada titik permulaan, sebaliknya pada kekuatan "Sebab Utama" (Big Why) yang memacu mereka untuk terus melangkah dan menang.</p>
+                        </article>
+                        <article class="mission-story-item">
+                            <span class="mission-story-index">03</span>
+                            <p class="mission-story-text">Menjalin kerjasama dengan institusi pendidikan bagi mempermudah proses klien untuk mendapatkan tempat pengajian atau latihan tanpa perlu melalui prosedur yang rumit.</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </div>
