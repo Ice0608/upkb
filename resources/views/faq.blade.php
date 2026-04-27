@@ -194,60 +194,133 @@
             position: relative;
             display: grid;
             gap: 1.4rem;
+            padding: 0.5rem 0 0.75rem;
         }
 
         .faq-track::before {
             content: "";
             position: absolute;
-            left: 1.25rem;
-            right: 1.25rem;
-            top: 50%;
+            left: 7%;
+            right: 7%;
+            top: calc(50% + 0.5rem);
             height: 1px;
-            background: linear-gradient(90deg, rgba(232, 160, 96, 0.04), rgba(255, 154, 60, 0.26), rgba(255, 207, 90, 0.14), rgba(232, 160, 96, 0.04));
+            background: linear-gradient(90deg, rgba(232, 160, 96, 0.02), rgba(255, 154, 60, 0.22), rgba(255, 207, 90, 0.2), rgba(232, 160, 96, 0.02));
             transform: translateY(-50%);
             z-index: 0;
         }
 
+        .faq-track::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: min(34rem, 72vw);
+            height: 14rem;
+            transform: translate(-50%, -28%);
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255, 176, 73, 0.18), rgba(255, 176, 73, 0) 68%);
+            filter: blur(12px);
+            opacity: 0.8;
+            pointer-events: none;
+            animation: faqCarouselGlow 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .faq-carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 0.65rem;
+            z-index: 2;
+        }
+
+        .faq-carousel-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.15rem;
+            height: 3.15rem;
+            border: 1px solid rgba(255, 168, 83, 0.34);
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 244, 231, 0.46));
+            color: rgba(122, 81, 44, 0.92);
+            box-shadow:
+                0 14px 28px rgba(85, 53, 24, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            transition:
+                transform 320ms var(--xmb-ease),
+                box-shadow 320ms var(--xmb-ease),
+                background 320ms var(--xmb-ease),
+                color 320ms var(--xmb-ease);
+        }
+
+        .faq-carousel-button:hover,
+        .faq-carousel-button:focus-visible {
+            transform: translateY(-2px);
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(255, 140, 36, 0.92), rgba(255, 187, 56, 0.88));
+            box-shadow:
+                0 18px 32px rgba(226, 124, 30, 0.2),
+                0 0 28px rgba(255, 172, 58, 0.16);
+            outline: none;
+        }
+
         .faq-xmb-row {
             position: relative;
-            display: grid;
-            gap: 1.25rem;
+            min-height: 19.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 1;
+            perspective: 1400px;
         }
 
         .faq-card {
+            --faq-tilt-x: 0deg;
+            --faq-tilt-y: 0deg;
+            --faq-lift: 0px;
+            --faq-shimmer-x: 50%;
+            --faq-shimmer-y: 50%;
             position: relative;
             isolation: isolate;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            width: 100%;
-            min-height: 10rem;
-            padding: 1.4rem;
-            border: 1px solid rgba(255, 255, 255, 0.68);
+            justify-content: flex-start;
+            gap: 0;
+            width: min(28.25rem, calc(100vw - 7rem));
+            min-height: 15.6rem;
+            padding: 1.2rem 1.1rem 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.22);
             border-radius: 2rem;
-            text-align: left;
+            text-align: center;
             color: var(--xmb-text-main);
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 249, 243, 0.44)),
-                linear-gradient(140deg, rgba(243, 237, 231, 0.98), rgba(233, 228, 223, 0.96));
+                linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 249, 243, 0.1)),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
             box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.96),
-                inset 0 -10px 20px rgba(255, 255, 255, 0.14),
-                0 16px 34px rgba(85, 53, 24, 0.08),
-                0 2px 10px rgba(28, 28, 30, 0.04);
-            transform: translateY(0) scale(0.98);
+                inset 0 1px 0 rgba(255, 255, 255, 0.34),
+                0 18px 38px rgba(85, 53, 24, 0.14),
+                0 8px 18px rgba(28, 28, 30, 0.08);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transform-style: preserve-3d;
+            will-change: transform, box-shadow, opacity, filter;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, calc(-50% + var(--faq-lift)), 0) rotateX(var(--faq-tilt-x)) rotateY(var(--faq-tilt-y)) scale(0.78);
             transform-origin: center;
-            opacity: 0.78;
+            opacity: 0;
+            pointer-events: none;
             transition:
-                transform 520ms var(--xmb-ease),
-                opacity 420ms var(--xmb-ease),
-                box-shadow 520ms var(--xmb-ease),
-                border-color 420ms var(--xmb-ease),
-                background 520ms var(--xmb-ease);
-            animation: faqFloat 5.8s var(--xmb-ease-soft) infinite;
-            animation-delay: var(--float-delay, 0s);
+                transform 440ms var(--xmb-ease),
+                opacity 360ms var(--xmb-ease),
+                box-shadow 440ms var(--xmb-ease),
+                border-color 360ms var(--xmb-ease),
+                background 440ms var(--xmb-ease),
+                filter 360ms var(--xmb-ease);
         }
 
         .faq-card::before {
@@ -256,13 +329,14 @@
             inset: 0;
             border-radius: inherit;
             background:
-                radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.5), transparent 22%),
+                radial-gradient(circle at var(--faq-shimmer-x) var(--faq-shimmer-y), rgba(255, 255, 255, 0.26), transparent 28%),
+                radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.42), transparent 24%),
                 linear-gradient(110deg, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.36) 50%, rgba(255, 255, 255, 0) 66%);
-            background-size: 100% 100%, 250% 100%;
-            background-position: 0 0, -180% 0;
-            opacity: 0.78;
+            background-size: 100% 100%, 100% 100%, 250% 100%;
+            background-position: 0 0, 0 0, -180% 0;
+            opacity: 0.82;
             pointer-events: none;
-            animation: faqShineSweep 4s linear infinite;
+            animation: faqGlassBreath 5.8s ease-in-out infinite, faqShineSweep 4.8s linear infinite;
         }
 
         .faq-card::after {
@@ -270,39 +344,82 @@
             position: absolute;
             inset: -12px;
             border-radius: 2.35rem;
-            background: radial-gradient(circle, rgba(255, 164, 45, 0.28), rgba(255, 164, 45, 0) 72%);
-            opacity: 0;
-            transition: opacity 520ms var(--xmb-ease);
+            background:
+                radial-gradient(circle at 50% 30%, rgba(255, 198, 94, 0.26), rgba(255, 198, 94, 0) 42%),
+                radial-gradient(circle at 50% 100%, rgba(255, 143, 36, 0.2), rgba(255, 143, 36, 0) 62%);
+            opacity: 0.4;
+            transition: opacity 520ms var(--xmb-ease), transform 520ms var(--xmb-ease);
             z-index: -1;
+            animation: faqCardAura 6.8s ease-in-out infinite;
         }
 
-        .faq-card:hover,
-        .faq-card:focus-visible,
         .faq-card.is-focused {
-            transform: translateY(-0.75rem) scale(1.05);
+            --faq-lift: -4px;
+            transform: translate3d(-50%, calc(-50% + var(--faq-lift)), 0) rotateX(var(--faq-tilt-x)) rotateY(var(--faq-tilt-y)) scale(1);
             opacity: 1;
+            pointer-events: auto;
+            z-index: 5;
             border-color: rgba(255, 208, 137, 0.56);
             box-shadow:
-                inset 0 1px 0 rgba(255, 246, 228, 0.52),
-                0 24px 54px rgba(226, 124, 30, 0.24),
-                0 0 34px rgba(255, 172, 58, 0.24),
-                0 0 90px rgba(255, 214, 163, 0.2);
+                inset 0 1px 0 rgba(255, 246, 228, 0.44),
+                0 28px 58px rgba(226, 124, 30, 0.24),
+                0 0 34px rgba(255, 172, 58, 0.18),
+                0 0 90px rgba(255, 214, 163, 0.12);
             background:
-                linear-gradient(90deg, rgba(255, 123, 6, 0.94), rgba(255, 155, 33, 0.94) 58%, rgba(255, 211, 81, 0.94));
+                linear-gradient(145deg, rgba(255, 160, 82, 0.28), rgba(255, 202, 116, 0.14)),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+            filter: blur(0);
             outline: none;
         }
 
-        .faq-card:hover::after,
-        .faq-card:focus-visible::after,
+        .faq-card:hover,
+        .faq-card:focus-visible {
+            --faq-lift: -8px;
+            transform: translate3d(-50%, calc(-50% + var(--faq-lift)), 0) rotateX(var(--faq-tilt-x)) rotateY(var(--faq-tilt-y)) scale(1.03);
+            border-color: rgba(255, 225, 182, 0.42);
+            background:
+                linear-gradient(145deg, rgba(255, 182, 105, 0.22), rgba(255, 235, 193, 0.14)),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.38),
+                0 24px 48px rgba(85, 53, 24, 0.18),
+                0 10px 24px rgba(28, 28, 30, 0.1);
+        }
+
         .faq-card.is-focused::after {
             opacity: 1;
         }
 
-        .faq-card:hover::before,
-        .faq-card:focus-visible::before,
         .faq-card.is-focused::before {
             animation-duration: 2.6s;
             opacity: 0.92;
+        }
+
+        .faq-card.is-prev,
+        .faq-card.is-next {
+            opacity: 0.62;
+            pointer-events: auto;
+            z-index: 3;
+            filter: blur(0.4px);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.28),
+                0 20px 40px rgba(85, 53, 24, 0.1),
+                0 8px 18px rgba(28, 28, 30, 0.05);
+        }
+
+        .faq-card.is-prev {
+            transform: translate3d(-145%, -50%, 0) rotateY(9deg) scale(0.89);
+        }
+
+        .faq-card.is-next {
+            transform: translate3d(45%, -50%, 0) rotateY(-9deg) scale(0.89);
+        }
+
+        .faq-card.is-hidden {
+            transform: translate3d(-50%, -50%, 0) scale(0.72);
+            opacity: 0;
+            z-index: 1;
+            filter: blur(1px);
         }
 
         .faq-card[data-faq-type="tvet"] {
@@ -424,12 +541,11 @@
         }
 
         .faq-track.has-focused-item .faq-card:not(.is-focused) {
-            opacity: 0.56;
-            transform: scale(0.95);
+            opacity: 0.62;
         }
 
         .faq-card:active {
-            transform: translateY(-0.2rem) scale(1.02);
+            transform: translate3d(-50%, -50%, 0) scale(0.98);
         }
 
         .faq-icon-chip {
@@ -437,48 +553,62 @@
             flex-shrink: 0;
             display: grid;
             place-items: center;
-            width: 4.6rem;
-            height: 4.6rem;
-            border-radius: 1.65rem;
+            width: 4.15rem;
+            height: 4.15rem;
+            margin: 0 auto 0.7rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
             color: #ffffff;
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                0 16px 28px rgba(28, 28, 30, 0.12),
-                0 0 20px rgba(255, 154, 60, 0.12);
-            transition: transform 520ms var(--xmb-ease), box-shadow 520ms var(--xmb-ease);
+                0 16px 28px rgba(28, 28, 30, 0.14),
+                0 0 20px rgba(255, 154, 60, 0.16);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 520ms var(--xmb-ease), box-shadow 520ms var(--xmb-ease), filter 520ms var(--xmb-ease);
+            animation: faqIconDrift 4.4s ease-in-out infinite;
         }
 
-        .faq-card.is-focused .faq-icon-chip,
-        .faq-card:hover .faq-icon-chip,
-        .faq-card:focus-visible .faq-icon-chip {
+        .faq-card > .flex-1 {
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translateZ(20px);
+        }
+
+        .faq-card .faq-card-meta,
+        .faq-card .faq-card-title,
+        .faq-card .faq-card-copy {
+            width: 100%;
+            text-align: center;
+        }
+
+        .faq-card.is-focused .faq-icon-chip {
             transform: scale(1.08);
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(255, 154, 60, 0.18);
+            filter: brightness(1.06);
         }
 
-            .faq-card[data-faq-type="skm"].is-focused .faq-icon-chip,
-            .faq-card[data-faq-type="skm"]:hover .faq-icon-chip,
-            .faq-card[data-faq-type="skm"]:focus-visible .faq-icon-chip {
+            .faq-card[data-faq-type="skm"].is-focused .faq-icon-chip {
                 box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(139, 92, 246, 0.24);
             }
 
-        .faq-card[data-faq-type="program"].is-focused .faq-icon-chip,
-        .faq-card[data-faq-type="program"]:hover .faq-icon-chip,
-        .faq-card[data-faq-type="program"]:focus-visible .faq-icon-chip {
+        .faq-card[data-faq-type="program"].is-focused .faq-icon-chip {
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(14, 165, 233, 0.28);
         }
 
-        .faq-card[data-faq-type="fees"].is-focused .faq-icon-chip,
-        .faq-card[data-faq-type="fees"]:hover .faq-icon-chip,
-        .faq-card[data-faq-type="fees"]:focus-visible .faq-icon-chip {
+        .faq-card[data-faq-type="fees"].is-focused .faq-icon-chip {
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
@@ -495,9 +625,7 @@
                 color: rgba(255, 255, 255, 0.88);
             }
 
-            .faq-card[data-faq-type="tvet"].is-focused .faq-icon-chip,
-            .faq-card[data-faq-type="tvet"]:hover .faq-icon-chip,
-            .faq-card[data-faq-type="tvet"]:focus-visible .faq-icon-chip {
+            .faq-card[data-faq-type="tvet"].is-focused .faq-icon-chip {
                 box-shadow:
                     inset 0 1px 0 rgba(255, 255, 255, 0.42),
                     0 20px 34px rgba(28, 28, 30, 0.14),
@@ -505,13 +633,17 @@
             }
 
         .faq-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: auto;
+            padding-top: 0.7rem;
             color: rgba(28, 28, 30, 0.36);
             transition: transform 420ms var(--xmb-ease), opacity 420ms var(--xmb-ease), color 420ms var(--xmb-ease);
+            transform: translateZ(16px);
         }
 
-        .faq-card.is-focused .faq-arrow,
-        .faq-card:hover .faq-arrow,
-        .faq-card:focus-visible .faq-arrow {
+        .faq-card.is-focused .faq-arrow {
             color: rgba(255, 255, 255, 0.92);
             transform: translateX(6px);
             opacity: 1;
@@ -519,26 +651,37 @@
 
         .faq-card-meta {
             color: var(--xmb-text-faint);
+            font-size: 0.66rem;
+            letter-spacing: 0.22em;
         }
 
         .faq-card-title {
             color: var(--xmb-text-main);
             text-shadow: 0 8px 20px rgba(255, 255, 255, 0.16);
+            margin-top: 0.1rem;
+            font-size: clamp(1rem, 1.3vw, 1.35rem);
+            line-height: 1.24;
         }
 
         .faq-card-copy {
             color: var(--xmb-text-soft);
+            margin-top: 0.5rem;
+            font-size: clamp(0.82rem, 0.95vw, 0.95rem);
+            line-height: 1.5;
+            max-width: 24ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-card.is-prev .faq-icon-chip,
+        .faq-card.is-next .faq-icon-chip {
+            animation-duration: 5.6s;
+            filter: saturate(0.9);
         }
 
         .faq-card.is-focused .faq-card-title,
-        .faq-card:hover .faq-card-title,
-        .faq-card:focus-visible .faq-card-title,
         .faq-card.is-focused .faq-card-copy,
-        .faq-card:hover .faq-card-copy,
-        .faq-card:focus-visible .faq-card-copy,
-        .faq-card.is-focused .faq-card-meta,
-        .faq-card:hover .faq-card-meta,
-        .faq-card:focus-visible .faq-card-meta {
+        .faq-card.is-focused .faq-card-meta {
             color: rgba(255, 255, 255, 0.96);
         }
 
@@ -795,10 +938,54 @@
 
         @keyframes faqShineSweep {
             0% {
-                background-position: 0 0, -180% 0;
+                background-position: 0 0, 0 0, -180% 0;
             }
             100% {
-                background-position: 0 0, 180% 0;
+                background-position: 0 0, 0 0, 180% 0;
+            }
+        }
+
+        @keyframes faqCardAura {
+            0%,
+            100% {
+                opacity: 0.32;
+                transform: scale(0.98);
+            }
+            50% {
+                opacity: 0.56;
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes faqGlassBreath {
+            0%,
+            100% {
+                opacity: 0.74;
+            }
+            50% {
+                opacity: 0.96;
+            }
+        }
+
+        @keyframes faqIconDrift {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-4px) scale(1.02);
+            }
+        }
+
+        @keyframes faqCarouselGlow {
+            0%,
+            100% {
+                opacity: 0.46;
+                transform: translate(-50%, -28%) scale(0.96);
+            }
+            50% {
+                opacity: 0.78;
+                transform: translate(-50%, -28%) scale(1.04);
             }
         }
 
@@ -808,13 +995,12 @@
             }
 
             .faq-xmb-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                align-items: center;
+                min-height: 21rem;
             }
 
             .faq-card {
-                min-height: 11.5rem;
-                padding: 1.7rem 1.8rem;
+                min-height: 16.4rem;
+                padding: 1.35rem 1.3rem 1.2rem;
             }
         }
 
@@ -827,8 +1013,52 @@
                 transform: none;
             }
 
-            .faq-card {
+            .faq-carousel-controls {
+                gap: 0.55rem;
+            }
+
+            .faq-carousel-button {
+                width: 2.8rem;
+                height: 2.8rem;
+            }
+
+            .faq-xmb-row {
+                min-height: auto;
+                display: grid;
+                gap: 1rem;
+                perspective: none;
+            }
+
+            .faq-card,
+            .faq-card.is-focused,
+            .faq-card.is-prev,
+            .faq-card.is-next,
+            .faq-card.is-hidden {
+                position: relative;
+                left: auto;
+                top: auto;
+                width: 100%;
+                min-height: 10rem;
+                opacity: 1;
+                pointer-events: auto;
+                z-index: auto;
+                filter: none;
+                transform: none;
                 border-radius: 1.7rem;
+            }
+
+            .faq-card {
+                min-height: 13.9rem;
+                padding: 1.05rem 0.95rem 0.95rem;
+            }
+
+            .faq-icon-chip {
+                width: 3.8rem;
+                height: 3.8rem;
+            }
+
+            .faq-card.is-hidden {
+                display: none;
             }
 
             .faq-modal-shell {
@@ -850,7 +1080,8 @@
             .faq-card,
             .faq-card::before,
             .faq-arrow,
-            .faq-modal-shell {
+            .faq-modal-shell,
+            .faq-carousel-button {
                 animation: none;
                 transition: none;
             }
@@ -1028,6 +1259,15 @@
                         </span>
                     </button>
                 </div>
+
+                <div class="faq-carousel-controls" aria-label="Navigasi soalan lazim">
+                    <button type="button" class="faq-carousel-button" id="faqPrevButton" aria-label="Soalan sebelumnya">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </button>
+                    <button type="button" class="faq-carousel-button" id="faqNextButton" aria-label="Soalan seterusnya">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </div>
             </div>
         </section>
     </main>
@@ -1049,9 +1289,12 @@
     const modalBox = document.getElementById('modalBox');
     const modalContent = document.getElementById('modalContent');
     const modalCloseButton = document.getElementById('modalCloseButton');
+    const faqPrevButton = document.getElementById('faqPrevButton');
+    const faqNextButton = document.getElementById('faqNextButton');
     const modalTransitionMs = 240;
     let activeTrigger = null;
     let closeTimerId = null;
+    let activeCarouselIndex = 0;
 
     const faqAnswers = {
         admission: `
@@ -1121,13 +1364,53 @@
             return;
         }
 
+        const resolvedIndex = focusableItems.indexOf(activeItem);
+        if (resolvedIndex >= 0) {
+            activeCarouselIndex = resolvedIndex;
+        }
+
         focusableItems.forEach((item) => {
             const isActive = item === activeItem;
+            const itemIndex = focusableItems.indexOf(item);
+            const prevIndex = (activeCarouselIndex - 1 + focusableItems.length) % focusableItems.length;
+            const nextIndex = (activeCarouselIndex + 1) % focusableItems.length;
+
             item.classList.toggle('is-focused', isActive);
+            item.classList.toggle('is-prev', itemIndex === prevIndex && !isActive);
+            item.classList.toggle('is-next', itemIndex === nextIndex && !isActive);
+            item.classList.toggle('is-hidden', itemIndex !== activeCarouselIndex && itemIndex !== prevIndex && itemIndex !== nextIndex);
             item.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
 
         faqTrack.classList.toggle('has-focused-item', Boolean(activeItem));
+    }
+
+    function updateCardTilt(item, event) {
+        if (!item || window.innerWidth < 768) {
+            return;
+        }
+
+        const rect = item.getBoundingClientRect();
+        const offsetX = (event.clientX - rect.left) / rect.width;
+        const offsetY = (event.clientY - rect.top) / rect.height;
+        const rotateY = (offsetX - 0.5) * 10;
+        const rotateX = (0.5 - offsetY) * 8;
+
+        item.style.setProperty('--faq-tilt-x', `${rotateX.toFixed(2)}deg`);
+        item.style.setProperty('--faq-tilt-y', `${rotateY.toFixed(2)}deg`);
+        item.style.setProperty('--faq-shimmer-x', `${(offsetX * 100).toFixed(1)}%`);
+        item.style.setProperty('--faq-shimmer-y', `${(offsetY * 100).toFixed(1)}%`);
+    }
+
+    function resetCardTilt(item) {
+        if (!item) {
+            return;
+        }
+
+        item.style.setProperty('--faq-tilt-x', '0deg');
+        item.style.setProperty('--faq-tilt-y', '0deg');
+        item.style.setProperty('--faq-shimmer-x', '50%');
+        item.style.setProperty('--faq-shimmer-y', '50%');
     }
 
     function focusItemByIndex(index) {
@@ -1137,6 +1420,7 @@
 
         const normalizedIndex = (index + focusableItems.length) % focusableItems.length;
         const nextItem = focusableItems[normalizedIndex];
+        activeCarouselIndex = normalizedIndex;
 
         nextItem.focus({ preventScroll: true });
         setFocusedItem(nextItem);
@@ -1197,7 +1481,17 @@
     focusableItems.forEach((item, index) => {
         item.addEventListener('mouseenter', () => setFocusedItem(item));
         item.addEventListener('focus', () => setFocusedItem(item));
-        item.addEventListener('click', () => openModal(item.dataset.faqType));
+        item.addEventListener('mousemove', (event) => updateCardTilt(item, event));
+        item.addEventListener('mouseleave', () => resetCardTilt(item));
+        item.addEventListener('blur', () => resetCardTilt(item));
+        item.addEventListener('click', () => {
+            if (!item.classList.contains('is-focused')) {
+                focusItemByIndex(index);
+                return;
+            }
+
+            openModal(item.dataset.faqType);
+        });
 
         item.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
@@ -1223,6 +1517,18 @@
             if (!focusableItems.includes(focusedElement)) {
                 setFocusedItem(focusableItems[0] ?? null);
             }
+        });
+    }
+
+    if (faqPrevButton) {
+        faqPrevButton.addEventListener('click', () => {
+            focusItemByIndex(activeCarouselIndex - 1);
+        });
+    }
+
+    if (faqNextButton) {
+        faqNextButton.addEventListener('click', () => {
+            focusItemByIndex(activeCarouselIndex + 1);
         });
     }
 
@@ -1265,6 +1571,7 @@
     });
 
     if (focusableItems.length) {
+        activeCarouselIndex = 0;
         setFocusedItem(focusableItems[0]);
     }
     </script>
