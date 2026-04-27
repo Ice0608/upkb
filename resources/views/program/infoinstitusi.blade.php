@@ -121,6 +121,73 @@
             background-attachment: fixed;
         }
 
+        /* ── Dark mode – non-themed body ── */
+        html.dark body.bg-gray-100 { background-color: #0f172a !important; }
+
+        /* ── Dark mode – cards ── */
+        html.dark .ii-card {
+            background: #1e293b;
+            border-color: rgba(255,255,255,0.07);
+            box-shadow: 0 4px 28px rgba(0,0,0,0.32);
+        }
+        html.dark .ii-card__icon-wrap { background: rgba(255,255,255,0.08); }
+        html.dark .ii-section-title { color: #f1f5f9; }
+        html.dark .ii-card .text-gray-700 { color: #94a3b8; }
+
+        /* ── Dark mode – search ── */
+        html.dark .ii-search-input {
+            background: #0f172a; border-color: rgba(255,255,255,0.1); color: #f1f5f9;
+        }
+        html.dark .ii-search-input::placeholder { color: #475569; }
+        html.dark .ii-search-input:focus { background: #1e293b; }
+        html.dark .ii-search-icon { color: #475569; }
+
+        /* ── Dark mode – kursus cards ── */
+        html.dark .ii-kc {
+            background: #1e293b;
+            border-color: rgba(255,255,255,0.07);
+        }
+        html.dark .ii-kc:hover {
+            background: #243048;
+            border-color: var(--institusi-info-500, #f97316);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.38);
+        }
+        html.dark .ii-kc__name { color: #f1f5f9; }
+        html.dark .ii-kc__chip {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.09);
+            color: #94a3b8;
+        }
+        html.dark .ii-kc__chip--accent {
+            background: rgba(255,255,255,0.08);
+            color: var(--institusi-info-500, #d4af37);
+        }
+        html.dark .ii-kc__divider { background: rgba(255,255,255,0.07); }
+        html.dark .ii-kc__toggle {
+            border-color: rgba(255,255,255,0.12); color: #64748b;
+        }
+        html.dark .ii-kc__toggle:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: var(--institusi-info-500, #d4af37);
+            color: var(--institusi-info-500, #d4af37);
+        }
+        html.dark .ii-kc__body-inner { border-top-color: rgba(255,255,255,0.07); }
+        html.dark .ii-kc__penerangan { color: #94a3b8; }
+        html.dark .ii-kc__tarikh { color: #475569; }
+
+        /* ── Dark mode – empty state ── */
+        html.dark .ii-empty {
+            background: rgba(255,255,255,0.04);
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+        html.dark .ii-no-results { color: #475569; }
+
+        /* ── Dark mode – badge ── */
+        html.dark .ii-section-icon {
+            background: rgba(255,255,255,0.08);
+            color: var(--institusi-info-500, #d4af37);
+        }
+
         /* ── Hero ── */
         .ii-hero { position: relative; height: 420px; overflow: hidden; }
         .ii-hero__img {
@@ -434,7 +501,7 @@
             </div>
             <div class="flex-1 min-w-0">
                 <h2 class="ii-section-title mb-2">Mengenai Institusi</h2>
-                <p class="text-gray-700 leading-relaxed">{{ $institusi->mengenai_institusi }}</p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ $institusi->mengenai_institusi }}</p>
             </div>
         </div>
 

@@ -184,6 +184,83 @@
             color: var(--detail-accent-700);
         }
 
+        /* ── Daftar CTA ── */
+        .kd-cta-daftar {
+            position: relative; overflow: hidden;
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 9999px;
+            background: #3b0764;
+            color: #fff;
+            font-size: 1.15rem; font-weight: 800; letter-spacing: 0.01em;
+            text-decoration: none;
+            box-shadow: 0 0 0 3px rgba(91,33,182,0.35), 0 8px 28px rgba(59,7,100,0.38);
+            transition: transform 0.22s, box-shadow 0.22s, background 0.22s;
+            animation: kdPulse 2.4s ease-in-out infinite;
+            border: none; cursor: pointer;
+        }
+        .kd-cta-daftar::before {
+            content: '';
+            position: absolute; top: 0; left: -75%;
+            width: 50%; height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+            transform: skewX(-18deg);
+            animation: kdShine 2.4s ease-in-out infinite;
+        }
+        .kd-cta-daftar:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 0 5px rgba(91,33,182,0.28), 0 16px 40px rgba(59,7,100,0.45);
+            background: #2e0652;
+            animation-play-state: paused;
+        }
+        .kd-cta-daftar .kd-cta-daftar__arrow {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2.1rem; height: 2.1rem; border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            color: #fff; font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: transform 0.22s;
+        }
+        .kd-cta-daftar:hover .kd-cta-daftar__arrow { transform: translateX(5px); }
+        @keyframes kdPulse {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(91,33,182,0.35), 0 8px 28px rgba(59,7,100,0.38); }
+            50% { box-shadow: 0 0 0 9px rgba(91,33,182,0.15), 0 12px 36px rgba(59,7,100,0.48); }
+        }
+        @keyframes kdShine {
+            0% { left: -75%; }
+            60%, 100% { left: 130%; }
+        }
+
+        /* ── TVET theme override for Daftar CTA ── */
+        .kursus-detail-page--tvet .kd-cta-daftar {
+            background: #3d2200;
+            box-shadow: 0 0 0 3px rgba(184,137,18,0.38), 0 8px 28px rgba(61,34,0,0.42);
+        }
+        .kursus-detail-page--tvet .kd-cta-daftar:hover {
+            background: #2c1800;
+            box-shadow: 0 0 0 5px rgba(184,137,18,0.25), 0 16px 40px rgba(61,34,0,0.52);
+        }
+        @keyframes kdPulseTvet {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(184,137,18,0.38), 0 8px 28px rgba(61,34,0,0.42); }
+            50% { box-shadow: 0 0 0 9px rgba(184,137,18,0.15), 0 12px 36px rgba(61,34,0,0.52); }
+        }
+        .kursus-detail-page--tvet .kd-cta-daftar { animation-name: kdPulseTvet; }
+
+        /* ── Sains Kesihatan theme override for Daftar CTA ── */
+        .kursus-detail-page--sains-kesihatan .kd-cta-daftar {
+            background: #1a3878;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.42), 0 8px 28px rgba(26,56,120,0.45);
+        }
+        .kursus-detail-page--sains-kesihatan .kd-cta-daftar:hover {
+            background: #122660;
+            box-shadow: 0 0 0 5px rgba(37,99,235,0.28), 0 16px 40px rgba(26,56,120,0.55);
+        }
+        @keyframes kdPulseSK {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(37,99,235,0.42), 0 8px 28px rgba(26,56,120,0.45); }
+            50% { box-shadow: 0 0 0 9px rgba(37,99,235,0.18), 0 12px 36px rgba(26,56,120,0.55); }
+        }
+        .kursus-detail-page--sains-kesihatan .kd-cta-daftar { animation-name: kdPulseSK; }
+
         .kursus-detail-panel {
             border: 1px solid rgba(226, 232, 240, 0.84);
             background: rgba(255, 255, 255, 0.94);
@@ -345,8 +422,8 @@
 
     <section class="kursus-detail-shell {{ $detailProgramType === 'tvet' ? 'kursus-detail-shell--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-shell--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-6 py-10">
         <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white">
-            <div class="grid md:grid-cols-[1.8fr,0.8fr] gap-6 p-8">
-                <div>
+            <div class="relative p-8">
+                <div class="pr-0 md:pr-56">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="kursus-detail-chip px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->jenis_kursus }}</span>
                         <span class="kursus-detail-chip px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->mod_pengajian }}</span>
@@ -358,34 +435,28 @@
                         <div class="inline-flex items-center gap-2"><i class="fas fa-users"></i> Kuota {{ $kursus->kuota }}</div>
                         <div class="inline-flex items-center gap-2"><i class="fas fa-calendar-days"></i> Daftar {{ $kursus->tarikh_pendaftaran ? $kursus->tarikh_pendaftaran->format('d M Y') : '-' }}</div>
                     </div>
-                    <p class="kursus-detail-soft-text mt-6 max-w-3xl leading-relaxed">{{ $kursus->penerangan }}</p>
 
-                    <div class="mt-8 flex flex-wrap gap-4">
+                    <div class="mt-8">
                         @if($detailInstitusi)
                             <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar->id, 'kod_institusi' => $detailInstitusi->kod_institusi]) }}" class="kursus-detail-primary-btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
                                 <i class="fas fa-arrow-left"></i> Kembali ke Institusi
                             </a>
                         @endif
-                        <form action="{{ route('pelajar.apply-now', $pelajar->id) }}" method="POST" class="inline-flex">
-                            @csrf
-                            <input type="hidden" name="kod_institusi" value="{{ $kursus->kod_institusi }}">
-                            <input type="hidden" name="kod_kursus" value="{{ $kursus->kod_kursus }}">
-                            <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
-                                <i class="fas fa-check"></i> Apply Now
-                            </button>
-                        </form>
                     </div>
                 </div>
-                <div class="space-y-4">
-                    <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
-                        <h2 class="text-lg font-semibold mb-3">Institusi</h2>
-                        <p class="kursus-detail-soft-text text-sm">{{ $detailInstitusi?->nama_institusi ?? 'Maklumat institusi tidak tersedia.' }}</p>
-                        <p class="kursus-detail-soft-text text-sm">{{ $detailInstitusi?->alamat ?? trim((string) $kursus->kod_institusi) }}</p>
-                    </div>
-                    <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
-                        <h2 class="text-lg font-semibold mb-3">Ringkasan</h2>
-                        <p class="kursus-detail-soft-text text-sm">{{ \Illuminate\Support\Str::limit($kursus->penerangan, 160) }}</p>
-                    </div>
+
+                {{-- Corner CTA --}}
+                <div class="absolute bottom-8 right-8 flex flex-col items-end gap-2">
+                    <form action="{{ route('pelajar.apply-now', $pelajar->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="kod_institusi" value="{{ $kursus->kod_institusi }}">
+                        <input type="hidden" name="kod_kursus" value="{{ $kursus->kod_kursus }}">
+                        <button type="submit" class="kd-cta-daftar">
+                            <i class="fas fa-user-plus"></i>
+                            Daftar Sekarang
+                            <span class="kd-cta-daftar__arrow"><i class="fas fa-arrow-right"></i></span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

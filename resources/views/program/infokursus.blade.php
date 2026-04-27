@@ -184,6 +184,82 @@
             color: var(--detail-accent-700);
         }
 
+        /* ── Daftar CTA ── */
+        .kd-cta-daftar {
+            position: relative; overflow: hidden;
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            padding: 1.1rem 2.5rem;
+            border-radius: 9999px;
+            background: #3b0764;
+            color: #fff;
+            font-size: 1.15rem; font-weight: 800; letter-spacing: 0.01em;
+            text-decoration: none;
+            box-shadow: 0 0 0 3px rgba(91,33,182,0.35), 0 8px 28px rgba(59,7,100,0.38);
+            transition: transform 0.22s, box-shadow 0.22s, background 0.22s;
+            animation: kdPulse 2.4s ease-in-out infinite;
+        }
+        .kd-cta-daftar::before {
+            content: '';
+            position: absolute; top: 0; left: -75%;
+            width: 50%; height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+            transform: skewX(-18deg);
+            animation: kdShine 2.4s ease-in-out infinite;
+        }
+        .kd-cta-daftar:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 0 5px rgba(91,33,182,0.28), 0 16px 40px rgba(59,7,100,0.45);
+            background: #2e0652;
+            animation-play-state: paused;
+        }
+        .kd-cta-daftar .kd-cta-daftar__arrow {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 2.1rem; height: 2.1rem; border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            color: #fff; font-size: 0.85rem;
+            flex-shrink: 0;
+            transition: transform 0.22s;
+        }
+        .kd-cta-daftar:hover .kd-cta-daftar__arrow { transform: translateX(5px); }
+        @keyframes kdPulse {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(91,33,182,0.35), 0 8px 28px rgba(59,7,100,0.38); }
+            50% { box-shadow: 0 0 0 9px rgba(91,33,182,0.15), 0 12px 36px rgba(59,7,100,0.48); }
+        }
+        @keyframes kdShine {
+            0% { left: -75%; }
+            60%, 100% { left: 130%; }
+        }
+
+        /* ── TVET theme override for Daftar CTA ── */
+        .kursus-detail-page--tvet .kd-cta-daftar {
+            background: #3d2200;
+            box-shadow: 0 0 0 3px rgba(184,137,18,0.38), 0 8px 28px rgba(61,34,0,0.42);
+        }
+        .kursus-detail-page--tvet .kd-cta-daftar:hover {
+            background: #2c1800;
+            box-shadow: 0 0 0 5px rgba(184,137,18,0.25), 0 16px 40px rgba(61,34,0,0.52);
+        }
+        @keyframes kdPulseTvet {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(184,137,18,0.38), 0 8px 28px rgba(61,34,0,0.42); }
+            50% { box-shadow: 0 0 0 9px rgba(184,137,18,0.15), 0 12px 36px rgba(61,34,0,0.52); }
+        }
+        .kursus-detail-page--tvet .kd-cta-daftar { animation-name: kdPulseTvet; }
+
+        /* ── Sains Kesihatan theme override for Daftar CTA ── */
+        .kursus-detail-page--sains-kesihatan .kd-cta-daftar {
+            background: #1a3878;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.42), 0 8px 28px rgba(26,56,120,0.45);
+        }
+        .kursus-detail-page--sains-kesihatan .kd-cta-daftar:hover {
+            background: #122660;
+            box-shadow: 0 0 0 5px rgba(37,99,235,0.28), 0 16px 40px rgba(26,56,120,0.55);
+        }
+        @keyframes kdPulseSK {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(37,99,235,0.42), 0 8px 28px rgba(26,56,120,0.45); }
+            50% { box-shadow: 0 0 0 9px rgba(37,99,235,0.18), 0 12px 36px rgba(26,56,120,0.55); }
+        }
+        .kursus-detail-page--sains-kesihatan .kd-cta-daftar { animation-name: kdPulseSK; }
+
         .kursus-detail-panel {
             border: 1px solid rgba(226, 232, 240, 0.84);
             background: rgba(255, 255, 255, 0.94);
@@ -217,7 +293,7 @@
         .kursus-tab-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #1f2937;
+            color: var(--detail-accent-600, #7c3aed);
             margin-bottom: 1rem;
         }
 
@@ -284,6 +360,65 @@
             background-position: center;
             background-attachment: fixed;
         }
+
+        /* ── Dark mode – non-themed page background ── */
+        html.dark .kursus-detail-page:not(.kursus-detail-page--tvet):not(.kursus-detail-page--diploma):not(.kursus-detail-page--sains-kesihatan) {
+            background: linear-gradient(180deg, #0f172a 0%, #111827 44%, #0f172a 100%);
+        }
+        html.dark body { color: #e2e8f0; }
+
+        /* ── Dark mode – panel & tabbar ── */
+        html.dark .kursus-detail-panel {
+            background: rgba(15,23,42,0.97);
+            border-color: rgba(255,255,255,0.07);
+            box-shadow: 0 20px 48px rgba(0,0,0,0.45);
+        }
+        html.dark .kursus-detail-tabbar {
+            background: rgba(30,41,59,0.97);
+            border-color: rgba(255,255,255,0.08) !important;
+        }
+        html.dark .tab-link { color: #94a3b8; }
+        html.dark .tab-link:hover {
+            background: rgba(255,255,255,0.06);
+            color: var(--detail-accent-500, #f97316);
+        }
+        html.dark .tab-link.is-active {
+            background: rgba(255,255,255,0.08);
+            color: var(--detail-accent-500, #f97316);
+            box-shadow: 0 4px 16px rgba(var(--detail-accent-rgb, 249,115,22), 0.18);
+        }
+
+        /* ── Dark mode – tab section shared ── */
+        html.dark .kursus-tab-title { color: var(--detail-accent-500, #8b5cf6); }
+        html.dark .kursus-tab-section { border-color: rgba(255,255,255,0.07) !important; }
+        html.dark .kursus-tab-card {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .kursus-tab-card-strong { background: rgba(255,255,255,0.08); }
+        html.dark .kursus-tab-empty {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.08);
+            color: #64748b;
+        }
+        html.dark .kursus-tab-label { color: #475569; }
+
+        /* ── Dark mode – tab content inline Tailwind overrides ── */
+        html.dark #tab-content .bg-white { background-color: #1e293b !important; }
+        html.dark #tab-content .bg-gray-50 { background-color: #162033 !important; }
+        html.dark #tab-content .bg-emerald-50 { background-color: rgba(6,78,59,0.28) !important; }
+        html.dark #tab-content .border-gray-100,
+        html.dark #tab-content .border-gray-200 { border-color: rgba(255,255,255,0.07) !important; }
+        html.dark #tab-content .border-b { border-color: rgba(255,255,255,0.07) !important; }
+        html.dark #tab-content .text-gray-500 { color: #64748b !important; }
+        html.dark #tab-content .text-gray-600 { color: #94a3b8 !important; }
+        html.dark #tab-content .text-gray-700 { color: #94a3b8 !important; }
+        html.dark #tab-content .text-gray-800 { color: #f1f5f9 !important; }
+        html.dark #tab-content .text-gray-900 { color: #f8fafc !important; }
+        html.dark #tab-content .text-slate-900 { color: #f1f5f9 !important; }
+        html.dark #tab-content .text-emerald-700 { color: #34d399 !important; }
+        html.dark #tab-content .text-emerald-900 { color: #6ee7b7 !important; }
+        html.dark #tab-content .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important; }
     </style>
 </head>
 @php
@@ -307,8 +442,8 @@
 
     <section class="kursus-detail-shell {{ $detailProgramType === 'tvet' ? 'kursus-detail-shell--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-shell--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-6 py-10">
         <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white">
-            <div class="grid md:grid-cols-[1.8fr,0.8fr] gap-6 p-8">
-                <div>
+            <div class="relative p-8">
+                <div class="pr-0 md:pr-56">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="kursus-detail-chip px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->jenis_kursus }}</span>
                         <span class="kursus-detail-chip px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->mod_pengajian }}</span>
@@ -320,29 +455,23 @@
                         <div class="inline-flex items-center gap-2"><i class="fas fa-users"></i> Kuota {{ $kursus->kuota }}</div>
                         <div class="inline-flex items-center gap-2"><i class="fas fa-calendar-days"></i> Daftar {{ $kursus->tarikh_pendaftaran ? $kursus->tarikh_pendaftaran->format('d M Y') : '-' }}</div>
                     </div>
-                    <p class="kursus-detail-soft-text mt-6 max-w-3xl leading-relaxed">{{ $kursus->penerangan }}</p>
 
-                    <div class="mt-8 flex flex-wrap gap-4">
+                    <div class="mt-8">
                         @if($detailInstitusi)
                             <a href="{{ route('institusi.show', $detailInstitusi->id) }}" class="kursus-detail-primary-btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
                                 <i class="fas fa-arrow-left"></i> Kembali ke Institusi
                             </a>
                         @endif
-                        <a href="{{ route('bmd', ['set_kursus_redirect' => $kursus->kod_kursus, 'kod_institusi' => $kursus->kod_institusi]) }}" class="inline-flex items-center gap-2 rounded-full bg-white/20 border border-white text-white px-6 py-3 font-semibold hover:bg-white/10 transition">
-                            <i class="fas fa-user"></i> Daftar Sekarang
-                        </a>
                     </div>
                 </div>
-                <div class="space-y-4">
-                    <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
-                        <h2 class="text-lg font-semibold mb-3">Institusi</h2>
-                        <p class="kursus-detail-soft-text text-sm">{{ $detailInstitusi?->nama_institusi ?? 'Maklumat institusi tidak tersedia.' }}</p>
-                        <p class="kursus-detail-soft-text text-sm">{{ $detailInstitusi?->alamat ?? trim((string) $kursus->kod_institusi) }}</p>
-                    </div>
-                    <div class="rounded-3xl bg-white/10 p-6 border border-white/20">
-                        <h2 class="text-lg font-semibold mb-3">Ringkasan</h2>
-                        <p class="kursus-detail-soft-text text-sm">{{ \Illuminate\Support\Str::limit($kursus->penerangan, 160) }}</p>
-                    </div>
+
+                {{-- Corner CTA --}}
+                <div class="absolute bottom-8 right-8 flex flex-col items-end gap-2">
+                    <a href="{{ route('bmd', ['set_kursus_redirect' => $kursus->kod_kursus, 'kod_institusi' => $kursus->kod_institusi]) }}" class="kd-cta-daftar">
+                        <i class="fas fa-user-plus"></i>
+                        Daftar Sekarang
+                        <span class="kd-cta-daftar__arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
                 </div>
             </div>
         </div>
