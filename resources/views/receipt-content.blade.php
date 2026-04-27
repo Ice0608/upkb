@@ -1,303 +1,363 @@
-<style>
+﻿<style>
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
 
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f5f5f5;
+    html, body {
+        width: 100%;
+        min-height: 100%;
+        background: #fff;
+        color: #000;
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        line-height: 1.3;
+    }
+
+    @page {
+        size: A5 landscape;
+        margin: 5mm;
     }
 
     .page {
-        width: 210mm;
-        height: 297mm;
-        background-color: white;
-        margin: 0 auto;
+        width: 100%;
+        min-height: 100%;
         padding: 8mm;
         display: flex;
         flex-direction: column;
-        overflow: hidden;
+        gap: 10px;
+    }
+
+    .receipt {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
     }
 
     .header {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 8mm;
-        margin-bottom: 6mm;
-        border-bottom: 1px solid #000;
-        padding-bottom: 4mm;
+        display: grid;
+        grid-template-columns: 60px 1fr 140px;
+        gap: 10px;
+        align-items: start;
+        border-bottom: 1.5px solid #000;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
     }
 
-    .logo {
-        width: 25mm;
-        height: auto;
-    }
-
-    .title-center {
-        flex: 1;
-        text-align: center;
-    }
-
-    .organization-name {
-        font-size: 16px;
-        font-weight: bold;
-        color: #000;
-        letter-spacing: 1px;
-    }
-
-    .header-right {
-        font-size: 10px;
-        line-height: 1.6;
-    }
-
-    .header-field {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 2mm;
-    }
-
-    .header-label {
-        font-weight: bold;
-        width: 25mm;
-    }
-
-    .header-line {
-        border-bottom: 1px solid #000;
-        flex: 1;
-        margin-left: 2mm;
-    }
-
-    .content {
-        display: flex;
-        gap: 8mm;
-        margin-bottom: 5mm;
-        font-size: 10px;
-        flex: 1;
-    }
-
-    .left-content {
-        flex: 1;
-    }
-
-    .right-content {
-        flex: 1;
-    }
-
-    .form-row {
-        display: flex;
-        gap: 4mm;
-        margin-bottom: 3mm;
-    }
-
-    .form-field {
-        flex: 1;
-    }
-
-    .form-label {
-        font-weight: bold;
-        font-size: 9px;
-        margin-bottom: 1mm;
+    .logo img {
+        width: auto;
+        max-height: 60px;
         display: block;
     }
 
-    .form-line {
-        border-bottom: 1px solid #000;
-        min-height: 4mm;
-        padding: 1mm 0;
+    .header-center {
+        text-align: center;
     }
 
-    .checkbox-group {
-        display: flex;
-        gap: 3mm;
-        margin-bottom: 3mm;
-        align-items: center;
+    .header-center .line-small {
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 2px;
     }
 
-    .checkbox-item {
-        display: flex;
-        align-items: center;
-        gap: 2mm;
+    .header-center .title-large {
+        margin: 2px 0 0;
+        font-size: 18px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .header-center .address {
+        margin-top: 4px;
+        font-size: 8px;
+        line-height: 1.25;
+        text-transform: uppercase;
+    }
+
+    .header-right {
+        display: grid;
+        gap: 5px;
         font-size: 9px;
+    }
+
+    .meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .meta-label {
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        width: 48px;
+    }
+
+    .meta-value {
+        text-align: right;
+        min-width: 80px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .section {
+        display: grid;
+        gap: 10px;
+    }
+
+    .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 14px;
+    }
+
+    .field {
+        display: grid;
+        gap: 3px;
+    }
+
+    .field-label {
+        font-size: 8.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .field-value {
+        border-bottom: 1px solid #000;
+        min-height: 16px;
+        padding-bottom: 2px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .payment-box {
+        border: 1px solid #000;
+        padding: 8px;
+        display: grid;
+        gap: 8px;
+    }
+
+    .payment-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-transform: uppercase;
+        font-size: 10px;
     }
 
     .checkbox {
-        width: 4mm;
-        height: 4mm;
+        width: 12px;
+        height: 12px;
         border: 1px solid #000;
-        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .payment-label {
+        flex: 1;
+        font-weight: 700;
+    }
+
+    .payment-amount {
+        min-width: 60px;
+        text-align: right;
+        font-weight: 700;
+        border-bottom: 1px solid #000;
+        padding-bottom: 2px;
     }
 
     .total-section {
-        border-top: 2px solid #000;
-        border-bottom: 2px solid #000;
-        padding: 3mm 0;
-        margin-bottom: 5mm;
         display: flex;
         justify-content: space-between;
-        font-size: 12px;
-        font-weight: bold;
+        align-items: flex-end;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .total-text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        text-transform: uppercase;
     }
 
     .total-label {
-        font-weight: bold;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
     }
 
-    .total-amount {
+    .total-note {
+        font-size: 8.5px;
+        letter-spacing: 0.08em;
+    }
+
+    .total-value {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
         border-bottom: 1px solid #000;
-        min-width: 40mm;
-        text-align: right;
-        padding-right: 5mm;
-    }
-
-    .footer {
-        display: flex;
-        justify-content: space-between;
-        font-size: 9px;
-        border-top: 1px solid #000;
-        padding-top: 3mm;
-        margin-top: auto;
-        line-height: 1.4;
+        padding-bottom: 2px;
     }
 
     .signature-block {
-        text-align: center;
-        min-width: 45mm;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+
+    .signature-card {
+        width: 170px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .signature-image {
+        width: auto;
+        max-height: 55px;
+        object-fit: contain;
+        display: block;
     }
 
     .signature-line {
+        width: 100%;
         border-bottom: 1px solid #000;
-        height: 12mm;
-        margin-bottom: 2mm;
     }
 
-    .signature-name {
-        font-weight: bold;
-        font-size: 8px;
+    .signature-label {
+        text-transform: uppercase;
+        font-size: 9px;
+        font-weight: 700;
+        text-align: center;
     }
 
-    .disclaimer {
-        flex: 1;
-        padding-left: 5mm;
-        font-size: 8px;
-        line-height: 1.3;
+    .receipt-footer {
+        text-align: center;
+        font-size: 8.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding-top: 8px;
+        border-top: 1px solid #000;
+        margin-top: 12px;
     }
 
     @media print {
         body {
-            background-color: white;
-            margin: 0;
-            padding: 0;
+            background: #fff;
         }
 
         .page {
-            margin: 0;
-            box-shadow: none;
-            page-break-after: avoid;
-            page-break-inside: avoid;
+            padding: 5mm;
+        }
+
+        .receipt {
+            break-inside: avoid;
         }
 
         * {
-            page-break-inside: avoid;
+            page-break-inside: avoid !important;
         }
     }
 </style>
 
+@php
+    $printDate = now();
+    $receiptNumber = 'SESOC/' . $printDate->format('Y-m-d') . '/0001';
+    $taklimatText = optional($pelajar)->taklimat ?? '-';
+    $processFee = optional($pelajar)->yuran_proses ?? 100.00;
+    $registrationFee = optional($pelajar)->yuran_pendaftaran ?? 200.00;
+    $totalAmount = (float) $processFee + (float) $registrationFee;
+@endphp
+
 <div class="page">
-    <!-- Header -->
-    <div class="header">
-        <img src="{{ asset('images/icon/sesL.png') }}" alt="SES Logo" class="logo">
-        <div class="title-center">
-            <div class="organization-name">SMART EDUCATION SOCIETY</div>
-        </div>
-        <div class="header-right">
-            <div class="header-field">
-                <div class="header-label">No:</div>
-                <div class="header-line"></div>
-            </div>
-            <div class="header-field">
-                <div class="header-label">Tarikh:</div>
-                <div class="header-line"></div>
-            </div>
-            <div class="header-field">
-                <div class="header-label">Taklimat:</div>
-                <div class="header-line"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Left Content -->
-        <div class="left-content">
-            <div class="form-row">
-                <div class="form-field">
-                    <span class="form-label">Diterima Daripada:</span>
-                    <div class="form-line"></div>
+    <div class="receipt">
+        <div>
+            <div class="header">
+                <div class="logo">
+                    <img src="{{ asset('images/icon/sesL.png') }}" alt="SESOC Logo">
+                </div>
+                <div class="header-center">
+                    <div class="line-small">SESOC LEGACY (PG0576768)</div>
+                    <div class="line-small">PRESENTING</div>
+                    <div class="title-large">SMART EDUCATION SOCIETY</div>
+                    <div class="address">No. 20, Jalan Utama 5, Kawasan Pendidikan, 43000 Kajang, Selangor</div>
+                </div>
+                <div class="header-right">
+                    <div class="meta-row">
+                        <div class="meta-label">No:</div>
+                        <div class="meta-value">{{ $receiptNumber }}</div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">Tarikh:</div>
+                        <div class="meta-value">{{ $printDate->format('d/m/Y') }}</div>
+                    </div>
+                    <div class="meta-row">
+                        <div class="meta-label">Taklimat:</div>
+                        <div class="meta-value">{{ $taklimatText }}</div>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-field">
-                    <span class="form-label">No IC:</span>
-                    <div class="form-line"></div>
+            <div class="section">
+                <div class="field-grid">
+                    <div class="field">
+                        <div class="field-label">Diterima Daripada</div>
+                        <div class="field-value">{{ optional($pelajar)->nama_pelajar ?? '-' }}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">No Kad Pengenalan</div>
+                        <div class="field-value">{{ optional($pelajar)->ic_pelajar ?? '-' }}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Institusi</div>
+                        <div class="field-value">{{ optional($pelajar)->institusi ?? '-' }}</div>
+                    </div>
+                    <div class="field">
+                        <div class="field-label">Kursus Pilihan</div>
+                        <div class="field-value">{{ optional($pelajar)->pilihan_pertama ?? '-' }}</div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-field">
-                    <span class="form-label">Institusi:</span>
-                    <div class="form-line"></div>
+                <div class="payment-box">
+                    <div class="payment-row">
+                        <span class="checkbox"></span>
+                        <span class="payment-label">Wang Proses</span>
+                        <span class="payment-amount"></span>
+                    </div>
+                    <div class="payment-row">
+                        <span class="checkbox"></span>
+                        <span class="payment-label">Pra Pendaftaran</span>
+                        <span class="payment-amount"></span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-field">
-                    <span class="form-label">Kursus Pilihan:</span>
-                    <div class="form-line"></div>
+                <div class="total-section">
+                    <div class="total-text">
+                        <div class="total-label">Jumlah</div>
+                        <div class="total-note">Tunai & Lain-lain</div>
+                    </div>
+                    <div class="total-value"></div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Right Content -->
-        <div class="right-content">
-            <div class="checkbox-group">
-                <div class="checkbox-item">
-                    <input type="checkbox" class="checkbox">
-                    <span>Wang Proses</span>
-                </div>
-                <div style="border-bottom: 1px solid #000; min-width: 30mm; height: 4mm;"></div>
-                <span style="font-weight: bold;">RM</span>
-            </div>
-
-            <div class="checkbox-group">
-                <div class="checkbox-item">
-                    <input type="checkbox" class="checkbox">
-                    <span>Pra Pendaftaran</span>
-                </div>
-                <div style="border-bottom: 1px solid #000; min-width: 30mm; height: 4mm;"></div>
-                <span style="font-weight: bold;">RM</span>
-            </div>
-
-            <div style="height: 8mm;"></div>
-
-            <div class="total-section">
-                <div class="total-label">JUMLAH TOTAL:</div>
-                <div class="total-amount">RM</div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <div class="signature-block">
-            <div class="signature-line"></div>
-            <div class="signature-name">Pegawai Bertugas</div>
-        </div>
-        <div class="disclaimer">
-            <strong>Penafian:</strong> Resit ini adalah bukti pembayaran yang sah. Sila simpan untuk rujukan. Sekiranya terdapat percanggahan, sila hubungi pejabat dalam masa 7 hari.
+        <div>
+            <div class="receipt-footer">** BAYARAN YANG TELAH DITERIMA TIDAK AKAN DIKEMBALIKAN **</div>
+            <div class="signature-block">
+                <div class="signature-card">
+                    <img src="{{ asset('images/en. amri signature.png') }}" alt="Signature" class="signature-image">
+                    <div class="signature-line"></div>
+                    <div class="signature-label">Pegawai Bertugas</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

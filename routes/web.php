@@ -97,13 +97,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/receipt', function () {
     // Check if this is a modal request
     $isModal = request('modal');
+    $pelajarId = request('pelajar_id');
+    $pelajar = null;
+    
+    if ($pelajarId) {
+        $pelajar = \App\Models\Pelajar::find($pelajarId);
+    }
     
     // Return only the page content for modal, full HTML for standalone
     if ($isModal) {
-        return view('receipt-content');
+        return view('receipt-content', compact('pelajar'));
     }
     
-    return view('receipt');
+    return view('receipt', compact('pelajar'));
 })->name('receipt');
 
 Route::view('/about', 'about')->name('about');
