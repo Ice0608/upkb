@@ -7,6 +7,122 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Login Pelajar</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
+    <style>
+        /* Dark Mode Styles */
+        html.dark body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        html.dark .text-orange-500 {
+            color: #fb923c;
+        }
+
+        html.dark .text-slate-900 {
+            color: #f1f5f9;
+        }
+
+        html.dark .text-slate-600 {
+            color: #cbd5e1;
+        }
+
+        html.dark .rounded-\[32px\].bg-white {
+            background-color: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .rounded-\[32px\].border-rose-200 {
+            background-color: rgba(244, 63, 94, 0.1);
+            border-color: #f43f5e;
+        }
+
+        html.dark .bg-emerald-50 {
+            background-color: rgba(5, 150, 105, 0.1);
+            border-color: #10b981;
+        }
+
+        html.dark .text-emerald-700 {
+            color: #6ee7b7;
+        }
+
+        html.dark .text-rose-700 {
+            color: #fca5a5;
+        }
+
+        html.dark .border-slate-200 {
+            border-color: #334155;
+        }
+
+        html.dark .border-slate-300 {
+            border-color: #334155;
+        }
+
+        html.dark .bg-slate-50 {
+            background-color: #0f172a;
+            border-color: #334155;
+        }
+
+        html.dark .text-sm.font-semibold.text-slate-700 {
+            color: #e2e8f0;
+        }
+
+        html.dark input[type="text"] {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+
+        html.dark input[type="text"]:focus {
+            background-color: #1e293b;
+            border-color: #fb923c;
+            box-shadow: 0 0 0 2px rgba(251, 146, 60, 0.1);
+        }
+
+        html.dark input[readonly] {
+            background-color: #0f172a;
+            color: #cbd5e1;
+        }
+
+        html.dark .inline-flex.items-center.rounded-full.border.border-slate-300.bg-slate-50 {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
+        html.dark .inline-flex.items-center.rounded-full.border.border-slate-300.bg-slate-50:hover {
+            background-color: #334155;
+        }
+
+        html.dark .text-slate-700 {
+            color: #cbd5e1;
+        }
+
+        html.dark .bg-orange-500 {
+            background-color: #f97316;
+        }
+
+        html.dark .hover\:bg-orange-600:hover {
+            background-color: #ea580c;
+        }
+
+        html.dark .text-white {
+            color: #ffffff;
+        }
+
+        html.dark .text-xs.text-rose-600 {
+            color: #fca5a5;
+        }
+
+        html.dark h2 {
+            color: #f1f5f9;
+        }
+
+        html.dark .transition {
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+    </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
 
@@ -31,7 +147,7 @@
 
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-orange-500">Login Pelajar</p>
+            <p class="text-sm uppercase tracking-[0.15em] text-orange-500">Login Pelajar</p>
             <h1 class="mt-3 text-3xl font-semibold text-slate-900">Sahkan Identiti</h1>
             <p class="mt-2 text-sm text-slate-600">Masukkan No. IC untuk mengesahkan identiti.</p>
         </div>
