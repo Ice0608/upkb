@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Kaedah Pembayaran - Temu Duga</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     <style>
         .payment-method {
             cursor: pointer;
@@ -49,6 +50,179 @@
             color: #6b7280;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+        }
+
+        /* Dark Mode Styles */
+        html.dark body {
+            background: linear-gradient(to bottom, #0f172a, #1a1f3a);
+            color: #f1f5f9;
+        }
+
+        html.dark .payment-method {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        html.dark .payment-method:hover {
+            border-color: #fb923c;
+            background: rgba(251, 146, 60, 0.1);
+        }
+
+        html.dark .payment-method.active {
+            border-color: #fb923c;
+            background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(251, 146, 60, 0.05) 100%);
+            box-shadow: 0 4px 20px rgba(251, 146, 60, 0.2);
+        }
+
+        html.dark .text-slate-900 {
+            color: #f1f5f9;
+        }
+
+        html.dark .text-slate-600 {
+            color: #cbd5e1;
+        }
+
+        html.dark .text-orange-600 {
+            color: #fb923c;
+        }
+
+        html.dark .text-green-600 {
+            color: #86efac;
+        }
+
+        html.dark .text-blue-600 {
+            color: #60a5fa;
+        }
+
+        html.dark .bg-white {
+            background-color: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .border-slate-100 {
+            border-color: #334155;
+        }
+
+        html.dark .border-slate-200 {
+            border-color: #334155;
+        }
+
+        html.dark .qr-code-display {
+            background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
+            border-color: #334155;
+        }
+
+        html.dark input[type="number"] {
+            background-color: #0f172a;
+            border-color: #334155;
+            color: #fb923c;
+        }
+
+        html.dark input[type="number"]:focus {
+            border-color: #fb923c;
+            box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
+        }
+
+        html.dark .bg-orange-100 {
+            background: rgba(251, 146, 60, 0.15);
+            color: #fb923c;
+        }
+
+        html.dark .text-orange-600 {
+            color: #fb923c;
+        }
+
+        html.dark .hover\:bg-orange-200:hover {
+            background: rgba(251, 146, 60, 0.25);
+        }
+
+        html.dark .bg-blue-50 {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        html.dark .text-blue-700 {
+            color: #93c5fd;
+        }
+
+        html.dark .bg-green-50 {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: #22c55e;
+        }
+
+        html.dark .text-green-700 {
+            color: #86efac;
+        }
+
+        html.dark .bg-amber-50 {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: #f59e0b;
+        }
+
+        html.dark .text-amber-700 {
+            color: #fcd34d;
+        }
+
+        html.dark .border-orange-600 {
+            border-color: #fb923c;
+        }
+
+        html.dark .border-slate-300 {
+            border-color: #334155;
+        }
+
+        html.dark .border-dashed {
+            border-color: #334155;
+        }
+
+        html.dark .hover\:border-orange-400 {
+            border-color: #fb923c;
+        }
+
+        html.dark .text-slate-400 {
+            color: #94a3b8;
+        }
+
+        html.dark .text-emerald-600 {
+            color: #10b981;
+        }
+
+        html.dark .text-orange-400 {
+            color: #fb923c;
+        }
+
+        html.dark .bg-white.px-2 {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        html.dark .hover\:bg-slate-50:hover {
+            background: #334155;
+        }
+
+        html.dark .text-white {
+            color: #ffffff;
+        }
+
+        html.dark .hover\:bg-orange-700:hover {
+            background: #ea580c;
+        }
+
+        html.dark .border-blue-200 {
+            border-color: #3b82f6;
+        }
+
+        html.dark .border-green-200 {
+            border-color: #22c55e;
+        }
+
+        html.dark .border-amber-200 {
+            border-color: #f59e0b;
+        }
+
+        html.dark .text-sm.text-slate-500 {
+            color: #94a3b8;
         }
     </style>
 </head>

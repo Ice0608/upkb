@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>BMD - Borang Maklumat Diri</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     <style>
         @media print {
             body {
@@ -41,6 +42,169 @@
             .grid.gap-6.sm\:grid-cols-2 {
                 page-break-inside: avoid;
             }
+        }
+
+        /* Dark Mode Styles */
+        html.dark body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        html.dark .rounded-\[32px\].bg-white {
+            background-color: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .text-orange-500 {
+            color: #fb923c;
+        }
+
+        html.dark .text-slate-900,
+        html.dark h1.text-slate-900,
+        html.dark h2.text-slate-900,
+        html.dark h3.text-slate-900 {
+            color: #f1f5f9;
+        }
+
+        html.dark .text-slate-600 {
+            color: #cbd5e1;
+        }
+
+        html.dark .bg-slate-50,
+        html.dark .rounded-\[32px\].bg-slate-50 {
+            background-color: #0f172a;
+            border-color: #334155;
+        }
+
+        html.dark .border-slate-200,
+        html.dark .border-slate-300 {
+            border-color: #334155;
+        }
+
+        html.dark .bg-emerald-50 {
+            background-color: rgba(5, 150, 105, 0.1);
+            border-color: #10b981;
+        }
+
+        html.dark .text-emerald-700 {
+            color: #6ee7b7;
+        }
+
+        html.dark input[type="text"],
+        html.dark input[type="email"],
+        html.dark input[type="number"],
+        html.dark input[type="date"],
+        html.dark select,
+        html.dark textarea {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+
+        html.dark input[type="text"]:focus,
+        html.dark input[type="email"]:focus,
+        html.dark input[type="number"]:focus,
+        html.dark input[type="date"]:focus,
+        html.dark select:focus,
+        html.dark textarea:focus {
+            background-color: #1e293b;
+            border-color: #fb923c;
+            box-shadow: 0 0 0 2px rgba(251, 146, 60, 0.1);
+        }
+
+        html.dark input[type="text"]::placeholder,
+        html.dark input[type="email"]::placeholder,
+        html.dark input[type="number"]::placeholder,
+        html.dark input[type="date"]::placeholder,
+        html.dark select::placeholder {
+            color: #64748b;
+        }
+
+        html.dark input[readonly] {
+            background-color: #0f172a;
+            color: #94a3b8;
+        }
+
+        html.dark .text-sm.font-semibold.text-slate-700 {
+            color: #e2e8f0;
+        }
+
+        html.dark .text-xs.text-rose-600 {
+            color: #fca5a5;
+        }
+
+        html.dark .inline-flex.items-center.rounded-full.border.border-slate-300.bg-slate-50 {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #cbd5e1;
+        }
+
+        html.dark .inline-flex.items-center.rounded-full.border.border-slate-300.bg-slate-50:hover {
+            background-color: #334155;
+        }
+
+        html.dark .text-slate-700 {
+            color: #cbd5e1;
+        }
+
+        html.dark .bg-orange-500 {
+            background-color: #f97316;
+        }
+
+        html.dark .hover\:bg-orange-600:hover {
+            background-color: #ea580c;
+        }
+
+        html.dark .bg-blue-500 {
+            background-color: #3b82f6;
+        }
+
+        html.dark .hover\:bg-blue-600:hover {
+            background-color: #2563eb;
+        }
+
+        html.dark .bg-emerald-500 {
+            background-color: #10b981;
+        }
+
+        html.dark .hover\:bg-emerald-600:hover {
+            background-color: #059669;
+        }
+
+        html.dark .text-white {
+            color: #ffffff;
+        }
+
+        html.dark .shadow-lg {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        html.dark .bg-white {
+            background-color: #1e293b;
+            border-color: #334155;
+        }
+
+        html.dark select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-position: right 0.75rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+        html.dark select option {
+            background-color: #1e293b;
+            color: #f1f5f9;
+        }
+
+        html.dark .border-t.border-slate-200 {
+            border-top-color: #334155;
+        }
+
+        html.dark .pt-6 {
+            color: #f1f5f9;
         }
     </style>
 </head>

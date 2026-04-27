@@ -7,6 +7,135 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Dashboard Pelajar - UPKB</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
+    <style>
+        /* Dark Mode Styles */
+        html.dark body {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        html.dark .rounded-\[32px\] {
+            background-color: #1e293b;
+            border-color: #334155;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark .text-center > p.text-orange-500 {
+            color: #fb923c;
+        }
+
+        html.dark .text-slate-900 {
+            color: #f1f5f9;
+        }
+
+        html.dark .text-slate-600 {
+            color: #cbd5e1;
+        }
+
+        html.dark .bg-slate-50 {
+            background-color: #0f172a;
+            border-color: #334155;
+        }
+
+        html.dark .bg-emerald-50 {
+            background-color: rgba(5, 150, 105, 0.1);
+            border-color: #10b981;
+        }
+
+        html.dark .bg-amber-50 {
+            background-color: rgba(217, 119, 6, 0.1);
+            border-color: #f59e0b;
+        }
+
+        html.dark .text-emerald-700 {
+            color: #6ee7b7;
+        }
+
+        html.dark .text-emerald-900 {
+            color: #d1fae5;
+        }
+
+        html.dark .text-amber-700 {
+            color: #fcd34d;
+        }
+
+        html.dark .text-amber-900 {
+            color: #fef3c7;
+        }
+
+        html.dark .text-slate-500 {
+            color: #94a3b8;
+        }
+
+        html.dark .border-slate-200 {
+            border-color: #334155;
+        }
+
+        html.dark .border-emerald-200 {
+            border-color: #10b981;
+        }
+
+        html.dark .border-amber-200 {
+            border-color: #f59e0b;
+        }
+
+        html.dark .text-emerald-500 {
+            color: #10b981;
+        }
+
+        html.dark .bg-slate-50 h3,
+        html.dark .bg-emerald-50 h3,
+        html.dark .bg-amber-50 h3 {
+            color: #f1f5f9;
+        }
+
+        html.dark .bg-slate-50 p,
+        html.dark .bg-emerald-50 p,
+        html.dark .bg-amber-50 p {
+            color: #cbd5e1;
+        }
+
+        html.dark .bg-slate-50 .text-slate-500 {
+            color: #94a3b8;
+        }
+
+        html.dark .bg-slate-50 .font-medium {
+            color: #e2e8f0;
+        }
+
+        html.dark .border-slate-300 {
+            border-color: #334155;
+        }
+
+        html.dark .bg-slate-50.hover\:bg-slate-100:hover {
+            background-color: #1e293b;
+        }
+
+        html.dark .hover\:bg-slate-100:hover {
+            background-color: #1e293b;
+        }
+
+        html.dark .hover\:bg-amber-600:hover {
+            background-color: #d97706;
+        }
+
+        html.dark .hover\:bg-orange-600:hover {
+            background-color: #ea580c;
+        }
+
+        html.dark .text-slate-700 {
+            color: #cbd5e1;
+        }
+
+        html.dark .text-white {
+            color: #ffffff;
+        }
+
+        html.dark .border {
+            border-color: #334155;
+        }
+    </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
 @include('layouts.navpelajar')
