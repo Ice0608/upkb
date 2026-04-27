@@ -426,29 +426,10 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.24);
         }
 
-        .institusi-hero::before,
         .institusi-hero::after {
             content: "";
             position: absolute;
             pointer-events: none;
-        }
-
-        .institusi-hero::before {
-            top: -3rem;
-            right: 8%;
-            width: 11rem;
-            height: 11rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.24);
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 72%);
-            box-shadow:
-                0 0 36px rgba(255, 235, 140, 0.34),
-                0 0 0 18px rgba(255, 255, 255, 0.08),
-                0 0 0 40px rgba(255, 255, 255, 0.04);
-        }
-
-        .institusi-hero::after {
-            left: 4%;
             bottom: -1.5rem;
             width: 8rem;
             height: 8rem;
@@ -479,6 +460,20 @@
                 0 0 42px rgba(255, 187, 51, 0.44),
                 0 22px 44px rgba(15, 23, 42, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+
+        /* ── Hero building decoration ── */
+        .institusi-hero__bldg {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 72%;
+            height: 100%;
+            pointer-events: none;
+            user-select: none;
+        }
+        @media (max-width: 767px) {
+            .institusi-hero__bldg { display: none; }
         }
 
         .institusi-toolbar {
@@ -896,7 +891,108 @@
 
     <section class="institusi-shell {{ $institusiIsTvet ? 'institusi-shell--tvet' : '' }} {{ $institusiIsDiploma ? 'institusi-shell--diploma' : '' }} {{ $institusiIsSainsKesihatan ? 'institusi-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div class="institusi-hero rounded-3xl p-8 text-white mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {{-- ── Decorative: institution skyline silhouette ── --}}
+            <svg aria-hidden="true" class="institusi-hero__bldg" viewBox="0 0 800 80" fill="none" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="ihFade" x1="0" y1="0" x2="320" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="black"/>
+                        <stop offset="100%" stop-color="white"/>
+                    </linearGradient>
+                    <mask id="ihMask"><rect width="800" height="80" fill="url(#ihFade)"/></mask>
+                </defs>
+                <g mask="url(#ihMask)" fill="white">
+                    <!-- Ground -->
+                    <rect x="0" y="76" width="800" height="4" fill-opacity="0.30"/>
+                    <!-- B1: small office block -->
+                    <rect x="186" y="48" width="44" height="28" fill-opacity="0.13"/>
+                    <rect x="194" y="54" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="211" y="54" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="194" y="67" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="211" y="67" width="11" height="8" fill-opacity="0.26"/>
+                    <!-- B2: medium modern -->
+                    <rect x="238" y="32" width="42" height="44" fill-opacity="0.13"/>
+                    <rect x="246" y="39" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="263" y="39" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="246" y="53" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="263" y="53" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="246" y="67" width="11" height="8" fill-opacity="0.26"/>
+                    <rect x="263" y="67" width="11" height="8" fill-opacity="0.26"/>
+                    <!-- B3: short connector -->
+                    <rect x="288" y="50" width="38" height="26" fill-opacity="0.11"/>
+                    <rect x="296" y="56" width="10" height="8" fill-opacity="0.22"/>
+                    <rect x="311" y="56" width="10" height="8" fill-opacity="0.22"/>
+                    <!-- B4: tall slab before classical -->
+                    <rect x="334" y="22" width="52" height="54" fill-opacity="0.14"/>
+                    <rect x="343" y="29" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="362" y="29" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="343" y="45" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="362" y="45" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="343" y="61" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="362" y="61" width="13" height="10" fill-opacity="0.27"/>
+                    <!-- ═══ CLASSICAL MAIN BUILDING ═══ -->
+                    <rect x="394" y="16" width="186" height="60" fill-opacity="0.15"/>
+                    <rect x="386" y="10" width="202" height="8" fill-opacity="0.24"/>
+                    <polygon points="382,10 487,0 592,10" fill-opacity="0.18"/>
+                    <rect x="382" y="9" width="210" height="2" fill-opacity="0.30"/>
+                    <!-- Columns L -->
+                    <rect x="398" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <rect x="419" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <rect x="440" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <rect x="461" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <!-- Columns R -->
+                    <rect x="511" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <rect x="532" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <rect x="553" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <rect x="574" y="18" width="5" height="58" fill-opacity="0.22"/>
+                    <!-- Arched door -->
+                    <path d="M466 76 L466 55 Q466 44 487 44 Q508 44 508 55 L508 76 Z" fill-opacity="0.26"/>
+                    <!-- Windows L (2 rows x 3) -->
+                    <rect x="404" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="425" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="446" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="404" y="42" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="425" y="42" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="446" y="42" width="13" height="10" fill-opacity="0.27"/>
+                    <!-- Windows R (2 rows x 3) -->
+                    <rect x="516" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="537" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="558" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="516" y="42" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="537" y="42" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="558" y="42" width="13" height="10" fill-opacity="0.27"/>
+                    <!-- Steps -->
+                    <rect x="388" y="74" width="198" height="2" fill-opacity="0.34"/>
+                    <!-- B5: medium modern R -->
+                    <rect x="596" y="30" width="46" height="46" fill-opacity="0.13"/>
+                    <rect x="604" y="37" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="622" y="37" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="604" y="52" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="622" y="52" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="604" y="66" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="622" y="66" width="12" height="9" fill-opacity="0.26"/>
+                    <!-- B6: short connector R -->
+                    <rect x="650" y="52" width="34" height="24" fill-opacity="0.11"/>
+                    <rect x="657" y="58" width="9" height="8" fill-opacity="0.22"/>
+                    <rect x="671" y="58" width="9" height="8" fill-opacity="0.22"/>
+                    <!-- B7: tall right -->
+                    <rect x="692" y="18" width="52" height="58" fill-opacity="0.14"/>
+                    <rect x="701" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="721" y="25" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="701" y="41" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="721" y="41" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="701" y="57" width="13" height="10" fill-opacity="0.27"/>
+                    <rect x="721" y="57" width="13" height="10" fill-opacity="0.27"/>
+                    <!-- B8: rightmost -->
+                    <rect x="752" y="28" width="48" height="48" fill-opacity="0.13"/>
+                    <rect x="761" y="35" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="779" y="35" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="761" y="50" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="779" y="50" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="761" y="65" width="12" height="9" fill-opacity="0.26"/>
+                    <rect x="779" y="65" width="12" height="9" fill-opacity="0.26"/>
+                </g>
+            </svg>
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
                         @if($jenis)
@@ -906,9 +1002,6 @@
                         @endif
                     </h1>
                     <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100')) }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
-                </div>
-                <div aria-hidden="true" class="institusi-hero-button flex items-center justify-center w-14 h-14 rounded-full bg-white {{ $institusiIsTvet || $institusiIsDiploma || $institusiIsSainsKesihatan ? '' : 'text-orange-600' }}">
-                    <i class="fas fa-building"></i>
                 </div>
             </div>
         </div>
