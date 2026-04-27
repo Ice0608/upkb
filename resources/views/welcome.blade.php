@@ -1035,77 +1035,157 @@
         }
         .program-benefit-stack {
             display: grid;
-            gap: 0.95rem;
+            gap: 1rem;
             align-content: center;
         }
+
+        /* ── per-card accent tokens ── */
+        .program-benefit-card {
+            --bc-r: 249; --bc-g: 115; --bc-b: 22; /* orange default */
+        }
+        .program-benefit-card:nth-child(2) {
+            --bc-r: 6;   --bc-g: 182; --bc-b: 212; /* cyan */
+        }
+        .program-benefit-card:nth-child(3) {
+            --bc-r: 139; --bc-g: 92;  --bc-b: 246; /* violet */
+        }
+
         .program-benefit-card {
             position: relative;
+            isolation: isolate;
             overflow: hidden;
-            border-radius: 1.4rem;
-            border: 1px solid rgba(148,163,184,0.24);
-            padding: 1.1rem;
-            background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(241,245,249,0.8));
-            backdrop-filter: blur(10px);
-            box-shadow: 0 14px 34px rgba(15,23,42,0.1);
-            transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 320ms ease, border-color 320ms ease;
+            border-radius: 1.6rem;
+            border: 1px solid rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.22);
+            padding: 1.4rem 1.5rem 1.35rem;
+            background:
+                linear-gradient(145deg,
+                    rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.07) 0%,
+                    rgba(15, 23, 42, 0.72) 100%
+                );
+            backdrop-filter: blur(18px) saturate(1.4);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.07),
+                0 0 0 1px rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.08),
+                0 16px 40px rgba(8, 15, 32, 0.38);
+            transition:
+                transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 380ms ease,
+                border-color 280ms ease;
         }
+
+        /* top accent line */
         .program-benefit-card::before {
             content: '';
             position: absolute;
-            inset: auto -14% -58% 42%;
-            height: 74%;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(249,115,22,0.2), rgba(249,115,22,0) 74%);
+            top: 0;
+            left: 1.6rem;
+            right: 1.6rem;
+            height: 2px;
+            border-radius: 0 0 4px 4px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.9) 40%,
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.9) 60%,
+                transparent
+            );
+            opacity: 0.7;
             pointer-events: none;
-            transition: opacity 320ms ease;
-            opacity: 0.45;
+            transition: opacity 280ms ease;
         }
+
+        /* ambient glow blob */
+        .program-benefit-card::after {
+            content: '';
+            position: absolute;
+            inset: auto -20% -55% 35%;
+            height: 80%;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle,
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.18),
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0) 72%
+            );
+            pointer-events: none;
+            transition: opacity 380ms ease;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
         .program-benefit-card:nth-child(2) {
             margin-left: 1rem;
         }
         .program-benefit-card:nth-child(3) {
             margin-left: 2rem;
         }
+
         .program-benefit-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(249,115,22,0.45);
-            box-shadow: 0 24px 44px rgba(15,23,42,0.14), 0 0 30px rgba(249,115,22,0.16);
+            transform: translateY(-7px) scale(1.015);
+            border-color: rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.52);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.18),
+                0 28px 56px rgba(8, 15, 32, 0.44),
+                0 0 38px rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.22);
         }
+        .program-benefit-card:hover::before { opacity: 1; }
+        .program-benefit-card:hover::after  { opacity: 1; }
+
         .program-benefit-top {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 0.75rem;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.85rem;
         }
+
         .program-benefit-icon {
-            width: 2.45rem;
-            height: 2.45rem;
-            border-radius: 0.92rem;
+            width: 2.7rem;
+            height: 2.7rem;
+            border-radius: 1rem;
             display: grid;
             place-items: center;
-            font-size: 1rem;
-            color: #ea580c;
-            background: linear-gradient(145deg, rgba(255,237,213,0.95), rgba(254,215,170,0.65));
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+            background: linear-gradient(
+                145deg,
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.9),
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.55)
+            );
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.24),
+                0 8px 20px rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.3);
         }
+
         .program-benefit-metric {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.75rem;
             font-weight: 900;
-            letter-spacing: -0.02em;
-            color: #0f172a;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            background: linear-gradient(
+                135deg,
+                rgb(var(--bc-r), var(--bc-g), var(--bc-b)) 0%,
+                rgba(var(--bc-r), var(--bc-g), var(--bc-b), 0.65) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .program-benefit-title {
-            font-size: 0.86rem;
+            font-size: 0.9rem;
             font-weight: 800;
-            color: #1e293b;
-            margin-bottom: 0.3rem;
+            letter-spacing: 0.01em;
+            color: rgba(241, 245, 249, 0.96);
+            margin-bottom: 0.35rem;
         }
+
         .program-benefit-desc {
-            font-size: 0.75rem;
-            color: rgba(51,65,85,0.76);
-            line-height: 1.55;
+            font-size: 0.76rem;
+            color: rgba(148, 163, 184, 0.88);
+            line-height: 1.6;
             max-width: 17rem;
         }
         @media (max-width: 1024px) {

@@ -293,7 +293,6 @@
                     <a href="{{ route('staff.main') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                     @if(isset($pelajar))
                         <button type="button" onclick="openPrintModal()" class="inline-flex items-center justify-center rounded-full border border-orange-500 bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak BMD</button>
-                        <button type="button" onclick="openReceiptModal()" class="inline-flex items-center justify-center rounded-full border border-blue-500 bg-blue-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-600">Cetak Resit</button>
                     @endif
                 </div>
 

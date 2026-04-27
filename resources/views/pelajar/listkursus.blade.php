@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Senarai Kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.dark-mode-init')
     <style>
+
         .kursus-page {
             position: relative;
             min-height: 100vh;
@@ -17,6 +19,39 @@
                 radial-gradient(circle at 88% 14%, rgba(59, 130, 246, 0.1), transparent 22%),
                 radial-gradient(circle at 50% 100%, rgba(251, 191, 36, 0.16), transparent 26%),
                 linear-gradient(180deg, #fff6e8 0%, #f8fafc 44%, #eef4ff 100%);
+        }
+
+        .kursus-page--tvet {
+            background:
+                url('/images/TVET-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(241, 207, 99, 0.18), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
+        .kursus-page--diploma {
+            background:
+                url('/images/DIP-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(192, 132, 252, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(99, 102, 241, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
+        }
+
+        .kursus-page--sains-kesihatan {
+            background:
+                url('/images/SK-LIGHT.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(96, 165, 250, 0.16), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(33, 150, 243, 0.08), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
+            background-size: cover;
+            background-position: center top 64px;
+            background-attachment: fixed;
         }
 
         .kursus-page::before,
@@ -91,15 +126,61 @@
         }
 
         .kursus-hero {
+            --kursus-hero-soft-text: rgba(255, 248, 214, 0.92);
+            --kursus-hero-button-text: #b88912;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.84);
             background:
-                linear-gradient(120deg, #ff8a1f 0%, #f97316 42%, #ffd43b 100%);
+                 linear-gradient(120deg, #a87408 0%, #d4af37 42%, #f1cf63 100%);
             box-shadow:
                 0 28px 72px rgba(15, 23, 42, 0.14),
-                0 0 72px rgba(255, 166, 0, 0.16),
+                 0 0 72px rgba(212, 175, 55, 0.24),
                 inset 0 1px 0 rgba(255, 255, 255, 0.26);
+        }
+
+        .kursus-hero--diploma {
+            --kursus-hero-soft-text: rgba(243, 232, 255, 0.92);
+            --kursus-hero-button-text: #7c3aed;
+            background:
+                linear-gradient(120deg, #5b2a86 0%, #7c3aed 44%, #c084fc 100%);
+            box-shadow:
+                0 28px 72px rgba(15, 23, 42, 0.14),
+                0 0 72px rgba(124, 58, 237, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.26);
+        }
+
+        .kursus-hero--sains-kesihatan {
+            --kursus-hero-soft-text: rgba(219, 234, 254, 0.92);
+            --kursus-hero-button-text: #2563eb;
+            background:
+                linear-gradient(120deg, #0f3d91 0%, #2563eb 44%, #60a5fa 100%);
+            box-shadow:
+                0 28px 72px rgba(15, 23, 42, 0.14),
+                0 0 72px rgba(37, 99, 235, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.26);
+        }
+
+        .kursus-hero--diploma::before {
+            box-shadow:
+                0 0 36px rgba(216, 180, 254, 0.4),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+        }
+
+        .kursus-hero--sains-kesihatan::before {
+            box-shadow:
+                0 0 36px rgba(147, 197, 253, 0.4),
+                0 0 0 18px rgba(255, 255, 255, 0.08),
+                0 0 0 40px rgba(255, 255, 255, 0.04);
+        }
+
+        .kursus-hero--diploma::after {
+            box-shadow: 0 0 42px rgba(192, 132, 252, 0.34);
+        }
+
+        .kursus-hero--sains-kesihatan::after {
+            box-shadow: 0 0 42px rgba(96, 165, 250, 0.34);
         }
 
         .kursus-hero::before,
@@ -140,6 +221,7 @@
         }
 
         .kursus-hero-button {
+            color: var(--kursus-hero-button-text);
             border: 1px solid rgba(255, 255, 255, 0.74);
             box-shadow:
                 0 0 0 6px rgba(255, 255, 255, 0.14),
@@ -149,10 +231,118 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
+        .kursus-hero-soft-text {
+            color: var(--kursus-hero-soft-text);
+        }
+
         .kursus-results-layout {
+            --kursus-accent-500: #f97316;
+            --kursus-accent-600: #ea580c;
+            --kursus-accent-700: #c2410c;
+            --kursus-accent-border: rgba(251, 146, 60, 0.18);
+            --kursus-accent-border-strong: rgba(251, 146, 60, 0.22);
+            --kursus-accent-soft: rgba(255, 247, 237, 0.92);
+            --kursus-accent-soft-strong: linear-gradient(135deg, rgba(255, 247, 237, 0.96), rgba(255, 237, 213, 0.86));
+            --kursus-accent-shadow: rgba(249, 115, 22, 0.1);
+            --kursus-card-chip-bg: rgba(249, 115, 22, 0.94);
+            --kursus-card-chip-text: #ffffff;
+            --kursus-card-pill-bg: rgba(255, 255, 255, 0.92);
+            --kursus-card-pill-text: #c2410c;
+            --kursus-card-overlay: rgba(249, 115, 22, 0.3);
+            --kursus-card-hover-border: rgba(251, 146, 60, 0.34);
+            --kursus-card-hover-glow: rgba(251, 146, 60, 0.12);
+            --kursus-card-title-hover: #ea580c;
+            --kursus-card-arrow-bg: #fff7ed;
+            --kursus-card-arrow-text: #ea580c;
+            --kursus-card-arrow-hover-bg: #f97316;
+            --kursus-card-arrow-hover-text: #ffffff;
+            --kursus-card-meta-border: rgba(251, 146, 60, 0.12);
+            --kursus-card-meta-bg: rgba(255, 247, 237, 0.8);
+            --kursus-card-cta-bg: #f97316;
+            --kursus-card-cta-hover: #ea580c;
+            --kursus-card-cta-shadow: rgba(249, 115, 22, 0.18);
+            --kursus-card-cta-glow: rgba(255, 166, 0, 0.12);
             display: grid;
             gap: 1.5rem;
             grid-template-columns: minmax(0, 1fr);
+        }
+
+        .kursus-results-layout--diploma {
+            --kursus-accent-500: #8b5cf6;
+            --kursus-accent-600: #7c3aed;
+            --kursus-accent-700: #6d28d9;
+            --kursus-accent-border: rgba(124, 58, 237, 0.18);
+            --kursus-accent-border-strong: rgba(124, 58, 237, 0.22);
+            --kursus-accent-soft: rgba(245, 243, 255, 0.92);
+            --kursus-accent-soft-strong: linear-gradient(135deg, rgba(245, 243, 255, 0.96), rgba(233, 213, 255, 0.86));
+            --kursus-accent-shadow: rgba(124, 58, 237, 0.1);
+            --kursus-card-chip-bg: rgba(124, 58, 237, 0.94);
+            --kursus-card-pill-text: #6d28d9;
+            --kursus-card-overlay: rgba(124, 58, 237, 0.28);
+            --kursus-card-hover-border: rgba(124, 58, 237, 0.34);
+            --kursus-card-hover-glow: rgba(124, 58, 237, 0.14);
+            --kursus-card-title-hover: #7c3aed;
+            --kursus-card-arrow-bg: #f5f3ff;
+            --kursus-card-arrow-text: #7c3aed;
+            --kursus-card-arrow-hover-bg: #8b5cf6;
+            --kursus-card-meta-border: rgba(124, 58, 237, 0.14);
+            --kursus-card-meta-bg: rgba(245, 243, 255, 0.82);
+            --kursus-card-cta-bg: #8b5cf6;
+            --kursus-card-cta-hover: #7c3aed;
+            --kursus-card-cta-shadow: rgba(124, 58, 237, 0.2);
+            --kursus-card-cta-glow: rgba(192, 132, 252, 0.14);
+        }
+
+        .kursus-results-layout--tvet {
+            --kursus-accent-500: #d4af37;
+            --kursus-accent-600: #b88912;
+            --kursus-accent-700: #8a6a08;
+            --kursus-accent-border: rgba(212, 175, 55, 0.2);
+            --kursus-accent-border-strong: rgba(212, 175, 55, 0.26);
+            --kursus-accent-soft: rgba(255, 251, 235, 0.94);
+            --kursus-accent-soft-strong: linear-gradient(135deg, rgba(255, 251, 235, 0.98), rgba(254, 240, 138, 0.82));
+            --kursus-accent-shadow: rgba(212, 175, 55, 0.14);
+            --kursus-card-chip-bg: rgba(212, 175, 55, 0.96);
+            --kursus-card-pill-text: #8a6a08;
+            --kursus-card-overlay: rgba(212, 175, 55, 0.28);
+            --kursus-card-hover-border: rgba(212, 175, 55, 0.34);
+            --kursus-card-hover-glow: rgba(212, 175, 55, 0.14);
+            --kursus-card-title-hover: #b88912;
+            --kursus-card-arrow-bg: #fffbea;
+            --kursus-card-arrow-text: #b88912;
+            --kursus-card-arrow-hover-bg: #d4af37;
+            --kursus-card-meta-border: rgba(212, 175, 55, 0.16);
+            --kursus-card-meta-bg: rgba(255, 251, 235, 0.84);
+            --kursus-card-cta-bg: #d4af37;
+            --kursus-card-cta-hover: #b88912;
+            --kursus-card-cta-shadow: rgba(212, 175, 55, 0.2);
+            --kursus-card-cta-glow: rgba(250, 204, 21, 0.16);
+        }
+
+        .kursus-results-layout--sains-kesihatan {
+            --kursus-accent-500: #3b82f6;
+            --kursus-accent-600: #2563eb;
+            --kursus-accent-700: #1d4ed8;
+            --kursus-accent-border: rgba(37, 99, 235, 0.18);
+            --kursus-accent-border-strong: rgba(37, 99, 235, 0.22);
+            --kursus-accent-soft: rgba(239, 246, 255, 0.92);
+            --kursus-accent-soft-strong: linear-gradient(135deg, rgba(239, 246, 255, 0.96), rgba(219, 234, 254, 0.86));
+            --kursus-accent-shadow: rgba(37, 99, 235, 0.1);
+            --kursus-card-chip-bg: rgba(37, 99, 235, 0.94);
+            --kursus-card-pill-text: #1d4ed8;
+            --kursus-card-overlay: rgba(37, 99, 235, 0.28);
+            --kursus-card-hover-border: rgba(37, 99, 235, 0.34);
+            --kursus-card-hover-glow: rgba(37, 99, 235, 0.14);
+            --kursus-card-title-hover: #2563eb;
+            --kursus-card-arrow-bg: #eff6ff;
+            --kursus-card-arrow-text: #2563eb;
+            --kursus-card-arrow-hover-bg: #3b82f6;
+            --kursus-card-meta-border: rgba(37, 99, 235, 0.14);
+            --kursus-card-meta-bg: rgba(239, 246, 255, 0.84);
+            --kursus-card-cta-bg: #3b82f6;
+            --kursus-card-cta-hover: #2563eb;
+            --kursus-card-cta-shadow: rgba(37, 99, 235, 0.2);
+            --kursus-card-cta-glow: rgba(96, 165, 250, 0.16);
         }
 
         .kursus-sidebar {
@@ -263,16 +453,16 @@
         }
 
         .category-btn:hover {
-            border-color: rgba(251, 146, 60, 0.16);
-            background: rgba(255, 247, 237, 0.84);
-            color: #ea580c;
+            border-color: var(--kursus-accent-border);
+            background: var(--kursus-accent-soft);
+            color: var(--kursus-accent-600);
         }
 
         .category-btn.is-active {
-            border-color: rgba(251, 146, 60, 0.22);
-            background: linear-gradient(135deg, rgba(255, 247, 237, 0.96), rgba(255, 237, 213, 0.86));
-            color: #c2410c;
-            box-shadow: 0 14px 28px rgba(249, 115, 22, 0.08);
+            border-color: var(--kursus-accent-border-strong);
+            background: var(--kursus-accent-soft-strong);
+            color: var(--kursus-accent-700);
+            box-shadow: 0 14px 28px var(--kursus-accent-shadow);
         }
 
         .category-indicator {
@@ -289,7 +479,7 @@
         }
 
         .category-btn.is-active .category-indicator {
-            border-color: #f97316;
+            border-color: var(--kursus-accent-500);
         }
 
         .category-indicator::after {
@@ -302,20 +492,17 @@
         }
 
         .category-btn.is-active .category-indicator::after {
-            background: #f97316;
+            background: var(--kursus-accent-500);
+        }
+
+        .kursus-section-accent {
+            color: var(--kursus-accent-500);
         }
 
         .kursus-results-panel {
             display: flex;
             flex-direction: column;
             gap: 1.25rem;
-        }
-
-        .kursus-results-summary {
-            border: 1px solid rgba(255, 255, 255, 0.82);
-            background: rgba(255, 255, 255, 0.86);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
-            backdrop-filter: blur(12px);
         }
 
         .kursus-results-grid {
@@ -344,17 +531,17 @@
             inset: 0;
             background:
                 linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0)),
-                radial-gradient(circle at bottom left, rgba(251, 146, 60, 0.08), transparent 26%);
+                radial-gradient(circle at bottom left, var(--kursus-accent-border), transparent 26%);
             opacity: 0;
             transition: opacity 0.28s ease;
             pointer-events: none;
         }
 
         .course-card:hover {
-            border-color: rgba(251, 146, 60, 0.34);
+            border-color: var(--kursus-card-hover-border);
             box-shadow:
                 0 30px 68px rgba(15, 23, 42, 0.12),
-                0 0 30px rgba(251, 146, 60, 0.12),
+                0 0 30px var(--kursus-card-hover-glow),
                 inset 0 1px 0 rgba(255, 255, 255, 0.92);
         }
 
@@ -374,7 +561,7 @@
             inset: 0;
             background:
                 linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.74)),
-                linear-gradient(130deg, rgba(249, 115, 22, 0.3), rgba(15, 23, 42, 0));
+                linear-gradient(130deg, var(--kursus-card-overlay), rgba(15, 23, 42, 0));
             pointer-events: none;
         }
 
@@ -402,13 +589,13 @@
         }
 
         .kursus-tag {
-            background: rgba(249, 115, 22, 0.94);
-            color: #ffffff;
+            background: var(--kursus-card-chip-bg);
+            color: var(--kursus-card-chip-text);
         }
 
         .kursus-pill {
-            background: rgba(255, 255, 255, 0.92);
-            color: #c2410c;
+            background: var(--kursus-card-pill-bg);
+            color: var(--kursus-card-pill-text);
         }
 
         .course-card-headline {
@@ -428,7 +615,7 @@
         }
 
         .course-card:hover .course-card-title {
-            color: #ea580c;
+            color: var(--kursus-card-title-hover);
         }
 
         .course-card-arrow {
@@ -439,8 +626,8 @@
             height: 3rem;
             min-width: 3rem;
             border-radius: 999px;
-            background: #fff7ed;
-            color: #ea580c;
+            background: var(--kursus-card-arrow-bg);
+            color: var(--kursus-card-arrow-text);
             box-shadow:
                 0 10px 24px rgba(15, 23, 42, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.64);
@@ -449,8 +636,8 @@
 
         .course-card:hover .course-card-arrow {
             transform: translateX(4px) translateY(-2px);
-            background: #f97316;
-            color: #ffffff;
+            background: var(--kursus-card-arrow-hover-bg);
+            color: var(--kursus-card-arrow-hover-text);
         }
 
         .course-card-meta {
@@ -460,9 +647,9 @@
         }
 
         .course-card-meta-item {
-            border: 1px solid rgba(251, 146, 60, 0.12);
+            border: 1px solid var(--kursus-card-meta-border);
             border-radius: 1.15rem;
-            background: rgba(255, 247, 237, 0.8);
+            background: var(--kursus-card-meta-bg);
             padding: 0.9rem 1rem;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
         }
@@ -483,10 +670,15 @@
         }
 
         .kursus-cta {
+            background: var(--kursus-card-cta-bg);
             box-shadow:
-                0 16px 34px rgba(249, 115, 22, 0.18),
-                0 0 28px rgba(255, 166, 0, 0.12),
+                0 16px 34px var(--kursus-card-cta-shadow),
+                0 0 28px var(--kursus-card-cta-glow),
                 inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .kursus-cta:hover {
+            background: var(--kursus-card-cta-hover);
         }
 
         .kursus-empty {
@@ -579,128 +771,155 @@
                 animation: none;
             }
         }
+        /* ── DARK MODE ── */
+        html.dark .kursus-page {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(251,146,60,0.08), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(59,130,246,0.06), transparent 22%),
+                linear-gradient(180deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        }
+        html.dark .kursus-page--tvet {
+            background:
+                url('/images/TVET-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        html.dark .kursus-page--diploma {
+            background:
+                url('/images/DIP-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        html.dark .kursus-page--sains-kesihatan {
+            background:
+                url('/images/SK-DARK.jpg'),
+                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        html.dark .kursus-sidebar {
+            background: rgba(15,23,42,0.94);
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .kursus-sidebar-section-title { color: #f1f5f9; }
+        html.dark .kursus-sidebar-search-input,
+        html.dark .kursus-select {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-color: rgba(255,255,255,0.1);
+        }
+        html.dark .category-btn { color: #94a3b8; }
+        html.dark .course-card {
+            background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
+            border-color: rgba(255,255,255,0.08);
+        }
+        html.dark .course-card-title { color: #f1f5f9; }
+        html.dark .course-card-meta-value { color: #e2e8f0; }
+        html.dark .course-card-meta-label { color: #64748b; }
+        {
+            background: rgba(15,23,42,0.9);
+            border-color: rgba(255,255,255,0.08);
+            color: #e2e8f0;
+        }
+        html.dark .text-slate-900, html.dark .text-gray-800 { color: #f1f5f9 !important; }
+        html.dark .text-slate-700 { color: #cbd5e1 !important; }
+        html.dark .text-slate-500 { color: #94a3b8 !important; }
+    
     </style>
 </head>
-<body class="kursus-page text-gray-800">
+@php
+    $heroProgramType = strtolower((string) (request('jenis') ?? ($selectedProgram->jenis_program ?? '')));
+    $kursusIsTvet = $heroProgramType === 'tvet';
+    $kursusIsDiploma = $heroProgramType === 'diploma';
+    $kursusIsSainsKesihatan = $heroProgramType === 'sains kesihatan';
+    $heroProgramLabel = match ($heroProgramType) {
+        'tvet' => 'TVET',
+        'diploma' => 'Diploma',
+        'sains kesihatan' => 'Sains Kesihatan',
+        default => request('jenis') ?: ($selectedProgram->jenis_program ?? null),
+    };
+    $activeKuotaButtonClass = $kursusIsDiploma
+        ? 'bg-violet-500 border-violet-500 text-white hover:bg-violet-600'
+        : ($kursusIsSainsKesihatan
+            ? 'bg-blue-500 border-blue-500 text-white hover:bg-blue-600'
+            : ($kursusIsTvet
+                ? 'bg-amber-500 border-amber-500 text-white hover:bg-amber-600'
+                : 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600'));
+    $inactiveKuotaButtonClass = $kursusIsDiploma
+        ? 'bg-white border-violet-300 text-violet-600 hover:bg-violet-50'
+        : ($kursusIsSainsKesihatan
+            ? 'bg-white border-blue-300 text-blue-600 hover:bg-blue-50'
+            : ($kursusIsTvet
+                ? 'bg-white border-amber-300 text-amber-700 hover:bg-amber-50'
+                : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50'));
+    $resetFilterClass = $kursusIsDiploma
+        ? 'text-violet-600 hover:text-violet-700 border-violet-300 hover:bg-violet-50'
+        : ($kursusIsSainsKesihatan
+            ? 'text-blue-600 hover:text-blue-700 border-blue-300 hover:bg-blue-50'
+            : ($kursusIsTvet
+                ? 'text-amber-700 hover:text-amber-800 border-amber-300 hover:bg-amber-50'
+                : 'text-orange-600 hover:text-orange-700 border-orange-300 hover:bg-orange-50'));
+@endphp
+<body class="kursus-page no-bg {{ $kursusIsTvet ? 'kursus-page--tvet' : '' }} {{ $kursusIsDiploma ? 'kursus-page--diploma' : '' }} {{ $kursusIsSainsKesihatan ? 'kursus-page--sains-kesihatan' : '' }} text-gray-800 transition-colors duration-300">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navpelajar')
 
     <section class="kursus-shell max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-        <div class="kursus-hero rounded-[2rem] p-6 sm:p-8 text-white mb-8">
+        <div class="kursus-hero {{ $heroProgramType === 'diploma' ? 'kursus-hero--diploma' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-hero--sains-kesihatan' : '' }} rounded-[2rem] p-6 sm:p-8 text-white mb-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <p class="text-xs sm:text-sm uppercase tracking-[0.16em] text-white/75 font-semibold">Eksplorasi Kursus</p>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
                         @if(request('search'))
                             Hasil Carian Kursus
-                        @elseif(request('jenis'))
-                            Kursus {{ request('jenis') }}
+                        @elseif($heroProgramLabel)
+                            Kursus {{ $heroProgramLabel }}
                         @else
                             Senarai Kursus
                         @endif
                     </h1>
                     @if(request('search'))
-                        <p class="mt-3 text-lg text-orange-100 max-w-3xl">Menunjukkan padanan untuk "{{ request('search') }}" merentasi semua kursus{{ request('jenis') ? ' dalam kategori ' . request('jenis') : '' }}.</p>
+                        <p class="kursus-hero-soft-text mt-3 text-lg max-w-3xl">Menunjukkan padanan untuk "{{ request('search') }}" merentasi semua kursus{{ $heroProgramLabel ? ' dalam kategori ' . $heroProgramLabel : '' }}.</p>
                     @elseif(isset($selectedProgram) && $selectedProgram)
-                        <p class="mt-3 text-lg text-orange-100 max-w-3xl">{{ $selectedProgram->info_program }}</p>
+                        <p class="kursus-hero-soft-text mt-3 text-lg max-w-3xl">{{ $selectedProgram->info_program }}</p>
                     @else
-                        <p class="mt-3 text-lg text-orange-100">Cari dan jelajahi kursus yang sesuai dengan minat anda.</p>
+                        <p class="kursus-hero-soft-text mt-3 text-lg">Cari dan jelajahi kursus yang sesuai dengan minat anda.</p>
                     @endif
 
                     <div class="mt-6 flex flex-wrap gap-3 text-sm">
                         <span class="inline-flex items-center rounded-full bg-white/16 px-4 py-2 font-semibold text-white/90 backdrop-blur">
-                            <i class="fas fa-layer-group mr-2 text-xs"></i>{{ $kursusList->unique('nama_kursus')->count() }} kursus unik
+                            <i class="fas fa-layer-group mr-2 text-xs"></i>{{ $kursusList->unique('nama_kursus')->count() }} kursus
                         </span>
                     </div>
 
                 </div>
-                <div aria-hidden="true" class="kursus-hero-button hidden md:flex w-14 h-14 rounded-full bg-white text-orange-600 items-center justify-center">
+                <div aria-hidden="true" class="kursus-hero-button hidden md:flex w-14 h-14 rounded-full bg-white items-center justify-center">
                     <i class="fas fa-graduation-cap"></i>
                 </div>
             </div>
         </div>
 
-        <div class="kursus-results-layout">
+        <div class="kursus-results-layout {{ $heroProgramType === 'diploma' ? 'kursus-results-layout--diploma' : '' }} {{ $heroProgramType === 'tvet' ? 'kursus-results-layout--tvet' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-results-layout--sains-kesihatan' : '' }}">
             
             <aside class="kursus-sidebar-wrap">
                 <div class="kursus-sidebar rounded-3xl p-6">
-                    <h3 class="kursus-sidebar-section-title relative z-10 text-xl font-bold mb-5">
-                        <i class="fas fa-filter mr-2 text-orange-500"></i>Filter
-                    </h3>
-                    
-                    <form method="GET" class="relative z-10 space-y-4 mb-6">
-                        <div class="kursus-sidebar-search">
-                            <label class="block text-sm font-semibold text-gray-700">Cari Kursus</label>
-                            <input
-                                type="search"
-                                name="search"
-                                value="{{ request('search') }}"
-                                class="kursus-sidebar-search-input w-full rounded-2xl px-4 py-2.5 text-sm text-slate-700"
-                                placeholder="Nama kursus, kod atau institusi"
-                            >
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Negeri</label>
-                            <select 
-                                name="negeri" 
-                                onchange="this.form.submit()" 
-                                class="kursus-select w-full rounded-2xl px-4 py-2 text-sm shadow-sm focus:outline-none">   
-                                    <option value="">Semua Negeri</option>
-                                    <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
-                                    <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
-                                    <option value="Kelantan" {{ request('negeri') == 'Kelantan' ? 'selected' : '' }}>Kelantan</option>
-                                    <option value="Melaka" {{ request('negeri') == 'Melaka' ? 'selected' : '' }}>Melaka</option>
-                                    <option value="Negeri Sembilan" {{ request('negeri') == 'Negeri Sembilan' ? 'selected' : '' }}>Negeri Sembilan</option>
-                                    <option value="Pahang" {{ request('negeri') == 'Pahang' ? 'selected' : '' }}>Pahang</option>
-                                    <option value="Perak" {{ request('negeri') == 'Perak' ? 'selected' : '' }}>Perak</option>
-                                    <option value="Perlis" {{ request('negeri') == 'Perlis' ? 'selected' : '' }}>Perlis</option>
-                                    <option value="Pulau Pinang" {{ request('negeri') == 'Pulau Pinang' ? 'selected' : '' }}>Pulau Pinang</option>
-                                    <option value="Sabah" {{ request('negeri') == 'Sabah' ? 'selected' : '' }}>Sabah</option>
-                                    <option value="Sarawak" {{ request('negeri') == 'Sarawak' ? 'selected' : '' }}>Sarawak</option>
-                                    <option value="Selangor" {{ request('negeri') == 'Selangor' ? 'selected' : '' }}>Selangor</option>
-                                    <option value="Terengganu" {{ request('negeri') == 'Terengganu' ? 'selected' : '' }}>Terengganu</option>
-                                    <option value="Kuala Lumpur" {{ request('negeri') == 'Kuala Lumpur' ? 'selected' : '' }}>Kuala Lumpur</option>
-                                    <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
-                                    <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <button 
-                                type="submit" 
-                                name="kuota" 
-                                value="{{ request('kuota') ? 0 : 1 }}" 
-                                class="kursus-filter-button w-full inline-flex items-center justify-center rounded-2xl border px-4 py-2 text-sm font-semibold transition {{ request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50' }}"
-                            >
-                                <i class="fas fa-users mr-2"></i>
-                                Ada Kuota
-                                @if(request('kuota'))
-                                    <i class="fas fa-check ml-2"></i>
-                                @endif
-                            </button>
-                        </div>
-
-                        @if(request('search') || request('negeri') || request('kuota'))
-                            <div>
-                                <a 
-                                    href="{{ route('kursus.index', array_filter(['jenis' => request('jenis'), 'search' => request('search')])) }}"
-                                    class="kursus-reset-link block text-center text-orange-600 hover:text-orange-700 font-semibold text-sm py-2 rounded-2xl border border-orange-300 hover:bg-orange-50 transition"
-                                >
-                                    <i class="fas fa-redo mr-2"></i>Reset Filter
-                                </a>
-                            </div>
-                        @endif
-
-                        @if(request('jenis'))
-                            <input type="hidden" name="jenis" value="{{ request('jenis') }}">
-                        @endif
-                    </form>
 
                     <div class="relative z-10 border-t border-gray-200 pt-6">
                         <h3 class="kursus-sidebar-section-title text-lg font-bold mb-4">
-                            <i class="fas fa-list-ul mr-2 text-orange-500"></i>Kategori Kursus
+                            <i class="fas fa-list-ul mr-2 kursus-section-accent"></i>Kategori Kursus
                         </h3>
                         
                         <div class="flex flex-col space-y-1 sidebar-scroll">
@@ -731,14 +950,6 @@
             </aside>
 
             <main class="kursus-results-panel min-w-0">
-                <div class="kursus-results-summary rounded-3xl px-5 py-4 sm:px-6 sm:py-5">
-                    <div>
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-[0.28em] text-orange-500">Paparan Kursus</p>
-                            <p class="mt-2 text-sm text-slate-500">{{ $kursusList->unique('nama_kursus')->count() }} kursus unik dipaparkan berdasarkan carian dan filter semasa.</p>
-                        </div>
-                    </div>
-                </div>
 
                 <div id="courses-container" class="kursus-results-grid">
                     @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
@@ -760,7 +971,7 @@
                         <div class="p-6 sm:p-7 flex flex-col gap-5 h-full">
                             <div class="course-card-headline">
                                 <div>
-                                    <p class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-orange-500">Kursus</p>
+                                    <p class="kursus-section-accent text-[0.7rem] font-semibold uppercase tracking-[0.28em]">Kursus</p>
                                     <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $kursus->nama_kursus }}</h2>
                                 </div>
                                 <span class="course-card-arrow">
@@ -779,7 +990,7 @@
                                 </div>
                             </div>
 
-                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-orange-600 mt-auto">
+                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg mt-auto">
                                 <span>Lihat Pilihan Kursus</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
@@ -864,3 +1075,4 @@
 
 </body>
 </html>
+

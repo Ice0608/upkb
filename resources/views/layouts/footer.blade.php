@@ -10,6 +10,30 @@
                 linear-gradient(180deg, #130d0a 0%, #1d130e 36%, #120c09 100%);
         }
 
+        .footer-ocean--tvet {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(251, 146, 60, 0.18), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(245, 158, 11, 0.18), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(255, 237, 213, 0.08), transparent 30%),
+                linear-gradient(180deg, #130d0a 0%, #1d130e 36%, #120c09 100%);
+        }
+
+        .footer-ocean--diploma {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(192, 132, 252, 0.2), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(141, 43, 226, 0.22), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(245, 243, 255, 0.08), transparent 30%),
+                linear-gradient(180deg, #170a22 0%, #231136 36%, #12091d 100%);
+        }
+
+        .footer-ocean--sains-kesihatan {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(96, 165, 250, 0.2), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(33, 150, 243, 0.22), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(219, 234, 254, 0.08), transparent 30%),
+                linear-gradient(180deg, #081a2d 0%, #0d2238 36%, #071426 100%);
+        }
+
         .footer-ocean::before {
             content: "";
             position: absolute;
@@ -143,7 +167,29 @@
     </style>
 @endonce
 
-<footer class="footer-ocean mt-16 text-gray-300">
+@php
+    $footerProgramType = strtolower((string) (
+        request('jenis')
+        ?? request()->route('nama')
+        ?? ($heroProgramType ?? null)
+        ?? ($detailProgramType ?? null)
+        ?? ($institusiProgramType ?? null)
+        ?? ($institusiInfoType ?? null)
+        ?? optional($selectedProgram ?? null)->jenis_program
+        ?? optional($institusi ?? null)->jenis_institusi
+        ?? optional(optional($kursus ?? null)->institusi)->jenis_institusi
+    ));
+
+    $footerThemeClass = 'footer-ocean--tvet';
+
+    if ($footerProgramType === 'diploma') {
+        $footerThemeClass = 'footer-ocean--diploma';
+    } elseif ($footerProgramType === 'sains kesihatan') {
+        $footerThemeClass = 'footer-ocean--sains-kesihatan';
+    }
+@endphp
+
+<footer class="footer-ocean {{ $footerThemeClass }} mt-16 text-gray-300">
     <canvas class="footer-particle-canvas" data-footer-particles aria-hidden="true"></canvas>
     <div class="footer-glow-orb footer-glow-orb--left" aria-hidden="true"></div>
     <div class="footer-glow-orb footer-glow-orb--right" aria-hidden="true"></div>

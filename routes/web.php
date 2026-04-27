@@ -38,6 +38,7 @@ Route::get('/pelajar/welcome/{pelajar}', [StaffEventController::class, 'pelajarW
 Route::get('/pelajar/dashboard/{pelajar}', [StaffEventController::class, 'pelajarDashboard'])->name('pelajar.dashboard');
 Route::get('/pelajar/program/{pelajar}', [StaffEventController::class, 'pelajarProgram'])->name('pelajar.program');
 Route::get('/pelajar/program-list/{pelajar}', [StaffEventController::class, 'pelajarProgramList'])->name('pelajar.program-list');
+Route::get('/pelajar/institusi/{pelajar}', [StaffEventController::class, 'pelajarInstitusi'])->name('pelajar.institusi');
 Route::get('/pelajar/listkursus/{pelajar}/{nama}', [StaffEventController::class, 'pelajarListKursus'])->name('pelajar.listkursus');
 Route::get('/pelajar/pilihankursus/{pelajar}/{nama}', [StaffEventController::class, 'pelajarPilihanKursus'])->name('pelajar.pilihankursus');
 Route::get('/pelajar/filter/{pelajar}/{nama}', [StaffEventController::class, 'pelajarFilterByName'])->name('pelajar.filter');
@@ -67,6 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/staff/bmd/{pelajar}', [StaffEventController::class, 'editBmd'])->name('staff.bmd.edit');
     Route::put('/staff/bmd/{pelajar}', [StaffEventController::class, 'updatePelajar'])->name('staff.bmd.update');
     Route::get('/staff/bmd/{pelajar}/print', [StaffEventController::class, 'printBmd'])->name('staff.bmd.print');
+    Route::get('/staff/bmd/{pelajar}/resit', [StaffEventController::class, 'staffResit'])->name('staff.bmd.resit');
     Route::post('/staff/payment/update-status', [StaffEventController::class, 'updatePaymentStatus'])->name('staff.payment.update-status');
 
     // Interview routes
