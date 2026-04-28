@@ -345,8 +345,14 @@ class StaffEventController extends Controller
                 session()->forget('guest_course_redirect');
 
                 if ($kod_kursus && $kod_institusi) {
-                    return redirect()->route('pelajar.infokursus', [$pelajar->id, $kod_institusi, $kod_kursus])
-                        ->with('success', 'IC disahkan. Melangkah ke maklumat kursus yang anda pilih.');
+                    $kursusDipilih = \App\Models\Kursus::where('kod_kursus', $kod_kursus)
+                        ->where('kod_institusi', $kod_institusi)
+                        ->first();
+
+                    if ($kursusDipilih) {
+                        return redirect()->route('pelajar.infokursus', [$pelajar->id, $kursusDipilih->id])
+                            ->with('success', 'IC disahkan. Melangkah ke maklumat kursus yang anda pilih.');
+                    }
                 }
             }
 
@@ -536,66 +542,56 @@ class StaffEventController extends Controller
         return view('pelajar.infoinstitusi', compact('pelajar', 'institusi', 'kursusList', 'galeriList'));
     }
 
-    public function pelajarInfoKursus(Pelajar $pelajar, $kod_institusi, $kod_kursus)
+    public function pelajarInfoKursus(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus = \App\Models\Kursus::with(['institusi', 'galeris', 'syaratKelayakans', 'silibuses', 'kerjayas', 'yuranPendaftarans', 'yuranPilihans', 'yuranAsramas', 'yuranPengajians', 'elauns'])
-            ->where('kod_kursus', $kod_kursus)
-            ->firstOrFail();
+        $kursus->load(['institusi', 'galeris', 'syaratKelayakans', 'silibuses', 'kerjayas', 'yuranPendaftarans', 'yuranPilihans', 'yuranAsramas', 'yuranPengajians', 'elauns']);
 
         return view('pelajar.infokursus', compact('pelajar', 'kursus'));
     }
 
-    public function pelajarTabMaklumat(Pelajar $pelajar, $kod_kursus)
+    public function pelajarTabMaklumat(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus = \App\Models\Kursus::with('syaratKelayakans')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus->load('syaratKelayakans');
         return view('pelajar._guest_tab_maklumat', compact('kursus'));
     }
 
-    public function pelajarTabSyarat(Pelajar $pelajar, $kod_kursus)
+    public function pelajarTabSyarat(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus = \App\Models\Kursus::with('syaratKelayakans')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus->load('syaratKelayakans');
         return view('pelajar._guest_tab_syarat', compact('kursus'));
     }
 
-    public function pelajarTabSilibus(Pelajar $pelajar, $kod_kursus)
+    public function pelajarTabSilibus(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus = \App\Models\Kursus::with('silibuses')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus->load('silibuses');
         return view('pelajar._guest_tab_silibus', compact('kursus'));
     }
 
-    public function pelajarTabKerjaya(Pelajar $pelajar, $kod_kursus)
+    public function pelajarTabKerjaya(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus = \App\Models\Kursus::with('kerjayas')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus->load('kerjayas');
         return view('pelajar._guest_tab_kerjaya', compact('kursus'));
     }
 
-    public function pelajarTabYuran(Pelajar $pelajar, $kod_kursus)
+    public function pelajarTabYuran(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus = \App\Models\Kursus::with([
+        $kursus->load([
             'yuranPendaftarans',
             'yuranPilihans',
             'yuranAsramas',
             'yuranPengajians',
             'elauns',
-        ])->where('kod_kursus', $kod_kursus)->firstOrFail();
+        ]);
         return view('pelajar._guest_tab_yuran', compact('kursus'));
     }
 
-    public function pelajarTabGaleri(Pelajar $pelajar, $kod_institusi)
+    public function pelajarTabGaleri(Pelajar $pelajar, Kursus $kursus)
     {
-        $galleries = \App\Models\Galeri::where('kod_institusi', $kod_institusi)->get();
+        $kursus->load('institusi');
 
-        // Try to resolve the currently selected course for title context in the gallery partial.
-        $kursus = null;
-        if (!empty($pelajar->kod_kursus)) {
-            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)
-                ->where('kod_institusi', $kod_institusi)
-                ->first();
-        }
-
-        if (!$kursus) {
-            $kursus = \App\Models\Kursus::where('kod_institusi', $kod_institusi)->first();
-        }
+        $galleries = \App\Models\Galeri::where('kod_kursus', $kursus->kod_kursus)
+            ->where('kod_institusi', $kursus->institusi?->kod_institusi)
+            ->get();
 
         // Keep legacy variable name ($galeri) for compatibility with existing views.
         $galeri = $galleries;

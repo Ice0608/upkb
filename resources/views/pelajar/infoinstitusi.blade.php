@@ -246,7 +246,7 @@
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
                             <td class="px-4 py-3 text-gray-600 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-kuota' : 'text-orange-600' }}">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3">
-                                <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->kod_institusi, 'kod_kursus' => $kursus->kod_kursus]) }}" class="inline-flex items-center gap-2 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-link' : 'text-blue-600 hover:text-blue-800' }}">Lihat detail</a>
+                                <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}" class="inline-flex items-center gap-2 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-link' : 'text-blue-600 hover:text-blue-800' }}">Lihat detail</a>
                             </td>
                         </tr>
                         @endforeach

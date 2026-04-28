@@ -19,7 +19,7 @@
     @foreach($semuaKursus as $kursus)
     <article class="course-result-card rounded-3xl flex flex-col h-full">
         @if(isset($pelajar) && $kursus->institusi)
-            <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->institusi->kod_institusi, 'kod_kursus' => $kursus->kod_kursus]) }}" class="group flex h-full flex-col text-current no-underline">
+            <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}" class="group flex h-full flex-col text-current no-underline">
         @else
             <a href="{{ route('kursus.show', $kursus->id) }}" class="group flex h-full flex-col text-current no-underline">
         @endif

@@ -497,12 +497,12 @@
             });
 
             const tabUrls = {
-                maklumat: "{{ route('pelajar.tab.maklumat', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                syarat: "{{ route('pelajar.tab.syarat', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                silibus: "{{ route('pelajar.tab.silibus', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                kerjaya: "{{ route('pelajar.tab.kerjaya', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                yuran: "{{ route('pelajar.tab.yuran', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                galeri: "{{ route('pelajar.tab.galeri', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->kod_institusi]) }}"
+                maklumat: "{{ route('pelajar.tab.maklumat', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                syarat: "{{ route('pelajar.tab.syarat', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                silibus: "{{ route('pelajar.tab.silibus', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                kerjaya: "{{ route('pelajar.tab.kerjaya', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                yuran: "{{ route('pelajar.tab.yuran', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                galeri: "{{ route('pelajar.tab.galeri', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}"
             };
 
             fetch(tabUrls[tab], {
@@ -528,4 +528,3 @@
 
 </body>
 </html>
-
