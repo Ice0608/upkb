@@ -489,98 +489,200 @@
         }
         .segment-orange:hover .tvet-node { animation-play-state: running; }
 
-        /* ── DIPLOMA (purple): Cosmic Star Field ── */
-        @keyframes diplomaStarDrift {
-            0%   { background-position: 0px 0px,       20px 20px,    10px 35px; }
-            100% { background-position: -80px -60px,  -52px -72px,  -55px -55px; }
-        }
-        @keyframes diplomaStarGlow {
-            0%, 100% { opacity: 0.45; }
-            50%       { opacity: 0.75; }
-        }
-        @keyframes diplomaAurora {
-            0%   { transform: translateX(-80%) skewX(-10deg); opacity: 0; }
-            15%  { opacity: 0.65; }
-            85%  { opacity: 0.35; }
-            100% { transform: translateX(180%) skewX(-10deg); opacity: 0; }
-        }
-        @keyframes diplomaOrb {
-            0%   { transform: translate(0, 0) scale(1);           opacity: 0.55; }
-            33%  { transform: translate(10px, -14px) scale(1.15); opacity: 0.9; }
-            66%  { transform: translate(-8px, -20px) scale(0.9);  opacity: 0.65; }
-            100% { transform: translate(0, 0) scale(1);           opacity: 0.55; }
-        }
-        @keyframes diplomaTicker {
-            0% { transform: translateY(0); } 100% { transform: translateY(-50%); }
+        /* ── DIPLOMA (purple): GLITCH EFFECT ── */
+
+        /* Main RGB split glitch — slices jump left/right */
+        @keyframes glitchSlice {
+            0%          { clip-path: inset(0 0 100% 0);  transform: translate(0,0); }
+            4%          { clip-path: inset(8% 0 72% 0);  transform: translate(-6px, 0); }
+            8%          { clip-path: inset(8% 0 72% 0);  transform: translate( 6px, 0); }
+            12%         { clip-path: inset(45% 0 35% 0); transform: translate(-4px, 0); }
+            16%         { clip-path: inset(45% 0 35% 0); transform: translate( 4px, 0); }
+            20%         { clip-path: inset(72% 0 8% 0);  transform: translate(-5px, 0); }
+            24%         { clip-path: inset(72% 0 8% 0);  transform: translate( 5px, 0); }
+            28%,100%    { clip-path: inset(0 0 100% 0);  transform: translate(0,0); }
         }
 
-        .diploma-stars {
+        /* Horizontal scanline sweep */
+        @keyframes glitchScan {
+            0%   { top: -4px; }
+            100% { top: 110%; }
+        }
+
+        /* RGB channel offset — red channel */
+        @keyframes glitchRed {
+            0%,90%,100% { transform: translate(0,0); opacity: 0; }
+            91%  { transform: translate(-5px, 2px); opacity: 0.55; }
+            93%  { transform: translate( 4px,-2px); opacity: 0.55; }
+            95%  { transform: translate(-3px, 0);   opacity: 0.55; }
+            97%  { transform: translate( 5px, 1px); opacity: 0.55; }
+            99%  { transform: translate(-2px,-1px); opacity: 0.55; }
+        }
+
+        /* RGB channel offset — cyan channel */
+        @keyframes glitchCyan {
+            0%,90%,100% { transform: translate(0,0); opacity: 0; }
+            92%  { transform: translate( 5px,-2px); opacity: 0.45; }
+            94%  { transform: translate(-4px, 2px); opacity: 0.45; }
+            96%  { transform: translate( 3px, 0);   opacity: 0.45; }
+            98%  { transform: translate(-5px,-1px); opacity: 0.45; }
+        }
+
+        /* Noise static flash */
+        @keyframes glitchNoise {
+            0%,100%     { opacity: 0; }
+            3%,7%,23%,27%,67%,71% { opacity: 0.06; background-position: 0 0; }
+            5%,25%,69%  { opacity: 0.10; background-position: 50px 30px; }
+        }
+
+        /* Block corruption: random rectangles pop in */
+        @keyframes glitchBlock1 {
+            0%,100%  { transform: translate(0,0) scaleX(1); opacity: 0; }
+            6%       { transform: translate(-8px, 14px) scaleX(1.2); opacity: 0.7; }
+            12%      { transform: translate( 6px,-10px) scaleX(0.8); opacity: 0.5; }
+            18%      { opacity: 0; }
+        }
+        @keyframes glitchBlock2 {
+            0%,100%  { transform: translate(0,0); opacity: 0; }
+            30%      { transform: translate( 10px, 6px); opacity: 0.6; }
+            36%      { transform: translate(-7px, -8px); opacity: 0.4; }
+            42%      { opacity: 0; }
+        }
+        @keyframes glitchBlock3 {
+            0%,100%  { transform: translate(0,0); opacity: 0; }
+            55%      { transform: translate(8px, -12px); opacity: 0.65; }
+            61%      { transform: translate(-5px, 8px);  opacity: 0.4; }
+            67%      { opacity: 0; }
+        }
+
+        /* Flicker on/off burst */
+        @keyframes glitchFlicker {
+            0%,100%             { opacity: 1; }
+            4%,8%,12%,16%       { opacity: 0.85; }
+            6%,10%,14%          { opacity: 0.5; }
+            22%                 { opacity: 0.95; filter: hue-rotate(40deg); }
+            24%                 { opacity: 0.7;  filter: hue-rotate(-20deg); }
+            26%                 { opacity: 1;    filter: hue-rotate(0deg); }
+            70%                 { opacity: 0.9;  filter: brightness(1.4) saturate(1.6); }
+            72%                 { opacity: 1;    filter: brightness(1) saturate(1); }
+        }
+
+        /* CRT vignette pulse */
+        @keyframes glitchVignette {
+            0%,100% { opacity: 0.5; }
+            50%     { opacity: 0.8; }
+        }
+
+        /* Shared base: holo-layer activates on hover */
+        /* (already defined above) */
+
+        /* Dark CRT base */
+        .diploma-glitch-bg {
             position: absolute; inset: 0;
-            background-image:
-                radial-gradient(circle, rgba(255,255,255,0.55) 1.5px, transparent 1.5px),
-                radial-gradient(circle, rgba(220,170,255,0.50) 2px,   transparent 2px),
-                radial-gradient(circle, rgba(255,255,255,0.42) 1px,   transparent 1px);
-            background-size: 40px 40px, 72px 72px, 55px 55px;
-            background-position: 0 0, 20px 20px, 10px 35px;
-            animation: diplomaStarDrift 6s linear infinite,
-                       diplomaStarGlow  3s ease-in-out infinite;
-            animation-play-state: paused, running;
+            background: rgba(10, 0, 20, 0.60);
+            border-radius: inherit;
         }
-        .segment-purple:hover .diploma-stars {
-            animation-play-state: running, running;
+
+        /* Noise static layer */
+        .diploma-noise {
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+            background-size: 160px 160px;
+            mix-blend-mode: overlay;
+            animation: glitchNoise 2.4s steps(1) infinite;
+            animation-play-state: paused;
+            pointer-events: none;
         }
-        .diploma-aurora {
-            position: absolute; top: 0; bottom: 0; width: 38%;
-            background: linear-gradient(90deg,
+        .segment-purple:hover .diploma-noise { animation-play-state: running; }
+
+        /* Scanline sweep */
+        .diploma-scanline {
+            position: absolute; left: 0; right: 0;
+            height: 3px; top: -4px;
+            background: linear-gradient(180deg,
                 transparent 0%,
-                rgba(175,95,255,0.35)  28%,
-                rgba(220,130,255,0.55) 50%,
-                rgba(160,75,255,0.3)   72%,
+                rgba(220, 120, 255, 0.55) 40%,
+                rgba(150, 60, 220, 0.8)   50%,
+                rgba(220, 120, 255, 0.55) 60%,
                 transparent 100%);
-            filter: blur(10px);
-            animation: diplomaAurora 3s ease-in-out infinite;
+            filter: blur(0.8px);
+            animation: glitchScan 1.8s linear infinite;
             animation-play-state: paused;
         }
-        .segment-purple:hover .diploma-aurora { animation-play-state: running; }
-        .diploma-aurora:nth-child(3) {
-            width: 26%; animation-delay: 1.5s; animation-duration: 3.8s;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(120,50,210,0.25)  28%,
-                rgba(195,100,255,0.42) 50%,
-                rgba(120,50,210,0.2)   72%,
-                transparent 100%);
-            filter: blur(14px);
+        .segment-purple:hover .diploma-scanline { animation-play-state: running; }
+
+        /* RGB Red channel layer */
+        .diploma-rgb-red {
+            position: absolute; inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(rgba(156,39,176,0.55), rgba(156,39,176,0.45)),
+                        url('/images/postgraduate-differences_sim-article.jpg') center/cover no-repeat;
+            mix-blend-mode: screen;
+            filter: url(#diploma-glitch-filter) brightness(0.8) blur(0.4px);
+            animation: glitchRed 3s steps(1) infinite;
+            animation-play-state: paused;
+            opacity: 0;
         }
-        .diploma-orb {
+        .segment-purple:hover .diploma-rgb-red { animation-play-state: running; }
+
+        /* RGB Cyan channel layer */
+        .diploma-rgb-cyan {
+            position: absolute; inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(rgba(0,200,220,0.35), rgba(0,150,180,0.25)),
+                        url('/images/postgraduate-differences_sim-article.jpg') center/cover no-repeat;
+            mix-blend-mode: screen;
+            filter: brightness(0.6) blur(0.4px);
+            animation: glitchCyan 3s steps(1) infinite;
+            animation-play-state: paused;
+            opacity: 0;
+        }
+        .segment-purple:hover .diploma-rgb-cyan { animation-play-state: running; }
+
+        /* Corruption blocks */
+        .diploma-block {
             position: absolute;
-            width: 20%; height: 20%;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(220,130,255,0.85), transparent 68%);
-            filter: blur(5px);
-            animation: diplomaOrb 3.8s ease-in-out infinite;
-            top: 20%; left: 18%;
+            height: 6px;
+            background: linear-gradient(90deg, rgba(220,100,255,0.85), rgba(100,200,255,0.7));
+            mix-blend-mode: screen;
+            border-radius: 1px;
         }
-        .diploma-orb:nth-child(5) {
-            width: 13%; height: 13%;
-            top: 58%; left: 62%;
-            animation-delay: 2s; animation-duration: 4.5s;
-            background: radial-gradient(circle, rgba(200,100,255,0.75), transparent 68%);
+        .diploma-block:nth-child(7) {
+            width: 55%; top: 28%; left: 5%;
+            animation: glitchBlock1 2.4s steps(1) infinite;
+            animation-play-state: paused;
         }
-        .diploma-ticker-wrap {
-            position: absolute;
-            bottom: 6%; left: 6%; right: 6%; height: 1.1rem;
-            overflow: hidden;
-            mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+        .diploma-block:nth-child(8) {
+            width: 38%; top: 52%; left: 30%;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255,80,200,0.75), rgba(200,120,255,0.6));
+            animation: glitchBlock2 3.1s steps(1) infinite 0.7s;
+            animation-play-state: paused;
         }
-        .diploma-ticker {
-            display: flex; flex-direction: column;
-            animation: diplomaTicker 3s linear infinite;
-            font-size: 0.44rem; font-family: 'Courier New', monospace;
-            font-weight: 700; letter-spacing: 0.08em;
-            color: rgba(220,130,255,0.9);
-            text-shadow: 0 0 6px rgba(220,130,255,0.9);
-            white-space: nowrap; line-height: 1.55;
+        .diploma-block:nth-child(9) {
+            width: 45%; top: 71%; left: 12%;
+            height: 5px;
+            background: linear-gradient(90deg, rgba(100,255,200,0.6), rgba(200,100,255,0.7));
+            animation: glitchBlock3 2.7s steps(1) infinite 1.4s;
+            animation-play-state: paused;
+        }
+        .segment-purple:hover .diploma-block { animation-play-state: running; }
+
+        /* CRT vignette */
+        .diploma-vignette {
+            position: absolute; inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(ellipse at center,
+                transparent 40%,
+                rgba(30, 0, 50, 0.7) 100%);
+            animation: glitchVignette 3s ease-in-out infinite;
+            animation-play-state: paused;
+        }
+        .segment-purple:hover .diploma-vignette { animation-play-state: running; }
+
+        /* Whole segment flicker */
+        .segment-purple:hover .segment {
+            animation: glitchFlicker 3s steps(1) infinite !important;
         }
 
         /* ── SAINS KESIHATAN (blue): Health Monitor ECG ── */
@@ -642,7 +744,11 @@
         }
         .sains-ecg-pulse:nth-child(5) { animation-delay: 0.8s; }
         @media (prefers-reduced-motion: reduce) {
-            .tvet-signal, .tvet-node, .diploma-aurora, .sains-ecg-track, .sains-ecg-cursor { animation: none !important; }
+            .tvet-signal, .tvet-node,
+            .diploma-noise, .diploma-scanline, .diploma-rgb-red, .diploma-rgb-cyan,
+            .diploma-block, .diploma-vignette,
+            .sains-ecg-track, .sains-ecg-cursor { animation: none !important; }
+            .segment-purple:hover .segment { animation: none !important; }
             .segment-wrapper:hover .holo-layer { opacity: 0.4; }
         }
         /* ══ END UNIQUE HOVER EFFECTS ══ */
@@ -762,19 +868,26 @@
                                 </svg>
                             </div>
                             @elseif($index == 1)
-                            {{-- DIPLOMA: Cosmic Academic Star Field --}}
+                            {{-- DIPLOMA: Glitch / CRT Signal Corruption --}}
+                            {{-- Hidden SVG filter for turbulence distortion --}}
+                            <svg width="0" height="0" style="position:absolute">
+                                <defs>
+                                    <filter id="diploma-glitch-filter" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feTurbulence type="fractalNoise" baseFrequency="0.08 0.55" numOctaves="2" seed="3" result="noise"/>
+                                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+                                    </filter>
+                                </defs>
+                            </svg>
                             <div class="holo-layer">
-                                <div class="diploma-stars"></div>
-                                <div class="diploma-aurora"></div>
-                                <div class="diploma-aurora"></div>
-                                <div class="diploma-orb"></div>
-                                <div class="diploma-orb"></div>
-                                <div class="diploma-ticker-wrap">
-                                    <div class="diploma-ticker">
-                                        <span>DIPLOMA ◆ AKADEMIK ◆ ILMU ◆ SIJIL ◆ DIPLOMA ◆ AKADEMIK ◆ ILMU ◆ SIJIL</span>
-                                        <span>SYS:UPKB ◆ NODE:DIPLOMA ◆ STATUS:AKTIF ◆ SYS:UPKB ◆ NODE:DIPLOMA ◆ STATUS:AKTIF</span>
-                                    </div>
-                                </div>
+                                <div class="diploma-glitch-bg"></div>
+                                <div class="diploma-noise"></div>
+                                <div class="diploma-rgb-red"></div>
+                                <div class="diploma-rgb-cyan"></div>
+                                <div class="diploma-scanline"></div>
+                                <div class="diploma-block"></div>
+                                <div class="diploma-block"></div>
+                                <div class="diploma-block"></div>
+                                <div class="diploma-vignette"></div>
                             </div>
                             @else
                             {{-- SAINS KESIHATAN: Health Monitor ECG --}}
