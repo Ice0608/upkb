@@ -256,13 +256,18 @@ class StaffEventController extends Controller
         return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
     }
 
-    public function staffResit(Pelajar $pelajar)
+    public function staffResit(Pelajar $pelajar, Request $request)
     {
         abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
         $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
         $kursus = Kursus::with('institusi')->where('kod_kursus', $pelajar->kod_kursus)->first();
         $institusi = $kursus?->institusi;
+
+        // If modal=1, return only the content for modal display
+        if ($request->modal == 1) {
+            return view('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi'))->render();
+        }
 
         return view('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi'));
     }

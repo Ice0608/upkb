@@ -302,6 +302,12 @@
 
         <!-- Selected Method Details -->
         <div id="method-details" class="hidden bg-white rounded-3xl shadow-lg p-8 mb-12">
+            <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                <p class="text-orange-700 text-sm">
+                    <i class="fas fa-info-circle"></i> 
+                    <strong>Nota:</strong> Semua kaedah pembayaran memerlukan muat naik resit pembayaran (PDF atau gambar) sebelum ke halaman seterusnya.
+                </p>
+            </div>
             <!-- QR Code Display -->
             <div id="qr-details" class="hidden">
                 <h3 class="text-2xl font-bold text-slate-900 mb-6">
@@ -310,7 +316,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="qr-code-display">
                         <div class="text-center">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Payment-{{ $pelajar->id }}" alt="QR Code">
+                            <img src="{{ asset('images/QR.jpeg') }}" alt="QR Code" class="mx-auto w-52 max-w-full rounded-xl shadow-sm">
                             <p class="mt-4 text-slate-600 text-sm">Kod QR anda</p>
                         </div>
                     </div>
@@ -344,10 +350,10 @@
                         <strong>Instruksi Pembayaran Tunai:</strong>
                     </p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 ml-4">
-                        <li>Bayar ke pejabat institusi anda dalam waktu 3 hari</li>
+                        <li>Bayar ke pegawai kami semasa temu duga berlangsung</li>
                         <li>Jumlah pembayaran: <strong class="method-amount-display">RM {{ number_format($jumlah, 2) }}</strong></li>
                         <li>Ambil resit sebagai bukti pembayaran</li>
-                        <li>Serahkan resit kepada kakitangan temu duga</li>
+                        <li>ambil gambar resit dan masukkan pada bahagian bawah</li>
                     </ul>
                 </div>
                 <p class="text-slate-600 mb-4">Hubungi:</p>
@@ -367,10 +373,10 @@
                         Maklumat Akaun Bank:
                     </p>
                     <div class="space-y-3 text-slate-700">
-                        <p><span class="font-semibold">Nama Bank:</span> Banking Institution</p>
-                        <p><span class="font-semibold">Nama Akaun:</span> {{ config('app.bank_account_name', 'Ministry/Institution Name') }}</p>
-                        <p><span class="font-semibold">No. Akaun:</span> <code class="bg-white px-2 py-1 rounded text-sm">{{ config('app.bank_account_no', 'XXXX XXXX XXXX XXXX') }}</code></p>
-                        <p><span class="font-semibold">Kod Bank (SWIFT):</span> <code class="bg-white px-2 py-1 rounded text-sm">XXXMYKL</code></p>
+                        <p><span class="font-semibold">Nama Bank:</span> Maybank</p>
+                        <p><span class="font-semibold">Nama Akaun:</span> {{ config('app.bank_account_name', 'SESOC LEGACY') }}</p>
+                        <p><span class="font-semibold">No. Akaun:</span> <code class="bg-white px-2 py-1 rounded text-sm">{{ config('app.bank_account_no', '5551 7161 7040') }}</code></p>
+                        {{-- <p><span class="font-semibold">Kod Bank (SWIFT):</span> <code class="bg-white px-2 py-1 rounded text-sm">XXXMYKL</code></p> --}}
                     </div>
                 </div>
                 <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
@@ -382,7 +388,7 @@
                         <li>Jumlah pindahan: <strong class="method-amount-display">RM {{ number_format($jumlah, 2) }}</strong></li>
                         <li>Rujukan: Gunakan No. IC Anda sebagai rujukan</li>
                         <li>Simpan bukti pindahan (resit/bukti e-banking)</li>
-                        <li>Serahkan bukti kepada kakitangan temu duga</li>
+                        <li>Download resit pembayaran tersebut dan masukkan resit tersebut pada bahagian bawah</li>
                     </ul>
                 </div>
             </div>
@@ -482,7 +488,21 @@
         
         const resitInput = document.getElementById('resit-input');
         if (!resitInput.files.length) {
-            alert('Sila muat naik resit pembayaran terlebih dahulu.');
+            alert('Sila muat naik resit pembayaran (PDF atau gambar) terlebih dahulu.');
+            return;
+        }
+        
+        // Validate file type
+        const file = resitInput.files[0];
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+        if (!validTypes.includes(file.type)) {
+            alert('Sila muat naik fail resit dalam format JPG, PNG, atau PDF sahaja.');
+            return;
+        }
+        
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('Saiz fail terlalu besar. Maximum saiz fail adalah 5MB.');
             return;
         }
         
