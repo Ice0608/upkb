@@ -357,6 +357,20 @@
         }
     </style>
 </head>
+@php
+    $pilihanProgramType = $semuaKursus
+        ->map(fn ($kursus) => strtolower((string) optional($kursus->institusi)->jenis_institusi))
+        ->first(function ($type) {
+            return in_array($type, ['tvet', 'diploma', 'sains kesihatan'], true);
+        });
+
+    $heroProgramType = $pilihanProgramType
+        ?? strtolower((string) request('jenis', ''));
+
+    if (!in_array($heroProgramType, ['tvet', 'diploma', 'sains kesihatan'], true)) {
+        $heroProgramType = '';
+    }
+@endphp
 <body class="pilihan-page text-slate-900 min-h-screen flex flex-col">
 
     {{-- 🔹 NAVIGATION --}}

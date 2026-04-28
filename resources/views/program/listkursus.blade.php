@@ -125,16 +125,16 @@
         }
 
         .kursus-hero {
-            --kursus-hero-soft-text: rgba(255, 248, 214, 0.92);
-            --kursus-hero-button-text: #b88912;
+            --kursus-hero-soft-text: rgba(255, 220, 200, 0.92);
+            --kursus-hero-button-text: #CC4100;
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.84);
             background:
-                 linear-gradient(120deg, #a87408 0%, #d4af37 42%, #f1cf63 100%);
+                 linear-gradient(120deg, #8B2200 0%, #FF5100 42%, #ff7a38 100%);
             box-shadow:
                 0 28px 72px rgba(15, 23, 42, 0.14),
-                 0 0 72px rgba(212, 175, 55, 0.24),
+                 0 0 72px rgba(255, 81, 0, 0.24),
                 inset 0 1px 0 rgba(255, 255, 255, 0.26);
         }
 
@@ -293,29 +293,29 @@
         }
 
         .kursus-results-layout--tvet {
-            --kursus-accent-500: #d4af37;
-            --kursus-accent-600: #b88912;
-            --kursus-accent-700: #8a6a08;
-            --kursus-accent-border: rgba(212, 175, 55, 0.2);
-            --kursus-accent-border-strong: rgba(212, 175, 55, 0.26);
-            --kursus-accent-soft: rgba(255, 251, 235, 0.94);
-            --kursus-accent-soft-strong: linear-gradient(135deg, rgba(255, 251, 235, 0.98), rgba(254, 240, 138, 0.82));
-            --kursus-accent-shadow: rgba(212, 175, 55, 0.14);
-            --kursus-card-chip-bg: rgba(212, 175, 55, 0.96);
-            --kursus-card-pill-text: #8a6a08;
-            --kursus-card-overlay: rgba(212, 175, 55, 0.28);
-            --kursus-card-hover-border: rgba(212, 175, 55, 0.34);
-            --kursus-card-hover-glow: rgba(212, 175, 55, 0.14);
-            --kursus-card-title-hover: #b88912;
-            --kursus-card-arrow-bg: #fffbea;
-            --kursus-card-arrow-text: #b88912;
-            --kursus-card-arrow-hover-bg: #d4af37;
-            --kursus-card-meta-border: rgba(212, 175, 55, 0.16);
-            --kursus-card-meta-bg: rgba(255, 251, 235, 0.84);
-            --kursus-card-cta-bg: #d4af37;
-            --kursus-card-cta-hover: #b88912;
-            --kursus-card-cta-shadow: rgba(212, 175, 55, 0.2);
-            --kursus-card-cta-glow: rgba(250, 204, 21, 0.16);
+            --kursus-accent-500: #FF5100;
+            --kursus-accent-600: #CC4100;
+            --kursus-accent-700: #993100;
+            --kursus-accent-border: rgba(255, 81, 0, 0.2);
+            --kursus-accent-border-strong: rgba(255, 81, 0, 0.26);
+            --kursus-accent-soft: rgba(255, 242, 236, 0.94);
+            --kursus-accent-soft-strong: linear-gradient(135deg, rgba(255, 242, 236, 0.98), rgba(255, 210, 185, 0.82));
+            --kursus-accent-shadow: rgba(255, 81, 0, 0.14);
+            --kursus-card-chip-bg: rgba(255, 81, 0, 0.96);
+            --kursus-card-pill-text: #993100;
+            --kursus-card-overlay: rgba(255, 81, 0, 0.28);
+            --kursus-card-hover-border: rgba(255, 81, 0, 0.34);
+            --kursus-card-hover-glow: rgba(255, 81, 0, 0.14);
+            --kursus-card-title-hover: #CC4100;
+            --kursus-card-arrow-bg: #fff2ec;
+            --kursus-card-arrow-text: #CC4100;
+            --kursus-card-arrow-hover-bg: #FF5100;
+            --kursus-card-meta-border: rgba(255, 81, 0, 0.16);
+            --kursus-card-meta-bg: rgba(255, 242, 236, 0.84);
+            --kursus-card-cta-bg: #FF5100;
+            --kursus-card-cta-hover: #CC4100;
+            --kursus-card-cta-shadow: rgba(255, 81, 0, 0.2);
+            --kursus-card-cta-glow: rgba(255, 130, 60, 0.16);
         }
 
         .kursus-results-layout--sains-kesihatan {
@@ -931,6 +931,11 @@
                 <div id="courses-container" class="kursus-results-grid">
                     @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
+                    @php
+                        $institusiTypeLabel = strtolower(trim((string) ($kursus->institusi->jenis_institusi ?? '')));
+                        $jenisKursusLabel = strtolower(trim((string) ($kursus->jenis_kursus ?? '')));
+                        $showJenisKursusPill = $jenisKursusLabel !== '' && $jenisKursusLabel !== $institusiTypeLabel;
+                    @endphp
                     <article class="course-card h-full" 
                              data-course-name="{{ $kursus->nama_kursus }}"
                              onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus)) }}'">
@@ -939,7 +944,9 @@
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">
                                 <span class="kursus-tag px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em]">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="flex flex-wrap items-center justify-end gap-2 max-w-[75%]">
-                                    <span class="kursus-pill px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">{{ $kursus->jenis_kursus }}</span>
+                                    @if($showJenisKursusPill)
+                                        <span class="kursus-pill px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">{{ $kursus->jenis_kursus }}</span>
+                                    @endif
                                     <span class="kursus-pill px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">Kuota {{ $kursus->kuota ?? '-' }}</span>
                                 </div>
                             </div>

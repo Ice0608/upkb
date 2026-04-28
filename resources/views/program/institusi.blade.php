@@ -23,14 +23,14 @@
 
         .institusi-page--tvet,
         .institusi-shell--tvet {
-            --institusi-tvet-50: #fffbea;
-            --institusi-tvet-100: #fef3c7;
-            --institusi-tvet-500: #d4af37;
-            --institusi-tvet-600: #b88912;
-            --institusi-tvet-700: #8a6a08;
-            --institusi-tvet-rgb: 212, 175, 55;
-            --institusi-tvet-rgb-soft: 241, 207, 99;
-            --institusi-tvet-soft-text: rgba(255, 248, 214, 0.92);
+            --institusi-tvet-50: #fff2ec;
+            --institusi-tvet-100: #ffe0cc;
+            --institusi-tvet-500: #FF5100;
+            --institusi-tvet-600: #CC4100;
+            --institusi-tvet-700: #993100;
+            --institusi-tvet-rgb: 255, 81, 0;
+            --institusi-tvet-rgb-soft: 255, 130, 60;
+            --institusi-tvet-soft-text: rgba(255, 220, 200, 0.92);
         }
 
         .institusi-page--diploma,
@@ -91,7 +91,7 @@
         }
 
         .institusi-page--tvet .institusi-hero {
-            background: linear-gradient(90deg, #a87408 0%, #f1cf63 100%);
+            background: linear-gradient(90deg, #8B2200 0%, #ff7a38 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
                 0 0 68px rgba(var(--institusi-tvet-rgb), 0.3),

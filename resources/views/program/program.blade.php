@@ -183,7 +183,7 @@
         }
 
         .segment-orange:hover .segment {
-            box-shadow: 0 0 48px 16px rgba(255,152,0,0.7), 0 0 0 4px rgba(255,243,230,0.6) inset;
+            box-shadow: 0 0 48px 16px rgba(255,81,0,0.7), 0 0 0 4px rgba(255,220,200,0.6) inset;
             filter: brightness(1.08) saturate(1.1);
         }
         .segment-purple:hover .segment {
@@ -251,7 +251,7 @@
         }
 
         .segment-orange:hover .segment {
-            box-shadow: 0 0 40px rgba(255, 152, 0, 0.6);
+            box-shadow: 0 0 40px rgba(255, 81, 0, 0.6);
             transform: translate(-30px, -30px) scale(1.25);
         }
 
@@ -463,7 +463,7 @@
             stroke-linecap: square;
             transition: stroke 0.3s ease;
         }
-        .segment-orange:hover .tvet-trace { stroke: rgba(255,165,0,0.35); }
+        .segment-orange:hover .tvet-trace { stroke: rgba(255,81,0,0.35); }
         .tvet-signal {
             fill: none;
             stroke: rgba(255,235,80,0.55);
@@ -676,17 +676,17 @@
                         $configs = [
                             0 => [
                                 'clip' => 'segment-top-left-clip',
-                                'bg' => 'bg-[#FF9800]',
-                                'pos' => 'top-[20%] left-[9%] sm:top-[19%] sm:left-[4%] text-right items-end',
-                                'label_bg' => 'bg-[#d4af37]',
-                                'label_border' => 'border-[#b88912]',
-                                'label_hover' => 'group-hover:border-[#8a6a08]',
-                                'label_shadow' => '#d4af37',
+                                'bg' => 'bg-[#FF5100]',
+                                'pos' => 'top-[25%] left-[9%] sm:top-[24%] sm:left-[4%] text-right items-end',
+                                'label_bg' => 'bg-[#FF5100]',
+                                'label_border' => 'border-[#CC4100]',
+                                'label_hover' => 'group-hover:border-[#993100]',
+                                'label_shadow' => '#FF5100',
                             ],
                             1 => [
                                 'clip' => 'segment-top-right-clip',
                                 'bg' => 'bg-[#9C27B0]',
-                                'pos' => 'top-[20%] right-[9%] sm:top-[19%] sm:right-[4%] text-left items-start',
+                                'pos' => 'top-[25%] right-[9%] sm:top-[24%] sm:right-[4%] text-left items-start',
                                 'label_bg' => 'bg-[#8d2be2]',
                                 'label_border' => 'border-[#7a1fd1]',
                                 'label_hover' => 'group-hover:border-[#6216aa]',
@@ -712,7 +712,7 @@
                         <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}">
                             @if($index == 0)
                                 <!-- TVET: Robotics/Workshop -->
-                                <div style="background: linear-gradient(rgba(255,152,0,0.60), rgba(255,152,0,0.50)), url('/images/tvet-vg2.jpeg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.92) blur(0.5px);" class="w-full h-full"></div>
+                                <div style="background: linear-gradient(rgba(255,81,0,0.60), rgba(255,81,0,0.50)), url('/images/tvet-vg2.jpeg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.92) blur(0.5px);" class="w-full h-full"></div>
                             @elseif($index == 1)
                                 <!-- DIPLOMA: Graduation -->
                                 <div style="background: linear-gradient(rgba(156,39,176,0.55), rgba(156,39,176,0.45)), url('/images/postgraduate-differences_sim-article.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.96) blur(0.5px);" class="w-full h-full"></div>
@@ -791,17 +791,6 @@
                         <!-- Segment content -->
                         <div class="segment-content absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
                                     w-[100px] sm:w-[140px] md:w-[180px]">
-                               <div class="segment-chip mb-1 sm:mb-2 bg-white/30 p-1.5 sm:p-2 rounded-xl 
-                                        group-hover:scale-110 transition-transform w-fit border border-white/40"
-                                   style="backdrop-filter: blur(8px) saturate(1.2); -webkit-backdrop-filter: blur(8px) saturate(1.2); box-shadow: 0 2px 12px 0 rgba(255,255,255,0.10);">
-                                @if($index == 0)
-                                    <i class="{{ $program->icon }} text-[#FFC107] text-base sm:text-xl md:text-3xl"></i> <!-- TVET: gold -->
-                                @elseif($index == 1)
-                                    <i class="{{ $program->icon }} text-[#8d2be2] text-base sm:text-xl md:text-3xl"></i> <!-- Diploma: purple -->
-                                @elseif($index == 2)
-                                    <i class="{{ $program->icon }} text-[#2196f3] text-base sm:text-xl md:text-3xl"></i> <!-- Sains Kesihatan: blue -->
-                                @endif
-                            </div>
                             <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
                                        leading-tight break-words drop-shadow-md text-white">
                                 {{ $program->jenis_program }}

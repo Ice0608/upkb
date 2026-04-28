@@ -10,14 +10,14 @@
     @include('components.dark-mode-init')
     <style>
         .institusi-info-page--tvet {
-            --institusi-info-50: #fffbea;
-            --institusi-info-100: #fef3c7;
-            --institusi-info-500: #d4af37;
-            --institusi-info-600: #b88912;
-            --institusi-info-700: #8a6a08;
+            --institusi-info-50: #fff2ec;
+            --institusi-info-100: #ffe0cc;
+            --institusi-info-500: #FF5100;
+            --institusi-info-600: #CC4100;
+            --institusi-info-700: #993100;
             background:
                 url('/images/TVET-LIGHT.jpg'),
-                radial-gradient(circle at 8% 12%, rgba(241, 207, 99, 0.18), transparent 24%),
+                radial-gradient(circle at 8% 12%, rgba(255, 81, 0, 0.18), transparent 24%),
                 radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
                 linear-gradient(180deg, rgba(15,23,42,0.18) 0%, rgba(30,41,59,0.20) 44%, rgba(15,23,42,0.22) 100%);
             background-size: cover;
