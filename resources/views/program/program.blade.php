@@ -339,6 +339,8 @@
         }
         /* ── DARK MODE ── */
         html.dark body.program-page { color: #e2e8f0; }
+        .pg-heading-title { color: #0f172a; }
+        html.dark .pg-heading-title { color: #f1f5f9; }
         html.dark .program-page {
             background:
                 radial-gradient(circle at 12% 16%, rgba(251, 146, 60, 0.12), transparent 24%),
@@ -752,6 +754,236 @@
             .segment-wrapper:hover .holo-layer { opacity: 0.4; }
         }
         /* ══ END UNIQUE HOVER EFFECTS ══ */
+
+        /* ══════════════════════════════════════
+           FUTURISTIC GLOW EFFECTS
+        ══════════════════════════════════════ */
+
+        /* ── Heading neon glow + scanning beam ── */
+        .pg-heading-anim {
+            position: relative;
+        }
+        /* Overall heading glow pulse — use text-shadow on h1 (safe with background-clip:text children) */
+        .pg-heading-anim h1 {
+            /* no filter here — filter on parent breaks -webkit-background-clip:text on children */
+        }
+        /* "Pilih" and "Anda" — soft white glow */
+        .pg-heading-anim .pg-word:nth-child(1),
+        .pg-heading-anim .pg-word:nth-child(3) {
+            text-shadow:
+                0 0 12px rgba(255,255,255,0.35),
+                0 0 28px rgba(249,115,22,0.20);
+        }
+        /* "Laluan" — glow via ::before blob on wrapper (filter on element breaks background-clip:text) */
+        .pg-laluan-wrap {
+            position: relative;
+            display: inline-block;
+        }
+        .pg-laluan-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -6px -10px;
+            border-radius: 12px;
+            background: radial-gradient(ellipse at center, rgba(249,115,22,0.55) 0%, rgba(255,160,30,0.28) 45%, transparent 72%);
+            filter: blur(8px);
+            animation: pgLaluanGlow 3s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @keyframes pgLaluanGlow {
+            0%, 100% { opacity: 0.6; transform: scale(0.92); }
+            50%      { opacity: 1;   transform: scale(1.08); }
+        }
+        html.dark .pg-heading-anim .pg-word:nth-child(1),
+        html.dark .pg-heading-anim .pg-word:nth-child(3) {
+            text-shadow:
+                0 0 16px rgba(255,255,255,0.5),
+                0 0 36px rgba(249,115,22,0.30);
+        }
+        .pg-heading-anim::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(249, 115, 22, 0.0) 10%,
+                rgba(249, 115, 22, 0.9) 40%,
+                rgba(255, 200, 80, 1)   50%,
+                rgba(249, 115, 22, 0.9) 60%,
+                rgba(249, 115, 22, 0.0) 90%,
+                transparent 100%);
+            filter: blur(1px);
+            animation: pgUnderlineGlow 2.8s ease-in-out infinite;
+        }
+        @keyframes pgUnderlineGlow {
+            0%, 100% { opacity: 0.55; width: 40%; filter: blur(1px); }
+            50%      { opacity: 1;    width: 68%; filter: blur(0.4px) drop-shadow(0 0 6px rgba(255,180,50,0.9)); }
+        }
+
+        /* Dark mode heading glow */
+        html.dark .pg-heading-anim::after {
+            filter: blur(1px) drop-shadow(0 0 8px rgba(255,160,40,0.7));
+        }
+
+        /* ── Wheel outer orbit rings ── */
+        .pg-orbit-ring {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            border: 1px solid transparent;
+        }
+        .pg-orbit-ring-1 {
+            inset: -18px;
+            border-color: rgba(255, 140, 20, 0.22);
+            box-shadow: 0 0 18px 2px rgba(255,140,20,0.14), inset 0 0 18px 2px rgba(255,140,20,0.06);
+            animation: pgOrbitSpin1 18s linear infinite;
+        }
+        .pg-orbit-ring-2 {
+            inset: -32px;
+            border-color: rgba(139, 92, 246, 0.16);
+            border-style: dashed;
+            box-shadow: 0 0 22px 3px rgba(139,92,246,0.10);
+            animation: pgOrbitSpin2 28s linear infinite reverse;
+        }
+        .pg-orbit-ring-3 {
+            inset: -48px;
+            border-color: rgba(56, 189, 248, 0.12);
+            box-shadow: 0 0 28px 4px rgba(56,189,248,0.08);
+            animation: pgOrbitSpin1 42s linear infinite;
+        }
+        @keyframes pgOrbitSpin1 {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes pgOrbitSpin2 {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Orbit tick marks on ring 1 */
+        .pg-orbit-ring-1::before {
+            content: "";
+            position: absolute;
+            top: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 160, 30, 0.9);
+            box-shadow: 0 0 8px 3px rgba(255,160,30,0.7);
+        }
+        .pg-orbit-ring-1::after {
+            content: "";
+            position: absolute;
+            bottom: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 200, 80, 0.7);
+            box-shadow: 0 0 6px 2px rgba(255,200,80,0.5);
+        }
+
+        /* Purple ring (ring-2) tick dots */
+        .pg-orbit-ring-2::before {
+            content: "";
+            position: absolute;
+            top: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(167, 100, 255, 0.95);
+            box-shadow: 0 0 9px 3px rgba(139,92,246,0.75);
+        }
+        .pg-orbit-ring-2::after {
+            content: "";
+            position: absolute;
+            bottom: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(196, 140, 255, 0.8);
+            box-shadow: 0 0 7px 2px rgba(167,100,255,0.55);
+        }
+
+        /* Cyan ring (ring-3) tick dots */
+        .pg-orbit-ring-3::before {
+            content: "";
+            position: absolute;
+            top: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(56, 200, 248, 0.95);
+            box-shadow: 0 0 9px 3px rgba(56,189,248,0.7);
+        }
+        .pg-orbit-ring-3::after {
+            content: "";
+            position: absolute;
+            bottom: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(120, 220, 255, 0.8);
+            box-shadow: 0 0 7px 2px rgba(56,189,248,0.5);
+        }
+
+        /* ── Idle floating sparks around wheel ── */
+        .pg-spark {
+            position: absolute;
+            width: 3px; height: 3px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: pgSparkFloat 4s ease-in-out infinite;
+        }
+        .pg-spark:nth-child(1)  { background: rgba(255,160,30,0.9);  top: 8%;  left: 22%; animation-delay: 0s;    animation-duration: 3.8s; }
+        .pg-spark:nth-child(2)  { background: rgba(139,92,246,0.9);  top: 12%; right: 18%; animation-delay: 0.6s; animation-duration: 4.2s; }
+        .pg-spark:nth-child(3)  { background: rgba(56,189,248,0.9);  bottom: 14%; left: 28%; animation-delay: 1.2s; animation-duration: 3.6s; }
+        .pg-spark:nth-child(4)  { background: rgba(255,200,80,0.85); top: 32%; left: 4%;  animation-delay: 1.8s; animation-duration: 4.4s; }
+        .pg-spark:nth-child(5)  { background: rgba(200,100,255,0.8); top: 28%; right: 4%; animation-delay: 2.4s; animation-duration: 3.9s; }
+        .pg-spark:nth-child(6)  { background: rgba(80,220,180,0.85); bottom: 22%; right: 22%; animation-delay: 0.9s; animation-duration: 4.1s; }
+        @keyframes pgSparkFloat {
+            0%   { opacity: 0; transform: translateY(0) scale(0.6); }
+            20%  { opacity: 1; transform: translateY(-6px) scale(1); }
+            80%  { opacity: 0.7; transform: translateY(-14px) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-22px) scale(0.4); }
+        }
+
+        /* ── Enhanced wheel glow (stronger on dark mode) ── */
+        html.dark .mercedes-container {
+            box-shadow:
+                0 28px 72px rgba(0, 0, 0, 0.55),
+                0 0 60px rgba(255, 140, 20, 0.32),
+                0 0 100px rgba(139, 92, 246, 0.18),
+                0 0 40px rgba(56, 189, 248, 0.12),
+                inset 0 0 40px 8px rgba(255,255,255,0.06);
+        }
+        html.dark .pg-orbit-ring-1 {
+            border-color: rgba(255, 140, 20, 0.42);
+            box-shadow: 0 0 22px 4px rgba(255,140,20,0.28), inset 0 0 18px 2px rgba(255,140,20,0.1);
+        }
+        html.dark .pg-orbit-ring-2 {
+            border-color: rgba(139, 92, 246, 0.32);
+            box-shadow: 0 0 28px 4px rgba(139,92,246,0.22);
+        }
+        html.dark .pg-orbit-ring-3 {
+            border-color: rgba(56, 189, 248, 0.24);
+            box-shadow: 0 0 34px 5px rgba(56,189,248,0.16);
+        }
+
+
+        @media (prefers-reduced-motion: reduce) {
+            .pg-orbit-ring-1, .pg-orbit-ring-2, .pg-orbit-ring-3,
+            .pg-spark, .pg-heading-anim::after,
+            .pg-laluan-wrap::before {
+                animation: none !important;
+            }
+        }
+        /* ══ END FUTURISTIC GLOW EFFECTS ══ */
     </style>
 </head>
 <body class="program-page text-gray-800 transition-colors duration-300">
@@ -762,14 +994,28 @@
 
         {{-- PAGE HEADING --}}
         <div class="text-center mb-8 pg-heading-anim">
-            <h1 style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.8rem,5vw,3.2rem); line-height:1.1; letter-spacing:-0.03em; color:#0f172a;">
+            <h1 class="pg-heading-title" style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.8rem,5vw,3.2rem); line-height:1.1; letter-spacing:-0.03em;">
                 <span class="pg-word">Pilih</span>
-                <span class="pg-word" style="background:linear-gradient(120deg,#f97316,#ea580c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Laluan</span>
+                <span class="pg-laluan-wrap"><span class="pg-word" style="background:linear-gradient(120deg,#f97316,#ea580c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Laluan</span></span>
                 <span class="pg-word">Anda</span>
             </h1>
         </div>
 
-        <div class="program-wheel-wrap flex justify-center items-center py-4">
+        <div class="program-wheel-wrap relative flex justify-center items-center py-4">
+            {{-- Orbit rings + sparks + HUD corners --}}
+            <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="position:relative; width:min(280px,80vw); height:min(280px,80vw);" class="sm:!w-[360px] sm:!h-[360px] md:!w-[520px] md:!h-[520px]">
+                    <div class="pg-orbit-ring pg-orbit-ring-1"></div>
+                    <div class="pg-orbit-ring pg-orbit-ring-2"></div>
+                    <div class="pg-orbit-ring pg-orbit-ring-3"></div>
+                    <div class="pg-spark"></div>
+                    <div class="pg-spark"></div>
+                    <div class="pg-spark"></div>
+                    <div class="pg-spark"></div>
+                    <div class="pg-spark"></div>
+                    <div class="pg-spark"></div>
+                </div>
+            </div>
             <div class="mercedes-container pg-wheel-anim pg-idle relative overflow-hidden
                 w-[280px] h-[280px] 
                 sm:w-[360px] sm:h-[360px] 

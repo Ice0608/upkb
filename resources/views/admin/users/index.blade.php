@@ -83,6 +83,10 @@
             <p class="user-hero-copy mt-5 max-w-2xl text-base sm:text-lg leading-8">
                 Halaman pengurusan akaun pengguna.
             </p>
+            <a href="{{ route('admin.adduser') }}" class="mt-6 inline-flex items-center gap-2 rounded-full border border-white/45 bg-white/20 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/28 hover:border-white/60">
+                <i class="fas fa-user-plus text-xs"></i>
+                Tambah Pengguna
+            </a>
         </div>
 
         {{-- Alerts --}}
@@ -97,7 +101,13 @@
             {{-- Section Label --}}
             <div class="px-6 py-4 flex items-center justify-between">
                 <span class="text-[11px] uppercase tracking-[0.2em] font-bold text-gray-400">Senarai Akaun</span>
-                <span class="text-xs text-gray-400">{{ $users->count() }} Total</span>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-gray-400">{{ $users->count() }} Total</span>
+                    <a href="{{ route('admin.adduser') }}" class="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-orange-600">
+                        <i class="fas fa-plus text-[10px]"></i>
+                        Add User
+                    </a>
+                </div>
             </div>
 
             @if ($users->isEmpty())

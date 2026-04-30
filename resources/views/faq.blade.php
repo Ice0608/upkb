@@ -522,22 +522,22 @@
                 linear-gradient(90deg, rgba(4, 120, 87, 0.94), rgba(5, 150, 105, 0.94) 58%, rgba(52, 211, 153, 0.94));
         }
 
-        /* application — orange-red (matches icon #f97316 → #ea580c) */
+        /* application — purple (matches icon #a855f7 → #7c3aed) */
         .faq-card[data-faq-type="application"]::after {
-            background: radial-gradient(circle, rgba(249, 115, 22, 0.3), rgba(249, 115, 22, 0) 72%);
+            background: radial-gradient(circle, rgba(109, 40, 217, 0.34), rgba(109, 40, 217, 0) 72%);
         }
 
         .faq-card[data-faq-type="application"]:hover,
         .faq-card[data-faq-type="application"]:focus-visible,
         .faq-card[data-faq-type="application"].is-focused {
-            border-color: rgba(253, 186, 116, 0.56);
+            border-color: rgba(167, 139, 250, 0.52);
             box-shadow:
-                inset 0 1px 0 rgba(255, 247, 237, 0.52),
-                0 24px 54px rgba(194, 65, 12, 0.24),
-                0 0 34px rgba(249, 115, 22, 0.24),
-                0 0 90px rgba(251, 146, 60, 0.2);
+                inset 0 1px 0 rgba(245, 243, 255, 0.52),
+                0 24px 54px rgba(76, 29, 149, 0.28),
+                0 0 34px rgba(109, 40, 217, 0.24),
+                0 0 90px rgba(167, 139, 250, 0.16);
             background:
-                linear-gradient(90deg, rgba(194, 65, 12, 0.94), rgba(234, 88, 12, 0.94) 58%, rgba(249, 115, 22, 0.94));
+                linear-gradient(90deg, rgba(76, 29, 149, 0.96), rgba(91, 33, 182, 0.96) 58%, rgba(109, 40, 217, 0.95));
         }
 
         .faq-track.has-focused-item .faq-card:not(.is-focused) {
@@ -613,6 +613,13 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
                 0 0 34px rgba(52, 211, 153, 0.28);
+        }
+
+        .faq-card[data-faq-type="application"].is-focused .faq-icon-chip {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.42),
+                0 20px 34px rgba(28, 28, 30, 0.14),
+                0 0 34px rgba(109, 40, 217, 0.28);
         }
 
             .faq-card[data-faq-type="tvet"] .faq-card-title,
@@ -1240,7 +1247,7 @@
                         aria-haspopup="dialog"
                         aria-controls="faqModal"
                     >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#f97316,#ea580c)] text-2xl">
+                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#9333ea,#5b21b6)] text-2xl">
                             <i class="fa-solid fa-file-signature"></i>
                         </div>
 

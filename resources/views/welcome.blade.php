@@ -26,9 +26,13 @@
         .titleglass {
             font-family: "Prata", serif;
             word-break: break-word;
-            text-shadow: 0 8px 24px rgba(15, 23, 42, 0.35), 0 0 18px rgba(255, 255, 255, 0.12);
+            background: linear-gradient(135deg, #ffd08a 0%, #ff8a1f 35%, #ffb347 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 8px 18px rgba(255, 138, 31, 0.35));
             transform-origin: left center;
-            transition: transform 0.45s ease, text-shadow 0.45s ease;
+            transition: transform 0.45s ease, filter 0.45s ease;
             animation: heroTitleFloat 7s ease-in-out infinite;
         }
 
@@ -154,7 +158,7 @@
 
         .hero-card:hover .titleglass {
             transform: translateX(4px) scale(1.01);
-            text-shadow: 0 12px 28px rgba(15, 23, 42, 0.42), 0 0 24px rgba(255, 255, 255, 0.18);
+            filter: drop-shadow(0 10px 24px rgba(255, 138, 31, 0.45));
         }
 
         .hero-card:hover .titleglass-2 {
@@ -259,8 +263,6 @@
                 radial-gradient(circle at 86% 14%, rgba(168, 85, 247, 0.28), rgba(168, 85, 247, 0) 40%),
                 radial-gradient(circle at 64% 86%, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0) 48%),
                 linear-gradient(145deg, rgba(22, 23, 31, 0.95), rgba(14, 18, 30, 0.94));
-            backdrop-filter: blur(22px) saturate(140%);
-            -webkit-backdrop-filter: blur(22px) saturate(140%);
             padding: clamp(2.4rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem);
             box-shadow:
                 0 38px 92px rgba(2, 6, 23, 0.62),
@@ -272,11 +274,9 @@
             overflow: hidden;
             will-change: transform;
             opacity: 0;
-            filter: blur(8px) saturate(0.92);
             transform: translateY(62px) scale(0.955);
             transition: opacity 0.95s cubic-bezier(0.2, 0.9, 0.22, 1),
                         transform 0.95s cubic-bezier(0.2, 0.9, 0.22, 1),
-                        filter 0.95s cubic-bezier(0.2, 0.9, 0.22, 1),
                         box-shadow 0.45s ease,
                         border-color 0.45s ease;
         }
@@ -305,8 +305,7 @@
             right: -3rem;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(249, 115, 22, 0.42), rgba(249, 115, 22, 0) 74%);
-            opacity: 0.8;
-            animation: heroGlow 8s ease-in-out infinite;
+            opacity: 0.6;
         }
 
         .story-panel .hero-vision-label {
@@ -361,14 +360,11 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.07),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.4);
             overflow: hidden;
-            transform-style: preserve-3d;
-            will-change: transform;
+            will-change: transform, opacity;
             opacity: 0;
             transform: translateY(52px) scale(0.965);
-            filter: blur(8px);
             transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
                         transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1),
                         box-shadow 0.35s ease,
                         border-color 0.35s ease;
         }
@@ -381,7 +377,7 @@
             z-index: 3;
             border-radius: inherit;
             background: radial-gradient(
-                circle at var(--card-mx, 50%) var(--card-my, 50%),
+                circle at 50% 35%,
                 rgba(255, 255, 255, 0.14) 0%,
                 rgba(255, 255, 255, 0.05) 28%,
                 rgba(255, 255, 255, 0) 62%
@@ -399,7 +395,7 @@
             z-index: 1;
             border-radius: inherit;
             background: radial-gradient(
-                circle at var(--card-mx, 50%) var(--card-my, 50%),
+                circle at 50% 35%,
                 rgba(244, 163, 88, 0.20) 0%,
                 rgba(168, 85, 247, 0.10) 42%,
                 rgba(244, 163, 88, 0) 70%
@@ -430,8 +426,6 @@
             justify-content: center;
             gap: 0.5rem;
             border-right: 1px solid rgba(255, 255, 255, 0.07);
-            transform: translateZ(28px) translateY(calc((1 - var(--panel-scroll)) * 10px));
-            transition: transform 0.16s linear;
         }
 
         .story-panel-head::after {
@@ -462,8 +456,6 @@
             align-items: center;
             color: rgba(241, 245, 249, 0.95);
             background: rgba(0, 0, 0, 0.28);
-            transform: translateZ(10px) translateY(calc((1 - var(--panel-scroll)) * 12px));
-            transition: transform 0.16s linear;
         }
 
         .story-panel-body p {
@@ -522,16 +514,14 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 220% 100%;
             animation: storyRoleShimmer 5s ease-in-out infinite;
             position: relative;
             z-index: 1;
         }
 
         @keyframes storyRoleShimmer {
-            0%   { background-position: 180% center; }
-            50%  { background-position: -80% center; }
-            100% { background-position: 180% center; }
+            0%, 100% { opacity: 0.88; }
+            50%       { opacity: 1;    }
         }
 
         .story-panel-head > *,
@@ -549,12 +539,10 @@
 
         .snap-section.is-active .story-panel {
             opacity: 1;
-            filter: blur(0);
             transform: perspective(1200px)
                        rotateX(var(--card-rx, 0deg))
                        rotateY(var(--card-ry, 0deg))
-                       translateY(calc((1 - var(--panel-scroll)) * 18px))
-                       scale(calc(0.988 + (var(--panel-scroll) * 0.012)));
+                       scale(1);
             transition-delay: var(--story-stagger);
         }
 
@@ -616,9 +604,7 @@
                 radial-gradient(circle at 84% 68%, rgba(186, 132, 252, 0.16), transparent 42%),
                 linear-gradient(180deg, rgba(2, 6, 23, 0.48), rgba(2, 6, 23, 0.3));
             pointer-events: none;
-            opacity: calc(0.52 + (var(--story-ambient) * 0.48));
-            transform: translateY(calc((1 - var(--story-ambient)) * 20px));
-            transition: opacity 0.16s linear, transform 0.16s linear;
+            opacity: 1;
         }
 
         .story-section::after {
@@ -627,8 +613,7 @@
             inset: 0;
             background: radial-gradient(circle at center, rgba(2, 6, 23, 0) 34%, rgba(2, 6, 23, 0.54) 100%);
             pointer-events: none;
-            opacity: calc(0.58 + (var(--story-ambient) * 0.3));
-            transition: opacity 0.16s linear;
+            opacity: 0.88;
         }
 
         @media (max-width: 1024px) {
@@ -1414,7 +1399,7 @@
             
             <div class="hero-card section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
 
-                    <h2 class="titleglass text-2xl md:text-4xl lg:text-5xl text-white leading-[0.95] uppercase tracking-tight drop-shadow-2xl">
+                    <h2 class="titleglass text-2xl md:text-4xl lg:text-5xl leading-[0.95] uppercase tracking-tight">
                         SMART <br class="hidden md:block"> 
                 </h2>
 
@@ -1729,7 +1714,6 @@ function initStoryPanelTilt() {
     document.querySelectorAll('.story-panel').forEach((panel) => {
         const FAST_T = [
             'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
-            'filter 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
             'transform 0.07s linear',
             'box-shadow 0.10s ease',
             'border-color 0.10s ease'
@@ -1737,20 +1721,22 @@ function initStoryPanelTilt() {
         const SLOW_T = [
             'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
             'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)',
-            'filter 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
             'box-shadow 0.45s ease',
             'border-color 0.35s ease'
         ].join(', ');
 
+        let tiltRaf = null;
         panel.addEventListener('mousemove', (e) => {
-            const rect = panel.getBoundingClientRect();
-            const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
-            const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
-            panel.style.setProperty('--card-rx', `${(-dy * MAX_TILT * 0.62).toFixed(2)}deg`);
-            panel.style.setProperty('--card-ry', `${( dx * MAX_TILT).toFixed(2)}deg`);
-            panel.style.setProperty('--card-mx', `${((dx + 1) / 2 * 100).toFixed(1)}%`);
-            panel.style.setProperty('--card-my', `${((dy + 1) / 2 * 100).toFixed(1)}%`);
-            panel.style.transition = FAST_T;
+            if (tiltRaf) return;
+            tiltRaf = window.requestAnimationFrame(() => {
+                tiltRaf = null;
+                const rect = panel.getBoundingClientRect();
+                const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+                const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+                panel.style.setProperty('--card-rx', `${(-dy * MAX_TILT * 0.62).toFixed(2)}deg`);
+                panel.style.setProperty('--card-ry', `${( dx * MAX_TILT).toFixed(2)}deg`);
+                panel.style.transition = FAST_T;
+            });
         }, { passive: true });
 
         panel.addEventListener('mouseleave', () => {
@@ -1764,23 +1750,7 @@ function initStoryPanelTilt() {
 }
 
 function updateStoryScrollAnimation() {
-    const storySection = document.querySelector('.story-section');
-    if (!storySection) return;
-
-    const panels = storySection.querySelectorAll('.story-panel');
-    if (!panels.length) return;
-
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const sectionRect = storySection.getBoundingClientRect();
-    const sectionProgress = Math.max(0, Math.min(1, (viewportHeight - sectionRect.top) / (viewportHeight + sectionRect.height)));
-
-    storySection.style.setProperty('--story-ambient', sectionProgress.toFixed(3));
-
-    panels.forEach((panel) => {
-        const rect = panel.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
-        panel.style.setProperty('--panel-scroll', progress.toFixed(3));
-    });
+    // Scroll-driven CSS var updates removed — all effects now static for smooth 60fps.
 }
 
 function goToSection(nextIndex) {
@@ -1847,16 +1817,21 @@ function handleTouchEnd(event) {
     goToSection(delta > 0 ? activeSectionIndex + 1 : activeSectionIndex - 1);
 }
 
+let storyRafId = null;
 function syncActiveSectionOnScroll() {
     if (!snapContainer || scrollLocked) return;
 
-    updateStoryScrollAnimation();
+    if (storyRafId) return;
+    storyRafId = window.requestAnimationFrame(() => {
+        storyRafId = null;
+        updateStoryScrollAnimation();
 
-    const nearestSection = getNearestSectionIndex();
-    if (nearestSection !== activeSectionIndex) {
-        activeSectionIndex = nearestSection;
-        setActiveSection(activeSectionIndex);
-    }
+        const nearestSection = getNearestSectionIndex();
+        if (nearestSection !== activeSectionIndex) {
+            activeSectionIndex = nearestSection;
+            setActiveSection(activeSectionIndex);
+        }
+    });
 }
 
 function initSnapNavigation() {

@@ -392,6 +392,37 @@
             pointer-events: none;
         }
 
+        .site-nav-mobile-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .site-nav-mobile-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 0.55rem 0.85rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #334155;
+            line-height: 1;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .site-nav-mobile-link:hover,
+        .site-nav-mobile-link:focus-visible {
+            color: #f97316;
+            background: #f8fafc;
+        }
+
+        .site-nav-mobile-link.is-active {
+            color: #f97316;
+            background: #fff7ed;
+            box-shadow: inset 0 -2px 0 rgba(249, 115, 22, 0.7);
+        }
+
         @keyframes siteNavCardFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-4px); }
@@ -489,7 +520,7 @@
             </a>
         </div>
 
-        <div>
+        <div class="hidden lg:block">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="text-gray-600 hover:text-orange-500">Logout</button>
@@ -507,38 +538,17 @@
                 </span>
             </summary>
 
-            <div class="site-nav-mobile-panel absolute inset-x-4 top-full mt-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:inset-x-6">
-                <div class="space-y-2">
-                    <a href="{{ route('program') }}" class="{{ request()->routeIs('program') || request()->routeIs('institusi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        Program
-                    </a>
-                    <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
-                        <a href="{{ route('institusi', ['jenis' => 'TVET']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(168,116,8,0.96)_0%,rgba(212,175,55,0.92)_60%,rgba(241,207,99,0.82)_100%)] px-4 py-4 text-white">
-                            <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
-                            <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">TVET</p>
-                            <p class="mt-1 text-xs leading-6 text-white/80">Laluan kemahiran teknikal dan praktikal.</p>
-                        </a>
-                        <a href="{{ route('institusi', ['jenis' => 'Diploma']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(162,28,175,0.96)_0%,rgba(217,70,239,0.92)_58%,rgba(192,132,252,0.84)_100%)] px-4 py-4 text-white">
-                            <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
-                            <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Diploma</p>
-                            <p class="mt-1 text-xs leading-6 text-white/80">Program akademik untuk kemajuan kerjaya.</p>
-                        </a>
-                        <a href="{{ route('institusi', ['jenis' => 'Sains Kesihatan']) }}" class="site-nav-mobile-program-card rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(2,132,199,0.96)_0%,rgba(14,165,233,0.92)_58%,rgba(103,232,249,0.84)_100%)] px-4 py-4 text-white">
-                            <span class="inline-flex rounded-full bg-white/18 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/85">Kategori</span>
-                            <p class="mt-4 text-lg font-semibold tracking-[-0.03em]">Sains Kesihatan</p>
-                            <p class="mt-1 text-xs leading-6 text-white/80">Fokus kepada latihan kesihatan dan klinikal.</p>
-                        </a>
-                    </div>
-                    <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        FAQ
-                    </a>
-                    <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
-                        Hubungi
-                    </a>
-                    <a href="/login" class="mt-3 flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
-                        <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-5 w-5 object-contain">
-                        Log Masuk
-                    </a>
+            <div class="site-nav-mobile-panel absolute inset-x-4 top-full mt-3 rounded-3xl border border-slate-200 bg-white p-3 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:inset-x-6">
+                <div class="site-nav-mobile-links">
+                    <a href="{{ route('dashboard') }}" class="site-nav-mobile-link {{ request()->routeIs('dashboard') ? 'is-active' : '' }}">Dashboard</a>
+                    <a href="{{ route('admin.programs') }}" class="site-nav-mobile-link {{ request()->routeIs('admin.programs') ? 'is-active' : '' }}">Program</a>
+                    <a href="{{ route('admin.institusis') }}" class="site-nav-mobile-link {{ request()->routeIs('admin.institusis') ? 'is-active' : '' }}">Institusi</a>
+                    <a href="{{ route('admin.messages') }}" class="site-nav-mobile-link {{ request()->routeIs('admin.messages') ? 'is-active' : '' }}">Pertanyaan</a>
+                    <a href="{{ route('admin.users') }}" class="site-nav-mobile-link {{ request()->routeIs('admin.users') ? 'is-active' : '' }}">Users</a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline-flex">
+                        @csrf
+                        <button type="submit" class="site-nav-mobile-link">Logout</button>
+                    </form>
                 </div>
             </div>
         </details>

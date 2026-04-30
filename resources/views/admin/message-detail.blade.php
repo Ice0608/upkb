@@ -12,25 +12,25 @@
 
 @include('layouts.navadmin')
 
-    <section class="max-w-4xl mx-auto px-6 py-10">
+    <section class="max-w-4xl mx-auto px-4 py-8 sm:px-6 sm:py-10">
         <div class="mb-8">
             <a href="{{ route('admin.messages') }}" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:text-blue-800 mb-4">
                 <i class="fas fa-arrow-left"></i>Kembali ke Senarai Mesej
             </a>
-            <h1 class="text-4xl font-bold text-slate-900">Detail Mesej</h1>
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900">Detail Mesej</h1>
         </div>
 
-        <div class="bg-white rounded-3xl shadow-lg border border-gray-200 p-8">
+        <div class="bg-white rounded-3xl shadow-lg border border-gray-200 p-5 sm:p-8">
             {{-- Header Info --}}
             <div class="grid md:grid-cols-2 gap-6 mb-8 pb-8 border-b border-gray-200">
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Nama Penuh</p>
-                    <p class="text-2xl font-bold text-slate-900">{{ $message->nama }}</p>
+                    <p class="text-xl sm:text-2xl font-bold text-slate-900 break-words">{{ $message->nama }}</p>
                 </div>
                 <div>
                     <p class="text-gray-600 text-sm mb-1">Emel</p>
-                    <a href="mailto:{{ $message->emel }}" class="text-2xl font-bold text-orange-600 hover:text-orange-700 flex items-center gap-2">
-                        <i class="fas fa-envelope"></i>{{ $message->emel }}
+                    <a href="mailto:{{ $message->emel }}" class="text-lg sm:text-2xl font-bold text-orange-600 hover:text-orange-700 flex items-center gap-2 break-all">
+                        <i class="fas fa-envelope text-base sm:text-xl"></i>{{ $message->emel }}
                     </a>
                 </div>
             </div>
@@ -39,14 +39,14 @@
             <div class="mb-8 pb-8 border-b border-gray-200">
                 <p class="text-gray-600 text-sm mb-2">Perkara</p>
                 <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-                    <p class="text-lg font-semibold text-blue-900">{{ $message->perkara }}</p>
+                    <p class="text-base sm:text-lg font-semibold text-blue-900 break-words">{{ $message->perkara }}</p>
                 </div>
             </div>
 
             {{-- Mesej Content --}}
             <div class="mb-8">
                 <p class="text-gray-600 text-sm mb-3">Mesej</p>
-                <div class="bg-gray-50 border border-gray-200 p-6 rounded-xl whitespace-pre-wrap text-gray-700 leading-relaxed">
+                <div class="bg-gray-50 border border-gray-200 p-4 sm:p-6 rounded-xl whitespace-pre-wrap text-sm sm:text-base text-gray-700 leading-relaxed">
                     {{ $message->mesej }}
                 </div>
             </div>
