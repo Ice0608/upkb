@@ -4,17 +4,6 @@
     <p>Tiada institusi ditemui untuk kursus ini berdasarkan pilihan anda.</p>
 </div>
 @else
-<div class="mb-6 flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-white/80 px-5 py-4 shadow-[0_18px_34px_rgba(15,23,42,0.05)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
-    <div>
-        <p class="pilihan-theme-accent text-xs font-semibold uppercase tracking-[0.28em]">Hasil Padanan</p>
-        <p class="mt-2 text-sm text-slate-500">{{ $semuaKursus->count() }} institusi menawarkan kursus ini mengikut pilihan semasa anda.</p>
-    </div>
-    <span class="pilihan-results-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold">
-        <i class="fas fa-school text-xs"></i>
-        Institusi bertauliah
-    </span>
-</div>
-
 <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
     @foreach($semuaKursus as $kursus)
     <article class="course-result-card rounded-3xl flex flex-col h-full">

@@ -10,14 +10,14 @@
     @include('components.dark-mode-init')
     <style>
         .institusi-info-page--tvet {
-            --institusi-info-50: #fffbea;
-            --institusi-info-100: #fef3c7;
-            --institusi-info-500: #d4af37;
-            --institusi-info-600: #b88912;
-            --institusi-info-700: #8a6a08;
+            --institusi-info-50: #fff2ec;
+            --institusi-info-100: #ffe0cc;
+            --institusi-info-500: #FF5100;
+            --institusi-info-600: #CC4100;
+            --institusi-info-700: #993100;
             background:
                 url('/images/TVET-LIGHT.jpg'),
-                radial-gradient(circle at 8% 12%, rgba(241, 207, 99, 0.18), transparent 24%),
+                radial-gradient(circle at 8% 12%, rgba(255, 81, 0, 0.18), transparent 24%),
                 radial-gradient(circle at 90% 18%, rgba(59, 130, 246, 0.08), transparent 24%),
                 linear-gradient(180deg, rgba(15, 23, 42, 0.18) 0%, rgba(30, 41, 59, 0.2) 44%, rgba(15, 23, 42, 0.22) 100%);
             background-size: cover;
@@ -246,7 +246,7 @@
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
                             <td class="px-4 py-3 text-gray-600 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-kuota' : 'text-orange-600' }}">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3">
-                                <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->kod_institusi, 'kod_kursus' => $kursus->kod_kursus]) }}" class="inline-flex items-center gap-2 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-link' : 'text-blue-600 hover:text-blue-800' }}">Lihat detail</a>
+                                <a href="{{ route('pelajar.infokursus', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}" class="inline-flex items-center gap-2 font-semibold {{ in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true) ? 'institusi-info-link' : 'text-blue-600 hover:text-blue-800' }}">Lihat detail</a>
                             </td>
                         </tr>
                         @endforeach

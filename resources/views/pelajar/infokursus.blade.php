@@ -38,21 +38,21 @@
 
         .kursus-detail-page--tvet,
         .kursus-detail-shell--tvet {
-            --detail-accent-50: #fffbea;
-            --detail-accent-100: #fef3c7;
-            --detail-accent-500: #d4af37;
-            --detail-accent-600: #b88912;
-            --detail-accent-700: #8a6a08;
-            --detail-accent-rgb: 212, 175, 55;
-            --detail-accent-rgb-soft: 241, 207, 99;
-            --detail-gradient-start: #f1cf63;
-            --detail-gradient-end: #d4af37;
-            --detail-hero-soft-text: rgba(255, 248, 214, 0.92);
-            --detail-tab-soft: rgba(255, 251, 235, 0.94);
-            --detail-tab-active: linear-gradient(135deg, rgba(255, 251, 235, 0.98), rgba(254, 243, 199, 0.88));
-            --detail-card-border: rgba(212, 175, 55, 0.16);
-            --detail-card-bg: rgba(255, 251, 235, 0.8);
-            --detail-card-strong-bg: rgba(254, 243, 199, 0.88);
+            --detail-accent-50: #fff2ec;
+            --detail-accent-100: #ffe0cc;
+            --detail-accent-500: #FF5100;
+            --detail-accent-600: #CC4100;
+            --detail-accent-700: #993100;
+            --detail-accent-rgb: 255, 81, 0;
+            --detail-accent-rgb-soft: 255, 130, 60;
+            --detail-gradient-start: #ff7a38;
+            --detail-gradient-end: #FF5100;
+            --detail-hero-soft-text: rgba(255, 220, 200, 0.92);
+            --detail-tab-soft: rgba(255, 242, 236, 0.94);
+            --detail-tab-active: linear-gradient(135deg, rgba(255, 242, 236, 0.98), rgba(255, 220, 200, 0.88));
+            --detail-card-border: rgba(255, 81, 0, 0.16);
+            --detail-card-bg: rgba(255, 242, 236, 0.8);
+            --detail-card-strong-bg: rgba(255, 220, 200, 0.88);
         }
 
         .kursus-detail-page--diploma,
@@ -233,16 +233,16 @@
 
         /* ── TVET theme override for Daftar CTA ── */
         .kursus-detail-page--tvet .kd-cta-daftar {
-            background: #3d2200;
-            box-shadow: 0 0 0 3px rgba(184,137,18,0.38), 0 8px 28px rgba(61,34,0,0.42);
+            background: #7a2400;
+            box-shadow: 0 0 0 3px rgba(255,81,0,0.38), 0 8px 28px rgba(122,36,0,0.42);
         }
         .kursus-detail-page--tvet .kd-cta-daftar:hover {
-            background: #2c1800;
-            box-shadow: 0 0 0 5px rgba(184,137,18,0.25), 0 16px 40px rgba(61,34,0,0.52);
+            background: #5c1a00;
+            box-shadow: 0 0 0 5px rgba(255,81,0,0.25), 0 16px 40px rgba(122,36,0,0.52);
         }
         @keyframes kdPulseTvet {
-            0%, 100% { box-shadow: 0 0 0 3px rgba(184,137,18,0.38), 0 8px 28px rgba(61,34,0,0.42); }
-            50% { box-shadow: 0 0 0 9px rgba(184,137,18,0.15), 0 12px 36px rgba(61,34,0,0.52); }
+            0%, 100% { box-shadow: 0 0 0 3px rgba(255,81,0,0.38), 0 8px 28px rgba(122,36,0,0.42); }
+            50% { box-shadow: 0 0 0 9px rgba(255,81,0,0.15), 0 12px 36px rgba(122,36,0,0.52); }
         }
         .kursus-detail-page--tvet .kd-cta-daftar { animation-name: kdPulseTvet; }
 
@@ -497,12 +497,12 @@
             });
 
             const tabUrls = {
-                maklumat: "{{ route('pelajar.tab.maklumat', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                syarat: "{{ route('pelajar.tab.syarat', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                silibus: "{{ route('pelajar.tab.silibus', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                kerjaya: "{{ route('pelajar.tab.kerjaya', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                yuran: "{{ route('pelajar.tab.yuran', ['pelajar' => $pelajar->id, 'kod_kursus' => $kursus->kod_kursus]) }}",
-                galeri: "{{ route('pelajar.tab.galeri', ['pelajar' => $pelajar->id, 'kod_institusi' => $kursus->kod_institusi]) }}"
+                maklumat: "{{ route('pelajar.tab.maklumat', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                syarat: "{{ route('pelajar.tab.syarat', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                silibus: "{{ route('pelajar.tab.silibus', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                kerjaya: "{{ route('pelajar.tab.kerjaya', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                yuran: "{{ route('pelajar.tab.yuran', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
+                galeri: "{{ route('pelajar.tab.galeri', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}"
             };
 
             fetch(tabUrls[tab], {
@@ -528,4 +528,3 @@
 
 </body>
 </html>
-

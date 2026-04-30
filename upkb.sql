@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2026 at 03:10 AM
+-- Generation Time: Apr 24, 2026 at 10:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -239,7 +239,10 @@ INSERT INTO `galeris` (`id`, `kod_institusi`, `kod_kursus`, `imej`, `penerangan`
 (113, '01', NULL, 'images/galeri/01-1775700584.jpeg', 'SURAU', '2026-04-08 18:09:44', '2026-04-08 18:09:44'),
 (114, '01', NULL, 'images/galeri/01-1775700608.jpeg', 'TRANSPORT', '2026-04-08 18:10:08', '2026-04-08 18:10:08'),
 (115, '01', NULL, 'images/galeri/01-1775700620.jpeg', 'TRANSPORT', '2026-04-08 18:10:20', '2026-04-08 18:10:20'),
-(116, '01', NULL, 'images/galeri/01-1775700630.jpeg', 'TRANSPORT', '2026-04-08 18:10:30', '2026-04-08 18:10:30');
+(116, '01', NULL, 'images/galeri/01-1775700630.jpeg', 'TRANSPORT', '2026-04-08 18:10:30', '2026-04-08 18:10:30'),
+(121, 'C-21-G', 'P854-009-4:2020S', 'storage/galeri/xHojfgKIU14b8DkuoHsNgIfqCCl5sDTNqQiusvLB.jpg', NULL, '2026-04-22 21:06:29', '2026-04-22 21:06:29'),
+(122, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'storage/galeri/Xf5H42qIR8SfhIya9R3VFfk6IgBmGa2MsmnYWLqA.jpg', NULL, '2026-04-22 21:21:40', '2026-04-22 21:21:40'),
+(123, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'storage/galeri/v8UJsOXfmQOc1PCeK1a6fpN3gb8VWG3M6W2oNwxL.jpg', NULL, '2026-04-22 21:22:33', '2026-04-22 21:22:33');
 
 -- --------------------------------------------------------
 
@@ -536,7 +539,7 @@ INSERT INTO `messages` (`id`, `nama`, `emel`, `perkara`, `mesej`, `comment`, `cr
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -585,7 +588,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (44, '2026_04_13_070352_add_new_fields_to_pelajar_table', 20),
 (45, '2026_04_17_000001_trim_course_relation_codes', 21),
 (46, '2026_04_20_000000_add_event_id_to_pelajar_table', 21),
-(47, '2026_04_20_000001_add_event_id_to_pelajar_table', 22);
+(47, '2026_04_20_000001_add_event_id_to_pelajar_table', 22),
+(48, '2026_04_23_fix_galeris_id_autoincrement', 23);
 
 -- --------------------------------------------------------
 
@@ -647,9 +651,9 @@ CREATE TABLE `pelajar` (
 --
 
 INSERT INTO `pelajar` (`id`, `noreff`, `program`, `status_perkahwinan`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`, `event_id`) VALUES
-(1, NULL, NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-04-13 16:14:26', NULL),
+(1, NULL, NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', NULL, NULL, 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-04-13 16:14:26', 1),
 (2, 'Mirul', 'TVET', NULL, '2026-04-20', 'SHAHRUL IRFAN BIN SAFARIN', '060803140221', 4, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15 BLOK D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'PUCHONG', 'Selangor', '47180', 'C-21-G', 'P854-009-4:2020S', 'SAFARIN BIN RAMLI', '123456789001', '0122106612', 'SECURITY GUARD', '1500', 'SITI JULIEANA BINTI ADAN', '09876543221', '0132106613', 'GURU KAFA', '1500', 3, NULL, NULL, NULL, '2026-04-19 18:33:51', '2026-04-22 16:11:19', 4),
-(3, NULL, NULL, NULL, '2026-04-22', 'Test Student 2', '900101010102', NULL, '0123456788', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2026-04-21 23:22:33', '2026-04-21 23:22:33', NULL),
+(3, NULL, NULL, NULL, '2026-04-22', 'Test Student 2', '900101010102', NULL, '0123456788', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2026-04-21 23:22:33', '2026-04-21 23:22:33', 1),
 (4, NULL, NULL, NULL, '2026-04-22', 'Event1 Student 2', '900101010104', NULL, '0123456791', NULL, NULL, NULL, NULL, NULL, NULL, 'C-21-G', 'P854-009-4:2020S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2026-04-21 23:39:09', '2026-04-21 23:43:05', 1);
 
 -- --------------------------------------------------------
@@ -680,7 +684,7 @@ CREATE TABLE `pembayaran` (
 INSERT INTO `pembayaran` (`id`, `ic_pelajar`, `username`, `kaedah_pembayaran`, `jumlah_bayaran`, `bayaran_semasa`, `status`, `resit`, `tarikh_pembayaran`, `masa_pembayaran`, `created_at`, `updated_at`) VALUES
 (1, '060803140221', 'Staff Member', 'Manual', 0.00, 0.00, 'Belum Bayar', NULL, '2026-04-20', '08:20:37', '2026-04-20 00:20:37', '2026-04-20 00:20:45'),
 (2, '900101010104', 'pelajar', 'qr', 50.00, 50.00, 'pending', NULL, '2026-04-22', '07:43:58', '2026-04-21 23:43:58', '2026-04-21 23:43:58'),
-(3, '060803140221', 'Staff Member', 'qr', 25.50, 25.50, 'pending', 'resit/FSKy9gicYbSnqbTR4eQZwhWMWjRnV5gV8ToHDjE2.docx', '2026-04-23', '00:15:30', '2026-04-22 16:15:30', '2026-04-22 16:23:18');
+(3, '060803140221', 'Staff Member', 'qr', 50.00, 50.00, 'pending', 'resit/FSKy9gicYbSnqbTR4eQZwhWMWjRnV5gV8ToHDjE2.docx', '2026-04-23', '00:15:30', '2026-04-22 16:15:30', '2026-04-23 23:07:31');
 
 -- --------------------------------------------------------
 
@@ -726,9 +730,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('ii6kSl9BJyHNt9lpv7b77SLCiazdMWSlTIIrtfwa', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.116.0 Chrome/142.0.7444.265 Electron/39.8.7 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidWxWaWxsVk9FUWl5OHp1cjZKZ0FVdm94Ym9ub0xiTHV4cjl6YUNNdiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wZWxhamFyL3NlbmFyYWluYW1hIjtzOjU6InJvdXRlIjtzOjE5OiJwZWxhamFyLnNlbmFyYWluYW1hIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1776902111),
-('oDWzFRdm19BfNGeDjn1H6HSbtUpYKHN9VzmfHDFH', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.116.0 Chrome/142.0.7444.265 Electron/39.8.7 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUkZUYXdxZ1NPZnprZU9IdTVEZnZIY0hrU2RtSFFIQzJuWTRXZnZMRiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluIjtzOjU6InJvdXRlIjtzOjEwOiJzdGFmZi5tYWluIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1776903851),
-('LwgfpPluk8Q2WVrR99Cml9i0yePJpP9VpbsrmzmX', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicndOZWcxeGlLMmkwMk5NRzR0VUtURWpIczg4VVBZdVhnNzlJb0tHOCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1776906591);
+('KJZ46FD8s4rs7A1MDI8MEzlqa3GBzv9znejePAie', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.116.0 Chrome/142.0.7444.265 Electron/39.8.7 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSUhNdVdvVzZyc0g1M05Ta21MVnpoS1FBbEtjM3k4R0JkOXFscFIzVyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1777017530),
+('vFmoGBS5h14M7tOUOJY96GjDfeyiimNOUb67fqWw', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNWhjWFVabFJXWng2dDg5MmdwOHNsRDBoSzM0S0ZlYUZiaFlodnB3ZiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wZWxhamFyL3BlbWJheWFyYW4vMiI7czo1OiJyb3V0ZSI7czoxODoicGVsYWphci5wZW1iYXlhcmFuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1777017529);
 
 -- --------------------------------------------------------
 
@@ -1208,9 +1211,117 @@ ALTER TABLE `cache_locks`
   ADD KEY `cache_locks_expiration_index` (`expiration`);
 
 --
+-- Indexes for table `elauns`
+--
+ALTER TABLE `elauns`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `galeris`
+--
+ALTER TABLE `galeris`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `institusis`
+--
+ALTER TABLE `institusis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kerjayas`
+--
+ALTER TABLE `kerjayas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kursuses`
+--
+ALTER TABLE `kursuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pelajar`
+--
+ALTER TABLE `pelajar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `programs`
+--
+ALTER TABLE `programs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `silibuses`
+--
+ALTER TABLE `silibuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `syarat_kelayakans`
+--
+ALTER TABLE `syarat_kelayakans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_asramas`
+--
+ALTER TABLE `yuran_asramas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_pendaftarans`
+--
+ALTER TABLE `yuran_pendaftarans`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_pengajians`
+--
+ALTER TABLE `yuran_pengajians`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `yuran_pilihans`
+--
+ALTER TABLE `yuran_pilihans`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1222,6 +1333,18 @@ ALTER TABLE `event`
 --
 ALTER TABLE `event`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `galeris`
+--
+ALTER TABLE `galeris`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

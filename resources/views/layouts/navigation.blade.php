@@ -346,7 +346,7 @@
 
         .site-nav-program-card-tvet {
             background-image:
-                linear-gradient(145deg, rgba(168, 116, 8, 0.88), rgba(212, 175, 55, 0.74), rgba(241, 207, 99, 0.56)),
+                linear-gradient(145deg, rgba(139, 34, 0, 0.88), rgba(255, 81, 0, 0.74), rgba(255, 122, 56, 0.56)),
                 url('{{ asset('images/tvet-vg2.jpeg') }}');
         }
 

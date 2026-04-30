@@ -12,9 +12,9 @@
 
         .footer-ocean--tvet {
             background:
-                radial-gradient(circle at 12% 18%, rgba(251, 146, 60, 0.18), transparent 22%),
-                radial-gradient(circle at 88% 14%, rgba(245, 158, 11, 0.18), transparent 24%),
-                radial-gradient(circle at 50% -10%, rgba(255, 237, 213, 0.08), transparent 30%),
+                radial-gradient(circle at 12% 18%, rgba(245, 125, 39, 0.18), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(255, 130, 60, 0.18), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(255, 220, 200, 0.08), transparent 30%),
                 linear-gradient(180deg, #130d0a 0%, #1d130e 36%, #120c09 100%);
         }
 
@@ -60,6 +60,24 @@
             pointer-events: none;
         }
 
+        .footer-ocean--tvet::before {
+            background:
+                linear-gradient(180deg, rgba(255, 220, 200, 0.04), rgba(28, 25, 23, 0.22)),
+                repeating-linear-gradient(90deg, rgba(255, 130, 60, 0.035) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(180deg, rgba(255, 130, 60, 0.02) 0 1px, transparent 1px 28px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+            pointer-events: none;
+        }
+
+        .footer-ocean--tvet::after {
+            background:
+                radial-gradient(circle at 20% 26%, rgba(245, 125, 39, 0.12), transparent 18%),
+                radial-gradient(circle at 78% 22%, rgba(255, 130, 60, 0.12), transparent 20%),
+                radial-gradient(circle at 50% 8%, rgba(255, 220, 200, 0.08), transparent 22%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
         .footer-particle-canvas {
             position: absolute;
             inset: 0;
@@ -97,6 +115,18 @@
             height: 13rem;
             background: radial-gradient(circle, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0));
             animation: footerOrbFloatReverse 18s ease-in-out infinite;
+        }
+
+        .footer-ocean--tvet .footer-glow-orb--left {
+            background: radial-gradient(circle, rgba(245, 125, 39, 0.28), rgba(245, 125, 39, 0));
+        }
+
+        .footer-ocean--tvet .footer-glow-orb--right {
+            background: radial-gradient(circle, rgba(255, 130, 60, 0.25), rgba(255, 130, 60, 0));
+        }
+
+        .footer-ocean--tvet a:hover {
+            color: #ff9d6e;
         }
 
         .footer-content {
@@ -143,6 +173,21 @@
             outline: 2px solid rgba(251, 146, 60, 0.75);
             outline-offset: 6px;
             border-radius: 0.75rem;
+        }
+
+        .footer-ocean--tvet .footer-brand-link:hover .footer-brand-logo,
+        .footer-ocean--tvet .footer-brand-link:focus-visible .footer-brand-logo {
+            filter: drop-shadow(0 10px 16px rgba(245, 125, 39, 0.28));
+        }
+
+        .footer-ocean--tvet .footer-brand-link:hover .footer-brand-title,
+        .footer-ocean--tvet .footer-brand-link:focus-visible .footer-brand-title {
+            color: #ff9d6e;
+            text-shadow: 0 0 18px rgba(245, 125, 39, 0.18);
+        }
+
+        .footer-ocean--tvet .footer-brand-link:focus-visible {
+            outline: 2px solid rgba(245, 125, 39, 0.75);
         }
 
         @keyframes footerOrbFloat {
@@ -203,9 +248,11 @@
         );
     }
 
-    $footerThemeClass = 'footer-ocean--tvet';
+    $footerThemeClass = '';
 
-    if ($footerProgramType === 'diploma') {
+    if ($footerProgramType === 'tvet') {
+        $footerThemeClass = 'footer-ocean--tvet';
+    } elseif ($footerProgramType === 'diploma') {
         $footerThemeClass = 'footer-ocean--diploma';
     } elseif ($footerProgramType === 'sains kesihatan') {
         $footerThemeClass = 'footer-ocean--sains-kesihatan';
@@ -324,10 +371,31 @@
                     ctx.clearRect(0, 0, width, height);
                     shimmerOffset += 0.008;
 
+                    const isTvetTheme = footer.classList.contains('footer-ocean--tvet');
+                    const footerPalette = isTvetTheme
+                        ? {
+                            meshStart: 'rgba(245, 125, 39, 0.1)',
+                            meshMid: 'rgba(255, 130, 60, 0.04)',
+                            meshEnd: 'rgba(204, 65, 0, 0.08)',
+                            edgeMid: '245, 125, 39',
+                            edgeEnd: '255, 130, 60',
+                            halo: '245, 125, 39',
+                            node: '255, 224, 208',
+                        }
+                        : {
+                            meshStart: 'rgba(251, 191, 36, 0.08)',
+                            meshMid: 'rgba(249, 115, 22, 0.025)',
+                            meshEnd: 'rgba(234, 88, 12, 0.06)',
+                            edgeMid: '251, 191, 36',
+                            edgeEnd: '249, 115, 22',
+                            halo: '251, 191, 36',
+                            node: '255, 237, 213',
+                        };
+
                     const meshGradient = ctx.createLinearGradient(0, 0, width, height);
-                    meshGradient.addColorStop(0, 'rgba(251, 191, 36, 0.08)');
-                    meshGradient.addColorStop(0.5, 'rgba(249, 115, 22, 0.025)');
-                    meshGradient.addColorStop(1, 'rgba(234, 88, 12, 0.06)');
+                    meshGradient.addColorStop(0, footerPalette.meshStart);
+                    meshGradient.addColorStop(0.5, footerPalette.meshMid);
+                    meshGradient.addColorStop(1, footerPalette.meshEnd);
                     ctx.fillStyle = meshGradient;
                     ctx.fillRect(0, 0, width, height);
 
@@ -355,8 +423,8 @@
                                 const midY = (p.y + q.y) / 2;
                                 const edgeGradient = ctx.createLinearGradient(p.x, p.y, q.x, q.y);
                                 edgeGradient.addColorStop(0, `rgba(255, 247, 237, ${alpha * 0.95})`);
-                                edgeGradient.addColorStop(0.5, `rgba(251, 191, 36, ${alpha * (0.5 + pulseStrength * 0.35)})`);
-                                edgeGradient.addColorStop(1, `rgba(249, 115, 22, ${alpha * 0.82})`);
+                                edgeGradient.addColorStop(0.5, `rgba(${footerPalette.edgeMid}, ${alpha * (0.5 + pulseStrength * 0.35)})`);
+                                edgeGradient.addColorStop(1, `rgba(${footerPalette.edgeEnd}, ${alpha * 0.82})`);
 
                                 ctx.strokeStyle = edgeGradient;
                                 ctx.lineWidth = distance < 72 ? 1.2 : 0.85;
@@ -374,15 +442,15 @@
 
                         const haloGradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, nodeRadius * 10);
                         haloGradient.addColorStop(0, `rgba(255, 255, 255, ${0.2 + pulseStrength * 0.14})`);
-                        haloGradient.addColorStop(0.3, `rgba(251, 191, 36, ${0.24 + pulseStrength * 0.14})`);
-                        haloGradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
+                        haloGradient.addColorStop(0.3, `rgba(${footerPalette.halo}, ${0.24 + pulseStrength * 0.14})`);
+                        haloGradient.addColorStop(1, `rgba(${footerPalette.halo}, 0)`);
 
                         ctx.fillStyle = haloGradient;
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, nodeRadius * 10, 0, Math.PI * 2);
                         ctx.fill();
 
-                        ctx.fillStyle = `rgba(255, 237, 213, ${0.72 + pulseStrength * 0.22})`;
+                        ctx.fillStyle = `rgba(${footerPalette.node}, ${0.72 + pulseStrength * 0.22})`;
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, nodeRadius, 0, Math.PI * 2);
                         ctx.fill();

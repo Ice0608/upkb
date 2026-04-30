@@ -132,6 +132,16 @@
                     <div id="qrcode" class="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl border border-slate-300 bg-white shadow-sm"></div>
                 </a>
                 <p class="mt-4 text-sm leading-6 text-slate-600">QR ini membawa ke borang maklumat diri (BMD). Lengkapkan data pelajar untuk mencatat kehadiran dan cetak borang.</p>
+                <div class="mt-4 flex flex-wrap gap-3">
+                    <button
+                        type="button"
+                        onclick="downloadBmdQrPdf()"
+                        class="inline-flex items-center rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+                        {{ $selectedEvent?->id ? '' : 'disabled' }}
+                    >
+                        Muat Turun PDF QR
+                    </button>
+                </div>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const qrContainer = document.getElementById('qrcode');
@@ -316,6 +326,160 @@
             iframe.contentWindow.print();
             document.body.removeChild(iframe);
         }, 250);
+    }
+
+    function downloadBmdQrPdf() {
+        const qrContainer = document.getElementById('qrcode');
+        const qrCanvas = qrContainer ? qrContainer.querySelector('canvas') : null;
+        const qrImage = qrContainer ? qrContainer.querySelector('img') : null;
+        const qrSrc = qrCanvas ? qrCanvas.toDataURL('image/png') : qrImage ? qrImage.src : '';
+        const eventName = @json($selectedEvent?->nama_event ?? 'Borang Maklumat Diri');
+        const eventDate = @json($selectedEvent?->tarikh_event?->format('d/m/Y') ?? '-');
+        const eventLocation = @json($selectedEvent?->lokasi ?? '-');
+        const bmdUrl = @json($selectedEvent?->id ? route('bmd', ['event_id' => $selectedEvent->id]) : '');
+
+        if (!qrSrc || !bmdUrl) {
+            alert('Sila pilih event terlebih dahulu untuk memuat turun QR BMD.');
+            return;
+        }
+
+        const printWindow = window.open('', '_blank', 'width=900,height=1100');
+        if (!printWindow) {
+            alert('Popup disekat oleh browser. Benarkan popup untuk mencetak QR.');
+            return;
+        }
+
+        printWindow.document.write(`<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR BMD - ${eventName}</title>
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 14mm;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #0f172a;
+            background: #ffffff;
+        }
+
+        .sheet {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12mm 0;
+        }
+
+        .poster {
+            width: 100%;
+            max-width: 178mm;
+            border: 2px solid #f97316;
+            border-radius: 24px;
+            padding: 14mm;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #f97316;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            margin-top: 10px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .qr-box {
+            margin: 14mm auto 10mm;
+            width: 78mm;
+            height: 78mm;
+            border: 1px solid #cbd5e1;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8mm;
+            background: #fff;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .cta {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #475569;
+            margin: 0 auto;
+            max-width: 120mm;
+        }
+
+        .url {
+            margin-top: 10mm;
+            padding: 4mm 5mm;
+            border-radius: 16px;
+            background: #f8fafc;
+            font-size: 12px;
+            color: #334155;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="sheet">
+        <div class="poster">
+            <div class="eyebrow">QR BMD</div>
+            <h1>${eventName}</h1>
+            <div class="meta">
+                Tarikh: ${eventDate}<br>
+                Lokasi: ${eventLocation}
+            </div>
+            <div class="qr-box">
+                <img src="${qrSrc}" alt="QR BMD">
+            </div>
+            <div class="cta">Imbas Untuk Isi Borang Maklumat Diri</div>
+            <p class="desc">Sila imbas kod QR ini menggunakan telefon anda untuk mengisi borang pendaftaran BMD sebelum proses seterusnya di kaunter.</p>
+            <div class="url">${bmdUrl}</div>
+        </div>
+    </div>
+</body>
+</html>`);
+        printWindow.document.close();
+
+        setTimeout(() => {
+            printWindow.focus();
+            printWindow.print();
+        }, 300);
     }
 </script>
 
