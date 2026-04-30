@@ -1146,9 +1146,9 @@
                 display: none;
                 position: fixed;
                 inset: 0;
-                background: rgba(0,0,0,0.55);
-                backdrop-filter: blur(3px);
-                -webkit-backdrop-filter: blur(3px);
+                background: transparent;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
                 z-index: 490;
                 opacity: 0;
                 transition: opacity 0.25s ease;
@@ -1157,8 +1157,17 @@
             .pg-info-tip {
                 width: min(340px, calc(100vw - 28px)) !important;
                 max-height: min(72vh, 520px);
+                transform: translate(-50%, -50%) !important;
+                filter: none !important;
+                backdrop-filter: blur(8px) saturate(115%) !important;
+                -webkit-backdrop-filter: blur(8px) saturate(115%) !important;
+                transition: opacity 0.2s ease !important;
                 overscroll-behavior: contain;
                 -webkit-overflow-scrolling: touch;
+            }
+            .pg-info-tip.pg-info-active {
+                transform: translate(-50%, -50%) !important;
+                filter: none !important;
             }
             .pg-info-tip::-webkit-scrollbar { width: 3px; }
             .pg-info-tip::-webkit-scrollbar-track { background: transparent; }
