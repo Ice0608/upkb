@@ -789,8 +789,14 @@
 
         @media (max-width: 640px) {
             .institusi-slider-row {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
+                padding-left: 7vw;
+                padding-right: 7vw;
+            }
+
+            .institusi-slider-card {
+                flex-basis: min(86vw, 21rem);
+                width: min(86vw, 21rem);
+                scroll-snap-align: center;
             }
 
             .institusi-slider-nav {
@@ -1070,7 +1076,7 @@
                 $kursusRingkas = $institusi->relationLoaded('kursuses') ? $institusi->kursuses->take(3) : collect();
             @endphp
             <div class="grid gap-6 lg:grid-cols-5 items-stretch">
-                <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2">
+                <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2 mx-auto w-full max-w-[21rem] lg:max-w-none">
                     <a href="{{ route('institusi.show', $institusi->id) }}" class="group flex flex-col h-full text-current no-underline">
                         <div class="institusi-card-media">
                             <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
@@ -1107,7 +1113,7 @@
                     </a>
                 </article>
 
-                <aside class="institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3">
+                <aside class="institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3 hidden lg:block">
                     <h3 class="text-xl font-bold text-slate-900">Mengenai Institusi</h3>
                     <p class="mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai institusi ini akan dikemaskini.' }}</p>
 
