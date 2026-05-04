@@ -128,31 +128,16 @@
         .mercedes-container {
             overflow: visible;
             position: relative;
-            background:
-                linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.10) 100%);
+            background: transparent;
             border: 1px solid rgba(255,255,255,0.3);
             box-shadow:
                 0 28px 72px rgba(15, 23, 42, 0.16),
                 0 0 40px rgba(56, 189, 248, 0.08),
-                0 0 64px rgba(255, 166, 0, 0.18),
-                inset 0 0 40px 8px rgba(255,255,255,0.18),
-                0 1.5px 16px 0 rgba(255,255,255,0.10);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+                0 0 64px rgba(255, 166, 0, 0.18);
         }
 
         .mercedes-container::before {
-            content: "";
-            position: absolute;
-            inset: 12%;
-            border-radius: 999px;
-            background:
-                radial-gradient(circle, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 52%),
-                radial-gradient(circle at 50% 50%, rgba(255, 184, 28, 0.1), rgba(255, 184, 28, 0) 72%);
-            filter: blur(20px);
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 0;
+            display: none;
         }
 
         /* Glassmorphism segment backgrounds */
@@ -200,18 +185,7 @@
 
         /* Light reflection effect at the top */
         .mercedes-reflection {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70%;
-            height: 22%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.10) 80%, transparent 100%);
-            border-radius: 100% 100% 60% 60% / 100% 100% 40% 40%;
-            pointer-events: none;
-            z-index: 5;
-            filter: blur(1.5px);
-            opacity: 0.85;
+            display: none;
         }
 
         .segment-top-left-clip {
@@ -1260,7 +1234,7 @@
                 w-[280px] h-[280px] 
                 sm:w-[360px] sm:h-[360px] 
                 md:w-[520px] md:h-[520px] 
-                rounded-full border-[8px] sm:border-[10px] border-white/90">
+                rounded-full">
 
                 <div class="mercedes-reflection"></div>
                 @foreach($programs->take(3) as $index => $program)
@@ -1404,10 +1378,6 @@
                     </a>
                 @endforeach
 
-                {{-- Info Hub (? button, no tooltip inside) --}}
-                <div class="pg-sun-hub" id="pg-info-btn" tabindex="0" aria-label="Info program" aria-expanded="false">
-                    <span class="pg-sun-q">?</span>
-                </div>
             </div>
 
             {{-- Info Panel: outside wheel so it never overlaps the circle --}}
