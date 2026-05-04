@@ -252,6 +252,93 @@
             -webkit-line-clamp: 3;
         }
 
+        .institusi-results-slider {
+            position: relative;
+        }
+
+        .institusi-slider-nav {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1.2rem;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .institusi-slider-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(249, 115, 22, 0.28);
+            background: rgba(255, 255, 255, 0.96);
+            color: #f97316;
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
+            pointer-events: auto;
+        }
+
+        .institusi-slider-row {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0 7vw 2.8rem;
+        }
+
+        .institusi-slider-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .institusi-slider-track {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+        }
+
+        .institusi-slider-card {
+            flex: 0 0 min(86vw, 21rem);
+            width: min(86vw, 21rem);
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
+        }
+
+        @media (min-width: 768px) {
+            .institusi-slider-nav {
+                display: none;
+            }
+
+            .institusi-slider-row {
+                overflow: visible;
+                padding: 0;
+                scroll-snap-type: none;
+            }
+
+            .institusi-slider-track {
+                display: grid;
+                width: 100%;
+                gap: 1.5rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .institusi-slider-card {
+                width: 100%;
+                min-width: 0;
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .institusi-slider-track {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
         /* DARK MODE */
         html.dark .institusi-page {
             background:
@@ -436,7 +523,7 @@
                 $kursusRingkas = $institusi->relationLoaded('kursuses') ? $institusi->kursuses->take(3) : collect();
             @endphp
             <div class="grid gap-6 lg:grid-cols-5 items-stretch">
-                <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2">
+                <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2 mx-auto w-full max-w-[21rem] lg:max-w-none">
                     <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar, 'kod_institusi' => $institusi->kod_institusi]) }}" class="group flex flex-col h-full text-current no-underline">
                         <div class="institusi-card-media">
                             <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
@@ -473,7 +560,7 @@
                     </a>
                 </article>
 
-                <aside class="institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3">
+                <aside class="institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3 hidden lg:block">
                     <h3 class="text-xl font-bold text-slate-900">Mengenai Institusi</h3>
                     <p class="mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai institusi ini akan dikemaskini.' }}</p>
 
@@ -502,9 +589,19 @@
                 </aside>
             </div>
         @else
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch">
+            <div class="institusi-results-slider">
+                <div class="institusi-slider-nav" data-slider-nav>
+                    <button type="button" class="institusi-slider-button" data-slider-action="prev" aria-label="Institusi sebelumnya">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button type="button" class="institusi-slider-button" data-slider-action="next" aria-label="Institusi seterusnya">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="institusi-slider-row" data-institusi-slider>
+                    <div class="institusi-slider-track">
                 @foreach($institusis as $institusi)
-                <article class="institusi-card rounded-3xl flex flex-col h-full">
+                <article class="institusi-slider-card institusi-card rounded-3xl flex flex-col h-full">
                     <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar, 'kod_institusi' => $institusi->kod_institusi]) }}" class="group flex flex-col h-full text-current no-underline">
                         <div class="institusi-card-media">
                             <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
@@ -541,9 +638,57 @@
                     </a>
                 </article>
                 @endforeach
+                    </div>
+                </div>
             </div>
         @endif
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('[data-institusi-slider]').forEach((sliderRow) => {
+                const slider = sliderRow.closest('.institusi-results-slider');
+                const prevButton = slider?.querySelector('[data-slider-action="prev"]');
+                const nextButton = slider?.querySelector('[data-slider-action="next"]');
+                const nav = slider?.querySelector('[data-slider-nav]');
+
+                if (!slider || !prevButton || !nextButton || !nav) {
+                    return;
+                }
+
+                const getStepSize = () => {
+                    const firstCard = sliderRow.querySelector('.institusi-slider-card');
+                    if (!firstCard) {
+                        return sliderRow.clientWidth * 0.85;
+                    }
+
+                    const gap = parseFloat(window.getComputedStyle(sliderRow.querySelector('.institusi-slider-track')).gap || '0');
+                    return firstCard.getBoundingClientRect().width + gap;
+                };
+
+                const updateState = () => {
+                    const maxScroll = Math.max(0, sliderRow.scrollWidth - sliderRow.clientWidth);
+                    const hasOverflow = maxScroll > 8;
+                    nav.hidden = !hasOverflow || window.innerWidth >= 768;
+                    prevButton.disabled = sliderRow.scrollLeft <= 4;
+                    nextButton.disabled = sliderRow.scrollLeft >= maxScroll - 4;
+                };
+
+                const moveSlider = (direction) => {
+                    sliderRow.scrollBy({
+                        left: direction * getStepSize(),
+                        behavior: 'smooth',
+                    });
+                };
+
+                prevButton.addEventListener('click', () => moveSlider(-1));
+                nextButton.addEventListener('click', () => moveSlider(1));
+                sliderRow.addEventListener('scroll', updateState, { passive: true });
+                window.addEventListener('resize', updateState);
+                updateState();
+            });
+        });
+    </script>
 
     @include('components.social-float')
 

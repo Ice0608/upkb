@@ -920,8 +920,14 @@
 
         @media (max-width: 640px) {
             .institusi-slider-row {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
+                padding-left: 7vw;
+                padding-right: 7vw;
+            }
+
+            .institusi-slider-card {
+                flex-basis: min(86vw, 21rem);
+                width: min(86vw, 21rem);
+                scroll-snap-align: center;
             }
 
             .institusi-slider-nav {
@@ -1205,6 +1211,77 @@
         @if($institusis->isEmpty())
             <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">
                 Tiada institusi ditemui.
+            </div>
+        @elseif($institusis->count() === 1)
+            @php
+                $institusi = $institusis->first();
+                $kursusRingkas = $institusi->relationLoaded('kursuses') ? $institusi->kursuses->take(3) : collect();
+            @endphp
+            <div class="grid gap-6 lg:grid-cols-5 items-stretch">
+                <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2">
+                    <a href="{{ route('institusi.show', $institusi->id) }}" class="group flex flex-col h-full text-current no-underline">
+                        <div class="institusi-card-media">
+                            <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
+                            <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
+                                <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
+                                <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
+                                    <i class="fas fa-book-open mr-2 text-[0.7rem]"></i>{{ $institusi->kursuses_count }} kursus
+                                </span>
+                            </div>
+                            <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
+                                <div>
+                                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
+                                    <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
+                                </div>
+                                <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 sm:p-7 flex flex-col flex-1">
+                            <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
+                                <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
+                                <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
+                            </div>
+                            <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
+                            <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
+                                <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
+                                <span class="institusi-card-link inline-flex items-center gap-2 text-sm font-semibold">
+                                    Teroka
+                                    <i class="fas fa-arrow-right text-xs"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <aside class="institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3">
+                    <h3 class="text-xl font-bold text-slate-900">Mengenai Institusi</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai institusi ini akan dikemaskini.' }}</p>
+
+                    <div class="mt-6 border-t border-slate-200/80 pt-6">
+                        <h4 class="text-lg font-semibold text-slate-900">Beberapa Kursus Ditawarkan</h4>
+                        @if($kursusRingkas->isNotEmpty())
+                            <ul class="mt-3 space-y-3">
+                                @foreach($kursusRingkas as $kursus)
+                                    <li class="rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm border border-slate-200/70">{{ $kursus->nama_kursus }} ({{ $kursus->kod_kursus }})</li>
+                                @endforeach
+                            </ul>
+                            @if($institusi->kursuses_count > 3)
+                                <p class="mt-3 text-sm text-slate-600">+{{ $institusi->kursuses_count - 3 }} lagi kursus.</p>
+                            @endif
+                        @else
+                            <p class="mt-3 text-sm text-slate-600">Jumlah kursus tersedia: {{ $institusi->kursuses_count }} kursus.</p>
+                        @endif
+                    </div>
+
+                    <div class="mt-6 flex justify-end">
+                        <a href="{{ route('institusi.show', $institusi->id) }}" class="institusi-card-link inline-flex items-center gap-2 text-sm font-semibold">
+                            Terokai
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </aside>
             </div>
         @else
             <div class="institusi-results-slider">
