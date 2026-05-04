@@ -21,6 +21,23 @@
                 linear-gradient(135deg, #fff0d9 0%, #edf4ff 44%, #dfe9ff 100%);
         }
 
+        .institusi-page::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.018;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 150px 150px;
+            mix-blend-mode: soft-light;
+        }
+
+        .institusi-page > * {
+            position: relative;
+            z-index: 1;
+        }
+
         .institusi-page--tvet,
         .institusi-shell--tvet {
             --institusi-tvet-50: #fff2ec;
@@ -365,29 +382,53 @@
 
         .institusi-page--tvet .institusi-card-link {
             color: var(--institusi-tvet-500);
+            border-color: rgba(var(--institusi-tvet-rgb), 0.2);
+            box-shadow:
+                0 8px 18px rgba(var(--institusi-tvet-rgb), 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .institusi-page--diploma .institusi-card-link {
             color: var(--institusi-diploma-500);
+            border-color: rgba(var(--institusi-diploma-rgb), 0.2);
+            box-shadow:
+                0 8px 18px rgba(var(--institusi-diploma-rgb), 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .institusi-page--sains-kesihatan .institusi-card-link {
             color: var(--institusi-sains-500);
+            border-color: rgba(var(--institusi-sains-rgb), 0.2);
+            box-shadow:
+                0 8px 18px rgba(var(--institusi-sains-rgb), 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .institusi-page--tvet .institusi-card:hover .institusi-card-link,
         .institusi-page--tvet .institusi-card:focus-within .institusi-card-link {
             color: var(--institusi-tvet-700);
+            box-shadow:
+                0 10px 24px rgba(var(--institusi-tvet-rgb), 0.22),
+                0 0 18px rgba(var(--institusi-tvet-rgb), 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.84);
         }
 
         .institusi-page--diploma .institusi-card:hover .institusi-card-link,
         .institusi-page--diploma .institusi-card:focus-within .institusi-card-link {
             color: var(--institusi-diploma-700);
+            box-shadow:
+                0 10px 24px rgba(var(--institusi-diploma-rgb), 0.22),
+                0 0 18px rgba(var(--institusi-diploma-rgb), 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.84);
         }
 
         .institusi-page--sains-kesihatan .institusi-card:hover .institusi-card-link,
         .institusi-page--sains-kesihatan .institusi-card:focus-within .institusi-card-link {
             color: var(--institusi-sains-700);
+            box-shadow:
+                0 10px 24px rgba(var(--institusi-sains-rgb), 0.22),
+                0 0 18px rgba(var(--institusi-sains-rgb), 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.84);
         }
 
         .institusi-soft-text-tvet {
@@ -635,6 +676,18 @@
             width: clamp(18rem, 29vw, 20.75rem);
             scroll-snap-align: start;
             scroll-snap-stop: always;
+            transition: opacity 0.25s ease;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .institusi-slider-track:hover .institusi-slider-card {
+                opacity: 0.7;
+            }
+
+            .institusi-slider-track:hover .institusi-slider-card:hover,
+            .institusi-slider-track:hover .institusi-slider-card:focus-within {
+                opacity: 1;
+            }
         }
 
         .institusi-slider-card .institusi-card-media {
@@ -661,7 +714,7 @@
             border: 1px solid rgba(226, 232, 240, 0.92);
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
             box-shadow: 0 22px 48px rgba(15, 23, 42, 0.08);
-            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            transition: all 0.3s ease;
         }
 
         .institusi-card::before {
@@ -676,11 +729,45 @@
 
         .institusi-card:hover,
         .institusi-card:focus-within {
-            transform: translateY(-8px);
+            transform: translateY(-6px) scale(1.02);
             border-color: rgba(251, 146, 60, 0.38);
             box-shadow:
                 0 30px 64px rgba(15, 23, 42, 0.14),
                 0 0 32px rgba(251, 146, 60, 0.12);
+        }
+
+        .institusi-slider-card.institusi-reveal-ready {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .institusi-slider-card.institusi-reveal-ready.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes institusiTitleOpening {
+            0% {
+                opacity: 0.6;
+                transform: scale(0.98);
+                filter: blur(1.6px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .institusi-card-title {
+            will-change: transform, opacity, filter;
+            transform-origin: 50% 100%;
+        }
+
+        .institusi-card-title.is-title-opening {
+            animation: institusiTitleOpening 0.55s ease;
         }
 
         .institusi-card:hover::before,
@@ -694,12 +781,25 @@
             overflow: hidden;
         }
 
+        .institusi-card-media::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.75),
+                rgba(0, 0, 0, 0.2),
+                transparent
+            );
+            pointer-events: none;
+        }
+
         .institusi-card-media::after {
             content: "";
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.32)),
                 linear-gradient(130deg, rgba(249, 115, 22, 0.36), rgba(15, 23, 42, 0));
             pointer-events: none;
         }
@@ -755,14 +855,34 @@
         }
 
         .institusi-card-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            padding: 0.32rem 0.78rem;
+            background: rgba(255, 255, 255, 0.74);
             color: #f97316;
+            box-shadow:
+                0 8px 18px rgba(249, 115, 22, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .institusi-card:hover .institusi-card-link,
         .institusi-card:focus-within .institusi-card-link {
             transform: translateX(4px);
             color: #c2410c;
+            background: rgba(255, 247, 237, 0.95);
+            box-shadow:
+                0 10px 24px rgba(249, 115, 22, 0.22),
+                0 0 18px rgba(251, 146, 60, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.84);
         }
+
+            .institusi-card-body {
+                border-top: 1px solid rgba(0, 0, 0, 0.05);
+                background: linear-gradient(180deg, rgba(250, 250, 252, 0.6), rgba(255, 255, 255, 0.98));
+            }
 
         .institusi-clamp-2,
         .institusi-clamp-3 {
@@ -784,6 +904,17 @@
                 scroll-behavior: auto;
                 -webkit-mask-image: none;
                 mask-image: none;
+            }
+
+            .institusi-slider-card.institusi-reveal-ready,
+            .institusi-slider-card.institusi-reveal-ready.is-visible {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .institusi-card-title.is-title-opening {
+                animation: none;
             }
         }
 
@@ -855,6 +986,17 @@
             background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
             border-color: rgba(255,255,255,0.08);
         }
+            html.dark .institusi-card-body {
+                border-top-color: rgba(255, 255, 255, 0.06);
+                background: linear-gradient(180deg, rgba(20, 30, 50, 0.6), rgba(15, 23, 42, 0.98));
+            }
+            html.dark .institusi-card-link {
+                background: rgba(15, 23, 42, 0.78);
+                border-color: rgba(255, 255, 255, 0.12);
+                box-shadow:
+                    0 10px 22px rgba(0, 0, 0, 0.34),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
         html.dark .institusi-toolbar {
             background: rgba(15,23,42,0.94) !important;
             border-color: rgba(255,255,255,0.08);
@@ -1090,14 +1232,14 @@
                                         <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                                             <div>
                                                 <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
-                                                <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
+                                                <h2 class="institusi-card-title mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                             </div>
                                             <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
                                                 <i class="fas fa-arrow-right"></i>
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="p-6 sm:p-7 flex flex-col flex-1">
+                                    <div class="institusi-card-body p-6 sm:p-7 flex flex-col flex-1">
                                         <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
                                             <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
                                             <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
@@ -1122,6 +1264,76 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const revealCardsOnScroll = () => {
+                const cards = document.querySelectorAll('.institusi-slider-card');
+
+                if (!cards.length || !('IntersectionObserver' in window)) {
+                    return;
+                }
+
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+                if (prefersReducedMotion.matches) {
+                    return;
+                }
+
+                const observer = new IntersectionObserver((entries, cardObserver) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        entry.target.classList.add('is-visible');
+                        cardObserver.unobserve(entry.target);
+                    });
+                }, {
+                    threshold: 0.18,
+                    rootMargin: '0px 0px -8% 0px',
+                });
+
+                cards.forEach((card, index) => {
+                    card.classList.add('institusi-reveal-ready');
+                    card.style.transitionDelay = `${Math.min(index, 6) * 60}ms`;
+                    observer.observe(card);
+                });
+            };
+
+            const animateTitlesOnScroll = (scope = document) => {
+                const titles = Array.from(scope.querySelectorAll('.institusi-card-title'));
+
+                if (!titles.length || !('IntersectionObserver' in window)) {
+                    return;
+                }
+
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+                if (prefersReducedMotion.matches) {
+                    return;
+                }
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        const title = entry.target;
+
+                        if (!entry.isIntersecting) {
+                            title.classList.remove('is-title-opening');
+                            return;
+                        }
+
+                        title.classList.remove('is-title-opening');
+                        void title.offsetWidth;
+                        title.classList.add('is-title-opening');
+                    });
+                }, {
+                    threshold: 0.45,
+                    rootMargin: '0px 0px -5% 0px',
+                });
+
+                titles.forEach((title) => observer.observe(title));
+            };
+
+            revealCardsOnScroll();
+
             document.querySelectorAll('[data-institusi-slider]').forEach((sliderRow) => {
                 const slider = sliderRow.closest('.institusi-results-slider');
                 const sliderTrack = sliderRow.querySelector('.institusi-slider-track');
@@ -1182,6 +1394,8 @@
                     sliderTrack.append(appendFragment);
                     sliderRow.classList.add('is-looping');
                 }
+
+                animateTitlesOnScroll(sliderTrack);
 
                 const getStepSize = () => {
                     const firstCard = originalCards[0];
