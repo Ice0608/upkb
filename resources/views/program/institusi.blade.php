@@ -1021,8 +1021,42 @@
             color: #e2e8f0;
             border-color: rgba(255,255,255,0.1);
         }
+        html.dark .institusi-card-chip {
+            background: rgba(30, 41, 59, 0.82) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #cbd5e1;
+        }
+
+        html.dark .institusi-page--tvet .institusi-card-chip {
+            background: rgba(255, 81, 0, 0.12) !important;
+            border-color: rgba(var(--institusi-tvet-rgb), 0.22) !important;
+        }
+
+        html.dark .institusi-page--diploma .institusi-card-chip {
+            background: rgba(141, 43, 226, 0.12) !important;
+            border-color: rgba(var(--institusi-diploma-rgb), 0.22) !important;
+        }
+
+        html.dark .institusi-page--sains-kesihatan .institusi-card-chip {
+            background: rgba(33, 150, 243, 0.12) !important;
+            border-color: rgba(var(--institusi-sains-rgb), 0.22) !important;
+        }
+
+        html.dark .border-slate-200\/80,
+        html.dark .border-slate-200 {
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        html.dark .institusi-kursus-pill {
+            background: rgba(15, 23, 42, 0.78) !important;
+            border-color: rgba(148, 163, 184, 0.28) !important;
+            color: #dbe7f5 !important;
+            box-shadow: none;
+        }
         html.dark .text-slate-900 { color: #f1f5f9 !important; }
+        html.dark .text-slate-800 { color: #e2e8f0 !important; }
         html.dark .text-slate-700 { color: #cbd5e1 !important; }
+        html.dark .text-slate-600 { color: #b8c5d7 !important; }
         html.dark .text-slate-500 { color: #94a3b8 !important; }
     </style>
 </head>
@@ -1264,7 +1298,7 @@
                         @if($kursusRingkas->isNotEmpty())
                             <ul class="mt-3 space-y-3">
                                 @foreach($kursusRingkas as $kursus)
-                                    <li class="rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm border border-slate-200/70">{{ $kursus->nama_kursus }} ({{ $kursus->kod_kursus }})</li>
+                                    <li class="institusi-kursus-pill rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm border border-slate-200/70">{{ $kursus->nama_kursus }} ({{ $kursus->kod_kursus }})</li>
                                 @endforeach
                             </ul>
                             @if($institusi->kursuses_count > 3)
