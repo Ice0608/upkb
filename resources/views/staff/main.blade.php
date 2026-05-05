@@ -63,6 +63,7 @@
                             <th class="px-6 py-4">Status</th>
                             <th class="px-6 py-4">Jumlah (RM)</th>
                             <th class="px-6 py-4">Bayaran Semasa (RM)</th>
+                            <th class="px-6 py-4">Lihat Resit</th>
                             <th class="px-6 py-4">Temu Duga</th>
                             <th class="px-6 py-4">Print</th>
                         </tr>
@@ -95,6 +96,13 @@
                                 </td>
                                 <td class="px-6 py-4">{{ number_format($payment?->bayaran_semasa ?? 0, 2) }}</td>
                                 <td class="px-6 py-4">
+                                    @if($payment && $payment->resit)
+                                        <button type="button" onclick="openResitModal('{{ asset('storage/' . $payment->resit) }}')" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-green-700">Lihat Resit</button>
+                                    @else
+                                        <span class="text-xs text-slate-400">Tiada resit</span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4">
                                     <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100 px-4 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50">Temu Duga</a>
                                 </td>
                                 <td class="px-6 py-4">
@@ -112,7 +120,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="px-6 py-12 text-center text-sm text-slate-500">Tiada pelajar ditemui untuk event ini. Tekan "Tambah Event" atau pilih event lain.</td>
+                                <td colspan="8" class="px-6 py-12 text-center text-sm text-slate-500">Tiada pelajar ditemui untuk event ini. Tekan "Tambah Event" atau pilih event lain.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -232,7 +240,34 @@
 
             <div class="sticky bottom-0 flex justify-end gap-3 border-t border-slate-200 bg-white p-4">
                 <button type="button" onclick="closeReceiptModal()" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Tutup</button>
+                <button type="button" onclick="sendEmailResit()" id="send-email-btn" class="inline-flex items-center rounded-full bg-blue-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-600">
+                    <i class="fas fa-envelope mr-2"></i>Hantar Email
+                </button>
                 <button type="button" onclick="printReceiptModal()" class="inline-flex items-center rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak / Simpan PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Resit View Modal -->
+<div id="resit-view-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/50">
+    <div class="flex min-h-screen items-center justify-center px-4">
+        <div class="w-full max-w-4xl rounded-3xl bg-white shadow-xl">
+            <div class="flex items-center justify-between border-b border-slate-200 bg-white p-4">
+                <h3 class="text-lg font-semibold text-slate-900">Lihat Resit Pembayaran</h3>
+                <button type="button" onclick="closeResitModal()" class="text-slate-400 transition hover:text-slate-600" aria-label="Tutup resit">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="resit-view-content" class="p-6">
+                <p class="text-sm text-slate-500">Memuatkan resit...</p>
+            </div>
+
+            <div class="flex justify-end gap-3 border-t border-slate-200 bg-white p-4">
+                <button type="button" onclick="closeResitModal()" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Tutup</button>
             </div>
         </div>
     </div>
@@ -255,10 +290,16 @@
         document.getElementById('status-modal').classList.add('hidden');
     }
 
+    let currentPelajarId = null;
+
     function openReceiptModal(event, url) {
         if (event) {
             event.preventDefault();
         }
+
+        // Extract pelajar_id from URL
+        const urlParts = url.split('/');
+        currentPelajarId = urlParts[urlParts.length - 2]; // Assuming URL ends with /resit/{id}
 
         const modal = document.getElementById('receipt-modal');
         const content = document.getElementById('receipt-modal-content');
@@ -279,6 +320,83 @@
 
     function closeReceiptModal() {
         document.getElementById('receipt-modal').classList.add('hidden');
+    }
+
+    function openResitModal(resitUrl) {
+        const modal = document.getElementById('resit-view-modal');
+        const content = document.getElementById('resit-view-content');
+
+        content.innerHTML = '<p class="text-sm text-slate-500">Memuatkan resit...</p>';
+        modal.classList.remove('hidden');
+
+        // Check if it's an image or PDF
+        const fileExtension = resitUrl.split('.').pop().toLowerCase();
+        if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+            content.innerHTML = `<img src="${resitUrl}" alt="Resit Pembayaran" class="max-w-full h-auto rounded-lg shadow-sm">`;
+        } else if (fileExtension === 'pdf') {
+            content.innerHTML = `<iframe src="${resitUrl}" class="w-full h-96 rounded-lg shadow-sm"></iframe>`;
+        } else {
+            content.innerHTML = `<p class="text-sm text-rose-600">Format fail tidak disokong untuk paparan.</p>`;
+        }
+    }
+
+    function closeResitModal() {
+        document.getElementById('resit-view-modal').classList.add('hidden');
+    }
+
+    function sendEmailResit() {
+        if (!currentPelajarId) {
+            alert('ID pelajar tidak ditemui.');
+            return;
+        }
+
+        if (!confirm('Adakah anda pasti mahu hantar resit melalui email kepada pelajar?')) {
+            return;
+        }
+
+        const btn = document.getElementById('send-email-btn');
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sedang menghantar...';
+
+        // Create form data
+        const formData = new FormData();
+        formData.append('pelajar_id', currentPelajarId);
+
+        // Send AJAX request
+        fetch('{{ route("staff.bmd.send-email-resit") }}', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }).then(response => {
+            // Check if response is JSON
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                return response.json().then(data => ({
+                    ok: response.ok,
+                    data: data,
+                    status: response.status
+                }));
+            } else {
+                throw new Error('Server response is not JSON. Status: ' + response.status);
+            }
+        })
+        .then(result => {
+            if (result.ok && result.data.success) {
+                alert('✓ Resit berjaya dihantar ke email pelajar!');
+                closeReceiptModal();
+            } else {
+                alert('✗ Ralat: ' + (result.data.message || 'Tidak dapat menghantar email'));
+            }
+        }).catch(error => {
+            console.error('Error details:', error);
+            alert('✗ Ralat sistem: ' + error.message + '\n\nSila semak console (F12) untuk butiran teknikal.');
+        }).finally(() => {
+            btn.disabled = false;
+            btn.innerHTML = originalHtml;
+        });
     }
 
     function printReceiptModal() {

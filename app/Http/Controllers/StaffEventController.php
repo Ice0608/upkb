@@ -8,6 +8,8 @@ use App\Models\Pelajar;
 use App\Models\Pembayaran;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use PHPMailer\PHPMailer\PHPMailer;
+use Illuminate\Support\Facades\Mail;
 
 class StaffEventController extends Controller
 {
@@ -270,6 +272,125 @@ class StaffEventController extends Controller
         }
 
         return view('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi'));
+    }
+
+    public function sendEmailResit(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'pelajar_id' => 'required|integer|exists:pelajar,id',
+            ]);
+
+            $pelajarId = $validated['pelajar_id'];
+            $pelajar = Pelajar::findOrFail($pelajarId);
+
+            if (!$pelajar->email) {
+                return response()->json(['success' => false, 'message' => 'Email pelajar tidak tersedia.'], 422);
+            }
+
+            $pelajarEmail = $pelajar->email;
+            $pelajarName = $pelajar->nama_pelajar;
+            $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
+            $kursus = Kursus::with('institusi')->where('kod_kursus', $pelajar->kod_kursus)->first();
+            $institusi = $kursus?->institusi;
+            $isPdf = true;
+            $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
+            $filename = 'Resit_' . $safeIc . '.pdf';
+            $pdf = Pdf::loadView('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi', 'isPdf'));
+            $pdf->setPaper('A4', 'portrait');
+            $pdfContent = $pdf->output();
+
+            // Email content
+            $emailBody = '
+                <html>
+                <head>
+                    <style>
+                        body { font-family: Arial, sans-serif; color: #333; }
+                        .header { background-color: #f97316; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+                        .content { padding: 20px; background-color: #f9f9f9; }
+                        .footer { background-color: #f1f5f9; padding: 10px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
+                        .receipt-section { border: 1px solid #ddd; padding: 10px; margin: 20px 0; background-color: white; border-radius: 4px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h2>Resit Pembayaran</h2>
+                        <p>Universiti Pertahanan Nasional Malaysia</p>
+                    </div>
+                    <div class="content">
+                        <p>Salam ' . htmlspecialchars($pelajarName) . ',</p>
+                        <p>Berikut adalah resit pembayaran anda dalam format PDF.</p>
+                        <p>Sila buka lampiran PDF untuk melihat atau menyimpan resit rasmi.</p>
+                        <p>Sila simpan resit ini untuk rekod anda.</p>
+                        <p>Sebarang pertanyaan, sila hubungi kami.</p>
+                        <p>Terima kasih.</p>
+                    </div>
+                    <div class="footer">
+                        <p>&copy; 2024 UPNM. Sistem Pengurusan Pelajar.</p>
+                    </div>
+                </body>
+                </html>
+            ';
+
+            // Try using PHPMailer first
+            $sentViaPhpMailer = false;
+            try {
+                $mail = new PHPMailer(true);
+                $mail->isSMTP();
+                $mail->Host = env('MAIL_HOST', 'smtp.gmail.com');
+                $mail->SMTPAuth = true;
+                $mail->Username = env('MAIL_USERNAME');
+                $mail->Password = env('MAIL_PASSWORD');
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = env('MAIL_PORT', 587);
+                $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'UPKB System'));
+                $mail->addAddress($pelajarEmail, $pelajarName);
+                $mail->isHTML(true);
+                $mail->Subject = 'Resit Pembayaran - ' . $pelajarName;
+                $mail->Body = $emailBody;
+                $mail->AltBody = 'Resit pembayaran anda dilampirkan dalam format PDF.';
+                $mail->addStringAttachment($pdfContent, $filename, 'base64', 'application/pdf');
+                $mail->send();
+                $sentViaPhpMailer = true;
+            } catch (\Throwable $e) {
+                \Log::warning('PHPMailer failed: ' . $e->getMessage());
+                // Fall through to Laravel Mail
+            }
+
+            // If PHPMailer failed, try Laravel Mail
+            if (!$sentViaPhpMailer) {
+                try {
+                    Mail::html($emailBody, function ($message) use ($pelajarEmail, $pelajarName, $pdfContent, $filename) {
+                        $message->to($pelajarEmail, $pelajarName)
+                            ->subject('Resit Pembayaran - ' . $pelajarName)
+                            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'UPKB System'))
+                            ->attachData($pdfContent, $filename, ['mime' => 'application/pdf']);
+                    });
+                } catch (\Throwable $e) {
+                    \Log::error('Both PHPMailer and Laravel Mail failed: ' . $e->getMessage());
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Tidak dapat menghantar email. Sila semak konfigurasi SMTP: ' . $e->getMessage()
+                    ], 500);
+                }
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => $pelajarEmail
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Ralat validasi: ' . json_encode($e->errors())
+            ], 422);
+        } catch (\Exception $e) {
+            \Log::error('sendEmailResit error: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Ralat sistem: ' . $e->getMessage()
+            ], 500);
+        }
     }
 
     // ========== PELAJAR ROUTES ==========
@@ -634,33 +755,65 @@ class StaffEventController extends Controller
 
     public function pelajarStorePembayaran(Request $request, Pelajar $pelajar)
     {
-        $request->validate([
-            'kaedah_pembayaran' => 'required|string',
-            'resit' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
-            'jumlah' => 'required|numeric|min:0.01',
-        ]);
+        try {
+            $validated = $request->validate([
+                'kaedah_pembayaran' => 'required|string|in:qr,cash,transfer',
+                'resit' => 'required|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+                'jumlah' => 'required|numeric|min:0',
+            ], [
+                'resit.required' => 'Resit pembayaran diperlukan.',
+                'resit.mimes' => 'Resit mesti dalam format JPG, PNG, PDF, DOC atau DOCX.',
+                'resit.max' => 'Saiz resit tidak boleh melebihi 2MB.',
+                'kaedah_pembayaran.required' => 'Kaedah pembayaran diperlukan.',
+                'jumlah.required' => 'Jumlah pembayaran diperlukan.',
+            ]);
 
-        $resitPath = null;
-        if ($request->hasFile('resit')) {
-            $resitPath = $request->file('resit')->store('resit', 'public');
+            $resitPath = null;
+            if ($request->hasFile('resit')) {
+                $file = $request->file('resit');
+                // Generate unique filename
+                $filename = time() . '_' . $pelajar->ic_pelajar . '_' . $file->getClientOriginalName();
+                $resitPath = $file->storeAs('resit', $filename, 'public');
+                
+                \Log::info('Resit uploaded successfully', [
+                    'pelajar_id' => $pelajar->id,
+                    'filename' => $filename,
+                    'path' => $resitPath
+                ]);
+            }
+
+            $jumlah = (float) $validated['jumlah'];
+
+            $pembayaran = \App\Models\Pembayaran::create([
+                'ic_pelajar' => $pelajar->ic_pelajar,
+                'username' => 'pelajar',
+                'kaedah_pembayaran' => $validated['kaedah_pembayaran'],
+                'jumlah_bayaran' => $jumlah,
+                'bayaran_semasa' => $jumlah,
+                'status' => 'pending',
+                'resit' => $resitPath,
+                'tarikh_pembayaran' => now()->toDateString(),
+                'masa_pembayaran' => now()->toTimeString(),
+            ]);
+
+            \Log::info('Pembayaran recorded successfully', [
+                'pelajar_id' => $pelajar->id,
+                'pembayaran_id' => $pembayaran->id,
+                'jumlah' => $jumlah,
+            ]);
+
+            return redirect()->route('pelajar.surat-tawaran', $pelajar->id)
+                ->with('success', 'Pembayaran telah direkod berjaya! Terima kasih.');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            \Log::warning('Pembayaran validation error', $e->errors());
+            return back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            \Log::error('Pembayaran storage error', [
+                'error' => $e->getMessage(),
+                'pelajar_id' => $pelajar->id,
+            ]);
+            return back()->with('error', 'Ralat semasa menyimpan pembayaran: ' . $e->getMessage())->withInput();
         }
-
-        $jumlah = $request->input('jumlah', 0);
-
-        \App\Models\Pembayaran::create([
-            'ic_pelajar' => $pelajar->ic_pelajar,
-            'username' => 'pelajar',
-            'kaedah_pembayaran' => $request->kaedah_pembayaran,
-            'jumlah_bayaran' => $jumlah,
-            'bayaran_semasa' => $jumlah,
-            'status' => 'pending',
-            'resit' => $resitPath,
-            'tarikh_pembayaran' => now()->toDateString(),
-            'masa_pembayaran' => now()->toTimeString(),
-        ]);
-
-        return redirect()->route('pelajar.surat-tawaran', $pelajar->id)
-            ->with('success', 'Pembayaran telah direkod.');
     }
 
     public function pelajarResit(Pelajar $pelajar)

@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ProgramController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -69,6 +70,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/staff/bmd/{pelajar}', [StaffEventController::class, 'updatePelajar'])->name('staff.bmd.update');
     Route::get('/staff/bmd/{pelajar}/print', [StaffEventController::class, 'printBmd'])->name('staff.bmd.print');
     Route::get('/staff/bmd/{pelajar}/resit', [StaffEventController::class, 'staffResit'])->name('staff.bmd.resit');
+    Route::post('/staff/bmd/send-email-resit', [StaffEventController::class, 'sendEmailResit'])->name('staff.bmd.send-email-resit');
     Route::post('/staff/payment/update-status', [StaffEventController::class, 'updatePaymentStatus'])->name('staff.payment.update-status');
 
     // Interview routes

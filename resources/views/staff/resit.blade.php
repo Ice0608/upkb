@@ -45,6 +45,10 @@
         .logo {
             width: 30mm;
             height: auto;
+        }
+
+        .logo-cell {
+            width: 30mm;
             flex-shrink: 0;
         }
 
@@ -313,13 +317,222 @@
                 page-break-inside: avoid;
             }
         }
+
+        body.pdf-render {
+            background-color: #fff;
+        }
+
+        body.pdf-render .page {
+            display: block;
+        }
+
+        body.pdf-render .header {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4mm;
+        }
+
+        body.pdf-render .header > .logo-cell,
+        body.pdf-render .header > .header-center,
+        body.pdf-render .header > .header-right {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        body.pdf-render .header > .logo-cell {
+            width: 36mm;
+            padding-top: 1mm;
+        }
+
+        body.pdf-render .logo {
+            width: 30mm;
+        }
+
+        body.pdf-render .header-center {
+            width: 105mm;
+            padding: 0 6mm;
+        }
+
+        body.pdf-render .header-right {
+            width: 45mm;
+        }
+
+        body.pdf-render .header-field {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin-bottom: 2mm;
+        }
+
+        body.pdf-render .header-label,
+        body.pdf-render .header-line {
+            display: table-cell;
+            vertical-align: bottom;
+        }
+
+        body.pdf-render .header-label {
+            width: 17mm;
+        }
+
+        body.pdf-render .header-line {
+            margin-left: 0;
+            padding-left: 2mm;
+        }
+
+        body.pdf-render .resit-label {
+            display: inline-block;
+            width: 36mm;
+            text-align: center;
+            padding: 4mm 5mm;
+            border-radius: 14mm;
+            margin-top: 12mm;
+            margin-bottom: 9mm;
+        }
+
+        body.pdf-render .details {
+            display: block;
+            width: 100%;
+            margin-bottom: 7mm;
+        }
+
+        body.pdf-render .details-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin-bottom: 4mm;
+        }
+
+        body.pdf-render .detail-field {
+            display: table-cell;
+            width: 50%;
+            vertical-align: bottom;
+            padding-right: 6mm;
+        }
+
+        body.pdf-render .details-row .detail-field:last-child {
+            padding-right: 0;
+            padding-left: 2mm;
+        }
+
+        body.pdf-render .detail-label {
+            display: inline-block;
+            vertical-align: bottom;
+            margin-right: 3mm;
+        }
+
+        body.pdf-render .detail-line {
+            display: inline-block;
+            vertical-align: bottom;
+            min-height: 0;
+            padding: 0 0 1mm;
+        }
+
+        body.pdf-render .details-row:nth-child(1) .detail-field:nth-child(1) .detail-line {
+            width: 64mm;
+        }
+
+        body.pdf-render .details-row:nth-child(1) .detail-field:nth-child(2) .detail-line {
+            width: 63mm;
+        }
+
+        body.pdf-render .details-row:nth-child(2) .detail-field:nth-child(1) .detail-line {
+            width: 79mm;
+        }
+
+        body.pdf-render .details-row:nth-child(2) .detail-field:nth-child(2) .detail-line {
+            width: 70mm;
+        }
+
+        body.pdf-render .payment-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin-bottom: 7mm;
+        }
+
+        body.pdf-render .payment-row > .label,
+        body.pdf-render .payment-row > .payment-item {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        body.pdf-render .payment-row > .label {
+            width: 32mm;
+        }
+
+        body.pdf-render .payment-row > .payment-item {
+            width: 78mm;
+        }
+
+        body.pdf-render .payment-item .checkbox {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 3mm;
+        }
+
+        body.pdf-render .payment-item span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        body.pdf-render .payment-amount {
+            width: 18mm;
+            min-width: 18mm;
+            margin-left: 3mm;
+        }
+
+        body.pdf-render .total-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        body.pdf-render .total-left,
+        body.pdf-render .signature-block {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        body.pdf-render .total-left {
+            width: 95mm;
+        }
+
+        body.pdf-render .signature-block {
+            width: 70mm;
+            padding-top: 1mm;
+        }
+
+        body.pdf-render .rm-label,
+        body.pdf-render .rm-value {
+            display: inline-block;
+            vertical-align: bottom;
+        }
+
+        body.pdf-render .rm-label {
+            margin-right: 12mm;
+        }
+
+        body.pdf-render .signature-image {
+            width: 34mm;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -58%);
+        }
+
+        body.pdf-render .disclaimer {
+            margin-top: 2mm;
+        }
     </style>
 </head>
-<body>
+<body class="{{ ($isPdf ?? false) ? 'pdf-render' : '' }}">
     <div class="page">
         <!-- HEADER -->
         <div class="header">
-            <img src="{{ asset('images/icon/sesL.png') }}" alt="SES Logo" class="logo">
+            <div class="logo-cell">
+                <img src="{{ ($isPdf ?? false) ? public_path('images/icon/sesL.png') : asset('images/icon/sesL.png') }}" alt="SES Logo" class="logo">
+            </div>
             
             <div class="header-center">
                 <div class="org-registry">SESOC LEGACY (PG0576768)</div>
@@ -416,7 +629,7 @@
             <div class="signature-block" style="position:relative;">
                 <div class="signature-line"></div>
                 @if(file_exists(public_path('images/signature.png')))
-                    <img src="{{ asset('images/signature.png') }}" alt="Signature" class="signature-image">
+                    <img src="{{ ($isPdf ?? false) ? public_path('images/signature.png') : asset('images/signature.png') }}" alt="Signature" class="signature-image">
                 @endif
                 <div class="signature-name">PEGAWAI BERTUGAS</div>
             </div>

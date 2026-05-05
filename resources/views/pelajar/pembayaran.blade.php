@@ -240,6 +240,23 @@
             <p class="text-lg text-slate-600">Sila pilih kaedah pembayaran yang sesuai untuk melanjutkan proses temu duga.</p>
         </div>
 
+        @if(session('error'))
+            <div class="mb-8 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        @if($errors->any())
+            <div class="mb-8 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700">
+                <p class="font-semibold">Sila semak semula maklumat pembayaran:</p>
+                <ul class="mt-2 list-disc space-y-1 pl-5">
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <!-- Payment Amount -->
         <div class="bg-white rounded-3xl shadow-lg p-8 mb-8 border border-slate-100">
             <label for="jumlah-input" class="amount-label mb-2 inline-block">Jumlah Pembayaran (RM)</label>
@@ -394,40 +411,39 @@
             </div>
         </div>
 
-        <!-- Resit Upload Section -->
-        <div id="resit-section" class="bg-white rounded-3xl shadow-lg p-8 mb-12">
-            <h3 class="text-2xl font-bold text-slate-900 mb-6">
-                <i class="fas fa-upload text-orange-600"></i> Muat Naik Resit Pembayaran
-            </h3>
-            <p class="text-slate-600 mb-4">Sila muat naik resit pembayaran anda (jpg, jpeg, png, pdf, doc, docx). Resit diperlukan untuk melanjutkan.</p>
-            <div class="border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center hover:border-orange-400 transition cursor-pointer" onclick="document.getElementById('resit-input').click()">
-                <input type="file" name="resit" id="resit-input" accept="jpg,jpeg,png,pdf,doc,docx" class="hidden" onchange="updateResitName(this)">
-                <div id="resit-upload-area">
-                    <i class="fas fa-cloud-upload-alt text-4xl text-slate-400 mb-4"></i>
-                    <p class="text-slate-600">Klik untuk memilih fail atau seret fail ke sini</p>
-                </div>
-                <div id="resit-file-name" class="hidden mt-4">
-                    <p class="text-emerald-600 font-semibold"><i class="fas fa-check-circle"></i> <span id="filename-display"></span></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hidden Form for Submission -->
-        <form id="payment-form" method="POST" action="{{ route('pelajar.store-pembayaran', $pelajar->id) }}" class="hidden" enctype="multipart/form-data">
+        <form id="payment-form" method="POST" action="{{ route('pelajar.store-pembayaran', $pelajar->id) }}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="kaedah_pembayaran" id="kaedah-input" value="">
             <input type="hidden" name="jumlah" id="jumlah-hidden" value="{{ $jumlah }}">
-        </form>
 
-        <!-- Action Buttons -->
-        <div class="flex gap-4 justify-center mb-12">
-            <a href="javascript:history.back()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
-                <i class="fas fa-arrow-left"></i> Kembali
-            </a>
-            <button type="submit" onclick="submitPaymentForm()" class="inline-flex items-center gap-2 rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white hover:bg-orange-700 transition disabled:opacity-50 disabled:cursor-not-allowed" id="submit-btn" disabled>
-                <i class="fas fa-check"></i> Lanjutkan
-            </button>
-        </div>
+            <!-- Resit Upload Section -->
+            <div id="resit-section" class="bg-white rounded-3xl shadow-lg p-8 mb-12">
+                <h3 class="text-2xl font-bold text-slate-900 mb-6">
+                    <i class="fas fa-upload text-orange-600"></i> Muat Naik Resit Pembayaran
+                </h3>
+                <p class="text-slate-600 mb-4">Sila muat naik resit pembayaran anda (jpg, jpeg, png, pdf, doc, docx). Resit diperlukan untuk melanjutkan.</p>
+                <div class="border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center hover:border-orange-400 transition cursor-pointer" onclick="document.getElementById('resit-input').click()">
+                    <input type="file" name="resit" id="resit-input" accept="jpg,jpeg,png,pdf,doc,docx" class="hidden" onchange="updateResitName(this)">
+                    <div id="resit-upload-area">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-slate-400 mb-4"></i>
+                        <p class="text-slate-600">Klik untuk memilih fail atau seret fail ke sini</p>
+                    </div>
+                    <div id="resit-file-name" class="hidden mt-4">
+                        <p class="text-emerald-600 font-semibold"><i class="fas fa-check-circle"></i> <span id="filename-display"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex gap-4 justify-center mb-12">
+                <a href="javascript:history.back()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </a>
+                <button type="button" onclick="submitPaymentForm()" class="inline-flex items-center gap-2 rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white hover:bg-orange-700 transition disabled:opacity-50 disabled:cursor-not-allowed" id="submit-btn" disabled>
+                    <i class="fas fa-check"></i> Lanjutkan
+                </button>
+            </div>
+        </form>
     </div>
 </main>
 
@@ -494,46 +510,27 @@
         
         // Validate file type
         const file = resitInput.files[0];
-        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
         if (!validTypes.includes(file.type)) {
-            alert('Sila muat naik fail resit dalam format JPG, PNG, atau PDF sahaja.');
+            alert('Sila muat naik fail resit dalam format JPG, PNG, PDF, DOC atau DOCX sahaja.');
             return;
         }
         
-        // Validate file size (max 5MB)
-        if (file.size > 5 * 1024 * 1024) {
-            alert('Saiz fail terlalu besar. Maximum saiz fail adalah 5MB.');
+        // Validate file size (max 2MB to match backend)
+        if (file.size > 2 * 1024 * 1024) {
+            alert('Saiz fail terlalu besar. Maximum saiz fail adalah 2MB.');
             return;
         }
         
         document.getElementById('kaedah-input').value = selectedMethod;
         
-        // Create FormData and append the file
+        // Get button and disable it
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sedang memproses...';
+
         const form = document.getElementById('payment-form');
-        const formData = new FormData(form);
-        formData.append('resit', resitInput.files[0]);
-        
-        // Submit via fetch
-        fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        }).then(response => {
-            if (response.redirected) {
-                window.location.href = response.url;
-            } else {
-                return response.text();
-            }
-        }).then(html => {
-            if (html && html.includes('error')) {
-                alert('Ralat semasa menghantar. Sila cuba lagi.');
-            }
-        }).catch(error => {
-            console.error('Error:', error);
-            alert('Ralat semasa menghantar. Sila cuba lagi.');
-        });
+        form.submit();
     }
 
     function updateResitName(input) {
