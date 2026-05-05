@@ -51,14 +51,17 @@
 
                 <div class="mt-8 flex items-center gap-4">
                     <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Update Foto</button>
-                    <form action="{{ route('admin.deletegaleri', $foto->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this foto?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition">Delete</button>
-                    </form>
                     <a href="javascript:history.back()" class="text-gray-600 hover:text-gray-800 ml-auto">Cancel</a>
                 </div>
             </form>
+
+            <div class="mt-4">
+                <form action="{{ route('admin.deletegaleri', $foto->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this foto?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition">Delete</button>
+                </form>
+            </div>
         </div>
     </section>
 
