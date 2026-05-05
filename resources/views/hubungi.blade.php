@@ -270,6 +270,24 @@
             filter: saturate(1.05);
         }
 
+        [data-fade-open] {
+            opacity: 0;
+            transform: translateY(1rem) scale(0.985);
+            filter: blur(6px);
+            transition:
+                opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: var(--fade-delay, 0ms);
+            will-change: opacity, transform, filter;
+        }
+
+        .fade-ready [data-fade-open] {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
         @keyframes contactGlowPulse {
             0%, 100% {
                 opacity: 0.7;
@@ -282,6 +300,13 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            [data-fade-open] {
+                opacity: 1;
+                transform: none;
+                filter: none;
+                transition: none;
+            }
+
             .contact-input,
             .contact-submit,
             .contact-card {
@@ -323,20 +348,20 @@
     @include('layouts.navigation')
     
     <main class="contact-shell max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
-        <div class="contact-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 mb-10">
+        <div class="contact-hero rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10 mb-10" data-fade-open data-fade-order="1">
             <p class="contact-hero-eyebrow text-xs sm:text-sm font-bold uppercase tracking-[0.28em]">Hubungi Kami</p>
             <h1 class="contact-hero-title text-4xl md:text-5xl font-extrabold tracking-[-0.04em] mt-3">Kami sentiasa membantu anda di sini</h1>
             <p class="contact-hero-copy mt-4 text-base sm:text-lg max-w-3xl leading-8">Mempunyai sebarang pertanyaan mengenai program atau kemasukan? Pasukan kami sedia membantu anda.</p>
         </div>
 
         @if ($message = Session::get('success'))
-            <div class="mb-6 rounded-2xl border border-green-300/70 bg-green-100/80 px-4 py-3 text-green-700 shadow-sm backdrop-blur-sm">
+            <div class="mb-6 rounded-2xl border border-green-300/70 bg-green-100/80 px-4 py-3 text-green-700 shadow-sm backdrop-blur-sm" data-fade-open data-fade-order="2">
                 <i class="fas fa-check-circle mr-2"></i>{{ $message }}
             </div>
         @endif
 
         <div class="contact-grid grid md:grid-cols-2 gap-8">
-            <section class="contact-card rounded-[2rem] p-8">
+            <section class="contact-card rounded-[2rem] p-8" data-fade-open data-fade-order="3">
                 <div class="relative z-10 flex items-center gap-4 mb-6">
                     <div class="contact-icon-chip h-12 w-12 rounded-2xl bg-[linear-gradient(135deg,#f97316,#fb7185)] text-white flex items-center justify-center">
                         <i class="fas fa-location-dot"></i>
@@ -378,7 +403,7 @@
                 </div>
             </section>
 
-            <section class="contact-card rounded-[2rem] p-8">
+            <section class="contact-card rounded-[2rem] p-8" data-fade-open data-fade-order="4">
                 <div class="relative z-10">
                     <h2 class="text-2xl font-extrabold tracking-[-0.03em] text-slate-900 mb-6">Hantar Pertanyaan</h2>
                     <form action="{{ route('hubungi.store') }}" method="POST" class="space-y-4">
@@ -414,6 +439,27 @@
 
     @include('components.social-float')
     @include('layouts.footer')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.body.classList.add('fade-ready');
+                return;
+            }
+
+            const items = document.querySelectorAll('[data-fade-open]');
+            items.forEach(function (item, index) {
+                const order = Number(item.getAttribute('data-fade-order')) || index + 1;
+                item.style.setProperty('--fade-delay', String((order - 1) * 120) + 'ms');
+            });
+
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    document.body.classList.add('fade-ready');
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

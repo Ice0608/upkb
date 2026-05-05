@@ -120,13 +120,15 @@
             isolation: isolate;
             overflow: hidden;
             border: 1px solid transparent;
+            border-radius: 999px;
+            background-clip: padding-box;
             backdrop-filter: blur(10px);
         }
 
         .site-nav-link::before {
             content: "";
             position: absolute;
-            inset: 1px;
+            inset: 0;
             border-radius: inherit;
             background:
                 linear-gradient(135deg, #ff8a1f, #f97316 56%, #ea580c 100%);
@@ -144,7 +146,7 @@
         .site-nav-link:focus-visible,
         .site-nav-link.is-active {
             transform: translateY(-2px);
-            border-color: rgba(249, 115, 22, 0.2);
+            border-color: rgba(249, 115, 22, 0.42);
             background: #f97316;
             color: #ffffff;
             box-shadow:
@@ -246,168 +248,212 @@
             transform: translateY(0);
         }
 
+        /* ── Card base ── */
         .site-nav-program-card {
             position: relative;
             overflow: hidden;
+            border-radius: 1.9rem;
+            clip-path: inset(0 round 1.9rem);
             min-height: 13.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.24);
+            border: 1px solid rgba(255, 255, 255, 0.28);
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             box-shadow:
-                0 22px 36px rgba(15, 23, 42, 0.16),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                inset 0 -8px 18px rgba(255, 255, 255, 0.08);
-            transform-style: preserve-3d;
+                0 22px 36px rgba(15, 23, 42, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.32);
             transition:
-                transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.4s ease,
+                transform 0.55s cubic-bezier(0.22, 1, 0.3, 1),
+                box-shadow 0.55s cubic-bezier(0.22, 1, 0.3, 1),
                 border-color 0.4s ease,
-                filter 0.4s ease;
+                filter 0.4s ease,
+                background-position 0.65s cubic-bezier(0.22, 1, 0.3, 1);
+            will-change: transform, box-shadow, filter, background-position;
         }
 
+        /* shimmer sweep layer */
         .site-nav-program-card::before {
             content: "";
             position: absolute;
             inset: 0;
-            background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0.06) 40%, rgba(255, 255, 255, 0.02)),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
-                linear-gradient(115deg, rgba(255, 255, 255, 0) 36%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 64%);
-            transform: translateX(-16%);
-            transition: transform 0.45s ease, opacity 0.45s ease;
+            z-index: 2;
+            background: linear-gradient(
+                115deg,
+                rgba(255,255,255,0) 30%,
+                rgba(255,255,255,0.38) 50%,
+                rgba(255,255,255,0) 70%
+            );
+            transform: translateX(-130%) skewX(-12deg);
+            opacity: 0.75;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.3, 1), opacity 0.35s ease;
             pointer-events: none;
         }
 
+        /* bottom gradient overlay — darkens at rest, lifts on hover */
         .site-nav-program-card::after {
             content: "";
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(circle at top right, rgba(255, 255, 255, 0.28), transparent 28%),
-                radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.2), transparent 24%);
+            z-index: 1;
+            background: linear-gradient(
+                180deg,
+                rgba(0,0,0,0.04) 0%,
+                rgba(0,0,0,0.44) 70%,
+                rgba(0,0,0,0.62) 100%
+            );
+            opacity: 0.82;
+            transform: translateY(8px);
+            transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.22, 1, 0.3, 1);
             pointer-events: none;
-            transition: opacity 0.35s ease, transform 0.35s ease;
         }
 
+        /* ── Per-card accent colour tokens ── */
+        .site-nav-program-card-tvet    { --card-accent: 255, 81, 0;   --card-accent-alt: 255, 150, 80; }
+        .site-nav-program-card-diploma { --card-accent: 162, 28, 175; --card-accent-alt: 217, 70, 239; }
+        .site-nav-program-card-health  { --card-accent: 2, 132, 199;  --card-accent-alt: 103, 232, 249; }
+
+        /* ── Background images ── */
+        .site-nav-program-card-tvet {
+            background-image:
+                linear-gradient(145deg, rgba(139, 34, 0, 0.82), rgba(255, 81, 0, 0.66), rgba(255, 122, 56, 0.46)),
+                url('{{ asset('images/tvet-vg2.jpeg') }}');
+        }
+        .site-nav-program-card-diploma {
+            background-image:
+                linear-gradient(145deg, rgba(100, 14, 120, 0.82), rgba(162, 28, 175, 0.66), rgba(192, 132, 252, 0.42)),
+                url('{{ asset('images/postgraduate-differences_sim-article.jpg') }}');
+        }
+        .site-nav-program-card-health {
+            background-image:
+                linear-gradient(145deg, rgba(1, 80, 130, 0.82), rgba(2, 132, 199, 0.66), rgba(103, 232, 249, 0.42)),
+                url('{{ asset('images/sains.jpg') }}');
+        }
+
+        /* ── HOVER state ── */
         .site-nav-program-card:hover,
         .site-nav-program-card:focus-visible {
-            transform: translateY(-10px) scale(1.04) rotateX(4deg) rotateY(-3deg);
-            border-color: rgba(255, 255, 255, 0.44);
+            transform: translateY(-13px) scale(1.045);
+            border-color: rgba(255, 255, 255, 0.58);
+            background-size: cover;
+            background-position: center 24%;
+            filter: saturate(1.24) brightness(1.09) contrast(1.03);
             box-shadow:
-                0 34px 60px rgba(15, 23, 42, 0.24),
-                0 0 40px rgba(255, 255, 255, 0.12),
-                0 0 60px rgba(249, 115, 22, 0.12),
-                0 0 0 1px rgba(255, 255, 255, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.34);
-            filter: saturate(1.1) brightness(1.02);
+                0 0 0 1.5px rgba(var(--card-accent), 0.55),
+                0 28px 52px rgba(var(--card-accent), 0.36),
+                0 44px 80px rgba(15, 23, 42, 0.32),
+                0 0 48px rgba(var(--card-accent-alt), 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.42);
+        }
+
+        .site-nav-program-card-tvet:hover,
+        .site-nav-program-card-tvet:focus-visible {
+            transform: translate(-2px, -14px) scale(1.05) rotate(-0.45deg);
+        }
+
+        .site-nav-program-card-diploma:hover,
+        .site-nav-program-card-diploma:focus-visible {
+            transform: translateY(-15px) scale(1.055);
+        }
+
+        .site-nav-program-card-health:hover,
+        .site-nav-program-card-health:focus-visible {
+            transform: translate(2px, -14px) scale(1.05) rotate(0.45deg);
+        }
+
+        /* fire shimmer sweep on hover */
+        .site-nav-program-card:hover::before,
+        .site-nav-program-card:focus-visible::before {
+            transform: translateX(130%) skewX(-12deg);
+            opacity: 1;
+        }
+
+        /* lift bottom overlay */
+        .site-nav-program-card:hover::after {
+            opacity: 0.92;
+            transform: translateY(0);
         }
 
         .site-nav-program-card:active {
-            transform: translateY(-1px) scale(0.975);
+            transform: translateY(-4px) scale(0.985);
+            transition-duration: 0.15s;
             box-shadow:
-                0 16px 26px rgba(15, 23, 42, 0.18),
-                inset 0 8px 18px rgba(15, 23, 42, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.22);
+                0 10px 22px rgba(var(--card-accent), 0.28),
+                inset 0 2px 8px rgba(0,0,0,0.14);
         }
 
-        .site-nav-program-card:hover::after {
-            opacity: 0.9;
-            transform: scale(1.06);
-        }
-
-        .site-nav-program-card:hover::before,
-        .site-nav-program-card:focus-visible::before {
-            transform: translateX(16%);
-        }
-
+        /* ── Child element z-index ── */
         .site-nav-program-card-badge,
         .site-nav-program-card-title,
         .site-nav-program-card-copy,
         .site-nav-program-card-arrow {
             position: relative;
-            z-index: 1;
+            z-index: 3;
         }
 
+        /* ── Badge ── */
         .site-nav-program-card-badge {
             backdrop-filter: blur(10px);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+        }
+        .site-nav-program-card:hover .site-nav-program-card-badge {
+            background: rgba(var(--card-accent), 0.55) !important;
+            box-shadow: 0 0 14px rgba(var(--card-accent), 0.55), inset 0 1px 0 rgba(255,255,255,0.24);
+            transform: translateY(-2px) scale(1.04);
         }
 
+        /* ── Title ── */
         .site-nav-program-card-title {
-            text-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+            text-shadow: 0 8px 20px rgba(15, 23, 42, 0.24);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.3, 1), text-shadow 0.45s ease;
+        }
+        .site-nav-program-card:hover .site-nav-program-card-title {
+            transform: translateY(-6px) scale(1.06);
+            text-shadow:
+                0 0 32px rgba(var(--card-accent-alt), 0.7),
+                0 10px 24px rgba(15, 23, 42, 0.32);
         }
 
+        /* ── Description copy ── */
         .site-nav-program-card-copy {
             max-width: 11ch;
             line-height: 1.6;
             text-wrap: balance;
-            text-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+            text-shadow: 0 4px 14px rgba(15, 23, 42, 0.28);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.3, 1), opacity 0.35s ease;
         }
-
-        .site-nav-program-card-tvet {
-            background-image:
-                linear-gradient(145deg, rgba(139, 34, 0, 0.88), rgba(255, 81, 0, 0.74), rgba(255, 122, 56, 0.56)),
-                url('{{ asset('images/tvet-vg2.jpeg') }}');
-        }
-
-        .site-nav-program-card-diploma {
-            background-image:
-                linear-gradient(145deg, rgba(162, 28, 175, 0.82), rgba(217, 70, 239, 0.68), rgba(192, 132, 252, 0.48)),
-                url('{{ asset('images/postgraduate-differences_sim-article.jpg') }}');
-        }
-
-        .site-nav-program-card-health {
-            background-image:
-                linear-gradient(145deg, rgba(2, 132, 199, 0.82), rgba(14, 165, 233, 0.68), rgba(103, 232, 249, 0.48)),
-                url('{{ asset('images/sains.jpg') }}');
-        }
-
-        .site-nav-program-card-arrow {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.28);
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .site-nav-program-card:hover .site-nav-program-card-arrow {
+        .site-nav-program-card:hover .site-nav-program-card-copy {
+            transform: translateY(-5px);
             opacity: 1;
-            transform: translate3d(6px, -3px, 0) scale(1.05);
-            background: rgba(255, 255, 255, 0.18);
-            box-shadow:
-                0 14px 28px rgba(15, 23, 42, 0.16),
-                0 0 20px rgba(255, 255, 255, 0.14),
-                inset 0 1px 0 rgba(255, 255, 255, 0.26);
         }
 
+        /* ── Glow blob ── */
         .site-nav-program-card-glow {
             position: absolute;
-            inset: auto auto -2rem -1.75rem;
-            width: 7rem;
-            height: 7rem;
+            inset: auto auto -1.5rem -1.25rem;
+            width: 8rem;
+            height: 8rem;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.18);
-            filter: blur(22px);
-            opacity: 0.8;
+            background: radial-gradient(circle, rgba(var(--card-accent-alt), 0.55), transparent 72%);
+            filter: blur(24px);
+            opacity: 0.6;
             pointer-events: none;
-            transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+            z-index: 0;
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.3, 1), opacity 0.55s ease, filter 0.55s ease;
         }
-
         .site-nav-program-card:hover .site-nav-program-card-glow,
         .site-nav-program-card:focus-visible .site-nav-program-card-glow {
-            transform: scale(1.18) translate3d(0.6rem, -0.35rem, 0);
+            transform: scale(2.45) translate3d(0.9rem, -0.6rem, 0);
             opacity: 1;
-            filter: blur(28px);
+            filter: blur(34px);
         }
 
+        /* ── Floating idle animation ── */
         .site-nav-program-card-floating {
             animation: siteNavCardFloat 5.5s ease-in-out infinite;
+        }
+        .site-nav-program-card:hover {
+            animation-play-state: paused;
         }
 
         .site-nav-mobile-program-card {
