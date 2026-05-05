@@ -446,10 +446,21 @@
 
         .category-btn {
             justify-content: flex-start;
+            align-items: flex-start;
             width: 100%;
             border: 1px solid transparent;
             background: transparent;
             color: #475569;
+            line-height: 1.45;
+            text-align: left;
+        }
+
+        .category-name {
+            min-width: 0;
+            white-space: normal;
+            overflow-wrap: break-word;
+            word-break: normal;
+            line-height: 1.45;
         }
 
         .category-btn:hover {
@@ -505,14 +516,78 @@
             gap: 1.25rem;
         }
 
+        .kursus-course-slider {
+            position: relative;
+        }
+
+        .kursus-slider-nav {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1.15rem;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+
+        .kursus-slider-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 999px;
+            border: 1px solid var(--kursus-accent-border-strong);
+            background: rgba(255, 255, 255, 0.96);
+            color: var(--kursus-accent-600);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.12);
+            pointer-events: auto;
+            transition: transform 0.28s ease, opacity 0.28s ease, background-color 0.28s ease;
+        }
+
+        .kursus-slider-button:hover {
+            transform: translateY(-2px);
+            background: #ffffff;
+        }
+
+        .kursus-slider-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.38;
+            transform: none;
+        }
+
         .kursus-results-grid {
-            display: grid;
-            gap: 1.25rem;
-            grid-template-columns: minmax(0, 1fr);
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0 7vw 2.8rem;
+        }
+
+        .kursus-results-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .kursus-results-track {
+            display: flex;
+            align-items: stretch;
+            gap: 1rem;
+            width: max-content;
         }
 
         .course-card {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 min(86vw, 22rem);
+            width: min(86vw, 22rem);
+            height: auto;
+            align-self: stretch;
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.88);
             border-radius: 2rem;
@@ -599,18 +674,22 @@
         }
 
         .course-card-headline {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 1rem;
+            position: relative;
+            display: block;
+            padding-right: 4.25rem;
+            min-height: 3.25rem;
         }
 
         .course-card-title {
             color: #0f172a;
-            font-size: 1.5rem;
+            font-size: clamp(1.28rem, 1.08rem + 0.45vw, 1.65rem);
             font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
+            line-height: 1.16;
+            letter-spacing: 0;
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-break: normal;
+            hyphens: none;
             transition: color 0.28s ease;
         }
 
@@ -619,6 +698,9 @@
         }
 
         .course-card-arrow {
+            position: absolute;
+            top: 0;
+            right: 0;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -642,16 +724,18 @@
 
         .course-card-meta {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: minmax(0, 1fr);
             gap: 0.85rem;
+            align-items: stretch;
         }
 
         .course-card-meta-item {
             border: 1px solid var(--kursus-card-meta-border);
             border-radius: 1.15rem;
             background: var(--kursus-card-meta-bg);
-            padding: 0.9rem 1rem;
+            padding: 0.95rem 1.05rem;
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+            min-width: 0;
         }
 
         .course-card-meta-label {
@@ -666,7 +750,10 @@
             margin-top: 0.4rem;
             color: #0f172a;
             font-weight: 500;
-            line-height: 1.5;
+            line-height: 1.42;
+            overflow-wrap: break-word;
+            word-break: normal;
+            hyphens: none;
         }
 
         .kursus-cta {
@@ -690,11 +777,15 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
+        .kursus-results-track > .kursus-empty {
+            flex: 0 0 min(86vw, 22rem);
+            width: min(86vw, 22rem);
+        }
+
         .kursus-clamp-2 {
-            display: -webkit-box;
-            overflow: hidden;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
+            display: block;
+            overflow: visible;
+            -webkit-line-clamp: unset;
         }
 
         .loading {
@@ -713,6 +804,37 @@
             }
         }
 
+        @media (min-width: 768px) {
+            .kursus-results-grid {
+                overflow: visible;
+                padding: 0;
+                scroll-snap-type: none;
+            }
+
+            .kursus-results-track {
+                display: grid;
+                width: 100%;
+                gap: 1.5rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .course-card {
+                width: 100%;
+                min-width: 0;
+                flex: 1 1 auto;
+                height: 100%;
+            }
+
+            .kursus-slider-nav {
+                display: none;
+            }
+
+            .kursus-results-track > .kursus-empty {
+                width: 100%;
+                grid-column: 1 / -1;
+            }
+        }
+
         @media (min-width: 1024px) {
             .kursus-results-layout {
                 grid-template-columns: 20rem minmax(0, 1fr);
@@ -724,15 +846,6 @@
                 top: 6.5rem;
             }
 
-            .kursus-results-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 1440px) {
-            .kursus-results-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
         }
 
         @media (max-width: 767px) {
@@ -946,7 +1059,7 @@
                                     id="btn-{{ Illuminate\Support\Str::slug($kursus->nama_kursus, '-') }}"
                                 >
                                     <span class="category-indicator"></span>
-                                    <span class="truncate">{{ $kursus->nama_kursus }}</span>
+                                    <span class="category-name">{{ $kursus->nama_kursus }}</span>
                                 </button>
                             @endforeach
                         </div>
@@ -956,7 +1069,17 @@
 
             <main class="kursus-results-panel min-w-0">
 
-                <div id="courses-container" class="kursus-results-grid">
+                <div class="kursus-course-slider" data-kursus-slider>
+                    <div class="kursus-slider-nav" data-kursus-slider-nav>
+                        <button type="button" class="kursus-slider-button" data-kursus-slider-action="prev" aria-label="Kursus sebelumnya">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button type="button" class="kursus-slider-button" data-kursus-slider-action="next" aria-label="Kursus seterusnya">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div id="courses-container" class="kursus-results-grid" data-kursus-slider-row>
+                        <div class="kursus-results-track" data-kursus-slider-track>
                     @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
                     <article class="course-card h-full" 
@@ -1013,6 +1136,8 @@
                         <p>Tiada kursus ditemui.</p>
                     </div>
                     @endforelse
+                        </div>
+                    </div>
                 </div>
             </main>
 
@@ -1026,7 +1151,7 @@
 
     <script>
         function filterCourses(courseName) {
-            const container = document.getElementById('courses-container');
+            const container = document.querySelector('[data-kursus-slider-track]') || document.getElementById('courses-container');
             const cards = document.querySelectorAll('.course-card');
             let emptyState = document.getElementById('kursus-empty-state');
             let visibleCount = 0;
@@ -1072,7 +1197,66 @@
             } else {
                 emptyState.style.display = 'none';
             }
+
+            window.updateKursusSliders?.();
         }
+
+        function initKursusSliders() {
+            document.querySelectorAll('[data-kursus-slider-row]').forEach((sliderRow) => {
+                const slider = sliderRow.closest('[data-kursus-slider]');
+                const track = slider?.querySelector('[data-kursus-slider-track]');
+                const nav = slider?.querySelector('[data-kursus-slider-nav]');
+                const prevButton = slider?.querySelector('[data-kursus-slider-action="prev"]');
+                const nextButton = slider?.querySelector('[data-kursus-slider-action="next"]');
+
+                if (!slider || !track || !nav || !prevButton || !nextButton) {
+                    return;
+                }
+
+                const getVisibleCards = () => Array.from(track.querySelectorAll('.course-card')).filter((card) => card.style.display !== 'none');
+
+                const getStepSize = () => {
+                    const firstCard = getVisibleCards()[0];
+                    if (!firstCard) {
+                        return sliderRow.clientWidth * 0.85;
+                    }
+
+                    const gap = parseFloat(window.getComputedStyle(track).gap || '0');
+                    return firstCard.getBoundingClientRect().width + gap;
+                };
+
+                const updateState = () => {
+                    const maxScroll = Math.max(0, sliderRow.scrollWidth - sliderRow.clientWidth);
+                    const hasOverflow = maxScroll > 8 && getVisibleCards().length > 1;
+                    nav.hidden = !hasOverflow || window.innerWidth >= 768;
+                    prevButton.disabled = sliderRow.scrollLeft <= 4;
+                    nextButton.disabled = sliderRow.scrollLeft >= maxScroll - 4;
+                };
+
+                const moveSlider = (direction) => {
+                    sliderRow.scrollBy({
+                        left: direction * getStepSize(),
+                        behavior: 'smooth',
+                    });
+                };
+
+                prevButton.addEventListener('click', () => moveSlider(-1));
+                nextButton.addEventListener('click', () => moveSlider(1));
+                sliderRow.addEventListener('scroll', updateState, { passive: true });
+                window.addEventListener('resize', updateState);
+                sliderRow._updateKursusSlider = updateState;
+                updateState();
+            });
+        }
+
+        window.updateKursusSliders = () => {
+            document.querySelectorAll('[data-kursus-slider-row]').forEach((sliderRow) => {
+                sliderRow.scrollLeft = 0;
+                sliderRow._updateKursusSlider?.();
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', initKursusSliders);
 
         // Add fade-in animation
         const style = document.createElement('style');
@@ -1087,4 +1271,3 @@
 
 </body>
 </html>
-
