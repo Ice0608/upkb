@@ -224,7 +224,7 @@
 
         .pilihan-hero-banner {
             position: relative;
-            min-height: clamp(20rem, 42vw, 28rem);
+            min-height: clamp(24rem, 48vw, 32rem);
             border-radius: 2rem;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.42);
@@ -309,7 +309,7 @@
         .pilihan-hero-media {
             position: relative;
             overflow: hidden;
-            min-height: clamp(20rem, 42vw, 28rem);
+            min-height: clamp(24rem, 48vw, 32rem);
             border: 0;
             background: #ffffff;
             box-shadow: none;
@@ -371,7 +371,7 @@
             align-items: flex-start;
             gap: 1rem;
             padding: clamp(1.75rem, 3vw, 3rem);
-            padding-bottom: clamp(2rem, 4vw, 3rem);
+            padding-bottom: clamp(4rem, 9vw, 6.5rem);
             justify-content: flex-end;
             min-height: 100%;
         }
@@ -719,13 +719,23 @@
                 margin-bottom: 4rem;
             }
 
+            .pilihan-hero-banner,
+            .pilihan-hero-media {
+                min-height: clamp(32rem, 72vw, 42rem);
+            }
+
             .pilihan-filter-floating {
                 width: calc(100% - 2rem);
-                margin-top: -4rem;
+                margin-top: 1rem;
             }
 
             .pilihan-hero-card-content {
-                padding-bottom: 6.5rem;
+                padding-bottom: 2.5rem;
+            }
+
+            .pilihan-hero-facts,
+            .pilihan-hero-cta {
+                display: none;
             }
 
             .pilihan-filter-grid {
@@ -740,7 +750,7 @@
 
         @media (max-width: 640px) {
             .pilihan-hero-media {
-                min-height: 20rem;
+                min-height: 26rem;
                 transform: none !important;
             }
 
@@ -758,7 +768,7 @@
 
             .pilihan-hero-card-content {
                 padding: 1.5rem;
-                padding-bottom: 6rem;
+                padding-bottom: 7.5rem;
             }
 
             .pilihan-filter-floating {
