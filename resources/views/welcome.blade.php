@@ -1976,6 +1976,30 @@
             .probsol-divider { display: none; }
         }
         /* ── END PROBLEM & SOLUTION SECTION ── */
+
+        /* ── SCROLL REVEAL ANIMATIONS ── */
+        @media (prefers-reduced-motion: no-preference) {
+            [data-reveal] {
+                opacity: 0 !important;
+                transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                            transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                will-change: opacity, transform;
+            }
+            [data-reveal="up"]    { transform: translateY(56px) scale(0.97) !important; }
+            [data-reveal="left"]  { transform: translateX(-72px) scale(0.97) !important; }
+            [data-reveal="right"] { transform: translateX(72px) scale(0.97) !important; }
+            [data-reveal="scale"] { transform: scale(0.86) translateY(24px) !important; }
+            [data-reveal].revealed {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            [data-delay="1"] { transition-delay: 0.12s; }
+            [data-delay="2"] { transition-delay: 0.26s; }
+            [data-delay="3"] { transition-delay: 0.40s; }
+            [data-delay="4"] { transition-delay: 0.54s; }
+            [data-delay="5"] { transition-delay: 0.68s; }
+        }
+        /* ── END SCROLL REVEAL ANIMATIONS ── */
     </style>
 </head>
 <body class="welcome-page text-slate-800 dark:text-slate-200 no-bg transition-colors duration-300">
@@ -2012,7 +2036,7 @@
                     /* Desktop: Reset to your original left-aligned look */
                     lg:left-20 lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:px-0 lg:max-w-xl">
             
-            <div class="hero-card section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0">
+            <div class="hero-card section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0" data-reveal="up">
 
                     <h2 class="titleglass text-2xl md:text-4xl lg:text-5xl leading-[0.95] uppercase tracking-tight">
                         SMART <br class="hidden md:block"> 
@@ -2089,7 +2113,7 @@
 
     <section class="story-section flex items-center justify-center px-6 py-16">
         <div class="story-pair-wrapper">
-            <div class="story-panel story-panel--left">
+            <div class="story-panel story-panel--left" data-reveal="left">
                 <div class="story-panel-head">
                     <h3 class="story-role">Visi</h3>
                 </div>
@@ -2097,7 +2121,7 @@
                     <p>Menjadi pusat rujukan utama dan pilihan alternatif terbaik dalam membantu klien membuat keputusan yang tepat bagi menentukan hala tuju pendidikan dan kerjaya masa depan mereka.</p>
                 </div>
             </div>
-            <div class="story-panel story-panel--right">
+            <div class="story-panel story-panel--right" data-reveal="right" data-delay="2">
                 <div class="story-panel-head">
                     <h3 class="story-role">Misi</h3>
                 </div>
@@ -2125,7 +2149,7 @@
     <section class="probsol-section snap-section px-6 py-20">
         <div class="probsol-shell section-content">
 
-            <div class="text-center">
+            <div class="text-center" data-reveal="up">
                 <p class="probsol-kicker">Cabaran &amp; Penyelesaian</p>
                 <h2 class="probsol-title">Masalah Sebenar.<br><span>Penyelesaian Nyata.</span></h2>
                 <p class="probsol-subtitle mx-auto">Ramai yang terhenti bukan kerana tidak mampu, tetapi kerana tiada panduan yang betul. Kami hadir untuk mengubah itu.</p>
@@ -2134,7 +2158,7 @@
             <div class="probsol-grid">
 
                 {{-- PROBLEMS COLUMN --}}
-                <div>
+                <div data-reveal="left" data-delay="2">
                     <p class="probsol-col-label probsol-col-label--problem">
                         <i class="fa-solid fa-triangle-exclamation"></i> Masalah Yang Dihadapi
                     </p>
@@ -2173,7 +2197,7 @@
                 </div>
 
                 {{-- SOLUTIONS COLUMN --}}
-                <div>
+                <div data-reveal="right" data-delay="2">
                     <p class="probsol-col-label probsol-col-label--solution">
                         <i class="fa-solid fa-circle-check"></i> Penyelesaian Kami
                     </p>
@@ -2219,14 +2243,14 @@
     <section class="program-section flex items-center justify-center px-6 py-16">
         <div class="program-shell section-content">
 
-            <div class="program-heading">
+            <div class="program-heading" data-reveal="up">
                 <p class="program-kicker"><i class="fa-solid fa-bolt"></i> Program Teknikal Pilihan</p>
                 <h2 class="program-headline">Belajar Skill Industri. <span>Terus Dapat Kerja.</span></h2>
                 <p class="program-subtitle">Laluan pantas ke kerjaya sebenar melalui latihan berasaskan industri, pensijilan diiktiraf, dan bimbingan kerjaya berfokus hasil.</p>
             </div>
 
             <div class="program-grid">
-                <article class="program-featured-card">
+                <article class="program-featured-card" data-reveal="scale">
                     <div class="program-featured-image" aria-hidden="true">
                         <video autoplay muted loop playsinline preload="none">
                             <source src="{{ asset('videos/prop.mp4') }}" type="video/mp4">
@@ -2239,7 +2263,7 @@
                 </article>
 
                 <div class="program-benefit-stack">
-                    <article class="program-benefit-card">
+                    <article class="program-benefit-card" data-reveal="right">
                         <div class="program-benefit-top">
                             <div class="program-benefit-icon"><i class="fa-solid fa-user-graduate"></i></div>
                             <div class="program-benefit-metric"></div>
@@ -2248,7 +2272,7 @@
                         <p class="program-benefit-desc">Komuniti alumni besar yang sudah menembusi pasaran kerja.</p>
                     </article>
 
-                    <article class="program-benefit-card">
+                    <article class="program-benefit-card" data-reveal="right" data-delay="2">
                         <div class="program-benefit-top">
                             <div class="program-benefit-icon"><i class="fa-solid fa-handshake-angle"></i></div>
                             <div class="program-benefit-metric"></div>
@@ -2257,7 +2281,7 @@
                         <p class="program-benefit-desc">Hubungan strategik untuk latihan praktikal dan peluang pekerjaan.</p>
                     </article>
 
-                    <article class="program-benefit-card">
+                    <article class="program-benefit-card" data-reveal="right" data-delay="4">
                         <div class="program-benefit-top">
                             <div class="program-benefit-icon"><i class="fa-solid fa-briefcase"></i></div>
                             <div class="program-benefit-metric"></div>
@@ -2274,10 +2298,10 @@
     <section class="partner-section">
 
         <div class="cta-banner">
-            <div class="cta-banner-eyebrow"><i class="fa-solid fa-bolt"></i> Konsultasi Percuma</div>
-            <h2 class="cta-banner-title">Jangan Tunggu.<br><span>Masa Depan Anda Bermula Hari Ini.</span></h2>
-            <p class="cta-banner-sub">Satu perbualan boleh ubah hala tuju hidup anda. Kami sedia membantu percuma, tanpa sebarang obligasi.</p>
-            <div class="cta-banner-actions">
+            <div class="cta-banner-eyebrow" data-reveal="up"><i class="fa-solid fa-bolt"></i> Konsultasi Percuma</div>
+            <h2 class="cta-banner-title" data-reveal="up" data-delay="1">Jangan Tunggu.<br><span>Masa Depan Anda Bermula Hari Ini.</span></h2>
+            <p class="cta-banner-sub" data-reveal="up" data-delay="2">Satu perbualan boleh ubah hala tuju hidup anda. Kami sedia membantu percuma, tanpa sebarang obligasi.</p>
+            <div class="cta-banner-actions" data-reveal="up" data-delay="3">
                 <a href="{{ route('hubungi') }}" class="cta-btn-primary">
                     Bincang Dengan Kami <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -2383,6 +2407,31 @@ showIntroOverlayIfNeeded();
 
 // AUTO SLIDE
 setInterval(nextSlide, 4000);
+
+// ── SCROLL REVEAL ──
+(function () {
+    var revealEls = document.querySelectorAll('[data-reveal]');
+    if (!revealEls.length) return;
+
+    // Fallback: if IntersectionObserver is not supported, show everything immediately
+    if (!('IntersectionObserver' in window)) {
+        revealEls.forEach(function (el) { el.classList.add('revealed'); });
+        return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            } else {
+                entry.target.classList.remove('revealed');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+})();
+// ── END SCROLL REVEAL ──
 
 </script>
 
