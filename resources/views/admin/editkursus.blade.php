@@ -47,6 +47,7 @@
 
     <script>
         let currentTab = 'maklumat';
+        let pendingMessage = null;
 
         function loadTab(tab) {
             currentTab = tab;
@@ -75,6 +76,10 @@
                 tabContent.innerHTML = html;
                 // Re-attach form handlers
                 attachFormHandlers();
+                if (pendingMessage) {
+                    showMessage(pendingMessage.text, pendingMessage.type);
+                    pendingMessage = null;
+                }
             })
             .catch(error => {
                 console.error('Error loading tab:', error);
@@ -83,15 +88,9 @@
         }
 
         function attachFormHandlers() {
-            // Handle form submissions via AJAX
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
                 form.addEventListener('submit', function(e) {
-                    // Only handle AJAX for certain forms, not delete forms
-                    if (this.querySelector('input[name="_method"]') && this.querySelector('input[name="_method"]').value === 'DELETE') {
-                        return; // Let delete forms submit normally
-                    }
-
                     e.preventDefault();
                     const formData = new FormData(this);
 
@@ -125,8 +124,11 @@
                     })
                     .then(data => {
                         if (data.success) {
+                            pendingMessage = {
+                                text: data.message,
+                                type: 'success',
+                            };
                             loadTab(currentTab);
-                            showMessage(data.message, 'success');
                         } else {
                             showMessage(data.message || 'Error occurred', 'error');
                         }
