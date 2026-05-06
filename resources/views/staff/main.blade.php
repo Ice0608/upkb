@@ -6,7 +6,7 @@
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <title>UPKB Staff Main</title>
+    <title>SESOC Staff Main</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-100 text-slate-800">

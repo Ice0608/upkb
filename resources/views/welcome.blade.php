@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB</title>
+    <title>SMART EDUCATION SOCIETY</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('components.dark-mode-init')
@@ -2013,11 +2013,11 @@
     <div id="introOverlay" class="intro-overlay fixed inset-0 z-[9999] bg-black text-white flex items-center justify-center">
         <div class="absolute inset-0 bg-black/95"></div>
         <div id="introStart" class="relative z-10 flex flex-col items-center justify-center gap-6 px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold">Selamat Datang ke UPKB</h1>
+            <h1 class="text-3xl md:text-4xl font-bold">Selamat Datang ke SESOC</h1>
             <button id="startIntroButton" class="bg-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition">Start Now</button>
         </div>
         <video id="introVideo" class="relative hidden w-full h-full object-cover" playsinline>
-            <source src="{{ asset('videos/IntroUPKB.mp4') }}" type="video/mp4">
+            <source src="{{ asset('videos/IntroSES.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>

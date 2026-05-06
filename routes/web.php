@@ -23,6 +23,7 @@ Route::get('/', function () {
 // Admin only routes
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/admin/event/{event}/report', [AdminDashboardController::class, 'eventReport'])->name('admin.event-report');
 });
 
 Route::get('/bmd', [StaffEventController::class, 'guestBmd'])->name('bmd');

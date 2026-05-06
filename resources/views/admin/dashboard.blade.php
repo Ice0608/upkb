@@ -78,37 +78,44 @@
         </div>
     </div>
 
-    <!-- Today's Events -->
+    <!-- Monthly Events -->
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-gray-200">
-        <div class="flex items-center gap-3 mb-6">
-            <i class="fas fa-calendar-day text-orange-500 text-xl"></i>
-            <h2 class="text-xl font-semibold text-gray-900">Event Hari Ini</h2>
+        <div class="flex flex-col gap-2 mb-6 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-calendar-days text-orange-500 text-xl"></i>
+                <h2 class="text-xl font-semibold text-gray-900">Event Bulan Ini</h2>
+            </div>
+            <p class="text-sm text-gray-500">{{ now()->startOfMonth()->format('d M Y') }} - {{ now()->endOfMonth()->format('d M Y') }}</p>
         </div>
 
-        @if($todayEvents->count() > 0)
+        @if($monthEvents->count() > 0)
             <div class="space-y-4">
-                @foreach($todayEvents as $event)
-                    <div class="flex items-center justify-between p-4 rounded-2xl border border-gray-100 bg-gray-50">
+                @foreach($monthEvents as $event)
+                    <a href="{{ route('admin.event-report', $event->id) }}" class="flex items-center justify-between p-4 rounded-2xl border border-gray-100 bg-gray-50 transition hover:border-orange-200 hover:bg-orange-50">
                         <div class="flex items-center gap-4">
                             <div class="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100">
                                 <i class="fas fa-calendar text-orange-600"></i>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900">{{ $event->nama_event }}</h3>
+                                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange-500">{{ $event->tarikh_event?->format('d M Y') }}</p>
                                 <p class="text-sm text-gray-600">{{ $event->lokasi }} • {{ $event->masa_event }}</p>
                             </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-sm font-medium text-gray-900">{{ $event->PIC }}</p>
-                            <p class="text-xs text-gray-500">PIC</p>
+                        <div class="flex items-center gap-5 text-right">
+                            <div>
+                                <p class="text-sm font-medium text-gray-900">{{ $event->PIC }}</p>
+                                <p class="text-xs text-gray-500">PIC</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-orange-500"></i>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         @else
             <div class="text-center py-12">
                 <i class="fas fa-calendar-times text-gray-300 text-4xl mb-4"></i>
-                <p class="text-gray-500">Tiada event pada hari ini</p>
+                <p class="text-gray-500">Tiada event pada bulan ini</p>
             </div>
         @endif
     </div>

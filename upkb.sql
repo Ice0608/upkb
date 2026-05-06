@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2026 at 08:27 AM
+-- Generation Time: May 06, 2026 at 01:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -84,7 +84,7 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `nama_event`, `lokasi`, `tarikh_event`, `masa_event`, `PIC`, `created_at`, `updated_at`) VALUES
-(1, 'TEST EVENT', 'DEWAN SERBAGUNA', '2026-04-14', '23:28:00', 'AMIRUL MUKMININ', '2026-04-12 16:28:17', '2026-04-12 16:28:17'),
+(1, 'TEST EVENT', 'DEWAN SERBAGUNA', '2026-05-02', '23:28:00', 'AMIRUL MUKMININ', '2026-04-12 16:28:17', '2026-04-12 16:28:17'),
 (4, 'TEST EVENT2', 'NO 34 JALAN MPK 4 KEPAYANG COMMERCE SQUARE 70300 SEREMBAN NEGERI SEMBILAN', '2026-04-13', '21:31:00', 'AMIRUL MUKMININ2', '2026-04-12 16:30:50', '2026-04-12 16:30:50');
 
 -- --------------------------------------------------------
@@ -591,7 +591,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (47, '2026_04_20_000001_add_event_id_to_pelajar_table', 22),
 (48, '2026_04_23_fix_galeris_id_autoincrement', 23),
 (49, '2026_04_24_000000_fix_pelajar_id_auto_increment', 24),
-(50, '2026_05_05_000000_fix_pembayaran_id_auto_increment', 24);
+(50, '2026_05_05_000000_fix_pembayaran_id_auto_increment', 24),
+(51, '2026_05_05_000001_fix_kerjayas_id_autoincrement', 25),
+(52, '2026_05_06_000002_fix_financial_tables_id_auto_increment', 25),
+(53, '2026_05_06_000003_fix_requirement_tables_id_auto_increment', 26);
 
 -- --------------------------------------------------------
 
@@ -653,7 +656,7 @@ CREATE TABLE `pelajar` (
 --
 
 INSERT INTO `pelajar` (`id`, `noreff`, `program`, `status_perkahwinan`, `tarikh_pendaftaran`, `nama_pelajar`, `ic_pelajar`, `spm_credit`, `no_tel`, `email`, `address_line1`, `address_line2`, `city`, `region`, `postcode`, `kod_institusi`, `kod_kursus`, `nama_bapa`, `ic_bapa`, `no_tel_bapa`, `pekerjaan_bapa`, `pendapatan_bapa`, `nama_ibu`, `ic_ibu`, `no_tel_ibu`, `pekerjaan_ibu`, `pendapatan_ibu`, `jumlah_tanggungan`, `pilihan_pertama`, `pilihan_kedua`, `pilihan_ketiga`, `created_at`, `updated_at`, `event_id`) VALUES
-(1, NULL, NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', 'C-21-G', 'P854-009-4:2020S', 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-05-04 19:05:21', 1),
+(1, 'SIS0221', NULL, NULL, '2026-04-14', 'FULAN BIN FULAN', '012345678990', NULL, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15, Blok D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'Puchong', 'Selangor', '47180', 'C-21-G', 'P854-009-4:2020S', 'FULAN BIN FALAN', '1234567890', '0122106612', NULL, '1500', 'FAULANA BINTI FULANAN', '12345347658', '0132106613', NULL, '1500', 4, NULL, NULL, NULL, '2026-04-12 16:27:24', '2026-05-05 22:33:30', 1),
 (2, 'Mirul', 'TVET', NULL, '2026-04-20', 'SHAHRUL IRFAN BIN SAFARIN', '060803140221', 4, '01121152996', 'shahrulirfan0608@gmail.com', 'D-1-15 BLOK D, PANGSAPURI DAMAI UTAMA', 'JALAN DU7, TAMAN DAMAI UTAMA', 'PUCHONG', 'Selangor', '47180', '53100', 'F432-005-2:2019', 'SAFARIN BIN RAMLI', '123456789001', '0122106612', 'SECURITY GUARD', '1500', 'SITI JULIEANA BINTI ADAN', '09876543221', '0132106613', 'GURU KAFA', '1500', 3, NULL, NULL, NULL, '2026-04-19 18:33:51', '2026-05-04 18:13:51', 4),
 (3, NULL, NULL, NULL, '2026-04-22', 'Test Student 2', '900101010102', NULL, '0123456788', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2026-04-21 23:22:33', '2026-04-21 23:22:33', 1),
 (4, NULL, NULL, NULL, '2026-04-22', 'Event1 Student 2', '900101010104', NULL, '0123456791', NULL, NULL, NULL, NULL, NULL, NULL, 'C-21-G', 'P854-009-4:2020S', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2026-04-21 23:39:09', '2026-04-21 23:43:05', 1);
@@ -687,7 +690,7 @@ INSERT INTO `pembayaran` (`id`, `ic_pelajar`, `username`, `kaedah_pembayaran`, `
 (1, '060803140221', 'Staff Member', 'Manual', 0.00, 0.00, 'Belum Bayar', NULL, '2026-04-20', '08:20:37', '2026-04-20 00:20:37', '2026-04-20 00:20:45'),
 (2, '900101010104', 'pelajar', 'qr', 50.00, 50.00, 'pending', NULL, '2026-04-22', '07:43:58', '2026-04-21 23:43:58', '2026-04-21 23:43:58'),
 (3, '060803140221', 'Staff Member', 'qr', 50.00, 50.00, 'pending', 'resit/FSKy9gicYbSnqbTR4eQZwhWMWjRnV5gV8ToHDjE2.docx', '2026-04-23', '00:15:30', '2026-04-22 16:15:30', '2026-04-23 23:07:31'),
-(4, '012345678990', 'pelajar', 'qr', 100.00, 100.00, 'pending', 'resit/1777951548_012345678990_SES-RESIT.pdf', '2026-05-05', '03:25:48', '2026-05-04 19:25:48', '2026-05-04 19:25:48');
+(4, '012345678990', 'Staff Member', 'qr', 100.00, 100.00, 'completed', 'resit/1777951548_012345678990_SES-RESIT.pdf', '2026-05-05', '03:25:48', '2026-05-04 19:25:48', '2026-05-05 22:32:21');
 
 -- --------------------------------------------------------
 
@@ -733,11 +736,13 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2JBZNqdQyNyPHfFm4J1hXR7n8ZhDmI6WIcgDe9ID', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSHdvYXM1bW13bHNDV2NaMmtSRldFcDBCTFU0WHRaeFA3RzVrN3kxSyI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1777952747),
-('oeUYJk3yH2b1UAmHkgakhQ5oDhqGJFMKZNHcZf34', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT; Windows NT 10.0; en-US) WindowsPowerShell/5.1.26100.7462', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibk1saUJtTXlXdEpGMEZhbjRyVktwVWhLUFdUM3BEeHJITERUaDAzVSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1777952254),
-('TdLoMSnwhnb0xeXodpCFLhycksQHbnbMS5Bg4yay', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.118.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ093dWdzUFdOZE55VEVoZERPOGxpSU1NR1VOWTlkanZveXd3aHZ2aSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wZWxhamFyL3BlbWJheWFyYW4vMSI7czo1OiJyb3V0ZSI7czoxODoicGVsYWphci5wZW1iYXlhcmFuIjt9fQ==', 1777952746),
-('WmRIRxYm4l8YZkY2vS33VadnlgPYCLzbRhV2uY79', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiU3J1ZDVQenJIeFk1ckRNalhub2hWVDdoTWZ3VkxBemU1akVIeDlDcCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9fQ==', 1777962245),
-('Ydmpdp9uSZyAPGqmmSatnKMFSP51rCMCG7ESeoWk', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidWJmZ0VPemlZVkI3OEVBUjZHaVl6T1RmUExHelhmeTdvRWMyN1JETCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9ibWQvMS9yZXNpdD9tb2RhbD0xIjtzOjU6InJvdXRlIjtzOjE1OiJzdGFmZi5ibWQucmVzaXQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O30=', 1777952819);
+('eEpOxyj6y1slwD8BOZldDoIOhW5RA1OF0uP1Iz3w', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicFN6VTNDREtzR1dNSEo1bXVzWVJHcVA2M2dJTDdrSDRjUkZvTVBkMSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1778065244),
+('egOnTGJz5P3IhI3UrZNbGeivGudY69veQZafU475', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQlMyVnBkcUpYWDJQT3J6ZWRWelVPU3hwVmIyTWpGQ3Juc2ZTVE4xRSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi9tYWluIjtzOjU6InJvdXRlIjtzOjEwOiJzdGFmZi5tYWluIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NDt9', 1778049212),
+('i3WTV3nYvamsDVAFf1snUp5w03KpmjOkqOG7f9UR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWWVOWDdsSEZGWGc4OWdJc2lzQlY5dHpSYVRKT09ZbmZsaHMxNUYzSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1778045466),
+('JMfRHPD6rIpR2Xeyx6b5g8BtU9o7e4pzNQ7ahUbb', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.118.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibEEzell4d2ExejBFOU0yV29NdWtJMnVsUEhXcG1kcWNBREVXVTI5WSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1778045184),
+('lHkajFgrjvqHiPi5xFFaAi48YPGJRX8fWixS8tlm', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.118.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmVXRjJERHk3ZkNMalNtZ3ZvN1hTUXgxdVlrZ3BpTDI2ZTJYWFlwYSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1778065245),
+('LnYYuEMWxTnCAL0PBtHop1DTrEoPSQqWj50guzD6', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWGZHbFp2TUFyYkRrZFRUeHlKZ215Y3VnblZuTmQ3OUx3M3paMjQ1NCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1778045630),
+('t5ftfy1bYV7gidpD48jaeZ5FgGBH8iq8k8p1MnZH', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoib2F1dmJmWEpPanZSV2lKckY3VjNVeEZFMEtFZ2ptcHVldUg5YUc5ViI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO3M6NToicm91dGUiO3M6OToiZGFzaGJvYXJkIjt9czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3N0YWZmL21haW4iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1778049373);
 
 -- --------------------------------------------------------
 
@@ -1335,10 +1340,16 @@ ALTER TABLE `yuran_pilihans`
 --
 
 --
+-- AUTO_INCREMENT for table `elauns`
+--
+ALTER TABLE `elauns`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `galeris`
@@ -1347,10 +1358,16 @@ ALTER TABLE `galeris`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
+-- AUTO_INCREMENT for table `kerjayas`
+--
+ALTER TABLE `kerjayas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `pelajar`
@@ -1363,6 +1380,42 @@ ALTER TABLE `pelajar`
 --
 ALTER TABLE `pembayaran`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `silibuses`
+--
+ALTER TABLE `silibuses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `syarat_kelayakans`
+--
+ALTER TABLE `syarat_kelayakans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `yuran_asramas`
+--
+ALTER TABLE `yuran_asramas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `yuran_pendaftarans`
+--
+ALTER TABLE `yuran_pendaftarans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- AUTO_INCREMENT for table `yuran_pengajians`
+--
+ALTER TABLE `yuran_pengajians`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `yuran_pilihans`
+--
+ALTER TABLE `yuran_pilihans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
