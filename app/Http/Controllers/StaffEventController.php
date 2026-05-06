@@ -263,7 +263,10 @@ class StaffEventController extends Controller
         abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
         $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
-        $kursus = Kursus::with('institusi')->where('kod_kursus', $pelajar->kod_kursus)->first();
+        $kursus = Kursus::with('institusi')
+            ->where('kod_kursus', $pelajar->kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->first();
         $institusi = $kursus?->institusi;
 
         // If modal=1, return only the content for modal display
@@ -291,7 +294,10 @@ class StaffEventController extends Controller
             $pelajarEmail = $pelajar->email;
             $pelajarName = $pelajar->nama_pelajar;
             $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
-            $kursus = Kursus::with('institusi')->where('kod_kursus', $pelajar->kod_kursus)->first();
+            $kursus = Kursus::with('institusi')
+                ->where('kod_kursus', $pelajar->kod_kursus)
+                ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+                ->first();
             $institusi = $kursus?->institusi;
             $isPdf = true;
             $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
@@ -669,38 +675,49 @@ class StaffEventController extends Controller
 
     public function pelajarInfoKursus(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus->load(['institusi', 'galeris', 'syaratKelayakans', 'silibuses', 'kerjayas', 'yuranPendaftarans', 'yuranPilihans', 'yuranAsramas', 'yuranPengajians', 'elauns']);
+        $kursus->load('institusi');
+        $kursus->loadScopedCourseDetails([
+            'galeris',
+            'syaratKelayakans',
+            'silibuses',
+            'kerjayas',
+            'yuranPendaftarans',
+            'yuranPilihans',
+            'yuranAsramas',
+            'yuranPengajians',
+            'elauns',
+        ]);
 
         return view('pelajar.infokursus', compact('pelajar', 'kursus'));
     }
 
     public function pelajarTabMaklumat(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus->load('syaratKelayakans');
+        $kursus->loadScopedCourseDetails('syaratKelayakans');
         return view('pelajar._guest_tab_maklumat', compact('kursus'));
     }
 
     public function pelajarTabSyarat(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus->load('syaratKelayakans');
+        $kursus->loadScopedCourseDetails('syaratKelayakans');
         return view('pelajar._guest_tab_syarat', compact('kursus'));
     }
 
     public function pelajarTabSilibus(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus->load('silibuses');
+        $kursus->loadScopedCourseDetails('silibuses');
         return view('pelajar._guest_tab_silibus', compact('kursus'));
     }
 
     public function pelajarTabKerjaya(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus->load('kerjayas');
+        $kursus->loadScopedCourseDetails('kerjayas');
         return view('pelajar._guest_tab_kerjaya', compact('kursus'));
     }
 
     public function pelajarTabYuran(Pelajar $pelajar, Kursus $kursus)
     {
-        $kursus->load([
+        $kursus->loadScopedCourseDetails([
             'yuranPendaftarans',
             'yuranPilihans',
             'yuranAsramas',
@@ -744,10 +761,14 @@ class StaffEventController extends Controller
     {
         $kursus = null;
         if ($pelajar->kod_kursus) {
-            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)->first();
+            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)
+                ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+                ->first();
         }
 
-        $yuranPendaftaran = $kursus ? \App\Models\YuranPendaftaran::where('kod_kursus', $kursus->kod_kursus)->first() : null;
+        $yuranPendaftaran = $kursus ? \App\Models\YuranPendaftaran::where('kod_kursus', $kursus->kod_kursus)
+            ->where('kod_institusi', $kursus->kod_institusi)
+            ->first() : null;
         $jumlah = $yuranPendaftaran ? $yuranPendaftaran->yuran : 0;
 
         return view('pelajar.pembayaran', compact('pelajar', 'kursus', 'jumlah'));
@@ -829,7 +850,9 @@ class StaffEventController extends Controller
         $hasSuratTawaran = false;
 
         if ($pelajar->kod_kursus) {
-            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)->first();
+            $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)
+                ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+                ->first();
             if ($kursus && $kursus->kod_institusi) {
                 $institusi = \App\Models\Institusi::where('kod_institusi', $kursus->kod_institusi)->first();
                 $suratPath = public_path("wordinstitusi/{$kursus->kod_institusi}/SURAT TAWARAN/{$kursus->kod_kursus}.docx");
@@ -848,7 +871,9 @@ class StaffEventController extends Controller
             return back()->with('error', 'Tiada kursus dipilih.');
         }
 
-        $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)->first();
+        $kursus = \App\Models\Kursus::where('kod_kursus', $pelajar->kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->first();
         if (!$kursus) {
             return back()->with('error', 'Kursus tidak ditemui.');
         }

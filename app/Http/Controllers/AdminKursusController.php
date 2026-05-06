@@ -65,16 +65,7 @@ class AdminKursusController extends Controller
 
     public function edit($id)
     {
-        $kursus = Kursus::with([
-            'syaratKelayakans',
-            'silibuses',
-            'kerjayas',
-            'yuranPendaftarans',
-            'yuranPilihans',
-            'yuranAsramas',
-            'yuranPengajians',
-            'elauns',
-        ])->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails();
 
         return view('admin.editkursus', compact('kursus'));
     }
@@ -158,7 +149,9 @@ class AdminKursusController extends Controller
     public function destroySyarat($id)
     {
         $item = SyaratKelayakan::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -197,7 +190,9 @@ class AdminKursusController extends Controller
     public function destroySilibus($id)
     {
         $item = Silibus::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -234,7 +229,9 @@ class AdminKursusController extends Controller
     public function destroyKerjaya($id)
     {
         $item = Kerjaya::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -273,7 +270,9 @@ class AdminKursusController extends Controller
     public function destroyYuranPendaftaran($id)
     {
         $item = YuranPendaftaran::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -314,7 +313,9 @@ class AdminKursusController extends Controller
     public function destroyYuranPilihan($id)
     {
         $item = YuranPilihan::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -353,7 +354,9 @@ class AdminKursusController extends Controller
     public function destroyYuranAsrama($id)
     {
         $item = YuranAsrama::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -394,7 +397,9 @@ class AdminKursusController extends Controller
     public function destroyYuranPengajian($id)
     {
         $item = YuranPengajian::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -435,7 +440,9 @@ class AdminKursusController extends Controller
     public function destroyElaun($id)
     {
         $item = Elaun::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)->first();
+        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
+            ->where('kod_institusi', $item->kod_institusi)
+            ->firstOrFail();
         $item->delete();
 
         if (request()->wantsJson()) {
@@ -454,31 +461,31 @@ class AdminKursusController extends Controller
 
     public function tabSyarat($id)
     {
-        $kursus = Kursus::with('syaratKelayakans')->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('syaratKelayakans');
         return view('admin._tab_syarat', compact('kursus'));
     }
 
     public function tabSilibus($id)
     {
-        $kursus = Kursus::with('silibuses')->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('silibuses');
         return view('admin._tab_silibus', compact('kursus'));
     }
 
     public function tabKerjaya($id)
     {
-        $kursus = Kursus::with('kerjayas')->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('kerjayas');
         return view('admin._tab_kerjaya', compact('kursus'));
     }
 
     public function tabYuran($id)
     {
-        $kursus = Kursus::with([
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails([
             'yuranPendaftarans',
             'yuranPilihans',
             'yuranAsramas',
             'yuranPengajians',
             'elauns',
-        ])->findOrFail($id);
+        ]);
         return view('admin._tab_yuran', compact('kursus'));
     }
 

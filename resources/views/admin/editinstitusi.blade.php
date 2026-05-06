@@ -100,22 +100,28 @@
                         @foreach($kursusList as $kursus)
                         <tr class="border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-4 py-3 text-gray-800 font-medium">{{ $kursus->nama_kursus }}</td>
-                            <td class="px-4 py-3 text-gray-600"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-semibold">{{ $kursus->kod_kursus }}</span></td>
+                            <td class="px-4 py-3 text-gray-600">
+                                <span class="inline-flex max-w-[180px] items-center gap-2 rounded-full bg-blue-100 text-blue-700 px-2 py-1 text-xs font-semibold overflow-hidden whitespace-nowrap text-ellipsis">
+                                    {{ $kursus->kod_kursus }}
+                                </span>
+                            </td>
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->mod_pengajian }}</td>
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
                             <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $kursus->kuota }}</td>
-                            <td class="px-4 py-3 text-gray-600 space-x-3">
-                                <a href="{{ route('admin.editkursus', $kursus->id) }}" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold">
-                                    <i class="fas fa-edit"></i>Edit
-                                </a>
-                                <form action="{{ route('admin.deletekursus', $kursus->id) }}" method="POST" class="inline"
-                                      onsubmit="return confirm('Padam kursus ini?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="inline-flex items-center gap-1 text-red-600 hover:text-red-800 font-semibold">
-                                        <i class="fas fa-trash"></i>Padam
-                                    </button>
-                                </form>
+                            <td class="px-4 py-3 text-gray-600">
+                                <div class="inline-flex items-center gap-4 whitespace-nowrap">
+                                    <a href="{{ route('admin.editkursus', $kursus->id) }}" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold">
+                                        <i class="fas fa-edit"></i>Edit
+                                    </a>
+                                    <form action="{{ route('admin.deletekursus', $kursus->id) }}" method="POST" class="inline"
+                                          onsubmit="return confirm('Padam kursus ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="inline-flex items-center gap-1 text-red-600 hover:text-red-800 font-semibold">
+                                            <i class="fas fa-trash"></i>Padam
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

@@ -18,6 +18,18 @@ class Kursus extends Model
 {
     protected $table = 'kursuses';
 
+    private const SCOPED_DETAIL_RELATIONS = [
+        'galeris' => Galeri::class,
+        'syaratKelayakans' => SyaratKelayakan::class,
+        'silibuses' => Silibus::class,
+        'kerjayas' => Kerjaya::class,
+        'yuranPendaftarans' => YuranPendaftaran::class,
+        'yuranPilihans' => YuranPilihan::class,
+        'yuranAsramas' => YuranAsrama::class,
+        'yuranPengajians' => YuranPengajian::class,
+        'elauns' => Elaun::class,
+    ];
+
     protected $fillable = [
         'kod_kursus',
         'kod_institusi',
@@ -102,5 +114,26 @@ class Kursus extends Model
     public function elauns()
     {
         return $this->hasMany(Elaun::class, 'kod_kursus', 'kod_kursus');
+    }
+
+    public function loadScopedCourseDetails(array|string|null $relations = null): self
+    {
+        $relations = $relations === null
+            ? array_keys(self::SCOPED_DETAIL_RELATIONS)
+            : (array) $relations;
+
+        foreach ($relations as $relation) {
+            if (! isset(self::SCOPED_DETAIL_RELATIONS[$relation])) {
+                continue;
+            }
+
+            $modelClass = self::SCOPED_DETAIL_RELATIONS[$relation];
+
+            $this->setRelation($relation, $modelClass::where('kod_kursus', $this->kod_kursus)
+                ->where('kod_institusi', $this->kod_institusi)
+                ->get());
+        }
+
+        return $this;
     }
 }

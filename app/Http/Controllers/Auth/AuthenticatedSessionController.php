@@ -27,6 +27,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $request->session()->flash('show_dashboard_intro', true);
 
         $user = Auth::user();
         $level = strtolower(trim((string) $user->level));

@@ -428,6 +428,9 @@
                         <span class="kursus-detail-chip px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->jenis_kursus }}</span>
                         <span class="kursus-detail-chip px-3 py-1 rounded-full uppercase text-xs tracking-[0.2em]">{{ $kursus->mod_pengajian }}</span>
                     </div>
+                    @if($detailInstitusi)
+                        <p class="text-sm text-white/80 mb-4 inline-flex items-center gap-2"><i class="fas fa-building"></i>{{ $detailInstitusi->nama_institusi ?? $detailInstitusi->kod_institusi }}</p>
+                    @endif
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">{{ $kursus->nama_kursus }}</h1>
                     <div class="kursus-detail-soft-text flex flex-wrap items-center gap-4 text-sm">
                         <div class="inline-flex items-center gap-2"><i class="fas fa-hashtag"></i> {{ $kursus->kod_kursus }}</div>

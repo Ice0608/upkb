@@ -7,18 +7,24 @@ use App\Models\Pelajar;
 use App\Models\Institusi;
 use App\Models\Kursus;
 use App\Models\Pembayaran;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class AdminDashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(auth()->user()->level !== 'admin', 403);
 
-        // Event bulan semasa
+        $year = (int) $request->get('year', now()->year);
+        $month = (int) $request->get('month', now()->month);
+        $date = Carbon::create($year, $month, 1);
+
+        // Event bulan yang dipilih
         $monthEvents = Event::whereBetween('tarikh_event', [
-            now()->startOfMonth()->toDateString(),
-            now()->endOfMonth()->toDateString(),
+            $date->copy()->startOfMonth()->toDateString(),
+            $date->copy()->endOfMonth()->toDateString(),
         ])->orderBy('tarikh_event')->orderBy('masa_event')->get();
 
         // Bilangan pelajar
@@ -31,8 +37,27 @@ class AdminDashboardController extends Controller
         // Bilangan kursus
         $totalKursus = Kursus::count();
 
+        $monthName = $date->translatedFormat('F Y');
+        $startOfMonth = $date->copy()->startOfMonth();
+        $endOfMonth = $date->copy()->endOfMonth();
+        $monthRange = $startOfMonth->format('d M Y').' - '.$endOfMonth->format('d M Y');
+        $prevDate = $date->copy()->subMonthNoOverflow();
+        $nextDate = $date->copy()->addMonthNoOverflow();
+        $prevMonth = $prevDate->month;
+        $prevYear = $prevDate->year;
+        $nextMonth = $nextDate->month;
+        $nextYear = $nextDate->year;
+
         return view('admin.dashboard', compact(
             'monthEvents',
+            'monthName',
+            'month',
+            'year',
+            'monthRange',
+            'prevMonth',
+            'prevYear',
+            'nextMonth',
+            'nextYear',
             'totalPelajar',
             'todayPelajar',
             'totalInstitusi',

@@ -80,13 +80,26 @@
 
     <!-- Monthly Events -->
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-gray-200">
-        <div class="flex flex-col gap-2 mb-6 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-col gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between">
             <div class="flex items-center gap-3">
                 <i class="fas fa-calendar-days text-orange-500 text-xl"></i>
-                <h2 class="text-xl font-semibold text-gray-900">Event Bulan Ini</h2>
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-900">Event {{ $monthName }}</h2>
+                    <p class="text-sm text-gray-500">Paparan untuk bulan yang dipilih. Semak semula bulan sebelumnya atau ke hadapan.</p>
+                </div>
             </div>
-            <p class="text-sm text-gray-500">{{ now()->startOfMonth()->format('d M Y') }} - {{ now()->endOfMonth()->format('d M Y') }}</p>
+            <div class="flex items-center gap-2 text-sm text-gray-600">
+                <a href="{{ url()->current() . '?month=' . $prevMonth . '&year=' . $prevYear }}" class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-2 hover:bg-gray-100 transition">
+                    <i class="fas fa-chevron-left"></i>
+                    Bulan Sebelumnya
+                </a>
+                <a href="{{ url()->current() . '?month=' . $nextMonth . '&year=' . $nextYear }}" class="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-2 hover:bg-gray-100 transition">
+                    Bulan Seterusnya
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
         </div>
+        <p class="text-sm text-gray-500 mb-6">{{ $monthRange }}</p>
 
         @if($monthEvents->count() > 0)
             <div class="space-y-4">
@@ -121,6 +134,7 @@
     </div>
 </main>
 
+@if(session('show_dashboard_intro'))
 <div id="pixel-loader" class="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
     
     <div class="absolute inset-0 opacity-10 pointer-events-none" 
@@ -150,6 +164,7 @@
 
 </div>
 
+@endif
 
 <style>
     /* Elakkan scroll masa loading */
@@ -184,6 +199,7 @@
     .content-ready main, .content-ready nav { opacity: 1; transform: scale(1); }
 </style>
 
+@if(session('show_dashboard_intro'))
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('pixel-loader');
@@ -193,6 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.getElementById('status-text');
     const loadBar = document.getElementById('load-bar');
     const body = document.body;
+
+    if (!loader || !videoContainer || !splashVideo || !logoContainer || !statusText || !loadBar) {
+        body.classList.add('content-ready');
+        return;
+    }
 
     body.classList.add('is-loading');
 
@@ -235,6 +256,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500); // Beri masa untuk video splash merebak megah
 });
 </script>
+@else
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('content-ready');
+});
+</script>
+@endif
 
 @include('components.social-float')
 

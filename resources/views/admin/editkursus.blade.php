@@ -19,6 +19,7 @@
                     <div>
                         <h1 class="text-4xl font-bold text-gray-800">Edit kursus</h1>
                         <p class="mt-2 text-gray-600">Urus data kursus serta semua submodul syarat, silibus, kerjaya dan yuran.</p>
+                        <p class="mt-1 text-sm text-gray-500">Institusi: <span class="font-semibold text-gray-700">{{ $kursus->institusi?->nama_institusi ?? 'Tidak Dikenal' }}</span></p>
                     </div>
                     <a href="{{ route('admin.editinstitusi', $kursus->institusi?->id ?? 0) }}" class="inline-flex items-center gap-2 rounded-full bg-orange-500 text-white px-5 py-3 hover:bg-orange-600 transition">
                         <i class="fas fa-building"></i> Kembali ke Institusi

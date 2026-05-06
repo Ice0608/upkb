@@ -22,8 +22,13 @@ class AdminInstitusiController extends Controller
         $jenis = $request->query('jenis');
         $negeri = $request->query('negeri');
         $kuota = $request->query('kuota');
+        $cari = $request->query('cari');
 
         $query = Institusi::query();
+
+        if ($cari) {
+            $query->where('nama_institusi', 'LIKE', '%' . $cari . '%');
+        }
 
         if ($jenis) {
             $query->where('jenis_institusi', $jenis);

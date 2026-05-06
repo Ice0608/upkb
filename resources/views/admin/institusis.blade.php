@@ -31,9 +31,11 @@
         </div>
         @endif
 
-        <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <form method="GET" class="flex w-full max-w-[520px] gap-4 items-center">
-                <select name="negeri" onchange="this.form.submit()" class="w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+        <div class="mb-6 flex flex-col lg:flex-row lg:items-center gap-4">
+            <form method="GET" class="flex flex-col sm:flex-row gap-4 items-center w-full lg:flex-1">
+                <input type="text" name="cari" placeholder="Cari Institusi..." value="{{ request('cari') }}" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+                
+                <select name="negeri" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
                     <option value="">Semua Negeri</option>
                     <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
                     <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
@@ -52,16 +54,25 @@
                     <option value="Labuan" {{ request('negeri') == 'Labuan' ? 'selected' : '' }}>Labuan</option>
                     <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
                 </select>
+
+                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 text-white px-6 py-2 text-sm font-semibold hover:bg-orange-600 transition">
+                    <i class="fas fa-search mr-2"></i>Cari
+                </button>
+
                 @if(request('jenis'))
                     <input type="hidden" name="jenis" value="{{ request('jenis') }}">
                 @endif
             </form>
+
             <form method="GET" class="inline-flex items-center">
                 @if(request('jenis'))
                     <input type="hidden" name="jenis" value="{{ request('jenis') }}">
                 @endif
                 @if(request('negeri'))
                     <input type="hidden" name="negeri" value="{{ request('negeri') }}">
+                @endif
+                @if(request('cari'))
+                    <input type="hidden" name="cari" value="{{ request('cari') }}">
                 @endif
                 <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="inline-flex items-center justify-center rounded-full border px-6 py-2 text-sm font-semibold transition {{ request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50' }}">
                     Kuota

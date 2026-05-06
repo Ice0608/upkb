@@ -121,8 +121,8 @@ class KursusController extends Controller
 
     public function pdf($id)
     {
-        $kursus = Kursus::with([
-            'institusi',
+        $kursus = Kursus::with('institusi')->findOrFail($id);
+        $kursus->loadScopedCourseDetails([
             'syaratKelayakans',
             'silibuses',
             'kerjayas',
@@ -131,7 +131,7 @@ class KursusController extends Controller
             'yuranAsramas',
             'yuranPengajians',
             'elauns',
-        ])->findOrFail($id);
+        ]);
 
         $html = view('program.infokursus-pdf', compact('kursus'))->render();
 
@@ -153,31 +153,31 @@ class KursusController extends Controller
 
     public function tabSyarat($id)
     {
-        $kursus = Kursus::with('syaratKelayakans')->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('syaratKelayakans');
         return view('program._guest_tab_syarat', compact('kursus'));
     }
 
     public function tabSilibus($id)
     {
-        $kursus = Kursus::with('silibuses')->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('silibuses');
         return view('program._guest_tab_silibus', compact('kursus'));
     }
 
     public function tabKerjaya($id)
     {
-        $kursus = Kursus::with('kerjayas')->findOrFail($id);
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('kerjayas');
         return view('program._guest_tab_kerjaya', compact('kursus'));
     }
 
     public function tabYuran($id)
     {
-        $kursus = Kursus::with([
+        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails([
             'yuranPendaftarans',
             'yuranPilihans',
             'yuranAsramas',
             'yuranPengajians',
             'elauns',
-        ])->findOrFail($id);
+        ]);
         return view('program._guest_tab_yuran', compact('kursus'));
     }
 

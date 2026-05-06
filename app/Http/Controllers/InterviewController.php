@@ -149,13 +149,25 @@ class InterviewController extends Controller
     }
 
     // Info kursus
-    public function infoKursus(Pelajar $pelajar, $kod_kursus)
+    public function infoKursus(Pelajar $pelajar, $kod_institusi, $kod_kursus)
     {
         abort_if(auth()->user()->level !== 'staff', 403);
 
-        $kursus = Kursus::with(['institusi', 'galeris', 'syaratKelayakans', 'silibuses', 'kerjayas', 'yuranPendaftarans', 'yuranPilihans', 'yuranAsramas', 'yuranPengajians', 'elauns'])
+        $kursus = Kursus::with('institusi')
             ->where('kod_kursus', $kod_kursus)
+            ->where('kod_institusi', $kod_institusi)
             ->firstOrFail();
+        $kursus->loadScopedCourseDetails([
+            'galeris',
+            'syaratKelayakans',
+            'silibuses',
+            'kerjayas',
+            'yuranPendaftarans',
+            'yuranPilihans',
+            'yuranAsramas',
+            'yuranPengajians',
+            'elauns',
+        ]);
 
         return view('staff.temuduga.infokursus', compact('pelajar', 'kursus'));
     }
@@ -173,7 +185,10 @@ class InterviewController extends Controller
     {
         abort_if(auth()->user()->level !== 'staff', 403);
 
-        $kursus = Kursus::with('syaratKelayakans')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus = Kursus::where('kod_kursus', $kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->firstOrFail()
+            ->loadScopedCourseDetails('syaratKelayakans');
         return view('program._guest_tab_syarat', compact('kursus'));
     }
 
@@ -181,7 +196,10 @@ class InterviewController extends Controller
     {
         abort_if(auth()->user()->level !== 'staff', 403);
 
-        $kursus = Kursus::with('silibuses')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus = Kursus::where('kod_kursus', $kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->firstOrFail()
+            ->loadScopedCourseDetails('silibuses');
         return view('program._guest_tab_silibus', compact('kursus'));
     }
 
@@ -189,7 +207,10 @@ class InterviewController extends Controller
     {
         abort_if(auth()->user()->level !== 'staff', 403);
 
-        $kursus = Kursus::with('kerjayas')->where('kod_kursus', $kod_kursus)->firstOrFail();
+        $kursus = Kursus::where('kod_kursus', $kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->firstOrFail()
+            ->loadScopedCourseDetails('kerjayas');
         return view('program._guest_tab_kerjaya', compact('kursus'));
     }
 
@@ -197,13 +218,16 @@ class InterviewController extends Controller
     {
         abort_if(auth()->user()->level !== 'staff', 403);
 
-        $kursus = Kursus::with([
+        $kursus = Kursus::where('kod_kursus', $kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->firstOrFail()
+            ->loadScopedCourseDetails([
             'yuranPendaftarans',
             'yuranPilihans',
             'yuranAsramas',
             'yuranPengajians',
             'elauns',
-        ])->where('kod_kursus', $kod_kursus)->firstOrFail();
+        ]);
         return view('program._guest_tab_yuran', compact('kursus'));
     }
 
