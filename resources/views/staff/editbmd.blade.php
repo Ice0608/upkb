@@ -416,7 +416,7 @@
 
         <!-- Mulakan Temu Duga Button -->
         <div class="mt-6 flex justify-center no-print">
-            <a href="{{ route('staff.temuduga.welcome', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600">
+            <a href="{{ route('pelajar.login', ['pelajar_id' => $pelajar->id]) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-green-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-green-600">
                 <i class="fas fa-play"></i> Mulakan Temu Duga
             </a>
         </div>
