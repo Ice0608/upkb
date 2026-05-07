@@ -248,7 +248,7 @@
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-            max-width: min(34rem, 100%);
+            max-width: min(38rem, 100%);
         }
 
         .pilihan-hero-copy h1 {
@@ -262,6 +262,10 @@
             color: rgba(255, 255, 255, 0.86);
             font-size: clamp(1rem, 2vw, 1.15rem);
             line-height: 1.8;
+            max-height: clamp(7rem, 22vh, 14rem);
+            overflow-y: auto;
+            padding-right: 0.35rem;
+            scrollbar-width: thin;
         }
 
         .pilihan-filter-floating {
@@ -371,7 +375,7 @@
             align-items: flex-start;
             gap: 1rem;
             padding: clamp(1.75rem, 3vw, 3rem);
-            padding-bottom: clamp(4rem, 9vw, 6.5rem);
+            padding-bottom: clamp(2.25rem, 5vw, 4rem);
             justify-content: flex-end;
             min-height: 100%;
         }
@@ -768,7 +772,7 @@
 
             .pilihan-hero-card-content {
                 padding: 1.5rem;
-                padding-bottom: 7.5rem;
+                padding-bottom: 2rem;
             }
 
             .pilihan-filter-floating {

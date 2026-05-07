@@ -673,6 +673,24 @@
             color: var(--kursus-card-pill-text);
         }
 
+        html.dark .kursus-pill--tahap {
+            background: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 10px 20px rgba(2, 6, 23, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        html.dark .kursus-pill--kuota {
+            background: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 10px 20px rgba(2, 6, 23, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
         .course-card-headline {
             position: relative;
             display: block;
@@ -938,18 +956,15 @@
             background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
             border-color: rgba(255,255,255,0.08);
         }
-        html.dark .course-card-headline .kursus-section-accent {
-            color: #a5b4fc;
-        }
         html.dark .course-card-title { color: #f1f5f9; }
         html.dark .course-card-meta-item {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(15, 23, 42, 0.85);
             border-color: rgba(255, 255, 255, 0.08);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
         html.dark .course-card-meta-value { color: #e2e8f0; }
         html.dark .course-card-meta-label { color: #64748b; }
-        {
+        html.dark .kursus-results-summary {
             background: rgba(15,23,42,0.9);
             border-color: rgba(255,255,255,0.08);
             color: #e2e8f0;
@@ -1099,9 +1114,9 @@
                                 <span class="kursus-tag px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em]">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="flex flex-wrap items-center justify-end gap-2 max-w-[75%]">
                                     @if($showJenisKursusPill)
-                                        <span class="kursus-pill px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">{{ $kursus->jenis_kursus }}</span>
+                                        <span class="kursus-pill kursus-pill--tahap px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">{{ $kursus->jenis_kursus }}</span>
                                     @endif
-                                    <span class="kursus-pill px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">Kuota {{ $kursus->kuota ?? '-' }}</span>
+                                    <span class="kursus-pill kursus-pill--kuota px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">Kuota {{ $kursus->kuota ?? '-' }}</span>
                                 </div>
                             </div>
                         </div>
