@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2026 at 03:22 PM
+-- Generation Time: May 07, 2026 at 05:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -122,7 +122,13 @@ INSERT INTO `elauns` (`id`, `kod_institusi`, `kod_kursus`, `elaun_bulanan`, `tem
 (54, 'P13A-1', 'F432-005-3-2019S', '800', '16 BULAN', 12800.00, '2026-05-06 01:46:38', '2026-05-06 01:46:38'),
 (55, '28600', 'ET-012-3:2012', '800', '24 BULAN', 19200.00, '2026-05-06 01:51:06', '2026-05-06 01:51:06'),
 (56, '28600', 'G452-002-3:2018S', '800', '24 BULAN', 19200.00, '2026-05-06 01:53:47', '2026-05-06 01:53:47'),
-(57, '28600', '7982-001-3:2017', '800', '12 BULAN', 9600.00, '2026-05-06 01:59:42', '2026-05-06 01:59:42');
+(57, '28600', '7982-001-3:2017', '800', '12 BULAN', 9600.00, '2026-05-06 01:59:42', '2026-05-06 01:59:42'),
+(58, 'P13A', 'MC-024-3:2022', '800', '18 BULAN', 14400.00, '2026-05-06 16:31:12', '2026-05-06 16:31:12'),
+(59, 'P13A', 'I561-005-3:2022', '800', '18 BULAN', 14400.00, '2026-05-06 16:33:09', '2026-05-06 16:33:09'),
+(60, 'L02054', 'T982-001-3:2017', '400', '12 BULAN', 4800.00, '2026-05-06 16:36:58', '2026-05-06 16:36:58'),
+(61, '47650', 'T982-001-3:2017', '400', '12 BULAN', 4800.00, '2026-05-06 16:52:00', '2026-05-06 16:52:00'),
+(62, 'L02723', 'G452-002-3:2018', '400', '24 BULAN', 9600.00, '2026-05-06 16:54:38', '2026-05-06 16:54:38'),
+(63, 'L02890', 'K12001/G452-002-4:2017-ST-A', '600', '15 BULAN', 9000.00, '2026-05-06 16:58:28', '2026-05-06 16:58:28');
 
 -- --------------------------------------------------------
 
@@ -305,7 +311,78 @@ INSERT INTO `galeris` (`id`, `kod_institusi`, `kod_kursus`, `imej`, `penerangan`
 (123, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'storage/galeri/v8UJsOXfmQOc1PCeK1a6fpN3gb8VWG3M6W2oNwxL.jpg', NULL, '2026-04-22 21:22:33', '2026-04-22 21:22:33'),
 (124, 'DK030(N)', NULL, 'images/galeri/dk030n-1777967392.jpg', 'fasiliti makmal', '2026-05-04 23:49:52', '2026-05-05 00:06:25'),
 (125, 'DK030(N)', NULL, 'images/galeri/dk030n-1777967618.jpg', 'fasiliti hospital', '2026-05-04 23:53:38', '2026-05-04 23:53:38'),
-(126, 'DK030(N)', NULL, 'images/galeri/dk030n-1777967645.jpg', 'fasiliti hospital', '2026-05-04 23:54:05', '2026-05-04 23:54:05');
+(126, 'DK030(N)', NULL, 'images/galeri/dk030n-1777967645.jpg', 'fasiliti hospital', '2026-05-04 23:54:05', '2026-05-04 23:54:05'),
+(127, 'TP-060-3:2013', NULL, 'images/galeri/tp-060-32013-1778114453.jpg', 'BENGKEL AIRCRAFT MAINTENANCE 1', '2026-05-06 16:40:53', '2026-05-06 16:41:36'),
+(128, 'TP-060-3:2013', NULL, 'images/galeri/tp-060-32013-1778114546.jpg', 'BENGKEL AIRCRAFT MAINTENANCE', '2026-05-06 16:42:26', '2026-05-06 16:42:26'),
+(129, 'TP-060-3:2013', NULL, 'images/galeri/tp-060-32013-1778114580.jpg', 'INFLIGHT SERVICE', '2026-05-06 16:43:00', '2026-05-06 16:43:00'),
+(130, 'TP-060-3:2013', NULL, 'images/galeri/tp-060-32013-1778114623.jpg', 'KELAS INFLIGHT SERVICE', '2026-05-06 16:43:43', '2026-05-06 16:43:43'),
+(131, 'TP-060-3:2013', NULL, 'images/galeri/tp-060-32013-1778114654.jpeg', 'SITE VISIT', '2026-05-06 16:44:14', '2026-05-06 16:44:14'),
+(132, 'L02890', NULL, 'images/galeri/l02890-1778115605.jpg', 'BENGKEL AUTOMOTIF', '2026-05-06 17:00:05', '2026-05-06 17:00:05'),
+(133, 'L02890', NULL, 'images/galeri/l02890-1778115635.jpg', 'BENGKEL AUTOMOTIF', '2026-05-06 17:00:35', '2026-05-06 17:00:35'),
+(134, 'L02890', NULL, 'images/galeri/l02890-1778115648.jpg', 'KELAS', '2026-05-06 17:00:48', '2026-05-06 17:00:48'),
+(135, 'L02650', NULL, 'images/galeri/l02650-1778117660.png', 'BILIK KOMPUTER', '2026-05-06 17:34:20', '2026-05-06 17:34:20'),
+(136, 'L02650', NULL, 'images/galeri/l02650-1778117707.png', 'BENGKEL AIRCOND', '2026-05-06 17:35:07', '2026-05-06 17:35:07'),
+(137, 'L02650', NULL, 'images/galeri/l02650-1778117741.png', 'BILIK KOMPUTER 1', '2026-05-06 17:35:41', '2026-05-06 17:35:41'),
+(138, 'L02650', NULL, 'images/galeri/l02650-1778117766.png', 'ASRAMA', '2026-05-06 17:36:06', '2026-05-06 17:36:06'),
+(139, 'L02650', NULL, 'images/galeri/l02650-1778117778.png', 'ASRAMA 1', '2026-05-06 17:36:18', '2026-05-06 17:36:18'),
+(140, 'L02650', NULL, 'images/galeri/l02650-1778117840.webp', 'BENGKEL 1', '2026-05-06 17:37:20', '2026-05-06 17:37:20'),
+(141, 'L02650', NULL, 'images/galeri/l02650-1778117854.webp', 'BENGKEL 2', '2026-05-06 17:37:34', '2026-05-06 17:37:34'),
+(142, 'L02080', NULL, 'images/galeri/l02080-1778118415.jpg', 'BILIK KULIAH', '2026-05-06 17:46:55', '2026-05-06 17:46:55'),
+(143, 'L02080', NULL, 'images/galeri/l02080-1778118437.jpg', 'BILIK KOMPUTER', '2026-05-06 17:47:17', '2026-05-06 17:47:17'),
+(144, 'L02080', NULL, 'images/galeri/l02080-1778118471.jpg', 'KECANTIKAN & PENJAGAAN PERIBADI', '2026-05-06 17:47:51', '2026-05-06 17:48:07'),
+(145, 'L02080', NULL, 'images/galeri/l02080-1778118524.jpg', 'REKABENTUK GRAFIK', '2026-05-06 17:48:44', '2026-05-06 17:48:44'),
+(146, '53100', NULL, 'images/galeri/53100-1778118779.png', 'BILIK KOMPUTER', '2026-05-06 17:52:59', '2026-05-06 17:52:59'),
+(147, '53100', NULL, 'images/galeri/53100-1778118796.png', 'BILIK KULIAH', '2026-05-06 17:53:16', '2026-05-06 17:53:16'),
+(148, '53100', NULL, 'images/galeri/53100-1778118841.png', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK', '2026-05-06 17:54:01', '2026-05-06 17:54:01'),
+(149, '53100', NULL, 'images/galeri/53100-1778118859.png', 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK 1', '2026-05-06 17:54:19', '2026-05-06 17:54:19'),
+(150, 'L02163', NULL, 'images/galeri/l02163-1778119387.jpg', 'BENGKEL AUTOMOTIF', '2026-05-06 18:03:07', '2026-05-06 18:03:07'),
+(151, 'L02163', NULL, 'images/galeri/l02163-1778119405.jpg', 'BENGKEL AUTOMOTIF', '2026-05-06 18:03:25', '2026-05-06 18:03:25'),
+(152, '47650', NULL, 'images/galeri/47650-1778119682.webp', 'CLASSROOM', '2026-05-06 18:08:02', '2026-05-06 18:08:02'),
+(153, '47650', NULL, 'images/galeri/47650-1778119704.webp', 'STUDENT LOUNGE', '2026-05-06 18:08:24', '2026-05-06 18:08:24'),
+(154, '47650', NULL, 'images/galeri/47650-1778119746.webp', 'LIBRARY', '2026-05-06 18:09:06', '2026-05-06 18:09:06'),
+(155, '47650', NULL, 'images/galeri/47650-1778119771.webp', 'SCIENCE LAB', '2026-05-06 18:09:31', '2026-05-06 18:09:31'),
+(156, '47650', NULL, 'images/galeri/47650-1778119788.webp', 'MEETING ROOM', '2026-05-06 18:09:48', '2026-05-06 18:09:48'),
+(157, '47650', NULL, 'images/galeri/47650-1778119813.webp', 'COMMUNITY HALL', '2026-05-06 18:10:13', '2026-05-06 18:10:13'),
+(158, '47650', NULL, 'images/galeri/47650-1778119827.webp', 'SURAU', '2026-05-06 18:10:27', '2026-05-06 18:10:27'),
+(159, '47650', NULL, 'images/galeri/47650-1778119841.webp', 'ICT LAB', '2026-05-06 18:10:41', '2026-05-06 18:10:41'),
+(160, '47650', NULL, 'images/galeri/47650-1778119867.webp', 'STAFF ROOM', '2026-05-06 18:11:07', '2026-05-06 18:11:07'),
+(161, '42000', NULL, 'images/galeri/42000-1778121699.jpg', 'MUSOLLA', '2026-05-06 18:41:39', '2026-05-06 18:41:39'),
+(162, '42000', NULL, 'images/galeri/42000-1778121753.jpg', 'PADANG RIADAH', '2026-05-06 18:42:33', '2026-05-06 18:42:33'),
+(163, '42000', NULL, 'images/galeri/42000-1778121782.jpg', 'KENDERAAN KOLEJ WIT', '2026-05-06 18:43:02', '2026-05-06 18:43:02'),
+(164, 'L02238', NULL, 'images/galeri/l02238-1778122383.webp', 'LOBI', '2026-05-06 18:53:03', '2026-05-06 18:53:03'),
+(165, 'L02238', NULL, 'images/galeri/l02238-1778122428.webp', 'BILIK KONFERENS', '2026-05-06 18:53:48', '2026-05-06 18:53:48'),
+(166, 'L02238', NULL, 'images/galeri/l02238-1778122448.webp', 'RUMAH CONTOH ELEKTRIK', '2026-05-06 18:54:08', '2026-05-06 18:54:08'),
+(167, 'L02238', NULL, 'images/galeri/l02238-1778122464.webp', 'PERPUSTAKAAN', '2026-05-06 18:54:24', '2026-05-06 18:54:24'),
+(168, 'L02238', NULL, 'images/galeri/l02238-1778122479.webp', 'SURAU', '2026-05-06 18:54:39', '2026-05-06 18:54:39'),
+(169, 'L02238', NULL, 'images/galeri/l02238-1778122493.webp', 'SURAU 1', '2026-05-06 18:54:53', '2026-05-06 18:54:53'),
+(170, 'L02238', NULL, 'images/galeri/l02238-1778122508.webp', 'LALUAN KELAS', '2026-05-06 18:55:08', '2026-05-06 18:55:08'),
+(171, 'L02238', NULL, 'images/galeri/l02238-1778122523.webp', 'TANGGA UTAMA', '2026-05-06 18:55:23', '2026-05-06 18:55:23'),
+(172, 'L02238', NULL, 'images/galeri/l02238-1778122540.webp', 'KAWASAN SANTAI', '2026-05-06 18:55:40', '2026-05-06 18:55:40'),
+(173, 'L02238', NULL, 'images/galeri/l02238-1778122564.webp', 'KAWASAN SANTAI 1', '2026-05-06 18:56:04', '2026-05-06 18:56:04'),
+(174, 'L02238', NULL, 'images/galeri/l02238-1778122589.webp', 'PONDOK PENGAWAL', '2026-05-06 18:56:29', '2026-05-06 18:56:29'),
+(175, 'L02238', NULL, 'images/galeri/l02238-1778122615.webp', 'BILIK MEETING', '2026-05-06 18:56:55', '2026-05-06 18:56:55'),
+(176, 'L02238', NULL, 'images/galeri/l02238-1778122633.webp', 'ELEKTRIK', '2026-05-06 18:57:13', '2026-05-06 18:57:13'),
+(177, 'L02238', NULL, 'images/galeri/l02238-1778122671.webp', 'BILIK KULIAH', '2026-05-06 18:57:51', '2026-05-06 18:57:51'),
+(178, 'L02238', NULL, 'images/galeri/l02238-1778122692.webp', 'ASRAMA PUTRA', '2026-05-06 18:58:12', '2026-05-06 18:58:12'),
+(179, 'L02238', NULL, 'images/galeri/l02238-1778122709.webp', 'ASRAMA PUTRA 1', '2026-05-06 18:58:29', '2026-05-06 18:58:29'),
+(180, 'L02238', NULL, 'images/galeri/l02238-1778122731.webp', 'ASRAMA PUTRA 2', '2026-05-06 18:58:51', '2026-05-06 18:58:51'),
+(181, 'L02238', NULL, 'images/galeri/l02238-1778122751.webp', 'ASRAMA PUTRA 3', '2026-05-06 18:59:11', '2026-05-06 18:59:11'),
+(182, 'L02238', NULL, 'images/galeri/l02238-1778122767.webp', 'ASRAMA PUTRI', '2026-05-06 18:59:27', '2026-05-06 18:59:27'),
+(183, 'L02238', NULL, 'images/galeri/l02238-1778122784.webp', 'ASRAMA PUTRI 2', '2026-05-06 18:59:44', '2026-05-06 18:59:44'),
+(184, 'L02238', NULL, 'images/galeri/l02238-1778122801.webp', 'ASRAMA PUTRI 3', '2026-05-06 19:00:01', '2026-05-06 19:00:01'),
+(185, 'L02238', NULL, 'images/galeri/l02238-1778122828.webp', 'ASRAMA PUTRI 4', '2026-05-06 19:00:28', '2026-05-06 19:00:28'),
+(186, 'L02238', NULL, 'images/galeri/l02238-1778122844.webp', 'ASRAMA PUTRI 5', '2026-05-06 19:00:44', '2026-05-06 19:00:44'),
+(187, 'L02758', NULL, 'images/galeri/l02758-1778123089.png', 'BENGKEL', '2026-05-06 19:04:49', '2026-05-06 19:04:49'),
+(188, 'L02758', NULL, 'images/galeri/l02758-1778123123.png', 'AUTOMOTIF', '2026-05-06 19:05:23', '2026-05-06 19:05:37'),
+(189, 'L02758', NULL, 'images/galeri/l02758-1778123149.png', 'AUTOMOTIF 1', '2026-05-06 19:05:49', '2026-05-06 19:06:23'),
+(190, 'L02758', NULL, 'images/galeri/l02758-1778123175.png', 'AUTOMOTIF 2', '2026-05-06 19:06:15', '2026-05-06 19:06:15'),
+(191, 'L02163', NULL, 'images/galeri/l02163-1778123743.jpg', 'BILIK KOMPUTER', '2026-05-06 19:15:43', '2026-05-06 19:15:43'),
+(192, 'L02163', NULL, 'images/galeri/l02163-1778123760.jpg', 'BILIK MESYUARAT', '2026-05-06 19:16:00', '2026-05-06 19:16:00'),
+(193, 'L02054', NULL, 'images/galeri/l02054-1778124239.jpg', 'DEWAN', '2026-05-06 19:23:59', '2026-05-06 19:23:59'),
+(194, 'L02054', NULL, 'images/galeri/l02054-1778124256.jpg', 'DEWAN 1', '2026-05-06 19:24:16', '2026-05-06 19:24:16'),
+(195, 'L02054', NULL, 'images/galeri/l02054-1778124270.jpg', 'BILIK KULIAH', '2026-05-06 19:24:30', '2026-05-06 19:24:30'),
+(196, 'L02054', NULL, 'images/galeri/l02054-1778124288.jpg', 'BILIK KULIAH 1', '2026-05-06 19:24:48', '2026-05-06 19:24:48'),
+(197, 'L02054', NULL, 'images/galeri/l02054-1778124310.jpg', 'PENDIDIKAN AWAK KANAK-KANAK', '2026-05-06 19:25:10', '2026-05-06 19:25:10');
 
 -- --------------------------------------------------------
 
@@ -342,12 +419,12 @@ INSERT INTO `institusis` (`id`, `kod_institusi`, `nama_institusi`, `jenis_instit
 (10, 'L02080', 'AF TVET ACADEMY', 'TVET', 'images/institusi/af-tvet-academy-1775636197.jpg', 'Jalan Putra 2, Taman Kajang Putra, 43000 Kajang, Selangor', 'Pusat Latihan Kemahiran TVET bertauliah yang menawarkan program latihan industri, Sijil Kemahiran & kursus pendek. Melahirkan tenaga mahir, berdaya saing dan diiktiraf.', '2026-04-08 00:16:37', '2026-05-06 04:28:24'),
 (11, '144465-D', 'FUTURE EDGE COLLEGE', 'TVET', 'images/institusi/future-edge-college-1775636788.jpg', 'No. B2-01, Jalan Teknologi 2/1D, PJU 5, Kota Damansara, 47810 Petaling Jaya, Selangor Darul Ehsan, Malaysia', 'Kolej FutureEdge adalah pintu masuk anda kepada program TVET berasaskan kemahiran yang praktikal. Pendekatan kami yang bersifat hands-on membekalkan anda dengan kepakaran yang diperlukan untuk kerjaya yang tinggi permintaan, memastikan anda bersedia bekerja dari hari pertama', '2026-04-08 00:26:28', '2026-05-06 04:29:36'),
 (12, '53100', 'S.T.I COLLEGE MALAYSIA', 'TVET', 'images/institusi/sti-college-malaysia-1775637778.jpg', '243-A, 243-B, & 243C,\r\nJalan Bandar 13, Taman Melawati,\r\n53100 Kuala Lumpur, W. P. Kuala Lumpur, Malaysia.', 'Pusat Latihan Kemahiran bertauliah yang mengkhusus dalam bidang teknikal dan kejuruteraan. Menawarkan program Sijil Kemahiran Malaysia (SKM) yang berorientasikan latihan amali bagi melahirkan tenaga kerja mahir yang kompeten, profesional dan memenuhi kehendak industri masa kini.', '2026-04-08 00:41:44', '2026-04-08 00:42:58'),
-(13, 'L02882', 'TITAN SKILL COLLEGE', 'TVET', 'images/institusi/titan-skill-college-1775649997.webp', '6, Jln Perusahaan Amari, Kuala Lumpur, Malaysia', 'Pusat Bertauliah Jabatan Pembangunan Kemahiran (JPK)', '2026-04-08 04:06:37', '2026-04-08 04:06:37'),
+(13, 'L02882', 'TITAN SKILL COLLEGE', 'TVET', 'images/institusi/titan-skill-college-1778113729.png', '6, Jln Perusahaan Amari, Kuala Lumpur, Malaysia', 'Pusat Bertauliah Jabatan Pembangunan Kemahiran (JPK)', '2026-04-08 04:06:37', '2026-05-06 16:28:49'),
 (14, 'L02163', 'JV SKILL TRAINING CENTRE', 'TVET', 'images/institusi/jv-skill-training-centre-1775650435.jpg', 'No 6-01,6-02,6-03,8-01,10-01 Jalan Pandan Ria 4, Pusat Perdagangan Pandan, 81100 Johor Bahru Premis Tambahan: No.6, Jalan Sri Purnama 2/1 Kangkar Tebrau 81100 Johor Bahru,', 'Pusat Latihan Kemahiran JV ditubuhkan pada 22 Ogos 2009 dengan kurikulum yang relevan dengan industri berdasarkan pembelajaran berasaskan pengalaman bagi menghasilkan graduan yang berkemahiran dan berkelayakan yang memenuhi keperluan industri. JV Skill adalah pusat bertauliah di bawah Jabatan Pembangunan Kemahiran (DSD) di bawah Kementerian Sumber Manusia, Malaysia. Pada Julai 2013, Kolej JV Skill telah diberi penarafan 5-Bintang oleh Jabatan Pembangunan Kemahiran (DSD) di bawah Kementerian Sumber Manusia, Malaysia.', '2026-04-08 04:13:55', '2026-04-08 04:14:58'),
 (15, '70300', 'AMBITIOUS ACADEMY', 'TVET', 'images/institusi/ambitious-academy-1775650876.jpeg', 'No. 648-654, Jalan Haruan 4/9, Oakland Commercial Center, 70300 Seremban, Negeri Sembilan.', 'Ambitious Infinite Resources Sdn.Bhd. (AIRSB) mula beroperasi di Setia Tropika, Johor Bahru pada Januari 2014, yang bepindah ke Wisma HYH yang terletak di pusat bandar Johor Bahru pada September 2014. Ambitious Academy Sdn. Bhd. (AASB) kemudiannya mengikuti operasi pertamanya di bangunan yang sama pada Februari 2015. Ambitious Education Group selama bertahun-tahun telah membina reputasi dan rekod pretasi yang boleh dipercayai dalam pelbagai perniagaan yang dikendalikannya. Ini termasuk pendidikan dan latihan, pembangunan kemahiran, perkongsian belajar-kerja, perkhidmatan pengambilan, penyumberan strategik untuk pengurusan tenaga kerja luar jangka dan perundingan. Ia ditugaskan dengan tujuan khusus untuk memenuhi permintaan yang semakin meningkat untuk profesional terlatih dalam masakan, syarikat penerbangan, pelayaran, hotel dan industri lain yang berkaitan. Pada masa ini terletak di bangunan dua setengah tingkat di Skudai Johor Bahru, AIRSB menawarkan kemudahan moden dengan kemudahan seni terkini untuk pelajarnya, menggabungkan ke dalam persekitaran semula jadi dan luas. Dengan Pejabat Pendtadbiran Korporatnya di Seremban, Negeri Sembilan, ia telah melangkah jauh, muncul sebagai salah satu pesaing utama untuk kecemerlangan masakan, hospitaliti, perniagaan dan penerbangan.', '2026-04-08 04:21:16', '2026-04-08 04:21:16'),
-(16, 'P13A-1', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) TEMERLOH', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-temerloh-1778070955.webp', 'No. P13A-1, 1, Jalan Lama Bentong - Karak, 28600 Karak, Pahang, Malaysia', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:28:08', '2026-05-06 04:35:55'),
+(16, 'P13A-1', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) TEMERLOH', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-temerloh-1778070955.webp', 'Termeloh, Pahang', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:28:08', '2026-05-06 17:40:49'),
 (17, '28600', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) KARAK', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-karak-1775651678.webp', 'No. P13A-1, 1, Jalan Lama Bentong - Karak, 28600 Karak, Pahang, Malaysia', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:34:38', '2026-04-08 04:34:38'),
-(18, 'P13A', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) BENTONG', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-bentong-1775652498.webp', 'No. P13A-1, 1, Jalan Lama Bentong - Karak, 28600 Karak, Pahang, Malaysia.', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:48:18', '2026-04-08 04:48:48'),
+(18, 'P13A', 'MALAYSIA TECHNICAL SKILL ACADEMY (MTSA) BENTONG', 'TVET', 'images/institusi/malaysia-technical-skill-academy-mtsa-bentong-1775652498.webp', 'P2-12 JALAN MEDANG LESTARI TAMAN MEDANG LESTARI 28700 BENTONG, PAHANG', 'Adalah sebuah pusat penyediaan latihan yang memfokuskan kepada bidang kemahiran sebagai teras yang mengikut arus perdana kini. Kami percaya dengan latihan berkualiti tinggi dan kemahiran profesional yang diterapkan oleh para pengajar di kolej MTSA Karak, para pelajar bukan sahaja dapat meningkatkan jati diri, tetapi juga dapat membangunkan modal insan, samada dalam bidang pendidikan atau bidang pekerjaan. “Kami memberi jaminan masa depan yang lebih baik dengan kemahiran yang lebih baik”!', '2026-04-08 04:48:18', '2026-05-06 17:41:37'),
 (19, 'L02054', 'DUAL TRAINING INSTITUTE (DTI)', 'TVET', 'images/institusi/dual-training-institute-dti-1775653038.webp', 'Lot 158 Jalan S2b3 Green Technology Park Seremban 2 70300 Seremban Negeri Sembilan', 'Institut Latihan Dual adalah sebuah institusi pendidikan yang menggabungkan pengetahuan teori dengan latihan praktikal.', '2026-04-08 04:57:18', '2026-05-06 04:37:15'),
 (20, 'TP-060-3:2013', 'MEATECH COLLEGE', 'TVET', 'images/institusi/meatech-college-1775653602.jpg', 'L2-11 & L2-12, Tingkat 2, Tower B (Begonia), Youth City Residence, Vision City, Persiaran Pusat Bandar, Bandar Baru Nilai 71800 Nilai Negeri Sembilan', 'Bermula 2002 apabila kumpulan meraka dimulakan sebagai Approved Training Provider (ATP) yang diiktiraf oleh Jabatan Pembangunan Kemahiran (DSD), Kementerian Sumber Manusia Malaysia. - Selama bertahun-tahun, Syarikat ini telah melaksanakan banyak projek yang mencabar dan kemahiran terkumpul, pengetahuan dan pengalaman dalam TVET. - Mereka telah melatih sejumlah besar mekanik, pengendali dan juruteknik yang telah memberikan sumbangan besar kepada industri dan kejayaan ekonomi syarikat. - Ogos 2011, Meatech ATC Sdn. Bhd. (MATC) telah diperbadankan, memberi tumpuan terutamanya kepada penyediaan latihan TVET dalam program latihan berkaitan penerbangan. - Pada 2015, MEATECH ATC Sdn. Bhd. menandatangani Memorandum Persefahaman (MoU) dengan Pusat Latihan Penerbangan AERO-Bildung, dan institusi pendidikan yang berpangkalan di Jerman dalam membangunkan kursus latihan pensijilan profesional yang diiktiraf oleh Agensi Keselamatan Penerbangan Eropah (EASA). - Tujuan mereka ialah melahirkan kakitangan pesawat yang berkemahiran tinggi dengan keupayaan untuk melakukan pelbagai aktiviti penyelenggaraan. - Mereka menawarkan 2 program iaitu “AVIATION – AIRCRAFT MAINTENANCE TRAINING” dan “AVIATION – IN-FLIGHT CABIN SERVICES”', '2026-04-08 05:06:42', '2026-04-08 05:06:42'),
 (21, '47650', 'MYBUSINESS ACADEMY', 'TVET', 'images/institusi/mybusiness-academy-1775654201.jpg', '2 Jalan Putra Mahkota 7/7A 47650 Subang Jaya Selangor', 'Memberi peluang dan laluan kerjaya bagi calon bekerja dan menimba pengalaman dalam industri. - Melaksanakan pantauan pihak akademi bagi penuhi kelayakan (SKM 3) & (DKM) ikut tempoh pengiktirafan pengalaman terdahulu mengikut kod program yang dipilih. - Jurus ke arah kemahiran profesional & releven kepada industry dengan bekalkan calon kepada industry mengikut kod program bersesuaian. - Jalankan kerjasama dengan COLLEGE OF BIRMINGHAM, UNITED KINGDOM. Berasaskan kemahiran & Pembangunan profesional. - MBA merupakan sebuah pusat bertauliah yang berdaftar dengan Jabatan Pembangunan Kemahiran serta melakukan program aperantis.', '2026-04-08 05:16:41', '2026-05-06 04:38:18'),
@@ -659,7 +736,39 @@ INSERT INTO `kerjayas` (`id`, `kod_institusi`, `kod_kursus`, `bidang_kerjaya`, `
 (247, '28600', '7982-001-3:2017', '- Pembantu Guru TADIKA', '2026-05-06 01:58:05', '2026-05-06 01:58:05'),
 (248, '28600', '7982-001-3:2017', '- Nursery Assistant', '2026-05-06 01:58:15', '2026-05-06 01:58:15'),
 (249, '28600', '7982-001-3:2017', '- Pengusaha TASKA / Tadika', '2026-05-06 01:58:43', '2026-05-06 01:58:43'),
-(250, '28600', '7982-001-3:2017', '- Trainer Pendidikan Awal Kanak-Kanak', '2026-05-06 01:58:52', '2026-05-06 01:58:52');
+(250, '28600', '7982-001-3:2017', '- Trainer Pendidikan Awal Kanak-Kanak', '2026-05-06 01:58:52', '2026-05-06 01:58:52'),
+(251, 'P13A', 'MC-024-3:2022', '- Jurukimpal (Welder)', '2026-05-06 16:29:48', '2026-05-06 16:29:48'),
+(252, 'P13A', 'MC-024-3:2022', '- Jurukimpal Minyak & Gas (Oil & Gas Welder)', '2026-05-06 16:30:03', '2026-05-06 16:30:03'),
+(253, 'P13A', 'MC-024-3:2022', '- Penyelia Kimpalan (Welding Supervisor)', '2026-05-06 16:30:16', '2026-05-06 16:30:16'),
+(254, 'P13A', 'MC-024-3:2022', '- Pemeriksa Kimpalan (Welding Inspector)', '2026-05-06 16:30:28', '2026-05-06 16:30:28'),
+(255, 'P13A', 'I561-005-3:2022', '- Kitchen Helper / Commis Chef', '2026-05-06 16:31:56', '2026-05-06 16:31:56'),
+(256, 'P13A', 'I561-005-3:2022', '- Demi Chef', '2026-05-06 16:32:03', '2026-05-06 16:32:03'),
+(257, 'P13A', 'I561-005-3:2022', '- Chef de Partie', '2026-05-06 16:32:16', '2026-05-06 16:32:16'),
+(258, 'P13A', 'I561-005-3:2022', '- Sous Chef', '2026-05-06 16:32:24', '2026-05-06 16:32:24'),
+(259, 'L02054', 'T982-001-3:2017', '-  Pembantu Guru TASKA', '2026-05-06 16:35:56', '2026-05-06 16:35:56'),
+(260, 'L02054', 'T982-001-3:2017', '-  Pembantu Guru TADIKA', '2026-05-06 16:36:03', '2026-05-06 16:36:03'),
+(261, 'L02054', 'T982-001-3:2017', '-  Pengasuh Kanak-Kanak', '2026-05-06 16:36:09', '2026-05-06 16:36:09'),
+(262, 'L02054', 'T982-001-3:2017', '- Childcare Assistant', '2026-05-06 16:36:16', '2026-05-06 16:36:16'),
+(263, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', '- Cabin Crew / Pramugara / Pramugari', '2026-05-06 16:45:45', '2026-05-06 16:45:45'),
+(264, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', '- Guest Service Agent', '2026-05-06 16:46:01', '2026-05-06 16:46:01'),
+(265, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', '- Senior Cabin Crew / Penyelia Kabin', '2026-05-06 16:46:15', '2026-05-06 16:46:15'),
+(266, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', '- In-flight Service Manager / Pengurus Perkhidmatan Dalam Pesawat', '2026-05-06 16:46:31', '2026-05-06 16:46:31'),
+(267, 'TP-060-3:2013', 'TP-060-4:2013', '- Apprentice Aircraft Maintenance', '2026-05-06 16:47:29', '2026-05-06 16:47:29'),
+(268, 'TP-060-3:2013', 'TP-060-4:2013', '- Chief Engineer', '2026-05-06 16:47:40', '2026-05-06 16:47:40'),
+(269, 'TP-060-3:2013', 'TP-060-4:2013', '- Jurutera Penyelenggaraan Pesawat (Aircraft Maintenance Engineer)', '2026-05-06 16:48:02', '2026-05-06 16:48:02'),
+(270, 'TP-060-3:2013', 'TP-060-4:2013', '- Jurutera Avionik (Avionics Engineer)', '2026-05-06 16:48:22', '2026-05-06 16:48:22'),
+(271, '47650', 'T982-001-3:2017', '-  Pembantu Guru TASKA', '2026-05-06 16:50:58', '2026-05-06 16:50:58'),
+(272, '47650', 'T982-001-3:2017', '-  Pembantu Guru TADIKA', '2026-05-06 16:51:08', '2026-05-06 16:51:08'),
+(273, '47650', 'T982-001-3:2017', '- Pengasuh Kanak-Kanak', '2026-05-06 16:51:17', '2026-05-06 16:51:17'),
+(274, '47650', 'T982-001-3:2017', '-  Childcare Assistant', '2026-05-06 16:51:25', '2026-05-06 16:51:25'),
+(275, 'L02723', 'G452-002-3:2018', '- Kitchen Helper / Commis Chef', '2026-05-06 16:53:31', '2026-05-06 16:53:31'),
+(276, 'L02723', 'G452-002-3:2018', '- Head / Executive Chef', '2026-05-06 16:53:41', '2026-05-06 16:53:41'),
+(277, 'L02723', 'G452-002-3:2018', '-  Instructor TVET', '2026-05-06 16:53:48', '2026-05-06 16:53:48'),
+(278, 'L02723', 'G452-002-3:2018', '-  Pastry / Bakery Chef', '2026-05-06 16:53:55', '2026-05-06 16:53:55'),
+(279, 'L02650', 'S960-002-2:2020', '-  Juruteknik HVAC', '2026-05-06 17:37:55', '2026-05-06 17:37:55'),
+(280, 'L02650', 'S960-002-2:2020', '-  Juruteknik Penyaman Udara', '2026-05-06 17:38:03', '2026-05-06 17:38:03'),
+(281, 'L02650', 'S960-002-2:2020', '-  HVAC Service Technician', '2026-05-06 17:38:09', '2026-05-06 17:38:09'),
+(282, 'L02650', 'S960-002-2:2020', '- Building Maintenance Technician', '2026-05-06 17:38:15', '2026-05-06 17:38:15');
 
 -- --------------------------------------------------------
 
@@ -1004,9 +1113,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fwSKb728BVdxNvKnvEY0CTnZQFFTsLXMbdPKEZHN', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoicXhGOUNROXdMUDZsM3RjMlhCVHllR3psdTlzcW1QT3FmWWpKUGZLZCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozMToiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2Rhc2hib2FyZCI7fXM6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjtzOjU6InJvdXRlIjtzOjk6ImRhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1778073698),
-('lHkajFgrjvqHiPi5xFFaAi48YPGJRX8fWixS8tlm', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.118.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWTN0VkEzdzBhNGJEQlVRUUtoOGVVUVB5bWNsM3llY0dHcGlLckpvdSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1778073385),
-('xKDqmAkslTFnXRmkvOokVFpdjH761Jd06UxgvLa1', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibE1DVVZUcXAxc0JFaEJ4TjBhbWUwdHl1bVB6ZkRrMXhQRnN5VmFFSCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQ/bW9udGg9NyZ5ZWFyPTIwMjYiO3M6NToicm91dGUiO3M6OToiZGFzaGJvYXJkIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1778073426);
+('VOGpZG9KSMRUr1iNG2SQsMFotEU3Xwfnf1G2IAeS', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 OPR/130.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYWVRczFJTXVPMnNMNVZhYUxXUmhya1FQY05xSzgwUjJUVERnZXBNTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9lZGl0aW5zdGl0dXNpLzYiO3M6NToicm91dGUiO3M6MTk6ImFkbWluLmVkaXRpbnN0aXR1c2kiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1778125050);
 
 -- --------------------------------------------------------
 
@@ -1437,7 +1544,13 @@ INSERT INTO `yuran_pengajians` (`id`, `kod_institusi`, `kod_kursus`, `peringkat`
 (77, 'P13A-1', 'F432-005-3-2019S', 'Pinjaman PTPK (Tahap 2/Tahap 3)', '16 BULAN', 19250.00, '2026-05-06 01:46:22', '2026-05-06 01:46:22'),
 (78, '28600', 'ET-012-3:2012', 'Pinjaman PTPK (Tahap 3/Tahap 4)', '24 BULAN', 20150.00, '2026-05-06 01:50:53', '2026-05-06 01:50:53'),
 (79, '28600', 'G452-002-3:2018S', 'Pinjaman PTPK (Tahap 2/Tahap 3)', '24 BULAN', 21625.00, '2026-05-06 01:53:33', '2026-05-06 01:53:33'),
-(80, '28600', '7982-001-3:2017', 'Pinjaman PTPK (Tahap 3)', '12 BULAN', 10000.00, '2026-05-06 01:59:27', '2026-05-06 01:59:27');
+(80, '28600', '7982-001-3:2017', 'Pinjaman PTPK (Tahap 3)', '12 BULAN', 10000.00, '2026-05-06 01:59:27', '2026-05-06 01:59:27'),
+(81, 'P13A', 'MC-024-3:2022', 'Pinjaman PTPK (Tahap 3)', '18 BULAN', 23125.00, '2026-05-06 16:30:58', '2026-05-06 16:30:58'),
+(82, 'P13A', 'I561-005-3:2022', 'Pinjaman PTPK (Tahap 2 & 3)', '18 BULAN', 21625.00, '2026-05-06 16:33:00', '2026-05-06 16:33:00'),
+(83, 'L02054', 'T982-001-3:2017', 'Pinjaman PTPK (Tahap 4)', '24 BULAN', 20150.00, '2026-05-06 16:36:44', '2026-05-06 16:36:44'),
+(84, '47650', 'T982-001-3:2017', 'Pinjaman PTPK (Tahap 3)', '12 BULAN', 10000.00, '2026-05-06 16:51:44', '2026-05-06 16:51:44'),
+(85, 'L02723', 'G452-002-3:2018', 'Pinjaman PTPK (Tahap 2/Tahap 3)', '24 BULAN', 21625.00, '2026-05-06 16:54:29', '2026-05-06 16:54:29'),
+(86, 'L02890', 'K12001/G452-002-4:2017-ST-A', 'Pinjaman PTPK (Tahap 3)', '15 BULAN', 21020.00, '2026-05-06 16:58:16', '2026-05-06 16:58:16');
 
 -- --------------------------------------------------------
 
@@ -1685,7 +1798,7 @@ ALTER TABLE `yuran_pilihans`
 -- AUTO_INCREMENT for table `elauns`
 --
 ALTER TABLE `elauns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `event`
@@ -1697,7 +1810,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `galeris`
 --
 ALTER TABLE `galeris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 
 --
 -- AUTO_INCREMENT for table `institusis`
@@ -1709,7 +1822,7 @@ ALTER TABLE `institusis`
 -- AUTO_INCREMENT for table `kerjayas`
 --
 ALTER TABLE `kerjayas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=283;
 
 --
 -- AUTO_INCREMENT for table `kursuses`
@@ -1781,7 +1894,7 @@ ALTER TABLE `yuran_pendaftarans`
 -- AUTO_INCREMENT for table `yuran_pengajians`
 --
 ALTER TABLE `yuran_pengajians`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `yuran_pilihans`
