@@ -13,7 +13,7 @@ use App\Models\YuranAsrama;
 use App\Models\YuranPengajian;
 use App\Models\Elaun;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AdminKursusController extends Controller
 {
@@ -512,18 +512,23 @@ class AdminKursusController extends Controller
                 $originalName = $file->getClientOriginalName();
                 $fileName = pathinfo($originalName, PATHINFO_FILENAME);
                 $extension = $file->getClientOriginalExtension();
-                $candidateName = $originalName;
+                $candidateName = Str::slug($fileName) . '-' . time() . '.' . $extension;
                 $counter = 1;
+                $destination = public_path('images/institusi');
 
-                while (Storage::disk('public')->exists('galeri/' . $candidateName)) {
-                    $candidateName = $fileName . ' (' . $counter . ').' . $extension;
+                if (! file_exists($destination)) {
+                    mkdir($destination, 0755, true);
+                }
+
+                while (file_exists($destination . DIRECTORY_SEPARATOR . $candidateName)) {
+                    $candidateName = Str::slug($fileName) . '-' . time() . '-' . $counter . '.' . $extension;
                     $counter++;
                 }
 
-                $path = $file->storeAs('galeri', $candidateName, 'public');
+                $file->move($destination, $candidateName);
                 
                 \App\Models\Galeri::create([
-                    'imej' => 'storage/' . $path,
+                    'imej' => 'images/institusi/' . $candidateName,
                     'kod_kursus' => $request->input('kod_kursus'),
                     'kod_institusi' => $request->input('kod_institusi'),
                 ]);

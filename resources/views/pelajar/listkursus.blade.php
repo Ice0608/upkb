@@ -938,6 +938,9 @@
             background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
             border-color: rgba(255,255,255,0.08);
         }
+        html.dark .course-card-headline .kursus-section-accent {
+            color: #a5b4fc;
+        }
         html.dark .course-card-title { color: #f1f5f9; }
         html.dark .course-card-meta-item {
             background: rgba(15, 23, 42, 0.8);
