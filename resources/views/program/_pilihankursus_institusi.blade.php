@@ -9,7 +9,7 @@
     <article class="course-result-card rounded-3xl flex flex-col h-full">
         <a href="{{ route('kursus.show', $kursus->id) }}" class="group flex h-full flex-col text-current no-underline">
         <div class="course-result-media">
-            <img src="{{ asset(optional($kursus->galeris->first())->imej ?? $kursus->institusi->gambar_institusi ?? 'images/default-course.jpg') }}"
+            <img src="{{ asset($kursus->institusi->gambar_institusi ?? 'images/default-course.jpg') }}"
                  alt="{{ $kursus->institusi->nama_institusi ?? 'Institusi' }}"
                  class="course-result-image w-full h-full object-cover">
             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">

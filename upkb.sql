@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2026 at 05:42 AM
+-- Generation Time: May 07, 2026 at 07:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -382,7 +382,81 @@ INSERT INTO `galeris` (`id`, `kod_institusi`, `kod_kursus`, `imej`, `penerangan`
 (194, 'L02054', NULL, 'images/galeri/l02054-1778124256.jpg', 'DEWAN 1', '2026-05-06 19:24:16', '2026-05-06 19:24:16'),
 (195, 'L02054', NULL, 'images/galeri/l02054-1778124270.jpg', 'BILIK KULIAH', '2026-05-06 19:24:30', '2026-05-06 19:24:30'),
 (196, 'L02054', NULL, 'images/galeri/l02054-1778124288.jpg', 'BILIK KULIAH 1', '2026-05-06 19:24:48', '2026-05-06 19:24:48'),
-(197, 'L02054', NULL, 'images/galeri/l02054-1778124310.jpg', 'PENDIDIKAN AWAK KANAK-KANAK', '2026-05-06 19:25:10', '2026-05-06 19:25:10');
+(197, 'L02054', NULL, 'images/galeri/l02054-1778124310.jpg', 'PENDIDIKAN AWAK KANAK-KANAK', '2026-05-06 19:25:10', '2026-05-06 19:25:10'),
+(199, 'C-21-G', 'P854-009-4:2020S', 'storage/galeri/pendidikan-awal-kanak-kanak.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(200, 'C-21-G', 'MC-091-2:2013 / MC-091-3:2013 / MC-091-4:2013', 'storage/galeri/perkhidmatan-automasi-industri.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(201, '78000', 'F432-005-2:2019 / F432-005-3:2019', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(202, '71700', 'HT-012-2:2012 / HT-012-3:2012', 'storage/galeri/kulinari.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(203, '71700', 'IT-020-3:2013 / IT-020-4:2013', 'storage/galeri/operasi-sistem-komputer.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(204, '71700', 'N821-001-3:2020', 'storage/galeri/pengurusan-dan-pentadbiran-pejabat.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(205, '47160', 'HT-014-2:2011 / HT-014-3:2011', 'storage/galeri/pembuatan-pastri.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(206, 'L01143', 'G452-002-2:2018 / G452-002-3:2018', 'storage/galeri/automotif-2.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(207, '47160', '1561-005-2:2022 / 1561-005-3:2022', 'storage/galeri/kulinari (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(208, 'L01143', 'MC-024-3:2012', 'storage/galeri/teknologi-kimpalan.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(209, 'L01143', 'S960-002-3:2020S', 'storage/galeri/perkhidmatan-automasi-industri-2.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(210, 'L02138', 'HT-013-3-2011', 'storage/galeri/bread-making.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(211, 'L02138', 'HT-012-3-2012S', 'storage/galeri/penyediaan-dan-pengeluaran-makanan.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(212, 'L02138', 'F432-005-3-2019', 'storage/galeri/pemasangan-dan-penyelenggaraan-elektrik-2.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(213, 'L02138', 'I561-005-3:2022S', 'storage/galeri/seni-kulinari.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(214, 'L02138', 'S960-002-3:2020', 'storage/galeri/perkhidmatan-estetik.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(215, 'L02138', 'I561-005-2:2022 / I561-005-3:2022 / HT-012-4:2011', 'storage/galeri/penyediaan-dan-pengeluaran-makanan-2.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(216, 'L02238', 'F432-005-2:2019 / F432-005-3:2019', 'storage/galeri/elektrik-dan-elektronik.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(217, '42000', 'MC-024-3:2012', 'storage/galeri/teknologi-kimpalan (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(218, '42000', 'F432-005-2:2019 / F432-005-3:2019 / F432-005-4:2019', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(219, '42000', 'S960-002-2:2020 / S960-002-3:2020 / S960-002-4:2020', 'storage/galeri/perkhidmatan-estetik (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(220, 'L02238', 'ME-011-3:2014', 'storage/galeri/operasi-dan-penyelenggaraan-boiler.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(221, 'L02080', 'S960-002-1:2020/S960-002-2:2020', 'storage/galeri/kecantikan-dan-penjagaan-peribadi.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(222, 'L02080', 'IT-0583:3:2012', 'storage/galeri/rekabentuk-grafik.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(223, '144465-D', 'FB-025-3:2012', 'storage/galeri/setiausaha-korporat.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(224, '144465-D', 'IT-020-3:2013', 'storage/galeri/rangkaian-komputer.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(225, '144465-D', 'G452-007-3:2019S', 'storage/galeri/servis-kereta-hibrid-dan-elektrik.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(226, '53100', '1561-002:2:2018', 'storage/galeri/servis-pengurusan-makanan.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(227, 'L02882', 'G452-002-3:2018', 'storage/galeri/automotif-2 (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(228, 'L02163', 'MC-091-2:2016 / MC-091-3:2016 / MC-091-4:2016', 'storage/galeri/perkhidmatan-automasi-industri (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(229, '70300', 'T982-001-3:2017 | T982-001-4:2018', 'storage/galeri/pendidikan-awal-kanak-kanak (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(230, '28600', 'ET-012-3:2012', 'storage/galeri/pentadbiran-prasekolah.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(231, '28600', '7982-001-3:2017', 'storage/galeri/pendidikan-awal-kanak-kanak (2).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(232, 'TP-060-3:2013', 'PERKHIDMATAN DALAM PENERBANGAN', 'storage/galeri/perkhidmatan-dalam-penerbangan.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(233, 'TP-060-3:2013', 'TP-060-4:2013', 'storage/galeri/penyelenggaraan-pesawat.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(234, '47650', 'T982-001-3:2017', 'storage/galeri/pendidikan-awal-kanak-kanak (3).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(235, 'L02723', 'N821-001-3:2020 / FB-025-4:2012', 'storage/galeri/pengurusan-dan-pentadbiran-pejabat (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(236, 'L02922', 'T982-001-3:2017 (Tahap 3) / T982-001-4:2018 (Tahap 4)', 'storage/galeri/pentadbiran-prasekolah (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(237, 'L02890', 'K12001/G452-002-4:2017-ST-A', 'storage/galeri/automotif-2 (2).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(238, 'L02650', 'S960-002-2:2020', 'storage/galeri/penyamanan-udara.png', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(239, 'L02723', 'HT-041-2:2011 / HT-041-3:2011', 'storage/galeri/pembuatan-pastri (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(240, '42000', 'G452-002-2:2018 / G452-002-3:2018 / G452-002-4:2017', 'storage/galeri/automotif-2 (3).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(241, '144465-D', 'G452-002-2/3:2028', 'storage/galeri/automotif-2 (4).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(242, 'P13A-1', 'G452-002-3:2018-S', 'storage/galeri/automotif-2 (5).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(243, '28600', 'G452-002-3:2018S', 'storage/galeri/automotif-2 (6).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(244, '144465-D', '1561-005-2/3:2022', 'storage/galeri/seni-kulinari (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(245, '70300', '1561-005-3:2022', 'storage/galeri/seni-kulinari (2).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(246, 'P13A', 'I561-005-3:2022', 'storage/galeri/seni-kulinari (3).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(247, 'L02723', 'G452-002-3:2018', 'storage/galeri/seni-kulinari (4).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(248, 'P13A', 'MC-024-3:2022', 'storage/galeri/teknologi-kimpalan (2).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(249, '144465-D', 'F432-005-3:2019S', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik (2).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(250, 'P13A-1', 'F432-005-3-2019S', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik (3).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(251, '28600', 'F432-005-3:2019S', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik (4).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(252, 'P13A', 'F432-005-3-2019S', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik (5).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(253, 'L02723', 'T982-001-3:2017 / T982-001-4:2018', 'storage/galeri/pendidikan-awal-kanak-kanak (4).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(254, 'DK030(N)', '(R3/0913/4/00560)(10,29)(MQA/FA5362)', 'storage/galeri/diploma-kejururawatan.png', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(255, 'DK030(N)', '(R3/0913/4/0057)03,30)(MQA/FA8746)', 'storage/galeri/sains-perubatan-dan-kesihatan.webp', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(256, 'DK030(N)', '(R2/0414/4/044)(8,28)(MQA/FA3436)', 'storage/galeri/penjagaan-kesihatan.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(257, 'DK030(N)', '(N/0414/4/0018)(06/27)(MQA/FA15689)', 'storage/galeri/pengurusan-industri-halal.png', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(258, 'DK030(N)', 'JPT-DK030(N)', 'storage/galeri/pembantu-penjagaan-pesakit.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(259, 'DK030(N)', '(MQA/PA16868) (N/0913/2/0018)', 'storage/galeri/post-basic-in-renal-care-nursing.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(260, '05', 'DDWF', 'storage/galeri/pengurusan-hartanah.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(261, '05', 'DDWG', 'storage/galeri/teknologi-maklumat.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(262, 'UE4344001', 'BA111', 'storage/galeri/business-studies.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(263, 'UE4344001', 'AC110', 'storage/galeri/accounting.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(264, '01', 'MQA/SWA0628', 'storage/galeri/management.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(265, '01', 'MQA/SWA0630', 'storage/galeri/sumber-manusia.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(266, '01', 'MQA/SWA0629', 'storage/galeri/pengurusan-perniagaan.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(267, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'storage/galeri/rekabentuk-grafik (1).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(268, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'storage/galeri/masscom.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(269, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'storage/galeri/security-control.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(270, 'L02313', 'DEC', 'storage/galeri/pentadbiran-prasekolah (2).jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(271, 'L02313', 'DSI', 'storage/galeri/syariah-islamiah.jpg', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(272, 'L02138', 'F432-005-2:2019 / F432-005-3:2019', 'storage/galeri/pemasangan-dan_penyelenggaraan-elektrik (6).jpg', NULL, '2026-05-06 21:06:23', '2026-05-06 21:06:23');
 
 -- --------------------------------------------------------
 
@@ -1113,6 +1187,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('vfPw0IsYmtH0BrTw3jPnOzabyKwUnS5RTHgqfSXW', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 OPR/130.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRGJGM3VZbERYaEtidFdiVlVmR3JQRGdtT0luWGU2RnJ3cUZtWmJGSiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9lZGl0a3Vyc3VzLzE4IjtzOjU6InJvdXRlIjtzOjE2OiJhZG1pbi5lZGl0a3Vyc3VzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0NDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2FkbWluL2VkaXRpbnN0aXR1c2kvMjUiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1778131861),
 ('VOGpZG9KSMRUr1iNG2SQsMFotEU3Xwfnf1G2IAeS', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 OPR/130.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYWVRczFJTXVPMnNMNVZhYUxXUmhya1FQY05xSzgwUjJUVERnZXBNTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NDM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9lZGl0aW5zdGl0dXNpLzYiO3M6NToicm91dGUiO3M6MTk6ImFkbWluLmVkaXRpbnN0aXR1c2kiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1778125050);
 
 -- --------------------------------------------------------
@@ -1810,7 +1885,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `galeris`
 --
 ALTER TABLE `galeris`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `institusis`
