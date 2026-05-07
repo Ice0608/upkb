@@ -8,14 +8,14 @@
 
     <!-- Upload Form -->
     <div class="bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-dashed border-orange-300 rounded-2xl p-8">
-        <form id="galeriUploadForm" enctype="multipart/form-data" class="space-y-4">
+        <form id="galeriUploadForm" action="{{ route('admin.storegaleri') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             <input type="hidden" name="kod_kursus" value="{{ $kursus->kod_kursus }}">
             <input type="hidden" name="kod_institusi" value="{{ $kursus->institusi?->kod_institusi }}">
 
             <div class="flex flex-col items-center justify-center">
                 <div class="w-full">
-                    <label class="flex flex-col items-center justify-center w-full h-40 border-2 border-orange-300 border-dashed rounded-xl cursor-pointer bg-white hover:bg-orange-50 transition">
+                    <label id="galeriDropzone" class="flex flex-col items-center justify-center w-full h-40 border-2 border-orange-300 border-dashed rounded-xl cursor-pointer bg-white hover:bg-orange-50 transition">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                             <svg class="w-12 h-12 text-orange-500 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -88,71 +88,3 @@
         @endif
     </div>
 </div>
-
-<script>
-document.getElementById('gambarInput').addEventListener('change', function() {
-    const files = this.files;
-    const preview = document.getElementById('filePreview');
-    preview.innerHTML = '';
-
-    if (files.length === 0) return;
-
-    for (let file of files) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const div = document.createElement('div');
-            div.className = 'relative rounded-lg overflow-hidden';
-
-            if (file.type.startsWith('video/')) {
-                div.innerHTML = `
-                    <video controls class="w-full h-32 object-cover bg-black">
-                        <source src="${e.target.result}" type="${file.type}">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="absolute inset-0 bg-black/30"></div>
-                    <span class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">Baru</span>
-                `;
-            } else {
-                div.innerHTML = `
-                    <img src="${e.target.result}" alt="Preview" class="w-full h-32 object-cover">
-                    <div class="absolute inset-0 bg-black/30"></div>
-                    <span class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">Baru</span>
-                `;
-            }
-
-            preview.appendChild(div);
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-document.getElementById('galeriUploadForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-
-    fetch('/admin/galeri/store', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            'Accept': 'application/json',
-        }
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Upload gagal');
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            document.getElementById('galeriUploadForm').reset();
-            document.getElementById('filePreview').innerHTML = '';
-            loadTab('galeri');
-            showMessage(data.message, 'success');
-        }
-    })
-    .catch(error => {
-        showMessage(error.message || 'Ralat muat naik', 'error');
-    });
-});
-</script>

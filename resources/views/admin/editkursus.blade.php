@@ -75,6 +75,7 @@
             .then(response => response.text())
             .then(html => {
                 tabContent.innerHTML = html;
+                initGalleryUploadTab();
                 // Re-attach form handlers
                 attachFormHandlers();
                 if (pendingMessage) {
@@ -91,6 +92,11 @@
         function attachFormHandlers() {
             const forms = document.querySelectorAll('form');
             forms.forEach(form => {
+                if (form.dataset.ajaxBound === '1') {
+                    return;
+                }
+                form.dataset.ajaxBound = '1';
+
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
                     const formData = new FormData(this);
@@ -139,6 +145,87 @@
                         showMessage(error.message || 'Error submitting form', 'error');
                     });
                 });
+            });
+        }
+
+        function initGalleryUploadTab() {
+            const form = document.getElementById('galeriUploadForm');
+            const input = document.getElementById('gambarInput');
+            const preview = document.getElementById('filePreview');
+            const dropzone = document.getElementById('galeriDropzone');
+
+            if (!form || !input || !preview || !dropzone) {
+                return;
+            }
+
+            const renderPreview = (files) => {
+                preview.innerHTML = '';
+
+                if (!files || files.length === 0) {
+                    return;
+                }
+
+                Array.from(files).forEach((file) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const div = document.createElement('div');
+                        div.className = 'relative rounded-lg overflow-hidden';
+
+                        if (file.type.startsWith('video/')) {
+                            div.innerHTML = `
+                                <video controls class="w-full h-32 object-cover bg-black">
+                                    <source src="${e.target.result}" type="${file.type}">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="absolute inset-0 bg-black/30"></div>
+                                <span class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">Baru</span>
+                            `;
+                        } else {
+                            div.innerHTML = `
+                                <img src="${e.target.result}" alt="Preview" class="w-full h-32 object-cover">
+                                <div class="absolute inset-0 bg-black/30"></div>
+                                <span class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs font-semibold">Baru</span>
+                            `;
+                        }
+
+                        preview.appendChild(div);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            };
+
+            input.addEventListener('change', function() {
+                renderPreview(this.files);
+            });
+
+            ['dragenter', 'dragover'].forEach((eventName) => {
+                dropzone.addEventListener(eventName, (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    dropzone.classList.add('bg-orange-100');
+                });
+            });
+
+            ['dragleave', 'drop'].forEach((eventName) => {
+                dropzone.addEventListener(eventName, (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    dropzone.classList.remove('bg-orange-100');
+                });
+            });
+
+            dropzone.addEventListener('drop', (event) => {
+                const droppedFiles = event.dataTransfer?.files;
+                if (!droppedFiles || droppedFiles.length === 0) {
+                    return;
+                }
+                input.files = droppedFiles;
+                renderPreview(droppedFiles);
+            });
+
+            form.addEventListener('reset', () => {
+                preview.innerHTML = '';
+                dropzone.classList.remove('bg-orange-100');
             });
         }
 

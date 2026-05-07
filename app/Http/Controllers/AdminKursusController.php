@@ -13,6 +13,7 @@ use App\Models\YuranAsrama;
 use App\Models\YuranPengajian;
 use App\Models\Elaun;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminKursusController extends Controller
 {
@@ -508,7 +509,18 @@ class AdminKursusController extends Controller
 
         if ($request->hasFile('imej')) {
             foreach ($request->file('imej') as $file) {
-                $path = $file->store('galeri', 'public');
+                $originalName = $file->getClientOriginalName();
+                $fileName = pathinfo($originalName, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $candidateName = $originalName;
+                $counter = 1;
+
+                while (Storage::disk('public')->exists('galeri/' . $candidateName)) {
+                    $candidateName = $fileName . ' (' . $counter . ').' . $extension;
+                    $counter++;
+                }
+
+                $path = $file->storeAs('galeri', $candidateName, 'public');
                 
                 \App\Models\Galeri::create([
                     'imej' => 'storage/' . $path,
