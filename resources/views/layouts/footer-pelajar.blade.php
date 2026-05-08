@@ -278,9 +278,9 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
             <div class="grid grid-cols-2 gap-2 text-sm">
-                <a href="{{ route('program') }}" class="hover:text-orange-400">Program</a>
-                <a href="{{ route('faq') }}" class="hover:text-orange-400">Soalan Lazim</a>
-                <a href="{{ route('hubungi') }}" class="hover:text-orange-400">Hubungi Kami</a>
+                <a href="{{ route('pelajar.program', $pelajar) }}" class="hover:text-orange-400">Program</a>
+                <a href="{{ route('pelajar.institusi', $pelajar) }}" class="hover:text-orange-400">Institusi</a>
+                <a href="{{ route('pelajar.dashboard', $pelajar) }}" class="hover:text-orange-400">Dashboard</a>
             </div>
         </div>
         <div>

@@ -57,7 +57,7 @@
                     d="M15 19l-7-7 7-7" />
             </svg>
 
-            <span class="text-sm">Back</span>
+            <span class="text-sm">Kembali</span>
         </a>
 
     </div>        
@@ -83,14 +83,14 @@
             @csrf
 
             <!-- USERNAME -->
-            <input type="text" name="username" placeholder="Username"
+            <input type="text" name="username" placeholder="Nama Pengguna"
                 class="w-full mb-4 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300
                        focus:outline-none focus:ring-2 focus:ring-orange-400">
 
             <!-- PASSWORD -->
             <div class="relative mb-6">
 
-                <input id="password" type="password" name="password" placeholder="Password"
+                <input id="password" type="password" name="password" placeholder="Kata Laluan"
                     class="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300
                         focus:outline-none focus:ring-2 focus:ring-orange-400 pr-10">
 
@@ -131,7 +131,7 @@
             <div class="flex justify-between items-center text-sm mb-6">
                 <label class="flex items-center text-gray-400">
                     <input type="checkbox" name="remember" class="mr-2">
-                    Remember me
+                    Ingat saya
                 </label>
             </div>
                        
@@ -143,7 +143,7 @@
                         shadow-lg shadow-orange-500/30
                         hover:scale-105 hover:shadow-orange-400/50
                         transition duration-300">
-                Sign In
+                Log Masuk
             </button>
 
         </form>
