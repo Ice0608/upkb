@@ -616,7 +616,19 @@ class StaffEventController extends Controller
         if (request()->ajax() || request()->wantsJson()) {
             $namaKursus = urldecode($nama);
             $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-                ->where('nama_kursus', $namaKursus);
+                ->equivalentToCourse($namaKursus);
+
+            if (request()->filled('jenis_kursus')) {
+                $query->where('jenis_kursus', request('jenis_kursus'));
+            }
+
+            if (request()->filled('tempoh')) {
+                $query->where('tempoh', request('tempoh'));
+            }
+
+            if (request()->filled('mod_pengajian')) {
+                $query->where('mod_pengajian', request('mod_pengajian'));
+            }
 
             $semuaKursus = $query->get();
             $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus', 'pelajar'))->render();
@@ -626,9 +638,11 @@ class StaffEventController extends Controller
 
         // Non-AJAX: render the full pilihan-kursus page (behaviour like KursusController/InterviewController)
         $namaKursus = urldecode($nama);
+        $namaKursusPaparan = \App\Models\Kursus::canonicalCourseName($namaKursus);
         $semuaKursus = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $namaKursus)
+            ->equivalentToCourse($namaKursus)
             ->get();
+        $namaKursus = $namaKursusPaparan;
 
         $selectedCourse = $semuaKursus->first();
         $heroImage = optional($selectedCourse?->galeris->first())->imej
@@ -656,7 +670,19 @@ class StaffEventController extends Controller
     public function pelajarFilterByName(Pelajar $pelajar, $nama)
     {
         $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $nama);
+            ->equivalentToCourse(urldecode($nama));
+
+        if (request()->filled('jenis_kursus')) {
+            $query->where('jenis_kursus', request('jenis_kursus'));
+        }
+
+        if (request()->filled('tempoh')) {
+            $query->where('tempoh', request('tempoh'));
+        }
+
+        if (request()->filled('mod_pengajian')) {
+            $query->where('mod_pengajian', request('mod_pengajian'));
+        }
 
         $semuaKursus = $query->get();
         $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus', 'pelajar'))->render();

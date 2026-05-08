@@ -18,6 +18,8 @@ class Kursus extends Model
 {
     protected $table = 'kursuses';
 
+    private const ELECTRICAL_COURSE_GROUP_NAME = 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK';
+
     private const SCOPED_DETAIL_RELATIONS = [
         'galeris' => Galeri::class,
         'syaratKelayakans' => SyaratKelayakan::class,
@@ -49,6 +51,62 @@ class Kursus extends Model
     public function getKodKursusAttribute($value)
     {
         return is_string($value) ? trim($value) : $value;
+    }
+
+    public function getNamaKursusPaparanAttribute(): string
+    {
+        return self::canonicalCourseName($this->nama_kursus, $this->kod_kursus);
+    }
+
+    public function getKumpulanKursusKeyAttribute(): string
+    {
+        return self::courseGroupKey($this->nama_kursus, $this->kod_kursus);
+    }
+
+    public static function canonicalCourseName(?string $namaKursus, ?string $kodKursus = null): string
+    {
+        if (self::isElectricalInstallationCourse($namaKursus, $kodKursus)) {
+            return self::ELECTRICAL_COURSE_GROUP_NAME;
+        }
+
+        return trim((string) $namaKursus);
+    }
+
+    public static function courseGroupKey(?string $namaKursus, ?string $kodKursus = null): string
+    {
+        if (self::isElectricalInstallationCourse($namaKursus, $kodKursus)) {
+            return 'f432-005-elektrik';
+        }
+
+        return strtolower(trim((string) $namaKursus));
+    }
+
+    public function scopeEquivalentToCourse($query, ?string $namaKursus)
+    {
+        $canonicalName = self::canonicalCourseName($namaKursus);
+
+        if ($canonicalName === self::ELECTRICAL_COURSE_GROUP_NAME) {
+            return $query->where('kod_kursus', 'LIKE', '%F432-005%');
+        }
+
+        return $query->where('nama_kursus', trim((string) $namaKursus));
+    }
+
+    private static function isElectricalInstallationCourse(?string $namaKursus, ?string $kodKursus = null): bool
+    {
+        $normalizedCode = strtoupper((string) $kodKursus);
+        $normalizedName = strtolower(trim((string) $namaKursus));
+
+        if (str_contains($normalizedCode, 'F432-005')) {
+            return true;
+        }
+
+        return in_array($normalizedName, [
+            'elektrik',
+            'elektrik & elektronik',
+            'pemasangan & penyelenggaraan elektrik',
+            'pemasangan & penyelenggaraan elektrik (single tier)',
+        ], true);
     }
 
     public function setKodKursusAttribute($value): void

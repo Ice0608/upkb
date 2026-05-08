@@ -1037,7 +1037,7 @@
 
                     <div class="mt-6 flex flex-wrap gap-3 text-sm">
                         <span class="inline-flex items-center rounded-full bg-white/16 px-4 py-2 font-semibold text-white/90 backdrop-blur">
-                            <i class="fas fa-layer-group mr-2 text-xs"></i>{{ $kursusList->unique('nama_kursus')->count() }} kursus
+                            <i class="fas fa-layer-group mr-2 text-xs"></i>{{ $kursusList->unique('kumpulan_kursus_key')->count() }} kursus
                         </span>
                     </div>
 
@@ -1069,15 +1069,15 @@
                                 Semua Kursus
                             </button>
 
-                            @foreach($kursusList->unique('nama_kursus') as $kursus)
+                            @foreach($kursusList->unique('kumpulan_kursus_key') as $kursus)
                                 <button 
                                     type="button"
-                                    onclick="filterCourses('{{ addslashes($kursus->nama_kursus) }}')"
+                                    onclick="filterCourses('{{ addslashes($kursus->nama_kursus_paparan) }}')"
                                     class="category-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium"
-                                    id="btn-{{ Illuminate\Support\Str::slug($kursus->nama_kursus, '-') }}"
+                                    id="btn-{{ Illuminate\Support\Str::slug($kursus->nama_kursus_paparan, '-') }}"
                                 >
                                     <span class="category-indicator"></span>
-                                    <span class="category-name">{{ $kursus->nama_kursus }}</span>
+                                    <span class="category-name">{{ $kursus->nama_kursus_paparan }}</span>
                                 </button>
                             @endforeach
                         </div>
@@ -1098,18 +1098,18 @@
                     </div>
                     <div id="courses-container" class="kursus-results-grid" data-kursus-slider-row>
                         <div class="kursus-results-track" data-kursus-slider-track>
-                    @forelse($kursusList->unique('nama_kursus')->values() as $kursus)
+                    @forelse($kursusList->unique('kumpulan_kursus_key')->values() as $kursus)
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
                     <article class="course-card h-full" 
-                             data-course-name="{{ $kursus->nama_kursus }}"
-                             onclick="window.location.href='{{ route('pelajar.pilihankursus', ['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $kursus->nama_kursus]) }}'">
+                             data-course-name="{{ $kursus->nama_kursus_paparan }}"
+                             onclick="window.location.href='{{ route('pelajar.pilihankursus', ['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $kursus->nama_kursus_paparan]) }}'">
                         @php
                             $institusiTypeLabel = strtolower(trim((string) ($kursus->institusi->jenis_institusi ?? '')));
                             $jenisKursusLabel = strtolower(trim((string) ($kursus->jenis_kursus ?? '')));
                             $showJenisKursusPill = $jenisKursusLabel !== '' && $jenisKursusLabel !== $institusiTypeLabel;
                         @endphp
                         <div class="course-card-media">
-                            <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
+                            <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus_paparan }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">
                                 <span class="kursus-tag px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em]">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="flex flex-wrap items-center justify-end gap-2 max-w-[75%]">
@@ -1125,7 +1125,7 @@
                             <div class="course-card-headline">
                                 <div>
                                     <p class="kursus-section-accent text-[0.7rem] font-semibold uppercase tracking-[0.28em]">Kursus</p>
-                                    <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $kursus->nama_kursus }}</h2>
+                                    <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $kursus->nama_kursus_paparan }}</h2>
                                 </div>
                                 <span class="course-card-arrow">
                                     <i class="fas fa-arrow-right"></i>
