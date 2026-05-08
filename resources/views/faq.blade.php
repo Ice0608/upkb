@@ -1082,7 +1082,9 @@
             .faq-card::before,
             .faq-arrow,
             .faq-modal-shell,
-            .faq-carousel-button {
+            .faq-carousel-button,
+            .faq-hero-figure .fig-float-group,
+            .faq-hero-figure .fig-qmark {
                 animation: none;
                 transition: none;
             }
@@ -1120,6 +1122,75 @@
             color: #cbd5e1;
         }
         html.dark .faq-modal-close:hover { background: rgba(51,65,85,0.9); }
+
+        html.dark .faq-hero {
+            background: linear-gradient(90deg, #1a1a2e 0%, #2d3748 56%, #1a1a2e 100%);
+            border-color: rgba(255,122,0,0.2);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 250, 236, 0.1),
+                0 24px 55px rgba(100, 50, 0, 0.2),
+                0 0 46px rgba(255, 122, 0, 0.1);
+        }
+        html.dark .faq-hero-eyebrow,
+        html.dark .faq-hero-title,
+        html.dark .faq-hero-copy {
+            color: #f1f5f9;
+        }
+        html.dark .faq-hero::after {
+            border-color: rgba(255,122,0,0.15);
+            box-shadow:
+                0 0 0 1rem rgba(255,122,0,0.06),
+                0 0 0 2rem rgba(255,122,0,0.03);
+        }
+
+        /* ── FAQ HERO FIGURE ── */
+        .faq-hero-figure {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 85%;
+            pointer-events: none;
+            user-select: none;
+            filter: drop-shadow(-12px 0 36px rgba(140, 50, 0, 0.24));
+        }
+
+        .faq-hero-figure svg {
+            height: 100%;
+            width: auto;
+            overflow: visible;
+        }
+
+        @keyframes heroFigureFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes heroQMarkPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.92; transform: scale(1.02); }
+        }
+
+        .faq-hero-figure .fig-float-group {
+            animation: heroFigureFloat 4.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+        .faq-hero-figure .fig-qmark {
+            animation: heroQMarkPulse 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 1024px) {
+            .faq-hero-figure {
+                right: 0.5rem;
+                height: 70%;
+                opacity: 0.32;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .faq-hero-figure {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="faq-page text-neutral-900 transition-colors duration-300">
@@ -1130,7 +1201,95 @@
     <div class="faq-wave-layer faq-wave-layer-secondary"></div>
 
     <main class="faq-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="faq-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12">
+        <div class="faq-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12 relative overflow-hidden">
+            <div class="faq-hero-figure" aria-hidden="true">
+                <svg viewBox="-20 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="coatGrad" cx="30%" cy="20%" r="80%">
+                            <stop offset="0%" stop-color="#ff8c42"/>
+                            <stop offset="100%" stop-color="#e65100"/>
+                        </radialGradient>
+                        <linearGradient id="qmarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ff9a3c"/>
+                            <stop offset="100%" stop-color="#ff7a00"/>
+                        </linearGradient>
+                        <filter id="heroSoftGlow"><feGaussianBlur stdDeviation="3.5"/></filter>
+                    </defs>
+
+                    <!-- Ambient glow behind figure -->
+                    <ellipse cx="110" cy="200" r="95" fill="url(#coatGrad)" filter="url(#heroSoftGlow)" opacity="0.45"/>
+
+                    <!-- Floor shadow -->
+                    <ellipse cx="110" cy="325" rx="55" ry="8" fill="rgba(0,0,0,0.18)"/>
+
+                    <!-- === ANIMATED FLOATING BODY === -->
+                    <g class="fig-float-group">
+
+                        <!-- Legs -->
+                        <rect x="85" y="260" width="20" height="58" rx="10" fill="#263238"/>
+                        <rect x="120" y="260" width="20" height="58" rx="10" fill="#263238"/>
+                        <!-- Shoes -->
+                        <ellipse cx="95" cy="320" rx="14" ry="7" fill="#1a1a2e"/>
+                        <ellipse cx="130" cy="320" rx="14" ry="7" fill="#1a1a2e"/>
+                        <!-- Shoe shine -->
+                        <path d="M88 317 Q92 314 98 315" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+                        <path d="M123 317 Q127 314 133 315" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+
+                        <!-- Coat / Torso -->
+                        <path d="M68 155 Q58 168 56 220 Q54 260 62 270 Q80 280 110 280 Q140 280 158 270 Q166 260 164 220 Q162 168 152 155 L136 140 Q122 152 110 152 Q98 152 84 140 Z" fill="url(#coatGrad)"/>
+                        <!-- Coat shine/highlight -->
+                        <path d="M78 155 Q70 170 68 200" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <!-- Coat collar -->
+                        <path d="M92 145 L110 170 L128 145" fill="#fff" opacity="0.9"/>
+                        <!-- Coat button -->
+                        <circle cx="110" cy="210" r="6" fill="rgba(255,255,255,0.3)"/>
+                        <circle cx="110" cy="210" r="4" fill="rgba(200,100,50,0.4)"/>
+                        <!-- Coat pocket -->
+                        <rect x="125" y="195" width="20" height="18" rx="4" fill="rgba(0,0,0,0.08)"/>
+                        <path d="M133 193 L133 207" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+                        <!-- Left arm (at side) -->
+                        <path d="M68 168 Q48 188 46 230" stroke="url(#coatGrad)" stroke-width="22" stroke-linecap="round" fill="none"/>
+                        <!-- Left hand -->
+                        <circle cx="46" cy="236" r="11" fill="#f0d9c8"/>
+
+                        <!-- Right arm (slightly raised) -->
+                        <path d="M152 168 Q168 180 172 210" stroke="url(#coatGrad)" stroke-width="22" stroke-linecap="round" fill="none"/>
+                        <!-- Right hand -->
+                        <circle cx="172" cy="218" r="11" fill="#f0d9c8"/>
+                        <!-- Hand gesture: open palm -->
+                        <path d="M178 210 Q182 206 185 210" stroke="#d9a580" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+
+                        <!-- Neck -->
+                        <rect x="100" y="128" width="20" height="22" rx="8" fill="#f0d9c8"/>
+
+                        <!-- === QUESTION MARK HEAD === -->
+                        <g class="fig-qmark">
+                            <!-- Head background circle -->
+                            <circle cx="110" cy="90" r="44" fill="url(#qmarkGrad)" opacity="0.98"/>
+                            <!-- Head shine -->
+                            <circle cx="95" cy="70" r="16" fill="rgba(255,255,255,0.18)"/>
+
+                            <!-- Large question mark -->
+                            <text x="110" y="108" font-size="72" font-weight="900" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" letter-spacing="-2">?</text>
+
+                            <!-- Mini dots for expression (eyes) -->
+                            <circle cx="92" cy="78" r="3" fill="rgba(255,255,255,0.4)"/>
+                            <circle cx="128" cy="78" r="3" fill="rgba(255,255,255,0.4)"/>
+
+                            <!-- Glow ring around head -->
+                            <circle cx="110" cy="90" r="44" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" opacity="0.6"/>
+                        </g>
+
+                        <!-- Coat lapels accent -->
+                        <path d="M98 155 L88 165" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                        <path d="M122 155 L132 165" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+                    </g>
+
+                </svg>
+            </div>
+
             <p class="faq-hero-eyebrow font-medium tracking-[0.38em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
             <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
                 Soalan Lazim (FAQ)
