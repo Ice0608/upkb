@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
+    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Admin Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -150,7 +150,7 @@
     <div id="loader-content" class="relative z-30 text-center transition-all duration-1000">
         
         <div class="relative w-56 h-56 md:w-76 md:h-80 mx-auto mb-6 opacity-0 transform translate-y-4 transition-all duration-1000 ease-out" id="logo-container">
-            <img src="{{ asset('images/icon/SES LOGO RENEW.png') }}" 
+            <img src="{{ asset('images/icon/seslogoo.png') }}" 
                  class="absolute inset-0 w-full h-full object-contain filter-glow multiply-blend animate-smoke-dissolve">
         </div>
 

@@ -531,7 +531,7 @@
         <!-- HEADER -->
         <div class="header">
             <div class="logo-cell">
-                <img src="{{ ($isPdf ?? false) ? public_path('images/icon/sesL.png') : asset('images/icon/sesL.png') }}" alt="SES Logo" class="logo">
+                <img src="{{ ($isPdf ?? false) ? public_path('images/icon/seslogoo.png') : asset('images/icon/seslogoo.png') }}" alt="SES Logo" class="logo">
             </div>
             
             <div class="header-center">

@@ -475,7 +475,7 @@
     <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="{{ $pelajarId ? route('staff.temuduga.welcome', $pelajarId) : url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
             <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-orange-100/90 bg-[linear-gradient(145deg,#fff7ed,#ffffff)] sm:h-14 sm:w-14">
-                <img src="{{ asset('images/icon/noBgLogo.jpeg') }}" alt="logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
+                <img src="{{ asset('images/icon/seslogoo.png') }}" alt="SES logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
             </span>
             <div class="site-nav-brand-copy min-w-0 leading-tight">
                 <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">UPKB</p>
@@ -579,7 +579,7 @@
         </div>
 
         <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Logout">
-            <img src="{{ asset('images/icon/loginIcon.png') }}" alt="logout" class="h-6 w-6 object-contain">
+            <i class="fa-solid fa-arrow-right-from-bracket text-lg" aria-hidden="true"></i>
         </a>
 
         <details class="site-nav-mobile ml-auto lg:hidden">
@@ -636,7 +636,7 @@
                         </a>
                     </div>
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="mt-3 flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
-                        <img src="{{ asset('images/icon/loginIcon.png') }}" alt="logout" class="h-5 w-5 object-contain">
+                        <i class="fa-solid fa-arrow-right-from-bracket text-base" aria-hidden="true"></i>
                         Log Keluar
                     </a>
                 </div>
