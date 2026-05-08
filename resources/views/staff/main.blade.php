@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <title>SESOC Staff Main</title>
+    @include('components.dark-mode-init')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.staff-dark-mode')
 </head>
-<body class="bg-slate-100 text-slate-800">
+<body class="staff-page bg-slate-100 text-slate-800">
 @include('layouts.navstaff')
 
 <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
@@ -122,11 +124,11 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex flex-wrap gap-2">
-                                        <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="inline-flex items-center gap-2 rounded-full bg-slate-800 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-900">BMD</a>
+                                        <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="staff-action-btn staff-action-btn--bmd inline-flex items-center gap-2 rounded-full bg-slate-800 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-900">BMD</a>
                                         <a
                                             href="{{ route('staff.bmd.resit', ['pelajar' => $pelajar->id]) }}"
                                             onclick="openReceiptModal(event, '{{ route('staff.bmd.resit', ['pelajar' => $pelajar->id]) }}')"
-                                            class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700"
+                                            class="staff-action-btn staff-action-btn--resit inline-flex items-center gap-2 rounded-full bg-blue-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-700"
                                         >
                                             Resit
                                         </a>

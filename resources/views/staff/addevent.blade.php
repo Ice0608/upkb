@@ -6,9 +6,11 @@
     <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Tambah Event</title>
+    @include('components.dark-mode-init')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('components.staff-dark-mode')
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="staff-page bg-slate-100 text-slate-900">
 @include('layouts.navstaff')
 
 <main class="max-w-4xl mx-auto px-4 py-8">
