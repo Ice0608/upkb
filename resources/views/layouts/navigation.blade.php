@@ -641,7 +641,7 @@
         </button>
 
         <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
-            <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-6 w-6 object-contain">
+            <i class="fa-regular fa-user text-lg" aria-hidden="true"></i>
         </a>
 
         <details class="site-nav-mobile ml-auto lg:hidden">
@@ -687,7 +687,7 @@
                         Hubungi
                     </a>
                     <a href="/login" class="mt-3 flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
-                        <img src="{{ asset('images/icon/loginIcon.png') }}" alt="login" class="h-5 w-5 object-contain">
+                        <i class="fa-regular fa-user text-base" aria-hidden="true"></i>
                         Log Masuk
                     </a>
                     <button id="theme-toggle-mobile" class="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">

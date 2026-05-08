@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
+    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Add Galeri</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -55,7 +55,7 @@
         <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ asset('images/logo.jpeg') }}" class="h-12" alt="logo">
+                    <img src="{{ asset('images/icon/seslogoo.png') }}" class="h-12" alt="logo">
                     <div>
                         <h2 class="text-lg font-bold text-white">UPKB</h2>
                         <p class="text-sm text-gray-400">Pusat maklumat program & pengambilan</p>

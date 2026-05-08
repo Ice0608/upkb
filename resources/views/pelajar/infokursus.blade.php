@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpeg" href="/images/icon/noBgLogo.jpeg">
+    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SESOC - Info kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -184,7 +184,7 @@
             color: var(--detail-accent-700);
         }
 
-        /* ── Daftar CTA ── */
+        /* -- Daftar CTA -- */
         .kd-cta-daftar {
             position: relative; overflow: hidden;
             display: inline-flex; align-items: center; gap: 0.75rem;
@@ -231,7 +231,7 @@
             60%, 100% { left: 130%; }
         }
 
-        /* ── TVET theme override for Daftar CTA ── */
+        /* -- TVET theme override for Daftar CTA -- */
         .kursus-detail-page--tvet .kd-cta-daftar {
             background: #7a2400;
             box-shadow: 0 0 0 3px rgba(255,81,0,0.38), 0 8px 28px rgba(122,36,0,0.42);
@@ -246,7 +246,7 @@
         }
         .kursus-detail-page--tvet .kd-cta-daftar { animation-name: kdPulseTvet; }
 
-        /* ── Sains Kesihatan theme override for Daftar CTA ── */
+        /* -- Sains Kesihatan theme override for Daftar CTA -- */
         .kursus-detail-page--sains-kesihatan .kd-cta-daftar {
             background: #1a3878;
             box-shadow: 0 0 0 3px rgba(37,99,235,0.42), 0 8px 28px rgba(26,56,120,0.45);

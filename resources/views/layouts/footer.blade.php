@@ -1,4 +1,4 @@
-﻿﻿@once
+?@once
     <style>
         .footer-ocean {
             position: relative;
@@ -369,7 +369,7 @@
     </div>
     <div class="footer-content border-t border-white/10"></div>
     <div class="footer-content max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm">
-        <p class="text-gray-400">© {{ date('Y') }} SMART Education Society</p>
+        <p class="text-gray-400">� {{ date('Y') }} SMART Education Society</p>
     </div>
 </footer>
 
