@@ -197,6 +197,22 @@
             padding: 0.5rem 0 0.75rem;
         }
 
+        .faq-track--slow .faq-card {
+            transition: transform 1200ms var(--xmb-ease), opacity 1200ms var(--xmb-ease), box-shadow 1200ms var(--xmb-ease), filter 1200ms var(--xmb-ease);
+        }
+
+        .faq-track--slow .faq-card:active {
+            transition: transform 200ms var(--xmb-ease);
+        }
+
+        .faq-track--slow .faq-icon-chip {
+            transition: transform 1200ms var(--xmb-ease), box-shadow 1200ms var(--xmb-ease), filter 1200ms var(--xmb-ease);
+        }
+
+        .faq-track--slow .faq-arrow {
+            transition: transform 1000ms var(--xmb-ease), opacity 1000ms var(--xmb-ease), color 1000ms var(--xmb-ease);
+        }
+
         .faq-track::before {
             content: "";
             position: absolute;
@@ -1520,9 +1536,24 @@
 
     if (faqTrack) {
         faqTrack.addEventListener('mouseleave', () => {
+            faqTrack.classList.remove('faq-track--slow');
             const focusedElement = document.activeElement;
             if (!focusableItems.includes(focusedElement)) {
                 setFocusedItem(focusableItems[0] ?? null);
+            }
+        });
+
+        faqTrack.addEventListener('mousemove', (event) => {
+            const rect = faqTrack.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const width = rect.width;
+            const isInLeftArea = mouseX < width * 0.25;
+            const isInRightArea = mouseX > width * 0.75;
+
+            if (isInLeftArea || isInRightArea) {
+                faqTrack.classList.add('faq-track--slow');
+            } else {
+                faqTrack.classList.remove('faq-track--slow');
             }
         });
     }
