@@ -9,31 +9,38 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
-    
+
 @include('layouts.navadmin')
 
     <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 shadow-lg p-8 text-white mb-8">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="mb-8 rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 p-8 text-white shadow-lg">
+            <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h1 class="text-4xl md:text-5xl font-bold leading-tight">Admin Institusi {{ request('jenis') ? request('jenis') : '' }}</h1>
+                    <h1 class="text-4xl font-bold leading-tight md:text-5xl">Admin Institusi {{ request('jenis') ? request('jenis') : '' }}</h1>
                     <p class="mt-3 text-lg text-orange-100">Urus semua institusi di sini. Tambah, sunting dan hapus data institusi dengan mudah.</p>
                 </div>
-                <a href="{{ route('admin.addinstitusi') }}" class="w-14 h-14 rounded-full bg-white text-orange-600 shadow-md hover:shadow-lg transition flex items-center justify-center">
+                <a href="{{ route('admin.addinstitusi') }}" class="flex h-14 w-14 items-center justify-center rounded-full bg-white text-orange-600 shadow-md transition hover:shadow-lg">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
         </div>
 
         @if(session('success'))
-        <div class="mb-6 rounded-2xl bg-white p-5 border border-green-200 text-green-700 shadow-sm">
+        <div class="mb-6 rounded-2xl border border-green-200 bg-white p-5 text-green-700 shadow-sm">
             {{ session('success') }}
         </div>
         @endif
 
-        <div class="mb-6 flex flex-col lg:flex-row lg:items-center gap-4">
-            <form method="GET" class="flex flex-col sm:flex-row gap-4 items-center w-full lg:flex-1">
+        <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center">
+            <form method="GET" class="flex w-full flex-col items-center gap-4 sm:flex-row lg:flex-1">
                 <input type="text" name="cari" placeholder="Cari Institusi..." value="{{ request('cari') }}" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+
+                <select name="jenis" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+                    <option value="">Semua Jenis</option>
+                    <option value="TVET" {{ request('jenis') == 'TVET' ? 'selected' : '' }}>TVET</option>
+                    <option value="DIPLOMA" {{ request('jenis') == 'DIPLOMA' ? 'selected' : '' }}>DIPLOMA</option>
+                    <option value="SAINS KESIHATAN" {{ request('jenis') == 'SAINS KESIHATAN' ? 'selected' : '' }}>SAINS KESIHATAN</option>
+                </select>
                 
                 <select name="negeri" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
                     <option value="">Semua Negeri</option>
@@ -55,13 +62,10 @@
                     <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
                 </select>
 
-                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 text-white px-6 py-2 text-sm font-semibold hover:bg-orange-600 transition">
+                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">
                     <i class="fas fa-search mr-2"></i>Cari
                 </button>
 
-                @if(request('jenis'))
-                    <input type="hidden" name="jenis" value="{{ request('jenis') }}">
-                @endif
             </form>
 
             <form method="GET" class="inline-flex items-center">
@@ -74,35 +78,39 @@
                 @if(request('cari'))
                     <input type="hidden" name="cari" value="{{ request('cari') }}">
                 @endif
-                <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="inline-flex items-center justify-center rounded-full border px-6 py-2 text-sm font-semibold transition {{ request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50' }}">
+                <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="inline-flex items-center justify-center rounded-full border px-6 py-2 text-sm font-semibold transition {{ request('kuota') ? 'border-orange-500 bg-orange-500 text-white hover:bg-orange-600' : 'border-orange-300 bg-white text-orange-600 hover:bg-orange-50' }}">
                     Kuota
                 </button>
             </form>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid gap-6 md:grid-cols-3">
             @forelse($institusis as $institusi)
-            <article class="rounded-3xl bg-white shadow-lg overflow-hidden border border-gray-100 hover:shadow-xl transition">
+            <article class="flex h-full flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-lg transition hover:shadow-xl">
                 <div class="relative h-52 overflow-hidden">
-                    <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="w-full h-full object-cover">
+                    <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="h-full w-full object-cover">
                 </div>
-                <div class="p-8">
-                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-semibold uppercase tracking-wide mb-4">{{ $institusi->jenis_institusi }}</span>
-                    <h2 class="text-2xl font-extrabold text-slate-900 mb-2">{{ $institusi->nama_institusi }}</h2>
-                    <p class="text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
-                    <p class="text-gray-500 mb-6">{{ Illuminate\Support\Str::limit($institusi->mengenai_institusi, 100) }}</p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="{{ route('admin.editinstitusi', $institusi->id) }}" class="inline-flex items-center gap-2 text-blue-600 font-bold">EDIT <span>→</span></a>
+                <div class="flex flex-1 flex-col p-8">
+                    <span class="mb-4 inline-flex w-fit items-center self-start rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-700">{{ $institusi->jenis_institusi }}</span>
+                    <h2 class="mb-2 text-2xl font-extrabold text-slate-900">{{ $institusi->nama_institusi }}</h2>
+                    <p class="mb-4 text-gray-500"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
+                    <p class="text-gray-500">{{ Illuminate\Support\Str::limit($institusi->mengenai_institusi, 100) }}</p>
+                    <div class="mt-auto flex flex-nowrap items-center justify-center gap-3 pt-6">
+                        <a href="{{ route('admin.editinstitusi', $institusi->id) }}" class="inline-flex items-center justify-center rounded-full bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 ring-1 ring-blue-200 transition hover:bg-blue-100 hover:text-blue-800">
+                            <i class="fas fa-pen-to-square mr-2"></i> Edit
+                        </a>
                         <form action="{{ route('admin.deleteinstitusi', $institusi->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this institusi?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="inline-flex items-center gap-2 text-red-600 font-bold">DELETE <span>→</span></button>
+                            <button type="submit" class="inline-flex items-center justify-center rounded-full bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-700 ring-1 ring-red-200 transition hover:bg-red-100 hover:text-red-800">
+                                <i class="fas fa-trash mr-2"></i> Delete
+                            </button>
                         </form>
                     </div>
                 </div>
             </article>
             @empty
-            <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">
+            <div class="col-span-3 rounded-2xl bg-white p-8 text-center text-gray-500">
                 Tiada institusi ditemui.
             </div>
             @endforelse

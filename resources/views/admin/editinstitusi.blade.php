@@ -14,8 +14,28 @@
     <section class="max-w-6xl mx-auto px-6 py-10">
 
         <!-- Form Edit Institusi -->
-        <div class="rounded-3xl bg-white shadow-lg p-8 border border-gray-100 mb-10">
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Institusi</h1>
+        <div class="rounded-3xl border border-gray-100 bg-white shadow-lg mb-10 overflow-hidden">
+            <div class="border-b border-gray-200 bg-[radial-gradient(circle_at_top_left,_rgba(255,237,213,0.9),_rgba(255,255,255,1)_48%,_rgba(254,215,170,0.35)_100%)] px-8 py-8">
+                <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Edit Institusi</h1>
+                        <p class="mt-2 max-w-2xl text-gray-600">Kemaskini maklumat institusi, imej, alamat dan penerangan utama dalam satu paparan yang lebih jelas.</p>
+                        <div class="mt-4 inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
+                            Kod: {{ $institusi->kod_institusi }}
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <button type="submit" form="edit-institusi-form" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-orange-600">
+                            <i class="fas fa-floppy-disk mr-2"></i> Simpan Kemas Kini
+                        </button>
+                        <a href="{{ route('admin.institusis') }}" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-gray-700 ring-1 ring-gray-200 shadow-sm transition hover:bg-gray-50">
+                            <i class="fas fa-arrow-left mr-2"></i> Kembali
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-8">
 
             @if($errors->any())
             <div class="mb-6 rounded-2xl bg-red-50 p-5 border border-red-200 text-red-700">
@@ -33,42 +53,38 @@
             </div>
             @endif
 
-            <form action="{{ route('admin.updateinstitusi', $institusi->id) }}" method="POST" enctype="multipart/form-data">
+            <form id="edit-institusi-form" action="{{ route('admin.updateinstitusi', $institusi->id) }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                 @csrf
                 @method('PUT')
-                <div class="grid gap-6">
+                <div class="grid gap-6 lg:grid-cols-2">
                     <div>
-                        <label for="kod_institusi" class="block text-sm font-medium text-gray-700">Kod Institusi</label>
-                        <input type="text" name="kod_institusi" id="kod_institusi" value="{{ old('kod_institusi', $institusi->kod_institusi) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="kod_institusi" class="block text-sm font-semibold text-gray-700">Kod Institusi</label>
+                        <input type="text" name="kod_institusi" id="kod_institusi" value="{{ old('kod_institusi', $institusi->kod_institusi) }}" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>
                     </div>
                     <div>
-                        <label for="nama_institusi" class="block text-sm font-medium text-gray-700">Nama Institusi</label>
-                        <input type="text" name="nama_institusi" id="nama_institusi" value="{{ old('nama_institusi', $institusi->nama_institusi) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="nama_institusi" class="block text-sm font-semibold text-gray-700">Nama Institusi</label>
+                        <input type="text" name="nama_institusi" id="nama_institusi" value="{{ old('nama_institusi', $institusi->nama_institusi) }}" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>
                     </div>
                     <div>
-                        <label for="jenis_institusi" class="block text-sm font-medium text-gray-700">Jenis Institusi</label>
-                        <input type="text" name="jenis_institusi" id="jenis_institusi" value="{{ old('jenis_institusi', $institusi->jenis_institusi) }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="jenis_institusi" class="block text-sm font-semibold text-gray-700">Jenis Institusi</label>
+                        <input type="text" name="jenis_institusi" id="jenis_institusi" value="{{ old('jenis_institusi', $institusi->jenis_institusi) }}" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>
                     </div>
                     <div>
-                        <label for="gambar_institusi" class="block text-sm font-medium text-gray-700">Gambar Institusi</label>
-                        <input type="file" name="gambar_institusi" id="gambar_institusi" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-md shadow-sm file:border-0 file:bg-orange-100 file:px-3 file:py-2 file:rounded-md file:text-orange-700" accept="image/*">
+                        <label for="gambar_institusi" class="block text-sm font-semibold text-gray-700">Gambar Institusi</label>
+                        <input type="file" name="gambar_institusi" id="gambar_institusi" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white text-sm text-gray-900 shadow-sm file:mr-4 file:rounded-full file:border-0 file:bg-orange-100 file:px-4 file:py-2.5 file:font-semibold file:text-orange-700" accept="image/*">
                         <p class="text-sm text-gray-500 mt-2">Biarkan kosong untuk kekal gambar sedia ada.</p>
                     </div>
-                    <div>
-                        <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat</label>
-                        <textarea name="alamat" id="alamat" rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('alamat', $institusi->alamat) }}</textarea>
+                    <div class="lg:col-span-2">
+                        <label for="alamat" class="block text-sm font-semibold text-gray-700">Alamat</label>
+                        <textarea name="alamat" id="alamat" rows="3" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>{{ old('alamat', $institusi->alamat) }}</textarea>
                     </div>
-                    <div>
-                        <label for="mengenai_institusi" class="block text-sm font-medium text-gray-700">Mengenai Institusi</label>
-                        <textarea name="mengenai_institusi" id="mengenai_institusi" rows="5" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>{{ old('mengenai_institusi', $institusi->mengenai_institusi) }}</textarea>
+                    <div class="lg:col-span-2">
+                        <label for="mengenai_institusi" class="block text-sm font-semibold text-gray-700">Mengenai Institusi</label>
+                        <textarea name="mengenai_institusi" id="mengenai_institusi" rows="6" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>{{ old('mengenai_institusi', $institusi->mengenai_institusi) }}</textarea>
                     </div>
-                </div>
-
-                <div class="mt-8 flex items-center gap-4">
-                    <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Update Institusi</button>
-                    <a href="{{ route('admin.institusis') }}" class="text-gray-600 hover:text-gray-800">Cancel</a>
                 </div>
             </form>
+            </div>
         </div>
 
         <!-- Senarai kursus Ditawarkan -->
@@ -155,7 +171,7 @@
                         <img src="{{ asset($foto->imej) }}" alt="Fasiliti" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
                             <a href="{{ route('admin.editgaleri', $foto->id) }}" class="inline-flex items-center gap-2 bg-orange-500 text-white px-3 py-1 rounded-full text-sm hover:bg-orange-600 transition">
-                                <i class="fas fa-edit"></i>Edit
+                                <i class="fas fa-edit"></i>Sunting
                             </a>
                             <form action="{{ route('admin.deletegaleri', $foto->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus foto ini?');">
                                 @csrf
@@ -183,44 +199,7 @@
     </section>
 
     @include('components.social-float')
-
-    <footer class="bg-gray-900 text-gray-300 mt-16">
-        <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="{{ asset('images/icon/seslogoo.png') }}" class="h-12" alt="logo">
-                    <div>
-                        <h2 class="text-lg font-bold text-white">UPKB</h2>
-                        <p class="text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
-                    </div>
-                </div>
-                <p class="text-sm text-gray-400 leading-relaxed">Bantu pelajar dan ibu bapa melihat pilihan pusat, program, kuota semasa dan maklumat penting dengan lebih jelas dalam satu tempat.</p>
-            </div>
-            <div>
-                <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
-                <div class="grid grid-cols-2 gap-2 text-sm">
-                    <a href="{{ url('/') }}" class="hover:text-orange-400">Utama</a>
-                    <a href="{{ route('program') }}" class="hover:text-orange-400">Program</a>
-                    <a href="{{ route('institusi') }}" class="hover:text-orange-400">Institusi</a>
-                    <a href="{{ route('faq') }}" class="hover:text-orange-400">FAQ</a>
-                    <a href="{{ route('galeri') }}" class="hover:text-orange-400">Galeri</a>
-                    <a href="{{ route('hubungi') }}" class="hover:text-orange-400">Hubungi</a>
-                </div>
-            </div>
-            <div>
-                <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li>📞 +6017 921 5543</li>
-                    <li>✉️ info@upkb.my</li>
-                    <li>📍 34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-700"></div>
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-sm">
-            <p class="text-gray-400">© {{ date('Y') }} Unit Pembangunan Kemahiran Belia.</p>
-        </div>
-    </footer>
+    @include('layouts.footer-admin')
 
 </body>
 </html>

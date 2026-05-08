@@ -27,14 +27,14 @@
                 </div>
             </div>
 
-            <div class="bg-gray-50 px-8 py-5 border-b border-gray-200">
-                <div class="flex flex-wrap gap-3 text-sm text-gray-600">
-                    <a href="#" onclick="loadTab('maklumat')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="maklumat">Maklumat Am</a>
-                    <a href="#" onclick="loadTab('syarat')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="syarat">Syarat Kelayakan</a>
-                    <a href="#" onclick="loadTab('silibus')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="silibus">Struktur Silibus</a>
-                    <a href="#" onclick="loadTab('kerjaya')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="kerjaya">Laluan Kerjaya</a>
-                    <a href="#" onclick="loadTab('yuran')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="yuran">Yuran & Pinjaman</a>
-                    <a href="#" onclick="loadTab('galeri')" class="tab-link px-4 py-2 rounded-full bg-white border border-gray-200 hover:bg-orange-50 hover:text-orange-600 transition" data-tab="galeri">Galeri Kursus</a>
+            <div class="border-b border-gray-200 bg-gradient-to-r from-gray-50 via-white to-gray-50 px-8 py-6">
+                <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-gray-600">
+                    <a href="#" onclick="loadTab('maklumat')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="maklumat">Maklumat Am</a>
+                    <a href="#" onclick="loadTab('syarat')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="syarat">Syarat Kelayakan</a>
+                    <a href="#" onclick="loadTab('silibus')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="silibus">Struktur Silibus</a>
+                    <a href="#" onclick="loadTab('kerjaya')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="kerjaya">Laluan Kerjaya</a>
+                    <a href="#" onclick="loadTab('yuran')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="yuran">Yuran & Pinjaman</a>
+                    <a href="#" onclick="loadTab('galeri')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="galeri">Galeri Kursus</a>
                 </div>
             </div>
 
@@ -76,6 +76,7 @@
             .then(html => {
                 tabContent.innerHTML = html;
                 initGalleryUploadTab();
+                initGalleryPreviewTab();
                 // Re-attach form handlers
                 attachFormHandlers();
                 if (pendingMessage) {
@@ -227,6 +228,67 @@
                 preview.innerHTML = '';
                 dropzone.classList.remove('bg-orange-100');
             });
+        }
+
+        function initGalleryPreviewTab() {
+            const modal = document.getElementById('galeriPreviewModal');
+            const previewBody = document.getElementById('galeriPreviewBody');
+            const previewTitle = document.getElementById('galeriPreviewTitle');
+            const closeButton = document.getElementById('galeriPreviewClose');
+            const triggers = document.querySelectorAll('.galeri-preview-trigger');
+
+            if (!modal || !previewBody || !previewTitle || !closeButton || triggers.length === 0) {
+                return;
+            }
+
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                previewBody.innerHTML = '';
+                previewTitle.textContent = '';
+            };
+
+            triggers.forEach((trigger) => {
+                if (trigger.dataset.previewBound === '1') {
+                    return;
+                }
+
+                trigger.dataset.previewBound = '1';
+                trigger.addEventListener('click', () => {
+                    const src = trigger.dataset.src;
+                    const type = trigger.dataset.type;
+                    const name = trigger.dataset.name || 'Media';
+
+                    previewTitle.textContent = name;
+                    previewBody.innerHTML = type === 'video'
+                        ? `<video controls autoplay class="max-h-[70vh] w-full rounded-2xl bg-black"><source src="${src}"></video>`
+                        : `<img src="${src}" alt="${name}" class="max-h-[70vh] w-auto rounded-2xl object-contain">`;
+
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            if (closeButton.dataset.previewBound !== '1') {
+                closeButton.dataset.previewBound = '1';
+                closeButton.addEventListener('click', closeModal);
+            }
+
+            if (modal.dataset.previewBound !== '1') {
+                modal.dataset.previewBound = '1';
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+
+            if (document.body.dataset.galleryPreviewKeyBound !== '1') {
+                document.body.dataset.galleryPreviewKeyBound = '1';
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                        closeModal();
+                    }
+                });
+            }
         }
 
         function showMessage(message, type) {

@@ -8,204 +8,235 @@
     <title>UPKB - Admin Programs</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* ── FADE-IN ANIMATION ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
+            to { opacity: 1; transform: translateY(0); }
         }
+
         .fade-up {
             opacity: 0;
             animation: fadeUp 0.55s ease forwards;
         }
-        .fade-up-1 { animation-delay: 0.05s; }
-        .fade-up-2 { animation-delay: 0.15s; }
-        .fade-up-3 { animation-delay: 0.25s; }
 
-        /* ── HERO ── */
         .hero-admin {
-            background: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
             position: relative;
             overflow: hidden;
-            border-radius: 1.75rem;
-        }
-        .hero-admin::before {
-            content: '';
-            position: absolute;
-            top: -3rem; right: -3rem;
-            width: 16rem; height: 16rem;
-            border-radius: 999px;
-            background: radial-gradient(circle, rgba(255,255,255,0.18), transparent 65%);
-            pointer-events: none;
-        }
-        .hero-admin::after {
-            content: '';
-            position: absolute;
-            bottom: -2rem; left: 30%;
-            width: 10rem; height: 10rem;
-            border-radius: 999px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 65%);
-            pointer-events: none;
+            border-radius: 1.85rem;
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(255,255,255,0.10), transparent 22%),
+                linear-gradient(135deg, #ea580c 0%, #f97316 52%, #fb923c 100%);
         }
 
-        /* ── STAT CHIP ── */
         .stat-chip {
-            background: rgba(255,255,255,0.18);
-            border: 1px solid rgba(255,255,255,0.28);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             border-radius: 999px;
-            padding: 0.35rem 1rem;
+            border: 1px solid rgba(255,255,255,0.24);
+            background: rgba(255,255,255,0.16);
+            padding: 0.4rem 1rem;
             font-size: 0.78rem;
-            font-weight: 600;
+            font-weight: 700;
             color: #fff;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
         }
 
-        /* ── PROGRAM CARD ── */
-        .prog-card {
-            background: #fff;
-            border: 1px solid rgba(15,23,42,0.07);
-            border-radius: 1.5rem;
-            box-shadow: 0 2px 16px rgba(15,23,42,0.06);
-            overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.23,1,0.32,1),
-                        box-shadow 0.3s ease,
-                        border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .prog-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(249,115,22,0.13), 0 4px 12px rgba(15,23,42,0.07);
-            border-color: rgba(249,115,22,0.3);
-        }
-        .prog-card-top {
-            padding: 1.75rem 1.75rem 1rem;
-            flex: 1;
-        }
-        .prog-card-footer {
-            padding: 1rem 1.75rem 1.5rem;
-            border-top: 1px solid rgba(15,23,42,0.06);
-            background: #fafafa;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-        .prog-icon {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 0.9rem;
-            background: rgba(249,115,22,0.1);
-            color: #f97316;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            flex-shrink: 0;
-        }
-        .prog-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-        .prog-desc-short {
-            font-size: 0.82rem;
-            color: rgba(15,23,42,0.52);
-            line-height: 1.6;
-        }
-        .prog-desc-full {
-            display: none;
-            font-size: 0.82rem;
-            color: rgba(15,23,42,0.52);
-            line-height: 1.6;
-            margin-top: 0.4rem;
-        }
-        .prog-desc-full.open { display: block; }
-        .read-more-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #f97316;
-            padding: 0;
-            margin-top: 0.35rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: color 0.2s;
-        }
-        .read-more-btn:hover { color: #ea580c; }
-
-        /* ── ACTION BUTTONS ── */
-        .btn-explore {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: linear-gradient(120deg, #f97316, #ea580c);
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 999px;
-            padding: 0.45rem 1rem;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 12px rgba(249,115,22,0.28);
-        }
-        .btn-explore:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(249,115,22,0.38);
-        }
-        .btn-edit {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: rgba(15,23,42,0.06);
-            color: #475569;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 999px;
-            padding: 0.45rem 1rem;
-            text-decoration: none;
-            border: 1px solid rgba(15,23,42,0.08);
-            transition: background 0.2s, color 0.2s;
-        }
-        .btn-edit:hover { background: rgba(15,23,42,0.1); color: #1e293b; }
-        .btn-delete {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: rgba(220,38,38,0.7);
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.45rem 0.7rem;
-            border-radius: 999px;
-            transition: background 0.2s, color 0.2s;
-        }
-        .btn-delete:hover { background: rgba(220,38,38,0.08); color: #dc2626; }
-
-        /* ── SUCCESS TOAST ── */
         .toast-success {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            background: #f0fdf4;
-            border: 1px solid #86efac;
-            color: #166534;
-            border-radius: 0.875rem;
-            padding: 0.9rem 1.25rem;
-            font-size: 0.85rem;
-            font-weight: 600;
             margin-bottom: 1.5rem;
+            border: 1px solid #86efac;
+            border-radius: 1rem;
+            background: #f0fdf4;
+            padding: 0.95rem 1.25rem;
+            color: #166534;
+            font-size: 0.86rem;
+            font-weight: 600;
+        }
+
+        .prog-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(15,23,42,0.07);
+            border-radius: 1.6rem;
+            background: #fff;
+            box-shadow: 0 2px 16px rgba(15,23,42,0.06);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .prog-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(249,115,22,0.28);
+            box-shadow: 0 18px 40px rgba(249,115,22,0.13), 0 4px 12px rgba(15,23,42,0.06);
+        }
+
+        .prog-card-top {
+            flex: 1;
+            padding: 1.6rem 1.6rem 1rem;
+        }
+
+        .prog-card-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-bottom: 1rem;
+            border-radius: 999px;
+            background: rgba(249,115,22,0.08);
+            padding: 0.42rem 0.8rem;
+            color: #ea580c;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .prog-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.15rem;
+            height: 3.15rem;
+            margin-bottom: 1rem;
+            border-radius: 0.95rem;
+            background: rgba(249,115,22,0.1);
+            color: #f97316;
+            font-size: 1.2rem;
+        }
+
+        .prog-title {
+            margin-bottom: 0.55rem;
+            color: #0f172a;
+            font-size: 1.08rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .prog-desc-short,
+        .prog-desc-full {
+            color: rgba(15,23,42,0.56);
+            font-size: 0.83rem;
+            line-height: 1.65;
+        }
+
+        .prog-desc-full {
+            display: none;
+            margin-top: 0.45rem;
+        }
+
+        .prog-desc-full.open {
+            display: block;
+        }
+
+        .prog-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 1rem;
+            color: rgba(15,23,42,0.42);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .read-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.45rem;
+            padding: 0;
+            border: none;
+            background: none;
+            color: #f97316;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .read-more-btn:hover {
+            color: #ea580c;
+        }
+
+        .prog-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            border-top: 1px solid rgba(15,23,42,0.06);
+            background: linear-gradient(180deg, #fafafa 0%, #f8fafc 100%);
+            padding: 1rem 1.5rem 1.4rem;
+        }
+
+        .prog-card-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .btn-explore,
+        .btn-edit,
+        .btn-delete {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .btn-explore {
+            background: linear-gradient(120deg, #f97316, #ea580c);
+            color: #fff;
+            padding: 0.48rem 1rem;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(249,115,22,0.28);
+        }
+
+        .btn-explore:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249,115,22,0.38);
+        }
+
+        .btn-edit {
+            border: 1px solid rgba(15,23,42,0.08);
+            background: rgba(15,23,42,0.05);
+            color: #475569;
+            padding: 0.48rem 1rem;
+            text-decoration: none;
+        }
+
+        .btn-edit:hover {
+            background: rgba(15,23,42,0.09);
+            color: #1e293b;
+        }
+
+        .btn-delete {
+            border: none;
+            background: rgba(220,38,38,0.05);
+            color: rgba(220,38,38,0.82);
+            padding: 0.48rem 0.95rem;
+            cursor: pointer;
+        }
+
+        .btn-delete:hover {
+            background: rgba(220,38,38,0.1);
+            color: #dc2626;
+        }
+
+        .empty-programs {
+            border: 1px dashed rgba(15,23,42,0.14);
+            border-radius: 1.5rem;
+            background: #fff;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: #64748b;
         }
     </style>
 </head>
@@ -214,54 +245,59 @@
 
 <main class="max-w-7xl mx-auto px-6 py-10">
 
-    {{-- Toast --}}
     @if(session('success'))
-    <div class="toast-success fade-up fade-up-1">
+    <div class="toast-success fade-up">
         <i class="fas fa-circle-check text-green-500 text-lg"></i>
         {{ session('success') }}
     </div>
     @endif
 
-    {{-- ── HERO ── --}}
-    <div class="hero-admin p-8 md:p-10 mb-10 fade-up fade-up-1">
-        <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-
+    <div class="hero-admin mb-10 p-8 md:p-10 fade-up">
+        <div class="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-                <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-100 mb-3">// Pengurusan Sistem</span>
-                <h1 class="text-3xl md:text-4xl font-black text-white leading-tight">
+                <span class="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-orange-100">// Pengurusan Sistem</span>
+                <h1 class="text-3xl font-black leading-tight text-white md:text-4xl">
                     Urus <span class="underline decoration-white/40 decoration-wavy underline-offset-4">Program</span> UPKB
                 </h1>
-                <p class="mt-2 text-sm text-orange-100 max-w-md">Tambah, kemaskini atau padam program dengan mudah dari sini.</p>
+                <p class="mt-2 max-w-md text-sm text-orange-100">Tambah, kemaskini atau padam program dengan lebih kemas dari satu paparan yang jelas.</p>
 
-                <div class="flex flex-wrap gap-2 mt-5">
+                <div class="mt-5 flex flex-wrap gap-2">
                     <span class="stat-chip"><i class="fas fa-layer-group"></i> {{ $programs->count() }} Program Aktif</span>
                     <span class="stat-chip"><i class="fas fa-check-circle"></i> Semua Terurus</span>
                 </div>
             </div>
 
             <a href="{{ route('admin.addprogram') }}"
-               class="inline-flex items-center gap-2 bg-white text-orange-600 font-bold text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition duration-200 shrink-0">
+               class="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-orange-600 shadow-lg transition duration-200 hover:-translate-y-1 hover:shadow-xl">
                 <i class="fas fa-plus"></i> Tambah Program
             </a>
-
         </div>
     </div>
 
-    {{-- ── PROGRAM GRID ── --}}
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($programs as $i => $program)
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        @forelse($programs as $i => $program)
         <article class="prog-card fade-up" style="animation-delay: {{ 0.08 * ($i % 6) }}s">
-
             <div class="prog-card-top">
+                <div class="prog-card-kicker">
+                    <i class="fas fa-layer-group"></i> Program
+                </div>
+
                 <div class="prog-icon">
                     <i class="{{ $program->icon }}"></i>
                 </div>
 
                 <h2 class="prog-title">{{ $program->jenis_program }}</h2>
 
-                {{-- Short excerpt --}}
-                @php $words = explode(' ', $program->info_program); $short = implode(' ', array_slice($words, 0, 18)); $hasMore = count($words) > 18; @endphp
+                @php
+                    $words = explode(' ', $program->info_program);
+                    $short = implode(' ', array_slice($words, 0, 18));
+                    $hasMore = count($words) > 18;
+                @endphp
+
                 <p class="prog-desc-short">{{ $short }}{{ $hasMore ? '...' : '' }}</p>
+                <div class="prog-meta">
+                    <i class="fas fa-pen-ruler"></i> Info Program
+                </div>
 
                 @if($hasMore)
                 <p class="prog-desc-full" id="desc-{{ $program->id }}">{{ $program->info_program }}</p>
@@ -275,21 +311,29 @@
                 <a href="{{ route('admin.institusis', ['jenis' => $program->jenis_program]) }}" class="btn-explore">
                     <i class="fas fa-compass"></i> Jelajah Program
                 </a>
-                <a href="{{ route('admin.editprogram', $program->id) }}" class="btn-edit">
-                    <i class="fas fa-pen"></i> Edit
-                </a>
-                <form action="{{ route('admin.deleteprogram', $program->id) }}" method="POST" class="inline"
-                      onsubmit="return confirm('Padam program ini secara kekal?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-delete">
-                        <i class="fas fa-trash-alt"></i> Padam
-                    </button>
-                </form>
-            </div>
 
+                <div class="prog-card-actions">
+                    <a href="{{ route('admin.editprogram', $program->id) }}" class="btn-edit">
+                        <i class="fas fa-pen"></i> Edit
+                    </a>
+                    <form action="{{ route('admin.deleteprogram', $program->id) }}" method="POST" class="inline"
+                          onsubmit="return confirm('Padam program ini secara kekal?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-delete">
+                            <i class="fas fa-trash-alt"></i> Padam
+                        </button>
+                    </form>
+                </div>
+            </div>
         </article>
-        @endforeach
+        @empty
+        <div class="empty-programs md:col-span-2 lg:col-span-3">
+            <i class="fas fa-folder-open text-3xl text-slate-300"></i>
+            <p class="mt-4 text-lg font-semibold text-slate-700">Tiada program direkodkan lagi.</p>
+            <p class="mt-2 text-sm">Tambah program pertama untuk mula mengurus kategori kursus.</p>
+        </div>
+        @endforelse
     </div>
 
 </main>
