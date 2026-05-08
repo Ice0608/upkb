@@ -113,6 +113,11 @@
                 @error('email') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
             </label>
 
+            <div class="border-t border-slate-200 pt-6">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">2. Maklumat Alamat</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Address Details</h3>
+            </div>
+
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
                     <span class="mb-2 block text-sm font-semibold text-slate-700">Address Line 1</span>
@@ -126,10 +131,7 @@
                 </label>
             </div>
 
-                <div class="border-t border-slate-200 pt-6">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">2. Maklumat Alamat</p>
-                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Address Details</h3>
-                </div>
+                
 
             <div class="grid gap-6 sm:grid-cols-3">
                 <label class="block">

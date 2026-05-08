@@ -1,4 +1,4 @@
-?@once
+@once
     <style>
         .footer-ocean {
             position: relative;

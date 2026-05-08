@@ -1006,6 +1006,11 @@
         }
 
         @media (max-width: 767px) {
+            .faq-track {
+                overflow: hidden;
+                padding-bottom: 0.25rem;
+            }
+
             .faq-track::before {
                 left: 0.5rem;
                 right: 0.5rem;
@@ -1024,10 +1029,23 @@
             }
 
             .faq-xmb-row {
-                min-height: auto;
-                display: grid;
-                gap: 1rem;
+                min-height: 15.5rem;
+                display: flex;
+                justify-content: flex-start;
+                gap: 0.9rem;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 0.25rem 1rem 1.1rem;
+                margin: 0 -1rem;
+                scroll-snap-type: x mandatory;
+                scroll-padding-inline: 1rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
                 perspective: none;
+            }
+
+            .faq-xmb-row::-webkit-scrollbar {
+                display: none;
             }
 
             .faq-card,
@@ -1038,7 +1056,8 @@
                 position: relative;
                 left: auto;
                 top: auto;
-                width: 100%;
+                width: min(20.5rem, calc(100vw - 3.5rem));
+                flex: 0 0 min(20.5rem, calc(100vw - 3.5rem));
                 min-height: 10rem;
                 opacity: 1;
                 pointer-events: auto;
@@ -1046,6 +1065,7 @@
                 filter: none;
                 transform: none;
                 border-radius: 1.7rem;
+                scroll-snap-align: center;
             }
 
             .faq-card {
@@ -1059,7 +1079,7 @@
             }
 
             .faq-card.is-hidden {
-                display: none;
+                display: flex;
             }
 
             .faq-modal-shell {
@@ -1445,6 +1465,7 @@
     <script>
     const focusableItems = Array.from(document.querySelectorAll('[data-faq-item]'));
     const faqTrack = document.getElementById('faqTrack');
+    const faqSwipeRow = document.querySelector('.faq-xmb-row');
     const modalElement = document.getElementById('faqModal');
     const modalBox = document.getElementById('modalBox');
     const modalContent = document.getElementById('modalContent');
@@ -1545,6 +1566,49 @@
         faqTrack.classList.toggle('has-focused-item', Boolean(activeItem));
     }
 
+    function isMobileCarousel() {
+        return window.matchMedia('(max-width: 767px)').matches;
+    }
+
+    function scrollActiveCardIntoView(index, behavior = 'smooth') {
+        if (!isMobileCarousel() || !faqSwipeRow || !focusableItems[index]) {
+            return;
+        }
+
+        focusableItems[index].scrollIntoView({
+            behavior,
+            block: 'nearest',
+            inline: 'center',
+        });
+    }
+
+    function syncFocusedCardFromScroll() {
+        if (!isMobileCarousel() || !faqSwipeRow || !focusableItems.length) {
+            return;
+        }
+
+        const rowBounds = faqSwipeRow.getBoundingClientRect();
+        const rowCenter = rowBounds.left + rowBounds.width / 2;
+        let nearestIndex = activeCarouselIndex;
+        let nearestDistance = Number.POSITIVE_INFINITY;
+
+        focusableItems.forEach((item, index) => {
+            const itemBounds = item.getBoundingClientRect();
+            const itemCenter = itemBounds.left + itemBounds.width / 2;
+            const distance = Math.abs(itemCenter - rowCenter);
+
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestIndex = index;
+            }
+        });
+
+        if (nearestIndex !== activeCarouselIndex) {
+            activeCarouselIndex = nearestIndex;
+            setFocusedItem(focusableItems[nearestIndex]);
+        }
+    }
+
     function updateCardTilt(item, event) {
         if (!item || window.innerWidth < 768) {
             return;
@@ -1576,6 +1640,7 @@
 
         nextItem.focus({ preventScroll: true });
         setFocusedItem(nextItem);
+        scrollActiveCardIntoView(normalizedIndex);
     }
 
     function openModal(type) {
@@ -1666,6 +1731,15 @@
                 setFocusedItem(focusableItems[0] ?? null);
             }
         });
+    }
+
+    if (faqSwipeRow) {
+        let swipeScrollTimer = null;
+
+        faqSwipeRow.addEventListener('scroll', () => {
+            window.clearTimeout(swipeScrollTimer);
+            swipeScrollTimer = window.setTimeout(syncFocusedCardFromScroll, 90);
+        }, { passive: true });
     }
 
     if (faqPrevButton) {

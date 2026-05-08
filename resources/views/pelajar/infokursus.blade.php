@@ -399,6 +399,62 @@
         html.dark #tab-content .text-emerald-900 {
             color: #6ee7b7 !important;
         }
+
+        @media (max-width: 768px) {
+            .kursus-detail-shell {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                padding-top: 1.5rem !important;
+            }
+
+            .kursus-detail-hero .relative {
+                padding: 1.5rem !important;
+            }
+
+            .kursus-detail-hero h1 {
+                font-size: clamp(2rem, 10vw, 3rem) !important;
+                line-height: 1.05 !important;
+            }
+
+            .kursus-detail-cta {
+                position: static !important;
+                align-items: stretch !important;
+                margin-top: 1.5rem;
+                width: 100%;
+            }
+
+            .kursus-detail-cta form {
+                width: 100%;
+            }
+
+            .kd-cta-daftar {
+                width: 100%;
+                justify-content: space-between;
+                padding: 1rem 1.25rem;
+                font-size: 1rem;
+            }
+
+            .kursus-detail-tabbar {
+                padding: 1.25rem !important;
+            }
+
+            .kursus-detail-tabs {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0.65rem !important;
+            }
+
+            .kursus-detail-tabs .tab-link {
+                display: flex;
+                min-height: 3rem;
+                align-items: center;
+                justify-content: center;
+                padding: 0.75rem 0.65rem !important;
+                text-align: center;
+                line-height: 1.25;
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 @php
@@ -449,7 +505,7 @@
                 </div>
 
                 {{-- Corner CTA --}}
-                <div class="absolute bottom-8 right-8 flex flex-col items-end gap-2">
+                <div class="kursus-detail-cta absolute bottom-8 right-8 flex flex-col items-end gap-2">
                     <form action="{{ route('pelajar.apply-now', $pelajar->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="kod_institusi" value="{{ $kursus->kod_institusi }}">
@@ -466,7 +522,7 @@
 
         <div class="kursus-detail-panel rounded-3xl shadow-lg overflow-hidden mb-10">
             <div class="kursus-detail-tabbar border-b border-gray-200 px-6 py-4">
-                <div class="flex flex-wrap gap-2 text-sm text-gray-600">
+                <div class="kursus-detail-tabs flex flex-wrap gap-2 text-sm text-gray-600">
                     <a href="#" onclick="loadTab('maklumat')" class="tab-link px-4 py-2 rounded-full" data-tab="maklumat">Maklumat Am</a>
                     <a href="#" onclick="loadTab('syarat')" class="tab-link px-4 py-2 rounded-full" data-tab="syarat">Syarat Kelayakan</a>
                     <a href="#" onclick="loadTab('silibus')" class="tab-link px-4 py-2 rounded-full" data-tab="silibus">Struktur Silibus</a>
