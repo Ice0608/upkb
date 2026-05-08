@@ -85,7 +85,7 @@
             background:
                 radial-gradient(circle at 12% 45%, rgba(255, 255, 255, 0.42), transparent 20%),
                 linear-gradient(120deg, rgba(255, 214, 163, 0.1) 8%, rgba(255, 154, 60, 0.18) 34%, rgba(255, 203, 103, 0.16) 62%, rgba(255, 255, 255, 0.08) 100%);
-            animation: faqWaveDrift 18s linear infinite alternate;
+            animation: none;
         }
 
         .faq-wave-layer::before,
@@ -102,14 +102,14 @@
             bottom: 8rem;
             height: 10rem;
             opacity: 0.26;
-            animation: faqWaveSway 12s var(--xmb-ease-soft) infinite alternate;
+            animation: none;
         }
 
         .faq-wave-layer::after {
             bottom: 2rem;
             height: 13rem;
             opacity: 0.3;
-            animation: faqWaveSway 15s var(--xmb-ease) infinite alternate-reverse;
+            animation: none;
         }
 
         .faq-wave-layer-secondary {
@@ -136,7 +136,7 @@
                 inset 0 1px 0 rgba(255, 250, 236, 0.44),
                 0 24px 55px rgba(205, 112, 24, 0.22),
                 0 0 46px rgba(255, 177, 60, 0.2);
-            animation: faqFloat 6.6s var(--xmb-ease-soft) infinite;
+            animation: none;
         }
 
         .faq-hero::before {
@@ -198,7 +198,7 @@
         }
 
         .faq-track--slow .faq-card {
-            transition: transform 1200ms var(--xmb-ease), opacity 1200ms var(--xmb-ease), box-shadow 1200ms var(--xmb-ease), filter 1200ms var(--xmb-ease);
+            transition: transform 320ms var(--xmb-ease-soft), opacity 260ms var(--xmb-ease-soft), box-shadow 320ms var(--xmb-ease-soft);
         }
 
         .faq-track--slow .faq-card:active {
@@ -206,11 +206,11 @@
         }
 
         .faq-track--slow .faq-icon-chip {
-            transition: transform 1200ms var(--xmb-ease), box-shadow 1200ms var(--xmb-ease), filter 1200ms var(--xmb-ease);
+            transition: transform 320ms var(--xmb-ease-soft), box-shadow 320ms var(--xmb-ease-soft), filter 320ms var(--xmb-ease-soft);
         }
 
         .faq-track--slow .faq-arrow {
-            transition: transform 1000ms var(--xmb-ease), opacity 1000ms var(--xmb-ease), color 1000ms var(--xmb-ease);
+            transition: transform 320ms var(--xmb-ease-soft), opacity 260ms var(--xmb-ease-soft), color 260ms var(--xmb-ease-soft);
         }
 
         .faq-track::before {
@@ -235,10 +235,10 @@
             transform: translate(-50%, -28%);
             border-radius: 999px;
             background: radial-gradient(circle, rgba(255, 176, 73, 0.18), rgba(255, 176, 73, 0) 68%);
-            filter: blur(12px);
+            filter: blur(6px);
             opacity: 0.8;
             pointer-events: none;
-            animation: faqCarouselGlow 8s ease-in-out infinite;
+            animation: none;
             z-index: 0;
         }
 
@@ -260,9 +260,9 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 244, 231, 0.46));
             color: rgba(122, 81, 44, 0.92);
             box-shadow:
-                0 14px 28px rgba(85, 53, 24, 0.12),
+                0 8px 14px rgba(85, 53, 24, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(12px);
+            backdrop-filter: none;
             transition:
                 transform 320ms var(--xmb-ease),
                 box-shadow 320ms var(--xmb-ease),
@@ -288,7 +288,7 @@
             align-items: center;
             justify-content: center;
             z-index: 1;
-            perspective: 1400px;
+            perspective: none;
         }
 
         .faq-card {
@@ -319,87 +319,60 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.34),
                 0 18px 38px rgba(85, 53, 24, 0.14),
                 0 8px 18px rgba(28, 28, 30, 0.08);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            transform-style: preserve-3d;
-            will-change: transform, box-shadow, opacity, filter;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            transform-style: flat;
+            backface-visibility: hidden;
+            contain: paint;
+            will-change: transform, opacity;
             position: absolute;
             left: 50%;
             top: 50%;
-            transform: translate3d(-50%, calc(-50% + var(--faq-lift)), 0) rotateX(var(--faq-tilt-x)) rotateY(var(--faq-tilt-y)) scale(0.78);
+            transform: translate3d(-50%, -50%, 0) scale(0.82);
             transform-origin: center;
             opacity: 0;
             pointer-events: none;
             transition:
-                transform 440ms var(--xmb-ease),
-                opacity 360ms var(--xmb-ease),
-                box-shadow 440ms var(--xmb-ease),
-                border-color 360ms var(--xmb-ease),
-                background 440ms var(--xmb-ease),
-                filter 360ms var(--xmb-ease);
+                transform 320ms var(--xmb-ease-soft),
+                opacity 260ms var(--xmb-ease-soft),
+                box-shadow 320ms var(--xmb-ease-soft),
+                border-color 260ms var(--xmb-ease-soft),
+                background 320ms var(--xmb-ease-soft);
         }
 
         .faq-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background:
-                radial-gradient(circle at var(--faq-shimmer-x) var(--faq-shimmer-y), rgba(255, 255, 255, 0.26), transparent 28%),
-                radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.42), transparent 24%),
-                linear-gradient(110deg, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.36) 50%, rgba(255, 255, 255, 0) 66%);
-            background-size: 100% 100%, 100% 100%, 250% 100%;
-            background-position: 0 0, 0 0, -180% 0;
-            opacity: 0.82;
-            pointer-events: none;
-            animation: faqGlassBreath 5.8s ease-in-out infinite, faqShineSweep 4.8s linear infinite;
+            display: none;
         }
 
         .faq-card::after {
-            content: "";
-            position: absolute;
-            inset: -12px;
-            border-radius: 2.35rem;
-            background:
-                radial-gradient(circle at 50% 30%, rgba(255, 198, 94, 0.26), rgba(255, 198, 94, 0) 42%),
-                radial-gradient(circle at 50% 100%, rgba(255, 143, 36, 0.2), rgba(255, 143, 36, 0) 62%);
-            opacity: 0.4;
-            transition: opacity 520ms var(--xmb-ease), transform 520ms var(--xmb-ease);
-            z-index: -1;
-            animation: faqCardAura 6.8s ease-in-out infinite;
+            display: none;
         }
 
         .faq-card.is-focused {
-            --faq-lift: -4px;
-            transform: translate3d(-50%, calc(-50% + var(--faq-lift)), 0) rotateX(var(--faq-tilt-x)) rotateY(var(--faq-tilt-y)) scale(1);
+            transform: translate3d(-50%, -50%, 0) scale(1);
             opacity: 1;
             pointer-events: auto;
             z-index: 5;
             border-color: rgba(255, 208, 137, 0.56);
             box-shadow:
                 inset 0 1px 0 rgba(255, 246, 228, 0.44),
-                0 28px 58px rgba(226, 124, 30, 0.24),
-                0 0 34px rgba(255, 172, 58, 0.18),
-                0 0 90px rgba(255, 214, 163, 0.12);
+                0 14px 30px rgba(226, 124, 30, 0.2);
             background:
                 linear-gradient(145deg, rgba(255, 160, 82, 0.28), rgba(255, 202, 116, 0.14)),
                 linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
-            filter: blur(0);
             outline: none;
         }
 
         .faq-card:hover,
         .faq-card:focus-visible {
-            --faq-lift: -8px;
-            transform: translate3d(-50%, calc(-50% + var(--faq-lift)), 0) rotateX(var(--faq-tilt-x)) rotateY(var(--faq-tilt-y)) scale(1.03);
+            transform: translate3d(-50%, -50%, 0) scale(1.01);
             border-color: rgba(255, 225, 182, 0.42);
             background:
                 linear-gradient(145deg, rgba(255, 182, 105, 0.22), rgba(255, 235, 193, 0.14)),
                 linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.38),
-                0 24px 48px rgba(85, 53, 24, 0.18),
-                0 10px 24px rgba(28, 28, 30, 0.1);
+                0 12px 24px rgba(85, 53, 24, 0.16);
         }
 
         .faq-card.is-focused::after {
@@ -416,7 +389,7 @@
             opacity: 0.62;
             pointer-events: auto;
             z-index: 3;
-            filter: blur(0.4px);
+            filter: none;
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.28),
                 0 20px 40px rgba(85, 53, 24, 0.1),
@@ -424,18 +397,18 @@
         }
 
         .faq-card.is-prev {
-            transform: translate3d(-145%, -50%, 0) rotateY(9deg) scale(0.89);
+            transform: translate3d(-128%, -50%, 0) scale(0.92);
         }
 
         .faq-card.is-next {
-            transform: translate3d(45%, -50%, 0) rotateY(-9deg) scale(0.89);
+            transform: translate3d(28%, -50%, 0) scale(0.92);
         }
 
         .faq-card.is-hidden {
             transform: translate3d(-50%, -50%, 0) scale(0.72);
             opacity: 0;
             z-index: 1;
-            filter: blur(1px);
+            filter: none;
         }
 
         .faq-card[data-faq-type="tvet"] {
@@ -561,7 +534,7 @@
         }
 
         .faq-card:active {
-            transform: translate3d(-50%, -50%, 0) scale(0.98);
+            transform: translate3d(-50%, -50%, 0) scale(0.99);
         }
 
         .faq-icon-chip {
@@ -579,10 +552,10 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.34),
                 0 16px 28px rgba(28, 28, 30, 0.14),
                 0 0 20px rgba(255, 154, 60, 0.16);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: transform 520ms var(--xmb-ease), box-shadow 520ms var(--xmb-ease), filter 520ms var(--xmb-ease);
-            animation: faqIconDrift 4.4s ease-in-out infinite;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            transition: transform 320ms var(--xmb-ease-soft), box-shadow 320ms var(--xmb-ease-soft), filter 320ms var(--xmb-ease-soft);
+            animation: none;
         }
 
         .faq-card > .flex-1 {
@@ -591,7 +564,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transform: translateZ(20px);
+            transform: none;
         }
 
         .faq-card .faq-card-meta,
@@ -663,7 +636,7 @@
             padding-top: 0.7rem;
             color: rgba(28, 28, 30, 0.36);
             transition: transform 420ms var(--xmb-ease), opacity 420ms var(--xmb-ease), color 420ms var(--xmb-ease);
-            transform: translateZ(16px);
+            transform: none;
         }
 
         .faq-card.is-focused .faq-arrow {
@@ -698,8 +671,13 @@
 
         .faq-card.is-prev .faq-icon-chip,
         .faq-card.is-next .faq-icon-chip {
-            animation-duration: 5.6s;
-            filter: saturate(0.9);
+            filter: none;
+        }
+
+        .faq-card[data-faq-type]:hover,
+        .faq-card[data-faq-type]:focus-visible,
+        .faq-card[data-faq-type].is-focused {
+            box-shadow: 0 14px 28px rgba(28, 28, 30, 0.18) !important;
         }
 
         .faq-card.is-focused .faq-card-title,
@@ -1413,16 +1391,8 @@
             return;
         }
 
-        const rect = item.getBoundingClientRect();
-        const offsetX = (event.clientX - rect.left) / rect.width;
-        const offsetY = (event.clientY - rect.top) / rect.height;
-        const rotateY = (offsetX - 0.5) * 10;
-        const rotateX = (0.5 - offsetY) * 8;
-
-        item.style.setProperty('--faq-tilt-x', `${rotateX.toFixed(2)}deg`);
-        item.style.setProperty('--faq-tilt-y', `${rotateY.toFixed(2)}deg`);
-        item.style.setProperty('--faq-shimmer-x', `${(offsetX * 100).toFixed(1)}%`);
-        item.style.setProperty('--faq-shimmer-y', `${(offsetY * 100).toFixed(1)}%`);
+        // Keep cards static to avoid expensive per-frame mousemove style updates.
+        return;
     }
 
     function resetCardTilt(item) {
@@ -1502,11 +1472,7 @@
     }
 
     focusableItems.forEach((item, index) => {
-        item.addEventListener('mouseenter', () => setFocusedItem(item));
         item.addEventListener('focus', () => setFocusedItem(item));
-        item.addEventListener('mousemove', (event) => updateCardTilt(item, event));
-        item.addEventListener('mouseleave', () => resetCardTilt(item));
-        item.addEventListener('blur', () => resetCardTilt(item));
         item.addEventListener('click', () => {
             if (!item.classList.contains('is-focused')) {
                 focusItemByIndex(index);
@@ -1536,24 +1502,9 @@
 
     if (faqTrack) {
         faqTrack.addEventListener('mouseleave', () => {
-            faqTrack.classList.remove('faq-track--slow');
             const focusedElement = document.activeElement;
             if (!focusableItems.includes(focusedElement)) {
                 setFocusedItem(focusableItems[0] ?? null);
-            }
-        });
-
-        faqTrack.addEventListener('mousemove', (event) => {
-            const rect = faqTrack.getBoundingClientRect();
-            const mouseX = event.clientX - rect.left;
-            const width = rect.width;
-            const isInLeftArea = mouseX < width * 0.25;
-            const isInRightArea = mouseX > width * 0.75;
-
-            if (isInLeftArea || isInRightArea) {
-                faqTrack.classList.add('faq-track--slow');
-            } else {
-                faqTrack.classList.remove('faq-track--slow');
             }
         });
     }
