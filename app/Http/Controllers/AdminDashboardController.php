@@ -7,6 +7,7 @@ use App\Models\Pelajar;
 use App\Models\Institusi;
 use App\Models\Kursus;
 use App\Models\Pembayaran;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -79,10 +80,14 @@ class AdminDashboardController extends Controller
             ->unique('ic_pelajar')
             ->keyBy('ic_pelajar');
 
-        $registrations = $pelajars->map(function (Pelajar $pelajar) use ($event, $payments) {
+        $closerNames = User::whereIn('username', $payments->pluck('username')->filter()->unique())
+            ->pluck('name', 'username');
+
+        $registrations = $pelajars->map(function (Pelajar $pelajar) use ($payments, $closerNames) {
             $payment = $payments->get($pelajar->ic_pelajar);
             $preReg = (float) ($payment?->bayaran_semasa ?? 0);
             $reg = (float) ($payment?->jumlah_bayaran ?? 0);
+            $closerUsername = $payment?->username;
 
             return [
                 'pelajar' => $pelajar,
@@ -92,7 +97,7 @@ class AdminDashboardController extends Controller
                 'pre_reg' => $preReg,
                 'reg' => $reg,
                 'total' => $preReg + $reg,
-                'closer' => $event->PIC ?: '-',
+                'closer' => $closerNames->get($closerUsername) ?: ($closerUsername ?: '-'),
             ];
         });
 
@@ -128,7 +133,8 @@ class AdminDashboardController extends Controller
             'completed', 'complete', 'paid', 'fully paid' => 'COMPLETED',
             'partial', 'partially paid' => 'PARTIALLY PAID',
             'pending' => 'PENDING',
-            default => 'PENDING',
+            'cancel', 'cancelled', 'canceled', 'batal' => 'CANCEL',
+            default => 'NONE',
         };
     }
 
@@ -149,7 +155,7 @@ class AdminDashboardController extends Controller
 
     private function buildPaymentStatusRows(Collection $registrations): Collection
     {
-        $statuses = collect(['COMPLETED', 'PARTIALLY PAID', 'PENDING']);
+        $statuses = collect(['NONE', 'PENDING', 'PARTIALLY PAID', 'COMPLETED', 'CANCEL']);
 
         return $statuses->map(function (string $status) use ($registrations) {
             $items = $registrations->where('payment_status', $status);
