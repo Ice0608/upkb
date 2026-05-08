@@ -1,5 +1,5 @@
 @if($semuaKursus->isEmpty())
-<div class="course-result-empty col-span-3 rounded-3xl p-10 text-center text-gray-500">
+<div class="course-result-empty col-span-3 rounded-3xl p-10 text-center text-gray-500 dark:text-slate-400">
     <i class="fas fa-inbox text-4xl mb-4 opacity-50"></i>
     <p>Tiada institusi ditemui untuk kursus ini berdasarkan pilihan anda.</p>
 </div>
@@ -36,38 +36,38 @@
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
                     <i class="course-result-meta-icon fas fa-barcode mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Kod Kursus</p>
-                        <p class="text-gray-800 font-semibold">{{ $kursus->kod_kursus }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Kod Kursus</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->kod_kursus }}</p>
                     </div>
                 </div>
 
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
                     <i class="course-result-meta-icon fas fa-book mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Jenis Program</p>
-                        <p class="text-gray-800 font-semibold pilihan-clamp-2">{{ $kursus->jenis_kursus }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Jenis Program</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold pilihan-clamp-2">{{ $kursus->jenis_kursus }}</p>
                     </div>
                 </div>
 
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
                     <i class="course-result-meta-icon fas fa-clock mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Tempoh</p>
-                        <p class="text-gray-800 font-semibold">{{ $kursus->tempoh }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Tempoh</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->tempoh }}</p>
                     </div>
                 </div>
 
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
                     <i class="course-result-meta-icon fas fa-user-graduate mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Mod Pengajian</p>
-                        <p class="text-gray-800 font-semibold">{{ $kursus->mod_pengajian }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Mod Pengajian</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->mod_pengajian }}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
-                <span class="text-sm font-semibold text-slate-800">Lihat detail kursus</span>
+            <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-5">
+                <span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Lihat detail kursus</span>
                 <span class="course-result-cta inline-flex items-center gap-2 text-sm font-semibold">
                     Teroka
                     <i class="fas fa-arrow-right text-xs"></i>
