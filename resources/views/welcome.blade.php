@@ -184,6 +184,107 @@
             box-shadow: 0 22px 42px rgba(249, 115, 22, 0.34), 0 10px 24px rgba(15, 23, 42, 0.26);
         }
 
+        .hero-open-shell {
+            opacity: 0;
+            transform: translateY(30px) scale(0.972);
+            filter: saturate(0.88) brightness(0.9);
+            will-change: transform, opacity, filter;
+        }
+
+        .hero-open-active .hero-open-shell {
+            animation: heroCardIntro 1250ms cubic-bezier(0.12, 0.9, 0.22, 1) 120ms forwards;
+        }
+
+        .hero-open-item {
+            opacity: 0;
+            transform: translateY(22px);
+            will-change: transform, opacity;
+        }
+
+        .hero-open-active .hero-open-item {
+            animation: heroItemIntro 980ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            animation-delay: var(--hero-delay, 0ms);
+        }
+
+        .hero-open-active .hero-cta.hero-open-item {
+            animation-name: heroCtaIntro;
+            animation-duration: 1050ms;
+        }
+
+        .hero-slider-shell {
+            overflow: hidden;
+        }
+
+        .hero-open-slide {
+            transform: scale(1.12);
+            transform-origin: center;
+            will-change: transform, filter;
+            filter: brightness(0.82) saturate(1.16);
+        }
+
+        .hero-open-active .hero-open-slide {
+            animation: heroSlideIntro 2600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes heroCardIntro {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.972);
+                filter: saturate(0.88) brightness(0.9);
+            }
+            68% {
+                opacity: 1;
+                transform: translateY(-2px) scale(1.003);
+                filter: saturate(1.02) brightness(1.01);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: saturate(1) brightness(1);
+            }
+        }
+
+        @keyframes heroItemIntro {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroCtaIntro {
+            0% {
+                opacity: 0;
+                transform: translateY(22px) scale(0.94);
+            }
+            74% {
+                opacity: 1;
+                transform: translateY(0) scale(1.025);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes heroSlideIntro {
+            0% {
+                transform: scale(1.12);
+                filter: brightness(0.82) saturate(1.16);
+            }
+            62% {
+                transform: scale(1.035);
+                filter: brightness(0.94) saturate(1.08);
+            }
+            100% {
+                transform: scale(1);
+                filter: brightness(1) saturate(1);
+            }
+        }
+
         @keyframes heroTitleFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-3px); }
@@ -202,7 +303,14 @@
         html,
         body {
             height: 100%;
+            margin: 0;
+            padding: 0;
             background: #040a17;
+            overflow-x: hidden;
+        }
+        html:not(.dark),
+        html:not(.dark) body {
+            background: #f8fafc;
         }
 
         .welcome-page {
@@ -606,6 +714,15 @@
             .hero-card::before {
                 animation: none !important;
                 transition: none !important;
+            }
+
+            .hero-open-shell,
+            .hero-open-item,
+            .hero-open-slide {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+                animation: none !important;
             }
         }
 
@@ -1617,7 +1734,7 @@
         .partner-section {
             position: relative;
             overflow: hidden;
-            background: linear-gradient(180deg, #060d1a 0%, #08101f 100%);
+            background: #1a0a00;
             padding: 0;
         }
 
@@ -1827,8 +1944,9 @@
         .probsol-col-label {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.6rem;
-            font-size: 0.72rem;
+            font-size: 0.85rem;
             font-weight: 800;
             letter-spacing: 0.14em;
             text-transform: uppercase;
@@ -1836,7 +1954,7 @@
         }
 
         .probsol-col-label i {
-            font-size: 0.85rem;
+            font-size: 1rem;
         }
 
         .probsol-col-label--problem { color: #f87171; }
@@ -2000,6 +2118,150 @@
             [data-delay="5"] { transition-delay: 0.68s; }
         }
         /* ── END SCROLL REVEAL ANIMATIONS ── */
+
+        /* ── LIGHT MODE OVERRIDES ── */
+
+        /* Story section */
+        html:not(.dark) .story-section {
+            background: linear-gradient(180deg, #f1f5f9 0%, #e8edf5 100%);
+        }
+        html:not(.dark) .story-section::before {
+            background:
+                radial-gradient(circle at 16% 22%, rgba(249,115,22,0.07), transparent 34%),
+                radial-gradient(circle at 84% 68%, rgba(168,85,247,0.04), transparent 42%);
+        }
+        html:not(.dark) .story-section::after { display: none; }
+        html:not(.dark) .story-panel {
+            background: rgba(255,255,255,0.96);
+            border-color: rgba(249,115,22,0.26);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.09), inset 0 1px 0 rgba(255,255,255,1);
+        }
+        html:not(.dark) .story-panel:hover {
+            box-shadow: 0 24px 56px rgba(0,0,0,0.13), 0 0 0 1.5px rgba(249,115,22,0.36);
+            border-color: rgba(249,115,22,0.6);
+        }
+        html:not(.dark) .story-panel-head {
+            border-right-color: rgba(0,0,0,0.07);
+        }
+        html:not(.dark) .story-panel-body {
+            background: rgba(248,250,252,0.6);
+            color: #1e293b;
+        }
+        html:not(.dark) .story-panel-body p { color: #334155; }
+        html:not(.dark) .mission-story-text { color: #334155; }
+        html:not(.dark) .mission-story-index {
+            color: #1e293b;
+            background: rgba(249,115,22,0.08);
+            border-color: rgba(249,115,22,0.22);
+        }
+
+        /* Process section */
+        html:not(.dark) .process-section {
+            background:
+                radial-gradient(ellipse at 18% 30%, rgba(249,115,22,0.05) 0%, transparent 48%),
+                radial-gradient(ellipse at 82% 70%, rgba(56,189,248,0.04) 0%, transparent 48%),
+                linear-gradient(160deg, #f8fafc 0%, #f1f5f9 55%, #f8fafc 100%);
+        }
+        html:not(.dark) .process-section::before {
+            background-image:
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 56px),
+                repeating-linear-gradient(90deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 56px);
+        }
+        html:not(.dark) .process-title { color: #0f172a; }
+        html:not(.dark) .process-subtitle { color: rgba(71,85,105,0.9); }
+        html:not(.dark) .process-spine {
+            background: linear-gradient(180deg, transparent 0%, rgba(249,115,22,0.36) 8%, rgba(249,115,22,0.58) 50%, rgba(249,115,22,0.36) 92%, transparent 100%);
+        }
+        html:not(.dark) .proc-card {
+            background: rgba(255,255,255,0.95);
+            border-color: rgba(249,115,22,0.16);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+        }
+        html:not(.dark) .proc-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.11), 0 0 18px rgba(249,115,22,0.08);
+        }
+        html:not(.dark) .proc-card-title { color: #0f172a; }
+        html:not(.dark) .proc-card-desc { color: rgba(71,85,105,0.88); }
+        html:not(.dark) .process-icon-wrap {
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            border-color: rgba(249,115,22,0.32);
+            box-shadow: 0 0 0 0 transparent, 0 0 14px rgba(249,115,22,0.12), inset 0 1px 0 rgba(255,255,255,1);
+        }
+        html:not(.dark) .process-step-label { color: #0f172a; }
+        html:not(.dark) .process-step-desc { color: rgba(71,85,105,0.84); }
+        html:not(.dark) .proc-node {
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            border-color: rgba(249,115,22,0.42);
+            box-shadow: 0 0 0 5px rgba(249,115,22,0.05), 0 0 16px rgba(249,115,22,0.14), inset 0 1px 0 rgba(255,255,255,1);
+        }
+
+        /* Program section */
+        html:not(.dark) .program-section {
+            background:
+                radial-gradient(circle at 84% 12%, rgba(249,115,22,0.08), rgba(249,115,22,0) 34%),
+                radial-gradient(circle at 14% 88%, rgba(56,189,248,0.04), rgba(56,189,248,0) 40%),
+                linear-gradient(132deg, #f8fafc 0%, #eff6ff 56%, #f0f9ff 100%);
+        }
+        html:not(.dark) .program-headline { color: #0f172a; text-shadow: none; }
+        html:not(.dark) .program-subtitle { color: rgba(51,65,85,0.88); text-shadow: none; }
+        html:not(.dark) .program-kicker {
+            color: rgba(15,23,42,0.78);
+            border-color: rgba(15,23,42,0.16);
+            background: rgba(255,255,255,0.8);
+        }
+        html:not(.dark) .program-benefit-card {
+            background: linear-gradient(145deg, rgba(var(--bc-r),var(--bc-g),var(--bc-b),0.04) 0%, rgba(255,255,255,0.96) 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,1), 0 0 0 1px rgba(var(--bc-r),var(--bc-g),var(--bc-b),0.1), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        html:not(.dark) .program-benefit-title { color: #0f172a; }
+        html:not(.dark) .program-benefit-desc { color: rgba(71,85,105,0.88); }
+        html:not(.dark) .prog-feat-row {
+            background: #ffffff;
+            border-color: rgba(0,0,0,0.08);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+        }
+        html:not(.dark) .prog-feat-title { color: #0f172a; }
+        html:not(.dark) .prog-feat-desc { color: rgba(71,85,105,0.88); }
+
+        /* Problem & Solution section */
+        html:not(.dark) .probsol-section {
+            background:
+                radial-gradient(ellipse at 10% 40%, rgba(239,68,68,0.04) 0%, transparent 45%),
+                radial-gradient(ellipse at 90% 60%, rgba(249,115,22,0.05) 0%, transparent 45%),
+                linear-gradient(160deg, #f8fafc 0%, #f1f5f9 55%, #f8fafc 100%);
+        }
+        html:not(.dark) .probsol-section::before {
+            background-image:
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 64px),
+                repeating-linear-gradient(90deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 64px);
+        }
+        html:not(.dark) .probsol-title { color: #0f172a; }
+        html:not(.dark) .probsol-subtitle { color: rgba(71,85,105,0.84); }
+        html:not(.dark) .probsol-problem-card {
+            background: rgba(255,255,255,0.96);
+            border-color: rgba(239,68,68,0.18);
+            box-shadow: 0 4px 16px rgba(239,68,68,0.05);
+        }
+        html:not(.dark) .probsol-problem-card:hover {
+            background: rgba(254,242,242,0.98);
+            border-color: rgba(239,68,68,0.38);
+            box-shadow: 0 8px 24px rgba(239,68,68,0.12);
+        }
+        html:not(.dark) .probsol-problem-title { color: #1e293b; }
+        html:not(.dark) .probsol-problem-desc { color: rgba(71,85,105,0.86); }
+        html:not(.dark) .probsol-solution-card {
+            background: rgba(255,255,255,0.96);
+            border-color: rgba(74,222,128,0.2);
+            box-shadow: 0 4px 16px rgba(74,222,128,0.05);
+        }
+        html:not(.dark) .probsol-solution-card:hover {
+            background: rgba(240,253,244,0.98);
+            border-color: rgba(74,222,128,0.42);
+            box-shadow: 0 8px 24px rgba(74,222,128,0.12);
+        }
+        html:not(.dark) .probsol-solution-title { color: #1e293b; }
+        html:not(.dark) .probsol-solution-desc { color: rgba(71,85,105,0.86); }
+        /* ── END LIGHT MODE OVERRIDES ── */
     </style>
 </head>
 <body class="welcome-page text-slate-800 dark:text-slate-200 no-bg transition-colors duration-300">
@@ -2036,37 +2298,38 @@
                     /* Desktop: Reset to your original left-aligned look */
                     lg:left-20 lg:top-1/2 lg:-translate-y-1/2 lg:bottom-auto lg:px-0 lg:max-w-xl">
             
-            <div class="hero-card section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0" data-reveal="up">
+            <div class="hero-card hero-open-shell section-content bg-white/10 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/20 ring-1 ring-white/10 mx-auto lg:mx-0" data-reveal="up">
 
-                    <h2 class="titleglass text-2xl md:text-4xl lg:text-5xl leading-[0.95] uppercase tracking-tight">
+                    <h2 class="titleglass hero-open-item text-2xl md:text-4xl lg:text-5xl leading-[0.95] uppercase tracking-tight" style="--hero-delay: 420ms;">
                         SMART <br class="hidden md:block"> 
                 </h2>
 
-                    <h2 class="titleglass-2 text-2xl md:text-4xl lg:text-5xl text-orange-400 leading-[0.95] uppercase tracking-tight drop-shadow-2xl">
+                    <h2 class="titleglass-2 hero-open-item text-2xl md:text-4xl lg:text-5xl text-orange-400 leading-[0.95] uppercase tracking-tight drop-shadow-2xl" style="--hero-delay: 680ms;">
                         EDUCATION SOCIETY
                 </h2>
 
-                    <p class="hero-body cubafont text-xs md:text-sm lg:text-sm text-white/80 mt-6 md:mt-8 max-w-md lg:max-w-lg leading-relaxed tracking-wide border-l border-white/30 pl-4">
+                    <p class="hero-body hero-open-item cubafont text-xs md:text-sm lg:text-sm text-white/80 mt-6 md:mt-8 max-w-md lg:max-w-lg leading-relaxed tracking-wide border-l border-white/30 pl-4" style="--hero-delay: 980ms;">
                         SMART EDUCATION SOCIETY (SES) merupakan entiti strategik yang ditubuhkan sebagai platform rujukan dan bimbingan bagi membantu klien membuat keputusan tepat sebelum melangkah ke peringkat pendidikan tinggi.
                         <br><br>
                         Kami bukan sekadar penasihat, kami membina keyakinan, merangka strategi dan membuka perspektif baharu agar setiap individu mampu mengenal pasti potensi sebenar mereka. Kami percaya bahawa setiap keputusan yang diambil hari ini akan mencorak masa depan.
                 </p>
 
                 <a href="{{ route('program') }}"
-                   class="hero-cta inline-block mt-8 md:mt-10 border border-white text-white px-8 md:px-10 py-3 md:py-4 rounded-none text-[10px] md:text-xs uppercase font-bold hover:bg-white hover:text-black transition-all duration-300 transform active:scale-95 w-full sm:w-auto text-center">
+                   class="hero-cta hero-open-item inline-block mt-8 md:mt-10 border border-white text-white px-8 md:px-10 py-3 md:py-4 rounded-none text-[10px] md:text-xs uppercase font-bold hover:bg-white hover:text-black transition-all duration-300 transform active:scale-95 w-full sm:w-auto text-center"
+                   style="--hero-delay: 1320ms;">
                     Lihat Program
                 </a>
 
             </div>
         </div>
 
-    <div id="slider" class="overflow-hidden relative w-full">
+    <div id="slider" class="hero-slider-shell overflow-hidden relative w-full">
 
         <div id="slides" class="flex transition-transform duration-700">
 
             <!-- SLIDE 1 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/stack-diplomas-antique-bookshelf-background-generated-by-ai.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/stack-diplomas-antique-bookshelf-background-generated-by-ai.jpg') }}" class="hero-open-slide w-full h-[100svh] object-cover">
 
                 <!-- DARK OVERLAY -->
                 <div class="absolute inset-0 bg-black/30"></div>
@@ -2074,14 +2337,14 @@
 
             <!-- SLIDE 2 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/tvet.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/tvet.jpg') }}" class="hero-open-slide w-full h-[100svh] object-cover">
 
                 <div class="absolute inset-0 bg-black/30"></div>
             </div>
 
             <!-- SLIDE 3 -->
             <div class="min-w-full relative">
-                <img src="{{ asset('images/doctors-with-laptop-whiteboard.jpg') }}" class="w-full h-[100svh] object-cover">
+                <img src="{{ asset('images/doctors-with-laptop-whiteboard.jpg') }}" class="hero-open-slide w-full h-[100svh] object-cover">
 
                 <div class="absolute inset-0 bg-black/30"></div>
             </div>
@@ -2150,7 +2413,6 @@
         <div class="probsol-shell section-content">
 
             <div class="text-center" data-reveal="up">
-                <p class="probsol-kicker">Cabaran &amp; Penyelesaian</p>
                 <h2 class="probsol-title">Masalah Sebenar.<br><span>Penyelesaian Nyata.</span></h2>
                 <p class="probsol-subtitle mx-auto">Ramai yang terhenti bukan kerana tidak mampu, tetapi kerana tiada panduan yang betul. Kami hadir untuk mengubah itu.</p>
             </div>
@@ -2314,7 +2576,7 @@
     </section>
 
 <section class="footer-slide">
-    <div class="w-full">
+    <div class="w-full [&_.footer-ocean]:mt-0 [&_.footer-ocean]:!mt-0">
         @include('layouts.footer')
     </div>
 </section>
@@ -2335,6 +2597,14 @@ const introOverlay = document.getElementById('introOverlay');
 const introVideo = document.getElementById('introVideo');
 const startIntroButton = document.getElementById('startIntroButton');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function runHeroOpeningAnimation() {
+    if (prefersReducedMotion) return;
+    document.body.classList.remove('hero-open-active');
+    window.requestAnimationFrame(function() {
+        document.body.classList.add('hero-open-active');
+    });
+}
 
 function updateSlider() {
     slides.style.transform = `translateX(-${currentIndex * 100}%)`;
@@ -2375,6 +2645,7 @@ function hideIntroOverlay() {
     // Use setTimeout as reliable fallback — transitionend may not fire in all browsers
     setTimeout(function() {
         introOverlay.style.display = 'none';
+        runHeroOpeningAnimation();
     }, 650); // slightly longer than the 0.6s CSS transition
 
     document.body.style.overflow = '';
@@ -2400,6 +2671,7 @@ function showIntroOverlayIfNeeded() {
         startIntroButton.addEventListener('click', startIntro);
     } else if (introOverlay) {
         introOverlay.style.display = 'none';
+        runHeroOpeningAnimation();
     }
 }
 

@@ -82,9 +82,11 @@ class InterviewController extends Controller
         abort_if(auth()->user()->level !== 'staff', 403);
 
         $namaKursus = urldecode($nama);
+        $namaKursusPaparan = Kursus::canonicalCourseName($namaKursus);
         $semuaKursus = Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $namaKursus)
+            ->equivalentToCourse($namaKursus)
             ->get();
+        $namaKursus = $namaKursusPaparan;
 
         $selectedCourse = $semuaKursus->first();
         $heroImage = optional($selectedCourse?->galeris->first())->imej
@@ -116,7 +118,7 @@ class InterviewController extends Controller
 
         $namaKursus = urldecode($nama);
         $query = Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $namaKursus);
+            ->equivalentToCourse($namaKursus);
 
         if ($request->filled('jenis_kursus')) {
             $query->where('jenis_kursus', $request->jenis_kursus);

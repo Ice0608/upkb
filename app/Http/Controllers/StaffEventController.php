@@ -616,7 +616,19 @@ class StaffEventController extends Controller
         if (request()->ajax() || request()->wantsJson()) {
             $namaKursus = urldecode($nama);
             $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-                ->where('nama_kursus', $namaKursus);
+                ->equivalentToCourse($namaKursus);
+
+            if (request()->filled('jenis_kursus')) {
+                $query->where('jenis_kursus', request('jenis_kursus'));
+            }
+
+            if (request()->filled('tempoh')) {
+                $query->where('tempoh', request('tempoh'));
+            }
+
+            if (request()->filled('mod_pengajian')) {
+                $query->where('mod_pengajian', request('mod_pengajian'));
+            }
 
             $semuaKursus = $query->get();
             $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus', 'pelajar'))->render();
@@ -626,9 +638,11 @@ class StaffEventController extends Controller
 
         // Non-AJAX: render the full pilihan-kursus page (behaviour like KursusController/InterviewController)
         $namaKursus = urldecode($nama);
+        $namaKursusPaparan = \App\Models\Kursus::canonicalCourseName($namaKursus);
         $semuaKursus = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $namaKursus)
+            ->equivalentToCourse($namaKursus)
             ->get();
+        $namaKursus = $namaKursusPaparan;
 
         $selectedCourse = $semuaKursus->first();
         $heroImage = optional($selectedCourse?->galeris->first())->imej
@@ -656,7 +670,19 @@ class StaffEventController extends Controller
     public function pelajarFilterByName(Pelajar $pelajar, $nama)
     {
         $query = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->where('nama_kursus', $nama);
+            ->equivalentToCourse(urldecode($nama));
+
+        if (request()->filled('jenis_kursus')) {
+            $query->where('jenis_kursus', request('jenis_kursus'));
+        }
+
+        if (request()->filled('tempoh')) {
+            $query->where('tempoh', request('tempoh'));
+        }
+
+        if (request()->filled('mod_pengajian')) {
+            $query->where('mod_pengajian', request('mod_pengajian'));
+        }
 
         $semuaKursus = $query->get();
         $html = view('pelajar._pilihankursus_institusi', compact('semuaKursus', 'pelajar'))->render();
@@ -935,12 +961,13 @@ class StaffEventController extends Controller
         abort_if(auth()->user()->level !== 'staff', 403);
         $request->validate([
             'ic_pelajar' => 'required|string',
-            'status' => 'required|string',
+            'status' => 'required|string|in:none,pending,partially paid,completed,cancel',
             'jumlah_bayaran' => 'nullable|numeric|min:0',
             'bayaran_semasa' => 'nullable|numeric|min:0',
         ]);
 
         $pembayaran = Pembayaran::where('ic_pelajar', $request->ic_pelajar)->latest()->first();
+        $username = auth()->user()->username ?? auth()->user()->name;
 
         $dataToUpdate = [
             'status' => $request->status,
@@ -955,11 +982,11 @@ class StaffEventController extends Controller
         }
 
         if ($pembayaran) {
-            $pembayaran->update(array_merge($dataToUpdate, ['username' => auth()->user()->name]));
+            $pembayaran->update(array_merge($dataToUpdate, ['username' => $username]));
         } else {
             Pembayaran::create([
                 'ic_pelajar' => $request->ic_pelajar,
-                'username' => auth()->user()->name,
+                'username' => $username,
                 'kaedah_pembayaran' => 'Manual',
                 'jumlah_bayaran' => $request->input('jumlah_bayaran', 0),
                 'bayaran_semasa' => $request->input('bayaran_semasa', 0),

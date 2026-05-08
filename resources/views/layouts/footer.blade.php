@@ -78,6 +78,42 @@
             pointer-events: none;
         }
 
+        .footer-ocean--diploma::before {
+            background:
+                linear-gradient(180deg, rgba(245, 243, 255, 0.04), rgba(23, 10, 34, 0.22)),
+                repeating-linear-gradient(90deg, rgba(192, 132, 252, 0.035) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(180deg, rgba(192, 132, 252, 0.02) 0 1px, transparent 1px 28px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+            pointer-events: none;
+        }
+
+        .footer-ocean--diploma::after {
+            background:
+                radial-gradient(circle at 20% 26%, rgba(141, 43, 226, 0.14), transparent 18%),
+                radial-gradient(circle at 78% 22%, rgba(192, 132, 252, 0.12), transparent 20%),
+                radial-gradient(circle at 50% 8%, rgba(245, 243, 255, 0.08), transparent 22%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
+        .footer-ocean--sains-kesihatan::before {
+            background:
+                linear-gradient(180deg, rgba(219, 234, 254, 0.04), rgba(8, 26, 45, 0.22)),
+                repeating-linear-gradient(90deg, rgba(96, 165, 250, 0.035) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(180deg, rgba(96, 165, 250, 0.02) 0 1px, transparent 1px 28px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
+            pointer-events: none;
+        }
+
+        .footer-ocean--sains-kesihatan::after {
+            background:
+                radial-gradient(circle at 20% 26%, rgba(33, 150, 243, 0.14), transparent 18%),
+                radial-gradient(circle at 78% 22%, rgba(96, 165, 250, 0.12), transparent 20%),
+                radial-gradient(circle at 50% 8%, rgba(219, 234, 254, 0.08), transparent 22%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+        }
+
         .footer-particle-canvas {
             position: absolute;
             inset: 0;
@@ -123,11 +159,35 @@
 
         .footer-ocean--tvet .footer-glow-orb--right {
             background: radial-gradient(circle, rgba(255, 130, 60, 0.25), rgba(255, 130, 60, 0));
-
-                .footer-ocean--tvet a:hover {
-                    color: #ff9d6e;
-                }
         }
+
+        .footer-ocean--diploma .footer-glow-orb--left {
+            background: radial-gradient(circle, rgba(141, 43, 226, 0.28), rgba(141, 43, 226, 0));
+        }
+
+        .footer-ocean--diploma .footer-glow-orb--right {
+            background: radial-gradient(circle, rgba(192, 132, 252, 0.25), rgba(192, 132, 252, 0));
+        }
+
+        .footer-ocean--sains-kesihatan .footer-glow-orb--left {
+            background: radial-gradient(circle, rgba(33, 150, 243, 0.28), rgba(33, 150, 243, 0));
+        }
+
+        .footer-ocean--sains-kesihatan .footer-glow-orb--right {
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.25), rgba(96, 165, 250, 0));
+        }
+
+        .footer-ocean--tvet a:hover { color: #ff9d6e; }
+        .footer-ocean--diploma a:hover { color: #c084fc; }
+        .footer-ocean--sains-kesihatan a:hover { color: #60a5fa; }
+
+        .footer-nav-link {
+            transition: color 0.2s ease;
+        }
+        .footer-ocean .footer-nav-link:hover { color: #fdba74; }
+        .footer-ocean--tvet .footer-nav-link:hover { color: #ff9d6e; }
+        .footer-ocean--diploma .footer-nav-link:hover { color: #c084fc; }
+        .footer-ocean--sains-kesihatan .footer-nav-link:hover { color: #60a5fa; }
 
         .footer-content {
             position: relative;
@@ -190,6 +250,36 @@
             outline: 2px solid rgba(245, 125, 39, 0.75);
         }
 
+        .footer-ocean--diploma .footer-brand-link:hover .footer-brand-logo,
+        .footer-ocean--diploma .footer-brand-link:focus-visible .footer-brand-logo {
+            filter: drop-shadow(0 10px 16px rgba(141, 43, 226, 0.28));
+        }
+
+        .footer-ocean--diploma .footer-brand-link:hover .footer-brand-title,
+        .footer-ocean--diploma .footer-brand-link:focus-visible .footer-brand-title {
+            color: #c084fc;
+            text-shadow: 0 0 18px rgba(141, 43, 226, 0.18);
+        }
+
+        .footer-ocean--diploma .footer-brand-link:focus-visible {
+            outline: 2px solid rgba(141, 43, 226, 0.75);
+        }
+
+        .footer-ocean--sains-kesihatan .footer-brand-link:hover .footer-brand-logo,
+        .footer-ocean--sains-kesihatan .footer-brand-link:focus-visible .footer-brand-logo {
+            filter: drop-shadow(0 10px 16px rgba(33, 150, 243, 0.28));
+        }
+
+        .footer-ocean--sains-kesihatan .footer-brand-link:hover .footer-brand-title,
+        .footer-ocean--sains-kesihatan .footer-brand-link:focus-visible .footer-brand-title {
+            color: #60a5fa;
+            text-shadow: 0 0 18px rgba(33, 150, 243, 0.18);
+        }
+
+        .footer-ocean--sains-kesihatan .footer-brand-link:focus-visible {
+            outline: 2px solid rgba(33, 150, 243, 0.75);
+        }
+
         @keyframes footerOrbFloat {
             0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.34; }
             50% { transform: translate3d(2rem, 1rem, 0) scale(1.08); opacity: 0.56; }
@@ -235,9 +325,9 @@
         $footerThemeClass = 'footer-ocean--sains-kesihatan';
     }
 
-    // Keep FAQ/Hubungi/Program/Home pages on the orange footer theme even without program params.
+    // Keep FAQ/Hubungi/Program/Home/Institusi pages on the orange footer theme even without program params.
     if ($footerThemeClass === '' && (
-        request()->routeIs('faq', 'hubungi', 'program', 'home')
+        request()->routeIs('faq', 'hubungi', 'program', 'home', 'institusi', 'institusi.show')
         || request()->is('/')
     )) {
         $footerThemeClass = 'footer-ocean--tvet';
@@ -263,9 +353,9 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
             <div class="grid grid-cols-2 gap-2 text-sm">
-                <a href="{{ route('program') }}" class="hover:text-orange-400">Program</a>
-                <a href="{{ route('faq') }}" class="hover:text-orange-400">Soalan Lazim</a>
-                <a href="{{ route('hubungi') }}" class="hover:text-orange-400">Hubungi Kami</a>
+                <a href="{{ route('program') }}" class="footer-nav-link">Program</a>
+                <a href="{{ route('faq') }}" class="footer-nav-link">Soalan Lazim</a>
+                <a href="{{ route('hubungi') }}" class="footer-nav-link">Hubungi Kami</a>
             </div>
         </div>
         <div>

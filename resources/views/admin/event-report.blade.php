@@ -15,7 +15,7 @@
         }
 
         body {
-            background: #f4f0e8;
+            background: #ffffff;
             color: var(--report-ink);
         }
 
@@ -23,7 +23,7 @@
             width: min(1120px, calc(100vw - 32px));
             min-height: 720px;
             margin: 28px auto;
-            background: #fffaf1;
+            background: #ffffff;
             padding: 34px 40px;
             box-shadow: 0 18px 50px rgba(45, 20, 28, 0.16);
             border: 1px solid rgba(68, 20, 33, 0.12);
@@ -137,6 +137,13 @@
                 display: none !important;
             }
 
+            *,
+            *::before,
+            *::after {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
             body {
                 background: #fff;
             }
@@ -148,6 +155,25 @@
                 box-shadow: none;
                 border: none;
                 page-break-after: always;
+            }
+
+            .report-table th {
+                background: var(--report-maroon) !important;
+                color: #fff7ea !important;
+            }
+
+            .summary-row td,
+            .summary-row th {
+                background: var(--report-maroon) !important;
+                color: #fff7ea !important;
+            }
+
+            .report-table td {
+                background: rgba(255, 255, 255, 0.52) !important;
+            }
+
+            .report-table tbody tr:nth-child(even) td {
+                background: rgba(244, 234, 217, 0.42) !important;
             }
         }
     </style>
@@ -192,14 +218,13 @@
                     <th>NO.</th>
                     <th>Attendee Name</th>
                     <th>Email</th>
+                    <th>No. Tel</th>
                     <th>Ref.<br>Code</th>
                     <th>Course</th>
                     <th>College</th>
                     <th>Payment<br>Type</th>
                     <th>Payment<br>Status</th>
                     <th>Pre Reg.<br>(RM)</th>
-                    <th>Reg. (RM)</th>
-                    <th>Total<br>(RM)</th>
                     <th>Closer</th>
                 </tr>
             </thead>
@@ -216,26 +241,23 @@
                         <td class="text-center">{{ $index + 1 }}</td>
                         <td class="font-black">{{ strtoupper($row['pelajar']->nama_pelajar) }}</td>
                         <td>{{ $row['pelajar']->email ?: '-' }}</td>
+                        <td>{{ $row['pelajar']->no_tel ?: '-' }}</td>
                         <td>{{ $row['pelajar']->noreff ?: '-' }}</td>
                         <td>{{ $row['pelajar']->pilihan_pertama ?: ($row['pelajar']->kod_kursus ?: '-') }}</td>
                         <td>{{ $row['pelajar']->kod_institusi ?: '-' }}</td>
                         <td class="text-center">{{ $row['payment_method'] }}</td>
                         <td class="text-center {{ $statusClass }}">{{ $row['payment_status'] }}</td>
                         <td class="text-right">{{ number_format($row['pre_reg'], 2) }}</td>
-                        <td class="text-right">{{ number_format($row['reg'], 2) }}</td>
-                        <td class="text-right">{{ number_format($row['total'], 2) }}</td>
                         <td>{{ strtoupper($row['closer']) }}</td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="12" class="py-8 text-center font-bold text-slate-500">No registrations for this event.</td>
+                        <td colspan="11" class="py-8 text-center font-bold text-slate-500">No registrations for this event.</td>
                     </tr>
                 @endforelse
                 <tr class="summary-row">
-                    <th colspan="8" class="text-left">FINANCIAL SUMMARY</th>
+                    <th colspan="9" class="text-left">FINANCIAL SUMMARY</th>
                     <th class="text-right">{{ number_format($totalPreReg, 2) }}</th>
-                    <th class="text-right">{{ number_format($totalReg, 2) }}</th>
-                    <th class="text-right">{{ number_format($totalRevenue, 2) }}</th>
                     <th></th>
                 </tr>
             </tbody>

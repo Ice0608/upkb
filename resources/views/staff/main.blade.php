@@ -72,9 +72,24 @@
                         @forelse($pelajars as $pelajar)
                             @php
                                 $payment = $paymentStatus->get($pelajar->ic_pelajar);
-                                $statusLabel = $payment?->status ?? 'Belum Bayar';
-                                $statusClasses = match(strtolower($statusLabel)) {
+                                $rawStatus = strtolower((string) ($payment?->status ?? 'none'));
+                                $statusValue = match($rawStatus) {
+                                    'completed', 'complete', 'paid', 'fully paid', 'selesai', 'bayar' => 'completed',
+                                    'partial', 'partially paid' => 'partially paid',
+                                    'pending' => 'pending',
+                                    'cancel', 'cancelled', 'canceled', 'batal' => 'cancel',
+                                    default => 'none',
+                                };
+                                $statusLabel = match($statusValue) {
+                                    'completed' => 'COMPLETED',
+                                    'partially paid' => 'PARTIALLY PAID',
+                                    'pending' => 'PENDING',
+                                    'cancel' => 'CANCEL',
+                                    default => 'NONE',
+                                };
+                                $statusClasses = match($statusValue) {
                                     'completed', 'selesai', 'bayar' => 'bg-emerald-100 text-emerald-700',
+                                    'partially paid' => 'bg-blue-100 text-blue-700',
                                     'pending' => 'bg-amber-100 text-amber-700',
                                     'cancel', 'batal' => 'bg-rose-100 text-rose-700',
                                     default => 'bg-slate-100 text-slate-800',
@@ -87,7 +102,7 @@
                                 </td>
                                 <td class="px-6 py-4">{{ $pelajar->tarikh_pendaftaran?->format('d M Y') ?? '-' }}</td>
                                 <td class="px-6 py-4">
-                                    <button type="button" onclick="openStatusModal('{{ $pelajar->ic_pelajar }}', '{{ $statusLabel }}', '{{ $payment?->jumlah_bayaran ?? 0 }}', '{{ $payment?->bayaran_semasa ?? 0 }}')" class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $statusClasses }} hover:opacity-80 cursor-pointer">
+                                    <button type="button" onclick="openStatusModal('{{ $pelajar->ic_pelajar }}', '{{ $statusValue }}', '{{ $payment?->jumlah_bayaran ?? 0 }}', '{{ $payment?->bayaran_semasa ?? 0 }}')" class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $statusClasses }} hover:opacity-80 cursor-pointer">
                                         {{ $statusLabel }}
                                     </button>
                                 </td>
@@ -174,7 +189,7 @@
 
             <div class="rounded-[32px] border border-slate-200 bg-orange-500 p-6 text-white shadow-sm">
                 <h3 class="text-lg font-semibold">Pemberitahuan</h3>
-                <p class="mt-3 text-sm leading-6 text-orange-100">Status pembayaran ditentukan daripada jadual pembayaran. Jika belum bayar, pelajar akan ditanda sebagai belum bayar.</p>
+                <p class="mt-3 text-sm leading-6 text-orange-100">Status pembayaran ditentukan daripada jadual pembayaran. Jika belum ada rekod bayaran, pelajar akan ditanda sebagai NONE.</p>
             </div>
         </aside>
     </div>
@@ -252,10 +267,11 @@
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
                     <select name="status" id="modal-status" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400">
-                        <option value="Belum Bayar">Belum Bayar</option>
-                        <option value="pending">Pending</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancel">Cancel</option>
+                        <option value="none">NONE</option>
+                        <option value="pending">PENDING</option>
+                        <option value="partially paid">PARTIALLY PAID</option>
+                        <option value="completed">COMPLETED</option>
+                        <option value="cancel">CANCEL</option>
                     </select>
                 </div>
 
