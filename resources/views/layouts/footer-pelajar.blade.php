@@ -257,6 +257,8 @@
     } elseif ($footerProgramType === 'sains kesihatan') {
         $footerThemeClass = 'footer-ocean--sains-kesihatan';
     }
+
+    $footerPelajar = $pelajar ?? null;
 @endphp
 
 <footer class="footer-ocean {{ $footerThemeClass }} mt-16 text-gray-300">
@@ -278,9 +280,9 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
             <div class="grid grid-cols-2 gap-2 text-sm">
-                <a href="{{ route('pelajar.program', $pelajar) }}" class="hover:text-orange-400">Program</a>
-                <a href="{{ route('pelajar.institusi', $pelajar) }}" class="hover:text-orange-400">Institusi</a>
-                <a href="{{ route('pelajar.dashboard', $pelajar) }}" class="hover:text-orange-400">Dashboard</a>
+                <a href="{{ $footerPelajar ? route('pelajar.program', $footerPelajar) : route('program') }}" class="hover:text-orange-400">Program</a>
+                <a href="{{ $footerPelajar ? route('pelajar.institusi', $footerPelajar) : route('institusi') }}" class="hover:text-orange-400">Institusi</a>
+                <a href="{{ $footerPelajar ? route('pelajar.dashboard', $footerPelajar) : route('pelajar.senarainama') }}" class="hover:text-orange-400">{{ $footerPelajar ? 'Dashboard' : 'Senarai Nama' }}</a>
             </div>
         </div>
         <div>
