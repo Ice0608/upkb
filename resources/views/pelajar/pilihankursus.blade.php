@@ -835,6 +835,88 @@
             background-position: center;
             background-attachment: fixed;
         }
+
+        html.dark .pilihan-page:not(.pilihan-page--tvet):not(.pilihan-page--diploma):not(.pilihan-page--sains-kesihatan) {
+            background: linear-gradient(180deg, #0f172a 0%, #111827 44%, #0f172a 100%);
+        }
+
+        html.dark body {
+            color: #e2e8f0;
+        }
+
+        html.dark .pilihan-back-btn {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.88);
+            color: #cbd5e1 !important;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        html.dark .pilihan-filter-card,
+        html.dark .pilihan-results-intro,
+        html.dark .course-result-card,
+        html.dark .course-result-empty {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(15, 23, 42, 0.88);
+            box-shadow: 0 18px 42px rgba(0, 0, 0, 0.4);
+        }
+
+        html.dark .pilihan-filter-card {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.84));
+        }
+
+        html.dark .pilihan-select,
+        html.dark .pilihan-mod-btn {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(30, 41, 59, 0.84);
+            color: #e2e8f0;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        html.dark .pilihan-select option {
+            background: #1e293b;
+            color: #e2e8f0;
+        }
+
+        html.dark .pilihan-select:hover,
+        html.dark .pilihan-select:focus,
+        html.dark .pilihan-mod-btn:hover,
+        html.dark .pilihan-mod-btn:focus-visible {
+            border-color: rgba(var(--pilihan-accent-rgb), 0.42);
+            box-shadow: 0 0 0 3px rgba(var(--pilihan-accent-rgb), 0.18), 0 12px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        html.dark .course-result-meta {
+            border-color: rgba(255, 255, 255, 0.08);
+            background: rgba(30, 41, 59, 0.7);
+            box-shadow: none;
+        }
+
+        html.dark .course-result-card:hover .course-result-meta,
+        html.dark .course-result-card:focus-within .course-result-meta {
+            border-color: rgba(var(--pilihan-accent-rgb), 0.34);
+            background: rgba(30, 41, 59, 0.92);
+        }
+
+        html.dark .pilihan-live-badge {
+            border-color: rgba(var(--pilihan-accent-rgb), 0.35);
+            box-shadow: none;
+        }
+
+        html.dark .pilihan-page .text-slate-900 {
+            color: #f8fafc !important;
+        }
+
+        html.dark .pilihan-page .text-slate-700 {
+            color: #cbd5e1 !important;
+        }
+
+        html.dark .pilihan-page .text-slate-500 {
+            color: #94a3b8 !important;
+        }
+
+        html.dark .pilihan-page .border-slate-200\/80 {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
     </style>
 </head>
 @php
@@ -860,8 +942,11 @@
     )) {
         $pilihanProgramType = 'tvet';
     }
+
+    // Expose normalized program type for shared footer theming.
+    $heroProgramType = $pilihanProgramType;
 @endphp
-<body class="pilihan-page no-bg {{ $pilihanProgramType === 'tvet' ? 'pilihan-page--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-page--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-page--sains-kesihatan' : '' }} text-slate-900 min-h-screen flex flex-col">
+<body class="pilihan-page no-bg {{ $pilihanProgramType === 'tvet' ? 'pilihan-page--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-page--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-page--sains-kesihatan' : '' }} text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
 
     {{-- 🔹 NAVIGATION --}}
     @include('layouts.navpelajar')
@@ -1094,4 +1179,3 @@
     </script>
 </body>
 </html>
-

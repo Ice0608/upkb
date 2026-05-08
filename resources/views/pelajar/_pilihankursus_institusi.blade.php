@@ -1,15 +1,15 @@
 @if($semuaKursus->isEmpty())
-<div class="course-result-empty col-span-3 rounded-3xl p-10 text-center text-gray-500">
+<div class="course-result-empty col-span-3 rounded-3xl p-10 text-center text-gray-500 dark:text-slate-400">
     <i class="fas fa-inbox text-4xl mb-4 opacity-50"></i>
     <p>Tiada institusi ditemui untuk kursus ini berdasarkan pilihan anda.</p>
 </div>
 @else
-<div class="mb-6 flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-white/80 px-5 py-4 shadow-[0_18px_34px_rgba(15,23,42,0.05)] backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+<div class="mb-6 flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-white/80 px-5 py-4 shadow-[0_18px_34px_rgba(15,23,42,0.05)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
     <div>
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-orange-500">Hasil Padanan</p>
-        <p class="mt-2 text-sm text-slate-500">{{ $semuaKursus->count() }} institusi menawarkan kursus ini mengikut pilihan semasa anda.</p>
+        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">{{ $semuaKursus->count() }} institusi menawarkan kursus ini mengikut pilihan semasa anda.</p>
     </div>
-    <span class="inline-flex items-center gap-2 rounded-full bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-600">
+    <span class="inline-flex items-center gap-2 rounded-full bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-600 dark:bg-orange-500/15 dark:text-orange-300">
         <i class="fas fa-school text-xs"></i>
         Institusi bertauliah
     </span>
@@ -37,7 +37,7 @@
             </div>
             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                 <div>
-                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-orange-100/90">Institusi</p>
+                    <p class="pilihan-theme-soft-label text-[0.68rem] font-semibold uppercase tracking-[0.34em]">Institusi</p>
                     <h3 class="mt-2 text-2xl font-extrabold text-white">{{ $kursus->institusi->nama_institusi ?? 'N/A' }}</h3>
                 </div>
                 <span class="course-result-arrow shrink-0">
@@ -49,40 +49,40 @@
         <div class="p-6 sm:p-7 flex flex-col flex-1">
             <div class="course-result-meta-grid mb-6 text-sm">
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
-                    <i class="fas fa-barcode text-orange-500 mt-0.5"></i>
+                    <i class="course-result-meta-icon fas fa-barcode mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Kod Kursus</p>
-                        <p class="text-gray-800 font-semibold">{{ $kursus->kod_kursus }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Kod Kursus</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->kod_kursus }}</p>
                     </div>
                 </div>
 
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
-                    <i class="fas fa-book text-orange-500 mt-0.5"></i>
+                    <i class="course-result-meta-icon fas fa-book mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Jenis Program</p>
-                        <p class="text-gray-800 font-semibold pilihan-clamp-2">{{ $kursus->jenis_kursus }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Jenis Program</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold pilihan-clamp-2">{{ $kursus->jenis_kursus }}</p>
                     </div>
                 </div>
 
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
-                    <i class="fas fa-clock text-orange-500 mt-0.5"></i>
+                    <i class="course-result-meta-icon fas fa-clock mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Tempoh</p>
-                        <p class="text-gray-800 font-semibold">{{ $kursus->tempoh }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Tempoh</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->tempoh }}</p>
                     </div>
                 </div>
 
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
-                    <i class="fas fa-user-graduate text-orange-500 mt-0.5"></i>
+                    <i class="course-result-meta-icon fas fa-user-graduate mt-0.5"></i>
                     <div>
-                        <p class="text-xs text-gray-600 font-semibold uppercase">Mod Pengajian</p>
-                        <p class="text-gray-800 font-semibold">{{ $kursus->mod_pengajian }}</p>
+                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Mod Pengajian</p>
+                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->mod_pengajian }}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
-                <span class="text-sm font-semibold text-slate-800">Lihat detail kursus</span>
+            <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-5">
+                <span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Lihat detail kursus</span>
                 <span class="course-result-cta inline-flex items-center gap-2 text-sm font-semibold">
                     Teroka
                     <i class="fas fa-arrow-right text-xs"></i>

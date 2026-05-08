@@ -942,6 +942,9 @@
     )) {
         $pilihanProgramType = 'tvet';
     }
+
+    // Expose normalized program type for shared footer theming.
+    $heroProgramType = $pilihanProgramType;
 @endphp
 <body class="pilihan-page no-bg {{ $pilihanProgramType === 'tvet' ? 'pilihan-page--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-page--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-page--sains-kesihatan' : '' }} text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
 
