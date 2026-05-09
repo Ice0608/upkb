@@ -317,7 +317,7 @@
             <div>
                 <div class="header">
                     <div class="logo">
-                        <img src="{{ asset('images/icon/seslogoo.png') }}" alt="SESOC Logo">
+                        <img src="{{ asset('images/icon/seslogo.png') }}" alt="SESOC Logo">
                     </div>
                     <div class="header-center">
                         <div class="line-small">SESOC LEGACY (PG0576768)</div>

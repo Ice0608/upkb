@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
+    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SESOC - Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -919,6 +919,87 @@
         }
 
         @media (max-width: 640px) {
+            .institusi-shell {
+                padding-top: 1.5rem;
+            }
+
+            .institusi-card {
+                border-radius: 1.5rem;
+            }
+
+            .institusi-card-media {
+                height: 14.5rem;
+            }
+
+            .institusi-single-grid {
+                gap: 1rem;
+            }
+
+            .institusi-detail-card {
+                padding: 1.25rem;
+            }
+
+            .institusi-detail-card h3 {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                text-align: left;
+                font-size: 1.15rem;
+            }
+
+            .institusi-detail-card h3::before {
+                content: "\f19c";
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.6rem;
+                height: 2.6rem;
+                flex: 0 0 2.6rem;
+                border-radius: 1rem;
+                background: rgba(255, 81, 0, 0.12);
+                color: #ff5100;
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                font-size: 1rem;
+            }
+
+            .institusi-detail-card,
+            .institusi-detail-copy,
+            .institusi-detail-courses {
+                text-align: left;
+            }
+
+            .institusi-detail-copy {
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 5;
+                line-height: 1.65;
+            }
+
+            .institusi-detail-courses {
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+
+            .institusi-detail-courses ul {
+                display: flex;
+                gap: 0.5rem;
+                overflow-x: auto;
+                padding-bottom: 0.25rem;
+                scroll-snap-type: x mandatory;
+            }
+
+            .institusi-detail-courses li {
+                min-width: 78%;
+                scroll-snap-align: start;
+            }
+
+            .institusi-detail-card .institusi-card-link {
+                width: 100%;
+                padding-block: 0.7rem;
+            }
+
             .institusi-slider-row {
                 padding-left: 7vw;
                 padding-right: 7vw;
@@ -1251,7 +1332,7 @@
                 $institusi = $institusis->first();
                 $kursusRingkas = $institusi->relationLoaded('kursuses') ? $institusi->kursuses->take(3) : collect();
             @endphp
-            <div class="grid gap-6 lg:grid-cols-5 items-stretch">
+            <div class="institusi-single-grid grid gap-6 lg:grid-cols-5 items-stretch">
                 <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2">
                     <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar, 'kod_institusi' => $institusi->kod_institusi]) }}" class="group flex flex-col h-full text-current no-underline">
                         <div class="institusi-card-media">
@@ -1289,11 +1370,11 @@
                     </a>
                 </article>
 
-                <aside class="institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3">
+                <aside class="institusi-detail-card institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3">
                     <h3 class="text-xl font-bold text-slate-900">Mengenai Institusi</h3>
-                    <p class="mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai institusi ini akan dikemaskini.' }}</p>
+                    <p class="institusi-detail-copy mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai institusi ini akan dikemaskini.' }}</p>
 
-                    <div class="mt-6 border-t border-slate-200/80 pt-6">
+                    <div class="institusi-detail-courses mt-6 border-t border-slate-200/80 pt-6">
                         <h4 class="text-lg font-semibold text-slate-900">Beberapa Kursus Ditawarkan</h4>
                         @if($kursusRingkas->isNotEmpty())
                             <ul class="mt-3 space-y-3">
@@ -1704,4 +1785,3 @@
 
 </body>
 </html>
-

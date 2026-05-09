@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
+    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - {{ $namaKursus }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -800,6 +800,23 @@
 
             .course-result-meta-grid {
                 grid-template-columns: minmax(0, 1fr);
+            }
+
+            .course-result-meta {
+                justify-content: flex-start;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            .course-result-meta > div {
+                min-width: 0;
+                text-align: left;
+            }
+
+            .course-result-meta-icon {
+                flex: 0 0 auto;
+                width: 1.15rem;
+                text-align: center;
             }
         }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
+    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Senarai Nama Pelajar</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -37,7 +37,7 @@
 
             <form method="GET" class="flex w-full max-w-md items-center gap-3 rounded-full border border-slate-300 bg-white p-2 shadow-sm">
                 <select name="event_id" onchange="this.form.submit()" class="w-full rounded-full border-none bg-transparent px-4 py-3 text-sm text-slate-700 outline-none">
-                    <option value="">Pilih event</option>
+                    <option value="">Tiada event dipilih</option>
                     @foreach($events as $event)
                         <option value="{{ $event->id }}" @selected($selectedEvent && $selectedEvent->id === $event->id)>{{ $event->nama_event }} — {{ $event->tarikh_event->format('d/m/Y') }}</option>
                     @endforeach
@@ -83,7 +83,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-12 text-center text-sm text-slate-500">Tiada pelajar ditemui untuk event ini.</td>
+                        <td colspan="4" class="px-6 py-12 text-center text-sm text-slate-500">Tiada pelajar ditemui untuk pilihan ini.</td>
                     </tr>
                 @endforelse
             </tbody>

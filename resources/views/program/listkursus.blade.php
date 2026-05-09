@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
+    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>UPKB - Senarai Kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -127,6 +127,9 @@
         .kursus-hero {
             --kursus-hero-soft-text: rgba(255, 220, 200, 0.92);
             --kursus-hero-button-text: #CC4100;
+            --kursus-hero-image: url('/images/tvet-vg2.jpeg');
+            --kursus-hero-image-tint: rgba(255, 81, 0, 0.46);
+            --kursus-hero-image-shade: rgba(139, 34, 0, 0.72);
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.84);
@@ -141,6 +144,9 @@
         .kursus-hero--diploma {
             --kursus-hero-soft-text: rgba(243, 232, 255, 0.92);
             --kursus-hero-button-text: #7c3aed;
+            --kursus-hero-image: url('/images/postgraduate-differences_sim-article.jpg');
+            --kursus-hero-image-tint: rgba(124, 58, 237, 0.48);
+            --kursus-hero-image-shade: rgba(91, 42, 134, 0.72);
             background:
                 linear-gradient(120deg, #5b2a86 0%, #7c3aed 44%, #c084fc 100%);
             box-shadow:
@@ -152,6 +158,9 @@
         .kursus-hero--sains-kesihatan {
             --kursus-hero-soft-text: rgba(219, 234, 254, 0.92);
             --kursus-hero-button-text: #2563eb;
+            --kursus-hero-image: url('/images/sains.jpg');
+            --kursus-hero-image-tint: rgba(37, 99, 235, 0.42);
+            --kursus-hero-image-shade: rgba(15, 61, 145, 0.72);
             background:
                 linear-gradient(120deg, #0f3d91 0%, #2563eb 44%, #60a5fa 100%);
             box-shadow:
@@ -187,6 +196,35 @@
             content: "";
             position: absolute;
             pointer-events: none;
+            z-index: 1;
+        }
+
+        .kursus-hero > :not(.kursus-hero-image) {
+            position: relative;
+            z-index: 2;
+        }
+
+        .kursus-hero-image {
+            position: absolute;
+            inset: 0 0 0 34%;
+            z-index: 0;
+            background:
+                linear-gradient(90deg, rgba(91, 42, 134, 0) 0%, var(--kursus-hero-image-tint) 34%, rgba(15, 23, 42, 0.12) 100%),
+                var(--kursus-hero-image) center / cover no-repeat;
+            opacity: 0.72;
+            filter: saturate(1.08) contrast(1.02);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 10%, rgba(0, 0, 0, 0.72) 32%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 10%, rgba(0, 0, 0, 0.72) 32%, #000 100%);
+            pointer-events: none;
+        }
+
+        .kursus-hero-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, var(--kursus-hero-image-shade) 0%, rgba(15, 23, 42, 0.2) 44%, rgba(15, 23, 42, 0.18) 100%),
+                radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.28), transparent 34%);
         }
 
         .kursus-hero::before {
@@ -630,6 +668,51 @@
             opacity: 1;
         }
 
+        @media (prefers-reduced-motion: no-preference) {
+            [data-reveal] {
+                opacity: 0 !important;
+                transition:
+                    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                will-change: opacity, transform;
+            }
+
+            [data-reveal="up"] { transform: translateY(52px) scale(0.97) !important; }
+            [data-reveal="left"] { transform: translateX(-64px) scale(0.97) !important; }
+            [data-reveal="right"] { transform: translateX(64px) scale(0.97) !important; }
+            [data-reveal="scale"] { transform: translateY(24px) scale(0.88) !important; }
+
+            [data-reveal].revealed {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            [data-delay="1"] { transition-delay: 0.12s !important; }
+            [data-delay="2"] { transition-delay: 0.24s !important; }
+            [data-delay="3"] { transition-delay: 0.36s !important; }
+            [data-delay="4"] { transition-delay: 0.48s !important; }
+            [data-delay="5"] { transition-delay: 0.60s !important; }
+            [data-delay="6"] { transition-delay: 0.72s !important; }
+
+            .course-card[data-reveal].revealed:hover {
+                transform: translateY(-2px) !important;
+            }
+
+            @media (min-width: 1024px) {
+                [data-reveal="up"] { transform: translateY(28px) scale(0.985) !important; }
+                [data-reveal="left"] { transform: translateX(-28px) scale(0.985) !important; }
+                [data-reveal="right"] { transform: translateX(28px) scale(0.985) !important; }
+                [data-reveal="scale"] { transform: translateY(14px) scale(0.95) !important; }
+
+                [data-delay="1"] { transition-delay: 0.06s !important; }
+                [data-delay="2"] { transition-delay: 0.12s !important; }
+                [data-delay="3"] { transition-delay: 0.18s !important; }
+                [data-delay="4"] { transition-delay: 0.24s !important; }
+                [data-delay="5"] { transition-delay: 0.30s !important; }
+                [data-delay="6"] { transition-delay: 0.36s !important; }
+            }
+        }
+
         .course-card-media {
             position: relative;
             height: 15rem;
@@ -992,7 +1075,8 @@
     @include('layouts.navigation')
 
     <section class="kursus-shell max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-        <div class="kursus-hero {{ $heroProgramType === 'diploma' ? 'kursus-hero--diploma' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-hero--sains-kesihatan' : '' }} rounded-[2rem] p-6 sm:p-8 text-white mb-8">
+        <div class="kursus-hero {{ $heroProgramType === 'diploma' ? 'kursus-hero--diploma' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-hero--sains-kesihatan' : '' }} rounded-[2rem] p-6 sm:p-8 text-white mb-8" data-reveal="up">
+            <div class="kursus-hero-image" aria-hidden="true"></div>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
                     <p class="text-xs sm:text-sm uppercase tracking-[0.16em] text-white/75 font-semibold">Eksplorasi Kursus</p>
@@ -1020,15 +1104,12 @@
                     </div>
 
                 </div>
-                <div aria-hidden="true" class="kursus-hero-button hidden md:flex w-14 h-14 rounded-full bg-white items-center justify-center">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
             </div>
         </div>
 
         <div class="kursus-results-layout {{ $heroProgramType === 'diploma' ? 'kursus-results-layout--diploma' : '' }} {{ $heroProgramType === 'tvet' ? 'kursus-results-layout--tvet' : '' }} {{ $heroProgramType === 'sains kesihatan' ? 'kursus-results-layout--sains-kesihatan' : '' }}">
             
-            <aside class="kursus-sidebar-wrap">
+            <aside class="kursus-sidebar-wrap" data-reveal="left" data-delay="1">
                 <div class="kursus-sidebar rounded-3xl p-6">
                     <div class="relative z-10">
                         <h3 class="kursus-sidebar-section-title text-lg font-bold mb-4">
@@ -1046,7 +1127,7 @@
                                 Semua Kursus
                             </button>
 
-                            @foreach($kursusList->unique('kumpulan_kursus_key') as $kursus)
+                            @foreach($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key') as $kursus)
                                 <button 
                                     type="button"
                                     onclick="filterCourses('{{ addslashes($kursus->nama_kursus_paparan) }}')"
@@ -1062,7 +1143,7 @@
                 </div>
             </aside>
 
-            <main class="kursus-results-panel min-w-0">
+            <main class="kursus-results-panel min-w-0" data-reveal="right" data-delay="2">
 
                 <div class="kursus-course-slider" data-kursus-slider>
                     <div class="kursus-slider-nav" data-kursus-slider-nav>
@@ -1075,14 +1156,16 @@
                     </div>
                     <div id="courses-container" class="kursus-results-grid" data-kursus-slider-row>
                         <div class="kursus-results-track" data-kursus-slider-track>
-                    @forelse($kursusList->unique('kumpulan_kursus_key')->values() as $kursus)
+                    @forelse($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key')->values() as $kursus)
                     @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
                     @php
                         $institusiTypeLabel = strtolower(trim((string) ($kursus->institusi->jenis_institusi ?? '')));
                         $jenisKursusLabel = strtolower(trim((string) ($kursus->jenis_kursus ?? '')));
                         $showJenisKursusPill = $jenisKursusLabel !== '' && $jenisKursusLabel !== $institusiTypeLabel;
                     @endphp
-                    <article class="course-card h-full" 
+                    <article class="course-card h-full"
+                             data-reveal="scale"
+                             data-delay="{{ ($loop->index % 6) + 1 }}"
                              data-course-name="{{ $kursus->nama_kursus_paparan }}"
                              onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus_paparan)) }}'">
                         <div class="course-card-media">
@@ -1252,6 +1335,37 @@
         };
 
         document.addEventListener('DOMContentLoaded', initKursusSliders);
+
+        function initKursusScrollReveal() {
+            const revealEls = document.querySelectorAll('[data-reveal]');
+
+            if (!revealEls.length) {
+                return;
+            }
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+                revealEls.forEach((el) => el.classList.add('revealed'));
+                return;
+            }
+
+            const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                    } else {
+                        entry.target.classList.remove('revealed');
+                    }
+                });
+            }, {
+                threshold: isDesktop ? 0.01 : 0.12,
+                rootMargin: isDesktop ? '0px 0px 35% 0px' : '0px 0px -56px 0px',
+            });
+
+            revealEls.forEach((el) => observer.observe(el));
+        }
+
+        document.addEventListener('DOMContentLoaded', initKursusScrollReveal);
 
         // Add fade-in animation
         const style = document.createElement('style');

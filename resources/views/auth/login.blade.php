@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
+    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <title>Login</title>
     <style>
     @keyframes fadeInUp {
@@ -64,7 +64,7 @@
 
         <!-- LOGO -->
         <div class="text-center mb-6">
-            <img src="{{ asset('images/icon/seslogoo.png') }}"
+            <img src="{{ asset('images/icon/seslogo.png') }}"
                  class="w-28 md:w-32 mx-auto mb-4 
                         drop-shadow-[0_0_35px_rgba(255,165,0,0.9)]
                         animate-pulse">

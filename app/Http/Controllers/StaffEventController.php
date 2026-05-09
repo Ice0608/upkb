@@ -408,8 +408,10 @@ class StaffEventController extends Controller
         $selectedEvent = null;
         $pelajars = collect();
 
-        if ($request->filled('pelajar_id')) {
-            $pelajar = Pelajar::find($request->pelajar_id);
+        $pelajarId = $request->route('pelajar_id') ?? $request->input('pelajar_id');
+
+        if ($pelajarId) {
+            $pelajar = Pelajar::find($pelajarId);
             if ($pelajar && $pelajar->event_id) {
                 $selectedEvent = Event::find($pelajar->event_id);
             }
@@ -421,6 +423,10 @@ class StaffEventController extends Controller
 
         if ($selectedEvent) {
             $pelajars = Pelajar::where('event_id', $selectedEvent->id)
+                ->orderBy('nama_pelajar')
+                ->get();
+        } else {
+            $pelajars = Pelajar::whereNull('event_id')
                 ->orderBy('nama_pelajar')
                 ->get();
         }

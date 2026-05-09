@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <link rel="icon" type="image/png" href="{{ asset('images/icon/seslogoo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/icon/seslogo.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>{{ $statusCode }} - {{ $title }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -216,7 +216,7 @@
             <div class="error-content">
                 <div class="error-brand">
                     <span class="error-logo">
-                        <img src="{{ asset('images/icon/seslogoo.png') }}" alt="SES">
+                        <img src="{{ asset('images/icon/seslogo.png') }}" alt="SES">
                     </span>
                     <span>{{ $eyebrow }}</span>
                 </div>

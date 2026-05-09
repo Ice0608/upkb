@@ -11,23 +11,23 @@
 
 <div class="space-y-6">
 
-    <div class="grid gap-4 lg:grid-cols-4">
-        <div class="rounded-[2rem] border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-5 shadow-sm">
+    <div class="grid justify-items-center gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div class="w-full max-w-sm rounded-[2rem] border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-5 text-center shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-orange-700">Jumlah Yuran</p>
             <p class="mt-3 text-3xl font-bold text-orange-900">RM {{ number_format($totalYuran, 2) }}</p>
             <p class="mt-2 text-sm text-gray-600">Yuran pendaftaran, pilihan dan asrama.</p>
         </div>
-        <div class="rounded-[2rem] border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 shadow-sm">
+        <div class="w-full max-w-sm rounded-[2rem] border border-sky-200 bg-gradient-to-br from-sky-50 to-white p-5 text-center shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">Jumlah Pengajian</p>
             <p class="mt-3 text-3xl font-bold text-sky-900">RM {{ number_format($pengajianTotal, 2) }}</p>
             <p class="mt-2 text-sm text-gray-600">Yuran pengajian.</p>
         </div>
-        <div class="rounded-[2rem] border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 shadow-sm">
+        <div class="w-full max-w-sm rounded-[2rem] border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 text-center shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">Jumlah Elaun</p>
             <p class="mt-3 text-3xl font-bold text-emerald-900">RM {{ number_format($elaunTotal, 2) }}</p>
             <p class="mt-2 text-sm text-gray-600">Elaun dan bantuan tambahan.</p>
         </div>
-        <div class="rounded-[2rem] border border-violet-200 bg-gradient-to-br from-violet-50 to-white p-5 shadow-sm">
+        <div class="w-full max-w-sm rounded-[2rem] border border-violet-200 bg-gradient-to-br from-violet-50 to-white p-5 text-center shadow-sm">
             <p class="text-xs font-semibold uppercase tracking-[0.2em] text-violet-700">Jumlah Keseluruhan</p>
             <p class="mt-3 text-3xl font-bold text-violet-900">RM {{ number_format($grandTotal, 2) }}</p>
             <p class="mt-2 text-sm text-gray-600">Anggaran penuh kos dan bantuan untuk kursus ini.</p>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogoo.png">
+    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Surat Tawaran - Temu Duga</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -98,7 +98,7 @@
                         <h3 class="text-xl font-bold text-slate-900 mb-4">
                             <i class="fas fa-file-word text-blue-600"></i> Surat Tawaran Tersedia
                         </h3>
-                        
+
                         <div class="message-box success">
                             <p class="text-green-700 font-semibold mb-2">
                                 <i class="fas fa-check-circle"></i> Surat Tawaran telah ditersiapkan untuk anda!
@@ -162,7 +162,7 @@
                         <h3 class="text-xl font-bold text-slate-900 mb-4">
                             <i class="fas fa-file-word text-blue-600"></i> Surat Tawaran Institusi
                         </h3>
-                        
+
                         <div class="message-box info">
                             <p class="text-indigo-700 font-semibold mb-2">
                                 <i class="fas fa-info-circle"></i> Maklumat Penting
@@ -247,16 +247,16 @@
         <div class="mt-8 text-center">
             <p class="text-slate-600 mb-3">Proses temu duga</p>
             <div class="flex items-center justify-center gap-2 text-sm text-slate-500">
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
                 <span>Pilihan Kursus</span>
                 <i class="fas fa-chevron-right mx-1"></i>
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
                 <span>Pembayaran</span>
                 <i class="fas fa-chevron-right mx-1"></i>
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
                 <span>Resit</span>
                 <i class="fas fa-chevron-right mx-1"></i>
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">✓</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
                 <span>Surat Tawaran</span>
             </div>
         </div>
@@ -290,4 +290,4 @@
             alert('Ralat semasa menghantar email.');
         });
     }
-</script>
+</script>
