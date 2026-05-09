@@ -1111,12 +1111,12 @@
 
                             <div class="course-card-meta">
                                 <div class="course-card-meta-item">
-                                    <p class="course-card-meta-label">Institusi</p>
-                                    <p class="course-card-meta-value kursus-clamp-2">{{ $kursus->institusi->nama_institusi ?? 'Tidak tersedia' }}</p>
+                                    <p class="course-card-meta-label">Kod Kursus</p>
+                                    <p class="course-card-meta-value kursus-clamp-2">{{ $kursus->kod_kursus ?? 'Tidak tersedia' }}</p>
                                 </div>
                                 <div class="course-card-meta-item">
-                                    <p class="course-card-meta-label">Tempoh</p>
-                                    <p class="course-card-meta-value">{{ $kursus->tempoh ?? 'Tidak dinyatakan' }}</p>
+                                    <p class="course-card-meta-label">Tarikh Pendaftaran</p>
+                                    <p class="course-card-meta-value">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? 'Tidak dinyatakan' }}</p>
                                 </div>
                             </div>
 

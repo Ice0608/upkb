@@ -172,7 +172,8 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
             <ul class="space-y-3 text-sm text-gray-400">
-                <li><p>+6017 921 5543</p></li>
+                <li><p>+6011 2100 5537</p></li>
+                <li><p>sesoclegacy@gmail.com</p></li>
                 <li><p>sesoc.com.my</p></li>
                 <li><p>34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</p></li>
             </ul>

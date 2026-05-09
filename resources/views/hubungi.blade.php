@@ -636,7 +636,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Telefon</h2>
-                        <p class="text-slate-500">+6017 921 5543</p>
+                        <p class="text-slate-500">+6011 2100 5537 </p>
                         <p class="text-sm text-slate-400">Isnin - Jumaat (9:00 AM - 5:00 PM)</p>
                     </div>
                 </div>
@@ -647,7 +647,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Emel Rasmi</h2>
-                        <p class="text-orange-500 font-semibold">info@upkb.my</p>
+                        <p class="text-orange-500 font-semibold">sesoclegacy@gmail.com</p>
                     </div>
                 </div>
             </section>
