@@ -639,12 +639,16 @@
             <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
             <i id="theme-toggle-light-icon" class="hidden fas fa-sun"></i>
         </button>
+        <button id="theme-toggle-mobile" class="site-nav-login ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:hidden" aria-label="Toggle Dark Mode">
+            <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
+            <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
+        </button>
 
         <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
             <i class="fa-regular fa-user text-lg" aria-hidden="true"></i>
         </a>
 
-        <details class="site-nav-mobile ml-auto lg:hidden">
+        <details class="site-nav-mobile lg:hidden">
             <summary class="cursor-pointer">
                 <span class="site-nav-menu-icon flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -690,11 +694,6 @@
                         <i class="fa-regular fa-user text-base" aria-hidden="true"></i>
                         Log Masuk
                     </a>
-                    <button id="theme-toggle-mobile" class="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
-                        <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
-                        <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
-                        <span id="theme-toggle-text-mobile">Tukar Mod Tema</span>
-                    </button>
                 </div>
             </div>
         </details>

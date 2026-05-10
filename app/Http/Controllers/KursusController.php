@@ -186,9 +186,16 @@ class KursusController extends Controller
     public function tabGaleri($id)
     {
         $kursus = Kursus::with('institusi')->findOrFail($id);
-        $galleries = \App\Models\Galeri::where('kod_kursus', $kursus->kod_kursus)
-            ->where('kod_institusi', $kursus->institusi?->kod_institusi)
-            ->get();
+        $galleries = \App\Models\Galeri::where(function ($query) use ($kursus) {
+                $query->where('kod_kursus', $kursus->kod_kursus);
+
+                if ($kursus->institusi?->kod_institusi) {
+                    $query->orWhere('kod_institusi', $kursus->institusi->kod_institusi);
+                }
+            })
+            ->get()
+            ->unique('id')
+            ->values();
 
         return view('program._guest_tab_galeri', compact('kursus', 'galleries'));
     }

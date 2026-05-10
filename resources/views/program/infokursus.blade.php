@@ -162,9 +162,31 @@
         }
 
         .kursus-detail-hero {
+            position: relative;
             border: 1px solid rgba(255, 255, 255, 0.72);
             background: linear-gradient(120deg, var(--detail-gradient-start), var(--detail-gradient-end));
             box-shadow: 0 28px 62px rgba(15, 23, 42, 0.12), 0 0 40px rgba(var(--detail-accent-rgb), 0.16);
+            overflow: hidden;
+        }
+
+        .kursus-detail-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 0 34%;
+            z-index: 0;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.04) 34%, rgba(15, 23, 42, 0.12) 100%),
+                var(--detail-hero-image) center / cover no-repeat;
+            opacity: 0.78;
+            filter: saturate(1.08) contrast(1.02);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 10%, rgba(0, 0, 0, 0.72) 32%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.08) 10%, rgba(0, 0, 0, 0.72) 32%, #000 100%);
+            pointer-events: none;
+        }
+
+        .kursus-detail-hero > .relative {
+            position: relative;
+            z-index: 1;
         }
 
         .kursus-detail-soft-text {
@@ -293,6 +315,21 @@
 
         .kursus-detail-tabbar {
             background: rgba(248, 250, 252, 0.94);
+        }
+
+        .kursus-detail-tabs {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .kursus-detail-tabs .tab-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            text-align: center;
+            white-space: normal;
         }
 
         .tab-link {
@@ -520,6 +557,10 @@
     )) {
         $detailProgramType = 'tvet';
     }
+
+    $heroImage = optional($kursus->galeris->first())->imej
+        ?? optional($kursus->institusi)->gambar_institusi
+        ?? 'images/default-course.jpg';
 @endphp
 <body class="kursus-detail-page no-bg {{ $detailProgramType === 'tvet' ? 'kursus-detail-page--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-page--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-page--sains-kesihatan' : '' }} text-gray-800">
 @include('layouts.navigation')
@@ -532,7 +573,7 @@
                 Kembali
             </button>
         </div>
-        <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white">
+        <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white" style="--detail-hero-image: url('{{ asset($heroImage) }}');">
             <div class="relative p-8">
                 <div class="pr-0 md:pr-56">
                     <div class="flex items-center gap-3 mb-4">

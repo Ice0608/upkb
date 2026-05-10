@@ -763,9 +763,16 @@ class StaffEventController extends Controller
     {
         $kursus->load('institusi');
 
-        $galleries = \App\Models\Galeri::where('kod_kursus', $kursus->kod_kursus)
-            ->where('kod_institusi', $kursus->institusi?->kod_institusi)
-            ->get();
+        $galleries = \App\Models\Galeri::where(function ($query) use ($kursus) {
+                $query->where('kod_kursus', $kursus->kod_kursus);
+
+                if ($kursus->institusi?->kod_institusi) {
+                    $query->orWhere('kod_institusi', $kursus->institusi->kod_institusi);
+                }
+            })
+            ->get()
+            ->unique('id')
+            ->values();
 
         // Keep legacy variable name ($galeri) for compatibility with existing views.
         $galeri = $galleries;

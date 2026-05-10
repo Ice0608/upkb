@@ -287,6 +287,10 @@
         }
 
         .segment-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            white-space: nowrap;
             transition: transform 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease;
         }
 
@@ -1363,16 +1367,16 @@
                         </div>
                         <!-- Segment content -->
                         <div class="segment-content absolute {{ $ui['pos'] }} z-20 text-white flex flex-col 
-                                    w-[100px] sm:w-[140px] md:w-[180px]">
+                                    w-auto max-w-[120px] sm:max-w-[140px] md:max-w-[180px]">
                             <h2 class="text-xs sm:text-lg md:text-2xl font-black uppercase 
                                        leading-tight break-words drop-shadow-md text-white">
                                 {{ $program->jenis_program }}
                             </h2>
                             <div class="segment-label mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
                                      border-b-2 {{ $ui['label_border'] }} text-white {{ $ui['label_bg'] }} {{ $ui['label_hover'] }} 
-                                        transition-all inline-block w-fit rounded px-2 py-0.5 shadow-lg"
+                                        transition-all inline-flex items-center whitespace-nowrap gap-1 w-fit rounded px-2 py-0.5 shadow-lg"
                                  style="box-shadow: 0 0 12px 2px {{ $ui['label_shadow'] }};">
-                                LIHAT PROGRAM <i class="fas fa-chevron-right ml-1" style="text-shadow: 0 0 8px #fff;"></i>
+                                LIHAT PROGRAM <i class="fas fa-chevron-right" style="text-shadow: 0 0 8px #fff;"></i>
                             </div>
                         </div>
                     </a>

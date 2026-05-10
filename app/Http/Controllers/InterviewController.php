@@ -238,9 +238,16 @@ class InterviewController extends Controller
         abort_if(auth()->user()->level !== 'staff', 403);
 
         $kursus = Kursus::with('institusi')->where('kod_kursus', $kod_kursus)->firstOrFail();
-        $galleries = \App\Models\Galeri::where('kod_kursus', $kursus->kod_kursus)
-            ->where('kod_institusi', $kursus->institusi?->kod_institusi)
-            ->get();
+        $galleries = \App\Models\Galeri::where(function ($query) use ($kursus) {
+                $query->where('kod_kursus', $kursus->kod_kursus);
+
+                if ($kursus->institusi?->kod_institusi) {
+                    $query->orWhere('kod_institusi', $kursus->institusi->kod_institusi);
+                }
+            })
+            ->get()
+            ->unique('id')
+            ->values();
 
         return view('program._guest_tab_galeri', compact('kursus', 'galleries'));
     }
