@@ -665,5 +665,6 @@
         });
     </script>
 
+    @include('components.social-float')
 </body>
 </html>

@@ -40,14 +40,13 @@
         <i class="fa-solid fa-phone"></i>
     </a>
 
-    <button
-        type="button"
-        onclick="toggleModal()"
+    <a
+        href="{{ route('hubungi') }}"
         class="flex h-14 w-14 items-center justify-center rounded-full bg-purple-600 text-white shadow-lg transition hover:scale-105"
-        aria-label="Buka sokongan"
+        aria-label="Hubungi SES"
     >
         <i class="fa-solid fa-headset"></i>
-    </button>
+    </a>
 </div>
 
 <div id="supportModal" class="fixed inset-0 z-[10000] hidden items-center justify-center bg-black/50 px-4">
@@ -76,7 +75,14 @@
 <style>
     .social-float {
         position: fixed !important;
+        right: 0 !important;
+        margin-right: 1rem;
+        left: auto !important;
+        bottom: calc(env(safe-area-inset-bottom, 1rem) + 1.5rem);
         z-index: 9999 !important;
+        max-width: none;
+        overflow: visible;
+        touch-action: manipulation;
     }
 
     .social-float[data-open="true"] .social-float-menu,
@@ -84,6 +90,12 @@
     .social-float:focus-within .social-float-menu {
         pointer-events: auto;
         opacity: 1;
+        transform: translate(0, -50%);
+    }
+
+    .social-float-menu {
+        right: calc(100% + 0.5rem);
+        left: auto;
         transform: translate(0, -50%);
     }
 
@@ -102,7 +114,7 @@
         }
 
         .social-float-menu {
-            right: 3.8rem;
+            right: calc(100% + 0.5rem);
             gap: 0.7rem;
         }
 

@@ -612,7 +612,7 @@
         <div class="contact-grid grid md:grid-cols-2 gap-8">
             <section class="contact-card rounded-[2rem] p-8" data-fade-open data-fade-order="3">
                 <div class="relative z-10 flex items-center gap-4 mb-6">
-                    <div class="contact-icon-chip h-12 w-12 rounded-2xl bg-[linear-gradient(135deg,#f97316,#fb7185)] text-white flex items-center justify-center">
+                    <div class="contact-icon-chip h-12 w-12 rounded-full bg-[linear-gradient(135deg,#f97316,#fb7185)] text-white flex items-center justify-center">
                         <i class="fas fa-location-dot"></i>
                     </div>
                     <div>
@@ -631,7 +631,7 @@
                 </div>
 
                 <div class="relative z-10 flex items-center gap-4 mb-6">
-                    <div class="contact-icon-chip h-12 w-12 rounded-2xl bg-[linear-gradient(135deg,#3b82f6,#0ea5e9)] text-white flex items-center justify-center">
+                    <div class="contact-icon-chip h-12 w-12 rounded-full bg-[linear-gradient(135deg,#3b82f6,#0ea5e9)] text-white flex items-center justify-center">
                         <i class="fas fa-phone"></i>
                     </div>
                     <div>
@@ -642,7 +642,7 @@
                 </div>
 
                 <div class="relative z-10 flex items-center gap-4">
-                    <div class="contact-icon-chip h-12 w-12 rounded-2xl bg-[linear-gradient(135deg,#8b5cf6,#6366f1)] text-white flex items-center justify-center">
+                    <div class="contact-icon-chip h-12 w-12 rounded-full bg-[linear-gradient(135deg,#8b5cf6,#6366f1)] text-white flex items-center justify-center">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div>

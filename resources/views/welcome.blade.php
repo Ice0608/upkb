@@ -1819,15 +1819,15 @@
         .cta-btn-primary {
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            padding: 1rem 2.4rem;
+            gap: 0.75rem;
+            padding: 1rem 2.8rem;
             border-radius: 999px;
             background: #fff;
             color: #ea580c;
-            font-size: 0.92rem;
+            font-size: 1rem;
             font-weight: 800;
             text-decoration: none;
-            box-shadow: 0 14px 36px rgba(0,0,0,0.3);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.28);
             transition: transform 0.22s ease, box-shadow 0.22s ease, gap 0.22s ease;
         }
 
@@ -2564,11 +2564,11 @@
             <h2 class="cta-banner-title" data-reveal="up" data-delay="1">Jangan Tunggu.<br><span>Masa Depan Anda Bermula Hari Ini.</span></h2>
             <p class="cta-banner-sub" data-reveal="up" data-delay="2">Satu perbualan boleh ubah hala tuju hidup anda. Kami sedia membantu percuma, tanpa sebarang obligasi.</p>
             <div class="cta-banner-actions" data-reveal="up" data-delay="3">
-                <a href="{{ route('hubungi') }}" class="cta-btn-primary">
-                    Bincang Dengan Kami <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="{{ route('program') }}" class="cta-btn-secondary">
+                <a href="{{ route('program') }}" class="cta-btn-primary">
                     <i class="fa-solid fa-graduation-cap"></i> Terokai Program
+                </a>
+                <a href="{{ route('hubungi') }}" class="cta-btn-secondary">
+                    Bincang Dengan Kami <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
         </div>

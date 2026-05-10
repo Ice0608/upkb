@@ -478,6 +478,7 @@
     <script>window.print();</script>
 @endif
 
+@include('components.social-float')
 @include('layouts.footer-pelajar')
 
 </body>
