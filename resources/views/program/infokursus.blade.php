@@ -184,6 +184,31 @@
             color: var(--detail-accent-700);
         }
 
+        .pilihan-back-btn,
+        .pilihan-filter-card,
+        .pilihan-select,
+        .pilihan-mod-btn,
+        .pilihan-results,
+        .course-result-card,
+        .course-result-arrow,
+        .course-result-meta,
+        .course-result-cta {
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease, color 0.28s ease, opacity 0.28s ease;
+        }
+
+        .pilihan-back-btn {
+            border: 1px solid rgba(226, 232, 240, 0.92);
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+        }
+
+        .pilihan-back-btn:hover {
+            transform: translateY(-1px);
+            color: var(--detail-accent-600);
+            border-color: rgba(var(--detail-accent-rgb), 0.32);
+            box-shadow: 0 18px 34px rgba(var(--detail-accent-rgb), 0.1);
+        }
+
         /* ── Daftar CTA ── */
         .kd-cta-daftar {
             position: relative; overflow: hidden;
@@ -388,6 +413,13 @@
             box-shadow: 0 4px 16px rgba(var(--detail-accent-rgb, 249,115,22), 0.18);
         }
 
+        html.dark .pilihan-back-btn {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.88);
+            color: #cbd5e1 !important;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+        }
+
         /* ── Dark mode – tab section shared ── */
         html.dark .kursus-tab-title { color: var(--detail-accent-500, #8b5cf6); }
         html.dark .kursus-tab-section { border-color: rgba(255,255,255,0.07) !important; }
@@ -493,6 +525,13 @@
 @include('layouts.navigation')
 
     <section class="kursus-detail-shell {{ $detailProgramType === 'tvet' ? 'kursus-detail-shell--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-shell--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-6 py-10">
+        <div class="mb-6">
+            <button type="button" onclick="window.history.back()"
+                class="pilihan-back-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700">
+                <i class="fa-solid fa-arrow-left"></i>
+                Kembali
+            </button>
+        </div>
         <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white">
             <div class="relative p-8">
                 <div class="pr-0 md:pr-56">
@@ -514,7 +553,7 @@
                     <div class="mt-8">
                         @if($detailInstitusi)
                             <a href="{{ route('institusi.show', $detailInstitusi->id) }}" class="kursus-detail-primary-btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
-                                <i class="fas fa-arrow-left"></i> Kembali ke Institusi
+                                <i class="fas fa-arrow-left"></i> Lihat Institusi
                             </a>
                         @endif
                     </div>
