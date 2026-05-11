@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Admin Institusi</title>
+    <title>SESOC - Admin Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -17,7 +17,7 @@
             <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
                     <h1 class="text-4xl font-bold leading-tight md:text-5xl">Admin Institusi {{ request('jenis') ? request('jenis') : '' }}</h1>
-                    <p class="mt-3 text-lg text-orange-100">Urus semua institusi di sini. Tambah, sunting dan hapus data institusi dengan mudah.</p>
+                    <p class="mt-3 text-lg text-orange-100">Urus semua institusi di sini. Tambah, kemaskini dan hapus data institusi dengan mudah.</p>
                 </div>
                 <a href="{{ route('admin.addinstitusi') }}" class="flex h-14 w-14 items-center justify-center rounded-full bg-white text-orange-600 shadow-md transition hover:shadow-lg">
                     <i class="fas fa-plus"></i>
@@ -32,17 +32,17 @@
         @endif
 
         <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center">
-            <form method="GET" class="flex w-full flex-col items-center gap-4 sm:flex-row lg:flex-1">
-                <input type="text" name="cari" placeholder="Cari Institusi..." value="{{ request('cari') }}" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+            <form method="GET" class="grid w-full grid-cols-2 gap-3 lg:flex lg:flex-1">
+                <input type="text" name="cari" placeholder="Cari Institusi..." value="{{ request('cari') }}" class="w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
 
-                <select name="jenis" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+                <select name="jenis" class="w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
                     <option value="">Semua Jenis</option>
                     <option value="TVET" {{ request('jenis') == 'TVET' ? 'selected' : '' }}>TVET</option>
                     <option value="DIPLOMA" {{ request('jenis') == 'DIPLOMA' ? 'selected' : '' }}>DIPLOMA</option>
                     <option value="SAINS KESIHATAN" {{ request('jenis') == 'SAINS KESIHATAN' ? 'selected' : '' }}>SAINS KESIHATAN</option>
                 </select>
                 
-                <select name="negeri" class="flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
+                <select name="negeri" class="w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none">
                     <option value="">Semua Negeri</option>
                     <option value="Johor" {{ request('negeri') == 'Johor' ? 'selected' : '' }}>Johor</option>
                     <option value="Kedah" {{ request('negeri') == 'Kedah' ? 'selected' : '' }}>Kedah</option>
@@ -62,13 +62,13 @@
                     <option value="Putrajaya" {{ request('negeri') == 'Putrajaya' ? 'selected' : '' }}>Putrajaya</option>
                 </select>
 
-                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">
+                <button type="submit" class="inline-flex w-full items-center justify-center rounded-full bg-orange-500 px-6 py-2 text-sm font-semibold text-white transition hover:bg-orange-600 lg:w-auto">
                     <i class="fas fa-search mr-2"></i>Cari
                 </button>
 
             </form>
 
-            <form method="GET" class="inline-flex items-center">
+            <form method="GET" class="w-full lg:w-auto">
                 @if(request('jenis'))
                     <input type="hidden" name="jenis" value="{{ request('jenis') }}">
                 @endif
@@ -78,7 +78,7 @@
                 @if(request('cari'))
                     <input type="hidden" name="cari" value="{{ request('cari') }}">
                 @endif
-                <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="inline-flex items-center justify-center rounded-full border px-6 py-2 text-sm font-semibold transition {{ request('kuota') ? 'border-orange-500 bg-orange-500 text-white hover:bg-orange-600' : 'border-orange-300 bg-white text-orange-600 hover:bg-orange-50' }}">
+                <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="inline-flex w-full items-center justify-center rounded-full border px-6 py-2 text-sm font-semibold transition lg:w-auto {{ request('kuota') ? 'border-orange-500 bg-orange-500 text-white hover:bg-orange-600' : 'border-orange-300 bg-white text-orange-600 hover:bg-orange-50' }}">
                     Kuota
                 </button>
             </form>

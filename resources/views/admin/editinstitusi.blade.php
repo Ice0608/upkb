@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Edit Institusi</title>
+    <title>SESOC - Edit Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -89,12 +89,12 @@
 
         <!-- Senarai kursus Ditawarkan -->
         <div class="bg-white rounded-3xl shadow-lg p-8 border border-gray-100 mb-10">
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="flex items-center gap-3 text-2xl font-bold text-gray-800">
+            <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <h2 class="min-w-0 flex flex-wrap items-center gap-3 text-2xl font-bold text-gray-800">
                     <i class="fas fa-graduation-cap text-orange-500"></i>Senarai kursus Ditawarkan
                     <span class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-semibold">{{ count($kursusList) }} kursus</span>
                 </h2>
-                <a href="{{ route('admin.addkursus', $institusi->kod_institusi) }}" class="inline-flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">
+                <a href="{{ route('admin.addkursus', $institusi->kod_institusi) }}" class="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">
                     <i class="fas fa-plus"></i>Tambah kursus
                 </a>
             </div>

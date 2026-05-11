@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Admin Dashboard</title>
+    <title>SESOC - Dashboard Admin</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 text-gray-800">
@@ -32,7 +32,7 @@
                     <i class="fas fa-users text-blue-600 text-xl"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Total Pelajar</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Jumlah Pelajar</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($totalPelajar) }}</p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     <i class="fas fa-building text-purple-600 text-xl"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Total Institusi</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Jumlah Institusi</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($totalInstitusi) }}</p>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     <i class="fas fa-graduation-cap text-orange-600 text-xl"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Total Kursus</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Jumlah Kursus</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($totalKursus) }}</p>
                 </div>
             </div>

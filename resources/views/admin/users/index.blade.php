@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>UPKB - Manage Users</title>
+    <title>SESOC - Urus Pengguna</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
@@ -105,7 +105,7 @@
                     <span class="text-xs text-gray-400">{{ $users->count() }} Total</span>
                     <a href="{{ route('admin.adduser') }}" class="inline-flex items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-orange-600">
                         <i class="fas fa-plus text-[10px]"></i>
-                        Add User
+                        Tambah Pengguna
                     </a>
                 </div>
             </div>
