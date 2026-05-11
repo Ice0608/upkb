@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('components.dark-mode-init')
     <style>
-
         .kursus-page {
             position: relative;
             min-height: 100vh;
@@ -554,6 +553,13 @@
             gap: 1.25rem;
         }
 
+        .kursus-results-summary {
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(12px);
+        }
+
         .kursus-course-slider {
             position: relative;
         }
@@ -711,7 +717,7 @@
 
         .course-card-media {
             position: absolute;
-            inset: 0 0 -57.25% 0;
+            inset: 0 0 15% 0;
             z-index: 0;
             overflow: hidden;
         }
@@ -1006,7 +1012,7 @@
                 animation: none;
             }
         }
-        /* ── DARK MODE ── */
+        /* â”€â”€ DARK MODE â”€â”€ */
         html.dark .kursus-page {
             background:
                 radial-gradient(circle at 8% 12%, rgba(251,146,60,0.08), transparent 22%),
@@ -1076,7 +1082,6 @@
         html.dark .text-slate-900, html.dark .text-gray-800 { color: #f1f5f9 !important; }
         html.dark .text-slate-700 { color: #cbd5e1 !important; }
         html.dark .text-slate-500 { color: #94a3b8 !important; }
-    
     </style>
 </head>
 @php
@@ -1114,7 +1119,7 @@
 @endphp
 <body class="kursus-page no-bg {{ $kursusIsTvet ? 'kursus-page--tvet' : '' }} {{ $kursusIsDiploma ? 'kursus-page--diploma' : '' }} {{ $kursusIsSainsKesihatan ? 'kursus-page--sains-kesihatan' : '' }} text-gray-800 transition-colors duration-300">
 
-    {{-- 🔹 NAVIGATION --}}
+    {{-- ðŸ”¹ NAVIGATION --}}
     @include('layouts.navpelajar')
 
     <section class="kursus-shell max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
@@ -1238,10 +1243,6 @@
 
                             <div class="course-card-meta">
                                 <div class="course-card-meta-item">
-                                    <p class="course-card-meta-label">Kod Kursus</p>
-                                    <p class="course-card-meta-value kursus-clamp-2">{{ $kursus->kod_kursus ?? 'Tidak tersedia' }}</p>
-                                </div>
-                                <div class="course-card-meta-item">
                                     <p class="course-card-meta-label">Tarikh Pendaftaran</p>
                                     <p class="course-card-meta-value">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? 'Tidak dinyatakan' }}</p>
                                 </div>
@@ -1268,7 +1269,7 @@
 
     @include('components.social-float')
 
-    {{-- 🔹 FOOTER --}}
+    {{-- ðŸ”¹ FOOTER --}}
     @include('layouts.footer-pelajar')
 
     <script>
@@ -1424,3 +1425,4 @@
 
 </body>
 </html>
+
