@@ -506,7 +506,7 @@
 
         .course-result-media {
             position: relative;
-            height: 13rem;
+            height: 22rem;
             overflow: hidden;
         }
 
