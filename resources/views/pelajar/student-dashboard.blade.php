@@ -157,22 +157,22 @@
         <!-- Student Info Card -->
         <div class="bg-slate-50 rounded-2xl p-6 mb-6">
             <h3 class="font-semibold text-slate-900 mb-4">Maklumat Pelajar</h3>
-            <div class="grid grid-cols-2 gap-4 text-sm">
-                <div>
+            <div class="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
+                <div class="min-w-0">
                     <p class="text-slate-500">No. IC</p>
-                    <p class="font-medium">{{ $pelajar->ic_pelajar }}</p>
+                    <p class="font-medium break-words">{{ $pelajar->ic_pelajar }}</p>
                 </div>
-                <div>
+                <div class="min-w-0">
                     <p class="text-slate-500">No. Telefon</p>
-                    <p class="font-medium">{{ $pelajar->no_tel ?? '-' }}</p>
+                    <p class="font-medium break-words">{{ $pelajar->no_tel ?? '-' }}</p>
                 </div>
-                <div>
+                <div class="min-w-0">
                     <p class="text-slate-500">Email</p>
-                    <p class="font-medium">{{ $pelajar->email ?? '-' }}</p>
+                    <p class="font-medium break-all">{{ $pelajar->email ?? '-' }}</p>
                 </div>
-                <div>
+                <div class="min-w-0">
                     <p class="text-slate-500">Program</p>
-                    <p class="font-medium">{{ $pelajar->program ?? '-' }}</p>
+                    <p class="font-medium break-words">{{ $pelajar->program ?? '-' }}</p>
                 </div>
             </div>
         </div>

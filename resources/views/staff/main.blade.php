@@ -67,7 +67,7 @@
                             <th class="px-6 py-4">Bayaran Semasa (RM)</th>
                             <th class="px-6 py-4">Lihat Resit</th>
                             <th class="px-6 py-4">Temu Duga</th>
-                            <th class="px-6 py-4">Print</th>
+                            <th class="px-6 py-4">Cetak</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">

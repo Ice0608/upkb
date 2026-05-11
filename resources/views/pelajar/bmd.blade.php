@@ -35,15 +35,13 @@
 
             <div class="rounded-[32px] border border-slate-300 bg-slate-50 p-6">
                 <div class="text-center space-y-1">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">BORANG PERMOHONAN & TEMUDUGA</p>
-                    <h2 class="text-2xl font-semibold uppercase tracking-[0.15em] text-slate-900">Application & Interview Form</h2>
+                    <h2 class="text-2xl font-semibold uppercase tracking-[0.15em] text-slate-900">Borang Permohonan dan Temu Duga</h2>
                 </div>
             </div>
 
             <div class="rounded-[32px] border border-slate-300 bg-white p-6 space-y-6">
                 <div class="border-b border-slate-200 pb-4">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">1. Maklumat Pemohon</p>
-                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Applicant Information</h3>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">1. MAKLUMAT PEMOHON</h3>
                 </div>
 
                 <div class="grid gap-6 sm:grid-cols-2">
@@ -101,7 +99,7 @@
                     @error('no_tel') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">SPM Credit</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Kredit SPM</span>
                     <input type="number" step="0.01" name="spm_credit" value="{{ old('spm_credit', $pelajar?->spm_credit) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('spm_credit') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
@@ -114,18 +112,17 @@
             </label>
 
             <div class="border-t border-slate-200 pt-6">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">2. Maklumat Alamat</p>
-                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Address Details</h3>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">2. MAKLUMAT ALAMAT</h3>
             </div>
 
             <div class="grid gap-6 sm:grid-cols-2">
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Address Line 1</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Alamat Baris 1</span>
                     <input type="text" name="address_line1" value="{{ old('address_line1', $pelajar?->address_line1) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('address_line1') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Address Line 2</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Alamat Baris 2</span>
                     <input type="text" name="address_line2" value="{{ old('address_line2', $pelajar?->address_line2) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('address_line2') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
@@ -135,12 +132,12 @@
 
             <div class="grid gap-6 sm:grid-cols-3">
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">City</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Bandar</span>
                     <input type="text" name="city" value="{{ old('city', $pelajar?->city) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                     @error('city') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Region (State)</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Negeri</span>
                     <select name="region" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
                         <option value="">Pilih Negeri</option>
                         <option value="Johor" {{ old('region', $pelajar?->region) == 'Johor' ? 'selected' : '' }}>Johor</option>
@@ -163,15 +160,14 @@
                     @error('region') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
                 <label class="block">
-                    <span class="mb-2 block text-sm font-semibold text-slate-700">Postcode</span>
+                    <span class="mb-2 block text-sm font-semibold text-slate-700">Poskod</span>
                     <input type="text" name="postcode" value="{{ old('postcode', $pelajar?->postcode) }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" placeholder="e.g., 50000">
                     @error('postcode') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                 </label>
             </div>
 
                 <div class="border-t border-slate-200 pt-6">
-                    <p class="text-xs uppercase tracking-[0.3em] text-slate-600">3. Maklumat Bapa & Ibu</p>
-                    <h3 class="mt-2 text-lg font-semibold text-slate-900">Parents' Information</h3>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900">3. MAKLUMAT BAPA & IBU</h3>
                 </div>
 
             <div class="grid gap-6 sm:grid-cols-2">
