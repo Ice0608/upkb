@@ -629,14 +629,15 @@
             flex: 0 0 min(86vw, 22rem);
             width: min(86vw, 22rem);
             height: auto;
+            min-height: 32rem;
             align-self: stretch;
             scroll-snap-align: center;
             scroll-snap-stop: always;
             overflow: hidden;
+            isolation: isolate;
             border: 1px solid rgba(255, 255, 255, 0.88);
             border-radius: 2rem;
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+            background: #0f172a;
             box-shadow:
                 0 20px 46px rgba(15, 23, 42, 0.08),
                 0 0 24px rgba(251, 191, 36, 0.08),
@@ -652,6 +653,7 @@
                 linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0)),
                 radial-gradient(circle at bottom left, var(--kursus-accent-border), transparent 26%);
             opacity: 0;
+            z-index: 1;
             transition: opacity 0.28s ease;
             pointer-events: none;
         }
@@ -714,8 +716,9 @@
         }
 
         .course-card-media {
-            position: relative;
-            height: 15rem;
+            position: absolute;
+            inset: 0 0 15% 0;
+            z-index: 0;
             overflow: hidden;
         }
 
@@ -723,22 +726,42 @@
             content: "";
             position: absolute;
             inset: 0;
+            z-index: 1;
             background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.74)),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.03) 0%, rgba(15, 23, 42, 0.2) 28%, rgba(15, 23, 42, 0.78) 78%, rgba(15, 23, 42, 0.95) 100%),
                 linear-gradient(130deg, var(--kursus-card-overlay), rgba(15, 23, 42, 0));
             pointer-events: none;
         }
 
         .course-card-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease, filter 0.6s ease;
         }
 
+        .course-card-media > :not(.course-card-image) {
+            z-index: 2;
+        }
+
         .course-card:hover .course-card-image {
             transform: scale(1.08);
             filter: saturate(1.06);
+        }
+
+        .course-card-body {
+            position: relative;
+            z-index: 2;
+            height: auto !important;
+            min-height: 48%;
+            margin-top: auto;
+            justify-content: flex-end;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.86) 32%, rgba(15, 23, 42, 0.97) 100%);
+            color: #fff;
         }
 
         .kursus-tag,
@@ -788,7 +811,7 @@
         }
 
         .course-card-title {
-            color: #0f172a;
+            color: #fff;
             font-size: clamp(1.28rem, 1.08rem + 0.45vw, 1.65rem);
             font-weight: 800;
             line-height: 1.16;
@@ -797,11 +820,12 @@
             overflow-wrap: break-word;
             word-break: normal;
             hyphens: none;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.44);
             transition: color 0.28s ease;
         }
 
         .course-card:hover .course-card-title {
-            color: var(--kursus-card-title-hover);
+            color: #fff;
         }
 
         .course-card-arrow {
@@ -837,12 +861,13 @@
         }
 
         .course-card-meta-item {
-            border: 1px solid var(--kursus-card-meta-border);
+            border: 1px solid rgba(255, 255, 255, 0.14);
             border-radius: 1.15rem;
-            background: var(--kursus-card-meta-bg);
+            background: rgba(15, 23, 42, 0.72);
             padding: 0.95rem 1.05rem;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
             min-width: 0;
+            backdrop-filter: blur(10px);
         }
 
         .course-card-meta-label {
@@ -850,12 +875,12 @@
             font-weight: 700;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: #94a3b8;
+            color: rgba(226, 232, 240, 0.72);
         }
 
         .course-card-meta-value {
             margin-top: 0.4rem;
-            color: #0f172a;
+            color: #fff;
             font-weight: 500;
             line-height: 1.42;
             overflow-wrap: break-word;
@@ -963,10 +988,6 @@
 
             .kursus-hero {
                 padding: 1.5rem;
-            }
-
-            .course-card-media {
-                height: 12.5rem;
             }
 
             .course-card-meta {
@@ -1181,7 +1202,7 @@
                             </div>
                         </div>
 
-                        <div class="p-6 sm:p-7 flex flex-col gap-5 h-full">
+                        <div class="course-card-body p-6 sm:p-7 flex flex-col gap-5 h-full">
                             <div class="course-card-headline">
                                 <div>
                                     <p class="kursus-section-accent text-[0.7rem] font-semibold uppercase tracking-[0.28em]">Kursus</p>
@@ -1193,10 +1214,6 @@
                             </div>
 
                             <div class="course-card-meta">
-                                <div class="course-card-meta-item">
-                                    <p class="course-card-meta-label">Kod Kursus</p>
-                                    <p class="course-card-meta-value kursus-clamp-2">{{ $kursus->kod_kursus ?? 'Tidak tersedia' }}</p>
-                                </div>
                                 <div class="course-card-meta-item">
                                     <p class="course-card-meta-label">Tarikh Pendaftaran</p>
                                     <p class="course-card-meta-value">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? 'Tidak dinyatakan' }}</p>

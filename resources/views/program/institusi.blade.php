@@ -1379,7 +1379,7 @@
                         @if($kursusRingkas->isNotEmpty())
                             <ul class="mt-3 space-y-3">
                                 @foreach($kursusRingkas as $kursus)
-                                    <li class="institusi-kursus-pill rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm border border-slate-200/70">{{ $kursus->nama_kursus }} ({{ $kursus->kod_kursus }})</li>
+                                    <li class="institusi-kursus-pill rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm border border-slate-200/70">{{ $kursus->nama_kursus }}</li>
                                 @endforeach
                             </ul>
                             @if($institusi->kursuses_count > 3)

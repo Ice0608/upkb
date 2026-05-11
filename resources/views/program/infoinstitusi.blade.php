@@ -550,7 +550,6 @@
                             <div class="ii-kc__meta">
                                 <div class="ii-kc__name">{{ $kursus->nama_kursus }}</div>
                                 <div class="ii-kc__chips">
-                                    <span class="ii-kc__chip ii-kc__chip--accent"><i class="fas fa-barcode"></i> {{ $kursus->kod_kursus }}</span>
                                     <span class="ii-kc__chip"><i class="fas fa-hourglass-half"></i> {{ $kursus->tempoh }}</span>
                                     <span class="ii-kc__chip"><i class="fas fa-users"></i> Kuota: {{ $kursus->kuota }}</span>
                                     <span class="ii-kc__chip"><i class="fas fa-book-open"></i> {{ $kursus->mod_pengajian }}</span>

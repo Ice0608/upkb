@@ -16,9 +16,6 @@
                 <span class="course-result-badge inline-flex items-center rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white">
                     {{ $kursus->institusi->jenis_institusi ?? 'Institusi' }}
                 </span>
-                <span class="course-result-code inline-flex items-center rounded-full px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em]">
-                    {{ $kursus->kod_kursus }}
-                </span>
             </div>
             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                 <div>
@@ -34,14 +31,7 @@
         <div class="p-6 sm:p-7 flex flex-col flex-1">
             <div class="course-result-meta-grid mb-6 text-sm">
                 <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
-                    <i class="course-result-meta-icon fas fa-barcode mt-0.5"></i>
-                    <div>
-                        <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Kod Kursus</p>
-                        <p class="text-gray-800 dark:text-slate-100 font-semibold">{{ $kursus->kod_kursus }}</p>
-                    </div>
-                </div>
 
-                <div class="course-result-meta flex items-start gap-3 rounded-2xl px-4 py-3">
                     <i class="course-result-meta-icon fas fa-book mt-0.5"></i>
                     <div>
                         <p class="text-xs text-gray-600 dark:text-slate-400 font-semibold uppercase">Jenis Program</p>
