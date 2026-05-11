@@ -254,6 +254,15 @@
             font-size: 0.72rem; padding: 0.22rem 0.75rem;
             border-radius: 9999px; font-weight: 700; vertical-align: middle;
         }
+        @media (max-width: 640px) {
+            .ii-card--about {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .ii-card--about .ii-card__content {
+                width: 100%;
+            }
+        }
 
         /* ── Search ── */
         .ii-search-input {
@@ -495,11 +504,11 @@
     <div class="max-w-6xl mx-auto px-6 py-12 space-y-8">
 
         {{-- ══ ABOUT ══ --}}
-        <div class="ii-card ii-reveal">
+        <div class="ii-card ii-card--about ii-reveal">
             <div class="ii-card__icon-wrap {{ $isThemed ? 'institusi-info-accent-tvet' : 'text-orange-500' }}">
                 <i class="fas fa-building-columns"></i>
             </div>
-            <div class="flex-1 min-w-0">
+            <div class="ii-card__content flex-1 min-w-0">
                 <h2 class="ii-section-title mb-2">Mengenai Institusi</h2>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ $institusi->mengenai_institusi }}</p>
             </div>
