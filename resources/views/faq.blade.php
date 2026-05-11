@@ -1144,12 +1144,12 @@
         html.dark .faq-modal-close:hover { background: rgba(51,65,85,0.9); }
 
         html.dark .faq-hero {
-            background: linear-gradient(90deg, #1a1a2e 0%, #2d3748 56%, #1a1a2e 100%);
-            border-color: rgba(255,122,0,0.2);
+            background: linear-gradient(90deg, #ff7a00 0%, #ff9924 56%, #ffd24a 100%);
+            border-color: rgba(255, 227, 170, 0.48);
             box-shadow:
-                inset 0 1px 0 rgba(255, 250, 236, 0.1),
-                0 24px 55px rgba(100, 50, 0, 0.2),
-                0 0 46px rgba(255, 122, 0, 0.1);
+                inset 0 1px 0 rgba(255, 250, 236, 0.44),
+                0 24px 55px rgba(205, 112, 24, 0.22),
+                0 0 46px rgba(255, 177, 60, 0.2);
         }
         html.dark .faq-hero-eyebrow,
         html.dark .faq-hero-title,
@@ -1208,7 +1208,13 @@
 
         @media (max-width: 768px) {
             .faq-hero-figure {
-                display: none;
+                display: block;
+                right: 0.5rem;
+                top: auto;
+                bottom: -0.6rem;
+                height: 44%;
+                opacity: 0.52;
+                transform: translateY(0);
             }
         }
     </style>
