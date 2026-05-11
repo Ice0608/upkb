@@ -711,7 +711,7 @@
 
         .course-card-media {
             position: absolute;
-            inset: 0 0 15% 0;
+            inset: 0 0 -57.25% 0;
             z-index: 0;
             overflow: hidden;
         }
