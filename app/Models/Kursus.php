@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Models\Institusi;
 use App\Models\Galeri;
 use App\Models\SyaratKelayakan;
@@ -19,6 +20,40 @@ class Kursus extends Model
     protected $table = 'kursuses';
 
     private const ELECTRICAL_COURSE_GROUP_NAME = 'PEMASANGAN & PENYELENGGARAAN ELEKTRIK';
+
+    private const COURSE_GROUPS = [
+        'kulinari' => [
+            'label' => 'KULINARI',
+            'patterns' => ['kulinari', 'penyediaan & pengeluaran makanan', 'operasi seni kulinari'],
+        ],
+        'pendidikan-awal-kanak-kanak' => [
+            'label' => 'PENDIDIKAN AWAL KANAK KANAK',
+            'patterns' => [
+                'pendidikan awal kanak',
+                'pendidikan awal kanak-kanak',
+                'pendidikan kanak-kanak awal',
+                'guru pendidikan awal kanak',
+                'pengurusan awal kanak',
+                'pengurusan penjagaan dan pendidikan kanak',
+            ],
+        ],
+        'pengurusan-pejabat' => [
+            'label' => 'PENGURUSAN PEJABAT',
+            'patterns' => ['pengurusan pejabat'],
+        ],
+        'kecantikan' => [
+            'label' => 'KECANTIKAN',
+            'patterns' => ['kecantikan', 'estetik'],
+        ],
+        'automotif' => [
+            'label' => 'AUTOMOTIF',
+            'patterns' => ['automotif', 'teknologi automotif', 'servis kenderaan ringan', 'perkhidmatan pembaikan', 'kenderaan ringan'],
+        ],
+        'automasi-industri' => [
+            'label' => 'AUTOMASI INDUSTRI',
+            'patterns' => ['automasi industri', 'perkhidmatan kejuruteraan automasi industri'],
+        ],
+    ];
 
     private const SCOPED_DETAIL_RELATIONS = [
         'galeris' => Galeri::class,
@@ -55,7 +90,7 @@ class Kursus extends Model
 
     public function getNamaKursusPaparanAttribute(): string
     {
-        return self::canonicalCourseName($this->nama_kursus, $this->kod_kursus);
+        return strtoupper(self::canonicalCourseName($this->nama_kursus, $this->kod_kursus));
     }
 
     public function getKumpulanKursusKeyAttribute(): string
@@ -65,20 +100,44 @@ class Kursus extends Model
 
     public static function canonicalCourseName(?string $namaKursus, ?string $kodKursus = null): string
     {
+        if ($groupName = self::canonicalCourseGroupName($namaKursus, $kodKursus)) {
+            return $groupName;
+        }
+
         if (self::isElectricalInstallationCourse($namaKursus, $kodKursus)) {
             return self::ELECTRICAL_COURSE_GROUP_NAME;
         }
 
-        return trim((string) $namaKursus);
+        $namaKursus = str_replace(['–', '—'], '-', (string) $namaKursus);
+        $namaKursus = trim($namaKursus);
+        $parts = preg_split('/(?:\s+-\s+|\s+-|-\s+)/', $namaKursus);
+
+        if (count($parts) > 1) {
+            return trim($parts[0]);
+        }
+
+        return $namaKursus;
     }
 
     public static function courseGroupKey(?string $namaKursus, ?string $kodKursus = null): string
     {
+        if ($groupName = self::canonicalCourseGroupName($namaKursus, $kodKursus)) {
+            return Str::slug($groupName, '-');
+        }
+
         if (self::isElectricalInstallationCourse($namaKursus, $kodKursus)) {
             return 'f432-005-elektrik';
         }
 
-        return strtolower(trim((string) $namaKursus));
+        $namaKursus = str_replace(['–', '—'], '-', (string) $namaKursus);
+        $namaKursus = trim($namaKursus);
+        $parts = preg_split('/(?:\s+-\s+|\s+-|-\s+)/', $namaKursus);
+
+        if (count($parts) > 1) {
+            $namaKursus = trim($parts[0]);
+        }
+
+        return Str::slug($namaKursus, '-');
     }
 
     public function scopeEquivalentToCourse($query, ?string $namaKursus)
@@ -89,7 +148,74 @@ class Kursus extends Model
             return $query->where('kod_kursus', 'LIKE', '%F432-005%');
         }
 
+        if ($canonicalName === 'KULINARI') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%kulinari%')
+                    ->orWhere('nama_kursus', 'LIKE', '%penyediaan & pengeluaran makanan%')
+                    ->orWhere('nama_kursus', 'LIKE', '%operasi seni kulinari%');
+            });
+        }
+
+        if ($canonicalName === 'PENDIDIKAN AWAL KANAK KANAK') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%pendidikan awal kanak%')
+                    ->orWhere('nama_kursus', 'LIKE', '%pendidikan kanak-kanak awal%')
+                    ->orWhere('nama_kursus', 'LIKE', '%guru pendidikan awal kanak%')
+                    ->orWhere('nama_kursus', 'LIKE', '%pengurusan awal kanak%')
+                    ->orWhere('nama_kursus', 'LIKE', '%pengurusan penjagaan dan pendidikan kanak%')
+                    ->orWhere('nama_kursus', 'LIKE', '%pengurusan awal kanak%');
+            });
+        }
+
+        if ($canonicalName === 'PENGURUSAN PEJABAT') {
+            return $query->where('nama_kursus', 'LIKE', '%pengurusan pejabat%');
+        }
+
+        if ($canonicalName === 'KECANTIKAN') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%kecantikan%')
+                    ->orWhere('nama_kursus', 'LIKE', '%estetik%');
+            });
+        }
+
+        if ($canonicalName === 'AUTOMOTIF') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%automotif%')
+                    ->orWhere('nama_kursus', 'LIKE', '%teknologi automotif%')
+                    ->orWhere('nama_kursus', 'LIKE', '%servis kenderaan ringan%')
+                    ->orWhere('nama_kursus', 'LIKE', '%perkhidmatan pembaikan%');
+            });
+        }
+
+        if ($canonicalName === 'AUTOMASI INDUSTRI') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%automasi industri%')
+                    ->orWhere('nama_kursus', 'LIKE', '%perkhidmatan kejuruteraan automasi industri%');
+            });
+        }
+
         return $query->where('nama_kursus', trim((string) $namaKursus));
+    }
+
+    private static function canonicalCourseGroupName(?string $namaKursus, ?string $kodKursus = null): ?string
+    {
+        $normalized = str_replace(['–', '—'], '-', (string) $namaKursus);
+        $normalized = strtolower(trim($normalized));
+        $parts = preg_split('/(?:\s+-\s+|\s+-|-\s+)/', $normalized);
+
+        if (count($parts) > 1) {
+            $normalized = trim($parts[0]);
+        }
+
+        foreach (self::COURSE_GROUPS as $group) {
+            foreach ($group['patterns'] as $pattern) {
+                if (str_contains($normalized, strtolower($pattern))) {
+                    return $group['label'];
+                }
+            }
+        }
+
+        return null;
     }
 
     private static function isElectricalInstallationCourse(?string $namaKursus, ?string $kodKursus = null): bool

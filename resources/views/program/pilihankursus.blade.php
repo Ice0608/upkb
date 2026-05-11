@@ -990,7 +990,7 @@
                                     <i class="fa-solid fa-shield-check text-white/90"></i>
                                     Institusi bertauliah
                                 </span>
-                            </div>x
+                            </div>
                             <a href="#institusiResults" class="pilihan-hero-cta">
                                 Lihat Program
                                 <i class="fa-solid fa-arrow-right"></i>
