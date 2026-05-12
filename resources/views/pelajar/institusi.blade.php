@@ -676,7 +676,6 @@
             width: clamp(18rem, 29vw, 20.75rem);
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            transition: opacity 0.25s ease;
         }
 
         @media (hover: hover) and (pointer: fine) {
@@ -691,7 +690,7 @@
         }
 
         .institusi-slider-card .institusi-card-media {
-            height: clamp(12rem, 17vw, 14rem);
+            height: clamp(23rem, 17vw, 100rem);
         }
 
         .institusi-slider-card .institusi-clamp-3 {
@@ -714,7 +713,6 @@
             border: 1px solid rgba(226, 232, 240, 0.92);
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
             box-shadow: 0 22px 48px rgba(15, 23, 42, 0.08);
-            transition: all 0.3s ease;
         }
 
         .institusi-card::before {
@@ -723,7 +721,6 @@
             inset: 0;
             background: linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
             opacity: 0;
-            transition: opacity 0.3s ease;
             pointer-events: none;
         }
 
@@ -739,7 +736,6 @@
         .institusi-slider-card.institusi-reveal-ready {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
         }
 
         .institusi-slider-card.institusi-reveal-ready.is-visible {
@@ -762,12 +758,10 @@
         }
 
         .institusi-card-title {
-            will-change: transform, opacity, filter;
             transform-origin: 50% 100%;
         }
 
         .institusi-card-title.is-title-opening {
-            animation: institusiTitleOpening 0.55s ease;
         }
 
         .institusi-card:hover::before,
@@ -777,7 +771,7 @@
 
         .institusi-card-media {
             position: relative;
-            height: 15rem;
+            height: 10rem;
             overflow: hidden;
         }
 
@@ -818,7 +812,7 @@
         .institusi-card-chip,
         .institusi-card-arrow,
         .institusi-card-link {
-            transition: transform 0.28s ease, background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+            transition: transform 0.28s ease, background-color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
         }
 
         .institusi-card-badge,
@@ -1358,7 +1352,6 @@
                                 <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
                                 <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                             </div>
-                            <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
                             <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
                                 <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
                                 <span class="institusi-card-link inline-flex items-center gap-2 text-sm font-semibold">
@@ -1436,7 +1429,6 @@
                                             <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
                                             <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                                         </div>
-                                        <p class="institusi-clamp-3 mt-5 text-sm leading-7 text-slate-600">{{ \Illuminate\Support\Str::limit($institusi->mengenai_institusi, 150) }}</p>
                                         <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
                                             <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
                                             <span class="institusi-card-link inline-flex items-center gap-2 text-sm font-semibold">
