@@ -24,7 +24,15 @@ class Kursus extends Model
     private const COURSE_GROUPS = [
         'kulinari' => [
             'label' => 'KULINARI',
-            'patterns' => ['kulinari', 'penyediaan & pengeluaran makanan', 'operasi seni kulinari'],
+            'patterns' => ['kulinari', 'penyediaan & pengeluaran makanan', 'operasi seni kulinari', 'operasi servis makanan'],
+        ],
+        'kimpalan' => [
+            'label' => 'KIMPALAN',
+            'patterns' => ['kimpalan', 'proses kimpalan', 'arka kepingan logam'],
+        ],
+        'komputer' => [
+            'label' => 'KOMPUTER',
+            'patterns' => ['operasi sistem komputer', 'rangkaian komputer'],
         ],
         'pendidikan-awal-kanak-kanak' => [
             'label' => 'PENDIDIKAN AWAL KANAK KANAK',
@@ -39,7 +47,7 @@ class Kursus extends Model
         ],
         'pengurusan-pejabat' => [
             'label' => 'PENGURUSAN PEJABAT',
-            'patterns' => ['pengurusan pejabat'],
+            'patterns' => ['pengurusan pejabat', 'pengurusan & pentadbiran pejabat', 'pentadbiran pejabat'],
         ],
         'kecantikan' => [
             'label' => 'KECANTIKAN',
@@ -100,6 +108,8 @@ class Kursus extends Model
 
     public static function canonicalCourseName(?string $namaKursus, ?string $kodKursus = null): string
     {
+        $namaKursus = self::normalizeCourseName($namaKursus);
+
         if ($groupName = self::canonicalCourseGroupName($namaKursus, $kodKursus)) {
             return $groupName;
         }
@@ -152,7 +162,23 @@ class Kursus extends Model
             return $query->where(function ($subQuery) {
                 $subQuery->where('nama_kursus', 'LIKE', '%kulinari%')
                     ->orWhere('nama_kursus', 'LIKE', '%penyediaan & pengeluaran makanan%')
-                    ->orWhere('nama_kursus', 'LIKE', '%operasi seni kulinari%');
+                    ->orWhere('nama_kursus', 'LIKE', '%operasi seni kulinari%')
+                    ->orWhere('nama_kursus', 'LIKE', '%operasi servis makanan%');
+            });
+        }
+
+        if ($canonicalName === 'KIMPALAN') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%kimpalan%')
+                    ->orWhere('nama_kursus', 'LIKE', '%proses kimpalan%')
+                    ->orWhere('nama_kursus', 'LIKE', '%arka kepingan logam%');
+            });
+        }
+
+        if ($canonicalName === 'KOMPUTER') {
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%operasi sistem komputer%')
+                    ->orWhere('nama_kursus', 'LIKE', '%rangkaian komputer%');
             });
         }
 
@@ -199,7 +225,7 @@ class Kursus extends Model
 
     private static function canonicalCourseGroupName(?string $namaKursus, ?string $kodKursus = null): ?string
     {
-        $normalized = str_replace(['–', '—'], '-', (string) $namaKursus);
+        $normalized = self::normalizeCourseName($namaKursus);
         $normalized = strtolower(trim($normalized));
         $parts = preg_split('/(?:\s+-\s+|\s+-|-\s+)/', $normalized);
 
@@ -218,10 +244,18 @@ class Kursus extends Model
         return null;
     }
 
+    private static function normalizeCourseName(?string $namaKursus): string
+    {
+        $namaKursus = str_replace(['–', '—'], '-', (string) $namaKursus);
+        $namaKursus = preg_replace('/\s*\(\s*single[\s-]*tier\s*\)\s*/i', '', $namaKursus);
+
+        return trim($namaKursus);
+    }
+
     private static function isElectricalInstallationCourse(?string $namaKursus, ?string $kodKursus = null): bool
     {
         $normalizedCode = strtoupper((string) $kodKursus);
-        $normalizedName = strtolower(trim((string) $namaKursus));
+        $normalizedName = strtolower(self::normalizeCourseName($namaKursus));
 
         if (str_contains($normalizedCode, 'F432-005')) {
             return true;

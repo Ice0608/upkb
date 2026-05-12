@@ -10,7 +10,7 @@ class Kerjaya extends Model
     protected $fillable = [
         'kod_institusi',
         'kod_kursus',
-        'bidang_kerjaya',
+        'gambar',
     ];
 
     public function kursus()

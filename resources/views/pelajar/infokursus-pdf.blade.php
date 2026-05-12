@@ -30,7 +30,11 @@
         <div class="section card">
             <h2 class="heading">Syarat Kelayakan</h2>
             @forelse($kursus->syaratKelayakans as $item)
-                <p>{{ $item->syarat_kelayakan }}</p>
+                @if($item->gambar)
+                    <img src="{{ public_path($item->gambar) }}" alt="Syarat Kelayakan" style="max-width:100%; margin-bottom:8px; display:block;" />
+                @else
+                    <p>Tiada imej syarat kelayakan direkodkan.</p>
+                @endif
             @empty
                 <p>Tiada syarat kelayakan direkodkan.</p>
             @endforelse
@@ -55,7 +59,11 @@
         <div class="section card">
             <h2 class="heading">Laluan Kerjaya</h2>
             @forelse($kursus->kerjayas as $item)
-                <p>{{ $item->bidang_kerjaya }}</p>
+                @if($item->gambar)
+                    <img src="{{ public_path($item->gambar) }}" alt="Laluan Kerjaya" style="max-width:100%; margin-bottom:8px; display:block;" />
+                @else
+                    <p>Tiada imej laluan kerjaya direkodkan.</p>
+                @endif
             @empty
                 <p>Tiada laluan kerjaya direkodkan.</p>
             @endforelse

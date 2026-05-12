@@ -548,7 +548,9 @@
     $detailCourseName = strtolower(trim((string) $kursus->nama_kursus));
     $detailTvetCourseFallbacks = [
         'pengurusan & pentadbiran pejabat',
+        'pengurusan pejabat',
         'operasi sistem komputer',
+        'rangkaian komputer',
     ];
 
     if ($detailProgramType === '' && (

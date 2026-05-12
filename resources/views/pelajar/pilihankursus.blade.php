@@ -950,7 +950,9 @@
 
     $pilihanTvetCourseFallbacks = [
         'pengurusan & pentadbiran pejabat',
+        'pengurusan pejabat',
         'operasi sistem komputer',
+        'rangkaian komputer',
     ];
 
     if ($pilihanProgramType === '' && (
