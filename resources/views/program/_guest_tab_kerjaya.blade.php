@@ -1,11 +1,14 @@
 <div class="kursus-tab-section border-t border-gray-100">
     <h2 class="kursus-tab-title">Laluan Kerjaya</h2>
     @if($kursus->kerjayas->isNotEmpty())
-        <div class="grid gap-4 md:grid-cols-2">
+        <div class="grid gap-4">
             @foreach($kursus->kerjayas as $item)
-                <div class="kursus-tab-card rounded-3xl p-6">
-                    <p class="font-semibold text-slate-900 mb-2">{{ $item->bidang_kerjaya }}</p>
-                    <p class="text-gray-600 leading-relaxed">Potensi jawatan dan peluang dalam bidang ini.</p>
+                <div class="kursus-tab-card overflow-hidden rounded-3xl p-0">
+                    @if($item->gambar)
+                        <img src="{{ asset($item->gambar) }}" alt="Laluan Kerjaya {{ $loop->iteration }}" class="w-full object-cover">
+                    @else
+                        <div class="min-h-[14rem] bg-slate-100 p-6 text-center text-gray-500">Tiada imej laluan kerjaya tersedia.</div>
+                    @endif
                 </div>
             @endforeach
         </div>

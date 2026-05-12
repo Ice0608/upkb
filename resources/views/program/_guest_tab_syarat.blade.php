@@ -3,8 +3,12 @@
     @if($kursus->syaratKelayakans->isNotEmpty())
         <div class="space-y-4">
             @foreach($kursus->syaratKelayakans as $item)
-                <div class="kursus-tab-card rounded-3xl p-6">
-                    <p class="text-gray-700 leading-relaxed">{{ $item->syarat_kelayakan }}</p>
+                <div class="kursus-tab-card overflow-hidden rounded-3xl p-0">
+                    @if($item->gambar)
+                        <img src="{{ asset($item->gambar) }}" alt="Syarat Kelayakan {{ $loop->iteration }}" class="w-full object-cover">
+                    @else
+                        <div class="min-h-[14rem] bg-slate-100 p-6 text-center text-gray-500">Tiada imej syarat kelayakan tersedia.</div>
+                    @endif
                 </div>
             @endforeach
         </div>

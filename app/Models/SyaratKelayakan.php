@@ -10,7 +10,7 @@ class SyaratKelayakan extends Model
     protected $fillable = [
         'kod_institusi',
         'kod_kursus',
-        'syarat_kelayakan',
+        'gambar',
     ];
 
     public function kursus()

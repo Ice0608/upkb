@@ -128,23 +128,35 @@ class AdminKursusController extends Controller
     {
         $request->validate([
             'kursus_id' => 'required|integer|exists:kursuses,id',
-            'syarat_kelayakan' => 'required|string',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
         ]);
 
         $kursus = Kursus::findOrFail($request->kursus_id);
 
+        $file = $request->file('gambar');
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $fileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
+        $destination = public_path('images/institusi');
+
+        if (! file_exists($destination)) {
+            mkdir($destination, 0755, true);
+        }
+
+        $file->move($destination, $fileName);
+
         SyaratKelayakan::create([
             'kod_institusi' => $kursus->kod_institusi,
             'kod_kursus' => $kursus->kod_kursus,
-            'syarat_kelayakan' => $request->syarat_kelayakan,
+            'gambar' => 'images/institusi/' . $fileName,
         ]);
 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'message' => 'Syarat kelayakan berjaya ditambah.']);
+            return response()->json(['success' => true, 'message' => 'Syarat kelayakan berjaya dimuat naik.']);
         }
 
         return redirect()->route('admin.editkursus', $kursus->id)
-                        ->with('success', 'Syarat kelayakan berjaya ditambah.');
+                        ->with('success', 'Syarat kelayakan berjaya dimuat naik.');
     }
 
     public function destroySyarat($id)
@@ -208,23 +220,35 @@ class AdminKursusController extends Controller
     {
         $request->validate([
             'kursus_id' => 'required|integer|exists:kursuses,id',
-            'bidang_kerjaya' => 'required|string|max:255',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
         ]);
 
         $kursus = Kursus::findOrFail($request->kursus_id);
 
+        $file = $request->file('gambar');
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $extension = $file->getClientOriginalExtension();
+        $fileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
+        $destination = public_path('images/institusi');
+
+        if (! file_exists($destination)) {
+            mkdir($destination, 0755, true);
+        }
+
+        $file->move($destination, $fileName);
+
         Kerjaya::create([
             'kod_institusi' => $kursus->kod_institusi,
             'kod_kursus' => $kursus->kod_kursus,
-            'bidang_kerjaya' => $request->bidang_kerjaya,
+            'gambar' => 'images/institusi/' . $fileName,
         ]);
 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'message' => 'Laluan kerjaya berjaya ditambah.']);
+            return response()->json(['success' => true, 'message' => 'Laluan kerjaya berjaya dimuat naik.']);
         }
 
         return redirect()->route('admin.editkursus', $kursus->id)
-                        ->with('success', 'Laluan kerjaya berjaya ditambah.');
+                        ->with('success', 'Laluan kerjaya berjaya dimuat naik.');
     }
 
     public function destroyKerjaya($id)
