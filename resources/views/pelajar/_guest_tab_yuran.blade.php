@@ -59,12 +59,22 @@
                 </div>
             </div>
 
-            <div class="rounded-3xl border border-orange-200 bg-orange-50 p-6">
+            <div class="rounded-3xl border border-orange-200 bg-orange-50 p-6"
+                data-yuran-card
+                data-pendaftaran-total="{{ $pendaftaranTotal }}"
+                data-pilihan-total="{{ $pilihanTotal }}"
+                data-asrama-total="{{ $asramaTotal }}">
                 <div class="mb-5 space-y-2">
                     <p class="text-sm uppercase tracking-[0.2em] text-orange-700">Yuran Asrama</p>
-                    <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-900">
+                    <button type="button"
+                        data-pilihan-toggle
+                        aria-pressed="true"
+                        data-is-on="1"
+                        onclick="(function(btn){const card=btn.closest('[data-yuran-card]');if(!card)return;const badge=btn.querySelector('[data-toggle-state]');const total=card.querySelector('[data-total-yuran]');const p=Number(card.dataset.pendaftaranTotal||0);const pl=Number(card.dataset.pilihanTotal||0);const a=Number(card.dataset.asramaTotal||0);const on=btn.dataset.isOn!=='1';btn.dataset.isOn=on?'1':'0';btn.setAttribute('aria-pressed',on?'true':'false');if(badge)badge.textContent=on?'ON':'OFF';btn.className=on?'inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500':'inline-flex items-center gap-3 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:focus:ring-slate-500';if(badge)badge.className=on?'rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide':'rounded-full bg-gray-200 px-2 py-0.5 text-xs uppercase tracking-wide text-gray-700 dark:bg-slate-700 dark:text-slate-200';if(total){const v=p+a+(on?pl:0);total.textContent='RM '+v.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});}})(this)"
+                        class="inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500">
                         <span>Pilihan Baru</span>
-                    </div>
+                        <span data-toggle-state class="rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide">ON</span>
+                    </button>
                 </div>
 
                 <div class="rounded-3xl bg-white p-4 shadow-sm border border-orange-100">
@@ -79,7 +89,7 @@
                 </div>
 
                 <div class="mt-6 border-t border-orange-200 pt-4 text-sm uppercase tracking-[0.2em] text-orange-700">Keseluruhan (Daftar + Pilihan + Asrama)</div>
-                <div class="mt-3 text-3xl font-bold text-orange-900">RM {{ number_format($totalYuran, 2) }}</div>
+                <div data-total-yuran class="mt-3 text-3xl font-bold text-orange-900">RM {{ number_format($totalYuran, 2) }}</div>
             </div>
         </div>
     </div>

@@ -59,12 +59,23 @@
                 </div>
             </div>
 
-            <div class="kursus-tab-card kursus-tab-card-strong rounded-3xl p-6">
+            <div class="kursus-tab-card kursus-tab-card-strong rounded-3xl p-6"
+                data-yuran-card
+                data-pendaftaran-total="{{ $pendaftaranTotal }}"
+                data-pilihan-total="{{ $pilihanTotal }}"
+                data-asrama-total="{{ $asramaTotal }}">
                 <div class="mb-5 space-y-2">
                     <p class="kursus-tab-accent-strong text-sm uppercase tracking-[0.2em]">Yuran Asrama</p>
-                    <div class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold bg-white" style="border-color: var(--detail-card-border); color: var(--detail-accent-700);">
+                    <button type="button"
+                        data-pilihan-toggle
+                        aria-pressed="true"
+                        data-is-on="1"
+                        onclick="(function(btn){const card=btn.closest('[data-yuran-card]');if(!card)return;const badge=btn.querySelector('[data-toggle-state]');const total=card.querySelector('[data-total-yuran]');const p=Number(card.dataset.pendaftaranTotal||0);const pl=Number(card.dataset.pilihanTotal||0);const a=Number(card.dataset.asramaTotal||0);const on=btn.dataset.isOn!=='1';btn.dataset.isOn=on?'1':'0';btn.setAttribute('aria-pressed',on?'true':'false');if(badge)badge.textContent=on?'ON':'OFF';if(on){btn.className='inline-flex items-center gap-3 rounded-full border px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 dark:border-orange-400 dark:bg-orange-500';btn.style.borderColor='var(--detail-accent-500)';btn.style.background='var(--detail-accent-500)';btn.style.color='#ffffff';if(badge)badge.className='rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide';}else{btn.className='inline-flex items-center gap-3 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:focus:ring-slate-500';btn.style.borderColor='';btn.style.background='';btn.style.color='';if(badge)badge.className='rounded-full bg-gray-200 px-2 py-0.5 text-xs uppercase tracking-wide text-gray-700 dark:bg-slate-700 dark:text-slate-200';}if(total){const v=p+a+(on?pl:0);total.textContent='RM '+v.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});}})(this)"
+                        class="inline-flex items-center gap-3 rounded-full border px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 dark:border-orange-400 dark:bg-orange-500"
+                        style="border-color: var(--detail-accent-500); background: var(--detail-accent-500); --tw-ring-color: color-mix(in srgb, var(--detail-accent-500) 35%, white);">
                         <span>Pilihan Baru</span>
-                    </div>
+                        <span data-toggle-state class="rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide">ON</span>
+                    </button>
                 </div>
 
                 <div class="rounded-3xl bg-white p-4 shadow-sm" style="border: 1px solid var(--detail-card-border);">
@@ -79,7 +90,7 @@
                 </div>
 
                 <div class="kursus-tab-accent-strong mt-6 border-t pt-4 text-sm uppercase tracking-[0.2em]" style="border-color: var(--detail-card-border);">Keseluruhan (Daftar + Pilihan + Asrama)</div>
-                <div class="kursus-tab-accent-strong mt-3 text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</div>
+                <div data-total-yuran class="kursus-tab-accent-strong mt-3 text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</div>
             </div>
         </div>
     </div>
