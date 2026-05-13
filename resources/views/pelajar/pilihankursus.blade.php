@@ -971,7 +971,7 @@
     @include('layouts.navpelajar')
 
     <main class="flex-grow">
-        <section class="pilihan-shell {{ $pilihanProgramType === 'tvet' ? 'pilihan-shell--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-shell--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12" id="pilihan-kursus-page" data-filter-url="{{ route('pelajar.filter', ['pelajar' => $pelajar->id, 'nama' => $namaKursus]) }}">
+        <section class="pilihan-shell {{ $pilihanProgramType === 'tvet' ? 'pilihan-shell--tvet' : '' }} {{ $pilihanProgramType === 'diploma' ? 'pilihan-shell--diploma' : '' }} {{ $pilihanProgramType === 'sains kesihatan' ? 'pilihan-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12" id="pilihan-kursus-page" data-filter-url="{{ route('pelajar.filter', array_filter(['pelajar' => $pelajar->id, 'nama' => $namaKursus, 'jenis' => request('jenis')])) }}">
 
             <div class="flex flex-wrap items-center gap-3 mb-4">
                 <button type="button" onclick="window.history.back()"
@@ -1124,6 +1124,10 @@
                         params.set(select.getAttribute('name'), select.value);
                     }
                 });
+                const jenis = '{{ request('jenis') }}';
+                if (jenis) {
+                    params.set('jenis', jenis);
+                }
 
                 fetch(`${filterUrl}?${params.toString()}`, {
                     headers: { 'X-Requested-With': 'XMLHttpRequest' }

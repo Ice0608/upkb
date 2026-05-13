@@ -14,9 +14,17 @@ class KursusController extends Controller
     {
         $namaKursus = urldecode($nama);
         $namaKursusPaparan = Kursus::canonicalCourseName($namaKursus);
-        $semuaKursus = Kursus::with(['institusi', 'galeris'])
-            ->equivalentToCourse($namaKursus)
-            ->get();
+
+        $query = Kursus::with(['institusi', 'galeris'])
+            ->equivalentToCourse($namaKursus);
+
+        if (request()->filled('jenis')) {
+            $query->whereHas('institusi', function ($q) {
+                $q->where('jenis_institusi', request('jenis'));
+            });
+        }
+
+        $semuaKursus = $query->get();
         $namaKursus = $namaKursusPaparan;
 
         $selectedCourse = $semuaKursus->first();
@@ -46,6 +54,12 @@ class KursusController extends Controller
         $namaKursus = urldecode($nama);
         $query = Kursus::with(['institusi', 'galeris'])
             ->equivalentToCourse($namaKursus);
+
+        if ($request->filled('jenis')) {
+            $query->whereHas('institusi', function ($q) use ($request) {
+                $q->where('jenis_institusi', $request->query('jenis'));
+            });
+        }
 
         if ($request->filled('jenis_kursus')) {
             $query->where('jenis_kursus', $request->jenis_kursus);

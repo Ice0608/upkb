@@ -1211,7 +1211,7 @@
                              data-reveal="scale"
                              data-delay="{{ ($loop->index % 6) + 1 }}"
                              data-course-name="{{ $kursus->nama_kursus_paparan }}"
-                             onclick="window.location.href='{{ route('pelajar.pilihankursus', ['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $kursus->nama_kursus_paparan]) }}'">
+                             onclick="window.location.href='{{ route('pelajar.pilihankursus', array_filter(['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $kursus->nama_kursus_paparan, 'jenis' => request('jenis')])) }}'">
                         @php
                             $institusiTypeLabel = strtolower(trim((string) ($kursus->institusi->jenis_institusi ?? '')));
                             $jenisKursusLabel = strtolower(trim((string) ($kursus->jenis_kursus ?? '')));

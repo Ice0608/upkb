@@ -1188,7 +1188,7 @@
                              data-reveal="scale"
                              data-delay="{{ ($loop->index % 6) + 1 }}"
                              data-course-name="{{ $kursus->nama_kursus_paparan }}"
-                             onclick="window.location.href='{{ route('kursus.showByName', urlencode($kursus->nama_kursus_paparan)) }}'">
+                             onclick="window.location.href='{{ route('kursus.showByName', array_filter(['nama' => urlencode($kursus->nama_kursus_paparan), 'jenis' => request('jenis')])) }}'">
                         <div class="course-card-media">
                             <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus_paparan }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">

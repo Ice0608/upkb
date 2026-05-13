@@ -624,6 +624,12 @@ class StaffEventController extends Controller
             $query = \App\Models\Kursus::with(['institusi', 'galeris'])
                 ->equivalentToCourse($namaKursus);
 
+            if (request()->filled('jenis')) {
+                $query->whereHas('institusi', function ($q) {
+                    $q->where('jenis_institusi', request('jenis'));
+                });
+            }
+
             if (request()->filled('jenis_kursus')) {
                 $query->where('jenis_kursus', request('jenis_kursus'));
             }
@@ -645,9 +651,16 @@ class StaffEventController extends Controller
         // Non-AJAX: render the full pilihan-kursus page (behaviour like KursusController/InterviewController)
         $namaKursus = urldecode($nama);
         $namaKursusPaparan = \App\Models\Kursus::canonicalCourseName($namaKursus);
-        $semuaKursus = \App\Models\Kursus::with(['institusi', 'galeris'])
-            ->equivalentToCourse($namaKursus)
-            ->get();
+        $query = \App\Models\Kursus::with(['institusi', 'galeris'])
+            ->equivalentToCourse($namaKursus);
+
+        if (request()->filled('jenis')) {
+            $query->whereHas('institusi', function ($q) {
+                $q->where('jenis_institusi', request('jenis'));
+            });
+        }
+
+        $semuaKursus = $query->get();
         $namaKursus = $namaKursusPaparan;
 
         $selectedCourse = $semuaKursus->first();
@@ -677,6 +690,12 @@ class StaffEventController extends Controller
     {
         $query = \App\Models\Kursus::with(['institusi', 'galeris'])
             ->equivalentToCourse(urldecode($nama));
+
+        if (request()->filled('jenis')) {
+            $query->whereHas('institusi', function ($q) {
+                $q->where('jenis_institusi', request('jenis'));
+            });
+        }
 
         if (request()->filled('jenis_kursus')) {
             $query->where('jenis_kursus', request('jenis_kursus'));
