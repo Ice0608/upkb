@@ -43,9 +43,11 @@
                     @if($kursus->yuranPilihans->isNotEmpty())
                         <div class="space-y-4">
                             @foreach($kursus->yuranPilihans as $fee)
-                                <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200">
+                                <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200" data-pilihan-item data-item-name="{{ $fee->item }}" data-item-amount="{{ $fee->amount }}" data-is-active="1">
                                     <div class="text-sm text-gray-700">{{ $fee->item }}</div>
-                                    <div class="text-sm font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</div>
+                                    <button type="button" data-pilihan-item-toggle aria-pressed="true" onclick="(function(btn){const item=btn.closest('[data-pilihan-item]');if(!item)return;const card=item.closest('[data-yuran-card]')?.parentElement?.closest('[data-yuran-card]')||document.querySelector('[data-yuran-card]');if(!card)return;const isActive=item.dataset.isActive==='1';item.dataset.isActive=isActive?'0':'1';const badge=btn.querySelector('[data-toggle-state]');if(badge)badge.textContent=isActive?'TIDAK':'YA';btn.className=isActive?'inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-semibold text-gray-700 transition':'inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 transition';updateYuranTotal(card);})(this)" class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 transition">
+                                        <span data-toggle-state class="uppercase tracking-wide">YA</span>
+                                    </button>
                                 </div>
                             @endforeach
                         </div>
@@ -54,7 +56,7 @@
                     @endif
                     <div class="mt-6 border-t border-gray-200 pt-4 flex items-center justify-between text-sm font-semibold text-gray-900">
                         <span>Jumlah</span>
-                        <span>RM {{ number_format($pilihanTotal, 2) }}</span>
+                        <span data-pilihan-total-display>RM {{ number_format($pilihanTotal, 2) }}</span>
                     </div>
                 </div>
             </div>
@@ -67,19 +69,19 @@
                 <div class="mb-5 space-y-2">
                     <p class="text-sm uppercase tracking-[0.2em] text-orange-700">Yuran Asrama</p>
                     <button type="button"
-                        data-pilihan-toggle
+                        data-asrama-toggle
                         aria-pressed="true"
                         data-is-on="1"
-                        onclick="(function(btn){const card=btn.closest('[data-yuran-card]');if(!card)return;const badge=btn.querySelector('[data-toggle-state]');const total=card.querySelector('[data-total-yuran]');const p=Number(card.dataset.pendaftaranTotal||0);const pl=Number(card.dataset.pilihanTotal||0);const a=Number(card.dataset.asramaTotal||0);const on=btn.dataset.isOn!=='1';btn.dataset.isOn=on?'1':'0';btn.setAttribute('aria-pressed',on?'true':'false');if(badge)badge.textContent=on?'ON':'OFF';btn.className=on?'inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500':'inline-flex items-center gap-3 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:focus:ring-slate-500';if(badge)badge.className=on?'rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide':'rounded-full bg-gray-200 px-2 py-0.5 text-xs uppercase tracking-wide text-gray-700 dark:bg-slate-700 dark:text-slate-200';if(total){const v=p+a+(on?pl:0);total.textContent='RM '+v.toLocaleString('en-MY',{minimumFractionDigits:2,maximumFractionDigits:2});}})(this)"
+                        onclick="(function(btn){const card=btn.closest('[data-yuran-card]');if(!card)return;const on=btn.dataset.isOn!=='1';btn.dataset.isOn=on?'1':'0';btn.setAttribute('aria-pressed',on?'true':'false');const badge=btn.querySelector('[data-toggle-state]');if(badge)badge.textContent=on?'YA':'TIDAK';btn.className=on?'inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500':'inline-flex items-center gap-3 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:focus:ring-slate-500';if(badge)badge.className=on?'rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide':'rounded-full bg-gray-200 px-2 py-0.5 text-xs uppercase tracking-wide text-gray-700 dark:bg-slate-700 dark:text-slate-200';updateYuranTotal(card);})(this)"
                         class="inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500">
-                        <span>Pilihan Baru</span>
-                        <span data-toggle-state class="rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide">ON</span>
+                        <span>Asrama</span>
+                        <span data-toggle-state class="rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide">YA</span>
                     </button>
                 </div>
 
                 <div class="rounded-3xl bg-white p-4 shadow-sm border border-orange-100">
                     <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
-                        <span>Perincian Pilihan Baru</span>
+                        <span>Bulanan Asrama</span>
                         <span class="font-semibold text-gray-900">RM {{ number_format($asramaTotal, 2) }}</span>
                     </div>
                     <div class="flex items-center justify-between text-sm text-gray-500">
@@ -88,8 +90,44 @@
                     </div>
                 </div>
 
-                <div class="mt-6 border-t border-orange-200 pt-4 text-sm uppercase tracking-[0.2em] text-orange-700">Keseluruhan (Daftar + Pilihan + Asrama)</div>
+                <div class="mt-6 border-t border-orange-200 pt-4 text-sm uppercase tracking-[0.2em] text-orange-700" data-keseluruhan-label>Keseluruhan (Daftar + Pilihan + Asrama)</div>
                 <div data-total-yuran class="mt-3 text-3xl font-bold text-orange-900">RM {{ number_format($totalYuran, 2) }}</div>
+                <script>
+                  function updateYuranTotal(card) {
+                    const asramaBtn = card.querySelector('[data-asrama-toggle]');
+                    const asramaActive = asramaBtn?.dataset.isOn === '1';
+                    const p = Number(card.dataset.pendaftaranTotal || 0);
+                    const a = Number(card.dataset.asramaTotal || 0);
+                    const totalYuranEl = card.querySelector('[data-total-yuran]');
+                    const labelEl = card.querySelector('[data-keseluruhan-label]');
+                    const pilihanItems = document.querySelectorAll('[data-pilihan-item]');
+                    let pl = 0;
+                    pilihanItems.forEach(item => {
+                      if (item.dataset.isActive === '1') {
+                        pl += Number(item.dataset.itemAmount || 0);
+                      }
+                    });
+                    const pilihanTotalDisplay = document.querySelector('[data-pilihan-total-display]');
+                    if (pilihanTotalDisplay) {
+                      pilihanTotalDisplay.textContent = 'RM ' + pl.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    }
+                    const total = p + pl + (asramaActive ? a : 0);
+                    if (totalYuranEl) {
+                      totalYuranEl.textContent = 'RM ' + total.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                    }
+                    if (labelEl) {
+                      if (asramaActive) {
+                        labelEl.textContent = 'Keseluruhan (Daftar + Pilihan + Asrama)';
+                      } else {
+                        labelEl.textContent = 'Keseluruhan (Daftar + Pilihan)';
+                      }
+                    }
+                  }
+                  document.addEventListener('DOMContentLoaded', function() {
+                    const card = document.querySelector('[data-yuran-card]');
+                    if (card) updateYuranTotal(card);
+                  });
+                </script>
             </div>
         </div>
     </div>
