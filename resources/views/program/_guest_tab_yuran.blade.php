@@ -1,4 +1,4 @@
-@php
+﻿@php
     $pendaftaranTotal = $kursus->yuranPendaftarans->sum('amount');
     $pilihanTotal = $kursus->yuranPilihans->sum('amount');
     $asramaTotal = $kursus->yuranAsramas->sum('amount');
@@ -44,7 +44,7 @@
                         <div class="space-y-4">
                             @foreach($kursus->yuranPilihans as $fee)
                                 <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200">
-                                    <div class="text-sm text-gray-700">{{ $fee->pilihan }}</div>
+                                    <div class="text-sm text-gray-700">{{ $fee->item }}</div>
                                     <div class="text-sm font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</div>
                                 </div>
                             @endforeach
