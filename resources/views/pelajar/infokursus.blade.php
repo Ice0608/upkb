@@ -625,6 +625,25 @@
     <script>
         let currentTab = 'maklumat';
 
+        function runLoadedScripts(container) {
+            container.querySelectorAll('script').forEach(script => {
+                const executableScript = document.createElement('script');
+                Array.from(script.attributes).forEach(attribute => {
+                    executableScript.setAttribute(attribute.name, attribute.value);
+                });
+                executableScript.textContent = script.textContent;
+                script.replaceWith(executableScript);
+            });
+        }
+
+        function initializeLoadedYuran(container) {
+            if (!window.updateGuestYuranTotal) return;
+            container.querySelectorAll('[data-yuran-section]').forEach(section => {
+                const card = section.querySelector('[data-yuran-card]');
+                if (card) window.updateGuestYuranTotal(card, 'init');
+            });
+        }
+
         function loadTab(tab) {
             currentTab = tab;
             const tabContent = document.getElementById('tab-content');
@@ -655,6 +674,8 @@
             .then(response => response.text())
             .then(html => {
                 tabContent.innerHTML = html;
+                runLoadedScripts(tabContent);
+                initializeLoadedYuran(tabContent);
             })
             .catch(error => {
                 console.error('Error loading tab:', error);
