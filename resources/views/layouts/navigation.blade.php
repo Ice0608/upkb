@@ -166,6 +166,7 @@
             opacity: 0;
             visibility: hidden;
             transform: translate(-50%, 14px) scale(0.96);
+            perspective: 1100px;
         }
 
         .site-nav-program:hover .site-nav-program-panel,
@@ -178,16 +179,18 @@
         .site-nav-program-shell {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(15, 23, 42, 0.1);
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.88)),
-                linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+                radial-gradient(circle at 18% 12%, rgba(0, 188, 212, 0.12), transparent 28%),
+                radial-gradient(circle at 86% 16%, rgba(168, 85, 247, 0.1), transparent 30%),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.84) 52%, rgba(255, 255, 255, 0.92));
             box-shadow:
-                0 28px 70px rgba(15, 23, 42, 0.18),
-                0 0 34px rgba(0, 188, 212, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8),
-                inset 0 -1px 0 rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(22px);
+                0 32px 76px rgba(15, 23, 42, 0.16),
+                0 0 48px rgba(0, 188, 212, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.86),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.42),
+                inset 0 -24px 48px rgba(15, 23, 42, 0.035);
+            backdrop-filter: blur(26px) saturate(190%);
         }
 
         .site-nav-program-shell::before {
@@ -195,8 +198,9 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(0, 230, 118, 0.12), transparent 26%),
-                radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.1), transparent 30%);
+                linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 34%),
+                repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.035) 0 1px, transparent 1px 48px),
+                repeating-linear-gradient(180deg, rgba(15, 23, 42, 0.026) 0 1px, transparent 1px 48px);
             pointer-events: none;
         }
 
@@ -205,8 +209,15 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.18),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.05);
             pointer-events: none;
+        }
+
+        .site-nav-program-shell > div:first-child p {
+            color: rgba(51, 65, 85, 0.68);
+            text-shadow: 0 1px 14px rgba(255, 255, 255, 0.45);
         }
 
         .site-nav-mobile summary {
@@ -255,13 +266,17 @@
             border-radius: 1.9rem;
             clip-path: inset(0 round 1.9rem);
             min-height: 13.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.26);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            isolation: isolate;
+            backdrop-filter: blur(18px) saturate(1.25);
             box-shadow:
-                0 22px 36px rgba(15, 23, 42, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.32);
+                0 24px 48px rgba(2, 6, 23, 0.28),
+                0 0 0 1px rgba(255, 255, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.34),
+                inset 0 -18px 40px rgba(255, 255, 255, 0.06);
             transition:
                 transform 0.55s cubic-bezier(0.22, 1, 0.3, 1),
                 box-shadow 0.55s cubic-bezier(0.22, 1, 0.3, 1),
@@ -280,7 +295,7 @@
             background: linear-gradient(
                 115deg,
                 rgba(255,255,255,0) 30%,
-                rgba(255,255,255,0.38) 50%,
+                rgba(255,255,255,0.46) 50%,
                 rgba(255,255,255,0) 70%
             );
             transform: translateX(-130%) skewX(-12deg);
@@ -297,35 +312,40 @@
             z-index: 1;
             background: linear-gradient(
                 180deg,
-                rgba(0,0,0,0.04) 0%,
-                rgba(0,0,0,0.44) 70%,
-                rgba(0,0,0,0.62) 100%
+                rgba(255,255,255,0.16) 0%,
+                rgba(255,255,255,0.04) 24%,
+                rgba(0,0,0,0.26) 58%,
+                rgba(0,0,0,0.66) 100%
             );
-            opacity: 0.82;
+            opacity: 0.9;
             transform: translateY(8px);
             transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.22, 1, 0.3, 1);
             pointer-events: none;
         }
 
+        .site-nav-program-card::marker {
+            content: none;
+        }
+
         /* ── Per-card accent colour tokens ── */
-        .site-nav-program-card-tvet    { --card-accent: 0, 188, 212;  --card-accent-alt: 0, 230, 118; }
-        .site-nav-program-card-diploma { --card-accent: 162, 28, 175; --card-accent-alt: 217, 70, 239; }
-        .site-nav-program-card-health  { --card-accent: 2, 132, 199;  --card-accent-alt: 103, 232, 249; }
+        .site-nav-program-card-tvet    { --card-accent: 255, 106, 24; --card-accent-alt: 255, 186, 96; --card-badge-accent: 255,81,0,0.7; }
+        .site-nav-program-card-diploma { --card-accent: 162, 28, 175; --card-accent-alt: 217, 70, 239; --card-badge-accent: 162, 28, 175; }
+        .site-nav-program-card-health  { --card-accent: 2, 132, 199;  --card-accent-alt: 103, 232, 249; --card-badge-accent: 2, 132, 199; }
 
         /* ── Background images ── */
         .site-nav-program-card-tvet {
             background-image:
-                linear-gradient(145deg, rgba(21, 101, 192, 0.82), rgba(0, 188, 212, 0.66), rgba(0, 230, 118, 0.38)),
+                linear-gradient(180deg, rgba(128, 42, 0, 0.62), rgba(194, 76, 0, 0.68) 58%, rgba(62, 25, 0, 0.82)),
                 url('{{ asset('images/tvet-vg2.jpeg') }}');
         }
         .site-nav-program-card-diploma {
             background-image:
-                linear-gradient(145deg, rgba(100, 14, 120, 0.82), rgba(162, 28, 175, 0.66), rgba(192, 132, 252, 0.42)),
+                linear-gradient(145deg, rgba(80, 20, 112, 0.74), rgba(162, 28, 175, 0.62), rgba(192, 132, 252, 0.34)),
                 url('{{ asset('images/postgraduate-differences_sim-article.jpg') }}');
         }
         .site-nav-program-card-health {
             background-image:
-                linear-gradient(145deg, rgba(1, 80, 130, 0.82), rgba(2, 132, 199, 0.66), rgba(103, 232, 249, 0.42)),
+                linear-gradient(145deg, rgba(1, 80, 130, 0.74), rgba(2, 132, 199, 0.62), rgba(103, 232, 249, 0.34)),
                 url('{{ asset('images/sains.jpg') }}');
         }
 
@@ -338,11 +358,12 @@
             background-position: center 24%;
             filter: saturate(1.24) brightness(1.09) contrast(1.03);
             box-shadow:
-                0 0 0 1.5px rgba(var(--card-accent), 0.55),
-                0 28px 52px rgba(var(--card-accent), 0.36),
-                0 44px 80px rgba(15, 23, 42, 0.32),
-                0 0 48px rgba(var(--card-accent-alt), 0.28),
-                inset 0 1px 0 rgba(255, 255, 255, 0.42);
+                0 0 0 1.5px rgba(255, 255, 255, 0.4),
+                0 28px 56px rgba(var(--card-accent), 0.34),
+                0 46px 88px rgba(2, 6, 23, 0.42),
+                0 0 54px rgba(var(--card-accent-alt), 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -22px 46px rgba(255, 255, 255, 0.08);
         }
 
         .site-nav-program-card-tvet:hover,
@@ -369,7 +390,7 @@
 
         /* lift bottom overlay */
         .site-nav-program-card:hover::after {
-            opacity: 0.92;
+            opacity: 0.82;
             transform: translateY(0);
         }
 
@@ -392,19 +413,27 @@
 
         /* ── Badge ── */
         .site-nav-program-card-badge {
-            backdrop-filter: blur(10px);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
-            transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            background: rgba(255, 255, 255, 0.14) !important;
+            backdrop-filter: blur(14px) saturate(1.4);
+            box-shadow:
+                0 8px 18px rgba(2, 6, 23, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.26);
+            transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
         }
         .site-nav-program-card:hover .site-nav-program-card-badge {
-            background: rgba(var(--card-accent), 0.55) !important;
-            box-shadow: 0 0 14px rgba(var(--card-accent), 0.55), inset 0 1px 0 rgba(255,255,255,0.24);
+            border-color: rgba(255, 255, 255, 0.38);
+            background: rgba(var(--card-badge-accent), 0.72) !important;
+            box-shadow:
+                0 0 18px rgba(var(--card-badge-accent), 0.5),
+                0 10px 22px rgba(2, 6, 23, 0.14),
+                inset 0 1px 0 rgba(255,255,255,0.32);
             transform: translateY(-2px) scale(1.04);
         }
 
         /* ── Title ── */
         .site-nav-program-card-title {
-            text-shadow: 0 8px 20px rgba(15, 23, 42, 0.24);
+            text-shadow: 0 8px 20px rgba(2, 6, 23, 0.34);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.3, 1), text-shadow 0.45s ease;
         }
         .site-nav-program-card:hover .site-nav-program-card-title {
@@ -419,7 +448,7 @@
             max-width: 11ch;
             line-height: 1.6;
             text-wrap: balance;
-            text-shadow: 0 4px 14px rgba(15, 23, 42, 0.28);
+            text-shadow: 0 4px 14px rgba(2, 6, 23, 0.36);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.3, 1), opacity 0.35s ease;
         }
         .site-nav-program-card:hover .site-nav-program-card-copy {
@@ -537,7 +566,30 @@
             border-color: rgba(0, 188, 212, 0.42);
             color: #00bcd4;
         }
-        html.dark .site-nav-program-shell, html.dark .site-nav-mobile-panel {
+        html.dark .site-nav-program-shell {
+            border-color: rgba(148, 163, 184, 0.26);
+            background:
+                radial-gradient(circle at 18% 12%, rgba(0, 229, 255, 0.2), transparent 28%),
+                radial-gradient(circle at 86% 16%, rgba(168, 85, 247, 0.18), transparent 30%),
+                linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.78) 52%, rgba(8, 13, 24, 0.94));
+            box-shadow:
+                0 38px 92px rgba(2, 6, 23, 0.46),
+                0 0 54px rgba(0, 188, 212, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.22),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+                inset 0 -24px 48px rgba(255, 255, 255, 0.035);
+        }
+        html.dark .site-nav-program-shell::before {
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 34%),
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 48px),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.032) 0 1px, transparent 1px 48px);
+        }
+        html.dark .site-nav-program-shell > div:first-child p {
+            color: rgba(203, 213, 225, 0.72);
+            text-shadow: 0 1px 14px rgba(2, 6, 23, 0.32);
+        }
+        html.dark .site-nav-mobile-panel {
             background: #1e293b;
             border-color: #334155;
         }
