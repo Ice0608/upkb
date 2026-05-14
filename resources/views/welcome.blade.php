@@ -2414,7 +2414,7 @@
 
             <div class="text-center" data-reveal="up">
                 <h2 class="probsol-title">Masalah Sebenar.<br><span>Penyelesaian Nyata.</span></h2>
-                <p class="probsol-subtitle mx-auto">Ramai yang terhenti bukan kerana tidak mampu, tetapi kerana tiada panduan yang betul. Kami hadir untuk mengubah itu.</p>
+                <p class="probsol-subtitle mx-auto">Ramai pelajar terhenti kerana tiada panduan yang tepat. Kami bantu mereka teruskan langkah.</p>
             </div>
 
             <div class="probsol-grid">
@@ -2429,7 +2429,7 @@
                         <div class="probsol-problem-icon"><i class="fa-solid fa-map-signs"></i></div>
                         <div>
                             <p class="probsol-problem-title">Tiada Hala Tuju Yang Jelas</p>
-                            <p class="probsol-problem-desc">Ramai pelajar tidak tahu program atau institusi mana yang paling sesuai dengan minat dan kelayakan mereka.</p>
+                            <p class="probsol-problem-desc">Tak pasti program atau institusi mana yang paling sesuai.</p>
                         </div>
                     </div>
 
@@ -2437,7 +2437,7 @@
                         <div class="probsol-problem-icon"><i class="fa-solid fa-file-circle-xmark"></i></div>
                         <div>
                             <p class="probsol-problem-title">Proses Permohonan Yang Rumit</p>
-                            <p class="probsol-problem-desc">Borang, dokumen, syarat. Prosedur yang panjang menyebabkan ramai berputus asa sebelum sempat memulakan.</p>
+                            <p class="probsol-problem-desc">Borang dan syarat panjang membuat ramai rasa tertekan.</p>
                         </div>
                     </div>
 
@@ -2445,7 +2445,7 @@
                         <div class="probsol-problem-icon"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
                         <div>
                             <p class="probsol-problem-title">Kebimbangan Kos Pengajian</p>
-                            <p class="probsol-problem-desc">Ketidakpastian tentang kos, bantuan kewangan dan pinjaman membuatkan ramai teragak-agak untuk melangkah.</p>
+                            <p class="probsol-problem-desc">Kos dan bantuan kewangan tidak jelas, jadi ramai ragu untuk mulakan.</p>
                         </div>
                     </div>
 
@@ -2453,7 +2453,7 @@
                         <div class="probsol-problem-icon"><i class="fa-solid fa-user-slash"></i></div>
                         <div>
                             <p class="probsol-problem-title">Kurang Sokongan &amp; Bimbingan</p>
-                            <p class="probsol-problem-desc">Keputusan besar dibuat sendirian tanpa mentor atau penasihat yang betul-betul faham keperluan individu.</p>
+                            <p class="probsol-problem-desc">Ramai membuat keputusan besar tanpa mentor yang faham mereka.</p>
                         </div>
                     </div>
                 </div>
@@ -2468,7 +2468,7 @@
                         <div class="probsol-solution-icon"><i class="fa-solid fa-compass"></i></div>
                         <div>
                             <p class="probsol-solution-title">Konsultasi Peribadi &amp; Terperinci</p>
-                            <p class="probsol-solution-desc">Setiap klien dinilai secara individu. Minat, kelayakan dan matlamat kerjaya anda menentukan laluan terbaik.</p>
+                            <p class="probsol-solution-desc">Kami pilih laluan paling sesuai berdasarkan minat dan kelayakan anda.</p>
                         </div>
                     </div>
 
@@ -2476,7 +2476,7 @@
                         <div class="probsol-solution-icon"><i class="fa-solid fa-hands-holding"></i></div>
                         <div>
                             <p class="probsol-solution-title">Bantuan Permohonan Lengkap</p>
-                            <p class="probsol-solution-desc">Kami uruskan semua dokumen dan prosedur dari A hingga Z supaya anda hanya fokus kepada masa depan.</p>
+                            <p class="probsol-solution-desc">Kami uruskan dokumen dan proses supaya anda boleh fokus pada permulaan baru.</p>
                         </div>
                     </div>
 
@@ -2484,7 +2484,7 @@
                         <div class="probsol-solution-icon"><i class="fa-solid fa-piggy-bank"></i></div>
                         <div>
                             <p class="probsol-solution-title">Panduan Kewangan &amp; Biasiswa</p>
-                            <p class="probsol-solution-desc">Kami bantu kenal pasti skim pembiayaan, PTPTN, biasiswa dan bantuan yang paling sesuai untuk anda.</p>
+                            <p class="probsol-solution-desc">Kami tunjukkan pilihan pembiayaan dan biasiswa yang sesuai untuk situasi anda.</p>
                         </div>
                     </div>
 
@@ -2492,7 +2492,7 @@
                         <div class="probsol-solution-icon"><i class="fa-solid fa-people-roof"></i></div>
                         <div>
                             <p class="probsol-solution-title">Sokongan Berterusan Pasca-Daftar</p>
-                            <p class="probsol-solution-desc">Bimbingan tidak berhenti selepas pendaftaran. Kami terus bersama anda sepanjang perjalanan pengajian.</p>
+                            <p class="probsol-solution-desc">Kami terus bantu anda selepas daftar untuk kekal di landasan yang betul.</p>
                         </div>
                     </div>
                 </div>

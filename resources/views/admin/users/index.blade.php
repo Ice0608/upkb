@@ -69,7 +69,7 @@
 
     </style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="admin-dark">
     @include('layouts.navadmin')
 
     <main class="max-w-7xl mx-auto px-6 py-16">

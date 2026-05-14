@@ -8,7 +8,7 @@
     <title>SESOC - Dashboard Admin</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="admin-dark">
 @include('layouts.navadmin')
 
 <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
@@ -270,3 +270,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+

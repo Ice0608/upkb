@@ -28,6 +28,65 @@
                 linear-gradient(135deg, #ea580c 0%, #f97316 52%, #fb923c 100%);
         }
 
+        body.admin-dark .hero-admin {
+            background:
+                radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(255,255,255,0.06), transparent 22%),
+                linear-gradient(135deg, #1b3256 0%, #12214d 45%, #09182d 100%);
+        }
+
+        body.admin-dark .prog-card {
+            background: #071a34;
+            border-color: rgba(148, 163, 184, 0.18);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        body.admin-dark .prog-card-footer {
+            background: rgba(5, 17, 39, 0.95);
+            border-color: rgba(148, 163, 184, 0.10);
+        }
+
+        body.admin-dark .prog-card-top,
+        body.admin-dark .empty-programs {
+            background: transparent;
+        }
+
+        body.admin-dark .prog-card-kicker {
+            background: rgba(249, 115, 22, 0.12);
+            color: #fbbf24;
+        }
+
+        body.admin-dark .prog-title {
+            color: #f8fafc;
+        }
+
+        body.admin-dark .prog-desc-short,
+        body.admin-dark .prog-desc-full,
+        body.admin-dark .prog-meta {
+            color: #cbd5e1;
+        }
+
+        body.admin-dark .btn-edit {
+            background: rgba(148, 163, 184, 0.08);
+            color: #e2e8f0;
+            border-color: rgba(148, 163, 184, 0.24);
+        }
+
+        body.admin-dark .btn-edit:hover {
+            background: rgba(148, 163, 184, 0.14);
+            color: #fff;
+        }
+
+        body.admin-dark .btn-delete {
+            background: rgba(248, 113, 113, 0.1);
+            color: #fecaca;
+        }
+
+        body.admin-dark .btn-delete:hover {
+            background: rgba(248, 113, 113, 0.16);
+            color: #f87171;
+        }
+
         .stat-chip {
             display: inline-flex;
             align-items: center;
@@ -240,7 +299,7 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-gray-800">
+<body class="admin-dark">
 @include('layouts.navadmin')
 
 <main class="max-w-7xl mx-auto px-6 py-10">
@@ -357,3 +416,4 @@ function toggleDesc(id, btn) {
 
 </body>
 </html>
+

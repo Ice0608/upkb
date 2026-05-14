@@ -70,7 +70,7 @@
 
     </style>
 </head>
-<body class="bg-[#FBFCFE] text-slate-900">
+<body class="admin-dark">
 
 @include('layouts.navadmin')
 

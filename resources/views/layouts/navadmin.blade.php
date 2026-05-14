@@ -423,6 +423,141 @@
             box-shadow: inset 0 -2px 0 rgba(249, 115, 22, 0.7);
         }
 
+        .admin-theme-toggle {
+            min-width: 6.5rem;
+        }
+
+        body.admin-dark .admin-theme-toggle {
+            border-color: rgba(148, 163, 184, 0.2);
+            background: rgba(15, 23, 42, 0.85);
+            color: #e2e8f0;
+        }
+
+        body.admin-dark .admin-theme-toggle:hover {
+            background: rgba(15, 23, 42, 0.96);
+        }
+
+        body.admin-dark {
+            background: #071a34;
+            color: #e2e8f0;
+        }
+
+        body.admin-dark .site-nav {
+            border-bottom-color: rgba(148, 163, 184, 0.14);
+            background: rgba(6, 16, 38, 0.96);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+        }
+
+        body.admin-dark .site-nav-brand {
+            border-color: rgba(249, 115, 22, 0.2);
+            background: rgba(11, 25, 49, 0.92);
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+        }
+
+        body.admin-dark .site-nav-brand-title,
+        body.admin-dark .site-nav-brand-kicker,
+        body.admin-dark .site-nav-brand-copy {
+            color: #f8fafc;
+        }
+
+        body.admin-dark .site-nav-link {
+            color: #cbd5e1;
+        }
+
+        body.admin-dark .site-nav-link:not(.is-active):hover,
+        body.admin-dark .site-nav-link:not(.is-active):focus-visible {
+            background: rgba(148, 163, 184, 0.08);
+            color: #fb923c;
+        }
+
+        body.admin-dark .site-nav-link.is-active {
+            background: rgba(249, 115, 22, 0.14);
+            color: #fb923c;
+        }
+
+        body.admin-dark .site-nav-program-shell,
+        body.admin-dark .site-nav-program-card,
+        body.admin-dark .site-nav-mobile-program-card {
+            background: rgba(8, 24, 49, 0.95);
+            border-color: rgba(148, 163, 184, 0.12);
+        }
+
+        body.admin-dark .site-nav-program-card-badge {
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+        }
+
+        body.admin-dark .site-nav-program-card-title,
+        body.admin-dark .site-nav-program-card-copy,
+        body.admin-dark .site-nav-program-card-arrow {
+            color: #e2e8f0;
+        }
+
+        body.admin-dark .site-nav-program-card-arrow {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        body.admin-dark .bg-white,
+        body.admin-dark .bg-gray-100,
+        body.admin-dark .bg-slate-50,
+        body.admin-dark .bg-gray-50,
+        body.admin-dark .bg-\[\#FBFCFE\],
+        body.admin-dark .bg-white\/20,
+        body.admin-dark .bg-white\/18,
+        body.admin-dark .bg-white\/12,
+        body.admin-dark .bg-orange-50,
+        body.admin-dark .bg-blue-50,
+        body.admin-dark .bg-sky-50,
+        body.admin-dark .bg-emerald-50 {
+            background-color: #0f2550 !important;
+            color: #e2e8f0 !important;
+        }
+
+        body.admin-dark .border-gray-200,
+        body.admin-dark .border-gray-300,
+        body.admin-dark .border-slate-50,
+        body.admin-dark .border-blue-100,
+        body.admin-dark .border-orange-100,
+        body.admin-dark .border-white\/10,
+        body.admin-dark .border-white\/45 {
+            border-color: rgba(148, 163, 184, 0.2) !important;
+        }
+
+        body.admin-dark .text-gray-900,
+        body.admin-dark .text-gray-800,
+        body.admin-dark .text-slate-900,
+        body.admin-dark .text-slate-700,
+        body.admin-dark .text-gray-700,
+        body.admin-dark .text-gray-600,
+        body.admin-dark .text-gray-500,
+        body.admin-dark .text-slate-400 {
+            color: #cbd5e1 !important;
+        }
+
+        body.admin-dark .text-gray-600,
+        body.admin-dark .text-gray-500,
+        body.admin-dark .text-slate-400 {
+            color: #94a3b8 !important;
+        }
+
+        body.admin-dark .bg-slate-900,
+        body.admin-dark .bg-slate-800,
+        body.admin-dark .bg-slate-700 {
+            background-color: #08172f !important;
+        }
+
+        body.admin-dark .shadow-sm,
+        body.admin-dark .shadow,
+        body.admin-dark .shadow-lg {
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22) !important;
+        }
+
+        body.admin-dark .ring-slate-200,
+        body.admin-dark .ring-slate-50 {
+            box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.16) !important;
+        }
+
         @keyframes siteNavCardFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-4px); }
@@ -518,6 +653,13 @@
             <a href="{{ route('admin.users') }}" class="site-nav-link {{ request()->routeIs('admin.users') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
             Users
             </a>
+
+            @if (!request()->routeIs('admin.event-report'))
+                <button type="button" data-admin-theme-toggle class="admin-theme-toggle inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-200">
+                    <span data-admin-theme-icon>🌙</span>
+                    <span data-admin-theme-label>Dark mode</span>
+                </button>
+            @endif
         </div>
 
         <div class="hidden lg:block">
@@ -554,3 +696,45 @@
         </details>
     </div>
 </nav>
+
+<script>
+    (function() {
+        const isEventReport = {{ request()->routeIs('admin.event-report') ? 'true' : 'false' }};
+        const themeKey = 'adminThemeMode';
+        const button = document.querySelector('[data-admin-theme-toggle]');
+        const label = button?.querySelector('[data-admin-theme-label]');
+        const icon = button?.querySelector('[data-admin-theme-icon]');
+
+        const applyMode = (mode) => {
+            if (mode === 'dark' && !isEventReport) {
+                document.body.classList.add('admin-dark');
+            } else {
+                document.body.classList.remove('admin-dark');
+            }
+
+            if (label) {
+                label.textContent = mode === 'dark' ? 'Dark mode' : 'Light mode';
+            }
+            if (icon) {
+                icon.textContent = mode === 'dark' ? '🌙' : '☀️';
+            }
+            if (button) {
+                button.classList.toggle('bg-slate-900', mode === 'dark');
+                button.classList.toggle('text-white', mode === 'dark');
+                button.classList.toggle('border-slate-700', mode === 'dark');
+                button.classList.toggle('hover:bg-slate-800', mode === 'dark');
+            }
+        };
+
+        const currentMode = localStorage.getItem(themeKey) || 'dark';
+        applyMode(currentMode);
+
+        if (button) {
+            button.addEventListener('click', function() {
+                const nextMode = (localStorage.getItem(themeKey) || 'dark') === 'dark' ? 'light' : 'dark';
+                localStorage.setItem(themeKey, nextMode);
+                applyMode(nextMode);
+            });
+        }
+    })();
+</script>

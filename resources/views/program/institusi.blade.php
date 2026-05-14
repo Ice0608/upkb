@@ -771,7 +771,7 @@
 
         .institusi-card-media {
             position: relative;
-            height: 10rem;
+            height: 26rem;
             overflow: hidden;
         }
 

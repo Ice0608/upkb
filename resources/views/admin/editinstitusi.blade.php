@@ -8,7 +8,7 @@
     <title>SESOC - Edit Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="admin-dark">
 @include('layouts.navadmin')
 
     <section class="max-w-6xl mx-auto px-6 py-10">
@@ -203,3 +203,4 @@
 
 </body>
 </html>
+
