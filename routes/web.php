@@ -48,7 +48,6 @@ Route::get('/pelajar/infoinstitusi/{pelajar}/{kod_institusi}', [StaffEventContro
 Route::get('/pelajar/infokursus/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarInfoKursus'])->name('pelajar.infokursus');
 Route::get('/pelajar/tab/maklumat/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarTabMaklumat'])->name('pelajar.tab.maklumat');
 Route::get('/pelajar/tab/syarat/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarTabSyarat'])->name('pelajar.tab.syarat');
-Route::get('/pelajar/tab/silibus/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarTabSilibus'])->name('pelajar.tab.silibus');
 Route::get('/pelajar/tab/kerjaya/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarTabKerjaya'])->name('pelajar.tab.kerjaya');
 Route::get('/pelajar/tab/yuran/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarTabYuran'])->name('pelajar.tab.yuran');
 Route::get('/pelajar/tab/galeri/{pelajar}/{kursus}', [StaffEventController::class, 'pelajarTabGaleri'])->name('pelajar.tab.galeri');
@@ -85,7 +84,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/infokursus/{kod_institusi}/{kod_kursus}', [InterviewController::class, 'infoKursus'])->name('infokursus');
         Route::get('/tab/maklumat/{kod_kursus}', [InterviewController::class, 'tabMaklumat'])->name('tab.maklumat');
         Route::get('/tab/syarat/{kod_kursus}', [InterviewController::class, 'tabSyarat'])->name('tab.syarat');
-        Route::get('/tab/silibus/{kod_kursus}', [InterviewController::class, 'tabSilibus'])->name('tab.silibus');
         Route::get('/tab/kerjaya/{kod_kursus}', [InterviewController::class, 'tabKerjaya'])->name('tab.kerjaya');
         Route::get('/tab/yuran/{kod_kursus}', [InterviewController::class, 'tabYuran'])->name('tab.yuran');
         Route::get('/tab/galeri/{kod_institusi}', [InterviewController::class, 'tabGaleri'])->name('tab.galeri');
@@ -164,8 +162,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
     Route::delete('/deletekursus/{id}', [AdminKursusController::class, 'destroy'])->name('admin.deletekursus');
     Route::post('/storesyarat', [AdminKursusController::class, 'storeSyarat'])->name('admin.storesyarat');
     Route::delete('/deletesyarat/{id}', [AdminKursusController::class, 'destroySyarat'])->name('admin.deletesyarat');
-    Route::post('/storesilibus', [AdminKursusController::class, 'storeSilibus'])->name('admin.storesilibus');
-    Route::delete('/deletesilibus/{id}', [AdminKursusController::class, 'destroySilibus'])->name('admin.deletesilibus');
     Route::post('/storekerjaya', [AdminKursusController::class, 'storeKerjaya'])->name('admin.storekerjaya');
     Route::delete('/deletekerjaya/{id}', [AdminKursusController::class, 'destroyKerjaya'])->name('admin.deletekerjaya');
     Route::post('/storeyuranpendaftaran', [AdminKursusController::class, 'storeYuranPendaftaran'])->name('admin.storeyuranpendaftaran');
@@ -181,7 +177,6 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function () {
 
     Route::get('/tabmaklumat/{id}', [AdminkursusController::class, 'tabMaklumat'])->name('admin.tabmaklumat');
     Route::get('/tabsyarat/{id}', [AdminkursusController::class, 'tabSyarat'])->name('admin.tabsyarat');
-    Route::get('/tabsilibus/{id}', [AdminkursusController::class, 'tabSilibus'])->name('admin.tabsilibus');
     Route::get('/tabkerjaya/{id}', [AdminkursusController::class, 'tabKerjaya'])->name('admin.tabkerjaya');
     Route::get('/tabyuran/{id}', [AdminkursusController::class, 'tabYuran'])->name('admin.tabyuran');
     Route::get('/tabgaleri/{id}', [AdminkursusController::class, 'tabGaleri'])->name('admin.tabgaleri');
@@ -208,7 +203,6 @@ Route::get('/kursus/{id}/pdf', [KursusController::class, 'pdf'])->name('kursus.p
 
 Route::get('/kursus/tabmaklumat/{id}', [kursusController::class, 'tabMaklumat'])->name('kursus.tabmaklumat');
 Route::get('/kursus/tabsyarat/{id}', [kursusController::class, 'tabSyarat'])->name('kursus.tabsyarat');
-Route::get('/kursus/tabsilibus/{id}', [kursusController::class, 'tabSilibus'])->name('kursus.tabsilibus');
 Route::get('/kursus/tabkerjaya/{id}', [kursusController::class, 'tabKerjaya'])->name('kursus.tabkerjaya');
 Route::get('/kursus/tabyuran/{id}', [kursusController::class, 'tabYuran'])->name('kursus.tabyuran');
 Route::get('/kursus/tabgaleri/{id}', [kursusController::class, 'tabGaleri'])->name('kursus.tabgaleri');

@@ -35,7 +35,6 @@ class StaffEventController extends Controller
             'pelajarInfoKursus',
             'pelajarTabMaklumat',
             'pelajarTabSyarat',
-            'pelajarTabSilibus',
             'pelajarTabKerjaya',
             'pelajarTabYuran',
             'pelajarTabGaleri',
@@ -730,7 +729,6 @@ class StaffEventController extends Controller
         $kursus->loadScopedCourseDetails([
             'galeris',
             'syaratKelayakans',
-            'silibuses',
             'kerjayas',
             'yuranPendaftarans',
             'yuranPilihans',
@@ -752,12 +750,6 @@ class StaffEventController extends Controller
     {
         $kursus->loadScopedCourseDetails('syaratKelayakans');
         return view('pelajar._guest_tab_syarat', compact('kursus'));
-    }
-
-    public function pelajarTabSilibus(Pelajar $pelajar, Kursus $kursus)
-    {
-        $kursus->loadScopedCourseDetails('silibuses');
-        return view('pelajar._guest_tab_silibus', compact('kursus'));
     }
 
     public function pelajarTabKerjaya(Pelajar $pelajar, Kursus $kursus)

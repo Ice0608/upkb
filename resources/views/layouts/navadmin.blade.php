@@ -423,22 +423,15 @@
             box-shadow: inset 0 -2px 0 rgba(249, 115, 22, 0.7);
         }
 
-        .admin-theme-toggle {
-            min-width: 6.5rem;
-        }
-
-        body.admin-dark .admin-theme-toggle {
-            border-color: rgba(148, 163, 184, 0.2);
-            background: rgba(15, 23, 42, 0.85);
+        body.admin-dark {
+            background: #071a34;
             color: #e2e8f0;
         }
 
-        body.admin-dark .admin-theme-toggle:hover {
-            background: rgba(15, 23, 42, 0.96);
-        }
-
-        body.admin-dark {
-            background: #071a34;
+        body.admin-dark main,
+        body.admin-dark section,
+        body.admin-dark article,
+        body.admin-dark aside {
             color: #e2e8f0;
         }
 
@@ -450,8 +443,22 @@
 
         body.admin-dark .site-nav-brand {
             border-color: rgba(249, 115, 22, 0.2);
-            background: rgba(11, 25, 49, 0.92);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.97) 52%, rgba(30, 41, 59, 0.9));
             box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+        }
+
+        body.admin-dark .site-nav-brand::after {
+            background: linear-gradient(90deg, rgba(251, 146, 60, 0.38), rgba(251, 146, 60, 0));
+        }
+
+        body.admin-dark .site-nav-brand-badge {
+            border-color: rgba(249, 115, 22, 0.2);
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+        }
+
+        body.admin-dark .site-nav-brand-badge::before {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.88));
         }
 
         body.admin-dark .site-nav-brand-title,
@@ -462,6 +469,22 @@
 
         body.admin-dark .site-nav-link {
             color: #cbd5e1;
+        }
+
+        body.admin-dark .site-nav-login,
+        body.admin-dark .site-nav-menu-icon {
+            border-color: rgba(148, 163, 184, 0.18);
+            background: rgba(15, 23, 42, 0.82);
+            color: #e2e8f0;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        body.admin-dark .site-nav-login:hover,
+        body.admin-dark .site-nav-menu-icon:hover,
+        body.admin-dark .site-nav-mobile[open] .site-nav-menu-icon {
+            border-color: rgba(251, 146, 60, 0.24);
+            background: rgba(30, 41, 59, 0.94);
+            color: #fb923c;
         }
 
         body.admin-dark .site-nav-link:not(.is-active):hover,
@@ -501,24 +524,41 @@
         body.admin-dark .bg-white,
         body.admin-dark .bg-gray-100,
         body.admin-dark .bg-slate-50,
+        body.admin-dark .bg-slate-100,
+        body.admin-dark .bg-slate-200,
         body.admin-dark .bg-gray-50,
         body.admin-dark .bg-\[\#FBFCFE\],
         body.admin-dark .bg-white\/20,
         body.admin-dark .bg-white\/18,
         body.admin-dark .bg-white\/12,
         body.admin-dark .bg-orange-50,
+        body.admin-dark .bg-orange-100,
         body.admin-dark .bg-blue-50,
+        body.admin-dark .bg-blue-100,
         body.admin-dark .bg-sky-50,
-        body.admin-dark .bg-emerald-50 {
+        body.admin-dark .bg-green-50,
+        body.admin-dark .bg-green-100,
+        body.admin-dark .bg-emerald-50,
+        body.admin-dark .bg-purple-50,
+        body.admin-dark .bg-purple-100,
+        body.admin-dark .bg-yellow-50,
+        body.admin-dark .bg-amber-50,
+        body.admin-dark .bg-red-50 {
             background-color: #0f2550 !important;
             color: #e2e8f0 !important;
         }
 
         body.admin-dark .border-gray-200,
         body.admin-dark .border-gray-300,
+        body.admin-dark .border-gray-100,
+        body.admin-dark .border-slate-100,
+        body.admin-dark .border-slate-200,
         body.admin-dark .border-slate-50,
         body.admin-dark .border-blue-100,
         body.admin-dark .border-orange-100,
+        body.admin-dark .border-green-100,
+        body.admin-dark .border-purple-100,
+        body.admin-dark .border-red-50,
         body.admin-dark .border-white\/10,
         body.admin-dark .border-white\/45 {
             border-color: rgba(148, 163, 184, 0.2) !important;
@@ -526,8 +566,11 @@
 
         body.admin-dark .text-gray-900,
         body.admin-dark .text-gray-800,
+        body.admin-dark .text-slate-800,
         body.admin-dark .text-slate-900,
         body.admin-dark .text-slate-700,
+        body.admin-dark .text-slate-600,
+        body.admin-dark .text-slate-500,
         body.admin-dark .text-gray-700,
         body.admin-dark .text-gray-600,
         body.admin-dark .text-gray-500,
@@ -537,8 +580,45 @@
 
         body.admin-dark .text-gray-600,
         body.admin-dark .text-gray-500,
+        body.admin-dark .text-slate-600,
+        body.admin-dark .text-slate-500,
         body.admin-dark .text-slate-400 {
             color: #94a3b8 !important;
+        }
+
+        body.admin-dark .text-green-700,
+        body.admin-dark .text-green-600,
+        body.admin-dark .text-emerald-700,
+        body.admin-dark .text-emerald-600,
+        body.admin-dark .text-blue-700,
+        body.admin-dark .text-blue-600,
+        body.admin-dark .text-purple-700,
+        body.admin-dark .text-purple-600,
+        body.admin-dark .text-red-700,
+        body.admin-dark .text-red-600,
+        body.admin-dark .text-yellow-700,
+        body.admin-dark .text-amber-700 {
+            color: #f8fafc !important;
+        }
+
+        body.admin-dark input,
+        body.admin-dark select,
+        body.admin-dark textarea {
+            background-color: #08172f !important;
+            color: #e2e8f0 !important;
+            border-color: rgba(148, 163, 184, 0.2) !important;
+        }
+
+        body.admin-dark input::placeholder,
+        body.admin-dark textarea::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        body.admin-dark .hover\:bg-slate-50:hover,
+        body.admin-dark .hover\:bg-gray-100:hover,
+        body.admin-dark .hover\:bg-slate-200:hover,
+        body.admin-dark .hover\:bg-orange-50:hover {
+            background-color: rgba(148, 163, 184, 0.14) !important;
         }
 
         body.admin-dark .bg-slate-900,
@@ -604,7 +684,7 @@
                     Program
                 </a>
 
-                <div class="site-nav-program-panel absolute left-1/2 top-full z-20 w-[min(92vw,32rem)] pt-4">
+                {{-- <div class="site-nav-program-panel absolute left-1/2 top-full z-20 w-[min(92vw,32rem)] pt-4">
                     <div class="site-nav-program-shell rounded-[2rem] p-3 sm:p-4">
                         <div class="mb-4 px-2 sm:mb-5">
                             <p class="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-400">Cari Institusi Mengikut Program</p>
@@ -642,7 +722,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <a href="{{ route('admin.institusis') }}" class="site-nav-link {{ request()->routeIs('admin.institusis') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 Institusi
@@ -655,9 +735,9 @@
             </a>
 
             @if (!request()->routeIs('admin.event-report'))
-                <button type="button" data-admin-theme-toggle class="admin-theme-toggle inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-200">
-                    <span data-admin-theme-icon>🌙</span>
-                    <span data-admin-theme-label>Dark mode</span>
+                <button type="button" data-admin-theme-toggle class="site-nav-login inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md" aria-label="Toggle Dark Mode">
+                    <i data-admin-theme-dark-icon class="hidden fas fa-moon"></i>
+                    <i data-admin-theme-light-icon class="hidden fas fa-sun"></i>
                 </button>
             @endif
         </div>
@@ -665,9 +745,16 @@
         <div class="hidden lg:block">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="text-gray-600 hover:text-orange-500">Logout</button>
+                <button type="submit" class="site-nav-link inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-orange-500">Logout</button>
             </form>
         </div>
+
+        @if (!request()->routeIs('admin.event-report'))
+            <button type="button" data-admin-theme-toggle-mobile class="site-nav-login ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md lg:hidden" aria-label="Toggle Dark Mode">
+                <i data-admin-theme-dark-icon-mobile class="hidden fas fa-moon"></i>
+                <i data-admin-theme-light-icon-mobile class="hidden fas fa-sun"></i>
+            </button>
+        @endif
 
         <details class="site-nav-mobile ml-auto lg:hidden">
             <summary class="cursor-pointer">
@@ -702,8 +789,11 @@
         const isEventReport = {{ request()->routeIs('admin.event-report') ? 'true' : 'false' }};
         const themeKey = 'adminThemeMode';
         const button = document.querySelector('[data-admin-theme-toggle]');
-        const label = button?.querySelector('[data-admin-theme-label]');
-        const icon = button?.querySelector('[data-admin-theme-icon]');
+        const mobileButton = document.querySelector('[data-admin-theme-toggle-mobile]');
+        const darkIcon = document.querySelector('[data-admin-theme-dark-icon]');
+        const lightIcon = document.querySelector('[data-admin-theme-light-icon]');
+        const darkIconMobile = document.querySelector('[data-admin-theme-dark-icon-mobile]');
+        const lightIconMobile = document.querySelector('[data-admin-theme-light-icon-mobile]');
 
         const applyMode = (mode) => {
             if (mode === 'dark' && !isEventReport) {
@@ -712,29 +802,23 @@
                 document.body.classList.remove('admin-dark');
             }
 
-            if (label) {
-                label.textContent = mode === 'dark' ? 'Dark mode' : 'Light mode';
-            }
-            if (icon) {
-                icon.textContent = mode === 'dark' ? '🌙' : '☀️';
-            }
-            if (button) {
-                button.classList.toggle('bg-slate-900', mode === 'dark');
-                button.classList.toggle('text-white', mode === 'dark');
-                button.classList.toggle('border-slate-700', mode === 'dark');
-                button.classList.toggle('hover:bg-slate-800', mode === 'dark');
-            }
+            const showSun = mode === 'dark';
+            darkIcon?.classList.toggle('hidden', showSun);
+            lightIcon?.classList.toggle('hidden', !showSun);
+            darkIconMobile?.classList.toggle('hidden', showSun);
+            lightIconMobile?.classList.toggle('hidden', !showSun);
         };
 
         const currentMode = localStorage.getItem(themeKey) || 'dark';
         applyMode(currentMode);
 
-        if (button) {
-            button.addEventListener('click', function() {
-                const nextMode = (localStorage.getItem(themeKey) || 'dark') === 'dark' ? 'light' : 'dark';
-                localStorage.setItem(themeKey, nextMode);
-                applyMode(nextMode);
-            });
-        }
+        const toggleTheme = () => {
+            const nextMode = (localStorage.getItem(themeKey) || 'dark') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem(themeKey, nextMode);
+            applyMode(nextMode);
+        };
+
+        button?.addEventListener('click', toggleTheme);
+        mobileButton?.addEventListener('click', toggleTheme);
     })();
 </script>

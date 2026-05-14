@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Kursus;
 use App\Models\Institusi;
 use App\Models\SyaratKelayakan;
-use App\Models\Silibus;
 use App\Models\Kerjaya;
 use App\Models\YuranPendaftaran;
 use App\Models\YuranPilihan;
@@ -173,47 +172,6 @@ class AdminKursusController extends Controller
 
         return redirect()->route('admin.editkursus', $kursus->id)
                         ->with('success', 'Syarat kelayakan berjaya dipadam.');
-    }
-
-    public function storeSilibus(Request $request)
-    {
-        $request->validate([
-            'kursus_id' => 'required|integer|exists:kursuses,id',
-            'topik' => 'required|string|max:255',
-            'isi_kandungan' => 'required|string',
-        ]);
-
-        $kursus = Kursus::findOrFail($request->kursus_id);
-
-        Silibus::create([
-            'kod_institusi' => $kursus->kod_institusi,
-            'kod_kursus' => $kursus->kod_kursus,
-            'topik' => $request->topik,
-            'isi_kandungan' => $request->isi_kandungan,
-        ]);
-
-        if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'message' => 'Struktur silibus berjaya ditambah.']);
-        }
-
-        return redirect()->route('admin.editkursus', $kursus->id)
-                        ->with('success', 'Struktur silibus berjaya ditambah.');
-    }
-
-    public function destroySilibus($id)
-    {
-        $item = Silibus::findOrFail($id);
-        $kursus = Kursus::where('kod_kursus', $item->kod_kursus)
-            ->where('kod_institusi', $item->kod_institusi)
-            ->firstOrFail();
-        $item->delete();
-
-        if (request()->wantsJson()) {
-            return response()->json(['success' => true, 'message' => 'Struktur silibus berjaya dipadam.']);
-        }
-
-        return redirect()->route('admin.editkursus', $kursus->id)
-                        ->with('success', 'Struktur silibus berjaya dipadam.');
     }
 
     public function storeKerjaya(Request $request)
@@ -488,12 +446,6 @@ class AdminKursusController extends Controller
     {
         $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('syaratKelayakans');
         return view('admin._tab_syarat', compact('kursus'));
-    }
-
-    public function tabSilibus($id)
-    {
-        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('silibuses');
-        return view('admin._tab_silibus', compact('kursus'));
     }
 
     public function tabKerjaya($id)

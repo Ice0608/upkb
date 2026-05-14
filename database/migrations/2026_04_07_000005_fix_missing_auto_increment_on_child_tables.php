@@ -13,7 +13,6 @@ return new class extends Migration
     {
         $tables = [
             'syarat_kelayakans',
-            'silibuses',
             'kerjayas',
             'yuran_pendaftarans',
             'yuran_pilihans',
@@ -34,7 +33,6 @@ return new class extends Migration
     {
         $tables = [
             'syarat_kelayakans',
-            'silibuses',
             'kerjayas',
             'yuran_pendaftarans',
             'yuran_pilihans',

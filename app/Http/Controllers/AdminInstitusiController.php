@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Institusi;
 use App\Models\Kursus;
 use App\Models\Galeri;
-use App\Models\Silibus;
 use App\Models\Kerjaya;
 use App\Models\YuranPendaftaran;
 use App\Models\YuranPilihan;
@@ -140,7 +139,6 @@ class AdminInstitusiController extends Controller
 
         // Delete related records
         Kursus::where('kod_institusi', $kod_institusi)->delete();
-        Silibus::where('kod_institusi', $kod_institusi)->delete();
         Galeri::where('kod_institusi', $kod_institusi)->delete();
         Kerjaya::where('kod_institusi', $kod_institusi)->delete();
         YuranPendaftaran::where('kod_institusi', $kod_institusi)->delete();

@@ -320,7 +320,7 @@
 
         .kursus-detail-tabs {
             display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 0.75rem;
         }
 
@@ -607,7 +607,6 @@
                 <div class="kursus-detail-tabs flex flex-wrap gap-2 text-sm text-gray-600">
                     <a href="#" onclick="loadTab('maklumat')" class="tab-link px-4 py-2 rounded-full" data-tab="maklumat">Maklumat Am</a>
                     <a href="#" onclick="loadTab('syarat')" class="tab-link px-4 py-2 rounded-full" data-tab="syarat">Syarat Kelayakan</a>
-                    <a href="#" onclick="loadTab('silibus')" class="tab-link px-4 py-2 rounded-full" data-tab="silibus">Struktur Silibus</a>
                     <a href="#" onclick="loadTab('kerjaya')" class="tab-link px-4 py-2 rounded-full" data-tab="kerjaya">Laluan Kerjaya</a>
                     <a href="#" onclick="loadTab('yuran')" class="tab-link px-4 py-2 rounded-full" data-tab="yuran">Yuran & Pinjaman</a>
                     <a href="#" onclick="loadTab('galeri')" class="tab-link px-4 py-2 rounded-full" data-tab="galeri">Galeri</a>
@@ -659,7 +658,6 @@
             const tabUrls = {
                 maklumat: "{{ route('pelajar.tab.maklumat', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
                 syarat: "{{ route('pelajar.tab.syarat', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
-                silibus: "{{ route('pelajar.tab.silibus', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
                 kerjaya: "{{ route('pelajar.tab.kerjaya', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
                 yuran: "{{ route('pelajar.tab.yuran', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}",
                 galeri: "{{ route('pelajar.tab.galeri', ['pelajar' => $pelajar->id, 'kursus' => $kursus->id]) }}"

@@ -1,17 +1,58 @@
+<style>
+    body.admin-dark .admin-syarat-hero {
+        border-color: rgba(148, 163, 184, 0.14) !important;
+        background:
+            radial-gradient(circle at top left, rgba(251, 146, 60, 0.12), transparent 24%),
+            radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 30%),
+            linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.94) 48%, rgba(15, 23, 42, 0.98)) !important;
+    }
+
+    body.admin-dark .admin-syarat-title {
+        color: #f8fafc !important;
+    }
+
+    body.admin-dark .admin-syarat-copy {
+        color: #cbd5e1 !important;
+    }
+
+    body.admin-dark .admin-syarat-count {
+        border-color: rgba(251, 146, 60, 0.24) !important;
+        background: rgba(15, 23, 42, 0.82) !important;
+        color: #fdba74 !important;
+    }
+
+    body.admin-dark .admin-syarat-panel,
+    body.admin-dark .admin-syarat-card,
+    body.admin-dark .admin-syarat-empty {
+        border-color: rgba(148, 163, 184, 0.18) !important;
+        background: rgba(15, 23, 42, 0.82) !important;
+    }
+
+    body.admin-dark .admin-syarat-card-footer {
+        border-top-color: rgba(148, 163, 184, 0.14) !important;
+        background: rgba(15, 23, 42, 0.72) !important;
+    }
+
+    body.admin-dark .admin-syarat-badge {
+        background: rgba(251, 146, 60, 0.16) !important;
+        color: #fdba74 !important;
+    }
+</style>
+
 <div class="space-y-6">
-    <div class="rounded-3xl border border-orange-100 bg-gradient-to-r from-orange-50 via-white to-amber-50 p-6 shadow-sm">
+    <div class="admin-syarat-hero rounded-3xl border border-orange-100 bg-gradient-to-r from-orange-50 via-white to-amber-50 p-6 shadow-sm">
         <div class="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
             <div>
-                <h2 class="text-2xl font-semibold text-gray-800">Syarat Kelayakan</h2>
-                <p class="mt-1 text-sm text-gray-600">Senaraikan syarat minimum kemasukan supaya pelajar lebih mudah semak kelayakan sebelum memohon.</p>
+                <h2 class="admin-syarat-title text-2xl font-semibold text-gray-800">Syarat Kelayakan</h2>
+                <p class="admin-syarat-copy mt-1 text-sm text-gray-600">Senaraikan syarat minimum kemasukan supaya pelajar lebih mudah semak kelayakan sebelum memohon.</p>
             </div>
-            <div class="inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
+            <div class="admin-syarat-count inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
                 {{ $kursus->syaratKelayakans->count() }} Syarat
             </div>
         </div>
     </div>
 
-    <form id="syarat-form" action="{{ route('admin.storesyarat') }}" method="POST" enctype="multipart/form-data" class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+    <form id="syarat-form" action="{{ route('admin.storesyarat') }}" method="POST" enctype="multipart/form-data" class="admin-syarat-panel rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
         @csrf
         <input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
         <div class="space-y-4">
@@ -30,15 +71,15 @@
 
     <div id="syarat-list" class="grid gap-4">
         @forelse($kursus->syaratKelayakans as $item)
-            <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
+            <div class="admin-syarat-card overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
                 @if($item->gambar)
                     <img src="{{ asset($item->gambar) }}" alt="Syarat Kelayakan {{ $loop->iteration }}" class="w-full object-cover">
                 @else
                     <div class="min-h-[12rem] p-6 text-center text-gray-500">Tiada imej syarat kelayakan tersedia.</div>
                 @endif
-                <div class="flex items-center justify-between gap-4 border-t border-gray-200 bg-gray-50 p-4">
+                <div class="admin-syarat-card-footer flex items-center justify-between gap-4 border-t border-gray-200 bg-gray-50 p-4">
                     <div class="flex items-center gap-3">
-                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-orange-100 text-sm font-bold text-orange-600">
+                        <div class="admin-syarat-badge flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-orange-100 text-sm font-bold text-orange-600">
                             {{ $loop->iteration }}
                         </div>
                         <span class="text-sm font-semibold text-gray-800">Syarat {{ $loop->iteration }}</span>
@@ -53,7 +94,7 @@
                 </div>
             </div>
         @empty
-            <div class="rounded-3xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-500">
+            <div class="admin-syarat-empty rounded-3xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-500">
                 Tiada syarat kelayakan ditambah lagi.
             </div>
         @endforelse

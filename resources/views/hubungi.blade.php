@@ -617,7 +617,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Alamat Pejabat</h2>
-                        <p class="text-slate-500">34 Jalan MPK 4 Taman Bukit Kepayang 70300 Seremban Negeri Sembilan</p>
+                        <p class="text-slate-500">No 34, Jalan MPK 4, Taman Bukit Kepayang, 70300 Seremban, Negeri Sembilan</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=34+Jalan+MPK+4+Taman+Bukit+Kepayang+70300+Seremban" target="_blank" class="inline-flex items-center text-sm font-semibold text-orange-500 hover:text-orange-600 mt-2">
                             <i class="fas fa-map-marker-alt mr-2"></i> Buka di Google Maps
                         </a>
@@ -636,7 +636,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Telefon</h2>
-                        <p class="text-slate-500">+6011 2100 5537 </p>
+                        <p class="text-slate-500">+6011 2672 5795</p>
                         <p class="text-sm text-slate-400">Isnin - Jumaat (9:00 AM - 5:00 PM)</p>
                     </div>
                 </div>

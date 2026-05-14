@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use App\Models\Institusi;
 use App\Models\Galeri;
 use App\Models\SyaratKelayakan;
-use App\Models\Silibus;
 use App\Models\Kerjaya;
 use App\Models\YuranPendaftaran;
 use App\Models\YuranPilihan;
@@ -66,7 +65,6 @@ class Kursus extends Model
     private const SCOPED_DETAIL_RELATIONS = [
         'galeris' => Galeri::class,
         'syaratKelayakans' => SyaratKelayakan::class,
-        'silibuses' => Silibus::class,
         'kerjayas' => Kerjaya::class,
         'yuranPendaftarans' => YuranPendaftaran::class,
         'yuranPilihans' => YuranPilihan::class,
@@ -220,7 +218,20 @@ class Kursus extends Model
             });
         }
 
-        return $query->where('nama_kursus', trim((string) $namaKursus));
+        $rawName = trim((string) $namaKursus);
+        $normalizedName = self::normalizeCourseName($namaKursus);
+
+        return $query->where(function ($subQuery) use ($rawName, $normalizedName) {
+            if ($rawName !== '') {
+                $subQuery->where('nama_kursus', $rawName);
+            }
+
+            if ($normalizedName !== '') {
+                $subQuery->orWhere('nama_kursus', $normalizedName)
+                    ->orWhere('nama_kursus', 'LIKE', $normalizedName . ' (%')
+                    ->orWhere('nama_kursus', 'LIKE', $normalizedName . ' - %');
+            }
+        });
     }
 
     private static function canonicalCourseGroupName(?string $namaKursus, ?string $kodKursus = null): ?string
@@ -297,11 +308,6 @@ class Kursus extends Model
     public function syaratKelayakans()
     {
         return $this->hasMany(SyaratKelayakan::class, 'kod_kursus', 'kod_kursus');
-    }
-
-    public function silibuses()
-    {
-        return $this->hasMany(Silibus::class, 'kod_kursus', 'kod_kursus');
     }
 
     public function kerjayas()

@@ -140,7 +140,6 @@ class KursusController extends Controller
         $kursus = Kursus::with('institusi')->findOrFail($id);
         $kursus->loadScopedCourseDetails([
             'syaratKelayakans',
-            'silibuses',
             'kerjayas',
             'yuranPendaftarans',
             'yuranPilihans',
@@ -171,12 +170,6 @@ class KursusController extends Controller
     {
         $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('syaratKelayakans');
         return view('program._guest_tab_syarat', compact('kursus'));
-    }
-
-    public function tabSilibus($id)
-    {
-        $kursus = Kursus::findOrFail($id)->loadScopedCourseDetails('silibuses');
-        return view('program._guest_tab_silibus', compact('kursus'));
     }
 
     public function tabKerjaya($id)

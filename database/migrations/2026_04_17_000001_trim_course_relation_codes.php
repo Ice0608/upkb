@@ -12,7 +12,6 @@ return new class extends Migration
         $this->trimColumns('kursuses', ['kod_institusi', 'kod_kursus']);
         $this->trimColumns('galeris', ['kod_institusi', 'kod_kursus']);
         $this->trimColumns('syarat_kelayakans', ['kod_institusi', 'kod_kursus']);
-        $this->trimColumns('silibuses', ['kod_institusi', 'kod_kursus']);
         $this->trimColumns('kerjayas', ['kod_institusi', 'kod_kursus']);
         $this->trimColumns('yuran_pendaftarans', ['kod_institusi', 'kod_kursus']);
         $this->trimColumns('yuran_pilihans', ['kod_institusi', 'kod_kursus']);

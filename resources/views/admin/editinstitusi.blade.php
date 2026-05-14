@@ -7,6 +7,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SESOC - Edit Institusi</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body.admin-dark .edit-institusi-hero {
+            border-bottom-color: rgba(148, 163, 184, 0.14);
+            background:
+                radial-gradient(circle at top left, rgba(251, 146, 60, 0.14), transparent 24%),
+                radial-gradient(circle at top right, rgba(59, 130, 246, 0.18), transparent 30%),
+                linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.94) 48%, rgba(15, 23, 42, 0.98));
+        }
+
+        body.admin-dark .edit-institusi-title {
+            color: #f8fafc !important;
+        }
+
+        body.admin-dark .edit-institusi-copy {
+            color: #cbd5e1 !important;
+        }
+
+        body.admin-dark .edit-institusi-code {
+            border-color: rgba(251, 146, 60, 0.24) !important;
+            background: rgba(15, 23, 42, 0.78) !important;
+            color: #fdba74 !important;
+        }
+
+        body.admin-dark .edit-institusi-back {
+            background: rgba(15, 23, 42, 0.82) !important;
+            color: #e2e8f0 !important;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        body.admin-dark .edit-institusi-back:hover {
+            background: rgba(30, 41, 59, 0.94) !important;
+            color: #fb923c !important;
+        }
+    </style>
 </head>
 <body class="admin-dark">
 @include('layouts.navadmin')
@@ -15,12 +49,12 @@
 
         <!-- Form Edit Institusi -->
         <div class="rounded-3xl border border-gray-100 bg-white shadow-lg mb-10 overflow-hidden">
-            <div class="border-b border-gray-200 bg-[radial-gradient(circle_at_top_left,_rgba(255,237,213,0.9),_rgba(255,255,255,1)_48%,_rgba(254,215,170,0.35)_100%)] px-8 py-8">
+            <div class="edit-institusi-hero border-b border-gray-200 bg-[radial-gradient(circle_at_top_left,_rgba(255,237,213,0.9),_rgba(255,255,255,1)_48%,_rgba(254,215,170,0.35)_100%)] px-8 py-8">
                 <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                     <div>
-                        <h1 class="text-3xl font-bold text-gray-800">Edit Institusi</h1>
-                        <p class="mt-2 max-w-2xl text-gray-600">Kemaskini maklumat institusi, imej, alamat dan penerangan utama dalam satu paparan yang lebih jelas.</p>
-                        <div class="mt-4 inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
+                        <h1 class="edit-institusi-title text-3xl font-bold text-gray-800">Edit Institusi</h1>
+                        <p class="edit-institusi-copy mt-2 max-w-2xl text-gray-600">Kemaskini maklumat institusi, imej, alamat dan penerangan utama dalam satu paparan yang lebih jelas.</p>
+                        <div class="edit-institusi-code mt-4 inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
                             Kod: {{ $institusi->kod_institusi }}
                         </div>
                     </div>
@@ -28,7 +62,7 @@
                         <button type="submit" form="edit-institusi-form" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 font-semibold text-white shadow-sm transition hover:bg-orange-600">
                             <i class="fas fa-floppy-disk mr-2"></i> Simpan Kemas Kini
                         </button>
-                        <a href="{{ route('admin.institusis') }}" class="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-gray-700 ring-1 ring-gray-200 shadow-sm transition hover:bg-gray-50">
+                        <a href="{{ route('admin.institusis') }}" class="edit-institusi-back inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-gray-700 ring-1 ring-gray-200 shadow-sm transition hover:bg-gray-50">
                             <i class="fas fa-arrow-left mr-2"></i> Kembali
                         </a>
                     </div>
@@ -203,4 +237,3 @@
 
 </body>
 </html>
-

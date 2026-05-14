@@ -29,7 +29,6 @@ return new class extends Migration
             'yuran_asramas',
             'yuran_pengajians',
             'syarat_kelayakans',
-            'silibuses',
         ];
 
         foreach ($tables as $table) {
@@ -62,7 +61,6 @@ return new class extends Migration
             'yuran_asramas',
             'yuran_pengajians',
             'syarat_kelayakans',
-            'silibuses',
         ];
 
         foreach ($tables as $table) {

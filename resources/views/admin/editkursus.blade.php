@@ -8,30 +8,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SESOC - Edit Kursus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body.admin-dark .edit-kursus-shell {
+            border-color: rgba(148, 163, 184, 0.18) !important;
+            background: #132b5a !important;
+        }
+
+        body.admin-dark .edit-kursus-hero {
+            border-bottom-color: rgba(148, 163, 184, 0.14) !important;
+            background:
+                radial-gradient(circle at top left, rgba(251, 146, 60, 0.12), transparent 24%),
+                radial-gradient(circle at top right, rgba(59, 130, 246, 0.16), transparent 28%),
+                linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.94) 48%, rgba(15, 23, 42, 0.98)) !important;
+        }
+
+        body.admin-dark .edit-kursus-title {
+            color: #f8fafc !important;
+        }
+
+        body.admin-dark .edit-kursus-copy,
+        body.admin-dark .edit-kursus-meta,
+        body.admin-dark .edit-kursus-meta span {
+            color: #cbd5e1 !important;
+        }
+
+        body.admin-dark .edit-kursus-back {
+            background: #f97316 !important;
+            color: #ffffff !important;
+        }
+
+        body.admin-dark .edit-kursus-back:hover {
+            background: #ea580c !important;
+        }
+
+        body.admin-dark .edit-kursus-tabs {
+            border-bottom-color: rgba(148, 163, 184, 0.14) !important;
+            background:
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent 36%),
+                linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.92)) !important;
+        }
+
+        body.admin-dark .tab-link {
+            border-color: rgba(148, 163, 184, 0.18) !important;
+            background: rgba(15, 23, 42, 0.82) !important;
+            color: #e2e8f0 !important;
+        }
+
+        body.admin-dark .tab-link:hover {
+            border-color: rgba(251, 146, 60, 0.24) !important;
+            background: rgba(30, 41, 59, 0.94) !important;
+            color: #fb923c !important;
+        }
+
+        body.admin-dark .tab-link.bg-orange-100,
+        body.admin-dark .tab-link.text-orange-700 {
+            border-color: rgba(251, 146, 60, 0.24) !important;
+            background: rgba(251, 146, 60, 0.16) !important;
+            color: #fdba74 !important;
+        }
+    </style>
 </head>
 <body class="admin-dark">
 @include('layouts.navadmin')
 
     <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="rounded-3xl bg-white shadow-lg border border-gray-100 overflow-hidden">
-            <div class="px-8 py-8 border-b border-gray-200">
+        <div class="edit-kursus-shell rounded-3xl bg-white shadow-lg border border-gray-100 overflow-hidden">
+            <div class="edit-kursus-hero px-8 py-8 border-b border-gray-200">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 class="text-4xl font-bold text-gray-800">Edit kursus</h1>
-                        <p class="mt-2 text-gray-600">Urus data kursus serta semua submodul syarat, silibus, kerjaya dan yuran.</p>
-                        <p class="mt-1 text-sm text-gray-500">Institusi: <span class="font-semibold text-gray-700">{{ $kursus->institusi?->nama_institusi ?? 'Tidak Dikenal' }}</span></p>
+                        <h1 class="edit-kursus-title text-4xl font-bold text-gray-800">Edit kursus</h1>
+                        <p class="edit-kursus-copy mt-2 text-gray-600">Urus data kursus serta semua submodul syarat, kerjaya dan yuran.</p>
+                        <p class="edit-kursus-meta mt-1 text-sm text-gray-500">Institusi: <span class="font-semibold text-gray-700">{{ $kursus->institusi?->nama_institusi ?? 'Tidak Dikenal' }}</span></p>
                     </div>
-                    <a href="{{ route('admin.editinstitusi', $kursus->institusi?->id ?? 0) }}" class="inline-flex items-center gap-2 rounded-full bg-orange-500 text-white px-5 py-3 hover:bg-orange-600 transition">
+                    <a href="{{ route('admin.editinstitusi', $kursus->institusi?->id ?? 0) }}" class="edit-kursus-back inline-flex items-center gap-2 rounded-full bg-orange-500 text-white px-5 py-3 hover:bg-orange-600 transition">
                         <i class="fas fa-building"></i> Kembali ke Institusi
                     </a>
                 </div>
             </div>
 
-            <div class="border-b border-gray-200 bg-gradient-to-r from-gray-50 via-white to-gray-50 px-8 py-6">
+            <div class="edit-kursus-tabs border-b border-gray-200 bg-gradient-to-r from-gray-50 via-white to-gray-50 px-8 py-6">
                 <div class="flex flex-wrap items-center justify-center gap-3 text-sm text-gray-600">
                     <a href="#" onclick="loadTab('maklumat')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="maklumat">Maklumat Am</a>
                     <a href="#" onclick="loadTab('syarat')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="syarat">Syarat Kelayakan</a>
-                    <a href="#" onclick="loadTab('silibus')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="silibus">Struktur Silibus</a>
                     <a href="#" onclick="loadTab('kerjaya')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="kerjaya">Laluan Kerjaya</a>
                     <a href="#" onclick="loadTab('yuran')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="yuran">Yuran & Pinjaman</a>
                     <a href="#" onclick="loadTab('galeri')" class="tab-link inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-5 py-2.5 font-semibold shadow-sm transition hover:-translate-y-0.5 hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600" data-tab="galeri">Galeri Kursus</a>
@@ -313,4 +371,3 @@
 
 </body>
 </html>
-

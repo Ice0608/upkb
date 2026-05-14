@@ -175,7 +175,7 @@
                 <li><p>+6011 2100 5537</p></li>
                 <li><p>sesoclegacy@gmail.com</p></li>
                 <li><p>sesoc.com.my</p></li>
-                <li><p>34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</p></li>
+                <li><p>No 34, Jalan MPK 4, Taman Bukit Kepayang, 70300 Seremban, Negeri Sembilan</p></li>
             </ul>
         </div>
     </div>

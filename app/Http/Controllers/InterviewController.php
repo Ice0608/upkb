@@ -162,7 +162,6 @@ class InterviewController extends Controller
         $kursus->loadScopedCourseDetails([
             'galeris',
             'syaratKelayakans',
-            'silibuses',
             'kerjayas',
             'yuranPendaftarans',
             'yuranPilihans',
@@ -192,17 +191,6 @@ class InterviewController extends Controller
             ->firstOrFail()
             ->loadScopedCourseDetails('syaratKelayakans');
         return view('program._guest_tab_syarat', compact('kursus'));
-    }
-
-    public function tabSilibus(Pelajar $pelajar, $kod_kursus)
-    {
-        abort_if(auth()->user()->level !== 'staff', 403);
-
-        $kursus = Kursus::where('kod_kursus', $kod_kursus)
-            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
-            ->firstOrFail()
-            ->loadScopedCourseDetails('silibuses');
-        return view('program._guest_tab_silibus', compact('kursus'));
     }
 
     public function tabKerjaya(Pelajar $pelajar, $kod_kursus)

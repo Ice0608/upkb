@@ -13,7 +13,6 @@ return new class extends Migration
     {
         $tables = [
             'syarat_kelayakans',
-            'silibuses',
         ];
 
         foreach ($tables as $table) {
@@ -30,7 +29,6 @@ return new class extends Migration
     {
         $tables = [
             'syarat_kelayakans',
-            'silibuses',
         ];
 
         foreach ($tables as $table) {

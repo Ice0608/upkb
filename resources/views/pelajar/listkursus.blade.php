@@ -1160,6 +1160,16 @@
 @php
     $heroProgramInfo = $selectedProgram->info_program ?? null;
     $showCourseCardQuotaColumn = !($kursusIsDiploma || $kursusIsSainsKesihatan);
+    $displayCourseName = static function ($kursus): string {
+        $rawName = strtoupper(trim((string) ($kursus->nama_kursus ?? '')));
+        $displayName = trim((string) ($kursus->nama_kursus_paparan ?? ''));
+
+        if ($rawName !== '' && str_starts_with($rawName, 'DIPLOMA ') && !str_starts_with(strtoupper($displayName), 'DIPLOMA ')) {
+            return $rawName;
+        }
+
+        return $displayName;
+    };
 
     if ($kursusIsTvet) {
         $heroProgramInfo = 'TVET bermaksud Pendidikan dan Latihan Teknikal dan Vokasional. Ia adalah sistem pendidikan yang fokus kepada latihan praktikal dan kemahiran teknikal, bertujuan menyediakan tenaga kerja berkemahiran tinggi yang selari dengan permintaan industri.';
@@ -1225,14 +1235,15 @@
                             </button>
 
                             @foreach($kursusList->unique('kumpulan_kursus_key') as $kursus)
+                                @php $courseDisplayName = $displayCourseName($kursus); @endphp
                                 <button 
                                     type="button"
-                                    onclick="filterCourses('{{ addslashes($kursus->nama_kursus_paparan) }}')"
+                                    onclick="filterCourses('{{ addslashes($courseDisplayName) }}')"
                                     class="category-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium"
-                                    id="btn-{{ Illuminate\Support\Str::slug($kursus->nama_kursus_paparan, '-') }}"
+                                    id="btn-{{ Illuminate\Support\Str::slug($courseDisplayName, '-') }}"
                                 >
                                     <span class="category-indicator"></span>
-                                    <span class="category-name">{{ $kursus->nama_kursus_paparan }}</span>
+                                    <span class="category-name">{{ $courseDisplayName }}</span>
                                 </button>
                             @endforeach
                         </div>
@@ -1254,19 +1265,22 @@
                     <div id="courses-container" class="kursus-results-grid" data-kursus-slider-row>
                         <div class="kursus-results-track" data-kursus-slider-track>
                     @forelse($kursusList->unique('kumpulan_kursus_key')->values() as $kursus)
-                    @php $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg'; @endphp
+                    @php
+                        $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg';
+                        $courseDisplayName = $displayCourseName($kursus);
+                    @endphp
                     <article class="course-card h-full"
                              data-reveal="scale"
                              data-delay="{{ ($loop->index % 6) + 1 }}"
-                             data-course-name="{{ $kursus->nama_kursus_paparan }}"
-                             onclick="window.location.href='{{ route('pelajar.pilihankursus', array_filter(['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $kursus->nama_kursus_paparan, 'jenis' => request('jenis')])) }}'">
+                             data-course-name="{{ $courseDisplayName }}"
+                             onclick="window.location.href='{{ route('pelajar.pilihankursus', array_filter(['pelajar' => isset($pelajar) ? $pelajar->id : (request()->pelajar ?? ''), 'nama' => $courseDisplayName, 'jenis' => request('jenis')])) }}'">
                         @php
                             $institusiTypeLabel = strtolower(trim((string) ($kursus->institusi->jenis_institusi ?? '')));
                             $jenisKursusLabel = strtolower(trim((string) ($kursus->jenis_kursus ?? '')));
                             $showJenisKursusPill = $jenisKursusLabel !== '' && $jenisKursusLabel !== $institusiTypeLabel;
                         @endphp
                         <div class="course-card-media">
-                            <img src="{{ asset($galleryImage) }}" alt="{{ $kursus->nama_kursus_paparan }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
+                            <img src="{{ asset($galleryImage) }}" alt="{{ $courseDisplayName }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">
                                 <span class="kursus-tag px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em]">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="flex flex-wrap items-center justify-end gap-2 max-w-[75%]">
@@ -1278,7 +1292,7 @@
                             <div class="course-card-headline">
                                 <div>
                                     <p class="kursus-section-accent text-[0.7rem] font-semibold uppercase tracking-[0.28em]">Kursus</p>
-                                    <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $kursus->nama_kursus_paparan }}</h2>
+                                    <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $courseDisplayName }}</h2>
                                 </div>
                                 @if($showCourseCardQuotaColumn)
                                     <div class="course-card-action">

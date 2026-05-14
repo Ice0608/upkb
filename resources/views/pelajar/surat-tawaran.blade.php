@@ -217,7 +217,7 @@
                         <ol class="list-decimal list-inside space-y-2 text-sm text-amber-900">
                             <li>Periksa e-mel anda secara berkala</li>
                             <li>Surat tawaran akan dihantar ke alamat e-mel anda yang terdaftar</li>
-                            <li>Jika tidak menerima dalam 7 hari, hubungi: {{ config('app.support_email', 'support@example.com') }}</li>
+                            <li>Jika tidak menerima dalam 7 hari, hubungi: {{ config('app.support_email', 'sesoclegacy@gmail.com') }}</li>
                             <li>Cetak surat tawaran untuk tujuan rekod</li>
                         </ol>
                     </div>
@@ -237,8 +237,8 @@
                     <i class="fas fa-phone text-orange-600"></i> Hubungi Kami
                 </h3>
                 <div class="space-y-2 text-sm text-slate-600">
-                    <p><strong>Email:</strong> <a href="mailto:{{ config('app.support_email', 'support@example.com') }}" class="text-indigo-600 hover:underline">{{ config('app.support_email', 'support@example.com') }}</a></p>
-                    <p><strong>Telefon:</strong> {{ config('app.support_phone', '03-XXXX XXXX') }}</p>
+                    <p><strong>Email:</strong> <a href="mailto:{{ config('app.support_email', 'sesoclegacy@gmail.com') }}" class="text-indigo-600 hover:underline">{{ config('app.support_email', 'sesoclegacy@gmail.com') }}</a></p>
+                    <p><strong>Telefon:</strong> {{ config('app.support_phone', '011-2672 5795') }}</p>
                 </div>
             </div>
         </div>

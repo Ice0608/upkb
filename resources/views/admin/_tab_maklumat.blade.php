@@ -1,3 +1,41 @@
+<style>
+    body.admin-dark .admin-kursus-maklumat-hero {
+        border-color: rgba(148, 163, 184, 0.14) !important;
+        background:
+            radial-gradient(circle at top left, rgba(251, 146, 60, 0.12), transparent 24%),
+            radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 30%),
+            linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.94) 48%, rgba(15, 23, 42, 0.98)) !important;
+    }
+
+    body.admin-dark .admin-kursus-maklumat-hero-title {
+        color: #f8fafc !important;
+    }
+
+    body.admin-dark .admin-kursus-maklumat-hero-copy {
+        color: #cbd5e1 !important;
+    }
+
+    body.admin-dark .admin-kursus-maklumat-id {
+        border-color: rgba(251, 146, 60, 0.24) !important;
+        background: rgba(15, 23, 42, 0.82) !important;
+        color: #fdba74 !important;
+    }
+
+    body.admin-dark .admin-kursus-maklumat-panel {
+        border-color: rgba(148, 163, 184, 0.18) !important;
+        background: rgba(15, 23, 42, 0.82) !important;
+    }
+
+    body.admin-dark .admin-kursus-maklumat-actions {
+        border-color: rgba(148, 163, 184, 0.18) !important;
+        background: rgba(15, 23, 42, 0.72) !important;
+    }
+
+    body.admin-dark .admin-kursus-maklumat-note {
+        color: #cbd5e1 !important;
+    }
+</style>
+
 @if(session('success'))
     <div class="rounded-2xl bg-green-50 border border-green-200 p-5 text-green-700">
         {{ session('success') }}
@@ -15,13 +53,13 @@
 @endif
 
 <div class="space-y-6">
-    <div class="rounded-3xl border border-orange-100 bg-gradient-to-r from-orange-50 via-white to-amber-50 p-6 shadow-sm">
+    <div class="admin-kursus-maklumat-hero rounded-3xl border border-orange-100 bg-gradient-to-r from-orange-50 via-white to-amber-50 p-6 shadow-sm">
         <div class="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
             <div>
-                <h2 class="text-2xl font-semibold text-gray-800">Maklumat Am</h2>
-                <p class="mt-1 text-sm text-gray-600">Kemaskini maklumat utama kursus, butiran pengajian dan penerangan untuk paparan pengguna.</p>
+                <h2 class="admin-kursus-maklumat-hero-title text-2xl font-semibold text-gray-800">Maklumat Am</h2>
+                <p class="admin-kursus-maklumat-hero-copy mt-1 text-sm text-gray-600">Kemaskini maklumat utama kursus, butiran pengajian dan penerangan untuk paparan pengguna.</p>
             </div>
-            <div class="inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
+            <div class="admin-kursus-maklumat-id inline-flex items-center rounded-full border border-orange-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 shadow-sm">
                 Kursus ID: {{ $kursus->id }}
             </div>
         </div>
@@ -30,7 +68,7 @@
     <form id="maklumat-form" action="{{ route('admin.updatekursus', $kursus->id) }}" method="POST" class="space-y-6">
         @csrf
         @method('PUT')
-        <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="admin-kursus-maklumat-panel rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
             <div class="grid gap-6 md:grid-cols-2">
                 <div>
                     <label for="kod_kursus" class="block text-sm font-semibold text-gray-700">Kod kursus</label>
@@ -63,15 +101,15 @@
             </div>
         </div>
 
-        <div class="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+        <div class="admin-kursus-maklumat-panel rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
             <label for="penerangan" class="block text-sm font-semibold text-gray-700">Penerangan</label>
             <textarea name="penerangan" id="penerangan" rows="6" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>{{ old('penerangan', $kursus->penerangan) }}</textarea>
             <p class="mt-3 text-sm text-gray-500">Gunakan ruangan ini untuk ringkasan kursus, kelebihan program dan maklumat penting lain.</p>
         </div>
     </form>
 
-    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-3xl border border-gray-200 bg-gray-50 p-4">
-        <div class="text-sm text-gray-600">
+    <div class="admin-kursus-maklumat-actions flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between rounded-3xl border border-gray-200 bg-gray-50 p-4">
+        <div class="admin-kursus-maklumat-note text-sm text-gray-600">
             Simpan perubahan dahulu jika anda telah mengemaskini maklumat kursus.
         </div>
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center">

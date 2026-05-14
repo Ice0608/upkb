@@ -19,6 +19,17 @@
             color: var(--report-ink);
         }
 
+        html,
+        body.report-print-page {
+            background: #ffffff !important;
+            color: var(--report-ink) !important;
+        }
+
+        body.report-print-page .site-nav,
+        body.report-print-page footer {
+            color: inherit;
+        }
+
         .report-page {
             width: min(1120px, calc(100vw - 32px));
             min-height: 720px;
@@ -59,6 +70,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 11px;
+            table-layout: fixed;
         }
 
         .report-table th {
@@ -76,6 +88,62 @@
             border: 1px solid rgba(68, 20, 33, 0.08);
             background: rgba(255, 255, 255, 0.52);
             vertical-align: top;
+            line-height: 1.25;
+        }
+
+        .registration-table {
+            font-size: 9.5px;
+        }
+
+        .registration-table th,
+        .registration-table td {
+            padding: 6px 7px;
+        }
+
+        .registration-table .col-no { width: 4%; }
+        .registration-table .col-attendee { width: 22%; }
+        .registration-table .col-email { width: 11%; }
+        .registration-table .col-phone { width: 8.5%; }
+        .registration-table .col-ref { width: 9%; }
+        .registration-table .col-course { width: 7.5%; }
+        .registration-table .col-college { width: 7%; }
+        .registration-table .col-payment-type { width: 8.5%; }
+        .registration-table .col-payment-status { width: 8%; }
+        .registration-table .col-pre-reg { width: 6.5%; }
+        .registration-table .col-closer { width: 8%; }
+
+        .cell-clamp {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+            line-height: 1.22;
+            max-height: 3.66em;
+        }
+
+        .attendee-name {
+            font-size: 8.5px;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+        .attendee-name.is-long {
+            font-size: 8px;
+            line-height: 1.16;
+            max-height: 3.48em;
+        }
+
+        .attendee-name.is-very-long {
+            font-size: 7.4px;
+            line-height: 1.12;
+            max-height: 3.36em;
+        }
+
+        .email-text {
+            font-size: 7.4px;
+            line-height: 1.16;
+            max-height: 3.48em;
         }
 
         .report-table tbody tr:nth-child(even) td {
@@ -89,8 +157,8 @@
             font-weight: 900;
         }
 
-        .status-completed { color: #b38a16; font-weight: 900; }
-        .status-partial { color: #d4a928; font-weight: 900; }
+        .status-completed { color: #16b31e; font-weight: 900; }
+        .status-partial { color: #ffbf00; font-weight: 900; }
         .status-pending { color: #bd3b3b; font-weight: 900; }
 
         .legend {
@@ -130,6 +198,12 @@
         }
 
         @media print {
+            html,
+            body {
+                background: #ffffff !important;
+                color: #28151c !important;
+            }
+
             nav,
             .screen-actions,
             footer,
@@ -157,6 +231,11 @@
                 page-break-after: always;
             }
 
+            .report-page,
+            .report-page * {
+                color: #28151c !important;
+            }
+
             .report-table th {
                 background: var(--report-maroon) !important;
                 color: #fff7ea !important;
@@ -175,10 +254,14 @@
             .report-table tbody tr:nth-child(even) td {
                 background: rgba(244, 234, 217, 0.42) !important;
             }
+
+            .status-completed { color: #16b31e !important; }
+            .status-partial { color: #ffbf00 !important; }
+            .status-pending { color: #bd3b3b !important; }
         }
     </style>
 </head>
-<body>
+<body class="report-print-page">
 @include('layouts.navadmin')
 
 @php
@@ -212,7 +295,20 @@
     <p class="report-subtitle">EVENT: {{ strtoupper($event->nama_event) }} | TOTAL REGISTRATIONS: {{ $totalRegistrations }}</p>
 
     <div class="mt-7 overflow-x-auto">
-        <table class="report-table">
+        <table class="report-table registration-table">
+            <colgroup>
+                <col class="col-no">
+                <col class="col-attendee">
+                <col class="col-email">
+                <col class="col-phone">
+                <col class="col-ref">
+                <col class="col-course">
+                <col class="col-college">
+                <col class="col-payment-type">
+                <col class="col-payment-status">
+                <col class="col-pre-reg">
+                <col class="col-closer">
+            </colgroup>
             <thead>
                 <tr>
                     <th>NO.</th>
@@ -236,19 +332,22 @@
                             'PARTIALLY PAID' => 'status-partial',
                             default => 'status-pending',
                         };
+                        $attendeeName = strtoupper($row['pelajar']->nama_pelajar);
+                        $attendeeLength = strlen($attendeeName);
+                        $attendeeClass = $attendeeLength > 42 ? 'is-very-long' : ($attendeeLength > 28 ? 'is-long' : '');
                     @endphp
                     <tr>
                         <td class="text-center">{{ $index + 1 }}</td>
-                        <td class="font-black">{{ strtoupper($row['pelajar']->nama_pelajar) }}</td>
-                        <td>{{ $row['pelajar']->email ?: '-' }}</td>
-                        <td>{{ $row['pelajar']->no_tel ?: '-' }}</td>
-                        <td>{{ $row['pelajar']->noreff ?: '-' }}</td>
-                        <td>{{ $row['pelajar']->pilihan_pertama ?: ($row['pelajar']->kod_kursus ?: '-') }}</td>
-                        <td>{{ $row['pelajar']->kod_institusi ?: '-' }}</td>
-                        <td class="text-center">{{ $row['payment_method'] }}</td>
-                        <td class="text-center {{ $statusClass }}">{{ $row['payment_status'] }}</td>
+                        <td><span class="cell-clamp attendee-name {{ $attendeeClass }}">{{ $attendeeName }}</span></td>
+                        <td><span class="cell-clamp email-text">{{ $row['pelajar']->email ?: '-' }}</span></td>
+                        <td><span class="cell-clamp">{{ $row['pelajar']->no_tel ?: '-' }}</span></td>
+                        <td><span class="cell-clamp">{{ $row['pelajar']->noreff ?: '-' }}</span></td>
+                        <td><span class="cell-clamp">{{ $row['pelajar']->pilihan_pertama ?: ($row['pelajar']->kod_kursus ?: '-') }}</span></td>
+                        <td><span class="cell-clamp">{{ $row['pelajar']->kod_institusi ?: '-' }}</span></td>
+                        <td class="text-center"><span class="cell-clamp">{{ $row['payment_method'] }}</span></td>
+                        <td class="text-center {{ $statusClass }}"><span class="cell-clamp">{{ $row['payment_status'] }}</span></td>
                         <td class="text-right">{{ number_format($row['pre_reg'], 2) }}</td>
-                        <td>{{ strtoupper($row['closer']) }}</td>
+                        <td><span class="cell-clamp">{{ strtoupper($row['closer']) }}</span></td>
                     </tr>
                 @empty
                     <tr>
