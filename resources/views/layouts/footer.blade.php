@@ -4,17 +4,17 @@
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(circle at 12% 18%, rgba(251, 146, 60, 0.18), transparent 22%),
-                radial-gradient(circle at 88% 14%, rgba(245, 158, 11, 0.18), transparent 24%),
-                radial-gradient(circle at 50% -10%, rgba(255, 237, 213, 0.08), transparent 30%),
+                radial-gradient(circle at 12% 18%, rgba(0, 188, 212, 0.18), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(0, 230, 118, 0.18), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(0, 229, 255, 0.08), transparent 30%),
                 linear-gradient(180deg, #130d0a 0%, #1d130e 36%, #120c09 100%);
         }
 
         .footer-ocean--tvet {
             background:
-                radial-gradient(circle at 12% 18%, rgba(245, 125, 39, 0.18), transparent 22%),
-                radial-gradient(circle at 88% 14%, rgba(255, 130, 60, 0.18), transparent 24%),
-                radial-gradient(circle at 50% -10%, rgba(255, 220, 200, 0.08), transparent 30%),
+                radial-gradient(circle at 12% 18%, rgba(0, 188, 212, 0.18), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(0, 230, 118, 0.18), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(0, 229, 255, 0.08), transparent 30%),
                 linear-gradient(180deg, #130d0a 0%, #1d130e 36%, #120c09 100%);
         }
 
@@ -40,9 +40,9 @@
             inset: 0;
             z-index: 0;
             background:
-                linear-gradient(180deg, rgba(255, 247, 237, 0.04), rgba(28, 25, 23, 0.22)),
-                repeating-linear-gradient(90deg, rgba(251, 191, 36, 0.035) 0 1px, transparent 1px 28px),
-                repeating-linear-gradient(180deg, rgba(251, 191, 36, 0.02) 0 1px, transparent 1px 28px);
+                linear-gradient(180deg, rgba(0, 229, 255, 0.04), rgba(15, 23, 42, 0.22)),
+                repeating-linear-gradient(90deg, rgba(0, 188, 212, 0.035) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(180deg, rgba(0, 230, 118, 0.02) 0 1px, transparent 1px 28px);
             mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
             pointer-events: none;
         }
@@ -53,27 +53,27 @@
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(circle at 20% 26%, rgba(251, 191, 36, 0.12), transparent 18%),
-                radial-gradient(circle at 78% 22%, rgba(249, 115, 22, 0.12), transparent 20%),
-                radial-gradient(circle at 50% 8%, rgba(255, 247, 237, 0.08), transparent 22%);
+                radial-gradient(circle at 20% 26%, rgba(0, 230, 118, 0.12), transparent 18%),
+                radial-gradient(circle at 78% 22%, rgba(0, 188, 212, 0.12), transparent 20%),
+                radial-gradient(circle at 50% 8%, rgba(0, 229, 255, 0.08), transparent 22%);
             mix-blend-mode: screen;
             pointer-events: none;
         }
 
         .footer-ocean--tvet::before {
             background:
-                linear-gradient(180deg, rgba(255, 220, 200, 0.04), rgba(28, 25, 23, 0.22)),
-                repeating-linear-gradient(90deg, rgba(255, 130, 60, 0.035) 0 1px, transparent 1px 28px),
-                repeating-linear-gradient(180deg, rgba(255, 130, 60, 0.02) 0 1px, transparent 1px 28px);
+                linear-gradient(180deg, rgba(0, 229, 255, 0.04), rgba(15, 23, 42, 0.22)),
+                repeating-linear-gradient(90deg, rgba(0, 188, 212, 0.035) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(180deg, rgba(0, 230, 118, 0.02) 0 1px, transparent 1px 28px);
             mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
             pointer-events: none;
         }
 
         .footer-ocean--tvet::after {
             background:
-                radial-gradient(circle at 20% 26%, rgba(245, 125, 39, 0.12), transparent 18%),
-                radial-gradient(circle at 78% 22%, rgba(255, 130, 60, 0.12), transparent 20%),
-                radial-gradient(circle at 50% 8%, rgba(255, 220, 200, 0.08), transparent 22%);
+                radial-gradient(circle at 20% 26%, rgba(0, 230, 118, 0.12), transparent 18%),
+                radial-gradient(circle at 78% 22%, rgba(0, 188, 212, 0.12), transparent 20%),
+                radial-gradient(circle at 50% 8%, rgba(0, 229, 255, 0.08), transparent 22%);
             mix-blend-mode: screen;
             pointer-events: none;
         }
@@ -140,7 +140,7 @@
             left: -3rem;
             width: 15rem;
             height: 15rem;
-            background: radial-gradient(circle, rgba(251, 146, 60, 0.28), rgba(251, 146, 60, 0));
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.28), rgba(0, 188, 212, 0));
             animation: footerOrbFloat 16s ease-in-out infinite;
         }
 
@@ -149,16 +149,16 @@
             right: -2rem;
             width: 13rem;
             height: 13rem;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0));
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.25), rgba(0, 230, 118, 0));
             animation: footerOrbFloatReverse 18s ease-in-out infinite;
         }
 
         .footer-ocean--tvet .footer-glow-orb--left {
-            background: radial-gradient(circle, rgba(245, 125, 39, 0.28), rgba(245, 125, 39, 0));
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.28), rgba(0, 188, 212, 0));
         }
 
         .footer-ocean--tvet .footer-glow-orb--right {
-            background: radial-gradient(circle, rgba(255, 130, 60, 0.25), rgba(255, 130, 60, 0));
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.25), rgba(0, 230, 118, 0));
         }
 
         .footer-ocean--diploma .footer-glow-orb--left {
@@ -177,15 +177,15 @@
             background: radial-gradient(circle, rgba(96, 165, 250, 0.25), rgba(96, 165, 250, 0));
         }
 
-        .footer-ocean--tvet a:hover { color: #ff9d6e; }
+        .footer-ocean--tvet a:hover { color: #00e5ff; }
         .footer-ocean--diploma a:hover { color: #c084fc; }
         .footer-ocean--sains-kesihatan a:hover { color: #60a5fa; }
 
         .footer-nav-link {
             transition: color 0.2s ease;
         }
-        .footer-ocean .footer-nav-link:hover { color: #fdba74; }
-        .footer-ocean--tvet .footer-nav-link:hover { color: #ff9d6e; }
+        .footer-ocean .footer-nav-link:hover { color: #00e5ff; }
+        .footer-ocean--tvet .footer-nav-link:hover { color: #00e5ff; }
         .footer-ocean--diploma .footer-nav-link:hover { color: #c084fc; }
         .footer-ocean--sains-kesihatan .footer-nav-link:hover { color: #60a5fa; }
 
@@ -213,14 +213,14 @@
         .footer-brand-link:hover .footer-brand-logo,
         .footer-brand-link:focus-visible .footer-brand-logo {
             transform: translateY(-4px) rotate(-6deg) scale(1.08);
-            filter: drop-shadow(0 10px 16px rgba(251, 146, 60, 0.28));
+            filter: drop-shadow(0 10px 16px rgba(0, 188, 212, 0.28));
         }
 
         .footer-brand-link:hover .footer-brand-title,
         .footer-brand-link:focus-visible .footer-brand-title {
             transform: translateX(4px);
-            color: #fdba74;
-            text-shadow: 0 0 18px rgba(251, 146, 60, 0.18);
+            color: #00e5ff;
+            text-shadow: 0 0 18px rgba(0, 188, 212, 0.18);
         }
 
         .footer-brand-link:hover .footer-brand-subtitle,
@@ -230,24 +230,24 @@
         }
 
         .footer-brand-link:focus-visible {
-            outline: 2px solid rgba(251, 146, 60, 0.75);
+            outline: 2px solid rgba(0, 188, 212, 0.75);
             outline-offset: 6px;
             border-radius: 0.75rem;
         }
 
         .footer-ocean--tvet .footer-brand-link:hover .footer-brand-logo,
         .footer-ocean--tvet .footer-brand-link:focus-visible .footer-brand-logo {
-            filter: drop-shadow(0 10px 16px rgba(245, 125, 39, 0.28));
+            filter: drop-shadow(0 10px 16px rgba(0, 188, 212, 0.28));
         }
 
         .footer-ocean--tvet .footer-brand-link:hover .footer-brand-title,
         .footer-ocean--tvet .footer-brand-link:focus-visible .footer-brand-title {
-            color: #ff9d6e;
-            text-shadow: 0 0 18px rgba(245, 125, 39, 0.18);
+            color: #00e5ff;
+            text-shadow: 0 0 18px rgba(0, 188, 212, 0.18);
         }
 
         .footer-ocean--tvet .footer-brand-link:focus-visible {
-            outline: 2px solid rgba(245, 125, 39, 0.75);
+            outline: 2px solid rgba(0, 188, 212, 0.75);
         }
 
         .footer-ocean--diploma .footer-brand-link:hover .footer-brand-logo,
@@ -325,7 +325,7 @@
         $footerThemeClass = 'footer-ocean--sains-kesihatan';
     }
 
-    // Keep FAQ/Hubungi/Program/Home/Institusi pages on the orange footer theme even without program params.
+    // Keep FAQ/Hubungi/Program/Home/Institusi pages on the default footer theme even without program params.
     if ($footerThemeClass === '' && (
         request()->routeIs('faq', 'hubungi', 'program', 'home', 'institusi', 'institusi.show')
         || request()->is('/')
@@ -348,7 +348,7 @@
                     <p class="footer-brand-subtitle text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
                 </div>
             </a>
-            <p class="text-sm text-gray-400 leading-relaxed">Bantu pelajar dan ibu bapa melihat pilihan pusat, program, kuota semasa dan maklumat penting dengan lebih jelas dalam satu tempat.</p>
+            <p class="text-sm text-gray-400 leading-relaxed">SES bertindak sebagai "one stop centre" menyediakan bimbingan yang lengkap untuk pendidikan pemilihan program sehingga perancangan kerjaya masa hadapan.</p>
         </div>
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
@@ -361,10 +361,10 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
             <ul class="space-y-3 text-sm text-gray-400">
-                <li><p>+6011 2100 5537</p></li>
+                <li><p>+6011 2672 5795</p></li>
                 <li><p>sesoclegacy@gmail.com</p></li>
                 <li><p>sesoc.com.my</p></li>
-                <li><p>34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</p></li>
+                <li><p>No 34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</p></li>
             </ul>
         </div>
     </div>
@@ -450,22 +450,22 @@
                     const isTvetTheme = footer.classList.contains('footer-ocean--tvet');
                     const footerPalette = isTvetTheme
                         ? {
-                            meshStart: 'rgba(245, 125, 39, 0.1)',
-                            meshMid: 'rgba(255, 130, 60, 0.04)',
-                            meshEnd: 'rgba(204, 65, 0, 0.08)',
-                            edgeMid: '245, 125, 39',
-                            edgeEnd: '255, 130, 60',
-                            halo: '245, 125, 39',
-                            node: '255, 224, 208',
+                            meshStart: 'rgba(0, 230, 118, 0.1)',
+                            meshMid: 'rgba(0, 188, 212, 0.04)',
+                            meshEnd: 'rgba(21, 101, 192, 0.08)',
+                            edgeMid: '0, 230, 118',
+                            edgeEnd: '0, 188, 212',
+                            halo: '0, 188, 212',
+                            node: '0, 229, 255',
                         }
                         : {
-                            meshStart: 'rgba(251, 191, 36, 0.08)',
-                            meshMid: 'rgba(249, 115, 22, 0.025)',
-                            meshEnd: 'rgba(234, 88, 12, 0.06)',
-                            edgeMid: '251, 191, 36',
-                            edgeEnd: '249, 115, 22',
-                            halo: '251, 191, 36',
-                            node: '255, 237, 213',
+                            meshStart: 'rgba(0, 230, 118, 0.08)',
+                            meshMid: 'rgba(0, 188, 212, 0.025)',
+                            meshEnd: 'rgba(21, 101, 192, 0.06)',
+                            edgeMid: '0, 230, 118',
+                            edgeEnd: '0, 188, 212',
+                            halo: '0, 188, 212',
+                            node: '0, 229, 255',
                         };
 
                     const meshGradient = ctx.createLinearGradient(0, 0, width, height);

@@ -4,9 +4,9 @@
             position: relative;
             overflow: hidden;
             background:
-                radial-gradient(circle at 12% 18%, rgba(251, 146, 60, 0.18), transparent 22%),
-                radial-gradient(circle at 88% 14%, rgba(245, 158, 11, 0.18), transparent 24%),
-                radial-gradient(circle at 50% -10%, rgba(255, 237, 213, 0.08), transparent 30%),
+                radial-gradient(circle at 12% 18%, rgba(0, 188, 212, 0.18), transparent 22%),
+                radial-gradient(circle at 88% 14%, rgba(0, 230, 118, 0.18), transparent 24%),
+                radial-gradient(circle at 50% -10%, rgba(0, 229, 255, 0.08), transparent 30%),
                 linear-gradient(180deg, #130d0a 0%, #1d130e 36%, #120c09 100%);
         }
 
@@ -16,9 +16,9 @@
             inset: 0;
             z-index: 0;
             background:
-                linear-gradient(180deg, rgba(255, 247, 237, 0.04), rgba(28, 25, 23, 0.22)),
-                repeating-linear-gradient(90deg, rgba(251, 191, 36, 0.035) 0 1px, transparent 1px 28px),
-                repeating-linear-gradient(180deg, rgba(251, 191, 36, 0.02) 0 1px, transparent 1px 28px);
+                linear-gradient(180deg, rgba(0, 229, 255, 0.04), rgba(15, 23, 42, 0.22)),
+                repeating-linear-gradient(90deg, rgba(0, 188, 212, 0.035) 0 1px, transparent 1px 28px),
+                repeating-linear-gradient(180deg, rgba(0, 230, 118, 0.02) 0 1px, transparent 1px 28px);
             mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 90%);
             pointer-events: none;
         }
@@ -29,9 +29,9 @@
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(circle at 20% 26%, rgba(251, 191, 36, 0.12), transparent 18%),
-                radial-gradient(circle at 78% 22%, rgba(249, 115, 22, 0.12), transparent 20%),
-                radial-gradient(circle at 50% 8%, rgba(255, 247, 237, 0.08), transparent 22%);
+                radial-gradient(circle at 20% 26%, rgba(0, 230, 118, 0.12), transparent 18%),
+                radial-gradient(circle at 78% 22%, rgba(0, 188, 212, 0.12), transparent 20%),
+                radial-gradient(circle at 50% 8%, rgba(0, 229, 255, 0.08), transparent 22%);
             mix-blend-mode: screen;
             pointer-events: none;
         }
@@ -62,7 +62,7 @@
             left: -3rem;
             width: 15rem;
             height: 15rem;
-            background: radial-gradient(circle, rgba(251, 146, 60, 0.28), rgba(251, 146, 60, 0));
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.28), rgba(0, 188, 212, 0));
             animation: footerOrbFloat 16s ease-in-out infinite;
         }
 
@@ -71,7 +71,7 @@
             right: -2rem;
             width: 13rem;
             height: 13rem;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0));
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.25), rgba(0, 230, 118, 0));
             animation: footerOrbFloatReverse 18s ease-in-out infinite;
         }
 
@@ -99,14 +99,14 @@
         .footer-brand-link:hover .footer-brand-logo,
         .footer-brand-link:focus-visible .footer-brand-logo {
             transform: translateY(-4px) rotate(-6deg) scale(1.08);
-            filter: drop-shadow(0 10px 16px rgba(251, 146, 60, 0.28));
+            filter: drop-shadow(0 10px 16px rgba(0, 188, 212, 0.28));
         }
 
         .footer-brand-link:hover .footer-brand-title,
         .footer-brand-link:focus-visible .footer-brand-title {
             transform: translateX(4px);
-            color: #fdba74;
-            text-shadow: 0 0 18px rgba(251, 146, 60, 0.18);
+            color: #00e5ff;
+            text-shadow: 0 0 18px rgba(0, 188, 212, 0.18);
         }
 
         .footer-brand-link:hover .footer-brand-subtitle,
@@ -116,7 +116,7 @@
         }
 
         .footer-brand-link:focus-visible {
-            outline: 2px solid rgba(251, 146, 60, 0.75);
+            outline: 2px solid rgba(0, 188, 212, 0.75);
             outline-offset: 6px;
             border-radius: 0.75rem;
         }
@@ -162,11 +162,11 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
             <div class="grid grid-cols-2 gap-2 text-sm">
-                    <a href="{{ route('dashboard') }}" class="hover:text-orange-400">Dashboard</a>
-                    <a href="{{ route('admin.programs') }}" class="hover:text-orange-400">Programs</a>
-                    <a href="{{ route('admin.institusis') }}" class="hover:text-orange-400">Institusi</a>
-                    <a href="{{ route('admin.messages') }}" class="hover:text-orange-400">Pertanyaan</a>
-                    <a href="{{ route('admin.users') }}" class="hover:text-orange-400">Users</a>
+                    <a href="{{ route('dashboard') }}" class="hover:text-cyan-400">Dashboard</a>
+                    <a href="{{ route('admin.programs') }}" class="hover:text-cyan-400">Programs</a>
+                    <a href="{{ route('admin.institusis') }}" class="hover:text-cyan-400">Institusi</a>
+                    <a href="{{ route('admin.messages') }}" class="hover:text-cyan-400">Pertanyaan</a>
+                    <a href="{{ route('admin.users') }}" class="hover:text-cyan-400">Users</a>
             </div>
         </div>
         <div>
@@ -259,9 +259,9 @@
                     shimmerOffset += 0.008;
 
                     const meshGradient = ctx.createLinearGradient(0, 0, width, height);
-                    meshGradient.addColorStop(0, 'rgba(251, 191, 36, 0.08)');
-                    meshGradient.addColorStop(0.5, 'rgba(249, 115, 22, 0.025)');
-                    meshGradient.addColorStop(1, 'rgba(234, 88, 12, 0.06)');
+                    meshGradient.addColorStop(0, 'rgba(0, 230, 118, 0.08)');
+                    meshGradient.addColorStop(0.5, 'rgba(0, 188, 212, 0.025)');
+                    meshGradient.addColorStop(1, 'rgba(21, 101, 192, 0.06)');
                     ctx.fillStyle = meshGradient;
                     ctx.fillRect(0, 0, width, height);
 
@@ -288,9 +288,9 @@
                                 const midX = (p.x + q.x) / 2;
                                 const midY = (p.y + q.y) / 2;
                                 const edgeGradient = ctx.createLinearGradient(p.x, p.y, q.x, q.y);
-                                edgeGradient.addColorStop(0, `rgba(255, 247, 237, ${alpha * 0.95})`);
-                                edgeGradient.addColorStop(0.5, `rgba(251, 191, 36, ${alpha * (0.5 + pulseStrength * 0.35)})`);
-                                edgeGradient.addColorStop(1, `rgba(249, 115, 22, ${alpha * 0.82})`);
+                                edgeGradient.addColorStop(0, `rgba(0, 229, 255, ${alpha * 0.95})`);
+                                edgeGradient.addColorStop(0.5, `rgba(0, 230, 118, ${alpha * (0.5 + pulseStrength * 0.35)})`);
+                                edgeGradient.addColorStop(1, `rgba(0, 188, 212, ${alpha * 0.82})`);
 
                                 ctx.strokeStyle = edgeGradient;
                                 ctx.lineWidth = distance < 72 ? 1.2 : 0.85;
@@ -308,15 +308,15 @@
 
                         const haloGradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, nodeRadius * 10);
                         haloGradient.addColorStop(0, `rgba(255, 255, 255, ${0.2 + pulseStrength * 0.14})`);
-                        haloGradient.addColorStop(0.3, `rgba(251, 191, 36, ${0.24 + pulseStrength * 0.14})`);
-                        haloGradient.addColorStop(1, 'rgba(251, 191, 36, 0)');
+                        haloGradient.addColorStop(0.3, `rgba(0, 188, 212, ${0.24 + pulseStrength * 0.14})`);
+                        haloGradient.addColorStop(1, 'rgba(0, 188, 212, 0)');
 
                         ctx.fillStyle = haloGradient;
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, nodeRadius * 10, 0, Math.PI * 2);
                         ctx.fill();
 
-                        ctx.fillStyle = `rgba(255, 237, 213, ${0.72 + pulseStrength * 0.22})`;
+                        ctx.fillStyle = `rgba(0, 229, 255, ${0.72 + pulseStrength * 0.22})`;
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, nodeRadius, 0, Math.PI * 2);
                         ctx.fill();

@@ -16,7 +16,7 @@
             position: absolute;
             inset: auto 0 0;
             height: 2px;
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.14), rgba(249, 115, 22, 0.95), rgba(251, 146, 60, 0.14));
+            background: linear-gradient(90deg, rgba(0, 230, 118, 0.14), rgba(0, 188, 212, 0.95), rgba(30, 136, 229, 0.14));
         }
 
         .site-nav-brand,
@@ -36,15 +36,15 @@
             position: relative;
             overflow: hidden;
             padding: 0.7rem 0.95rem 0.7rem 0.7rem;
-            border: 1px solid rgba(251, 146, 60, 0.12);
-            background: linear-gradient(135deg, rgba(255, 247, 237, 0.82), rgba(255, 255, 255, 0.97) 52%, rgba(255, 250, 245, 0.9));
+            border: 1px solid rgba(0, 188, 212, 0.16);
+            background: linear-gradient(135deg, rgba(236, 253, 245, 0.82), rgba(255, 255, 255, 0.97) 52%, rgba(240, 249, 255, 0.9));
             box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
             backdrop-filter: blur(10px);
         }
 
         .site-nav-brand:hover {
-            border-color: rgba(249, 115, 22, 0.2);
-            box-shadow: 0 16px 34px rgba(249, 115, 22, 0.1);
+            border-color: rgba(0, 188, 212, 0.28);
+            box-shadow: 0 16px 34px rgba(0, 188, 212, 0.12);
         }
 
         .site-nav-brand::before {
@@ -52,8 +52,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(251, 191, 36, 0.22), transparent 34%),
-                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.12), transparent 32%);
+                radial-gradient(circle at top left, rgba(0, 230, 118, 0.2), transparent 34%),
+                radial-gradient(circle at bottom right, rgba(0, 188, 212, 0.14), transparent 32%);
             pointer-events: none;
         }
 
@@ -64,14 +64,14 @@
             right: 1rem;
             bottom: 0.58rem;
             height: 1px;
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.25), rgba(251, 146, 60, 0));
+            background: linear-gradient(90deg, rgba(0, 188, 212, 0.32), rgba(0, 188, 212, 0));
             pointer-events: none;
         }
 
         .site-nav-brand-badge {
             position: relative;
             overflow: hidden;
-            box-shadow: 0 14px 34px rgba(249, 115, 22, 0.14);
+            box-shadow: 0 14px 34px rgba(0, 188, 212, 0.16);
         }
 
         .site-nav-brand-badge::before {
@@ -79,7 +79,7 @@
             position: absolute;
             inset: 1px;
             border-radius: 1rem;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 247, 237, 0.88));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(236, 253, 245, 0.88));
         }
 
         .site-nav-brand-badge::after {
@@ -89,7 +89,7 @@
             width: 70%;
             height: 70%;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.3), rgba(251, 191, 36, 0));
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.3), rgba(0, 230, 118, 0));
             pointer-events: none;
         }
 
@@ -106,7 +106,7 @@
 
         .site-nav-brand:hover .site-nav-brand-kicker {
             letter-spacing: 0.28em;
-            color: #ea580c;
+            color: #00bcd4;
         }
 
         .site-nav-brand:hover .site-nav-brand-title {
@@ -131,7 +131,7 @@
             inset: 0;
             border-radius: inherit;
             background:
-                linear-gradient(135deg, #ff8a1f, #f97316 56%, #ea580c 100%);
+                linear-gradient(135deg, #00e676, #00bcd4 56%, #1e88e5 100%);
             opacity: 0;
             transform: scale(0.9);
             transition: opacity 0.25s ease, transform 0.25s ease;
@@ -146,12 +146,12 @@
         .site-nav-link:focus-visible,
         .site-nav-link.is-active {
             transform: translateY(-2px);
-            border-color: rgba(249, 115, 22, 0.42);
-            background: #f97316;
+            border-color: rgba(0, 188, 212, 0.48);
+            background: #00bcd4;
             color: #ffffff;
             box-shadow:
                 0 14px 30px rgba(15, 23, 42, 0.08),
-                0 0 24px rgba(249, 115, 22, 0.2),
+                0 0 24px rgba(0, 188, 212, 0.24),
                 inset 0 1px 0 rgba(255, 255, 255, 0.22);
         }
 
@@ -184,7 +184,7 @@
                 linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
             box-shadow:
                 0 28px 70px rgba(15, 23, 42, 0.18),
-                0 0 34px rgba(249, 115, 22, 0.08),
+                0 0 34px rgba(0, 188, 212, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8),
                 inset 0 -1px 0 rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(22px);
@@ -195,7 +195,7 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(251, 191, 36, 0.12), transparent 26%),
+                radial-gradient(circle at top left, rgba(0, 230, 118, 0.12), transparent 26%),
                 radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.1), transparent 30%);
             pointer-events: none;
         }
@@ -218,21 +218,21 @@
         }
 
         .site-nav-mobile[open] .site-nav-menu-icon {
-            border-color: rgba(249, 115, 22, 0.35);
-            background: rgba(249, 115, 22, 0.12);
-            color: #ea580c;
+            border-color: rgba(0, 188, 212, 0.38);
+            background: rgba(0, 188, 212, 0.12);
+            color: #00bcd4;
         }
 
         .site-nav-login:hover,
         .site-nav-menu-icon:hover {
             transform: translateY(-2px) scale(1.03);
-            border-color: rgba(249, 115, 22, 0.28);
+            border-color: rgba(0, 188, 212, 0.3);
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 247, 237, 0.82));
-            color: #ea580c;
+                linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(236, 253, 245, 0.82));
+            color: #00bcd4;
             box-shadow:
                 0 16px 30px rgba(15, 23, 42, 0.12),
-                0 0 22px rgba(249, 115, 22, 0.14),
+                0 0 22px rgba(0, 188, 212, 0.16),
                 inset 0 1px 0 rgba(255, 255, 255, 0.78);
         }
 
@@ -308,14 +308,14 @@
         }
 
         /* ── Per-card accent colour tokens ── */
-        .site-nav-program-card-tvet    { --card-accent: 255, 81, 0;   --card-accent-alt: 255, 150, 80; }
+        .site-nav-program-card-tvet    { --card-accent: 0, 188, 212;  --card-accent-alt: 0, 230, 118; }
         .site-nav-program-card-diploma { --card-accent: 162, 28, 175; --card-accent-alt: 217, 70, 239; }
         .site-nav-program-card-health  { --card-accent: 2, 132, 199;  --card-accent-alt: 103, 232, 249; }
 
         /* ── Background images ── */
         .site-nav-program-card-tvet {
             background-image:
-                linear-gradient(145deg, rgba(139, 34, 0, 0.82), rgba(255, 81, 0, 0.66), rgba(255, 122, 56, 0.46)),
+                linear-gradient(145deg, rgba(21, 101, 192, 0.82), rgba(0, 188, 212, 0.66), rgba(0, 230, 118, 0.38)),
                 url('{{ asset('images/tvet-vg2.jpeg') }}');
         }
         .site-nav-program-card-diploma {
@@ -512,11 +512,11 @@
         }
         html.dark .site-nav-brand {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.97) 52%, rgba(30, 41, 59, 0.9));
-            border-color: rgba(249, 115, 22, 0.2);
+            border-color: rgba(0, 188, 212, 0.24);
         }
         html.dark .site-nav-brand-badge {
             background: linear-gradient(145deg, #1e293b, #0f172a);
-            border-color: rgba(249, 115, 22, 0.2);
+            border-color: rgba(0, 188, 212, 0.24);
         }
         html.dark .site-nav-brand-badge::before {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.94), rgba(15, 23, 42, 0.88));
@@ -534,8 +534,8 @@
         }
         html.dark .site-nav-login:hover, html.dark .site-nav-menu-icon:hover, html.dark .site-nav-mobile[open] .site-nav-menu-icon {
             background: #0f172a;
-            border-color: rgba(249, 115, 22, 0.4);
-            color: #f97316;
+            border-color: rgba(0, 188, 212, 0.42);
+            color: #00bcd4;
         }
         html.dark .site-nav-program-shell, html.dark .site-nav-mobile-panel {
             background: #1e293b;
@@ -553,9 +553,9 @@
         html.dark .site-nav-mobile-panel a, html.dark .site-nav-mobile-panel button {
             color: #cbd5e1;
         }
-        html.dark .site-nav-mobile-panel a:hover, html.dark .site-nav-mobile-panel button:hover, html.dark .site-nav-mobile-panel a.bg-orange-50 {
+        html.dark .site-nav-mobile-panel a:hover, html.dark .site-nav-mobile-panel button:hover, html.dark .site-nav-mobile-panel a.bg-cyan-50 {
             background: #0f172a;
-            color: #f97316;
+            color: #00bcd4;
         }
         html.dark .site-nav-mobile-panel .bg-slate-50\/90 {
             background: #0f172a;
@@ -566,23 +566,23 @@
 <nav class="site-nav">
     <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="{{ url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
-            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-orange-100/90 bg-[linear-gradient(145deg,#fff7ed,#ffffff)] sm:h-14 sm:w-14">
+            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-cyan-100/90 bg-[linear-gradient(145deg,#ecfdf5,#ffffff)] sm:h-14 sm:w-14">
                 <img src="{{ asset('images/icon/seslogo.png') }}" alt="SES logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
             </span>
             <div class="site-nav-brand-copy min-w-0 leading-tight">
-                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">SES</p>
+                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-cyan-500 sm:text-xs">SES</p>
                 <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">SMART Education</h1>
                 <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">Society</h1>
             </div>
         </a>
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
-            <a href="{{ route('program') }}" class="site-nav-link {{ request()->routeIs('program') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('program') }}" class="site-nav-link {{ request()->routeIs('program') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 Program
             </a>
 
             <div class="site-nav-program relative">
-                <a href="{{ route('institusi') }}" class="site-nav-link {{ request()->routeIs('institusi') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                <a href="{{ route('institusi') }}" class="site-nav-link {{ request()->routeIs('institusi') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                     Institusi
                 </a>
 
@@ -627,24 +627,24 @@
                 </div>
             </div>
 
-            <a href="{{ route('faq') }}" class="site-nav-link {{ request()->routeIs('faq') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('faq') }}" class="site-nav-link {{ request()->routeIs('faq') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 FAQ
             </a>
-            <a href="{{ route('hubungi') }}" class="site-nav-link {{ request()->routeIs('hubungi') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('hubungi') }}" class="site-nav-link {{ request()->routeIs('hubungi') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 Hubungi
             </a>
         </div>
 
-        <button id="theme-toggle" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Toggle Dark Mode">
+        <button id="theme-toggle" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-cyan-200 hover:text-cyan-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Toggle Dark Mode">
             <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
             <i id="theme-toggle-light-icon" class="hidden fas fa-sun"></i>
         </button>
-        <button id="theme-toggle-mobile" class="site-nav-login ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:hidden" aria-label="Toggle Dark Mode">
+        <button id="theme-toggle-mobile" class="site-nav-login ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-cyan-200 hover:text-cyan-500 hover:shadow-md sm:hidden" aria-label="Toggle Dark Mode">
             <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
             <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
         </button>
 
-        <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-orange-200 hover:text-orange-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
+        <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-cyan-200 hover:text-cyan-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
             <i class="fa-regular fa-user text-lg" aria-hidden="true"></i>
         </a>
 
@@ -661,10 +661,10 @@
 
             <div class="site-nav-mobile-panel absolute inset-x-4 top-full mt-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-[0_24px_60px_rgba(15,23,42,0.14)] sm:inset-x-6">
                 <div class="space-y-2">
-                    <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <a href="{{ route('program') }}" class="{{ request()->routeIs('program') ? 'bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Program
                     </a>
-                    <a href="{{ route('institusi') }}" class="{{ request()->routeIs('institusi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <a href="{{ route('institusi') }}" class="{{ request()->routeIs('institusi') ? 'bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Institusi
                     </a>
                     <div class="grid gap-3 rounded-[1.6rem] bg-slate-50/90 p-3 sm:grid-cols-3">
@@ -684,13 +684,13 @@
                             <p class="mt-1 text-xs leading-6 text-white/80">Cari institusi kesihatan.</p>
                         </a>
                     </div>
-                    <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <a href="{{ route('faq') }}" class="{{ request()->routeIs('faq') ? 'bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         FAQ
                     </a>
-                    <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
+                    <a href="{{ route('hubungi') }}" class="{{ request()->routeIs('hubungi') ? 'bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} block rounded-2xl px-4 py-3 text-sm font-semibold">
                         Hubungi
                     </a>
-                    <a href="/login" class="mt-3 flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-orange-200 hover:text-orange-500">
+                    <a href="/login" class="mt-3 flex items-center justify-center gap-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:border-cyan-200 hover:text-cyan-500">
                         <i class="fa-regular fa-user text-base" aria-hidden="true"></i>
                         Log Masuk
                     </a>
