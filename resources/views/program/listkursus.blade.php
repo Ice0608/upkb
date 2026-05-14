@@ -717,7 +717,7 @@
 
         .course-card-media {
             position: absolute;
-            inset: 0 0 15% 0;
+            inset: 0 0 11% 0;
             z-index: 0;
             overflow: hidden;
         }
@@ -741,6 +741,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transform: scale(1.05);
             transition: transform 0.6s ease, filter 0.6s ease;
         }
 
@@ -757,7 +758,7 @@
             position: relative;
             z-index: 2;
             height: auto !important;
-            min-height: 48%;
+            min-height: 44%;
             margin-top: auto;
             justify-content: flex-end;
             background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.86) 32%, rgba(15, 23, 42, 0.97) 100%);
@@ -804,9 +805,10 @@
         }
 
         .course-card-headline {
-            position: relative;
-            display: block;
-            padding-right: 4.25rem;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
             min-height: 3.25rem;
         }
 
@@ -828,29 +830,43 @@
             color: #fff;
         }
 
-        .course-card-arrow {
-            position: absolute;
-            top: 0;
-            right: 0;
+        .course-card-action {
+            display: inline-flex;
+            align-items: flex-start;
+            flex-shrink: 0;
+        }
+
+        .course-card-quota {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 3rem;
-            height: 3rem;
-            min-width: 3rem;
-            border-radius: 999px;
-            background: var(--kursus-card-arrow-bg);
-            color: var(--kursus-card-arrow-text);
+            min-width: 4.5rem;
+            min-height: 4.5rem;
+            padding: 0.85rem 1rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(135deg, rgba(255, 115, 29, 0.96), rgba(255, 81, 0, 0.88));
+            color: #fff7ed;
+            text-align: center;
             box-shadow:
-                0 10px 24px rgba(15, 23, 42, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.64);
-            transition: transform 0.28s ease, background-color 0.28s ease, color 0.28s ease;
+                0 14px 28px rgba(255, 81, 0, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
-        .course-card:hover .course-card-arrow {
-            transform: translateX(4px) translateY(-2px);
-            background: var(--kursus-card-arrow-hover-bg);
-            color: var(--kursus-card-arrow-hover-text);
+        .course-card-quota-label {
+            display: block;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            opacity: 0.82;
+        }
+
+        .course-card-quota-value {
+            display: block;
+            margin-top: 0.22rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1;
         }
 
         .course-card-meta {
@@ -1089,6 +1105,12 @@
     $kursusIsTvet = $heroProgramType === 'tvet';
     $kursusIsDiploma = $heroProgramType === 'diploma';
     $kursusIsSainsKesihatan = $heroProgramType === 'sains kesihatan';
+    $showCourseCardQuotaColumn = !($kursusIsDiploma || $kursusIsSainsKesihatan);
+    $heroProgramInfo = $selectedProgram->info_program ?? null;
+
+    if ($kursusIsTvet) {
+        $heroProgramInfo = 'TVET bermaksud Pendidikan dan Latihan Teknikal dan Vokasional. Ia adalah sistem pendidikan yang fokus kepada latihan praktikal dan kemahiran teknikal, bertujuan menyediakan tenaga kerja berkemahiran tinggi yang selari dengan permintaan industri.';
+    }
 @endphp
 <body class="kursus-page no-bg {{ $kursusIsTvet ? 'kursus-page--tvet' : '' }} {{ $kursusIsDiploma ? 'kursus-page--diploma' : '' }} {{ $kursusIsSainsKesihatan ? 'kursus-page--sains-kesihatan' : '' }} text-gray-800 transition-colors duration-300">
 
@@ -1100,7 +1122,7 @@
             <div class="kursus-hero-image" aria-hidden="true"></div>
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
                 <div>
-                    <p class="text-xs sm:text-sm uppercase tracking-[0.16em] text-white/75 font-semibold">Eksplorasi Kursus</p>
+                    <p class="text-xs sm:text-sm uppercase tracking-[0.16em] text-white/75 font-semibold">Terokai Program</p>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
                         @if(request('search'))
                             Hasil Carian Kursus
@@ -1113,7 +1135,7 @@
                     @if(request('search'))
                         <p class="kursus-hero-soft-text mt-3 text-lg max-w-3xl">Menunjukkan padanan untuk "{{ request('search') }}" merentasi semua kursus{{ request('jenis') ? ' dalam kategori ' . request('jenis') : '' }}.</p>
                     @elseif(isset($selectedProgram) && $selectedProgram)
-                        <p class="kursus-hero-soft-text mt-3 text-lg max-w-3xl">{{ $selectedProgram->info_program }}</p>
+                        <p class="kursus-hero-soft-text mt-3 text-lg max-w-3xl">{{ $heroProgramInfo }}</p>
                     @else
                         <p class="kursus-hero-soft-text mt-3 text-lg">Cari dan jelajahi kursus yang sesuai dengan minat anda.</p>
                     @endif
@@ -1134,7 +1156,7 @@
                 <div class="kursus-sidebar rounded-3xl p-6">
                     <div class="relative z-10">
                         <h3 class="kursus-sidebar-section-title text-lg font-bold mb-4">
-                            <i class="fas fa-list-ul mr-2 kursus-section-accent"></i>Kategori Kursus
+                            <i class="fas fa-list-ul mr-2 kursus-section-accent"></i>Pilihan Program
                         </h3>
                         
                         <div class="flex flex-col space-y-1 sidebar-scroll">
@@ -1194,10 +1216,6 @@
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">
                                 <span class="kursus-tag px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em]">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="flex flex-wrap items-center justify-end gap-2 max-w-[75%]">
-                                    @if($showJenisKursusPill)
-                                        <span class="kursus-pill kursus-pill--tahap px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">{{ $kursus->jenis_kursus }}</span>
-                                    @endif
-                                    <span class="kursus-pill kursus-pill--kuota px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.18em]">Kuota {{ $kursus->kuota ?? '-' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -1208,21 +1226,27 @@
                                     <p class="kursus-section-accent text-[0.7rem] font-semibold uppercase tracking-[0.28em]">Kursus</p>
                                     <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $kursus->nama_kursus_paparan }}</h2>
                                 </div>
-                                <span class="course-card-arrow">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
+                                @if($showCourseCardQuotaColumn)
+                                    <div class="course-card-action">
+                                        <span class="course-card-quota">
+                                            <span>
+                                                <span class="course-card-quota-label">Kuota</span>
+                                                <span class="course-card-quota-value">{{ $kursus->kuota ?? '-' }}</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="course-card-meta">
                                 <div class="course-card-meta-item">
-                                    <p class="course-card-meta-label">Tarikh Pendaftaran</p>
-                                    <p class="course-card-meta-value">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? 'Tidak dinyatakan' }}</p>
+                                    <p class="course-card-meta-label">{{ $showCourseCardQuotaColumn ? 'Tahap' : 'Kuota' }}</p>
+                                    <p class="course-card-meta-value">{{ $showCourseCardQuotaColumn ? ($showJenisKursusPill ? $kursus->jenis_kursus : 'Tidak dinyatakan') : ($kursus->kuota ?? '-') }}</p>
                                 </div>
                             </div>
 
-                            <button class="kursus-cta inline-flex items-center justify-between w-full rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg mt-auto">
-                                <span>Lihat Pilihan Kursus</span>
-                                <i class="fas fa-arrow-right"></i>
+                            <button class="kursus-cta inline-flex items-center justify-center w-full rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg mt-auto text-center">
+                                <span>Paparan Pusat Bertauliah</span>
                             </button>
                         </div>
                     </article>

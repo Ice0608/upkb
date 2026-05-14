@@ -224,7 +224,7 @@
 
         .pilihan-hero-banner {
             position: relative;
-            min-height: clamp(24rem, 48vw, 32rem);
+            min-height: clamp(23rem, 42vw, 30rem);
             border-radius: 2rem;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.42);
@@ -262,17 +262,13 @@
             color: rgba(255, 255, 255, 0.86);
             font-size: clamp(1rem, 2vw, 1.15rem);
             line-height: 1.8;
-            max-height: clamp(7rem, 22vh, 14rem);
-            overflow-y: auto;
-            padding-right: 0.35rem;
-            scrollbar-width: thin;
         }
 
         .pilihan-filter-floating {
             position: relative;
             z-index: 5;
             width: min(78rem, calc(100% - 2rem));
-            margin: 1.5rem auto 0;
+            margin: 1rem auto 0;
         }
 
         .pilihan-filter-card {
@@ -313,7 +309,7 @@
         .pilihan-hero-media {
             position: relative;
             overflow: hidden;
-            min-height: clamp(24rem, 48vw, 32rem);
+            min-height: clamp(23rem, 42vw, 30rem);
             border: 0;
             background: #ffffff;
             box-shadow: none;
@@ -725,7 +721,7 @@
 
             .pilihan-hero-banner,
             .pilihan-hero-media {
-                min-height: clamp(32rem, 72vw, 42rem);
+                min-height: clamp(25rem, 58vw, 32rem);
             }
 
             .pilihan-filter-floating {
@@ -754,7 +750,7 @@
 
         @media (max-width: 640px) {
             .pilihan-hero-media {
-                min-height: 26rem;
+                min-height: 22rem;
                 transform: none !important;
             }
 
@@ -963,11 +959,11 @@
                     Kembali
                 </button>
             </div>
-            
+
             <div class="pilihan-hero-layout pilihan-section-anchor">
                 <div class="pilihan-hero-media pilihan-hero-banner group" data-hero-card>
                     <div class="absolute left-5 top-5 z-10">
-                        <span class="pilihan-image-badge inline-flex rounded-full border border-white/30 bg-white/14 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-white">Kursus Pilihan</span>
+                        <span class="pilihan-image-badge inline-flex rounded-full border border-white/30 bg-white/14 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-white">Program Dipilih</span>
                     </div>
                     <div class="pilihan-hero-card-overlay"></div>
                     <div class="absolute inset-0 z-10 text-white">
@@ -982,7 +978,7 @@
                             <div class="pilihan-hero-facts">
                                 <span class="pilihan-hero-fact text-sm font-semibold">
                                     <i class="fa-solid fa-building-columns text-white/90"></i>
-                                    {{ $semuaKursus->count() }} penawaran
+                                    {{ $semuaKursus->count() }} institusi
                                 </span>
                                 <span class="pilihan-hero-fact text-sm font-semibold">
                                     <i class="fa-solid fa-layer-group text-white/90"></i>
@@ -994,7 +990,7 @@
                                 </span>
                             </div>
                             <a href="#institusiResults" class="pilihan-hero-cta">
-                                Lihat Program
+                                Lihat Senarai Institusi
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1012,8 +1008,8 @@
                         <div class="pilihan-filter-grid">
                             <div class="pilihan-filter-intro">
                                 <p class="pilihan-theme-accent text-xs font-bold uppercase tracking-[0.28em]">Carian Pantas</p>
-                                <h2 class="text-2xl font-bold text-slate-900">Tapis institusi dengan pantas</h2>
-                                <p class="text-sm leading-7 text-slate-500">Bandingkan jenis program, tempoh pengajian dan mod yang paling sesuai dalam satu bar terapung.</p>
+                                <h2 class="text-2xl font-bold text-slate-900">Tapis Senarai Institusi</h2>
+                                <p class="text-sm leading-7 text-slate-500">Gunakan penapis ini untuk kecilkan pilihan kepada institusi yang benar-benar sepadan dengan keperluan anda.</p>
                             </div>
 
                             <div class="pilihan-filter-field">
@@ -1060,8 +1056,8 @@
             <div class="mb-10 border-t border-slate-200/80 pt-10 sm:pt-12">
                 <div class="pilihan-results-intro rounded-3xl p-5 sm:p-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div class="max-w-2xl">
-                        <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Institusi Penawaran</h2>
-                        <p class="mt-2 text-slate-500">Pilih institusi berdasarkan jenis program, tempoh dan mod pengajian tanpa memenuhkan paparan dengan maklumat yang tidak perlu.</p>
+                        <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Pusat Bertauliah Yang Menawarkan {{ $namaKursus }}</h2>
+                        <p class="mt-2 text-slate-500">Pilih institusi berdasarkan jenis program, tempoh pengajian dan mod pengajian yang paling sesuai dengan perancangan anda.</p>
                     </div>
                     <div class="pilihan-live-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
                         <span class="pilihan-results-dot inline-flex h-2.5 w-2.5 rounded-full"></span>
