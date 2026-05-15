@@ -14,10 +14,10 @@
             position: relative;
             min-height: 100vh;
             background:
-                radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 20%),
-                radial-gradient(circle at top right, rgba(168, 85, 247, 0.18), transparent 22%),
-                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.18), transparent 24%),
-                linear-gradient(180deg, #e7f0ff 0%, #eef1ff 48%, #fff5e7 100%);
+                radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 20%),
+                radial-gradient(circle at top right, rgba(45, 212, 191, 0.18), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(94, 234, 212, 0.18), transparent 24%),
+                linear-gradient(180deg, #ecf9f7 0%, #eef9f8 48%, #f0fdf9 100%);
         }
 
         .contact-page::before,
@@ -44,7 +44,7 @@
             height: 20rem;
             transform: translateX(-50%);
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 184, 28, 0.3), rgba(255, 184, 28, 0) 68%);
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.3), rgba(45, 212, 191, 0) 68%);
             filter: blur(36px);
             opacity: 0.94;
         }
@@ -74,9 +74,9 @@
             height: 15rem;
             border-radius: 999px;
             background:
-                radial-gradient(circle, rgba(37, 99, 235, 0.22), rgba(37, 99, 235, 0) 64%),
-                repeating-radial-gradient(circle, rgba(37, 99, 235, 0.1) 0 2px, transparent 2px 16px);
-            box-shadow: 0 0 82px rgba(37, 99, 235, 0.16);
+                radial-gradient(circle, rgba(20, 184, 166, 0.22), rgba(20, 184, 166, 0) 64%),
+                repeating-radial-gradient(circle, rgba(20, 184, 166, 0.1) 0 2px, transparent 2px 16px);
+            box-shadow: 0 0 82px rgba(20, 184, 166, 0.16);
         }
 
         .contact-shell::after {
@@ -86,9 +86,9 @@
             height: 18rem;
             border-radius: 999px;
             background:
-                radial-gradient(circle, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0) 66%),
-                repeating-radial-gradient(circle, rgba(168, 85, 247, 0.1) 0 2px, transparent 2px 18px);
-            box-shadow: 0 0 90px rgba(168, 85, 247, 0.16);
+                radial-gradient(circle, rgba(45, 212, 191, 0.2), rgba(45, 212, 191, 0) 66%),
+                repeating-radial-gradient(circle, rgba(45, 212, 191, 0.1) 0 2px, transparent 2px 18px);
+            box-shadow: 0 0 90px rgba(45, 212, 191, 0.16);
         }
 
         .contact-hero {
@@ -96,11 +96,11 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.8);
             background:
-                linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
+                linear-gradient(90deg, #14b8a6 0%, #5eead4 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
-                0 0 68px rgba(255, 166, 0, 0.3),
-                0 0 130px rgba(255, 212, 59, 0.22),
+                0 0 68px rgba(20, 184, 166, 0.3),
+                0 0 130px rgba(45, 212, 191, 0.22),
                 inset 0 1px 0 rgba(255, 255, 255, 0.24);
         }
 
@@ -120,7 +120,7 @@
             border: 1px solid rgba(255, 255, 255, 0.24);
             background: radial-gradient(circle, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 72%);
             box-shadow:
-                0 0 36px rgba(255, 235, 140, 0.34),
+                0 0 36px rgba(204, 251, 241, 0.34),
                 0 0 0 18px rgba(255, 255, 255, 0.08),
                 0 0 0 40px rgba(255, 255, 255, 0.04);
             animation: contactGlowPulse 7s ease-in-out infinite;
@@ -138,7 +138,7 @@
                 repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
             transform: rotate(12deg);
             opacity: 0.68;
-            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
+            box-shadow: 0 0 42px rgba(45, 212, 191, 0.28);
         }
 
         .contact-hero-eyebrow {
@@ -162,7 +162,7 @@
             height: 105%;
             pointer-events: none;
             user-select: none;
-            filter: drop-shadow(-12px 0 36px rgba(140, 50, 0, 0.28));
+            filter: drop-shadow(-12px 0 36px rgba(20, 184, 166, 0.28));
         }
 
         .contact-hero-figure svg {
@@ -265,7 +265,7 @@
         .contact-icon-chip {
             position: relative;
             box-shadow:
-                0 0 28px rgba(249, 115, 22, 0.18),
+                0 0 28px rgba(20, 184, 166, 0.18),
                 0 14px 26px rgba(15, 23, 42, 0.12),
                 inset 0 1px 0 rgba(255, 255, 255, 0.22);
         }
@@ -310,8 +310,8 @@
 
         .contact-submit {
             box-shadow:
-                0 0 34px rgba(249, 115, 22, 0.2),
-                0 18px 34px rgba(249, 115, 22, 0.2),
+                0 0 34px rgba(20, 184, 166, 0.2),
+                0 18px 34px rgba(20, 184, 166, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.18);
             transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
         }
@@ -319,8 +319,8 @@
         .contact-submit:hover {
             transform: translateY(-2px) scale(1.01);
             box-shadow:
-                0 24px 42px rgba(249, 115, 22, 0.24),
-                0 0 44px rgba(249, 115, 22, 0.24),
+                0 24px 42px rgba(20, 184, 166, 0.24),
+                0 0 44px rgba(20, 184, 166, 0.24),
                 inset 0 1px 0 rgba(255, 255, 255, 0.22);
             filter: saturate(1.05);
         }
@@ -375,9 +375,9 @@
         /* ── DARK MODE ── */
         html.dark .contact-page {
             background:
-                radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 20%),
-                radial-gradient(circle at top right, rgba(168, 85, 247, 0.08), transparent 22%),
-                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.08), transparent 24%),
+                radial-gradient(circle at top left, rgba(20, 184, 166, 0.08), transparent 20%),
+                radial-gradient(circle at top right, rgba(45, 212, 191, 0.08), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(94, 234, 212, 0.08), transparent 24%),
                 linear-gradient(180deg, #0f172a 0%, #1e293b 48%, #0f172a 100%);
         }
         html.dark .contact-card {
@@ -612,13 +612,13 @@
         <div class="contact-grid grid md:grid-cols-2 gap-8">
             <section class="contact-card rounded-[2rem] p-8" data-fade-open data-fade-order="3">
                 <div class="relative z-10 flex items-center gap-4 mb-6">
-                    <div class="contact-icon-chip h-12 w-12 rounded-full bg-[linear-gradient(135deg,#f97316,#fb7185)] text-white flex items-center justify-center">
-                        <i class="fas fa-location-dot"></i>
+                    <div class="w-12 h-12 bg-[linear-gradient(135deg,#14b8a6,#22d3ee)] flex items-center justify-center rounded-2xl shadow-lg shadow-teal-200 shrink-0">
+                        <i class="fas fa-map-marker-alt text-white text-xl"></i>
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Alamat Pejabat</h2>
                         <p class="text-slate-500">No 34, Jalan MPK 4, Taman Bukit Kepayang, 70300 Seremban, Negeri Sembilan</p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=34+Jalan+MPK+4+Taman+Bukit+Kepayang+70300+Seremban" target="_blank" class="inline-flex items-center text-sm font-semibold text-orange-500 hover:text-orange-600 mt-2">
+                        <a href="https://www.google.com/maps/search/?api=1&query=34+Jalan+MPK+4+Taman+Bukit+Kepayang+70300+Seremban" target="_blank" class="inline-flex items-center text-sm font-semibold text-teal-500 hover:text-teal-600 mt-2">
                             <i class="fas fa-map-marker-alt mr-2"></i> Buka di Google Maps
                         </a>
                     </div>
@@ -647,7 +647,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Emel Rasmi</h2>
-                        <p class="text-orange-500 font-semibold">sesoclegacy@gmail.com</p>
+                        <p class="text-teal-500 font-semibold">sesoclegacy@gmail.com</p>
                     </div>
                 </div>
             </section>
@@ -677,7 +677,7 @@
                             <textarea id="mesej" name="mesej" rows="5" required class="contact-input w-full rounded-2xl @error('mesej') border-red-500 @enderror p-3 text-slate-800 outline-none" placeholder="Tulis mesej anda di sini">{{ old('mesej') }}</textarea>
                             @error('mesej')<p class="text-red-500 text-sm mt-1"><i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}</p>@enderror
                         </div>
-                        <button type="submit" class="contact-submit w-full bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl py-3 transition">
+                        <button type="submit" class="contact-submit w-full bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90 text-white font-bold rounded-2xl py-3 transition shadow-lg shadow-teal-100">
                             <i class="fas fa-paper-plane mr-2"></i> Hantar Mesej
                         </button>
                     </form>

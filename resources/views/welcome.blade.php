@@ -1653,6 +1653,14 @@
             visibility: visible;
         }
 
+        #startIntroButton {
+            background-color: #06b6d4;
+        }
+
+        #startIntroButton:hover {
+            background-color: #0284c7;
+        }
+
         .intro-overlay.hide {
             opacity: 0;
             visibility: hidden;
@@ -2594,15 +2602,13 @@
 </body>
 
 <script>
-let currentIndex = 0;
-const slides = document.getElementById("slides");
-const totalSlides = document.querySelectorAll("#slides > div").length;
-const dots = document.querySelectorAll(".dot");
+// --- KEKALKAN VARIABLE ASAL ANDA ---
 const introOverlay = document.getElementById('introOverlay');
 const introVideo = document.getElementById('introVideo');
 const startIntroButton = document.getElementById('startIntroButton');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// --- FUNGSI ANIMASI & INTRO (KEKALKAN 100%) ---
 function runHeroOpeningAnimation() {
     if (prefersReducedMotion) return;
     document.body.classList.remove('hero-open-active');
@@ -2611,105 +2617,125 @@ function runHeroOpeningAnimation() {
     });
 }
 
-function updateSlider() {
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-    dots.forEach((dot, index) => {
-        dot.classList.remove("bg-white");
-        dot.classList.add("bg-gray-400");
-
-        if (index === currentIndex) {
-            dot.classList.remove("bg-gray-400");
-            dot.classList.add("bg-white");
-        }
-    });
-}
-
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlider();
-}
-
-function prevSlide() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateSlider();
-}
-
 function hideIntroOverlay() {
     if (!introOverlay) return;
-
-    // Stop & reset the video so it doesn't stay stuck on last frame
     if (introVideo) {
         introVideo.pause();
         introVideo.currentTime = 0;
         introVideo.classList.add('hidden');
     }
-
     introOverlay.classList.add('hide');
-
-    // Use setTimeout as reliable fallback — transitionend may not fire in all browsers
     setTimeout(function() {
         introOverlay.style.display = 'none';
         runHeroOpeningAnimation();
-    }, 650); // slightly longer than the 0.6s CSS transition
-
+    }, 650);
     document.body.style.overflow = '';
     localStorage.setItem('upkbIntroSeen', '1');
 }
 
 function startIntro() {
     if (!introVideo || !introOverlay) return;
-
     introVideo.classList.remove('hidden');
-    introVideo.play().catch(() => {
-        // Browser may require user interaction, but start button click should satisfy that.
-    });
-    startIntroButton.classList.add('hidden');
+    introVideo.play().catch(() => {});
+    if (startIntroButton) startIntroButton.classList.add('hidden');
 }
 
 function showIntroOverlayIfNeeded() {
     const hasSeenIntro = localStorage.getItem('upkbIntroSeen') === '1';
-
     if (!hasSeenIntro && introOverlay) {
         document.body.style.overflow = 'hidden';
-        introVideo.addEventListener('ended', hideIntroOverlay);
-        startIntroButton.addEventListener('click', startIntro);
+        if (introVideo) introVideo.addEventListener('ended', hideIntroOverlay);
+        if (startIntroButton) startIntroButton.addEventListener('click', startIntro);
     } else if (introOverlay) {
         introOverlay.style.display = 'none';
         runHeroOpeningAnimation();
     }
 }
 
-showIntroOverlayIfNeeded();
+// --- LOGIK INFINITE SLIDER (DIUBAH UNTUK HTML ANDA) ---
+let isTransitioning = false;
+let dotIndex = 0; // Untuk kawal lampu dot secara berasingan
 
-// AUTO SLIDE
-setInterval(nextSlide, 4000);
+function updateDots() {
+    const dots = document.querySelectorAll(".dot");
+    dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-white", i === dotIndex);
+        dot.classList.toggle("bg-white/40", i !== dotIndex);
+    });
+}
 
-// ── SCROLL REVEAL ──
-(function () {
-    var revealEls = document.querySelectorAll('[data-reveal]');
-    if (!revealEls.length) return;
+function nextSlide() {
+    const slides = document.getElementById("slides");
+    if (isTransitioning || !slides) return;
+    isTransitioning = true;
+    
+    const totalSlides = document.querySelectorAll("#slides > div").length;
+    dotIndex = (dotIndex + 1) % totalSlides;
+    updateDots();
 
-    // Fallback: if IntersectionObserver is not supported, show everything immediately
-    if (!('IntersectionObserver' in window)) {
-        revealEls.forEach(function (el) { el.classList.add('revealed'); });
-        return;
-    }
+    // Gerak ke kanan
+    slides.style.transition = 'transform 0.7s ease-in-out'; // Ikut duration HTML anda
+    slides.style.transform = 'translateX(-100%)';
+}
 
-    var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-            } else {
-                entry.target.classList.remove('revealed');
+function prevSlide() {
+    const slides = document.getElementById("slides");
+    if (isTransitioning || !slides) return;
+    isTransitioning = true;
+
+    const totalSlides = document.querySelectorAll("#slides > div").length;
+    dotIndex = (dotIndex - 1 + totalSlides) % totalSlides;
+    updateDots();
+
+    // Pindah gambar terakhir ke depan secara senyap
+    slides.style.transition = 'none';
+    slides.prepend(slides.lastElementChild);
+    slides.style.transform = 'translateX(-100%)';
+
+    // Slide ke posisi asal
+    setTimeout(() => {
+        slides.style.transition = 'transform 0.7s ease-in-out';
+        slides.style.transform = 'translateX(0)';
+    }, 20);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.getElementById("slides");
+    
+    if (slides) {
+        slides.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            // Jika baru habis slide ke kanan, susun semula gambar
+            if (slides.style.transform === 'translateX(-100%)') {
+                slides.style.transition = 'none';
+                slides.appendChild(slides.firstElementChild);
+                slides.style.transform = 'translateX(0)';
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+    }
 
-    revealEls.forEach(function (el) { io.observe(el); });
-})();
-// ── END SCROLL REVEAL ──
+    showIntroOverlayIfNeeded();
+    updateDots(); // Set dot pertama aktif
 
+    // --- SCROLL REVEAL (KEKALKAN) ---
+    (function () {
+        var revealEls = document.querySelectorAll('[data-reveal]');
+        if (!revealEls.length) return;
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                } else {
+                    entry.target.classList.remove('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+        revealEls.forEach(function (el) { io.observe(el); });
+    })();
+
+    // Auto Slide
+    setInterval(nextSlide, 5000);
+});
 </script>
 
 </html>

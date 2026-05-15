@@ -14,14 +14,14 @@
         :root {
             --xmb-ease: cubic-bezier(0.22, 1, 0.36, 1);
             --xmb-ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
-            --xmb-primary: #ff7a00;
-            --xmb-primary-soft: #ffb238;
-            --xmb-primary-pale: #ffe1b8;
-            --xmb-accent: #ffcf5a;
-            --xmb-bg: #f8f4ef;
-            --xmb-bg-warm: #fff9f4;
+            --xmb-primary: #14b8a6;
+            --xmb-primary-soft: #2dd4bf;
+            --xmb-primary-pale: #ccfbf1;
+            --xmb-accent: #5eead4;
+            --xmb-bg: #f0fdf9;
+            --xmb-bg-warm: #f0fdfa;
             --xmb-surface: rgba(255, 255, 255, 0.74);
-            --xmb-surface-strong: rgba(241, 236, 230, 0.96);
+            --xmb-surface-strong: rgba(240, 253, 250, 0.96);
             --xmb-border: rgba(255, 255, 255, 0.76);
             --xmb-border-soft: rgba(28, 28, 30, 0.06);
             --xmb-text-main: #1c1c1e;
@@ -29,15 +29,15 @@
             --xmb-text-faint: rgba(28, 28, 30, 0.5);
             --xmb-shadow: rgba(27, 29, 35, 0.08);
             --xmb-shadow-strong: rgba(27, 29, 35, 0.14);
-            --xmb-glow: rgba(255, 122, 0, 0.28);
-            --xmb-glow-strong: rgba(255, 188, 56, 0.38);
+            --xmb-glow: rgba(20, 184, 166, 0.28);
+            --xmb-glow-strong: rgba(45, 212, 191, 0.38);
         }
 
         .faq-page {
             position: relative;
             min-height: 100vh;
             overflow-x: hidden;
-            background: linear-gradient(180deg, var(--xmb-bg-warm) 0%, #f7f2ec 52%, #f1ebe4 100%);
+            background: linear-gradient(180deg, var(--xmb-bg-warm) 0%, #f0f9f7 52%, #e0f8f5 100%);
         }
 
         .faq-page::before,
@@ -51,9 +51,9 @@
 
         .faq-page::before {
             background:
-                radial-gradient(circle at 12% 14%, rgba(255, 122, 0, 0.14), transparent 24%),
-                radial-gradient(circle at 85% 16%, rgba(255, 198, 94, 0.16), transparent 20%),
-                radial-gradient(circle at 50% 100%, rgba(255, 154, 60, 0.12), transparent 32%),
+                radial-gradient(circle at 12% 14%, rgba(20, 184, 166, 0.14), transparent 24%),
+                radial-gradient(circle at 85% 16%, rgba(45, 212, 191, 0.16), transparent 20%),
+                radial-gradient(circle at 50% 100%, rgba(94, 234, 212, 0.12), transparent 32%),
                 repeating-radial-gradient(circle at 0 0, rgba(28, 28, 30, 0.025) 0 1px, transparent 1px 4px);
             opacity: 0.46;
             mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.15));
@@ -65,7 +65,7 @@
             height: 28rem;
             transform: translateX(-50%);
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 184, 63, 0.16), rgba(255, 184, 63, 0) 68%);
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.16), rgba(45, 212, 191, 0) 68%);
             opacity: 0.74;
         }
 
@@ -84,7 +84,7 @@
             opacity: 0.34;
             background:
                 radial-gradient(circle at 12% 45%, rgba(255, 255, 255, 0.42), transparent 20%),
-                linear-gradient(120deg, rgba(255, 214, 163, 0.1) 8%, rgba(255, 154, 60, 0.18) 34%, rgba(255, 203, 103, 0.16) 62%, rgba(255, 255, 255, 0.08) 100%);
+                linear-gradient(120deg, rgba(204, 251, 241, 0.1) 8%, rgba(94, 234, 212, 0.18) 34%, rgba(45, 212, 191, 0.16) 62%, rgba(255, 255, 255, 0.08) 100%);
             animation: none;
         }
 
@@ -95,7 +95,7 @@
             left: -8%;
             width: 116%;
             border-radius: 48% 52% 0 0;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 154, 60, 0.12), rgba(255, 207, 90, 0.1), rgba(255, 255, 255, 0.04));
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(94, 234, 212, 0.12), rgba(45, 212, 191, 0.1), rgba(255, 255, 255, 0.04));
         }
 
         .faq-wave-layer::before {
@@ -129,13 +129,13 @@
         .faq-hero {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 227, 170, 0.48);
+            border: 1px solid rgba(94, 234, 212, 0.48);
             background:
-                linear-gradient(90deg, #ff7a00 0%, #ff9924 56%, #ffd24a 100%);
+                linear-gradient(90deg, #14b8a6 0%, #2dd4bf 56%, #5eead4 100%);
             box-shadow:
-                inset 0 1px 0 rgba(255, 250, 236, 0.44),
-                0 24px 55px rgba(205, 112, 24, 0.22),
-                0 0 46px rgba(255, 177, 60, 0.2);
+                inset 0 1px 0 rgba(204, 251, 241, 0.44),
+                0 24px 55px rgba(20, 184, 166, 0.22),
+                0 0 46px rgba(45, 212, 191, 0.2);
             animation: none;
         }
 
@@ -163,29 +163,29 @@
             width: 12rem;
             height: 12rem;
             border-radius: 50%;
-            border: 1px solid rgba(255, 241, 209, 0.22);
+            border: 1px solid rgba(204, 251, 241, 0.22);
             box-shadow:
-                0 0 0 1rem rgba(255, 241, 209, 0.08),
-                0 0 0 2rem rgba(255, 241, 209, 0.04);
+                0 0 0 1rem rgba(204, 251, 241, 0.08),
+                0 0 0 2rem rgba(204, 251, 241, 0.04);
             opacity: 0.92;
             pointer-events: none;
         }
 
         .faq-hero-eyebrow {
-            color: rgba(255, 244, 228, 0.74);
+            color: rgba(204, 251, 241, 0.74);
         }
 
         .faq-hero-title {
             color: #ffffff;
-            text-shadow: 0 10px 22px rgba(160, 74, 0, 0.24);
+            text-shadow: 0 10px 22px rgba(20, 184, 166, 0.24);
         }
 
         .faq-hero-copy {
-            color: rgba(255, 247, 235, 0.92);
+            color: rgba(204, 251, 241, 0.92);
         }
 
         .faq-track-label {
-            color: rgba(170, 93, 18, 0.8);
+            color: rgba(20, 184, 166, 0.8);
             letter-spacing: 0.38em;
             text-transform: uppercase;
         }
@@ -220,7 +220,7 @@
             right: 7%;
             top: calc(50% + 0.5rem);
             height: 1px;
-            background: linear-gradient(90deg, rgba(232, 160, 96, 0.02), rgba(255, 154, 60, 0.22), rgba(255, 207, 90, 0.2), rgba(232, 160, 96, 0.02));
+            background: linear-gradient(90deg, rgba(20, 184, 166, 0.02), rgba(94, 234, 212, 0.22), rgba(45, 212, 191, 0.2), rgba(20, 184, 166, 0.02));
             transform: translateY(-50%);
             z-index: 0;
         }
@@ -234,7 +234,7 @@
             height: 14rem;
             transform: translate(-50%, -28%);
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 176, 73, 0.18), rgba(255, 176, 73, 0) 68%);
+            background: radial-gradient(circle, rgba(45, 212, 191, 0.18), rgba(45, 212, 191, 0) 68%);
             filter: blur(6px);
             opacity: 0.8;
             pointer-events: none;
@@ -255,12 +255,12 @@
             justify-content: center;
             width: 3.15rem;
             height: 3.15rem;
-            border: 1px solid rgba(255, 168, 83, 0.34);
+            border: 1px solid rgba(20, 184, 166, 0.34);
             border-radius: 999px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 244, 231, 0.46));
-            color: rgba(122, 81, 44, 0.92);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(240, 253, 250, 0.46));
+            color: rgba(20, 184, 166, 0.92);
             box-shadow:
-                0 8px 14px rgba(85, 53, 24, 0.1),
+                0 8px 14px rgba(20, 184, 166, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.94);
             backdrop-filter: none;
             transition:
@@ -274,10 +274,10 @@
         .faq-carousel-button:focus-visible {
             transform: translateY(-2px);
             color: #ffffff;
-            background: linear-gradient(135deg, rgba(255, 140, 36, 0.92), rgba(255, 187, 56, 0.88));
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.92), rgba(45, 212, 191, 0.88));
             box-shadow:
-                0 18px 32px rgba(226, 124, 30, 0.2),
-                0 0 28px rgba(255, 172, 58, 0.16);
+                0 18px 32px rgba(20, 184, 166, 0.2),
+                0 0 28px rgba(45, 212, 191, 0.16);
             outline: none;
         }
 
@@ -353,12 +353,12 @@
             opacity: 1;
             pointer-events: auto;
             z-index: 5;
-            border-color: rgba(255, 208, 137, 0.56);
+            border-color: rgba(45, 212, 191, 0.56);
             box-shadow:
-                inset 0 1px 0 rgba(255, 246, 228, 0.44),
-                0 14px 30px rgba(226, 124, 30, 0.2);
+                inset 0 1px 0 rgba(204, 251, 241, 0.44),
+                0 14px 30px rgba(20, 184, 166, 0.2);
             background:
-                linear-gradient(145deg, rgba(255, 160, 82, 0.28), rgba(255, 202, 116, 0.14)),
+                linear-gradient(145deg, rgba(45, 212, 191, 0.28), rgba(94, 234, 212, 0.14)),
                 linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
             outline: none;
         }
@@ -366,13 +366,13 @@
         .faq-card:hover,
         .faq-card:focus-visible {
             transform: translate3d(-50%, -50%, 0) scale(1.01);
-            border-color: rgba(255, 225, 182, 0.42);
+            border-color: rgba(94, 234, 212, 0.42);
             background:
-                linear-gradient(145deg, rgba(255, 182, 105, 0.22), rgba(255, 235, 193, 0.14)),
+                linear-gradient(145deg, rgba(45, 212, 191, 0.22), rgba(94, 234, 212, 0.14)),
                 linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.38),
-                0 12px 24px rgba(85, 53, 24, 0.16);
+                0 12px 24px rgba(20, 184, 166, 0.16);
         }
 
         .faq-card.is-focused::after {
@@ -551,7 +551,7 @@
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.34),
                 0 16px 28px rgba(28, 28, 30, 0.14),
-                0 0 20px rgba(255, 154, 60, 0.16);
+                0 0 20px rgba(20, 184, 166, 0.16);
             backdrop-filter: none;
             -webkit-backdrop-filter: none;
             transition: transform 320ms var(--xmb-ease-soft), box-shadow 320ms var(--xmb-ease-soft), filter 320ms var(--xmb-ease-soft);
@@ -579,7 +579,7 @@
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.42),
                 0 20px 34px rgba(28, 28, 30, 0.14),
-                0 0 34px rgba(255, 154, 60, 0.18);
+                0 0 34px rgba(20, 184, 166, 0.18);
             filter: brightness(1.06);
         }
 
@@ -725,13 +725,13 @@
             margin: 0 auto;
             border: 1px solid rgba(255, 255, 255, 0.74);
             background:
-                linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 239, 0.72)),
-                linear-gradient(140deg, rgba(255, 214, 163, 0.22), rgba(255, 198, 83, 0.08));
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 253, 250, 0.72)),
+                linear-gradient(140deg, rgba(204, 251, 241, 0.22), rgba(94, 234, 212, 0.08));
             box-shadow:
                 inset 0 1px 0 rgba(255, 255, 255, 0.94),
                 inset 0 14px 28px rgba(255, 255, 255, 0.22),
                 0 30px 80px rgba(28, 28, 30, 0.12),
-                0 0 40px rgba(255, 154, 60, 0.14);
+                0 0 40px rgba(20, 184, 166, 0.14);
             color: var(--xmb-text-main);
             opacity: 0;
             transform: translateY(1rem) scale(0.96);
@@ -1144,12 +1144,12 @@
         html.dark .faq-modal-close:hover { background: rgba(51,65,85,0.9); }
 
         html.dark .faq-hero {
-            background: linear-gradient(90deg, #ff7a00 0%, #ff9924 56%, #ffd24a 100%);
-            border-color: rgba(255, 227, 170, 0.48);
+            background: linear-gradient(90deg, #14b8a6 0%, #2dd4bf 56%, #5eead4 100%);
+            border-color: rgba(94, 234, 212, 0.48);
             box-shadow:
-                inset 0 1px 0 rgba(255, 250, 236, 0.44),
-                0 24px 55px rgba(205, 112, 24, 0.22),
-                0 0 46px rgba(255, 177, 60, 0.2);
+                inset 0 1px 0 rgba(204, 251, 241, 0.44),
+                0 24px 55px rgba(20, 184, 166, 0.22),
+                0 0 46px rgba(45, 212, 191, 0.2);
         }
         html.dark .faq-hero-eyebrow,
         html.dark .faq-hero-title,
@@ -1157,10 +1157,10 @@
             color: #f1f5f9;
         }
         html.dark .faq-hero::after {
-            border-color: rgba(255,122,0,0.15);
+            border-color: rgba(94,234,212,0.15);
             box-shadow:
-                0 0 0 1rem rgba(255,122,0,0.06),
-                0 0 0 2rem rgba(255,122,0,0.03);
+                0 0 0 1rem rgba(94,234,212,0.06),
+                0 0 0 2rem rgba(94,234,212,0.03);
         }
 
         /* ── FAQ HERO FIGURE ── */
