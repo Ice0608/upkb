@@ -1172,7 +1172,7 @@
             height: 85%;
             pointer-events: none;
             user-select: none;
-            filter: drop-shadow(-12px 0 36px rgba(140, 50, 0, 0.24));
+            filter: drop-shadow(-12px 0 36px rgba(15, 94, 89, 0.28));
         }
 
         .faq-hero-figure svg {
@@ -1232,12 +1232,12 @@
                 <svg viewBox="-20 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <radialGradient id="coatGrad" cx="30%" cy="20%" r="80%">
-                            <stop offset="0%" stop-color="#ff8c42"/>
-                            <stop offset="100%" stop-color="#e65100"/>
+                            <stop offset="0%" stop-color="#14b8a6"/>
+                            <stop offset="100%" stop-color="#0f4f4a"/>
                         </radialGradient>
                         <linearGradient id="qmarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ff9a3c"/>
-                            <stop offset="100%" stop-color="#ff7a00"/>
+                            <stop offset="0%" stop-color="#0f766e"/>
+                            <stop offset="100%" stop-color="#134e4a"/>
                         </linearGradient>
                         <filter id="heroSoftGlow"><feGaussianBlur stdDeviation="3.5"/></filter>
                     </defs>
@@ -1269,7 +1269,7 @@
                         <path d="M92 145 L110 170 L128 145" fill="#fff" opacity="0.9"/>
                         <!-- Coat button -->
                         <circle cx="110" cy="210" r="6" fill="rgba(255,255,255,0.3)"/>
-                        <circle cx="110" cy="210" r="4" fill="rgba(200,100,50,0.4)"/>
+                        <circle cx="110" cy="210" r="4" fill="rgba(15,94,89,0.42)"/>
                         <!-- Coat pocket -->
                         <rect x="125" y="195" width="20" height="18" rx="4" fill="rgba(0,0,0,0.08)"/>
                         <path d="M133 193 L133 207" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none"/>

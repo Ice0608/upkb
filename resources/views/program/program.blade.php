@@ -744,9 +744,7 @@
         /* "Pilih" and "Anda" — soft white glow */
         .pg-heading-anim .pg-word:nth-child(1),
         .pg-heading-anim .pg-word:nth-child(3) {
-            text-shadow:
-                0 0 12px rgba(255,255,255,0.35),
-                0 0 28px rgba(249,115,22,0.20);
+            text-shadow: none;
         }
         /* "Laluan" — glow via ::before blob on wrapper (filter on element breaks background-clip:text) */
         .pg-laluan-wrap {
@@ -754,15 +752,14 @@
             display: inline-block;
         }
         .pg-laluan-wrap::before {
-            content: "";
-            position: absolute;
-            inset: -6px -10px;
-            border-radius: 12px;
-            background: radial-gradient(ellipse at center, rgba(249,115,22,0.55) 0%, rgba(255,160,30,0.28) 45%, transparent 72%);
-            filter: blur(8px);
-            animation: pgLaluanGlow 3s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
+            content: none;
+        }
+        .pg-laluan-text {
+            background: linear-gradient(120deg, #2dd4bf 0%, #14b8a6 48%, #0f766e 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
         }
         @keyframes pgLaluanGlow {
             0%, 100% { opacity: 0.6; transform: scale(0.92); }
@@ -770,38 +767,19 @@
         }
         html.dark .pg-heading-anim .pg-word:nth-child(1),
         html.dark .pg-heading-anim .pg-word:nth-child(3) {
-            text-shadow:
-                0 0 16px rgba(255,255,255,0.5),
-                0 0 36px rgba(249,115,22,0.30);
+            text-shadow: none;
         }
         .pg-heading-anim::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
-            height: 2px;
-            border-radius: 999px;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                rgba(249, 115, 22, 0.0) 10%,
-                rgba(249, 115, 22, 0.9) 40%,
-                rgba(255, 200, 80, 1)   50%,
-                rgba(249, 115, 22, 0.9) 60%,
-                rgba(249, 115, 22, 0.0) 90%,
-                transparent 100%);
-            filter: blur(1px);
-            animation: pgUnderlineGlow 2.8s ease-in-out infinite;
+            content: none;
         }
         @keyframes pgUnderlineGlow {
             0%, 100% { opacity: 0.55; width: 40%; filter: blur(1px); }
-            50%      { opacity: 1;    width: 68%; filter: blur(0.4px) drop-shadow(0 0 6px rgba(255,180,50,0.9)); }
+            50%      { opacity: 1;    width: 68%; filter: blur(0.4px) drop-shadow(0 0 6px rgba(45,212,191,0.9)); }
         }
 
         /* Dark mode heading glow */
         html.dark .pg-heading-anim::after {
-            filter: blur(1px) drop-shadow(0 0 8px rgba(255,160,40,0.7));
+            filter: blur(1px) drop-shadow(0 0 8px rgba(45,212,191,0.7));
         }
 
         /* ── Wheel outer orbit rings ── */
@@ -1214,7 +1192,7 @@
         <div class="text-center mb-8 pg-heading-anim">
             <h1 class="pg-heading-title" style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.8rem,5vw,3.2rem); line-height:1.1; letter-spacing:-0.03em;">
                 <span class="pg-word">Pilih</span>
-                <span class="pg-laluan-wrap"><span class="pg-word" style="background:linear-gradient(120deg,#f97316,#ea580c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Laluan</span></span>
+                <span class="pg-laluan-wrap"><span class="pg-word pg-laluan-text">Laluan</span></span>
                 <span class="pg-word">Anda</span>
             </h1>
         </div>
