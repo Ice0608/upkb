@@ -40,14 +40,14 @@
 
         .institusi-page--tvet,
         .institusi-shell--tvet {
-            --institusi-tvet-50: #f0fdfa;
-            --institusi-tvet-100: #ccfbf1;
-            --institusi-tvet-500: #14b8a6;
-            --institusi-tvet-600: #0f766e;
-            --institusi-tvet-700: #115e59;
-            --institusi-tvet-rgb: 20, 184, 166;
-            --institusi-tvet-rgb-soft: 45, 212, 191;
-            --institusi-tvet-soft-text: rgba(204, 251, 241, 0.94);
+            --institusi-tvet-50: #fff7ed;
+            --institusi-tvet-100: #ffedd5;
+            --institusi-tvet-500: #f97316;
+            --institusi-tvet-600: #ea580c;
+            --institusi-tvet-700: #c2410c;
+            --institusi-tvet-rgb: 249, 115, 22;
+            --institusi-tvet-rgb-soft: 251, 146, 60;
+            --institusi-tvet-soft-text: rgba(255, 237, 213, 0.94);
         }
 
         .institusi-page--diploma,
@@ -108,7 +108,7 @@
         }
 
         .institusi-page--tvet .institusi-hero {
-            background: linear-gradient(90deg, #115e59 0%, #14b8a6 55%, #2dd4bf 100%);
+            background: linear-gradient(90deg, #9a3412 0%, #f97316 54%, #fb923c 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
                 0 0 68px rgba(var(--institusi-tvet-rgb), 0.3),
@@ -163,7 +163,7 @@
 
         .institusi-page--tvet .institusi-toolbar {
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 253, 250, 0.92)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 247, 237, 0.92)),
                 linear-gradient(120deg, rgba(var(--institusi-tvet-rgb), 0.06), rgba(var(--institusi-tvet-rgb-soft), 0.08));
         }
 
@@ -331,7 +331,7 @@
 
         .institusi-page--tvet .institusi-card-chip {
             border-color: rgba(var(--institusi-tvet-rgb-soft), 0.12);
-            background: rgba(240, 253, 250, 0.84);
+            background: rgba(255, 247, 237, 0.84);
         }
 
         .institusi-page--diploma .institusi-card-chip {
@@ -347,7 +347,7 @@
         .institusi-page--tvet .institusi-card:hover .institusi-card-chip,
         .institusi-page--tvet .institusi-card:focus-within .institusi-card-chip {
             border-color: rgba(var(--institusi-tvet-rgb), 0.22);
-            background: rgba(204, 251, 241, 0.95);
+            background: rgba(255, 237, 213, 0.95);
         }
 
         .institusi-page--diploma .institusi-card:hover .institusi-card-chip,
@@ -957,6 +957,11 @@
                 font-size: 1rem;
             }
 
+            .institusi-shell--tvet .institusi-detail-card h3::before {
+                background: rgba(var(--institusi-tvet-rgb), 0.12);
+                color: var(--institusi-tvet-500);
+            }
+
             .institusi-detail-card,
             .institusi-detail-copy,
             .institusi-detail-courses {
@@ -1032,8 +1037,8 @@
         html.dark .institusi-page--tvet {
             background:
                 url('/images/TVET-DARK.jpg'),
-                radial-gradient(circle at 8% 12%, rgba(56,189,248,0.07), transparent 24%),
-                radial-gradient(circle at 90% 18%, rgba(59,130,246,0.05), transparent 24%),
+                radial-gradient(circle at 8% 12%, rgba(var(--institusi-tvet-rgb-soft),0.08), transparent 24%),
+                radial-gradient(circle at 90% 18%, rgba(var(--institusi-tvet-rgb),0.06), transparent 24%),
                 linear-gradient(180deg, rgba(15,23,42,0.72) 0%, rgba(30,41,59,0.72) 44%, rgba(15,23,42,0.72) 100%);
             background-size: cover;
             background-position: center;
@@ -1103,7 +1108,7 @@
         }
 
         html.dark .institusi-page--tvet .institusi-card-chip {
-            background: rgba(20, 184, 166, 0.12) !important;
+            background: rgba(249, 115, 22, 0.12) !important;
             border-color: rgba(var(--institusi-tvet-rgb), 0.22) !important;
         }
 
