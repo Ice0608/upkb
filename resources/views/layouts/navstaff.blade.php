@@ -15,15 +15,15 @@
             position: absolute;
             inset: auto 0 0;
             height: 2px;
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.14), rgba(249, 115, 22, 0.95), rgba(251, 146, 60, 0.14));
+            background: linear-gradient(90deg, rgba(45, 212, 191, 0.12), rgba(20, 184, 166, 0.96), rgba(45, 212, 191, 0.12));
         }
 
         .site-nav-brand {
             position: relative;
             overflow: hidden;
             padding: 0.7rem 0.95rem 0.7rem 0.7rem;
-            border: 1px solid rgba(251, 146, 60, 0.12);
-            background: linear-gradient(135deg, rgba(255, 247, 237, 0.82), rgba(255, 255, 255, 0.97) 52%, rgba(255, 250, 245, 0.9));
+            border: 1px solid rgba(20, 184, 166, 0.14);
+            background: linear-gradient(135deg, rgba(236, 253, 245, 0.92), rgba(255, 255, 255, 0.98) 52%, rgba(240, 253, 250, 0.92));
             box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
             backdrop-filter: blur(10px);
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -31,8 +31,8 @@
 
         .site-nav-brand:hover {
             transform: translateY(-1px);
-            border-color: rgba(249, 115, 22, 0.2);
-            box-shadow: 0 16px 34px rgba(249, 115, 22, 0.1);
+            border-color: rgba(20, 184, 166, 0.24);
+            box-shadow: 0 16px 34px rgba(20, 184, 166, 0.12);
         }
 
         .site-nav-brand::before {
@@ -40,8 +40,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(251, 191, 36, 0.22), transparent 34%),
-                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.12), transparent 32%);
+                radial-gradient(circle at top left, rgba(94, 234, 212, 0.26), transparent 34%),
+                radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.12), transparent 32%);
             pointer-events: none;
         }
 
@@ -52,14 +52,14 @@
             right: 1rem;
             bottom: 0.58rem;
             height: 1px;
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.25), rgba(251, 146, 60, 0));
+            background: linear-gradient(90deg, rgba(45, 212, 191, 0.3), rgba(45, 212, 191, 0));
             pointer-events: none;
         }
 
         .site-nav-brand-badge {
             position: relative;
             overflow: hidden;
-            box-shadow: 0 14px 34px rgba(249, 115, 22, 0.14);
+            box-shadow: 0 14px 34px rgba(20, 184, 166, 0.16);
         }
 
         .site-nav-brand-badge::before {
@@ -67,7 +67,7 @@
             position: absolute;
             inset: 1px;
             border-radius: 1rem;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 247, 237, 0.88));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(236, 253, 245, 0.9));
         }
 
         .site-nav-brand-badge::after {
@@ -77,7 +77,7 @@
             width: 70%;
             height: 70%;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.3), rgba(251, 191, 36, 0));
+            background: radial-gradient(circle, rgba(94, 234, 212, 0.34), rgba(94, 234, 212, 0));
             pointer-events: none;
         }
 
@@ -94,7 +94,7 @@
 
         .site-nav-brand:hover .site-nav-brand-kicker {
             letter-spacing: 0.28em;
-            color: #ea580c;
+            color: #0f766e;
         }
 
         .site-nav-brand:hover .site-nav-brand-title {
@@ -117,13 +117,13 @@
         }
 
         html.dark .site-nav-brand {
-            border-color: rgba(251, 146, 60, 0.18);
+            border-color: rgba(45, 212, 191, 0.24);
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.96));
             box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
         }
 
         html.dark .site-nav-brand-badge {
-            border-color: rgba(251, 146, 60, 0.24);
+            border-color: rgba(45, 212, 191, 0.3);
             background: rgba(15, 23, 42, 0.7) !important;
         }
 
@@ -136,7 +136,7 @@
         }
 
         html.dark .site-nav-brand:hover .site-nav-brand-title {
-            color: #fff7ed;
+            color: #ccfbf1;
         }
 
         html.dark .site-nav-action {
@@ -147,8 +147,8 @@
         }
 
         html.dark .site-nav-action:hover {
-            border-color: rgba(251, 146, 60, 0.45);
-            color: #fb923c;
+            border-color: rgba(45, 212, 191, 0.45);
+            color: #5eead4;
             background: rgba(15, 23, 42, 0.92);
         }
     </style>
@@ -157,24 +157,24 @@
 <nav class="site-nav">
     <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         <a href="{{ url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
-            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-orange-100/90 bg-[linear-gradient(145deg,#fff7ed,#ffffff)] sm:h-14 sm:w-14">
+            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-teal-100/90 bg-[linear-gradient(145deg,#ecfdf5,#ffffff)] sm:h-14 sm:w-14">
                 <img src="{{ asset('images/icon/seslogo.png') }}" alt="SES logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
             </span>
             <div class="site-nav-brand-copy min-w-0 leading-tight">
-                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">SES</p>
+                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-teal-600 sm:text-xs">SES</p>
                 <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">SMART Education</h1>
                 <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">Society</h1>
             </div>
         </a>
 
         <div class="flex items-center gap-3">
-            <button id="theme-toggle" type="button" class="site-nav-action inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-orange-200 hover:text-orange-500" aria-label="Toggle Dark Mode">
+            <button id="theme-toggle" type="button" class="site-nav-action inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:border-teal-200 hover:text-teal-600" aria-label="Toggle Dark Mode">
                 <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
                 <i id="theme-toggle-light-icon" class="hidden fas fa-sun"></i>
             </button>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="site-nav-action inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-600 shadow-sm hover:border-orange-200 hover:text-orange-500">Logout</button>
+                <button type="submit" class="site-nav-action inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-600 shadow-sm hover:border-teal-200 hover:text-teal-600">Logout</button>
             </form>
         </div>
     </div>

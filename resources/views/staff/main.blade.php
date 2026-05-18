@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @include('components.staff-dark-mode')
 </head>
-<body class="staff-page bg-slate-100 text-slate-800">
+<body class="staff-page bg-[linear-gradient(180deg,#ecf9f7_0%,#eef9f8_48%,#f0fdf9_100%)] text-slate-800">
 @include('layouts.navstaff')
 
 <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
@@ -23,18 +23,18 @@
 
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-orange-500">Staff Dashboard</p>
+            <p class="text-sm uppercase tracking-[0.3em] text-teal-600">Staff Dashboard</p>
             <h1 class="mt-3 text-3xl font-semibold text-slate-900">Senarai Pelajar & Event</h1>
             <p class="mt-2 text-sm text-slate-600">Pilih event yang telah ditambah dan lihat pelajar mengikut tarikh yang sama.</p>
         </div>
         <div class="flex flex-wrap gap-3">
-            <a href="{{ route('staff.event.create') }}" class="inline-flex items-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-orange-200 transition hover:bg-orange-600">Tambah Event</a>
+            <a href="{{ route('staff.event.create') }}" class="inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-teal-200 transition hover:bg-teal-600">Tambah Event</a>
         </div>
     </div>
 
     <div class="grid gap-6 xl:grid-cols-[1.8fr_0.9fr]">
         <section class="space-y-6">
-            <div class="rounded-[32px] bg-slate-200 p-6 shadow-sm shadow-slate-200">
+            <div class="rounded-[32px] border border-white/75 bg-white/82 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.1)] backdrop-blur">
                 <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div class="space-y-2">
                         <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-500">Event terpilih</p>
@@ -51,14 +51,14 @@
                                 <option value="{{ $event->id }}" @selected($selectedEvent && $selectedEvent->id === $event->id)>{{ $event->nama_event }} — {{ $event->tarikh_event->format('d/m/Y') }}</option>
                             @endforeach
                         </select>
-                        <button type="submit" class="rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Tapis</button>
+                        <button type="submit" class="rounded-full bg-teal-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-600">Tapis</button>
                     </form>
                 </div>
             </div>
 
-            <div class="overflow-x-auto rounded-[32px] border border-slate-200 bg-white shadow-sm">
+            <div class="overflow-x-auto rounded-[32px] border border-white/80 bg-white/92 shadow-[0_22px_55px_rgba(15,23,42,0.12)] backdrop-blur">
                 <table class="min-w-full text-left text-sm">
-                    <thead class="bg-orange-500 text-white">
+                    <thead class="bg-[linear-gradient(90deg,#0f766e,#14b8a6)] text-white">
                         <tr>
                             <th class="px-6 py-4">Nama Pelajar</th>
                             <th class="px-6 py-4">Tarikh Daftar</th>
@@ -92,7 +92,7 @@
                                 $statusClasses = match($statusValue) {
                                     'completed', 'selesai', 'bayar' => 'bg-emerald-100 text-emerald-700',
                                     'partially paid' => 'bg-blue-100 text-blue-700',
-                                    'pending' => 'bg-amber-100 text-amber-700',
+                                    'pending' => 'bg-cyan-100 text-cyan-700',
                                     'cancel', 'batal' => 'bg-rose-100 text-rose-700',
                                     default => 'bg-slate-100 text-slate-800',
                                 };
@@ -114,7 +114,7 @@
                                 <td class="px-6 py-4">{{ number_format($payment?->bayaran_semasa ?? 0, 2) }}</td>
                                 <td class="px-6 py-4">
                                     @if($payment && $payment->resit)
-                                        <button type="button" onclick="openResitModal('{{ asset('storage/' . $payment->resit) }}')" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-green-700">Lihat Resit</button>
+                                        <button type="button" onclick="openResitModal('{{ asset('storage/' . $payment->resit) }}')" class="inline-flex items-center gap-2 rounded-full bg-teal-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-teal-700">Lihat Resit</button>
                                     @else
                                         <span class="text-xs text-slate-400">Tiada resit</span>
                                     @endif
@@ -153,7 +153,7 @@
                         <h2 class="mt-3 text-xl font-semibold text-slate-900">Imbas untuk BMD</h2>
                     </div>
                 </div>
-                <a href="{{ route('bmd', ['event_id' => $selectedEvent?->id]) }}" class="mt-6 block rounded-3xl border border-slate-200 bg-slate-100 p-5 text-center transition hover:border-orange-300 hover:bg-white">
+                <a href="{{ route('bmd', ['event_id' => $selectedEvent?->id]) }}" class="mt-6 block rounded-3xl border border-slate-200 bg-slate-50/90 p-5 text-center transition hover:border-teal-300 hover:bg-white">
                     <div id="qrcode" class="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl border border-slate-300 bg-white shadow-sm"></div>
                 </a>
                 <p class="mt-4 text-sm leading-6 text-slate-600">QR ini membawa ke borang maklumat diri (BMD). Lengkapkan data pelajar untuk mencatat kehadiran dan cetak borang.</p>
@@ -161,7 +161,7 @@
                     <button
                         type="button"
                         onclick="downloadBmdQrPdf()"
-                        class="inline-flex items-center rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-50"
+                        class="inline-flex items-center rounded-full bg-teal-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-600 disabled:cursor-not-allowed disabled:opacity-50"
                         {{ $selectedEvent?->id ? '' : 'disabled' }}
                     >
                         Muat Turun PDF QR
@@ -189,9 +189,9 @@
                 </script>
             </div>
 
-            <div class="rounded-[32px] border border-slate-200 bg-orange-500 p-6 text-white shadow-sm">
+            <div class="rounded-[32px] border border-teal-300/40 bg-[linear-gradient(135deg,#0f766e,#14b8a6)] p-6 text-white shadow-[0_22px_55px_rgba(20,184,166,0.24)]">
                 <h3 class="text-lg font-semibold">Pemberitahuan</h3>
-                <p class="mt-3 text-sm leading-6 text-orange-100">Status pembayaran ditentukan daripada jadual pembayaran. Jika belum ada rekod bayaran, pelajar akan ditanda sebagai NONE.</p>
+                <p class="mt-3 text-sm leading-6 text-teal-50/90">Status pembayaran ditentukan daripada jadual pembayaran. Jika belum ada rekod bayaran, pelajar akan ditanda sebagai NONE.</p>
             </div>
         </aside>
     </div>
@@ -200,7 +200,7 @@
 @if(session('show_dashboard_intro'))
 <div id="pixel-loader" class="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
     <div class="absolute inset-0 opacity-10 pointer-events-none"
-         style="background-image: linear-gradient(#ffaa00 1px, transparent 1px), linear-gradient(90deg, #ffaa00 1px, transparent 1px); background-size: 60px 60px;">
+         style="background-image: linear-gradient(#14b8a6 1px, transparent 1px), linear-gradient(90deg, #14b8a6 1px, transparent 1px); background-size: 60px 60px;">
     </div>
 
     <div class="absolute inset-0 z-10 opacity-0 transition-opacity duration-1000" id="video-container">
@@ -215,10 +215,10 @@
                  class="absolute inset-0 w-full h-full object-contain filter-glow multiply-blend animate-smoke-dissolve">
         </div>
 
-        <div class="font-mono text-orange-500 tracking-[0.5em] text-[10px] uppercase animate-glitch-text opacity-0 transition-opacity duration-700 delay-500" id="status-text">
+        <div class="font-mono text-teal-400 tracking-[0.5em] text-[10px] uppercase animate-glitch-text opacity-0 transition-opacity duration-700 delay-500" id="status-text">
             Initializing System...
             <div class="mt-2 w-32 h-[1px] bg-gray-800 mx-auto overflow-hidden relative">
-                <div id="load-bar" class="h-full bg-orange-500 w-0 transition-all duration-[2s] ease-in-out"></div>
+                <div id="load-bar" class="h-full bg-teal-400 w-0 transition-all duration-[2s] ease-in-out"></div>
             </div>
         </div>
     </div>
@@ -232,18 +232,18 @@
 <style>
     body.is-loading { overflow: hidden !important; }
 
-    .filter-glow { filter: drop-shadow(0 0 25px rgba(255,165,0,0.6)); }
+    .filter-glow { filter: drop-shadow(0 0 25px rgba(20,184,166,0.55)); }
     .multiply-blend { mix-blend-mode: multiply; }
 
     @keyframes smoke-dissolve {
-        0% { opacity: 0; filter: blur(15px) drop-shadow(0 0 25px rgba(255,165,0,0)); transform: scale(1.1); }
-        50% { opacity: 0.8; filter: blur(5px) drop-shadow(0 0 25px rgba(255,165,0,0.6)); transform: scale(1); }
-        100% { opacity: 1; filter: blur(0px) drop-shadow(0 0 25px rgba(255,165,0,0.6)); transform: scale(1); }
+        0% { opacity: 0; filter: blur(15px) drop-shadow(0 0 25px rgba(20,184,166,0)); transform: scale(1.1); }
+        50% { opacity: 0.8; filter: blur(5px) drop-shadow(0 0 25px rgba(20,184,166,0.55)); transform: scale(1); }
+        100% { opacity: 1; filter: blur(0px) drop-shadow(0 0 25px rgba(20,184,166,0.55)); transform: scale(1); }
     }
     .animate-smoke-dissolve { animation: smoke-dissolve 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
 
     @keyframes glitch-text {
-        0%, 100% { transform: translate(0); text-shadow: 0 0 2px rgba(255,165,0,0.5); }
+        0%, 100% { transform: translate(0); text-shadow: 0 0 2px rgba(45,212,191,0.45); }
         33% { transform: translate(-1px, 1px); text-shadow: -1px 0 red, 1px 0 blue; }
         66% { transform: translate(1px, -1px); text-shadow: 1px 0 red, -1px 0 blue; }
     }
@@ -268,7 +268,7 @@
                 <input type="hidden" name="ic_pelajar" id="modal-ic-pelajar">
                 <div class="mb-4">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
-                    <select name="status" id="modal-status" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400">
+                    <select name="status" id="modal-status" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-teal-400">
                         <option value="none">NONE</option>
                         <option value="pending">PENDING</option>
                         <option value="partially paid">PARTIALLY PAID</option>
@@ -288,7 +288,7 @@
                 </div>
                 <div class="flex gap-3 justify-end">
                     <button type="button" onclick="closeStatusModal()" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">Batal</button>
-                    <button type="submit" class="inline-flex items-center rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white hover:bg-orange-600">Simpan</button>
+                    <button type="submit" class="inline-flex items-center rounded-full bg-teal-500 px-5 py-2 text-sm font-semibold text-white hover:bg-teal-600">Simpan</button>
                 </div>
             </form>
         </div>
@@ -314,10 +314,10 @@
 
             <div class="sticky bottom-0 flex justify-end gap-3 border-t border-slate-200 bg-white p-4">
                 <button type="button" onclick="closeReceiptModal()" class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Tutup</button>
-                <button type="button" onclick="sendEmailResit()" id="send-email-btn" class="inline-flex items-center rounded-full bg-blue-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-600">
+                <button type="button" onclick="sendEmailResit()" id="send-email-btn" class="inline-flex items-center rounded-full bg-cyan-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-cyan-600">
                     <i class="fas fa-envelope mr-2"></i>Hantar Email
                 </button>
-                <button type="button" onclick="printReceiptModal()" class="inline-flex items-center rounded-full bg-orange-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-orange-600">Cetak / Simpan PDF</button>
+                <button type="button" onclick="printReceiptModal()" class="inline-flex items-center rounded-full bg-teal-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-teal-600">Cetak / Simpan PDF</button>
             </div>
         </div>
     </div>
