@@ -29,7 +29,7 @@
         <div class="rounded-[32px] bg-white p-6 shadow-sm border border-gray-200">
             <div class="flex items-center gap-4">
                 <div class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
-                    <i class="fas fa-users text-blue-600 text-xl"></i>
+                    <i class="fas fa-users stat-icon stat-icon-blue text-xl"></i>
                 </div>
                 <div>
                     <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Jumlah Pelajar</p>
@@ -42,7 +42,7 @@
         <div class="rounded-[32px] bg-white p-6 shadow-sm border border-gray-200">
             <div class="flex items-center gap-4">
                 <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                    <i class="fas fa-user-plus text-green-600 text-xl"></i>
+                    <i class="fas fa-user-plus stat-icon stat-icon-green text-xl"></i>
                 </div>
                 <div>
                     <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Pelajar Hari Ini</p>
@@ -55,7 +55,7 @@
         <div class="rounded-[32px] bg-white p-6 shadow-sm border border-gray-200">
             <div class="flex items-center gap-4">
                 <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
-                    <i class="fas fa-building text-purple-600 text-xl"></i>
+                    <i class="fas fa-building stat-icon stat-icon-purple text-xl"></i>
                 </div>
                 <div>
                     <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Jumlah Institusi</p>
@@ -68,7 +68,7 @@
         <div class="rounded-[32px] bg-white p-6 shadow-sm border border-gray-200">
             <div class="flex items-center gap-4">
                 <div class="flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
-                    <i class="fas fa-graduation-cap text-orange-600 text-xl"></i>
+                    <i class="fas fa-graduation-cap stat-icon stat-icon-orange text-xl"></i>
                 </div>
                 <div>
                     <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gray-500">Jumlah Kursus</p>
@@ -167,6 +167,12 @@
 @endif
 
 <style>
+    /* Keep statistic icon colors consistent across light/dark mode */
+    .stat-icon-blue { color: #2563eb !important; }
+    .stat-icon-green { color: #16a34a !important; }
+    .stat-icon-purple { color: #9333ea !important; }
+    .stat-icon-orange { color: #ea580c !important; }
+
     /* Elakkan scroll masa loading */
     body.is-loading { overflow: hidden !important; }
 
@@ -270,4 +276,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-

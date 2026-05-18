@@ -368,7 +368,7 @@
 
             <div class="prog-card-footer">
                 <a href="{{ route('admin.institusis', ['jenis' => $program->jenis_program]) }}" class="btn-explore">
-                    <i class="fas fa-compass"></i> Jelajah Program
+                    <i class="fas fa-compass"></i> Teroka Program
                 </a>
 
                 <div class="prog-card-actions">
