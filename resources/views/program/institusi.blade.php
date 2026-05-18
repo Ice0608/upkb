@@ -15,10 +15,10 @@
             min-height: 100vh;
             overflow-x: clip;
             background:
-                radial-gradient(circle at 12% 16%, rgba(255, 166, 0, 0.26), transparent 24%),
+                radial-gradient(circle at 12% 16%, rgba(20, 184, 166, 0.22), transparent 24%),
                 radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.14), transparent 28%),
                 radial-gradient(circle at 50% 56%, rgba(255, 255, 255, 0.78), transparent 24%),
-                linear-gradient(135deg, #fff0d9 0%, #edf4ff 44%, #dfe9ff 100%);
+                linear-gradient(135deg, #f0fdfa 0%, #edf4ff 44%, #dfe9ff 100%);
         }
 
         .institusi-page::after {
@@ -40,14 +40,14 @@
 
         .institusi-page--tvet,
         .institusi-shell--tvet {
-            --institusi-tvet-50: #fff2ec;
-            --institusi-tvet-100: #ffe0cc;
-            --institusi-tvet-500: #FF5100;
-            --institusi-tvet-600: #CC4100;
-            --institusi-tvet-700: #993100;
-            --institusi-tvet-rgb: 255, 81, 0;
-            --institusi-tvet-rgb-soft: 255, 130, 60;
-            --institusi-tvet-soft-text: rgba(255, 220, 200, 0.92);
+            --institusi-tvet-50: #f0fdfa;
+            --institusi-tvet-100: #ccfbf1;
+            --institusi-tvet-500: #14b8a6;
+            --institusi-tvet-600: #0f766e;
+            --institusi-tvet-700: #115e59;
+            --institusi-tvet-rgb: 20, 184, 166;
+            --institusi-tvet-rgb-soft: 45, 212, 191;
+            --institusi-tvet-soft-text: rgba(204, 251, 241, 0.94);
         }
 
         .institusi-page--diploma,
@@ -108,7 +108,7 @@
         }
 
         .institusi-page--tvet .institusi-hero {
-            background: linear-gradient(90deg, #8B2200 0%, #ff7a38 100%);
+            background: linear-gradient(90deg, #115e59 0%, #14b8a6 55%, #2dd4bf 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
                 0 0 68px rgba(var(--institusi-tvet-rgb), 0.3),
@@ -163,7 +163,7 @@
 
         .institusi-page--tvet .institusi-toolbar {
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 245, 0.92)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 253, 250, 0.92)),
                 linear-gradient(120deg, rgba(var(--institusi-tvet-rgb), 0.06), rgba(var(--institusi-tvet-rgb-soft), 0.08));
         }
 
@@ -331,7 +331,7 @@
 
         .institusi-page--tvet .institusi-card-chip {
             border-color: rgba(var(--institusi-tvet-rgb-soft), 0.12);
-            background: rgba(255, 251, 235, 0.84);
+            background: rgba(240, 253, 250, 0.84);
         }
 
         .institusi-page--diploma .institusi-card-chip {
@@ -347,7 +347,7 @@
         .institusi-page--tvet .institusi-card:hover .institusi-card-chip,
         .institusi-page--tvet .institusi-card:focus-within .institusi-card-chip {
             border-color: rgba(var(--institusi-tvet-rgb), 0.22);
-            background: rgba(254, 243, 199, 0.95);
+            background: rgba(204, 251, 241, 0.95);
         }
 
         .institusi-page--diploma .institusi-card:hover .institusi-card-chip,
@@ -459,11 +459,11 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.8);
-            background: linear-gradient(90deg, #ff7300 0%, #ffd43b 100%);
+            background: linear-gradient(90deg, #115e59 0%, #14b8a6 55%, #2dd4bf 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
-                0 0 68px rgba(255, 166, 0, 0.3),
-                0 0 130px rgba(255, 212, 59, 0.22),
+                0 0 68px rgba(20, 184, 166, 0.3),
+                0 0 130px rgba(45, 212, 191, 0.22),
                 inset 0 1px 0 rgba(255, 255, 255, 0.24);
         }
 
@@ -481,14 +481,14 @@
                 repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
             transform: rotate(12deg);
             opacity: 0.68;
-            box-shadow: 0 0 42px rgba(255, 228, 92, 0.28);
+            box-shadow: 0 0 42px rgba(45, 212, 191, 0.28);
         }
 
         .institusi-hero-button {
             border: 1px solid rgba(255, 255, 255, 0.74);
             box-shadow:
                 0 0 0 6px rgba(255, 255, 255, 0.14),
-                0 0 34px rgba(255, 166, 0, 0.34),
+                0 0 34px rgba(20, 184, 166, 0.34),
                 0 16px 36px rgba(15, 23, 42, 0.16),
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -498,7 +498,7 @@
             transform: translateY(-3px) scale(1.04);
             box-shadow:
                 0 0 0 8px rgba(255, 255, 255, 0.16),
-                0 0 42px rgba(255, 187, 51, 0.44),
+                0 0 42px rgba(45, 212, 191, 0.44),
                 0 22px 44px rgba(15, 23, 42, 0.18),
                 inset 0 1px 0 rgba(255, 255, 255, 0.92);
         }
@@ -522,8 +522,8 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.82);
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 245, 0.92)),
-                linear-gradient(120deg, rgba(255, 115, 0, 0.06), rgba(255, 212, 59, 0.08));
+                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 253, 250, 0.92)),
+                linear-gradient(120deg, rgba(20, 184, 166, 0.06), rgba(45, 212, 191, 0.08));
             box-shadow:
                 0 24px 50px rgba(15, 23, 42, 0.08),
                 inset 0 1px 0 rgba(255, 255, 255, 0.85);
@@ -537,7 +537,7 @@
             width: 14rem;
             height: 14rem;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(255, 166, 0, 0.18), rgba(255, 166, 0, 0));
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.18), rgba(20, 184, 166, 0));
             pointer-events: none;
         }
 
@@ -554,14 +554,14 @@
         .institusi-filter-select:hover,
         .institusi-filter-select:focus {
             transform: translateY(-1px);
-            border-color: rgba(249, 115, 22, 0.4);
-            box-shadow: 0 16px 32px rgba(249, 115, 22, 0.12);
+            border-color: rgba(20, 184, 166, 0.4);
+            box-shadow: 0 16px 32px rgba(20, 184, 166, 0.12);
         }
 
         .institusi-filter-button:hover,
         .institusi-filter-button:focus-visible {
             transform: translateY(-1px);
-            box-shadow: 0 14px 28px rgba(249, 115, 22, 0.14);
+            box-shadow: 0 14px 28px rgba(20, 184, 166, 0.14);
         }
 
         .institusi-results-slider {
@@ -588,9 +588,9 @@
             height: 3.85rem;
             font-size: 1.15rem;
             border-radius: 999px;
-            border: 1px solid rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             background: rgba(255, 255, 255, 0.96);
-            color: #f97316;
+            color: #0f766e;
             box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
             transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
             pointer-events: auto;
@@ -599,8 +599,8 @@
         .institusi-slider-button:hover,
         .institusi-slider-button:focus-visible {
             transform: translateY(-1px);
-            border-color: rgba(249, 115, 22, 0.34);
-            box-shadow: 0 16px 30px rgba(249, 115, 22, 0.16);
+            border-color: rgba(20, 184, 166, 0.34);
+            box-shadow: 0 16px 30px rgba(20, 184, 166, 0.16);
             outline: none;
         }
 
@@ -727,10 +727,10 @@
         .institusi-card:hover,
         .institusi-card:focus-within {
             transform: translateY(-6px) scale(1.02);
-            border-color: rgba(251, 146, 60, 0.38);
+            border-color: rgba(45, 212, 191, 0.38);
             box-shadow:
                 0 30px 64px rgba(15, 23, 42, 0.14),
-                0 0 32px rgba(251, 146, 60, 0.12);
+                0 0 32px rgba(45, 212, 191, 0.12);
         }
 
         .institusi-slider-card.institusi-reveal-ready {
@@ -794,7 +794,7 @@
             inset: 0;
             background:
                 linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.32)),
-                linear-gradient(130deg, rgba(249, 115, 22, 0.36), rgba(15, 23, 42, 0));
+                linear-gradient(130deg, rgba(20, 184, 166, 0.36), rgba(15, 23, 42, 0));
             pointer-events: none;
         }
 
@@ -821,15 +821,15 @@
         }
 
         .institusi-card-chip {
-            border: 1px solid rgba(251, 146, 60, 0.12);
-            background: rgba(255, 247, 237, 0.82);
+            border: 1px solid rgba(45, 212, 191, 0.12);
+            background: rgba(240, 253, 250, 0.82);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
         }
 
         .institusi-card:hover .institusi-card-chip,
         .institusi-card:focus-within .institusi-card-chip {
-            border-color: rgba(249, 115, 22, 0.22);
-            background: rgba(255, 237, 213, 0.95);
+            border-color: rgba(20, 184, 166, 0.22);
+            background: rgba(204, 251, 241, 0.95);
         }
 
         .institusi-card-arrow {
@@ -844,8 +844,8 @@
         .institusi-card:hover .institusi-card-arrow,
         .institusi-card:focus-within .institusi-card-arrow {
             transform: translateX(4px) translateY(-2px);
-            background: #fff7ed;
-            color: #ea580c;
+            background: #f0fdfa;
+            color: #0f766e;
         }
 
         .institusi-card-link {
@@ -853,23 +853,23 @@
             align-items: center;
             justify-content: center;
             border-radius: 9999px;
-            border: 1px solid rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.2);
             padding: 0.32rem 0.78rem;
             background: rgba(255, 255, 255, 0.74);
-            color: #f97316;
+            color: #0f766e;
             box-shadow:
-                0 8px 18px rgba(249, 115, 22, 0.14),
+                0 8px 18px rgba(20, 184, 166, 0.14),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .institusi-card:hover .institusi-card-link,
         .institusi-card:focus-within .institusi-card-link {
             transform: translateX(4px);
-            color: #c2410c;
-            background: rgba(255, 247, 237, 0.95);
+            color: #115e59;
+            background: rgba(240, 253, 250, 0.95);
             box-shadow:
-                0 10px 24px rgba(249, 115, 22, 0.22),
-                0 0 18px rgba(251, 146, 60, 0.2),
+                0 10px 24px rgba(20, 184, 166, 0.22),
+                0 0 18px rgba(45, 212, 191, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.84);
         }
 
@@ -950,8 +950,8 @@
                 height: 2.6rem;
                 flex: 0 0 2.6rem;
                 border-radius: 1rem;
-                background: rgba(255, 81, 0, 0.12);
-                color: #ff5100;
+                background: rgba(20, 184, 166, 0.12);
+                color: #14b8a6;
                 font-family: "Font Awesome 6 Free";
                 font-weight: 900;
                 font-size: 1rem;
@@ -1024,7 +1024,7 @@
 
         html.dark .institusi-page{
             background:
-                radial-gradient(circle at 12% 16%, rgba(251, 146, 60, 0.12), transparent 24%),
+                radial-gradient(circle at 12% 16%, rgba(20, 184, 166, 0.12), transparent 24%),
                 radial-gradient(circle at 84% 18%, rgba(37, 99, 235, 0.08), transparent 28%),
                 linear-gradient(135deg, #0f172a 0%, #1e293b 44%, #0f172a 100%);
         }
@@ -1103,7 +1103,7 @@
         }
 
         html.dark .institusi-page--tvet .institusi-card-chip {
-            background: rgba(255, 81, 0, 0.12) !important;
+            background: rgba(20, 184, 166, 0.12) !important;
             border-color: rgba(var(--institusi-tvet-rgb), 0.22) !important;
         }
 
@@ -1258,7 +1258,7 @@
                             Semua Institusi
                         @endif
                     </h1>
-                    <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100')) }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
+                    <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100')) }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
                 </div>
             </div>
         </div>
@@ -1267,7 +1267,7 @@
         <div class="institusi-toolbar mb-8 rounded-3xl p-4 sm:p-5">
             <div class="relative z-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}">Paparan Institusi</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}">Paparan Institusi</p>
                     <h2 class="mt-2 text-2xl text-slate-900">{{ $institusis->count() }} institusi dipaparkan</h2>
                 </div>
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
@@ -1308,7 +1308,7 @@
                         @if(request('negeri'))
                             <input type="hidden" name="negeri" value="{{ request('negeri') }}">
                         @endif
-                        <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="institusi-filter-button inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition {{ $institusiIsTvet ? (request('kuota') ? 'institusi-filter-button--active-tvet' : 'institusi-filter-button--idle-tvet') : ($institusiIsDiploma ? (request('kuota') ? 'institusi-filter-button--active-diploma' : 'institusi-filter-button--idle-diploma') : ($institusiIsSainsKesihatan ? (request('kuota') ? 'institusi-filter-button--active-sains-kesihatan' : 'institusi-filter-button--idle-sains-kesihatan') : (request('kuota') ? 'bg-orange-500 border-orange-500 text-white hover:bg-orange-600' : 'bg-white border-orange-300 text-orange-600 hover:bg-orange-50'))) }}">
+                        <button type="submit" name="kuota" value="{{ request('kuota') ? 0 : 1 }}" class="institusi-filter-button inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition {{ $institusiIsTvet ? (request('kuota') ? 'institusi-filter-button--active-tvet' : 'institusi-filter-button--idle-tvet') : ($institusiIsDiploma ? (request('kuota') ? 'institusi-filter-button--active-diploma' : 'institusi-filter-button--idle-diploma') : ($institusiIsSainsKesihatan ? (request('kuota') ? 'institusi-filter-button--active-sains-kesihatan' : 'institusi-filter-button--idle-sains-kesihatan') : (request('kuota') ? 'bg-teal-500 border-teal-500 text-white hover:bg-teal-600' : 'bg-white border-teal-300 text-teal-600 hover:bg-teal-50'))) }}">
                             {{ request('kuota') ? 'Kuota Aktif' : 'Tapis Kuota' }}
                         </button>
                     </form>
@@ -1339,7 +1339,7 @@
                             </div>
                             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                                 <div>
-                                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
+                                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">Institusi</p>
                                     <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                 </div>
                                 <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
@@ -1349,7 +1349,7 @@
                         </div>
                         <div class="p-6 sm:p-7 flex flex-col flex-1">
                             <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                                <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
+                                <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}"></i>
                                 <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                             </div>
                             <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
@@ -1416,7 +1416,7 @@
                                         </div>
                                         <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                                             <div>
-                                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-orange-100/90')) }}">Institusi</p>
+                                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">Institusi</p>
                                                 <h2 class="institusi-card-title mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                             </div>
                                             <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
@@ -1426,7 +1426,7 @@
                                     </div>
                                     <div class="institusi-card-body p-6 sm:p-7 flex flex-col flex-1">
                                         <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
-                                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-orange-500')) }}"></i>
+                                            <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}"></i>
                                             <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
                                         </div>
                                         <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
