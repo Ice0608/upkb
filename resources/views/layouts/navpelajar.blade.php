@@ -651,7 +651,7 @@
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">TVET</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi TVET.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi TVET dengan kuota tersedia.</p>
                                     </div>
                                 </div>
                             </a>
@@ -661,7 +661,7 @@
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Diploma</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi diploma.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi diploma yang sesuai untuk anda.</p>
                                     </div>
                                 </div>
                             </a>
@@ -671,7 +671,7 @@
                                 <div class="mt-6 flex min-h-[7.25rem] items-end justify-between gap-4">
                                     <div>
                                         <p class="site-nav-program-card-title text-[1.75rem] font-semibold tracking-[-0.04em]">Sains Kesihatan</p>
-                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi kesihatan.</p>
+                                        <p class="site-nav-program-card-copy mt-2 text-sm text-white/82">Cari institusi kesihatan dan latihan klinikal.</p>
                                     </div>
                                 </div>
                             </a>
