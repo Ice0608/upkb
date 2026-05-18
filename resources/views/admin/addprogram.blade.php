@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SESOSC - Tambah Program</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        body.admin-dark .btn-batal {
+            background: rgba(30, 41, 59, 0.9) !important;
+            color: #e2e8f0 !important;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        body.admin-dark .btn-batal:hover {
+            background: rgba(51, 65, 85, 0.95) !important;
+            color: #f8fafc !important;
+            border-color: rgba(148, 163, 184, 0.55);
+        }
+    </style>
 </head>
 <body class="admin-dark">
 @include('layouts.navadmin')
@@ -35,7 +48,7 @@
                 </div>
 
                 <div class="flex justify-end space-x-4">
-                    <button type="button" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition">Batal</button>
+                    <button type="button" class="btn-batal bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition">Batal</button>
                     <button type="submit" class="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition">Simpan Program</button>
                 </div>
             </form>
@@ -49,4 +62,3 @@
 
 </body>
 </html>
-
