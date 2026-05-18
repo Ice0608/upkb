@@ -40,6 +40,79 @@
             background: rgba(30, 41, 59, 0.94) !important;
             color: #fb923c !important;
         }
+
+        body.admin-dark .kursus-table-wrap {
+            border: 1px solid rgba(71, 85, 105, 0.55);
+            border-radius: 1rem;
+            background: rgba(15, 23, 42, 0.42);
+        }
+
+        body.admin-dark .kursus-table-head {
+            background: rgba(30, 41, 59, 0.88) !important;
+            border-bottom-color: rgba(71, 85, 105, 0.7) !important;
+        }
+
+        body.admin-dark .kursus-table-head th {
+            color: #cbd5e1 !important;
+        }
+
+        body.admin-dark .kursus-table-row {
+            border-bottom-color: rgba(71, 85, 105, 0.48) !important;
+            background: rgba(15, 23, 42, 0.52);
+        }
+
+        body.admin-dark .kursus-table-row:hover {
+            background: rgba(30, 41, 59, 0.82) !important;
+        }
+
+        body.admin-dark .kursus-table-row td {
+            color: #cbd5e1 !important;
+        }
+
+        body.admin-dark .kursus-table-row .kursus-name {
+            color: #f8fafc !important;
+        }
+
+        body.admin-dark .kursus-table-row .kursus-kuota {
+            color: #fb923c !important;
+        }
+
+        body.admin-dark .kursus-table-row .kursus-kod-chip {
+            background: rgba(30, 58, 138, 0.35) !important;
+            color: #bfdbfe !important;
+        }
+
+        .action-edit {
+            color: #2563eb;
+        }
+
+        .action-edit:hover {
+            color: #1d4ed8;
+        }
+
+        .action-delete {
+            color: #dc2626;
+        }
+
+        .action-delete:hover {
+            color: #b91c1c;
+        }
+
+        body.admin-dark .action-edit {
+            color: #60a5fa !important;
+        }
+
+        body.admin-dark .action-edit:hover {
+            color: #93c5fd !important;
+        }
+
+        body.admin-dark .action-delete {
+            color: #f87171 !important;
+        }
+
+        body.admin-dark .action-delete:hover {
+            color: #fca5a5 !important;
+        }
     </style>
 </head>
 <body class="admin-dark">
@@ -134,9 +207,9 @@
             </div>
             
             @if(count($kursusList) > 0)
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto kursus-table-wrap">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-gray-100 border-b border-gray-300">
+                    <thead class="bg-gray-100 border-b border-gray-300 kursus-table-head">
                         <tr>
                             <th class="px-4 py-3 font-semibold text-gray-700">Nama kursus</th>
                             <th class="px-4 py-3 font-semibold text-gray-700">Kod</th>
@@ -148,26 +221,26 @@
                     </thead>
                     <tbody>
                         @foreach($kursusList as $kursus)
-                        <tr class="border-b border-gray-200 hover:bg-gray-50">
-                            <td class="px-4 py-3 text-gray-800 font-medium">{{ $kursus->nama_kursus }}</td>
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 kursus-table-row">
+                            <td class="px-4 py-3 text-gray-800 font-medium kursus-name">{{ $kursus->nama_kursus }}</td>
                             <td class="px-4 py-3 text-gray-600">
-                                <span class="inline-flex max-w-[180px] items-center gap-2 rounded-full bg-blue-100 text-blue-700 px-2 py-1 text-xs font-semibold overflow-hidden whitespace-nowrap text-ellipsis">
+                                <span class="inline-flex max-w-[180px] items-center gap-2 rounded-full bg-blue-100 text-blue-700 px-2 py-1 text-xs font-semibold overflow-hidden whitespace-nowrap text-ellipsis kursus-kod-chip">
                                     {{ $kursus->kod_kursus }}
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->mod_pengajian }}</td>
                             <td class="px-4 py-3 text-gray-600">{{ $kursus->tempoh }}</td>
-                            <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600">{{ $kursus->kuota }}</td>
+                            <td class="px-4 py-3 text-gray-600 font-semibold text-orange-600 kursus-kuota">{{ $kursus->kuota }}</td>
                             <td class="px-4 py-3 text-gray-600">
                                 <div class="inline-flex items-center gap-4 whitespace-nowrap">
-                                    <a href="{{ route('admin.editkursus', $kursus->id) }}" class="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-semibold">
+                                    <a href="{{ route('admin.editkursus', $kursus->id) }}" class="inline-flex items-center gap-1 action-edit font-semibold">
                                         <i class="fas fa-edit"></i>Edit
                                     </a>
                                     <form action="{{ route('admin.deletekursus', $kursus->id) }}" method="POST" class="inline"
                                           onsubmit="return confirm('Padam kursus ini?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="inline-flex items-center gap-1 text-red-600 hover:text-red-800 font-semibold">
+                                        <button type="submit" class="inline-flex items-center gap-1 action-delete font-semibold">
                                             <i class="fas fa-trash"></i>Padam
                                         </button>
                                     </form>
@@ -204,14 +277,14 @@
                     <div class="relative h-48 overflow-hidden">
                         <img src="{{ asset($foto->imej) }}" alt="Fasiliti" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                            <a href="{{ route('admin.editgaleri', $foto->id) }}" class="inline-flex items-center gap-2 bg-orange-500 text-white px-3 py-1 rounded-full text-sm hover:bg-orange-600 transition">
-                                <i class="fas fa-edit"></i>Sunting
+                            <a href="{{ route('admin.editgaleri', $foto->id) }}" class="inline-flex items-center gap-2 bg-blue-500 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition">
+                                <i class="fas fa-edit"></i>Edit
                             </a>
                             <form action="{{ route('admin.deletegaleri', $foto->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus foto ini?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="inline-flex items-center gap-2 bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition">
-                                    <i class="fas fa-trash"></i>Hapus
+                                    <i class="fas fa-trash"></i>Padam
                                 </button>
                             </form>
                         </div>
