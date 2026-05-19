@@ -1,12 +1,14 @@
 @php
     $galeriItems = $galleries ?? $galeri ?? collect();
     $kursusNama = $kursus->nama_kursus ?? 'kursus ini';
+    $galeriProgramType = strtolower(trim((string) ($heroProgramType ?? optional($kursus->institusi)->jenis_institusi ?? '')));
+    $galeriEntityLabelLower = in_array($galeriProgramType, ['diploma', 'sains kesihatan'], true) ? 'institusi' : 'pusat bertauliah';
 @endphp
 
 <div class="space-y-6">
     <div class="rounded-3xl bg-white shadow-sm border border-gray-200 p-6">
         <h2 class="text-xl font-semibold text-gray-900 mb-3">Galeri Kursus</h2>
-        <p class="text-sm text-gray-600">Lihat imej berkaitan kursus <strong>{{ $kursusNama }}</strong>. Gambar dikaitkan secara automatik dengan kod kursus dan institusi.</p>
+        <p class="text-sm text-gray-600">Lihat imej berkaitan kursus <strong>{{ $kursusNama }}</strong>. Gambar dikaitkan secara automatik dengan kod kursus dan {{ $galeriEntityLabelLower }}.</p>
     </div>
 
     @if($galeriItems->count() > 0)

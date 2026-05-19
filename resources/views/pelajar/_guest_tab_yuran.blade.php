@@ -1,4 +1,4 @@
-﻿@php
+@php
     $pendaftaranTotal = $kursus->yuranPendaftarans->sum('amount');
     $pilihanTotal = $kursus->yuranPilihans->sum('amount');
     $asramaTotal = $kursus->yuranAsramas->sum('amount');
@@ -6,6 +6,9 @@
     $elaunTotal = $kursus->elauns->sum('jumlah');
     $totalYuran = $pendaftaranTotal + $pilihanTotal + $asramaTotal;
     $totalPinjaman = $pengajianTotal + $elaunTotal;
+    $programType = strtolower(trim((string) ($heroProgramType ?? optional($kursus->institusi)->jenis_institusi ?? '')));
+    $pinjamanLabel = in_array($programType, ['diploma', 'sains kesihatan'], true) ? 'PTPTN' : 'PTPK';
+    $pusatLabelLower = in_array($programType, ['diploma', 'sains kesihatan'], true) ? 'institusi' : 'pusat bertauliah';
 @endphp
 
 <div class="p-8 border-t border-gray-100 space-y-6">
@@ -13,7 +16,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-gray-50 p-6">
             <div>
                 <h2 class="text-2xl font-bold text-gray-800">Yuran Kemasukan</h2>
-                <p class="text-sm text-gray-500">Yuran kemasukan tertakluk kepada perubahan pengurusan institusi.</p>
+                <p class="text-sm text-gray-500">Yuran kemasukan tertakluk kepada perubahan pengurusan {{ $pusatLabelLower }}.</p>
             </div>
             <div class="rounded-3xl bg-white px-5 py-4 text-center shadow-sm border border-orange-100">
                 <p class="text-sm uppercase tracking-[0.2em] text-orange-700" data-keseluruhan-label>Keseluruhan (Daftar + Pilihan + Asrama)</p>
@@ -48,7 +51,10 @@
                         <div class="space-y-4">
                             @foreach($kursus->yuranPilihans as $fee)
                                 <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200" data-pilihan-item data-item-name="{{ $fee->item }}" data-item-amount="{{ $fee->amount }}" data-is-active="1">
-                                    <div class="text-sm text-gray-700">{{ $fee->item }}</div>
+                                    <div>
+                                        <p class="text-sm text-gray-700">{{ $fee->item }}</p>
+                                        <p class="text-sm font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
+                                    </div>
                                     <button type="button" data-pilihan-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'pilihan')" class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 transition">
                                         <span data-toggle-state class="uppercase tracking-wide">YA</span>
                                     </button>
@@ -65,33 +71,32 @@
                 </div>
             </div>
 
-            <div class="rounded-3xl border border-orange-200 bg-orange-50 p-6"
+            <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6"
                 data-yuran-card
                 data-pendaftaran-total="{{ $pendaftaranTotal }}"
                 data-pilihan-total="{{ $pilihanTotal }}"
                 data-asrama-total="{{ $asramaTotal }}">
-                <div class="mb-5 space-y-2">
-                    <p class="text-sm uppercase tracking-[0.2em] text-orange-700">Yuran Asrama</p>
-                    <button type="button"
-                        data-asrama-toggle
-                        aria-pressed="true"
-                        data-is-on="1"
-                        onclick="window.updateGuestYuranTotal?.(this, 'asrama')"
-                        class="inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500">
-                        <span>Asrama</span>
-                        <span data-toggle-state class="rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide">YA</span>
-                    </button>
-                </div>
-
-                <div class="rounded-3xl bg-white p-4 shadow-sm border border-orange-100">
-                    <div class="flex items-center justify-between text-sm text-gray-500 mb-3">
-                        <span>Bulanan Asrama</span>
-                        <span class="font-semibold text-gray-900">RM {{ number_format($asramaTotal, 2) }}</span>
+                <h3 class="font-semibold text-gray-800 mb-5">Yuran Asrama</h3>
+                @if($kursus->yuranAsramas->isNotEmpty())
+                    <div class="space-y-4">
+                        @foreach($kursus->yuranAsramas as $fee)
+                            <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200" data-asrama-item data-item-name="{{ $fee->item }}" data-item-amount="{{ $fee->amount }}" data-is-active="1">
+                                <div>
+                                    <p class="text-sm text-gray-700">{{ $fee->item }}</p>
+                                    <p class="text-sm font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
+                                </div>
+                                <button type="button" data-asrama-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'asrama')" class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 transition">
+                                    <span data-toggle-state class="uppercase tracking-wide">YA</span>
+                                </button>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="flex items-center justify-between text-sm text-gray-500">
-                        <span>Total Asrama</span>
-                        <span class="font-semibold text-orange-900" data-asrama-total-display>RM {{ number_format($asramaTotal, 2) }}</span>
-                    </div>
+                @else
+                    <p class="text-sm text-gray-500">Tiada yuran asrama disenaraikan.</p>
+                @endif
+                <div class="mt-6 border-t border-gray-200 pt-4 flex items-center justify-between text-sm font-semibold text-gray-900">
+                    <span>Jumlah</span>
+                    <span data-asrama-total-display>RM {{ number_format($asramaTotal, 2) }}</span>
                 </div>
 
                 <script>
@@ -114,26 +119,32 @@
                     }
 
                     if (type === 'asrama') {
-                      const on = trigger.dataset.isOn !== '1';
-                      trigger.dataset.isOn = on ? '1' : '0';
-                      trigger.setAttribute('aria-pressed', on ? 'true' : 'false');
+                      const item = trigger.closest('[data-asrama-item]');
+                      if (!item) return;
+                      const isActive = item.dataset.isActive === '1';
+                      const nextActive = !isActive;
+                      item.dataset.isActive = nextActive ? '1' : '0';
+                      trigger.setAttribute('aria-pressed', nextActive ? 'true' : 'false');
                       const badge = trigger.querySelector('[data-toggle-state]');
-                      if (badge) badge.textContent = on ? 'YA' : 'TIDAK';
-                      trigger.className = on ? 'inline-flex items-center gap-3 rounded-full border border-orange-300 bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition focus:outline-none focus:ring-2 focus:ring-orange-300 dark:border-orange-400 dark:bg-orange-500' : 'inline-flex items-center gap-3 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:focus:ring-slate-500';
-                      if (badge) badge.className = on ? 'rounded-full bg-white/25 px-2 py-0.5 text-xs uppercase tracking-wide' : 'rounded-full bg-gray-200 px-2 py-0.5 text-xs uppercase tracking-wide text-gray-700 dark:bg-slate-700 dark:text-slate-200';
+                      if (badge) badge.textContent = nextActive ? 'YA' : 'TIDAK';
+                      trigger.className = nextActive ? 'inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 transition' : 'inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-semibold text-gray-700 transition';
                     }
 
-                    const asramaBtn = card.querySelector('[data-asrama-toggle]');
-                    const asramaActive = asramaBtn?.dataset.isOn === '1';
                     const p = Number(card.dataset.pendaftaranTotal || 0);
-                    const a = Number(card.dataset.asramaTotal || 0);
                     const totalYuranEl = section.querySelector('[data-total-yuran]');
                     const labelEl = section.querySelector('[data-keseluruhan-label]');
                     const pilihanItems = section.querySelectorAll('[data-pilihan-item]');
+                    const asramaItems = section.querySelectorAll('[data-asrama-item]');
                     let pl = 0;
+                    let al = 0;
                     pilihanItems.forEach(item => {
                       if (item.dataset.isActive === '1') {
                         pl += Number(item.dataset.itemAmount || 0);
+                      }
+                    });
+                    asramaItems.forEach(item => {
+                      if (item.dataset.isActive === '1') {
+                        al += Number(item.dataset.itemAmount || 0);
                       }
                     });
                     const pilihanTotalDisplay = section.querySelector('[data-pilihan-total-display]');
@@ -142,14 +153,14 @@
                     }
                     const asramaTotalDisplay = section.querySelector('[data-asrama-total-display]');
                     if (asramaTotalDisplay) {
-                      asramaTotalDisplay.textContent = 'RM ' + (asramaActive ? a : 0).toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                      asramaTotalDisplay.textContent = 'RM ' + al.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     }
-                    const total = p + pl + (asramaActive ? a : 0);
+                    const total = p + pl + al;
                     if (totalYuranEl) {
                       totalYuranEl.textContent = 'RM ' + total.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2});
                     }
                     if (labelEl) {
-                      if (asramaActive) {
+                      if (al > 0) {
                         labelEl.textContent = 'Keseluruhan (Daftar + Pilihan + Asrama)';
                       } else {
                         labelEl.textContent = 'Keseluruhan (Daftar + Pilihan)';
@@ -170,7 +181,7 @@
     <div class="rounded-3xl bg-white border border-gray-200 shadow-sm overflow-hidden">
         <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-emerald-50 p-6">
             <div>
-                <h2 class="text-2xl font-bold text-emerald-900">PINJAMAN PTPK</h2>
+                <h2 class="text-2xl font-bold text-emerald-900">PINJAMAN {{ $pinjamanLabel }}</h2>
                 <p class="text-sm text-emerald-700">Kemudahan pembiayaan pendidikan</p>
             </div>
             <div class="rounded-3xl bg-white px-5 py-4 text-center shadow-sm">
@@ -245,3 +256,4 @@
         </div>
     </div>
 </div>
+

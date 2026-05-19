@@ -184,10 +184,15 @@
             color: rgba(204, 251, 241, 0.92);
         }
 
+
         .faq-track-label {
             color: rgba(20, 184, 166, 0.8);
             letter-spacing: 0.38em;
             text-transform: uppercase;
+        }
+
+        .faq-category-title {
+            color: #0f172a;
         }
 
         .faq-track {
@@ -1102,9 +1107,7 @@
             .faq-card::before,
             .faq-arrow,
             .faq-modal-shell,
-            .faq-carousel-button,
-            .faq-hero-figure .fig-float-group,
-            .faq-hero-figure .fig-qmark {
+            .faq-carousel-button {
                 animation: none;
                 transition: none;
             }
@@ -1128,6 +1131,7 @@
         html.dark .faq-card-copy { color: rgba(203,213,225,0.85); }
         html.dark .faq-card-meta { color: rgba(148,163,184,0.8); }
         html.dark .faq-track-label { color: rgba(251,146,60,0.8); }
+        html.dark .faq-category-title { color: #f8fafc; }
         html.dark .faq-track-hint { color: rgba(148,163,184,0.7); }
         html.dark .faq-modal-shell {
             background: linear-gradient(135deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
@@ -1163,60 +1167,250 @@
                 0 0 0 2rem rgba(94,234,212,0.03);
         }
 
-        /* ── FAQ HERO FIGURE ── */
-        .faq-hero-figure {
-            position: absolute;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            height: 85%;
+        .faq-hero-inner {
+            position: relative;
+            display: grid;
+            gap: 2.25rem;
+            align-items: center;
+        }
+
+        .faq-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .faq-hero-visual {
+            position: relative;
+            min-height: 15rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             pointer-events: none;
-            user-select: none;
-            filter: drop-shadow(-12px 0 36px rgba(140, 50, 0, 0.24));
+            z-index: 1;
         }
 
-        .faq-hero-figure svg {
-            height: 100%;
-            width: auto;
-            overflow: visible;
+        .faq-neon-stage {
+            position: relative;
+            width: min(24rem, 100%);
+            height: 15rem;
+            border-radius: 2rem;
+            background: transparent;
         }
 
-        @keyframes heroFigureFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-12px); }
-        }
-        @keyframes heroQMarkPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.92; transform: scale(1.02); }
-        }
-
-        .faq-hero-figure .fig-float-group {
-            animation: heroFigureFloat 4.5s ease-in-out infinite;
-            transform-origin: center;
-        }
-        .faq-hero-figure .fig-qmark {
-            animation: heroQMarkPulse 3s ease-in-out infinite;
+        .faq-neon-stage::before,
+        .faq-neon-stage::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
         }
 
-        @media (max-width: 1024px) {
-            .faq-hero-figure {
-                right: 0.5rem;
-                height: 70%;
-                opacity: 0.32;
+        .faq-neon-stage::before {
+            background:
+                radial-gradient(circle at 50% 42%, rgba(96, 165, 250, 0.28), transparent 20%),
+                radial-gradient(circle at 40% 58%, rgba(56, 189, 248, 0.18), transparent 18%),
+                radial-gradient(circle at 62% 58%, rgba(125, 211, 252, 0.16), transparent 17%);
+            filter: blur(16px);
+            opacity: 0.95;
+        }
+
+        .faq-neon-stage::after {
+            background:
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12), transparent 8%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.22), transparent 38%);
+            opacity: 0.72;
+        }
+
+        .faq-neon-mark {
+            position: absolute;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #c8f1ff;
+            font-weight: 700;
+            line-height: 1;
+            text-shadow:
+                0 0 4px rgba(255, 255, 255, 0.92),
+                0 0 10px rgba(147, 197, 253, 0.96),
+                0 0 18px rgba(96, 165, 250, 0.94),
+                0 0 32px rgba(59, 130, 246, 0.92),
+                0 0 56px rgba(56, 189, 248, 0.72);
+            animation: faqNeonFloat 5.6s ease-in-out infinite, faqNeonPulse 3.2s ease-in-out infinite;
+            will-change: transform, opacity, filter;
+        }
+
+        .faq-neon-mark::before {
+            content: "?";
+            position: absolute;
+            inset: 0;
+            color: rgba(186, 230, 253, 0.42);
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .faq-neon-mark--large {
+            left: 12%;
+            top: 14%;
+            font-size: 8.5rem;
+            animation-delay: 0s, 0s;
+        }
+
+        .faq-neon-mark--mid {
+            left: 42%;
+            top: 30%;
+            font-size: 6.1rem;
+            animation-delay: -1.2s, -0.8s;
+        }
+
+        .faq-neon-mark--small {
+            right: 12%;
+            top: 12%;
+            font-size: 7.1rem;
+            animation-delay: -2.1s, -1.5s;
+        }
+
+        .faq-neon-aura {
+            position: absolute;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.32), rgba(59, 130, 246, 0) 70%);
+            filter: blur(12px);
+            opacity: 0.82;
+            animation: faqNeonAura 5.8s ease-in-out infinite;
+        }
+
+        .faq-neon-aura--one {
+            left: 16%;
+            top: 24%;
+            width: 7rem;
+            height: 7rem;
+        }
+
+        .faq-neon-aura--two {
+            left: 45%;
+            top: 42%;
+            width: 5.25rem;
+            height: 5.25rem;
+            animation-delay: -1.4s;
+        }
+
+        .faq-neon-aura--three {
+            right: 14%;
+            top: 22%;
+            width: 6.4rem;
+            height: 6.4rem;
+            animation-delay: -2.3s;
+        }
+
+        @keyframes faqNeonFloat {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            25% {
+                transform: translate3d(0.3rem, -0.55rem, 0) scale(1.02);
+            }
+            50% {
+                transform: translate3d(-0.2rem, 0.45rem, 0) scale(0.985);
+            }
+            75% {
+                transform: translate3d(0.22rem, -0.28rem, 0) scale(1.01);
             }
         }
 
-        @media (max-width: 768px) {
-            .faq-hero-figure {
-                display: block;
-                right: 0.5rem;
-                top: auto;
-                bottom: -0.6rem;
-                height: 44%;
-                opacity: 0.52;
-                transform: translateY(0);
+        @keyframes faqNeonPulse {
+            0%, 100% {
+                opacity: 0.92;
+                filter: brightness(1) saturate(1);
+            }
+            50% {
+                opacity: 1;
+                filter: brightness(1.16) saturate(1.14);
             }
         }
+
+        @keyframes faqNeonAura {
+            0%, 100% {
+                transform: scale(0.94);
+                opacity: 0.64;
+            }
+            50% {
+                transform: scale(1.08);
+                opacity: 0.98;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .faq-hero-inner {
+                grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .faq-hero-visual {
+                min-height: 12rem;
+            }
+
+            .faq-neon-stage {
+                width: min(21rem, 100%);
+                height: 12rem;
+            }
+
+            .faq-neon-mark--large {
+                font-size: 6.5rem;
+            }
+
+            .faq-neon-mark--mid {
+                font-size: 4.8rem;
+            }
+
+            .faq-neon-mark--small {
+                font-size: 5.7rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .faq-hero-inner {
+                gap: 1.5rem;
+            }
+
+            .faq-hero-copy {
+                max-width: none;
+            }
+
+            .faq-hero-visual {
+                min-height: 10rem;
+            }
+
+            .faq-neon-stage {
+                width: min(18rem, 100%);
+                height: 10rem;
+            }
+
+            .faq-neon-mark--large {
+                left: 8%;
+                font-size: 5rem;
+            }
+
+            .faq-neon-mark--mid {
+                left: 40%;
+                top: 34%;
+                font-size: 3.9rem;
+            }
+
+            .faq-neon-mark--small {
+                right: 8%;
+                font-size: 4.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .faq-neon-mark,
+            .faq-neon-aura {
+                animation: none;
+            }
+        }
+
+        /* ── FAQ HERO FIGURE ── */
     </style>
 </head>
 <body class="faq-page text-neutral-900 transition-colors duration-300">
@@ -1228,580 +1422,291 @@
 
     <main class="faq-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="faq-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12 relative overflow-hidden">
-            {{-- <div class="faq-hero-figure" aria-hidden="true">
-                <svg viewBox="-20 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <radialGradient id="coatGrad" cx="30%" cy="20%" r="80%">
-                            <stop offset="0%" stop-color="#ff8c42"/>
-                            <stop offset="100%" stop-color="#e65100"/>
-                        </radialGradient>
-                        <linearGradient id="qmarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ff9a3c"/>
-                            <stop offset="100%" stop-color="#ff7a00"/>
-                        </linearGradient>
-                        <filter id="heroSoftGlow"><feGaussianBlur stdDeviation="3.5"/></filter>
-                    </defs>
-
-                    <!-- Ambient glow behind figure -->
-                    <ellipse cx="110" cy="200" r="95" fill="url(#coatGrad)" filter="url(#heroSoftGlow)" opacity="0.45"/>
-
-                    <!-- Floor shadow -->
-                    <ellipse cx="110" cy="325" rx="55" ry="8" fill="rgba(0,0,0,0.18)"/>
-
-                    <!-- === ANIMATED FLOATING BODY === -->
-                    <g class="fig-float-group">
-
-                        <!-- Legs -->
-                        <rect x="85" y="260" width="20" height="58" rx="10" fill="#263238"/>
-                        <rect x="120" y="260" width="20" height="58" rx="10" fill="#263238"/>
-                        <!-- Shoes -->
-                        <ellipse cx="95" cy="320" rx="14" ry="7" fill="#1a1a2e"/>
-                        <ellipse cx="130" cy="320" rx="14" ry="7" fill="#1a1a2e"/>
-                        <!-- Shoe shine -->
-                        <path d="M88 317 Q92 314 98 315" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-                        <path d="M123 317 Q127 314 133 315" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-
-                        <!-- Coat / Torso -->
-                        <path d="M68 155 Q58 168 56 220 Q54 260 62 270 Q80 280 110 280 Q140 280 158 270 Q166 260 164 220 Q162 168 152 155 L136 140 Q122 152 110 152 Q98 152 84 140 Z" fill="url(#coatGrad)"/>
-                        <!-- Coat shine/highlight -->
-                        <path d="M78 155 Q70 170 68 200" stroke="rgba(255,255,255,0.2)" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        <!-- Coat collar -->
-                        <path d="M92 145 L110 170 L128 145" fill="#fff" opacity="0.9"/>
-                        <!-- Coat button -->
-                        <circle cx="110" cy="210" r="6" fill="rgba(255,255,255,0.3)"/>
-                        <circle cx="110" cy="210" r="4" fill="rgba(200,100,50,0.4)"/>
-                        <!-- Coat pocket -->
-                        <rect x="125" y="195" width="20" height="18" rx="4" fill="rgba(0,0,0,0.08)"/>
-                        <path d="M133 193 L133 207" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-
-                        <!-- Left arm (at side) -->
-                        <path d="M68 168 Q48 188 46 230" stroke="url(#coatGrad)" stroke-width="22" stroke-linecap="round" fill="none"/>
-                        <!-- Left hand -->
-                        <circle cx="46" cy="236" r="11" fill="#f0d9c8"/>
-
-                        <!-- Right arm (slightly raised) -->
-                        <path d="M152 168 Q168 180 172 210" stroke="url(#coatGrad)" stroke-width="22" stroke-linecap="round" fill="none"/>
-                        <!-- Right hand -->
-                        <circle cx="172" cy="218" r="11" fill="#f0d9c8"/>
-                        <!-- Hand gesture: open palm -->
-                        <path d="M178 210 Q182 206 185 210" stroke="#d9a580" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-
-                        <!-- Neck -->
-                        <rect x="100" y="128" width="20" height="22" rx="8" fill="#f0d9c8"/>
-
-                        <!-- === QUESTION MARK HEAD === -->
-                        <g class="fig-qmark">
-                            <!-- Head background circle -->
-                            <circle cx="110" cy="90" r="44" fill="url(#qmarkGrad)" opacity="0.98"/>
-                            <!-- Head shine -->
-                            <circle cx="95" cy="70" r="16" fill="rgba(255,255,255,0.18)"/>
-
-                            <!-- Large question mark -->
-                            <text x="110" y="108" font-size="72" font-weight="900" fill="white" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" letter-spacing="-2">?</text>
-
-                            <!-- Mini dots for expression (eyes) -->
-                            <circle cx="92" cy="78" r="3" fill="rgba(255,255,255,0.4)"/>
-                            <circle cx="128" cy="78" r="3" fill="rgba(255,255,255,0.4)"/>
-
-                            <!-- Glow ring around head -->
-                            <circle cx="110" cy="90" r="44" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" opacity="0.6"/>
-                        </g>
-
-                        <!-- Coat lapels accent -->
-                        <path d="M98 155 L88 165" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round" fill="none"/>
-                        <path d="M122 155 L132 165" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-linecap="round" fill="none"/>
-
-                    </g>
-
-                </svg>
-            </div> --}}
-
-            <p class="faq-hero-eyebrow font-medium tracking-[0.38em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
-            <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
-                Soalan Lazim (FAQ)
-            </h2>
-            <p class="faq-hero-copy mt-5 max-w-2xl text-base sm:text-lg leading-8">
-                Jawapan kepada pertanyaan yang sering diajukan oleh pelajar dan ibu bapa.
-            </p>
+            <div class="faq-hero-inner">
+                <div class="faq-hero-content">
+                    <p class="faq-hero-eyebrow font-medium tracking-[0.38em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
+                    <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
+                        Soalan Lazim (FAQ)
+                    </h2>
+                    <p class="faq-hero-copy mt-5 max-w-2xl text-base sm:text-lg leading-8">
+                        Jawapan kepada pertanyaan yang sering diajukan oleh pelajar dan ibu bapa.
+                    </p>
+                </div>
+                <div class="faq-hero-visual" aria-hidden="true">
+                    <div class="faq-neon-stage">
+                        <span class="faq-neon-aura faq-neon-aura--one"></span>
+                        <span class="faq-neon-aura faq-neon-aura--two"></span>
+                        <span class="faq-neon-aura faq-neon-aura--three"></span>
+                        <span class="faq-neon-mark faq-neon-mark--large">?</span>
+                        <span class="faq-neon-mark faq-neon-mark--mid">?</span>
+                        <span class="faq-neon-mark faq-neon-mark--small">?</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        @php
+            $faqCategories = [
+                'tvet' => [
+                    'label' => 'TVET',
+                    'title' => 'TVET',
+                    'description' => 'Soalan lazim berkaitan kursus kemahiran, sijil SKM, tempoh latihan dan peluang kerjaya TVET.',
+                    'button_class' => 'bg-[linear-gradient(135deg,#fb923c,#ea580c)] text-white border-transparent shadow-[0_14px_32px_rgba(249,115,22,0.28)]',
+                    'questions' => [
+                        [
+                            'question' => 'Apa itu program TVET di bawah SESOC?',
+                            'answer' => 'Program TVET memberi fokus kepada kemahiran praktikal, latihan industri, dan persediaan kerja dalam bidang teknikal serta vokasional.',
+                        ],
+                        [
+                            'question' => 'Apa beza SKM Tahap 1, 2 dan 3?',
+                            'answer' => 'SKM Tahap 1 memberi pendedahan asas kemahiran, Tahap 2 memperkukuh kompetensi kerja, dan Tahap 3 memberi kemahiran lanjutan untuk tugas lebih kompleks.',
+                        ],
+                        [
+                            'question' => 'Berapa lama tempoh pengajian TVET?',
+                            'answer' => 'Tempoh pengajian bergantung kepada kursus yang dipilih. Kebiasaannya melibatkan gabungan teori, amali bengkel, dan latihan industri.',
+                        ],
+                        [
+                            'question' => 'Lepasan TVET boleh sambung belajar atau terus bekerja?',
+                            'answer' => 'Boleh kedua-duanya. Pelajar boleh terus masuk ke pasaran kerja mengikut bidang kemahiran atau sambung ke tahap sijil yang lebih tinggi jika memenuhi syarat.',
+                        ],
+                    ],
+                ],
+                'diploma' => [
+                    'label' => 'Diploma',
+                    'title' => 'Diploma',
+                    'description' => 'Soalan lazim berkaitan syarat kemasukan, struktur pengajian dan laluan selepas Diploma.',
+                    'button_class' => 'bg-[linear-gradient(135deg,#7c3aed,#4c1d95)] text-white border-transparent shadow-[0_14px_32px_rgba(124,58,237,0.28)]',
+                    'questions' => [
+                        [
+                            'question' => 'Apakah Program Usahasama di Universiti Teknologi MARA?',
+                            'answer' => 'Program usahasama ialah kerjasama akademik antara UiTM dengan mana-mana IPTS atau institusi pendidikan yang dilantik bagi menawarkan program pengajian yang diiktiraf oleh UiTM.',
+                        ],
+                        [
+                            'question' => 'Kalau kolej di bawah program ini dipanggil apa?',
+                            'answer' => 'Kolej tersebut biasanya dipanggil Kolej Usahasama UiTM.',
+                        ],
+                        [
+                            'question' => 'Adakah Program Usahasama sama seperti belajar terus di kampus utama UiTM?',
+                            'answer' => 'Tidak sepenuhnya. Pelajar belajar di kolej usahasama tetapi mengikuti silibus, peperiksaan dan standard akademik yang ditetapkan oleh UiTM.',
+                        ],
+                        [
+                            'question' => 'Adakah sijil Program Usahasama diiktiraf?',
+                            'answer' => 'Ya, sijil atau diploma yang dianugerahkan diiktiraf tertakluk kepada kelulusan dan akreditasi program.',
+                        ],
+                        [
+                            'question' => 'Bagaimana ibu bapa boleh memastikan Program Usahasama itu sah dan diiktiraf?',
+                            'answer' => 'Ibu bapa disarankan menyemak status program melalui laman rasmi UiTM di <a href="https://iceps.uitm.edu.my/" target="_blank" rel="noopener noreferrer" class="font-semibold text-cyan-600 underline decoration-cyan-400 underline-offset-4 hover:text-cyan-700">https://iceps.uitm.edu.my/</a> dan pengiktirafan daripada MQA sebelum membuat pendaftaran.',
+                        ],
+                        [
+                            'question' => 'Siapakah yang layak memohon Program Usahasama UiTM?',
+                            'answer' => 'Pelajar lepasan SPM, STPM, diploma atau kelayakan lain yang memenuhi syarat akademik program yang ditawarkan.',
+                        ],
+                        [
+                            'question' => 'Adakah Program Usahasama sesuai untuk pelajar yang tidak mendapat tempat di UiTM kampus utama?',
+                            'answer' => 'Ya, program ini menjadi alternatif untuk pelajar yang masih ingin mengikuti program berasaskan silibus dan standard UiTM.',
+                        ],
+                        [
+                            'question' => 'Adakah yuran Program Usahasama lebih mahal daripada UiTM biasa?',
+                            'answer' => 'Kebiasaannya ya, kerana pengurusan dibuat oleh kolej usahasama. Namun jumlah yuran bergantung kepada program dan institusi terlibat.',
+                        ],
+                        [
+                            'question' => 'Apakah bidang pengajian yang ditawarkan dalam Program Usahasama UiTM?',
+                            'answer' => 'Bidang yang ditawarkan termasuk perniagaan, teknologi maklumat, perakaunan, hospitaliti, komunikasi dan lain-lain bergantung kepada kolej usahasama.',
+                        ],
+                        [
+                            'question' => 'Apakah kelebihan menyertai Program Usahasama UiTM?',
+                            'answer' => 'Antara kelebihannya ialah peluang melanjutkan pelajaran lebih luas, lokasi kampus yang pelbagai dan pembelajaran berasaskan silibus UiTM.',
+                        ],
+                        [
+                            'question' => 'Bagaimanakah cara memohon Program Usahasama UiTM?',
+                            'answer' => 'Permohonan boleh dibuat melalui kolej usahasama yang terlibat atau melalui saluran rasmi pengambilan yang ditetapkan.',
+                        ],
+                        [
+                            'question' => 'Adakah pelajar Program Usahasama mendapat kemudahan seperti pelajar UiTM lain?',
+                            'answer' => 'Kebanyakan pelajar mendapat akses kepada silibus, peperiksaan dan pengiktirafan akademik yang setara mengikut program.',
+                        ],
+                        [
+                            'question' => 'Adakah Program Usahasama mempunyai latihan industri?',
+                            'answer' => 'Ya, sesetengah program mewajibkan latihan industri bagi memberi pengalaman kerja sebelum tamat pengajian.',
+                        ],
+                        [
+                            'question' => 'Apakah peluang kerjaya selepas tamat Program Usahasama UiTM?',
+                            'answer' => 'Graduan boleh bekerja dalam sektor kerajaan, swasta atau menyambung pengajian ke peringkat lebih tinggi bergantung kepada bidang yang diambil.',
+                        ],
+                        [
+                            'question' => 'Adakah pelajar Program Usahasama boleh menggunakan nama atau pengiktirafan UiTM pada sijil mereka?',
+                            'answer' => 'Ya, tertakluk kepada program yang diluluskan dan struktur kerjasama akademik yang ditetapkan.',
+                        ],
+                    ],
+                ],
+                'sains-kesihatan' => [
+                    'label' => 'Sains Kesihatan',
+                    'title' => 'Sains Kesihatan',
+                    'description' => 'Soalan lazim berkaitan bidang kesihatan, latihan klinikal dan prospek kerjaya dalam sektor kesihatan.',
+                    'button_class' => 'bg-[linear-gradient(135deg,#2563eb,#0f172a)] text-white border-transparent shadow-[0_14px_32px_rgba(37,99,235,0.28)]',
+                    'questions' => [
+                        [
+                            'question' => 'Apakah contoh program dalam kategori Sains Kesihatan?',
+                            'answer' => 'Antara contoh bidang ialah penjagaan kesihatan, pembantu perubatan, penjagaan pesakit, dan program berkaitan kesihatan komuniti atau klinikal.',
+                        ],
+                        [
+                            'question' => 'Adakah program Sains Kesihatan ada latihan praktikal?',
+                            'answer' => 'Kebanyakan program dalam kategori ini melibatkan komponen latihan praktikal, simulasi, atau penempatan mengikut struktur kursus dan institusi.',
+                        ],
+                        [
+                            'question' => 'Apa syarat asas untuk mohon program Sains Kesihatan?',
+                            'answer' => 'Syarat asas bergantung pada program, tetapi biasanya melibatkan kelulusan akademik tertentu dan kadang-kadang keperluan subjek berkaitan seperti Sains atau Matematik.',
+                        ],
+                        [
+                            'question' => 'Apakah peluang kerjaya selepas tamat pengajian Sains Kesihatan?',
+                            'answer' => 'Graduan boleh memasuki sektor kesihatan, pusat rawatan, klinik, pusat jagaan, atau sambung pengajian ke tahap yang lebih tinggi mengikut bidang yang diambil.',
+                        ],
+                    ],
+                ],
+            ];
+        @endphp
+
         <section class="max-w-5xl mx-auto">
-            <div class="flex items-center justify-between gap-4 mb-5">
-                <p class="faq-track-label text-xs sm:text-sm">Pusat Bantuan</p>
-                <p class="faq-track-hint text-xs sm:text-sm">Pilih soalan untuk melihat jawapan penuh</p>
+            <div class="flex flex-wrap justify-center gap-3 mb-8" id="faqCategoryTabs" role="tablist" aria-label="Kategori FAQ">
+                @foreach ($faqCategories as $categoryKey => $category)
+                    <button
+                        type="button"
+                        class="faq-category-tab inline-flex items-center justify-center rounded-full border border-white/70 bg-white/80 px-6 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-slate-700 shadow-[0_10px_26px_rgba(15,23,42,0.08)] transition hover:-translate-y-0.5"
+                        data-category-tab="{{ $categoryKey }}"
+                        data-category-title="{{ $category['title'] }}"
+                        data-category-description="{{ $category['description'] }}"
+                        data-active-class="{{ $category['button_class'] }}"
+                        role="tab"
+                        aria-selected="{{ $loop->first ? 'true' : 'false' }}"
+                    >
+                        {{ $category['label'] }}
+                    </button>
+                @endforeach
             </div>
 
-            <div class="faq-track" id="faqTrack">
-                <div class="faq-xmb-row">
-                    <button
-                        type="button"
-                        data-faq-item
-                        data-faq-type="admission"
-                        class="faq-card group"
-                        style="--float-delay: 0s; --float-scale: 1;"
-                        aria-haspopup="dialog"
-                        aria-controls="faqModal"
+            <div class="space-y-6" id="faqCategoryPanels">
+                @foreach ($faqCategories as $categoryKey => $category)
+                    <section
+                        class="faq-category-panel rounded-[1.8rem] border border-white/70 bg-white/75 p-4 sm:p-6 shadow-[0_18px_44px_rgba(15,23,42,0.08)] backdrop-blur"
+                        data-category-panel="{{ $categoryKey }}"
+                        role="tabpanel"
+                        @if (! $loop->first) hidden @endif
                     >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#ff9a3c,#ff7a00)] text-2xl">
-                            <i class="fa-solid fa-user-check"></i>
+                        <div class="space-y-3">
+                            @foreach ($category['questions'] as $questionIndex => $faq)
+                                <article class="overflow-hidden rounded-[1.4rem] border border-slate-200/80 bg-white/85 shadow-[0_12px_28px_rgba(15,23,42,0.05)]">
+                                    <button
+                                        type="button"
+                                        class="faq-accordion-trigger flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-slate-900 transition hover:bg-slate-50/80"
+                                        data-accordion-trigger
+                                        aria-expanded="{{ $questionIndex === 0 ? 'true' : 'false' }}"
+                                    >
+                                        <span class="text-base sm:text-lg font-semibold leading-7">{{ $faq['question'] }}</span>
+                                        <span class="faq-accordion-icon inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition">
+                                            <i class="fa-solid fa-angle-down"></i>
+                                        </span>
+                                    </button>
+                                    <div class="faq-accordion-panel px-5 pb-5 text-sm sm:text-base leading-7 text-slate-600" data-accordion-panel @if ($questionIndex !== 0) hidden @endif>
+                                        {!! $faq['answer'] !!}
+                                    </div>
+                                </article>
+                            @endforeach
                         </div>
-
-                        <div class="flex-1 min-w-0">
-                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Kemasukan</p>
-                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">                                Siapa yang layak memohon?
-                            </h3>
-                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
-                                Klik untuk lihat penerangan penuh
-                            </p>
-                        </div>
-
-                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </span>
-                    </button>
-
-                    <button
-                        type="button"
-                        data-faq-item
-                        data-faq-type="program"
-                        class="faq-card group"
-                        style="--float-delay: 0.5s; --float-scale: 1;"
-                        aria-haspopup="dialog"
-                        aria-controls="faqModal"
-                    >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#38bdf8,#0ea5e9)] text-2xl">
-                            <i class="fa-solid fa-certificate"></i>
-                        </div>
-
-                        <div class="flex-1 min-w-0">
-                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Program</p>
-                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Apa beza SKM Tahap 1, 2 dan 3?
-                            </h3>
-                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
-                                Klik untuk lihat penerangan penuh
-                            </p>
-                        </div>
-
-                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </span>
-                    </button>
-
-                    <button
-                        type="button"
-                        data-faq-item
-                        data-faq-type="fees"
-                        class="faq-card group"
-                        style="--float-delay: 1s; --float-scale: 1;"
-                        aria-haspopup="dialog"
-                        aria-controls="faqModal"
-                    >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#34d399,#059669)] text-2xl">
-                            <i class="fa-solid fa-wallet"></i>
-                        </div>
-
-                        <div class="flex-1 min-w-0">
-                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Yuran</p>
-                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Berapa yuran dan ada bantuan kewangan?
-                            </h3>
-                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
-                                Klik untuk lihat penerangan penuh
-                            </p>
-                        </div>
-
-                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </span>
-                    </button>
-
-                    <button
-                        type="button"
-                        data-faq-item
-                        data-faq-type="application"
-                        class="faq-card group"
-                        style="--float-delay: 1.3s; --float-scale: 1;"
-                        aria-haspopup="dialog"
-                        aria-controls="faqModal"
-                    >
-                        <div class="faq-icon-chip bg-[linear-gradient(135deg,#9333ea,#5b21b6)] text-2xl">
-                            <i class="fa-solid fa-file-signature"></i>
-                        </div>
-
-                        <div class="flex-1 min-w-0">
-                            <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Permohonan</p>
-                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Bagaimana proses permohonan program?
-                            </h3>
-                            <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
-                                Klik untuk lihat penerangan penuh
-                            </p>
-                        </div>
-
-                        <span class="faq-arrow text-2xl sm:text-[1.7rem]">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </span>
-                    </button>
-                </div>
-
-                <div class="faq-carousel-controls" aria-label="Navigasi soalan lazim">
-                    <button type="button" class="faq-carousel-button" id="faqPrevButton" aria-label="Soalan sebelumnya">
-                        <i class="fa-solid fa-angle-left"></i>
-                    </button>
-                    <button type="button" class="faq-carousel-button" id="faqNextButton" aria-label="Soalan seterusnya">
-                        <i class="fa-solid fa-angle-right"></i>
-                    </button>
-                </div>
+                    </section>
+                @endforeach
             </div>
         </section>
     </main>
 
-    <div id="faqModal" class="faq-modal-backdrop fixed inset-0 z-50" aria-hidden="true">
-        <div id="modalBox" class="faq-modal-shell rounded-[1.85rem] p-7 relative mx-4" role="dialog" aria-modal="true" aria-labelledby="faqModalTitle" tabindex="-1">
-            <button type="button" id="modalCloseButton" class="faq-modal-close" aria-label="Tutup jawapan FAQ">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
     <script>
-    const focusableItems = Array.from(document.querySelectorAll('[data-faq-item]'));
-    const faqTrack = document.getElementById('faqTrack');
-    const faqSwipeRow = document.querySelector('.faq-xmb-row');
-    const modalElement = document.getElementById('faqModal');
-    const modalBox = document.getElementById('modalBox');
-    const modalContent = document.getElementById('modalContent');
-    const modalCloseButton = document.getElementById('modalCloseButton');
-    const faqPrevButton = document.getElementById('faqPrevButton');
-    const faqNextButton = document.getElementById('faqNextButton');
-    const modalTransitionMs = 240;
-    let activeTrigger = null;
-    let closeTimerId = null;
-    let activeCarouselIndex = 0;
+    (() => {
+        const tabButtons = Array.from(document.querySelectorAll('[data-category-tab]'));
+        const panels = Array.from(document.querySelectorAll('[data-category-panel]'));
+        const inactiveButtonClass = 'border-white/70 bg-white/80 text-slate-700 shadow-[0_10px_26px_rgba(15,23,42,0.08)]';
 
-    const faqAnswers = {
-        admission: `
-            <div class="faq-modal-content">
-                <div class="faq-modal-kicker">Kemasukan & Kelayakan</div>
-                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Siapa yang layak memohon program?
-memohon program di UPKB?
-                </h2>
+        function closeAllAccordions(panel) {
+            panel.querySelectorAll('[data-accordion-trigger]').forEach((trigger, index) => {
+                const content = trigger.parentElement.querySelector('[data-accordion-panel]');
+                const icon = trigger.querySelector('.faq-accordion-icon');
+                const isFirst = index === 0;
 
-                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
-                    <li>Warganegara Malaysia yang berminat dalam latihan kemahiran dan kerjaya praktikal.</li>
-                    <li>Lepasan sekolah (contohnya SPM) atau individu bekerja yang ingin tambah kemahiran juga digalakkan memohon.</li>
-                    <li>Syarat minimum akademik bergantung pada program dan tahap SKM yang dipilih.</li>
-                    <li>Dokumen biasa diperlukan: kad pengenalan, sijil akademik, dan dokumen sokongan lain semasa pendaftaran.</li>
-                </ul>
-            </div>
-        `,
-        program: `
-            <div class="faq-modal-content">
-                <div class="faq-modal-kicker">Program & Pensijilan</div>
-                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Apa beza SKM Tahap 1, 2 dan 3?
-                </h2>
-
-                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
-                    <li>SKM Tahap 1: asas kemahiran dan pengenalan kepada standard kerja industri.</li>
-                    <li>SKM Tahap 2: pengukuhan kompetensi teknikal untuk tugasan operasi.</li>
-                    <li>SKM Tahap 3: kemahiran lanjutan, penyelesaian masalah, dan tanggungjawab kerja yang lebih tinggi.</li>
-                    <li>Tempoh pengajian berbeza mengikut kursus, biasanya melibatkan pembelajaran teori dan latihan amali.</li>
-                </ul>
-            </div>
-        `,
-        fees: `
-            <div class="faq-modal-content">
-                <div class="faq-modal-kicker">Yuran & Bantuan Kewangan</div>
-                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Berapa yuran dan ada bantuan kewangan?
-                </h2>
-
-                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
-                    <li>Yuran pendaftaran dan yuran pengajian bergantung kepada program yang dipilih.</li>
-                    <li>Pembayaran boleh dibuat secara berperingkat untuk memudahkan pelajar dan ibu bapa.</li>
-                    <li>Terdapat pilihan bantuan kewangan, tajaan, atau pinjaman tertakluk kepada syarat semasa.</li>
-                    <li>Pasukan pendaftaran boleh terangkan pecahan kos penuh termasuk yuran peperiksaan atau bahan latihan jika berkaitan.</li>
-                </ul>
-            </div>
-        `,
-        application: `
-            <div class="faq-modal-content">
-                <div class="faq-modal-kicker">Proses Permohonan</div>
-                <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Bagaimana proses permohonan program?
-                </h2>
-
-                <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">
-                    <li>Pilih program yang diminati dan semak syarat kelayakan asas.</li>
-                    <li>Lengkapkan borang permohonan dan serahkan dokumen penting seperti kad pengenalan serta sijil akademik.</li>
-                    <li>Permohonan akan disemak oleh pihak pentadbiran dalam tempoh yang ditetapkan.</li>
-                    <li>Jika layak, calon akan dihubungi untuk langkah seterusnya seperti taklimat, pengesahan tempat, dan pembayaran pendaftaran.</li>
-                </ul>
-            </div>
-        `,
-    };
-
-    function setFocusedItem(activeItem) {
-        if (!focusableItems.length || !faqTrack) {
-            return;
+                trigger.setAttribute('aria-expanded', isFirst ? 'true' : 'false');
+                if (content) {
+                    content.hidden = !isFirst;
+                }
+                if (icon) {
+                    icon.classList.toggle('rotate-180', isFirst);
+                    icon.classList.toggle('bg-slate-900', isFirst);
+                    icon.classList.toggle('text-white', isFirst);
+                    icon.classList.toggle('bg-slate-100', !isFirst);
+                    icon.classList.toggle('text-slate-700', !isFirst);
+                }
+            });
         }
 
-        const resolvedIndex = focusableItems.indexOf(activeItem);
-        if (resolvedIndex >= 0) {
-            activeCarouselIndex = resolvedIndex;
+        function setActiveCategory(categoryKey) {
+            tabButtons.forEach((button) => {
+                const isActive = button.dataset.categoryTab === categoryKey;
+                const activeClasses = (button.dataset.activeClass || '').split(' ').filter(Boolean);
+                const inactiveClasses = inactiveButtonClass.split(' ').filter(Boolean);
+
+                button.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                button.classList.toggle('scale-[1.02]', isActive);
+                button.classList.toggle('-translate-y-0.5', isActive);
+
+                activeClasses.forEach((className) => button.classList.toggle(className, isActive));
+                inactiveClasses.forEach((className) => button.classList.toggle(className, !isActive));
+
+            });
+
+            panels.forEach((panel) => {
+                const isActive = panel.dataset.categoryPanel === categoryKey;
+                panel.hidden = !isActive;
+                if (isActive) {
+                    closeAllAccordions(panel);
+                }
+            });
         }
 
-        focusableItems.forEach((item) => {
-            const isActive = item === activeItem;
-            const itemIndex = focusableItems.indexOf(item);
-            const prevIndex = (activeCarouselIndex - 1 + focusableItems.length) % focusableItems.length;
-            const nextIndex = (activeCarouselIndex + 1) % focusableItems.length;
+        document.querySelectorAll('[data-accordion-trigger]').forEach((trigger) => {
+            trigger.addEventListener('click', () => {
+                const panel = trigger.closest('[data-category-panel]');
+                if (!panel) {
+                    return;
+                }
 
-            item.classList.toggle('is-focused', isActive);
-            item.classList.toggle('is-prev', itemIndex === prevIndex && !isActive);
-            item.classList.toggle('is-next', itemIndex === nextIndex && !isActive);
-            item.classList.toggle('is-hidden', itemIndex !== activeCarouselIndex && itemIndex !== prevIndex && itemIndex !== nextIndex);
-            item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                panel.querySelectorAll('[data-accordion-trigger]').forEach((otherTrigger) => {
+                    const otherPanel = otherTrigger.parentElement.querySelector('[data-accordion-panel]');
+                    const otherIcon = otherTrigger.querySelector('.faq-accordion-icon');
+                    const isCurrent = otherTrigger === trigger;
+                    const shouldOpen = isCurrent && otherTrigger.getAttribute('aria-expanded') !== 'true';
+
+                    otherTrigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+                    if (otherPanel) {
+                        otherPanel.hidden = !shouldOpen;
+                    }
+
+                    if (otherIcon) {
+                        otherIcon.classList.toggle('rotate-180', shouldOpen);
+                        otherIcon.classList.toggle('bg-slate-900', shouldOpen);
+                        otherIcon.classList.toggle('text-white', shouldOpen);
+                        otherIcon.classList.toggle('bg-slate-100', !shouldOpen);
+                        otherIcon.classList.toggle('text-slate-700', !shouldOpen);
+                    }
+                });
+            });
         });
 
-        faqTrack.classList.toggle('has-focused-item', Boolean(activeItem));
-    }
-
-    function isMobileCarousel() {
-        return window.matchMedia('(max-width: 767px)').matches;
-    }
-
-    function scrollActiveCardIntoView(index, behavior = 'smooth') {
-        if (!isMobileCarousel() || !faqSwipeRow || !focusableItems[index]) {
-            return;
-        }
-
-        focusableItems[index].scrollIntoView({
-            behavior,
-            block: 'nearest',
-            inline: 'center',
-        });
-    }
-
-    function syncFocusedCardFromScroll() {
-        if (!isMobileCarousel() || !faqSwipeRow || !focusableItems.length) {
-            return;
-        }
-
-        const rowBounds = faqSwipeRow.getBoundingClientRect();
-        const rowCenter = rowBounds.left + rowBounds.width / 2;
-        let nearestIndex = activeCarouselIndex;
-        let nearestDistance = Number.POSITIVE_INFINITY;
-
-        focusableItems.forEach((item, index) => {
-            const itemBounds = item.getBoundingClientRect();
-            const itemCenter = itemBounds.left + itemBounds.width / 2;
-            const distance = Math.abs(itemCenter - rowCenter);
-
-            if (distance < nearestDistance) {
-                nearestDistance = distance;
-                nearestIndex = index;
-            }
+        tabButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                setActiveCategory(button.dataset.categoryTab);
+            });
         });
 
-        if (nearestIndex !== activeCarouselIndex) {
-            activeCarouselIndex = nearestIndex;
-            setFocusedItem(focusableItems[nearestIndex]);
+        if (tabButtons.length) {
+            setActiveCategory(tabButtons[0].dataset.categoryTab);
         }
-    }
-
-    function updateCardTilt(item, event) {
-        if (!item || window.innerWidth < 768) {
-            return;
-        }
-
-        // Keep cards static to avoid expensive per-frame mousemove style updates.
-        return;
-    }
-
-    function resetCardTilt(item) {
-        if (!item) {
-            return;
-        }
-
-        item.style.setProperty('--faq-tilt-x', '0deg');
-        item.style.setProperty('--faq-tilt-y', '0deg');
-        item.style.setProperty('--faq-shimmer-x', '50%');
-        item.style.setProperty('--faq-shimmer-y', '50%');
-    }
-
-    function focusItemByIndex(index) {
-        if (!focusableItems.length) {
-            return;
-        }
-
-        const normalizedIndex = (index + focusableItems.length) % focusableItems.length;
-        const nextItem = focusableItems[normalizedIndex];
-        activeCarouselIndex = normalizedIndex;
-
-        nextItem.focus({ preventScroll: true });
-        setFocusedItem(nextItem);
-        scrollActiveCardIntoView(normalizedIndex);
-    }
-
-    function openModal(type) {
-        if (!modalElement || !modalBox || !modalContent || !faqAnswers[type]) {
-            return;
-        }
-
-        if (closeTimerId) {
-            window.clearTimeout(closeTimerId);
-            closeTimerId = null;
-        }
-
-        activeTrigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-        modalBox.dataset.tone = type;
-        modalContent.innerHTML = faqAnswers[type];
-        modalElement.setAttribute('aria-hidden', 'false');
-        modalElement.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-
-        window.requestAnimationFrame(() => {
-            modalCloseButton?.focus({ preventScroll: true });
-        });
-    }
-
-    function closeModal() {
-        if (!modalElement || !modalBox) {
-            return;
-        }
-
-        modalElement.classList.remove('is-open');
-        modalElement.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-
-        closeTimerId = window.setTimeout(() => {
-            modalContent.innerHTML = '';
-            modalBox.removeAttribute('data-tone');
-            activeTrigger?.focus({ preventScroll: true });
-            activeTrigger = null;
-            closeTimerId = null;
-        }, modalTransitionMs);
-    }
-
-    if (modalElement) {
-        modalElement.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-    }
-
-    if (modalCloseButton) {
-        modalCloseButton.addEventListener('click', closeModal);
-    }
-
-    focusableItems.forEach((item, index) => {
-        item.addEventListener('focus', () => setFocusedItem(item));
-        item.addEventListener('click', () => {
-            if (!item.classList.contains('is-focused')) {
-                focusItemByIndex(index);
-                return;
-            }
-
-            openModal(item.dataset.faqType);
-        });
-
-        item.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-                event.preventDefault();
-                focusItemByIndex(index + 1);
-            }
-
-            if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-                event.preventDefault();
-                focusItemByIndex(index - 1);
-            }
-
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                openModal(item.dataset.faqType);
-            }
-        });
-    });
-
-    if (faqTrack) {
-        faqTrack.addEventListener('mouseleave', () => {
-            const focusedElement = document.activeElement;
-            if (!focusableItems.includes(focusedElement)) {
-                setFocusedItem(focusableItems[0] ?? null);
-            }
-        });
-    }
-
-    if (faqSwipeRow) {
-        let swipeScrollTimer = null;
-
-        faqSwipeRow.addEventListener('scroll', () => {
-            window.clearTimeout(swipeScrollTimer);
-            swipeScrollTimer = window.setTimeout(syncFocusedCardFromScroll, 90);
-        }, { passive: true });
-    }
-
-    if (faqPrevButton) {
-        faqPrevButton.addEventListener('click', () => {
-            focusItemByIndex(activeCarouselIndex - 1);
-        });
-    }
-
-    if (faqNextButton) {
-        faqNextButton.addEventListener('click', () => {
-            focusItemByIndex(activeCarouselIndex + 1);
-        });
-    }
-
-    document.addEventListener('keydown', (event) => {
-        if (!modalElement || modalElement.getAttribute('aria-hidden') === 'true') {
-            return;
-        }
-
-        if (event.key === 'Escape') {
-            closeModal();
-            return;
-        }
-
-        if (event.key !== 'Tab') {
-            return;
-        }
-
-        const focusableElements = Array.from(
-            modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
-        ).filter((element) => !element.hasAttribute('disabled'));
-
-        if (!focusableElements.length) {
-            event.preventDefault();
-            modalBox.focus({ preventScroll: true });
-            return;
-        }
-
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-
-        if (event.shiftKey && document.activeElement === firstElement) {
-            event.preventDefault();
-            lastElement.focus();
-        }
-
-        if (!event.shiftKey && document.activeElement === lastElement) {
-            event.preventDefault();
-            firstElement.focus();
-        }
-    });
-
-    if (focusableItems.length) {
-        activeCarouselIndex = 0;
-        setFocusedItem(focusableItems[0]);
-    }
+    })();
     </script>
 
     @include('components.social-float')

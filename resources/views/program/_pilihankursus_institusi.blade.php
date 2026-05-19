@@ -67,7 +67,7 @@
             </div>
             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                 <div>
-                    <p class="pilihan-theme-soft-label text-[0.68rem] font-semibold uppercase tracking-[0.34em]">Institusi</p>
+                    <p class="pilihan-theme-soft-label text-[0.68rem] font-semibold uppercase tracking-[0.34em]">{{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}</p>
                     <h3 class="mt-2 text-2xl font-extrabold text-white">{{ $kursus->institusi->nama_institusi ?? 'N/A' }}</h3>
                 </div>
                 <span class="course-result-arrow shrink-0">
@@ -76,8 +76,8 @@
             </div>
         </div>
 
-        <div class="px-6 pb-6 pt-0">
-            <div class="flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-4">
+        <div class="course-result-footer px-6 pb-6 pt-0">
+            <div class="course-result-footer-row flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-4">
                 <span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Lihat detail kursus</span>
                 <span class="course-result-cta inline-flex items-center gap-2 text-sm font-semibold">
                     Teroka

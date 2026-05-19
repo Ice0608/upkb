@@ -11,13 +11,21 @@
 <body class="admin-dark">
 
 @include('layouts.navadmin')
+    @php
+        $adminProgramType = strtolower((string) request('jenis', ''));
+        $adminIsTvet = $adminProgramType === 'tvet';
+        $adminIsDiploma = $adminProgramType === 'diploma';
+        $adminIsSainsKesihatan = $adminProgramType === 'sains kesihatan';
+        $adminEntityLabel = $adminIsTvet ? 'Pusat Bertauliah' : 'Institusi';
+        $adminEntityLabelLower = strtolower($adminEntityLabel);
+    @endphp
 
     <section class="max-w-7xl mx-auto px-6 py-10">
         <div class="mb-8 rounded-3xl bg-gradient-to-r from-orange-500 to-orange-400 p-8 text-white shadow-lg">
             <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h1 class="text-4xl font-bold leading-tight md:text-5xl">Admin Institusi {{ request('jenis') ? request('jenis') : '' }}</h1>
-                    <p class="mt-3 text-lg text-orange-100">Urus semua institusi di sini. Tambah, kemaskini dan hapus data institusi dengan mudah.</p>
+                    <h1 class="text-4xl font-bold leading-tight md:text-5xl">Admin {{ $adminEntityLabel }} {{ request('jenis') ? request('jenis') : '' }}</h1>
+                    <p class="mt-3 text-lg text-orange-100">Urus semua {{ $adminEntityLabelLower }} di sini. Tambah, kemaskini dan hapus data {{ $adminEntityLabelLower }} dengan mudah.</p>
                 </div>
                 <a href="{{ route('admin.addinstitusi') }}" class="flex h-14 w-14 items-center justify-center rounded-full bg-white text-orange-600 shadow-md transition hover:shadow-lg">
                     <i class="fas fa-plus"></i>
@@ -33,7 +41,7 @@
 
         <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center">
             <form method="GET" class="grid w-full grid-cols-1 gap-3 md:grid-cols-4 lg:grid-cols-7">
-                <input type="text" name="cari" placeholder="Cari Institusi..." value="{{ request('cari') }}" class="col-span-1 w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none md:col-span-2 lg:col-span-2">
+                <input type="text" name="cari" placeholder="Cari {{ $adminEntityLabel }}..." value="{{ request('cari') }}" class="col-span-1 w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none md:col-span-2 lg:col-span-2">
 
                 <select name="jenis" class="col-span-1 w-full rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-sm focus:border-orange-400 focus:outline-none lg:col-span-2">
                     <option value="">Semua Jenis</option>
@@ -99,7 +107,7 @@
                         <a href="{{ route('admin.editinstitusi', $institusi->id) }}" class="inline-flex items-center justify-center rounded-full bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 ring-1 ring-blue-200 transition hover:bg-blue-100 hover:text-blue-800">
                             <i class="fas fa-pen-to-square mr-2"></i> Edit
                         </a>
-                        <form action="{{ route('admin.deleteinstitusi', $institusi->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this institusi?');">
+                        <form action="{{ route('admin.deleteinstitusi', $institusi->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this {{ $adminEntityLabelLower }}?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="inline-flex items-center justify-center rounded-full bg-red-50 px-4 py-2.5 text-sm font-semibold text-red-700 ring-1 ring-red-200 transition hover:bg-red-100 hover:text-red-800">
@@ -111,7 +119,7 @@
             </article>
             @empty
             <div class="col-span-3 rounded-2xl bg-white p-8 text-center text-gray-500">
-                Tiada institusi ditemui.
+                Tiada {{ $adminEntityLabelLower }} ditemui.
             </div>
             @endforelse
         </div>
@@ -123,4 +131,3 @@
 
 </body>
 </html>
-

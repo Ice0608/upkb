@@ -469,6 +469,9 @@
 @php
     $institusiInfoType = strtolower((string) $institusi->jenis_institusi);
     $isThemed = in_array($institusiInfoType, ['tvet', 'diploma', 'sains kesihatan'], true);
+    $institusiEntityLabel = $institusiInfoType === 'tvet' ? 'Pusat Bertauliah' : 'Institusi';
+    $institusiEntityLabelLower = strtolower($institusiEntityLabel);
+
 @endphp
 <body class="no-bg {{ $institusiInfoType === 'tvet' ? 'institusi-info-page--tvet' : '' }} {{ $institusiInfoType === 'diploma' ? 'institusi-info-page--diploma' : '' }} {{ $institusiInfoType === 'sains kesihatan' ? 'institusi-info-page--sains-kesihatan' : '' }} {{ !$isThemed ? 'bg-gray-100' : '' }} text-gray-800">
 
@@ -497,7 +500,7 @@
             </div>
         </div>
         <a href="{{ route('institusi') }}" class="ii-back-btn">
-            <i class="fas fa-arrow-left"></i><span>Senarai Institusi</span>
+            <i class="fas fa-arrow-left"></i><span>Senarai {{ $institusiEntityLabel }}</span>
         </a>
     </div>
 
@@ -509,7 +512,7 @@
                 <i class="fas fa-building-columns"></i>
             </div>
             <div class="ii-card__content flex-1 min-w-0">
-                <h2 class="ii-section-title mb-2">Mengenai Institusi</h2>
+                <h2 class="ii-section-title mb-2">Mengenai {{ $institusiEntityLabel }}</h2>
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ $institusi->mengenai_institusi }}</p>
             </div>
         </div>
@@ -584,7 +587,7 @@
                 @else
                 <div class="ii-empty">
                     <i class="fas fa-inbox text-4xl text-gray-300 mb-3"></i>
-                    <p>Tiada kursus ditawarkan pada institusi ini.</p>
+                    <p>Tiada kursus ditawarkan pada {{ $institusiEntityLabelLower }} ini.</p>
                 </div>
                 @endif
             </div>
@@ -602,11 +605,11 @@
                 @if(count($galeriList) > 0)
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
                     @foreach($galeriList as $foto)
-                    <button class="ii-gallery-item" onclick="iiLightbox('{{ asset($foto->imej) }}', '{{ addslashes($foto->penerangan ?? 'Fasiliti institusi') }}')">
+                    <button class="ii-gallery-item" onclick="iiLightbox('{{ asset($foto->imej) }}', '{{ addslashes($foto->penerangan ?? ('Fasiliti ' . $institusiEntityLabelLower)) }}')">
                         <img src="{{ asset($foto->imej) }}" alt="Fasiliti" class="ii-gallery-img" loading="lazy">
                         <div class="ii-gallery-overlay">
                             <i class="fas fa-expand text-white text-lg mb-2"></i>
-                            <p class="text-white text-sm font-medium px-3 text-center uppercase">{{ $foto->penerangan ?? 'Fasiliti institusi' }}</p>
+                            <p class="text-white text-sm font-medium px-3 text-center">{{ $foto->penerangan ?? ('Fasiliti ' . $institusiEntityLabelLower) }}</p>
                         </div>
                     </button>
                     @endforeach

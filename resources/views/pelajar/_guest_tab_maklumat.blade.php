@@ -1,8 +1,13 @@
+@php
+    $programType = strtolower(trim((string) ($heroProgramType ?? optional($kursus->institusi)->jenis_institusi ?? '')));
+    $kodLabel = in_array($programType, ['diploma', 'sains kesihatan'], true) ? 'Kod MQA' : 'Kod kursus';
+@endphp
+
 <div class="p-8">
     <h2 class="text-2xl font-bold text-gray-800 mb-4">Maklumat Am</h2>
     <div class="grid gap-6 md:grid-cols-3 mb-8">
         <div class="rounded-3xl border border-gray-200 p-6 bg-gray-50">
-            <p class="text-sm uppercase tracking-[0.2em] text-gray-500 mb-2">Kod kursus</p>
+            <p class="text-sm uppercase tracking-[0.2em] text-gray-500 mb-2">{{ $kodLabel }}</p>
             <p class="font-semibold text-slate-900">{{ $kursus->kod_kursus ?? '-' }}</p>
         </div>
         <div class="rounded-3xl border border-gray-200 p-6 bg-gray-50">
