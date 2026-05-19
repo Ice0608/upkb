@@ -153,11 +153,18 @@
             <a href="{{ url('/') }}" class="footer-brand-link mb-4">
                 <img src="{{ asset('images/icon/seslogo.png') }}" class="footer-brand-logo h-12" alt="logo">
                 <div>
+<<<<<<< HEAD
                     <h2 class="footer-brand-title text-lg font-bold text-white">SESOC</h2>
                     {{-- <p class="footer-brand-subtitle text-sm text-gray-400">Pusat maklumat program & pengambilan</p> --}}
                 </div>
             </a>
             <p class="text-sm text-gray-400 leading-relaxed">SES bertindak sebagai "ONE STOP CENTER" menyediakan bimbingan yang lengkap untuk pendidikan pemilihan program sehingga perancangan kerjaya masa hadapan.</p>
+=======
+                    <h2 class="footer-brand-title text-lg font-bold text-white">SES</h2>
+                </div>
+            </a>
+            <p class="text-sm text-gray-400 leading-relaxed">SES bertindak sebagai "ONE STOP CENTRE" menyediakan bimbingan yang lengkap untuk pendidikan, pemilihan program sehingga perancangan kerjaya untuk masa hadapan.</p>
+>>>>>>> 9059b381149e2097d7c4b5f5617f351402a1db3a
         </div>
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>

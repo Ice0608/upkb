@@ -321,7 +321,7 @@
                     <th>Payment<br>Type</th>
                     <th>Payment<br>Status</th>
                     <th>Pre Reg.<br>(RM)</th>
-                    <th>Closer</th>
+                    <th>Pegawai Temuduga</th>
                 </tr>
             </thead>
             <tbody>

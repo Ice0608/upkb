@@ -197,8 +197,96 @@ class StaffEventController extends Controller
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
         ], $data, $extraData));
 
+        $this->sendBmdConfirmationEmail($pelajar);
+
         return redirect()->route('pelajar.senarainama', ['pelajar_id' => $pelajar->id])
-            ->with('success', 'Maklumat pelajar telah dihantar.');
+            ->with('success', 'Maklumat pelajar telah dihantar. Sila semak email untuk pengesahan.');
+    }
+
+    private function sendBmdConfirmationEmail(Pelajar $pelajar): void
+    {
+        $recipientEmails = collect([$pelajar->email, $pelajar->email_bapa, $pelajar->email_ibu])
+            ->filter()
+            ->unique()
+            ->values()
+            ->all();
+
+        if (empty($recipientEmails)) {
+            return;
+        }
+
+        $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
+        $filename = 'BMD_' . $safeIc . '.pdf';
+        $pdf = Pdf::loadView('staff.bmd-print', compact('pelajar'));
+        $pdf->setPaper('A4', 'portrait');
+        $pdfContent = $pdf->output();
+        $studentName = htmlspecialchars($pelajar->nama_pelajar);
+
+        $emailBody = '<html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; color: #333; }
+                    .header { background-color: #009ca6; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+                    .content { padding: 20px; background-color: #f9f9f9; }
+                    .footer { background-color: #f1f5f9; padding: 10px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
+                </style>
+            </head>
+            <body>
+                <div class="header">
+                    <h2>Selamat Datang ke Smart Education Society</h2>
+                </div>
+                <div class="content">
+                    <p>Salam sejahtera ' . $studentName . ',</p>
+                    <p>Tahniah! Anda telah berjaya mendaftar di Smart Education Society.</p>
+                    <p>Maklumat pendaftaran anda telah disimpan dan borang maklumat diri telah dilampirkan sebagai PDF.</p>
+                    <p>Sila semak lampiran dan simpan email ini untuk rujukan.</p>
+                    <p>Terima kasih kerana memilih Smart Education Society.</p>
+                </div>
+                <div class="footer">
+                    <p>Smart Education Society</p>
+                </div>
+            </body>
+            </html>';
+
+        $sentViaPhpMailer = false;
+        try {
+            $mail = new PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = env('MAIL_HOST', 'smtp.gmail.com');
+            $mail->SMTPAuth = true;
+            $mail->Username = env('MAIL_USERNAME');
+            $mail->Password = env('MAIL_PASSWORD');
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = env('MAIL_PORT', 587);
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'Smart Education Society'));
+            foreach ($recipientEmails as $recipientEmail) {
+                $mail->addAddress($recipientEmail, $pelajar->nama_pelajar);
+            }
+            $mail->isHTML(true);
+            $mail->Subject = 'Selamat datang ke Smart Education Society';
+            $mail->Body = $emailBody;
+            $mail->AltBody = 'Tahniah! Anda telah berjaya mendaftar di Smart Education Society. Sila semak lampiran PDF BMD.';
+            $mail->addStringAttachment($pdfContent, $filename, 'base64', 'application/pdf');
+            $mail->send();
+            $sentViaPhpMailer = true;
+        } catch (\Throwable $e) {
+            \Log::warning('PHPMailer BMD failed: ' . $e->getMessage());
+        }
+
+        if (! $sentViaPhpMailer) {
+            try {
+                Mail::html($emailBody, function ($message) use ($recipientEmails, $pelajar, $pdfContent, $filename) {
+                    foreach ($recipientEmails as $recipientEmail) {
+                        $message->to($recipientEmail, $pelajar->nama_pelajar);
+                    }
+                    $message->subject('Selamat datang ke Smart Education Society')
+                        ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'Smart Education Society'))
+                        ->attachData($pdfContent, $filename, ['mime' => 'application/pdf']);
+                });
+            } catch (\Throwable $e) {
+                \Log::error('BMD email failed: ' . $e->getMessage());
+            }
+        }
     }
 
     public function editBmd(Pelajar $pelajar)

@@ -226,8 +226,14 @@
             <tr>
                 <td class="label">Alamat Emel / <span class="label-sub">Email Address:</span></td>
                 <td class="value" style="text-transform: none;">{{ $pelajar->email ?? '-' }}</td>
-                <td class="label">E-mel Ibu/Bapa / <span class="label-sub">Parent Email:</span></td>
-                <td class="value" style="text-transform: none;">{{ $pelajar->email_ibubapa ?? '-' }}</td>
+                <td class="label">E-mel Bapa / <span class="label-sub">Father Email:</span></td>
+                <td class="value" style="text-transform: none;">{{ $pelajar->email_bapa ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td class="label">&nbsp;</td>
+                <td class="value">&nbsp;</td>
+                <td class="label">E-mel Ibu / <span class="label-sub">Mother Email:</span></td>
+                <td class="value" style="text-transform: none;">{{ $pelajar->email_ibu ?? '-' }}</td>
             </tr>
         </table>
     </div>
