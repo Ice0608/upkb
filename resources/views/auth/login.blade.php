@@ -46,7 +46,7 @@
     <div class="flex items-center mb-4">
 
         <a href="{{ url('/') }}"
-        class="flex items-center gap-2 text-gray-300 hover:text-orange-400 transition">
+        class="flex items-center gap-2 text-gray-300 hover:text-cyan-300 transition">
 
             <!-- Arrow Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" 
@@ -66,10 +66,10 @@
         <div class="text-center mb-6">
             <img src="{{ asset('images/icon/seslogo.png') }}"
                  class="w-28 md:w-32 mx-auto mb-4 
-                        drop-shadow-[0_0_35px_rgba(255,165,0,0.9)]
+                        drop-shadow-[0_0_35px_rgba(34,211,238,0.82)]
                         animate-pulse">
 
-            <h2 class="text-2xl font-bold text-orange-400">
+            <h2 class="text-2xl font-bold bg-gradient-to-r from-emerald-300 via-cyan-300 to-sky-400 bg-clip-text text-transparent">
                 SMART EDUCATION SOCIETY
             </h2>
 
@@ -85,14 +85,14 @@
             <!-- USERNAME -->
             <input type="text" name="username" placeholder="Nama Pengguna"
                 class="w-full mb-4 px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300
-                       focus:outline-none focus:ring-2 focus:ring-orange-400">
+                       focus:outline-none focus:ring-2 focus:ring-cyan-300">
 
             <!-- PASSWORD -->
             <div class="relative mb-6">
 
                 <input id="password" type="password" name="password" placeholder="Kata Laluan"
                     class="w-full px-4 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300
-                        focus:outline-none focus:ring-2 focus:ring-orange-400 pr-10">
+                        focus:outline-none focus:ring-2 focus:ring-cyan-300 pr-10">
 
                 <!-- ICON MATA -->
                 <button type="button" onclick="togglePassword()"
@@ -138,10 +138,10 @@
             <!-- BUTTON -->
             <button
                 class="w-full py-2 rounded-lg 
-                        bg-gradient-to-r from-orange-500 to-yellow-400 
-                        text-black font-semibold
-                        shadow-lg shadow-orange-500/30
-                        hover:scale-105 hover:shadow-orange-400/50
+                        bg-gradient-to-r from-emerald-400 via-cyan-400 to-sky-500 
+                        text-slate-950 font-semibold
+                        shadow-lg shadow-cyan-500/30
+                        hover:scale-105 hover:shadow-cyan-400/50
                         transition duration-300">
                 Log Masuk
             </button>
