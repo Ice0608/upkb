@@ -48,7 +48,10 @@
                         <div class="space-y-4">
                             @foreach($kursus->yuranPilihans as $fee)
                                 <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200" data-pilihan-item data-item-name="{{ $fee->item }}" data-item-amount="{{ $fee->amount }}" data-is-active="1">
-                                    <div class="text-sm text-gray-700">{{ $fee->item }}</div>
+                                    <div>
+                                        <p class="text-sm text-gray-700">{{ $fee->item }}</p>
+                                        <p class="text-sm font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
+                                    </div>
                                     <button type="button" data-pilihan-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'pilihan')" class="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 transition">
                                         <span data-toggle-state class="uppercase tracking-wide">YA</span>
                                     </button>
