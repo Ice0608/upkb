@@ -183,7 +183,7 @@
                     </div>
                     <div class="lg:col-span-2">
                         <label for="alamat" class="block text-sm font-semibold text-gray-700">Alamat</label>
-                        <textarea name="alamat" id="alamat" rows="3" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>{{ old('alamat', $institusi->alamat) }}</textarea>
+                        <textarea name="alamat" id="alamat" rows="3" class="mt-2 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-800 uppercase shadow-sm transition focus:border-orange-400 focus:ring focus:ring-orange-100" required>{{ old('alamat', $institusi->alamat) }}</textarea>
                     </div>
                     <div class="lg:col-span-2">
                         <label for="mengenai_institusi" class="block text-sm font-semibold text-gray-700">Mengenai Institusi</label>
