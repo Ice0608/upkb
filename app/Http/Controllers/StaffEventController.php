@@ -1061,7 +1061,37 @@ class StaffEventController extends Controller
         // Update payment status to pending
         \App\Models\Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->update(['status' => 'pending']);
 
+        if ($pelajar->email) {
+            $this->sendPelajarCompleteEmail($pelajar);
+        }
+
         return view('pelajar.complete', compact('pelajar'));
+    }
+
+    private function sendPelajarCompleteEmail(Pelajar $pelajar): void
+    {
+        $sessionKey = "pelajar_complete_email_sent_{$pelajar->id}";
+        if (session()->has($sessionKey)) {
+            return;
+        }
+
+        if (! filter_var($pelajar->email, FILTER_VALIDATE_EMAIL)) {
+            \Log::warning("Invalid student email for Pelajar ID {$pelajar->id}: {$pelajar->email}");
+            session()->put($sessionKey, true);
+            return;
+        }
+
+        try {
+            Mail::send('emails.pelajar_complete', compact('pelajar'), function ($message) use ($pelajar) {
+                $message->to($pelajar->email, $pelajar->nama_pelajar)
+                    ->subject('TAHNIAH! Permohonan Anda Telah Selesai')
+                    ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'UPKB System'));
+            });
+
+            session()->put($sessionKey, true);
+        } catch (\Throwable $e) {
+            \Log::error("Failed sending completion email to Pelajar ID {$pelajar->id}: {$e->getMessage()}");
+        }
     }
 
     public function pelajarLogout()
