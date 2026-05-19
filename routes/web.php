@@ -102,17 +102,28 @@ Route::get('/receipt', function () {
     $isModal = request('modal');
     $pelajarId = request('pelajar_id');
     $pelajar = null;
+    $pembayaran = null;
+    $kursus = null;
+    $institusi = null;
     
     if ($pelajarId) {
         $pelajar = \App\Models\Pelajar::find($pelajarId);
+        if ($pelajar) {
+            $pembayaran = \App\Models\Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
+            $kursus = \App\Models\Kursus::with('institusi')
+                ->where('kod_kursus', $pelajar->kod_kursus)
+                ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+                ->first();
+            $institusi = $kursus?->institusi;
+        }
     }
     
     // Return only the page content for modal, full HTML for standalone
     if ($isModal) {
-        return view('receipt-content', compact('pelajar'));
+        return view('receipt-content', compact('pelajar', 'pembayaran', 'kursus', 'institusi'));
     }
     
-    return view('receipt', compact('pelajar'));
+    return view('receipt', compact('pelajar', 'pembayaran', 'kursus', 'institusi'));
 })->name('receipt');
 
 Route::view('/about', 'about')->name('about');

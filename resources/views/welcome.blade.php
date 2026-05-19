@@ -1743,23 +1743,35 @@
         .partner-section {
             position: relative;
             overflow: hidden;
-            background: #1b0700;
-            padding: 0;
+            background:
+                radial-gradient(ellipse at 16% 18%, rgba(20,184,166,0.18), transparent 34%),
+                radial-gradient(ellipse at 84% 74%, rgba(30,136,229,0.16), transparent 38%),
+                linear-gradient(160deg, #020617 0%, #06111f 54%, #030712 100%);
+            padding: clamp(2rem, 5vw, 4.5rem) clamp(1rem, 4vw, 2.5rem);
         }
 
         /* CTA banner */
         .cta-banner {
             position: relative;
-            margin: 0;
-            border-radius: 0;
+            max-width: 74rem;
+            margin: 0 auto;
+            border-radius: clamp(1.75rem, 4vw, 3rem);
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.18);
             background:
-                radial-gradient(ellipse at 16% 52%, rgba(0,188,212,0.38) 0%, rgba(0,188,212,0.16) 28%, transparent 55%),
-                radial-gradient(ellipse at 78% 50%, rgba(30,136,229,0.18) 0%, rgba(30,136,229,0.07) 28%, transparent 58%),
-                linear-gradient(180deg, rgba(24,8,0,0.92) 0%, rgba(27,9,0,0.72) 28%, rgba(29,10,0,0.9) 100%),
-                linear-gradient(115deg, #210900 0%, #2a0d00 46%, #170700 100%);
-            padding: 4rem 2rem 4.5rem;
+                radial-gradient(ellipse at 18% 44%, rgba(20,184,166,0.36) 0%, rgba(20,184,166,0.12) 34%, transparent 64%),
+                radial-gradient(ellipse at 80% 38%, rgba(56,189,248,0.22) 0%, rgba(56,189,248,0.08) 32%, transparent 62%),
+                linear-gradient(135deg, rgba(15,23,42,0.72), rgba(2,6,23,0.48) 48%, rgba(8,47,73,0.36)),
+                rgba(15,23,42,0.42);
+            padding: clamp(3.2rem, 7vw, 5.6rem) clamp(1.4rem, 5vw, 4rem);
             text-align: center;
+            backdrop-filter: blur(26px) saturate(160%);
+            -webkit-backdrop-filter: blur(26px) saturate(160%);
+            box-shadow:
+                0 34px 90px rgba(0,0,0,0.42),
+                0 0 70px rgba(20,184,166,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.28),
+                inset 0 -1px 0 rgba(255,255,255,0.08);
         }
 
         .cta-banner::before {
@@ -1767,56 +1779,79 @@
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.24)),
-                repeating-linear-gradient(0deg, rgba(255,255,255,0.026) 0px, rgba(255,255,255,0.026) 1px, transparent 1px, transparent 48px),
-                repeating-linear-gradient(90deg, rgba(255,255,255,0.026) 0px, rgba(255,255,255,0.026) 1px, transparent 1px, transparent 96px);
+                linear-gradient(120deg, rgba(255,255,255,0.22), transparent 28%, rgba(255,255,255,0.06) 54%, transparent 78%),
+                repeating-linear-gradient(0deg, rgba(255,255,255,0.034) 0px, rgba(255,255,255,0.034) 1px, transparent 1px, transparent 48px),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.028) 0px, rgba(255,255,255,0.028) 1px, transparent 1px, transparent 96px);
             pointer-events: none;
+            opacity: 0.82;
+        }
+
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            inset: 1px;
+            border-radius: inherit;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2), transparent 34%),
+                radial-gradient(circle at 14% 98%, rgba(45,212,191,0.18), transparent 32%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+        }
+
+        .cta-banner > * {
+            position: relative;
+            z-index: 2;
         }
 
         .cta-banner-eyebrow {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 1rem;
+            padding: 0.48rem 1.05rem;
             border-radius: 999px;
-            border: 1px solid rgba(0,230,118,0.4);
-            background: rgba(0,188,212,0.12);
-            color: #00bcd4;
+            border: 1px solid rgba(94,234,212,0.42);
+            background: linear-gradient(135deg, rgba(15,118,110,0.32), rgba(15,23,42,0.28));
+            color: #5eead4;
             font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            position: relative;
+            box-shadow:
+                0 12px 28px rgba(0,0,0,0.22),
+                inset 0 1px 0 rgba(255,255,255,0.22);
         }
 
         .cta-banner-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.6rem);
+            font-size: clamp(2.35rem, 5.2vw, 4.35rem);
             font-weight: 900;
             color: #fff;
-            line-height: 1.08;
-            letter-spacing: -0.03em;
-            max-width: 36rem;
-            margin: 0 auto 1.25rem;
-            position: relative;
+            line-height: 0.96;
+            letter-spacing: -0.045em;
+            max-width: 48rem;
+            margin: 0 auto 1.45rem;
+            text-shadow:
+                0 16px 42px rgba(0,0,0,0.38),
+                0 0 34px rgba(255,255,255,0.08);
         }
 
         .cta-banner-title span {
-            background: linear-gradient(135deg, #1976d2 12%, #1e88e5 42%, #00d5ff 100%);
+            background: linear-gradient(135deg, #5eead4 0%, #22d3ee 44%, #38bdf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 12px 28px rgba(34,211,238,0.18));
         }
 
         .cta-banner-sub {
-            color: #26ffed;
-            text-shadow: 0 1px 12px rgba(0, 0, 0, 0.32);
+            color: rgba(204,251,241,0.94);
+            text-shadow: 0 8px 24px rgba(0, 0, 0, 0.34);
             font-size: 0.95rem;
-            max-width: 30rem;
-            margin: 0 auto 2.5rem;
+            max-width: 34rem;
+            margin: 0 auto 2.6rem;
             line-height: 1.7;
-            position: relative;
+            font-weight: 700;
         }
 
         .cta-banner-actions {
@@ -1834,18 +1869,27 @@
             gap: 0.75rem;
             padding: 1rem 2.8rem;
             border-radius: 999px;
-            background: #fff;
-            color: #1565c0;
+            border: 1px solid rgba(255,255,255,0.72);
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.98), rgba(236,254,255,0.88));
+            color: #0f766e;
             font-size: 1rem;
             font-weight: 800;
             text-decoration: none;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.28);
-            transition: transform 0.22s ease, box-shadow 0.22s ease, gap 0.22s ease;
+            box-shadow:
+                0 18px 42px rgba(0,0,0,0.28),
+                0 0 26px rgba(45,212,191,0.14),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, gap 0.22s ease, color 0.22s ease;
         }
 
         .cta-btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 22px 48px rgba(0,0,0,0.45);
+            color: #115e59;
+            box-shadow:
+                0 24px 54px rgba(0,0,0,0.4),
+                0 0 34px rgba(45,212,191,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.94);
             gap: 0.9rem;
         }
 
@@ -1855,23 +1899,45 @@
             gap: 0.55rem;
             padding: 1rem 1.8rem;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: rgba(255,255,255,0.85);
+            border: 1px solid rgba(255,255,255,0.24);
+            color: rgba(255,255,255,0.9);
             font-size: 0.88rem;
             font-weight: 700;
             text-decoration: none;
-            backdrop-filter: blur(8px);
-            transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+            background: rgba(255,255,255,0.065);
+            backdrop-filter: blur(14px) saturate(145%);
+            -webkit-backdrop-filter: blur(14px) saturate(145%);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.16),
+                0 12px 30px rgba(0,0,0,0.18);
+            transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
         }
 
         .cta-btn-secondary:hover {
-            border-color: rgba(255,255,255,0.6);
+            transform: translateY(-3px);
+            border-color: rgba(94,234,212,0.52);
             color: #fff;
-            background: rgba(255,255,255,0.08);
+            background: rgba(20,184,166,0.16);
         }
         /* ── END PARTNER + CTA ── */
 
         /* ── PROBLEM & SOLUTION SECTION ── */
+        @media (max-width: 640px) {
+            .partner-section {
+                padding-inline: 0.85rem;
+            }
+
+            .cta-banner-actions {
+                align-items: stretch;
+            }
+
+            .cta-btn-primary,
+            .cta-btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
         .probsol-section {
             position: relative;
             overflow: hidden;
