@@ -111,7 +111,7 @@
                 <div class="flex items-center gap-3 mb-4">
                     <img src="{{ asset('images/icon/seslogo.png') }}" class="h-12" alt="logo">
                     <div>
-                        <h2 class="text-lg font-bold text-white">UPKB</h2>
+                        <h2 class="text-lg font-bold text-white">SES</h2>
                         <p class="text-sm text-gray-400">Pusat maklumat program & pengambilan</p>
                     </div>
                 </div>
@@ -129,9 +129,9 @@
             <div>
                 <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
                 <ul class="space-y-3 text-sm text-gray-400">
-                    <li>📞 +6017 921 5543</li>
-                    <li>✉️ info@upkb.my</li>
-                    <li>📍 34 Jalan MPK 4 Taman Bukit Kepayang, Seremban</li>
+                    <li>📞 +6011 2672 5795</li>
+                    <li>✉️ sesoclegacy@gmail.com</li>
+                    <li>📍 No 34, Jalan MPK 4, Taman Bukit Kepayang, 70300 Seremban, Negeri Sembilan</li>
                 </ul>
             </div>
         </div>

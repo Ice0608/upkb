@@ -130,14 +130,18 @@ class StaffEventController extends Controller
 
     public function storeGuestPelajar(Request $request)
     {
+        if ($request->filled('event_id') && ($event = Event::find($request->event_id))) {
+            $request->merge([
+                'tarikh_pendaftaran' => $event->tarikh_event?->format('Y-m-d'),
+            ]);
+        }
+
         $data = $request->validate([
             'tarikh_pendaftaran' => 'required|date',
             'noreff' => 'nullable|string|max:255',
             'program' => 'nullable|string|max:100',
-            'status_perkahwinan' => 'nullable|string|max:50',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
-            'spm_credit' => 'nullable|numeric|min:0',
             'no_tel' => 'required|string|max:50',
             'email' => 'nullable|email|max:255',
             'address_line1' => 'nullable|string|max:255',
@@ -148,16 +152,16 @@ class StaffEventController extends Controller
             'nama_bapa' => 'nullable|string|max:255',
             'ic_bapa' => 'nullable|string|max:50',
             'no_tel_bapa' => 'nullable|string|max:50',
-            'pekerjaan_bapa' => 'nullable|string|max:255',
-            'pendapatan_bapa' => 'nullable|string|max:100',
+            'email_bapa' => 'nullable|email|max:255',
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
-            'pekerjaan_ibu' => 'nullable|string|max:255',
-            'pendapatan_ibu' => 'nullable|string|max:100',
+            'email_ibu' => 'required|email|max:255',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'str' => 'nullable|boolean',
             'event_id' => 'nullable|integer|exists:event,id',
         ]);
+        $data['str'] = $request->boolean('str');
 
         // Add event_id from QR code if not validated
         if (!isset($data['event_id'])) {
@@ -198,10 +202,8 @@ class StaffEventController extends Controller
             'tarikh_pendaftaran' => 'required|date',
             'noreff' => 'nullable|string|max:255',
             'program' => 'nullable|string|max:100',
-            'status_perkahwinan' => 'nullable|string|max:50',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
-            'spm_credit' => 'nullable|numeric|min:0',
             'no_tel' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255',
             'address_line1' => 'nullable|string|max:255',
@@ -214,19 +216,15 @@ class StaffEventController extends Controller
             'nama_bapa' => 'nullable|string|max:255',
             'ic_bapa' => 'nullable|string|max:50',
             'no_tel_bapa' => 'nullable|string|max:50',
-            'pekerjaan_bapa' => 'nullable|string|max:255',
-            'pendapatan_bapa' => 'nullable|string|max:100',
+            'email_bapa' => 'nullable|email|max:255',
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
-            'pekerjaan_ibu' => 'nullable|string|max:255',
-            'pendapatan_ibu' => 'nullable|string|max:100',
-            'jumlah_tanggungan' => 'nullable|integer|min:0',
-            'event_id' => 'nullable|integer|exists:event,id',
-            'pilihan_pertama' => 'nullable|string|max:255',
+            'email_ibu' => 'required|email|max:255',
             'pilihan_kedua' => 'nullable|string|max:255',
             'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
+        $data['str'] = $request->boolean('str');
 
         // Custom validation for unique course choices
         $pilihan = array_filter([$request->pilihan_pertama, $request->pilihan_kedua, $request->pilihan_ketiga]);
@@ -483,17 +481,17 @@ class StaffEventController extends Controller
 
                     if ($kursusDipilih) {
                         return redirect()->route('pelajar.infokursus', [$pelajar->id, $kursusDipilih->id])
-                            ->with('success', 'IC disahkan. Melangkah ke maklumat kursus yang anda pilih.');
+                            ->with('success', 'No. K/P disahkan. Melangkah ke maklumat kursus yang anda pilih.');
                     }
                 }
             }
 
             // QR / direct access flow: go to pelajar dashboard
             return redirect()->route('pelajar.welcome', $pelajar->id)
-                ->with('success', 'IC disahkan. Selamat datang ke dashboard pelajar.');
+                ->with('success', 'No. K/P disahkan. Selamat datang ke dashboard pelajar.');
         }
 
-        return back()->withErrors(['ic_pelajar' => 'No. IC tidak sepadan.'])->withInput();
+        return back()->withErrors(['ic_pelajar' => 'No. K/P tidak sepadan.'])->withInput();
     }
 
     public function pelajarEditBmd(Pelajar $pelajar)
@@ -508,10 +506,8 @@ class StaffEventController extends Controller
             'tarikh_pendaftaran' => 'required|date',
             'noreff' => 'nullable|string|max:255',
             'program' => 'nullable|string|max:100',
-            'status_perkahwinan' => 'nullable|string|max:50',
             'nama_pelajar' => 'required|string|max:255',
             'ic_pelajar' => 'required|string|max:50',
-            'spm_credit' => 'nullable|numeric|min:0',
             'no_tel' => 'required|string|max:50',
             'email' => 'nullable|email|max:255',
             'address_line1' => 'nullable|string|max:255',
@@ -522,16 +518,16 @@ class StaffEventController extends Controller
             'nama_bapa' => 'nullable|string|max:255',
             'ic_bapa' => 'nullable|string|max:50',
             'no_tel_bapa' => 'nullable|string|max:50',
-            'pekerjaan_bapa' => 'nullable|string|max:255',
-            'pendapatan_bapa' => 'nullable|string|max:100',
+            'email_bapa' => 'nullable|email|max:255',
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
-            'pekerjaan_ibu' => 'nullable|string|max:255',
-            'pendapatan_ibu' => 'nullable|string|max:100',
+            'email_ibu' => 'required|email|max:255',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
+            'str' => 'nullable|boolean',
             'event_id' => 'nullable|integer|exists:event,id',
         ]);
+        $data['str'] = $request->boolean('str');
 
         $pelajar->update(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),

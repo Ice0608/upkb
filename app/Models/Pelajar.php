@@ -16,10 +16,8 @@ class Pelajar extends Model
         'event_id',
         'noreff',
         'program',
-        'status_perkahwinan',
         'nama_pelajar',
         'ic_pelajar',
-        'spm_credit',
         'no_tel',
         'email',
         'address_line1',
@@ -32,15 +30,13 @@ class Pelajar extends Model
         'nama_bapa',
         'ic_bapa',
         'no_tel_bapa',
-        'pekerjaan_bapa',
-        'pendapatan_bapa',
+        'email_bapa',
         'nama_ibu',
         'ic_ibu',
         'no_tel_ibu',
-        'pekerjaan_ibu',
-        'pendapatan_ibu',
+        'email_ibu',
         'jumlah_tanggungan',
-        'event_id',
+        'str',
         'pilihan_pertama',
         'pilihan_kedua',
         'pilihan_ketiga',
@@ -48,7 +44,17 @@ class Pelajar extends Model
 
     protected $casts = [
         'tarikh_pendaftaran' => 'date',
+        'str' => 'boolean',
     ];
+
+    public function setAttribute($key, $value)
+    {
+        if (is_string($value) && in_array($key, $this->fillable, true) && ! in_array($key, ['program', 'email', 'email_bapa', 'email_ibu'], true)) {
+            $value = strtoupper(trim($value));
+        }
+
+        return parent::setAttribute($key, $value);
+    }
 
     public function event()
     {

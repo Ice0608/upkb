@@ -205,12 +205,10 @@
             </tr>
             <tr>
                 <td class="label">Program Dipilih / <span class="label-sub">Applied Programme:</span></td>
-                <td class="value">{{ $pelajar->program ?? '-' }}</td>
-                <td class="label">SPM Total Credit:</td>
-                <td class="value">{{ $pelajar->spm_credit ?? '0' }}</td>
+                <td colspan="3" class="value">{{ $pelajar->program ?? '-' }}</td>
             </tr>
             <tr>
-                <td class="label">Nama Penuh (IC) / <span class="label-sub">Full Name (as per IC):</span></td>
+                <td class="label">Nama Penuh (K/P) / <span class="label-sub">Full Name (as per NRIC):</span></td>
                 <td colspan="3" class="value" style="font-weight: 700;">{{ $pelajar->nama_pelajar ?? '-' }}</td>
             </tr>
         </table>
@@ -220,16 +218,16 @@
         <div class="section-title">2. Maklumat Peribadi / Personal Details</div>
         <table class="info-table">
             <tr>
-                <td class="label">No. Kad Pengenalan / <span class="label-sub">IC No.:</span></td>
+                <td class="label">No. Kad Pengenalan / <span class="label-sub">NRIC</span></td>
                 <td class="value">{{ $pelajar->ic_pelajar ?? '-' }}</td>
-                <td class="label">Status Perkahwinan / <span class="label-sub">Marital Status:</span></td>
-                <td class="value">{{ $pelajar->status_perkahwinan ?? 'SINGLE' }}</td>
+                <td class="label">No. Telefon / <span class="label-sub">Phone Number:</span></td>
+                <td class="value">{{ $pelajar->no_tel ?? '-' }}</td>
             </tr>
             <tr>
                 <td class="label">Alamat Emel / <span class="label-sub">Email Address:</span></td>
-                <td class="value" style="text-transform: lowercase;">{{ $pelajar->email ?? '-' }}</td>
-                <td class="label">No. Telefon / <span class="label-sub">Phone Number:</span></td>
-                <td class="value">{{ $pelajar->no_tel ?? '-' }}</td>
+                <td class="value" style="text-transform: none;">{{ $pelajar->email ?? '-' }}</td>
+                <td class="label">E-mel Ibu/Bapa / <span class="label-sub">Parent Email:</span></td>
+                <td class="value" style="text-transform: none;">{{ $pelajar->email_ibubapa ?? '-' }}</td>
             </tr>
         </table>
     </div>
@@ -264,16 +262,10 @@
                 <td colspan="3" class="value">{{ $pelajar->nama_bapa ?? '-' }}</td>
             </tr>
             <tr>
-                <td class="label">No. Kad Pengenalan / <span class="label-sub">IC No.:</span></td>
+                <td class="label">No. Kad Pengenalan / <span class="label-sub">NRIC</span></td>
                 <td class="value">{{ $pelajar->ic_bapa ?? '-' }}</td>
                 <td class="label">No. Telefon / <span class="label-sub">Phone Number:</span></td>
                 <td class="value">{{ $pelajar->no_tel_bapa ?? '-' }}</td>
-            </tr>
-            <tr>
-                <td class="label">Pekerjaan / <span class="label-sub">Occupation:</span></td>
-                <td class="value">{{ $pelajar->pekerjaan_bapa ?? '-' }}</td>
-                <td class="label">Pendapatan Bulanan / <span class="label-sub">Monthly Income (RM):</span></td>
-                <td class="value">{{ number_format((float) ($pelajar->pendapatan_bapa ?? 0), 2) }}</td>
             </tr>
         </table>
     </div>
@@ -286,20 +278,16 @@
                 <td colspan="3" class="value">{{ $pelajar->nama_ibu ?? '-' }}</td>
             </tr>
             <tr>
-                <td class="label">No. Kad Pengenalan / <span class="label-sub">IC No.:</span></td>
+                <td class="label">No. Kad Pengenalan / <span class="label-sub">NRIC</span></td>
                 <td class="value">{{ $pelajar->ic_ibu ?? '-' }}</td>
                 <td class="label">No. Telefon / <span class="label-sub">Phone Number:</span></td>
                 <td class="value">{{ $pelajar->no_tel_ibu ?? '-' }}</td>
             </tr>
             <tr>
-                <td class="label">Pekerjaan / <span class="label-sub">Occupation:</span></td>
-                <td class="value">{{ $pelajar->pekerjaan_ibu ?? '-' }}</td>
-                <td class="label">Pendapatan Bulanan / <span class="label-sub">Monthly Income (RM):</span></td>
-                <td class="value">{{ number_format((float) ($pelajar->pendapatan_ibu ?? 0), 2) }}</td>
-            </tr>
-            <tr>
                 <td class="label">Bil. Tanggungan / <span class="label-sub">No. of Dependants:</span></td>
-                <td colspan="3" class="value">{{ $pelajar->jumlah_tanggungan ?? 0 }}</td>
+                <td class="value">{{ $pelajar->jumlah_tanggungan ?? 0 }}</td>
+                <td class="label">Penerima STR / <span class="label-sub">STR Recipient:</span></td>
+                <td class="value">{{ $pelajar->str ? 'YA' : 'TIDAK' }}</td>
             </tr>
         </table>
     </div>

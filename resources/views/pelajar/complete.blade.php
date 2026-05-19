@@ -28,7 +28,7 @@
             <h3 class="font-semibold text-slate-900 mb-4">Maklumat Pelajar:</h3>
             <div class="space-y-2 text-sm">
                 <p><span class="text-slate-500">Nama:</span> <span class="font-medium">{{ $pelajar->nama_pelajar }}</span></p>
-                <p><span class="text-slate-500">No. IC:</span> <span class="font-medium">{{ $pelajar->ic_pelajar }}</span></p>
+                <p><span class="text-slate-500">No. K/P:</span> <span class="font-medium">{{ $pelajar->ic_pelajar }}</span></p>
                 @if($pelajar->kod_kursus)
                 <p><span class="text-slate-500">Kursus:</span> <span class="font-medium">{{ $pelajar->kod_kursus }}</span></p>
                 @endif

@@ -11,17 +11,33 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pelajar', function (Blueprint $table) {
-            $table->string('noreff')->nullable()->after('id');
-            $table->enum('program', ['Diploma', 'TVET', 'Sains Kesihatan'])->nullable()->after('noreff');
-            $table->enum('status_perkahwinan', ['Bujang', 'Berkahwin', 'Duda', 'Balu/Janda/Ibu Tunggal'])->nullable()->after('program');
-            $table->double('spm_credit')->nullable()->after('ic_pelajar');
-            $table->string('pekerjaan_bapa')->nullable()->after('no_tel_bapa');
-            $table->string('pekerjaan_ibu')->nullable()->after('no_tel_ibu');
-            $table->string('pilihan_pertama')->nullable()->after('jumlah_tanggungan');
-            $table->string('pilihan_kedua')->nullable()->after('pilihan_pertama');
-            $table->string('pilihan_ketiga')->nullable()->after('pilihan_kedua');
-        });
+        if (! Schema::hasColumn('pelajar', 'noreff')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->string('noreff')->nullable()->after('id'));
+        }
+
+        if (! Schema::hasColumn('pelajar', 'program')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->enum('program', ['Diploma', 'TVET', 'Sains Kesihatan'])->nullable()->after('noreff'));
+        }
+
+        if (! Schema::hasColumn('pelajar', 'email_ibubapa')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->string('email_ibubapa')->nullable()->after('no_tel_ibu'));
+        }
+
+        if (! Schema::hasColumn('pelajar', 'str')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->boolean('str')->default(false)->after('jumlah_tanggungan'));
+        }
+
+        if (! Schema::hasColumn('pelajar', 'pilihan_pertama')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->string('pilihan_pertama')->nullable()->after('str'));
+        }
+
+        if (! Schema::hasColumn('pelajar', 'pilihan_kedua')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->string('pilihan_kedua')->nullable()->after('pilihan_pertama'));
+        }
+
+        if (! Schema::hasColumn('pelajar', 'pilihan_ketiga')) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->string('pilihan_ketiga')->nullable()->after('pilihan_kedua'));
+        }
     }
 
     /**
@@ -29,8 +45,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pelajar', function (Blueprint $table) {
-            $table->dropColumn(['noreff', 'program', 'status_perkahwinan', 'spm_credit', 'pekerjaan_bapa', 'pekerjaan_ibu', 'pilihan_pertama', 'pilihan_kedua', 'pilihan_ketiga']);
-        });
+        $columns = array_filter(
+            ['noreff', 'program', 'email_ibubapa', 'str', 'pilihan_pertama', 'pilihan_kedua', 'pilihan_ketiga'],
+            fn (string $column) => Schema::hasColumn('pelajar', $column)
+        );
+
+        if ($columns !== []) {
+            Schema::table('pelajar', fn (Blueprint $table) => $table->dropColumn($columns));
+        }
     }
 };

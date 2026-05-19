@@ -149,7 +149,7 @@
         <div>
             <p class="text-sm uppercase tracking-[0.15em] text-orange-500">Login Pelajar</p>
             <h1 class="mt-3 text-3xl font-semibold text-slate-900">Sahkan Identiti</h1>
-            <p class="mt-2 text-sm text-slate-600">Masukkan No. IC untuk mengesahkan identiti.</p>
+            <p class="mt-2 text-sm text-slate-600">Masukkan No. K/P untuk mengesahkan identiti.</p>
         </div>
     </div>
 
@@ -170,7 +170,7 @@
 
                 <div>
                     <label class="block">
-                        <span class="mb-2 block text-sm font-semibold text-slate-700">No. IC</span>
+                        <span class="mb-2 block text-sm font-semibold text-slate-700">No. K/P</span>
                         <input type="text" name="ic_pelajar" value="{{ old('ic_pelajar') }}" class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100" required>
                         @error('ic_pelajar') <p class="mt-2 text-xs text-rose-600">{{ $message }}</p> @enderror
                     </label>

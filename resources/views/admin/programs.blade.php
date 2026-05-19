@@ -316,7 +316,7 @@
             <div>
                 <span class="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-orange-100">// Pengurusan Sistem</span>
                 <h1 class="text-3xl font-black leading-tight text-white md:text-4xl">
-                    Urus <span class="underline decoration-white/40 decoration-wavy underline-offset-4">Program</span> UPKB
+                    Urus <span class="underline decoration-white/40 decoration-wavy underline-offset-4">Program</span>
                 </h1>
                 <p class="mt-2 max-w-md text-sm text-orange-100">Tambah, kemaskini atau padam program dengan lebih kemas dari satu paparan yang jelas.</p>
 

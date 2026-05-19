@@ -4,6 +4,50 @@
     <p>Tiada institusi ditemui untuk kursus ini berdasarkan pilihan anda.</p>
 </div>
 @else
+<style>
+    .course-result-quota {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+        background-color: rgba(251, 146, 60, 0.9);
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+        min-width: 70px;
+        position: relative;
+        z-index: 20;
+    }
+
+    .course-result-quota-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: white;
+        opacity: 0.9;
+    }
+
+    .course-result-quota-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        line-height: 1;
+    }
+
+    .course-result-badge {
+        position: relative;
+        z-index: 20;
+    }
+
+    .course-result-media > div:first-child {
+        z-index: 20;
+    }
+
+    html.dark .course-result-quota {
+        background-color: rgba(251, 146, 60, 0.85);
+    }
+</style>
 <div class="mb-6 flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-white/80 px-5 py-4 shadow-[0_18px_34px_rgba(15,23,42,0.05)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
     <div>
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-orange-500">Hasil Padanan</p>
@@ -31,8 +75,9 @@
                 <span class="course-result-badge inline-flex items-center rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white">
                     {{ $kursus->institusi->jenis_institusi ?? 'Institusi' }}
                 </span>
-                <span class="course-result-code inline-flex items-center rounded-full px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em]">
-                    {{ $kursus->kod_kursus }}
+                <span class="course-result-quota">
+                    <span class="course-result-quota-label">Kuota</span>
+                    <span class="course-result-quota-value">{{ $kursus->kuota ?? '-' }}</span>
                 </span>
             </div>
             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">

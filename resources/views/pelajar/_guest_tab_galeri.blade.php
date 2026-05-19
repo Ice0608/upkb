@@ -31,7 +31,7 @@
                         @if($gallery->penerangan)
                             <p class="text-sm text-gray-700 mb-2">{{ $gallery->penerangan }}</p>
                         @endif
-                        <p class="text-xs text-gray-500">Dimuat naik pada {{ $gallery->created_at->format('d M Y') }}</p>
+                        {{-- <p class="text-xs text-gray-500">Dimuat naik pada {{ $gallery->created_at->format('d M Y') }}</p> --}}
                     </div>
                 </div>
             @endforeach

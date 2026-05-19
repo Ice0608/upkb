@@ -159,7 +159,7 @@
             <h3 class="font-semibold text-slate-900 mb-4">Maklumat Pelajar</h3>
             <div class="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
                 <div class="min-w-0">
-                    <p class="text-slate-500">No. IC</p>
+                    <p class="text-slate-500">No. K/P</p>
                     <p class="font-medium break-words">{{ $pelajar->ic_pelajar }}</p>
                 </div>
                 <div class="min-w-0">

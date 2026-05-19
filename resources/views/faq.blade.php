@@ -1349,7 +1349,7 @@
                         <div class="flex-1 min-w-0">
                             <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Kemasukan</p>
                             <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Siapa yang layak memohon program di UPKB?
+                                Siapa yang layak memohon?
                             </h3>
                             <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
                                 Klik untuk lihat penerangan penuh
@@ -1488,7 +1488,7 @@
             <div class="faq-modal-content">
                 <div class="faq-modal-kicker">Kemasukan & Kelayakan</div>
                 <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
-                    Siapa yang layak memohon program di UPKB?
+                    Siapa yang layak memohon program?
                 </h2>
 
                 <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">

@@ -16,10 +16,8 @@ return new class extends Migration
             $table->date('tarikh_pendaftaran');
             $table->string('noreff')->nullable(); // username staff
             $table->enum('program', ['Diploma', 'TVET', 'Sains Kesihatan'])->nullable();
-            $table->enum('status_perkahwinan', ['Bujang', 'Berkahwin', 'Duda', 'Balu/Janda/Ibu Tunggal'])->nullable();
             $table->string('nama_pelajar');
             $table->string('ic_pelajar');
-            $table->double('spm_credit')->nullable();
             $table->string('no_tel');
             $table->string('email')->nullable();
             $table->string('address_line1')->nullable();
@@ -32,14 +30,12 @@ return new class extends Migration
             $table->string('nama_bapa')->nullable();
             $table->string('ic_bapa')->nullable();
             $table->string('no_tel_bapa')->nullable();
-            $table->string('pekerjaan_bapa')->nullable();
-            $table->string('pendapatan_bapa')->nullable();
             $table->string('nama_ibu')->nullable();
             $table->string('ic_ibu')->nullable();
             $table->string('no_tel_ibu')->nullable();
-            $table->string('pekerjaan_ibu')->nullable();
-            $table->string('pendapatan_ibu')->nullable();
+            $table->string('email_ibubapa')->nullable();
             $table->integer('jumlah_tanggungan')->default(0);
+            $table->boolean('str')->default(false);
             $table->string('pilihan_pertama')->nullable(); // nama kursus
             $table->string('pilihan_kedua')->nullable(); // nama kursus
             $table->string('pilihan_ketiga')->nullable(); // nama kursus

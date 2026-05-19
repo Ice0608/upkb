@@ -403,7 +403,7 @@
                     </p>
                     <ul class="list-disc list-inside space-y-2 text-slate-600 ml-4">
                         <li>Jumlah pindahan: <strong class="method-amount-display">RM {{ number_format($jumlah, 2) }}</strong></li>
-                        <li>Rujukan: Gunakan No. IC Anda sebagai rujukan</li>
+                        <li>Rujukan: Gunakan No. K/P Anda sebagai rujukan</li>
                         <li>Simpan bukti pindahan (resit/bukti e-banking)</li>
                         <li>Download resit pembayaran tersebut dan masukkan resit tersebut pada bahagian bawah</li>
                     </ul>
