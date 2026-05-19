@@ -484,7 +484,7 @@
         <div class="ii-hero__content">
             <span class="ii-hero__badge {{ $isThemed ? 'institusi-info-badge-tvet' : 'bg-white/20 text-white' }}">{{ $institusi->jenis_institusi }}</span>
             <h1 class="ii-hero__title">{{ $institusi->nama_institusi }}</h1>
-            <p class="ii-hero__addr"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
+            <p class="ii-hero__addr uppercase"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
             <div class="ii-hero__stats">
                 <div class="ii-hero__stat">
                     <span class="ii-hero__stat-num">{{ count($kursusList) }}</span>

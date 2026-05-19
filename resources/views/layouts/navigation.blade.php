@@ -125,6 +125,62 @@
             backdrop-filter: blur(10px);
         }
 
+        .theme-switch {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 5.25rem;
+            height: 2.85rem;
+            padding: 0.28rem;
+            border-radius: 999px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,249,255,0.92));
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+        }
+
+        .theme-switch:hover {
+            transform: translateY(-1px);
+            border-color: rgba(34, 211, 238, 0.48);
+            box-shadow: 0 16px 34px rgba(6, 182, 212, 0.16);
+        }
+
+        .theme-switch-track {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0.55rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .theme-switch-thumb {
+            position: absolute;
+            top: 0.26rem;
+            left: 0.26rem;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+            box-shadow: 0 12px 24px rgba(6, 182, 212, 0.24);
+            transition: transform 0.26s ease, background 0.26s ease, box-shadow 0.26s ease;
+        }
+
+        .theme-switch[data-theme-mode="dark"] .theme-switch-thumb {
+            transform: translateX(2.36rem);
+            background: linear-gradient(135deg, #0f172a, #334155);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.28);
+        }
+
+        .theme-switch[data-theme-mode="dark"] .theme-switch-track {
+            color: #94a3b8;
+        }
+
         .site-nav-link::before {
             content: "";
             position: absolute;
@@ -687,13 +743,14 @@
             </a>
         </div>
 
-        <button id="theme-toggle" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-cyan-200 hover:text-cyan-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Toggle Dark Mode">
-            <i id="theme-toggle-dark-icon" class="hidden fas fa-moon"></i>
-            <i id="theme-toggle-light-icon" class="hidden fas fa-sun"></i>
-        </button>
-        <button id="theme-toggle-mobile" class="site-nav-login ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-cyan-200 hover:text-cyan-500 hover:shadow-md sm:hidden" aria-label="Toggle Dark Mode">
-            <i id="theme-toggle-dark-icon-mobile" class="hidden fas fa-moon"></i>
-            <i id="theme-toggle-light-icon-mobile" class="hidden fas fa-sun"></i>
+        <button id="theme-toggle" class="theme-switch site-nav-login ml-auto inline-flex lg:ml-2" aria-label="Toggle Dark Mode" aria-pressed="false" data-theme-mode="light">
+            <span class="theme-switch-track" aria-hidden="true">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </span>
+            <span class="theme-switch-thumb" aria-hidden="true">
+                <i class="fas fa-sun"></i>
+            </span>
         </button>
 
         <a href="/login" class="site-nav-login hidden h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm hover:-translate-y-0.5 hover:border-cyan-200 hover:text-cyan-500 hover:shadow-md sm:flex lg:ml-2" aria-label="Login">
@@ -755,30 +812,19 @@
 <script>
     // Theme toggle script — runs ONCE on DOMContentLoaded only
     document.addEventListener('DOMContentLoaded', function() {
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         const themeToggleBtn = document.getElementById('theme-toggle');
 
-        const themeToggleDarkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
-        const themeToggleLightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
-        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
-
-        // Sync icons to current theme (set by dark-mode-init.blade.php in <head>)
         function syncIcons() {
             const isDark = document.documentElement.classList.contains('dark');
-            if (isDark) {
-                // Currently dark — show sun icon (click to go light)
-                if (themeToggleLightIcon) themeToggleLightIcon.classList.remove('hidden');
-                if (themeToggleDarkIcon) themeToggleDarkIcon.classList.add('hidden');
-                if (themeToggleLightIconMobile) themeToggleLightIconMobile.classList.remove('hidden');
-                if (themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.add('hidden');
-            } else {
-                // Currently light — show moon icon (click to go dark)
-                if (themeToggleDarkIcon) themeToggleDarkIcon.classList.remove('hidden');
-                if (themeToggleLightIcon) themeToggleLightIcon.classList.add('hidden');
-                if (themeToggleDarkIconMobile) themeToggleDarkIconMobile.classList.remove('hidden');
-                if (themeToggleLightIconMobile) themeToggleLightIconMobile.classList.add('hidden');
-            }
+            [themeToggleBtn].forEach((button) => {
+                if (!button) return;
+                button.dataset.themeMode = isDark ? 'dark' : 'light';
+                button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+                const thumbIcon = button.querySelector('.theme-switch-thumb i');
+                if (thumbIcon) {
+                    thumbIcon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+                }
+            });
         }
 
         syncIcons();
@@ -797,9 +843,6 @@
 
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', toggleTheme);
-        }
-        if (themeToggleBtnMobile) {
-            themeToggleBtnMobile.addEventListener('click', toggleTheme);
         }
     });
 </script>

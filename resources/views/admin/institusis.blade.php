@@ -101,7 +101,7 @@
                 <div class="flex flex-1 flex-col p-8">
                     <span class="mb-4 inline-flex w-fit items-center self-start rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-orange-700">{{ $institusi->jenis_institusi }}</span>
                     <h2 class="mb-2 text-2xl font-extrabold text-slate-900">{{ $institusi->nama_institusi }}</h2>
-                    <p class="mb-4 text-gray-500"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
+                    <p class="mb-4 text-gray-500 uppercase"><i class="fas fa-map-marker-alt mr-2"></i>{{ $institusi->alamat }}</p>
                     <p class="text-gray-500">{{ Illuminate\Support\Str::limit($institusi->mengenai_institusi, 100) }}</p>
                     <div class="mt-auto flex flex-nowrap items-center justify-center gap-3 pt-6">
                         <a href="{{ route('admin.editinstitusi', $institusi->id) }}" class="inline-flex items-center justify-center rounded-full bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 ring-1 ring-blue-200 transition hover:bg-blue-100 hover:text-blue-800">
