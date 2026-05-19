@@ -1145,6 +1145,8 @@
     $institusiIsTvet = $institusiProgramType === 'tvet';
     $institusiIsDiploma = $institusiProgramType === 'diploma';
     $institusiIsSainsKesihatan = $institusiProgramType === 'sains kesihatan';
+    $institusiLabel = $institusiIsTvet ? 'Pusat Bertauliah' : 'Institusi';
+    $institusiLabelLower = strtolower($institusiLabel);
 @endphp
 <body class="institusi-page {{ $institusiIsTvet ? 'institusi-page--tvet' : '' }} {{ $institusiIsDiploma ? 'institusi-page--diploma' : '' }} {{ $institusiIsSainsKesihatan ? 'institusi-page--sains-kesihatan' : '' }} {{ ! $institusiIsTvet && ! $institusiIsDiploma && ! $institusiIsSainsKesihatan ? 'bg-gray-100' : '' }} text-gray-800">
     
@@ -1258,12 +1260,12 @@
                 <div>
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight">
                         @if($jenis)
-                            Institusi {{ $jenis }}
+                            {{ $institusiLabel }} {{ $jenis }}
                         @else
-                            Semua Institusi
+                            Semua {{ $institusiLabel }}
                         @endif
                     </h1>
-                    <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100')) }} mt-3 text-lg">Lihat semua institusi, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
+                    <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100')) }} mt-3 text-lg">Lihat semua {{ $institusiLabelLower }}, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
                 </div>
             </div>
         </div>
@@ -1272,8 +1274,8 @@
         <div class="institusi-toolbar mb-8 rounded-3xl p-4 sm:p-5">
             <div class="relative z-10 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}">Paparan Institusi</p>
-                    <h2 class="mt-2 text-2xl text-slate-900">{{ $institusis->count() }} institusi dipaparkan</h2>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}">Paparan {{ $institusiLabel }}</p>
+                    <h2 class="mt-2 text-2xl text-slate-900">{{ $institusis->count() }} {{ $institusiLabelLower }} dipaparkan</h2>
                 </div>
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
                     <form method="GET" class="flex w-full max-w-[520px] flex-col gap-3 sm:flex-row sm:items-center">
@@ -1324,7 +1326,7 @@
 
         @if($institusis->isEmpty())
             <div class="col-span-3 bg-white rounded-2xl p-8 text-center text-gray-500">
-                Tiada institusi ditemui.
+                Tiada {{ $institusiLabelLower }} ditemui.
             </div>
         @elseif($institusis->count() === 1)
             @php
@@ -1344,7 +1346,7 @@
                             </div>
                             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                                 <div>
-                                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">Institusi</p>
+                                    <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">{{ $institusiLabel }}</p>
                                     <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                 </div>
                                 <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
@@ -1369,8 +1371,8 @@
                 </article>
 
                 <aside class="institusi-detail-card institusi-card rounded-3xl p-6 sm:p-7 lg:col-span-3">
-                    <h3 class="text-xl font-bold text-slate-900">Mengenai Institusi</h3>
-                    <p class="institusi-detail-copy mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai institusi ini akan dikemaskini.' }}</p>
+                    <h3 class="text-xl font-bold text-slate-900">Mengenai {{ $institusiLabel }}</h3>
+                    <p class="institusi-detail-copy mt-3 text-sm leading-7 text-slate-600">{{ $institusi->mengenai_institusi ?: 'Maklumat lanjut mengenai ' . $institusiLabelLower . ' ini akan dikemaskini.' }}</p>
 
                     <div class="institusi-detail-courses mt-6 border-t border-slate-200/80 pt-6">
                         <h4 class="text-lg font-semibold text-slate-900">Beberapa Kursus Ditawarkan</h4>
@@ -1421,7 +1423,7 @@
                                         </div>
                                         <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                                             <div>
-                                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">Institusi</p>
+                                                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">{{ $institusiLabel }}</p>
                                                 <h2 class="institusi-card-title mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                             </div>
                                             <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1317,7 +1317,7 @@
                             </div>
 
                             <button class="kursus-cta inline-flex items-center justify-center w-full rounded-full px-6 py-3 text-sm font-semibold text-white shadow-lg mt-auto text-center">
-                                <span>Paparan Pusat Bertauliah</span>
+                                <span>Paparan {{ ($kursusIsDiploma || $kursusIsSainsKesihatan) ? 'Institusi' : 'Pusat Bertauliah' }}</span>
                             </button>
                         </div>
                     </article>

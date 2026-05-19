@@ -8,6 +8,7 @@
     $totalPinjaman = $pengajianTotal + $elaunTotal;
     $programType = strtolower(trim((string) ($heroProgramType ?? optional($kursus->institusi)->jenis_institusi ?? '')));
     $pinjamanLabel = in_array($programType, ['diploma', 'sains kesihatan'], true) ? 'PTPTN' : 'PTPK';
+    $pusatLabelLower = in_array($programType, ['diploma', 'sains kesihatan'], true) ? 'institusi' : 'pusat bertauliah';
 @endphp
 
 <div class="p-8 border-t border-gray-100 space-y-6">
@@ -15,7 +16,7 @@
         <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-gray-50 p-6">
             <div>
                 <h2 class="text-2xl font-bold text-gray-800">Yuran Kemasukan</h2>
-                <p class="text-sm text-gray-500">Yuran kemasukan tertakluk kepada perubahan pengurusan institusi.</p>
+                <p class="text-sm text-gray-500">Yuran kemasukan tertakluk kepada perubahan pengurusan {{ $pusatLabelLower }}.</p>
             </div>
             <div class="rounded-3xl bg-white px-5 py-4 text-center shadow-sm border border-orange-100">
                 <p class="text-sm uppercase tracking-[0.2em] text-orange-700" data-keseluruhan-label>Keseluruhan (Daftar + Pilihan + Asrama)</p>

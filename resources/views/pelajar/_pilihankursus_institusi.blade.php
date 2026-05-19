@@ -7,11 +7,11 @@
 <div class="mb-6 flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-white/80 px-5 py-4 shadow-[0_18px_34px_rgba(15,23,42,0.05)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
     <div>
         <p class="text-xs font-semibold uppercase tracking-[0.28em] text-orange-500">Hasil Padanan</p>
-        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">{{ $semuaKursus->count() }} institusi menawarkan kursus ini mengikut pilihan semasa anda.</p>
+        <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">{{ $semuaKursus->count() }} {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'institusi' : 'pusat bertauliah' }} menawarkan kursus ini mengikut pilihan semasa anda.</p>
     </div>
     <span class="inline-flex items-center gap-2 rounded-full bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-600 dark:bg-orange-500/15 dark:text-orange-300">
         <i class="fas fa-school text-xs"></i>
-        Institusi bertauliah
+        {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}
     </span>
 </div>
 
@@ -37,7 +37,7 @@
             </div>
             <div class="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between gap-4 p-5 text-white">
                 <div>
-                    <p class="pilihan-theme-soft-label text-[0.68rem] font-semibold uppercase tracking-[0.34em]">Institusi</p>
+                    <p class="pilihan-theme-soft-label text-[0.68rem] font-semibold uppercase tracking-[0.34em]">{{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}</p>
                     <h3 class="mt-2 text-2xl font-extrabold text-white">{{ $kursus->institusi->nama_institusi ?? 'N/A' }}</h3>
                 </div>
                 <span class="course-result-arrow shrink-0">
@@ -46,8 +46,8 @@
             </div>
         </div>
 
-        <div class="px-6 pb-6 pt-0">
-            <div class="flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-4">
+        <div class="course-result-footer px-6 pb-6 pt-0">
+            <div class="course-result-footer-row flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-4">
                 <span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Lihat detail kursus</span>
                 <span class="course-result-cta inline-flex items-center gap-2 text-sm font-semibold">
                     Teroka

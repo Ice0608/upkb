@@ -559,6 +559,7 @@
     )) {
         $detailProgramType = 'tvet';
     }
+    $detailEntityLabel = $detailProgramType === 'tvet' ? 'Pusat Bertauliah' : 'Institusi';
 
     $heroImage = optional($kursus->galeris->first())->imej
         ?? optional($kursus->institusi)->gambar_institusi
@@ -596,7 +597,7 @@
                     <div class="mt-8">
                         @if($detailInstitusi)
                             <a href="{{ route('institusi.show', $detailInstitusi->id) }}" class="kursus-detail-primary-btn inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold shadow-lg hover:bg-white/90 transition">
-                                <i class="fas fa-arrow-left"></i> Lihat Institusi
+                                <i class="fas fa-arrow-left"></i> Lihat {{ $detailEntityLabel }}
                             </a>
                         @endif
                     </div>

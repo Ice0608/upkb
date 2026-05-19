@@ -995,19 +995,19 @@
                             <div class="pilihan-hero-facts">
                                 <span class="pilihan-hero-fact text-sm font-semibold">
                                     <i class="fa-solid fa-building-columns text-white/90"></i>
-                                    {{ $semuaKursus->count() }} institusi
+                                    {{ $semuaKursus->count() }} {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}
                                 </span>
                                 <span class="pilihan-hero-fact text-sm font-semibold">
                                     <i class="fa-solid fa-layer-group text-white/90"></i>
-                                    {{ $pilihanKnownTypes->count() ?: 1 }} kategori institusi
+                                    {{ $pilihanKnownTypes->count() ?: 1 }} Kategori {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}
                                 </span>
                                 <span class="pilihan-hero-fact text-sm font-semibold">
                                     <i class="fa-solid fa-shield-check text-white/90"></i>
-                                    Institusi bertauliah
+                                    {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}
                                 </span>
                             </div>
                             <a href="#institusiResults" class="pilihan-hero-cta">
-                                Lihat Senarai Institusi
+                                Lihat Senarai {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1025,8 +1025,8 @@
                         <div class="pilihan-filter-grid">
                             <div class="pilihan-filter-intro">
                                 <p class="pilihan-theme-accent text-xs font-bold uppercase tracking-[0.28em]">Carian Pantas</p>
-                                <h2 class="text-2xl font-bold text-slate-900">Tapis Senarai Institusi</h2>
-                                <p class="text-sm leading-7 text-slate-500">Gunakan penapis ini untuk kecilkan pilihan kepada institusi yang benar-benar sepadan dengan keperluan anda.</p>
+                                <h2 class="text-2xl font-bold text-slate-900">Tapis Senarai {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }}</h2>
+                                <p class="text-sm leading-7 text-slate-500">Gunakan penapis ini untuk kecilkan pilihan kepada {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'institusi' : 'pusat Bertauliah' }} yang benar-benar sepadan dengan keperluan anda.</p>
                             </div>
 
                             <div class="pilihan-filter-field">
@@ -1074,7 +1074,7 @@
                 <div class="pilihan-results-intro rounded-3xl p-5 sm:p-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div class="max-w-2xl">
                         <h2 class="text-3xl font-bold text-slate-900 tracking-tight uppercase">{{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }} Yang Menawarkan {{ $namaKursus }}</h2>
-                        <p class="mt-2 text-slate-500">Pilih institusi berdasarkan jenis program, tempoh pengajian dan mod pengajian yang paling sesuai dengan perancangan anda.</p>
+                        <p class="mt-2 text-slate-500">Pilih {{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'institusi' : 'pusat bertauliah' }} berdasarkan jenis program, tempoh pengajian dan mod pengajian yang paling sesuai dengan perancangan anda.</p>
                     </div>
                     <div class="pilihan-live-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
                         <span class="pilihan-results-dot inline-flex h-2.5 w-2.5 rounded-full"></span>
