@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Kursus;
 use App\Models\Pelajar;
 use App\Models\Pembayaran;
+use App\Models\YuranPendaftaran;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -13,6 +14,21 @@ use Illuminate\Support\Facades\Mail;
 
 class StaffEventController extends Controller
 {
+    private function resolveReceiptData(Pelajar $pelajar): array
+    {
+        $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
+        $kursus = Kursus::with('institusi')
+            ->where('kod_kursus', $pelajar->kod_kursus)
+            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
+            ->first();
+
+        return [
+            'pembayaran' => $pembayaran,
+            'kursus' => $kursus,
+            'institusi' => $kursus?->institusi,
+        ];
+    }
+
     public function __construct()
     {
         $this->middleware(['auth', 'verified'])->except([
@@ -261,19 +277,14 @@ class StaffEventController extends Controller
     {
         abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
-        $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
-        $kursus = Kursus::with('institusi')
-            ->where('kod_kursus', $pelajar->kod_kursus)
-            ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
-            ->first();
-        $institusi = $kursus?->institusi;
+        $receiptData = $this->resolveReceiptData($pelajar);
 
         // If modal=1, return only the content for modal display
         if ($request->modal == 1) {
-            return view('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi'))->render();
+            return view('staff.resit', array_merge(['pelajar' => $pelajar], $receiptData))->render();
         }
 
-        return view('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi'));
+        return view('staff.resit', array_merge(['pelajar' => $pelajar], $receiptData));
     }
 
     public function sendEmailResit(Request $request)
@@ -292,16 +303,11 @@ class StaffEventController extends Controller
 
             $pelajarEmail = $pelajar->email;
             $pelajarName = $pelajar->nama_pelajar;
-            $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
-            $kursus = Kursus::with('institusi')
-                ->where('kod_kursus', $pelajar->kod_kursus)
-                ->when($pelajar->kod_institusi, fn ($query) => $query->where('kod_institusi', $pelajar->kod_institusi))
-                ->first();
-            $institusi = $kursus?->institusi;
+            $receiptData = $this->resolveReceiptData($pelajar);
             $isPdf = true;
             $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
             $filename = 'Resit_' . $safeIc . '.pdf';
-            $pdf = Pdf::loadView('staff.resit', compact('pelajar', 'pembayaran', 'kursus', 'institusi', 'isPdf'));
+            $pdf = Pdf::loadView('staff.resit', array_merge(['pelajar' => $pelajar, 'isPdf' => $isPdf], $receiptData));
             $pdf->setPaper('A4', 'portrait');
             $pdfContent = $pdf->output();
 
@@ -816,10 +822,9 @@ class StaffEventController extends Controller
                 ->first();
         }
 
-        $yuranPendaftaran = $kursus ? \App\Models\YuranPendaftaran::where('kod_kursus', $kursus->kod_kursus)
+        $jumlah = $kursus ? YuranPendaftaran::where('kod_kursus', $kursus->kod_kursus)
             ->where('kod_institusi', $kursus->kod_institusi)
-            ->first() : null;
-        $jumlah = $yuranPendaftaran ? $yuranPendaftaran->yuran : 0;
+            ->sum('amount') : 0;
 
         return view('pelajar.pembayaran', compact('pelajar', 'kursus', 'jumlah'));
     }
@@ -889,8 +894,7 @@ class StaffEventController extends Controller
 
     public function pelajarResit(Pelajar $pelajar)
     {
-        $pembayaran = \App\Models\Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
-        return view('pelajar.resit', compact('pelajar', 'pembayaran'));
+        return view('receipt', array_merge(['pelajar' => $pelajar], $this->resolveReceiptData($pelajar)));
     }
 
     public function pelajarSuratTawaran(Pelajar $pelajar)
