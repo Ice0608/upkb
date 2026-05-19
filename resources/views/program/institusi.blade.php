@@ -1355,7 +1355,7 @@
                         <div class="p-6 sm:p-7 flex flex-col flex-1">
                             <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
                                 <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}"></i>
-                                <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
+                                <span class="institusi-clamp-2 uppercase">{{ $institusi->alamat }}</span>
                             </div>
                             <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
                                 <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
@@ -1432,7 +1432,7 @@
                                     <div class="institusi-card-body p-6 sm:p-7 flex flex-col flex-1">
                                         <div class="institusi-card-chip flex items-start gap-3 rounded-2xl px-4 py-3 text-sm text-slate-600">
                                             <i class="fas fa-map-marker-alt mt-0.5 {{ $institusiIsTvet ? 'institusi-accent-tvet' : ($institusiIsDiploma ? 'institusi-accent-diploma' : ($institusiIsSainsKesihatan ? 'institusi-accent-sains-kesihatan' : 'text-teal-500')) }}"></i>
-                                            <span class="institusi-clamp-2">{{ $institusi->alamat }}</span>
+                                            <span class="institusi-clamp-2 uppercase">{{ $institusi->alamat }}</span>
                                         </div>
                                         <div class="mt-auto flex items-center justify-between border-t border-slate-200/80 pt-5">
                                             <span class="text-sm font-semibold text-slate-800">Lihat kursus & fasiliti</span>
