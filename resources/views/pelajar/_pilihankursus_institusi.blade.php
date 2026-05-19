@@ -11,12 +11,23 @@
         align-items: center;
         justify-content: center;
         gap: 0.25rem;
-        background-color: rgba(251, 146, 60, 0.9);
         border-radius: 1rem;
         padding: 0.5rem 1rem;
         min-width: 70px;
         position: relative;
         z-index: 20;
+    }
+
+    .course-result-quota-tvet {
+        background-color: rgba(251, 146, 60, 0.9);
+    }
+
+    .course-result-quota-diploma {
+        background-color: rgba(142, 70, 255, 0.9);
+    }
+
+    .course-result-quota-sains-kesihatan {
+        background-color: rgba(33, 150, 243, 0.9);
     }
 
     .course-result-quota-label {
@@ -44,8 +55,16 @@
         z-index: 20;
     }
 
-    html.dark .course-result-quota {
+    html.dark .course-result-quota-tvet {
         background-color: rgba(251, 146, 60, 0.85);
+    }
+
+    html.dark .course-result-quota-diploma {
+        background-color: rgba(147, 76, 255, 0.95);
+    }
+
+    html.dark .course-result-quota-sains-kesihatan {
+        background-color: rgba(37, 125, 255, 0.95);
     }
 </style>
 <div class="mb-6 flex flex-col gap-3 rounded-3xl border border-slate-200/80 bg-white/80 px-5 py-4 shadow-[0_18px_34px_rgba(15,23,42,0.05)] backdrop-blur dark:border-white/10 dark:bg-slate-900/70 sm:flex-row sm:items-center sm:justify-between">
@@ -75,7 +94,7 @@
                 <span class="course-result-badge inline-flex items-center rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white">
                     {{ $kursus->institusi->jenis_institusi ?? 'Institusi' }}
                 </span>
-                <span class="course-result-quota">
+                <span class="course-result-quota {{ $pilihanProgramType === 'diploma' ? 'course-result-quota-diploma' : ($pilihanProgramType === 'sains kesihatan' ? 'course-result-quota-sains-kesihatan' : 'course-result-quota-tvet') }}">
                     <span class="course-result-quota-label">Kuota</span>
                     <span class="course-result-quota-value">{{ $kursus->kuota ?? '-' }}</span>
                 </span>

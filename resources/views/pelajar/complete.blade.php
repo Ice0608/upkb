@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <h1 class="text-3xl font-semibold text-slate-900 mb-4">Permohonan Selesai!</h1>
+        <h1 class="text-3xl font-semibold text-slate-900 mb-4">TAHNIAH! PENDAFTARAN ANDA SUDAH SELESAI</h1>
         <p class="text-slate-600 mb-8">
             Terima kasih telah melengkapkan proses temu duga. Status pembayaran anda telah dikemaskini kepada <strong>Pending</strong>.
         </p>

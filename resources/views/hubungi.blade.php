@@ -617,7 +617,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Alamat Pejabat</h2>
-                        <p class="text-slate-500NO 34, JALAN MPK 4, TAMAN BUKIT KEPAYANG, 70300 SEREMBAN, NEGERI SEMBILANan</p>
+                        <p class="text-slate-500">NO 34, JALAN MPK 4, TAMAN BUKIT KEPAYANG, 70300 SEREMBAN, NEGERI SEMBILAN</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=34+Jalan+MPK+4+Taman+Bukit+Kepayang+70300+Seremban" target="_blank" class="inline-flex items-center text-sm font-semibold text-teal-500 hover:text-teal-600 mt-2">
                             <i class="fas fa-map-marker-alt mr-2"></i> Buka di Google Maps
                         </a>
