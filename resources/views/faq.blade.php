@@ -1172,7 +1172,7 @@
             height: 85%;
             pointer-events: none;
             user-select: none;
-            filter: drop-shadow(-12px 0 36px rgba(15, 94, 89, 0.28));
+            filter: drop-shadow(-12px 0 36px rgba(140, 50, 0, 0.24));
         }
 
         .faq-hero-figure svg {
@@ -1228,16 +1228,16 @@
 
     <main class="faq-shell max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="faq-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12 relative overflow-hidden">
-            <div class="faq-hero-figure" aria-hidden="true">
+            {{-- <div class="faq-hero-figure" aria-hidden="true">
                 <svg viewBox="-20 0 280 340" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <radialGradient id="coatGrad" cx="30%" cy="20%" r="80%">
-                            <stop offset="0%" stop-color="#14b8a6"/>
-                            <stop offset="100%" stop-color="#0f4f4a"/>
+                            <stop offset="0%" stop-color="#ff8c42"/>
+                            <stop offset="100%" stop-color="#e65100"/>
                         </radialGradient>
                         <linearGradient id="qmarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#0f766e"/>
-                            <stop offset="100%" stop-color="#134e4a"/>
+                            <stop offset="0%" stop-color="#ff9a3c"/>
+                            <stop offset="100%" stop-color="#ff7a00"/>
                         </linearGradient>
                         <filter id="heroSoftGlow"><feGaussianBlur stdDeviation="3.5"/></filter>
                     </defs>
@@ -1269,7 +1269,7 @@
                         <path d="M92 145 L110 170 L128 145" fill="#fff" opacity="0.9"/>
                         <!-- Coat button -->
                         <circle cx="110" cy="210" r="6" fill="rgba(255,255,255,0.3)"/>
-                        <circle cx="110" cy="210" r="4" fill="rgba(15,94,89,0.42)"/>
+                        <circle cx="110" cy="210" r="4" fill="rgba(200,100,50,0.4)"/>
                         <!-- Coat pocket -->
                         <rect x="125" y="195" width="20" height="18" rx="4" fill="rgba(0,0,0,0.08)"/>
                         <path d="M133 193 L133 207" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
@@ -1314,7 +1314,7 @@
                     </g>
 
                 </svg>
-            </div>
+            </div> --}}
 
             <p class="faq-hero-eyebrow font-medium tracking-[0.38em] uppercase text-xs sm:text-sm">Pusat Bantuan</p>
             <h2 class="faq-hero-title mt-4 text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
@@ -1348,8 +1348,7 @@
 
                         <div class="flex-1 min-w-0">
                             <p class="faq-card-meta text-[11px] font-semibold uppercase tracking-[0.28em]">Kemasukan</p>
-                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">
-                                Siapa yang layak memohon?
+                            <h3 class="faq-card-title text-xl sm:text-2xl font-semibold mt-2 tracking-[-0.03em]">                                Siapa yang layak memohon?
                             </h3>
                             <p class="faq-card-copy text-sm sm:text-base mt-3 leading-7">
                                 Klik untuk lihat penerangan penuh
@@ -1489,6 +1488,7 @@
                 <div class="faq-modal-kicker">Kemasukan & Kelayakan</div>
                 <h2 id="faqModalTitle" class="faq-modal-title font-bold text-neutral-900">
                     Siapa yang layak memohon program?
+memohon program di UPKB?
                 </h2>
 
                 <ul class="faq-modal-list list-decimal space-y-2 text-neutral-700">

@@ -48,7 +48,10 @@
     </div>
 
     <div class="overflow-x-auto rounded-[32px] border border-slate-200 bg-white shadow-sm">
-        <table class="min-w-full text-left text-sm">
+        <div class="p-4">
+            <input id="search-name-pelajar" type="search" placeholder="Cari nama..." class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-sm outline-none" />
+        </div>
+        <table id="senarai-pelajar-table" class="min-w-full text-left text-sm">
             <thead class="bg-orange-500 text-white">
                 <tr>
                     <th class="px-6 py-4">Nama Pelajar</th>
@@ -94,6 +97,31 @@
 @include('components.social-float')
 
 @include('layouts.footer-pelajar')
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('search-name-pelajar');
+    const table = document.getElementById('senarai-pelajar-table');
+    if (!input || !table) return;
+
+    input.addEventListener('input', function () {
+        const q = this.value.toLowerCase().trim();
+        const rows = table.querySelectorAll('tbody tr');
+        let visible = 0;
+        rows.forEach(function (row) {
+            const nameCell = row.querySelector('td');
+            const name = nameCell ? nameCell.textContent.toLowerCase().trim() : '';
+            const match = q === '' || name.indexOf(q) !== -1;
+            row.style.display = match ? '' : 'none';
+            if (match) visible++;
+        });
+
+        // If no results, optionally show a message row if present
+        const noRes = table.querySelector('.no-search-results');
+        if (noRes) noRes.style.display = visible > 0 ? 'none' : '';
+    });
+});
+</script>
 
 </body>
 </html>

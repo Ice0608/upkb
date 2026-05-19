@@ -344,17 +344,10 @@
             <a href="{{ url('/') }}" class="footer-brand-link mb-4">
                 <img src="{{ asset('images/icon/seslogo.png') }}" class="footer-brand-logo h-12" alt="logo">
                 <div>
-<<<<<<< HEAD
-                    <h2 class="footer-brand-title text-lg font-bold text-white">SESOC</h2>
-                </div>
-            </a>
-            <p class="text-sm text-gray-400 leading-relaxed">SES bertindak sebagai "ONE STOP CENTER" menyediakan bimbingan yang lengkap untuk pendidikan pemilihan program sehingga perancangan kerjaya masa hadapan.</p>
-=======
                     <h2 class="footer-brand-title text-lg font-bold text-white">SES</h2>
                 </div>
             </a>
             <p class="text-sm text-gray-400 leading-relaxed">SES bertindak sebagai "ONE STOP CENTRE" menyediakan bimbingan yang lengkap untuk pendidikan, pemilihan program sehingga perancangan kerjaya untuk masa hadapan.</p>
->>>>>>> 9059b381149e2097d7c4b5f5617f351402a1db3a
         </div>
         <div>
             <h3 class="font-semibold text-white mb-4">Pautan Pantas</h3>
@@ -370,7 +363,7 @@
                 <li><p>+6011 2672 5795</p></li>
                 <li><p>sesoclegacy@gmail.com</p></li>
                 <li><p>sesoc.com.my</p></li>
-                <li><p>No 34, Jalan MPK 4, Taman Bukit Kepayang, 70300 Seremban, Negeri Sembilan</p></li>
+                <li><p>NO 34, JALAN MPK 4, TAMAN BUKIT KEPAYANG, 70300 SEREMBAN, NEGERI SEMBILAN</p></li>
             </ul>
         </div>
     </div>

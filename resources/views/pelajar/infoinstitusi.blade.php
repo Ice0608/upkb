@@ -327,7 +327,7 @@
                         <img src="{{ asset($foto->imej) }}" alt="Fasiliti" class="ii-gallery-img" loading="lazy">
                         <div class="ii-gallery-overlay">
                             <i class="fas fa-expand text-white text-lg mb-2"></i>
-                            <p class="text-white text-sm font-medium px-3 text-center">{{ $foto->penerangan ?? 'Fasiliti institusi' }}</p>
+                            <p class="text-white text-sm font-medium px-3 text-center uppercase">{{ $foto->penerangan ?? 'Fasiliti institusi' }}</p>
                         </div>
                     </button>
                     @endforeach

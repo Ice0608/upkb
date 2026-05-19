@@ -25,7 +25,7 @@
         </div>
         <div class="kursus-tab-card rounded-3xl p-6">
             <p class="kursus-tab-label mb-2">Tarikh Pendaftaran</p>
-            <p class="font-semibold text-slate-900">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? '-' }}</p>
+            <p class="font-semibold text-slate-900">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? 'Sila Rujuk Pegawai Kami' }}</p>
         </div>
     </div>
     <div class="kursus-tab-card kursus-tab-card-strong rounded-3xl p-6">

@@ -145,7 +145,12 @@ class InterviewController extends Controller
 
         $institusi = Institusi::where('kod_institusi', $kod_institusi)->firstOrFail();
         $kursusList = Kursus::where('kod_institusi', $institusi->kod_institusi)->get();
-        $galeriList = Galeri::where('kod_institusi', $institusi->kod_institusi)->get();
+        $galeriList = Galeri::where('kod_institusi', $institusi->kod_institusi)
+            ->where(function ($query) {
+                $query->whereNull('kod_kursus')
+                      ->orWhere('kod_kursus', '');
+            })
+            ->get();
 
         return view('staff.temuduga.infoinstitusi', compact('pelajar', 'institusi', 'kursusList', 'galeriList'));
     }
@@ -226,12 +231,10 @@ class InterviewController extends Controller
         abort_if(auth()->user()->level !== 'staff', 403);
 
         $kursus = Kursus::with('institusi')->where('kod_kursus', $kod_kursus)->firstOrFail();
-        $galleries = \App\Models\Galeri::where(function ($query) use ($kursus) {
-                $query->where('kod_kursus', $kursus->kod_kursus);
-
-                if ($kursus->institusi?->kod_institusi) {
-                    $query->orWhere('kod_institusi', $kursus->institusi->kod_institusi);
-                }
+        $galleries = \App\Models\Galeri::where('kod_institusi', $kursus->institusi?->kod_institusi)
+            ->where(function ($query) {
+                $query->whereNull('kod_kursus')
+                      ->orWhere('kod_kursus', '');
             })
             ->get()
             ->unique('id')

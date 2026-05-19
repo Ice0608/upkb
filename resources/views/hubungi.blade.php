@@ -409,7 +409,7 @@
             <p class="contact-hero-copy mt-4 text-base sm:text-lg max-w-3xl leading-8">Mempunyai sebarang pertanyaan mengenai program atau kemasukan? Pasukan kami sedia membantu anda.</p>
 
             {{-- Customer support figure --}}
-            <div class="contact-hero-figure" aria-hidden="true">
+            {{-- <div class="contact-hero-figure" aria-hidden="true">
                 <svg viewBox="-60 0 340 380" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <radialGradient id="skinGrad" cx="50%" cy="40%" r="60%">
@@ -417,19 +417,19 @@
                             <stop offset="100%" stop-color="#ffb74d"/>
                         </radialGradient>
                         <radialGradient id="shirtGrad" cx="30%" cy="20%" r="80%">
-                            <stop offset="0%" stop-color="#0f766e"/>
-                            <stop offset="100%" stop-color="#134e4a"/>
+                            <stop offset="0%" stop-color="#ff9d3a"/>
+                            <stop offset="100%" stop-color="#e65100"/>
                         </radialGradient>
-                        <radialGradient id="glowTeal" cx="50%" cy="50%" r="50%">
-                            <stop offset="0%" stop-color="rgba(20,184,166,0.45)"/>
-                            <stop offset="100%" stop-color="rgba(20,184,166,0)"/>
+                        <radialGradient id="glowOrange" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(255,180,50,0.45)"/>
+                            <stop offset="100%" stop-color="rgba(255,120,0,0)"/>
                         </radialGradient>
                         <filter id="softBlur"><feGaussianBlur stdDeviation="2.5"/></filter>
                         <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
                     </defs>
 
                     <!-- Ambient glow behind figure -->
-                    <circle cx="110" cy="200" r="110" fill="url(#glowTeal)" filter="url(#softBlur)" opacity="0.6"/>
+                    <circle cx="110" cy="200" r="110" fill="url(#glowOrange)" filter="url(#softBlur)" opacity="0.6"/>
 
                     <!-- Floor shadow -->
                     <ellipse cx="110" cy="374" rx="62" ry="8" fill="rgba(0,0,0,0.22)"/>
@@ -541,19 +541,19 @@
                         <path d="M80 96 Q90 80 110 76" stroke="rgba(255,255,255,0.2)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
                         <!-- Ear cup left -->
                         <rect x="60" y="118" width="18" height="26" rx="8" fill="#263238"/>
-                        <rect x="63" y="121" width="12" height="20" rx="6" fill="#14b8a6"/>
-                        <rect x="65" y="123" width="8" height="16" rx="4" fill="rgba(20,184,166,0.3)"/>
+                        <rect x="63" y="121" width="12" height="20" rx="6" fill="#ff7300"/>
+                        <rect x="65" y="123" width="8" height="16" rx="4" fill="rgba(255,180,50,0.3)"/>
                         <!-- Ear cup right -->
                         <rect x="142" y="118" width="18" height="26" rx="8" fill="#263238"/>
-                        <rect x="145" y="121" width="12" height="20" rx="6" fill="#14b8a6"/>
-                        <rect x="147" y="123" width="8" height="16" rx="4" fill="rgba(20,184,166,0.3)"/>
+                        <rect x="145" y="121" width="12" height="20" rx="6" fill="#ff7300"/>
+                        <rect x="147" y="123" width="8" height="16" rx="4" fill="rgba(255,180,50,0.3)"/>
                         <!-- Mic arm -->
                         <path d="M78 132 Q62 150 64 164" stroke="#263238" stroke-width="3.5" fill="none" stroke-linecap="round"/>
                         <!-- Mic capsule -->
                         <rect x="58" y="162" width="12" height="8" rx="4" fill="#263238"/>
-                        <circle cx="64" cy="166" r="3" fill="#14b8a6"/>
+                        <circle cx="64" cy="166" r="3" fill="#ff7300"/>
                         <!-- Mic glow -->
-                        <circle cx="64" cy="166" r="5" fill="rgba(20,184,166,0.25)"/>
+                        <circle cx="64" cy="166" r="5" fill="rgba(255,120,0,0.25)"/>
 
                         <!-- Name badge -->
                         <rect x="90" y="218" width="40" height="24" rx="6" fill="rgba(255,255,255,0.22)"/>
@@ -575,8 +575,8 @@
 
                     <!-- === CHAT BUBBLE 2 === -->
                     <g class="fig-bubble2" style="transform-origin: 205px 80px;">
-                        <rect x="168" y="58" width="86" height="50" rx="13" fill="#14b8a6" opacity="0.95"/>
-                        <path d="M172 108 L184 120 L196 108" fill="#14b8a6"/>
+                        <rect x="168" y="58" width="86" height="50" rx="13" fill="#ff7300" opacity="0.95"/>
+                        <path d="M172 108 L184 120 L196 108" fill="#ff7300"/>
                         <!-- Chat icon + text -->
                         <circle cx="184" cy="76" r="9" fill="rgba(255,255,255,0.22)"/>
                         <text x="180" y="80" font-size="10" fill="white">💬</text>
@@ -600,7 +600,7 @@
                     </g>
 
                 </svg>
-            </div>
+            </div> --}}
         </div>
 
         @if ($message = Session::get('success'))
@@ -617,7 +617,7 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-slate-900">Alamat Pejabat</h2>
-                        <p class="text-slate-500">No 34, Jalan MPK 4, Taman Bukit Kepayang, 70300 Seremban, Negeri Sembilan</p>
+                        <p class="text-slate-500NO 34, JALAN MPK 4, TAMAN BUKIT KEPAYANG, 70300 SEREMBAN, NEGERI SEMBILANan</p>
                         <a href="https://www.google.com/maps/search/?api=1&query=34+Jalan+MPK+4+Taman+Bukit+Kepayang+70300+Seremban" target="_blank" class="inline-flex items-center text-sm font-semibold text-teal-500 hover:text-teal-600 mt-2">
                             <i class="fas fa-map-marker-alt mr-2"></i> Buka di Google Maps
                         </a>

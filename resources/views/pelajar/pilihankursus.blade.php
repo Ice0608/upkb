@@ -986,7 +986,7 @@
                     <div class="absolute inset-0 z-10 text-white">
                         <div class="pilihan-hero-card-content">
                             <span class="pilihan-kicker inline-block px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-full">
-                                Program Pendidikan
+                                {{ $pilihanProgramType === 'tvet' ? 'Program TVET' : ($pilihanProgramType === 'diploma' ? 'Program Diploma' : ($pilihanProgramType === 'sains kesihatan' ? 'Program Sains & Kesihatan' : 'Program Pendidikan')) }}
                             </span>
                             <div class="pilihan-hero-copy">
                                 <h1 class="font-extrabold">{{ $namaKursus }}</h1>

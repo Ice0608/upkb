@@ -57,7 +57,10 @@
             </div>
 
             <div class="overflow-x-auto rounded-[32px] border border-white/80 bg-white/92 shadow-[0_22px_55px_rgba(15,23,42,0.12)] backdrop-blur">
-                <table class="min-w-full text-left text-sm">
+                <div class="p-4">
+                    <input id="search-name-staff" type="search" placeholder="Cari nama..." class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-sm outline-none" />
+                </div>
+                <table id="staff-pelajar-table" class="min-w-full text-left text-sm">
                     <thead class="bg-[linear-gradient(90deg,#0f766e,#14b8a6)] text-white">
                         <tr>
                             <th class="px-6 py-4">Nama Pelajar</th>
@@ -720,6 +723,31 @@
             printWindow.print();
         }, 300);
     }
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('search-name-staff');
+    const table = document.getElementById('staff-pelajar-table');
+    if (!input || !table) return;
+
+    input.addEventListener('input', function () {
+        const q = this.value.toLowerCase().trim();
+        const rows = table.querySelectorAll('tbody tr');
+        let visible = 0;
+        rows.forEach(function (row) {
+            const nameCell = row.querySelector('td');
+            const name = nameCell ? nameCell.textContent.toLowerCase().trim() : '';
+            const match = q === '' || name.indexOf(q) !== -1;
+            row.style.display = match ? '' : 'none';
+            if (match) visible++;
+        });
+
+        // If no results, optionally show a message row if present
+        const noRes = table.querySelector('.no-search-results');
+        if (noRes) noRes.style.display = visible > 0 ? 'none' : '';
+    });
+});
 </script>
 
 </body>

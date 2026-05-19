@@ -25,7 +25,7 @@
         </div>
         <div class="rounded-3xl border border-gray-200 p-6 bg-gray-50">
             <p class="text-sm uppercase tracking-[0.2em] text-gray-500 mb-2">Tarikh Pendaftaran</p>
-            <p class="font-semibold text-slate-900">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? '-' }}</p>
+            <p class="font-semibold text-slate-900">{{ optional($kursus->tarikh_pendaftaran)->format('d/m/Y') ?? 'Sila Rujuk Pegawai Kami' }}</p>
         </div>
     </div>
     <div class="rounded-3xl border border-gray-200 p-6 bg-gray-50">

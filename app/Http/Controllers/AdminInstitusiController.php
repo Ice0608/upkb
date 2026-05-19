@@ -92,7 +92,12 @@ class AdminInstitusiController extends Controller
     {
         $institusi = Institusi::findOrFail($id);
         $kursusList = Kursus::where('kod_institusi', $institusi->kod_institusi)->get();
-        $galeriList = Galeri::where('kod_institusi', $institusi->kod_institusi)->get();
+        $galeriList = Galeri::where('kod_institusi', $institusi->kod_institusi)
+            ->where(function ($query) {
+                $query->whereNull('kod_kursus')
+                      ->orWhere('kod_kursus', '');
+            })
+            ->get();
         return view('admin.editinstitusi', compact('institusi', 'kursusList', 'galeriList'));
     }
 
