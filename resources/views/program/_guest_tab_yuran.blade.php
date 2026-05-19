@@ -1,4 +1,4 @@
-﻿@php
+@php
     $pendaftaranTotal = $kursus->yuranPendaftarans->sum('amount');
     $pilihanTotal = $kursus->yuranPilihans->sum('amount');
     $asramaTotal = $kursus->yuranAsramas->sum('amount');
@@ -6,6 +6,8 @@
     $elaunTotal = $kursus->elauns->sum('jumlah');
     $totalYuran = $pendaftaranTotal + $pilihanTotal + $asramaTotal;
     $totalPinjaman = $pengajianTotal + $elaunTotal;
+    $programType = strtolower(trim((string) ($heroProgramType ?? optional($kursus->institusi)->jenis_institusi ?? '')));
+    $pinjamanLabel = in_array($programType, ['diploma', 'sains kesihatan'], true) ? 'PTPTN' : 'PTPK';
 @endphp
 
 <div class="p-8 border-t border-gray-100 space-y-6">
@@ -178,7 +180,7 @@
     <div class="rounded-3xl bg-white border border-gray-200 shadow-sm overflow-hidden">
         <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-100 bg-emerald-50 p-6">
             <div>
-                <h2 class="text-2xl font-bold text-emerald-900">PINJAMAN PTPK</h2>
+                <h2 class="text-2xl font-bold text-emerald-900">PINJAMAN {{ $pinjamanLabel }}</h2>
                 <p class="text-sm text-emerald-700">Kemudahan pembiayaan pendidikan</p>
             </div>
             <div class="rounded-3xl bg-white px-5 py-4 text-center shadow-sm">
@@ -253,3 +255,4 @@
         </div>
     </div>
 </div>
+

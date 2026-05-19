@@ -1056,7 +1056,7 @@
             <div class="mb-10 border-t border-slate-200/80 pt-10 sm:pt-12">
                 <div class="pilihan-results-intro rounded-3xl p-5 sm:p-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
                     <div class="max-w-2xl">
-                        <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Pusat Bertauliah Yang Menawarkan {{ $namaKursus }}</h2>
+                        <h2 class="text-3xl font-bold text-slate-900 tracking-tight uppercase">{{ in_array($pilihanProgramType, ['diploma', 'sains kesihatan'], true) ? 'Institusi' : 'Pusat Bertauliah' }} Yang Menawarkan {{ $namaKursus }}</h2>
                         <p class="mt-2 text-slate-500">Pilih institusi berdasarkan jenis program, tempoh pengajian dan mod pengajian yang paling sesuai dengan perancangan anda.</p>
                     </div>
                     <div class="pilihan-live-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
