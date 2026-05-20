@@ -103,8 +103,10 @@ class AdminInstitusiController extends Controller
 
     public function update(Request $request, $id)
     {
+        $institusi = Institusi::findOrFail($id);
+        
         $request->validate([
-            'kod_institusi' => 'required|string|max:255',
+            'kod_institusi' => 'required|string|max:255|unique:institutis,kod_institusi,' . $institusi->id,
             'nama_institusi' => 'required|string|max:255',
             'jenis_institusi' => 'required|string|max:255',
             'gambar_institusi' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
@@ -112,7 +114,6 @@ class AdminInstitusiController extends Controller
             'mengenai_institusi' => 'required|string',
         ]);
 
-        $institusi = Institusi::findOrFail($id);
         $data = [
             'kod_institusi' => $request->kod_institusi,
             'nama_institusi' => $request->nama_institusi,

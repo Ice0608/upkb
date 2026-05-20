@@ -852,6 +852,16 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
+        .course-card-quota-diploma {
+            background: linear-gradient(135deg, rgba(142, 70, 255, 0.95), rgba(124, 58, 237, 0.95));
+            box-shadow: 0 14px 28px rgba(124, 58, 237, 0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
+        .course-card-quota-sains-kesihatan {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.95), rgba(37, 99, 235, 0.95));
+            box-shadow: 0 14px 28px rgba(37, 99, 235, 0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+
         .course-card-quota-label {
             display: block;
             font-size: 0.62rem;
@@ -1098,6 +1108,8 @@
         html.dark .text-slate-900, html.dark .text-gray-800 { color: #f1f5f9 !important; }
         html.dark .text-slate-700 { color: #cbd5e1 !important; }
         html.dark .text-slate-500 { color: #94a3b8 !important; }
+        html.dark .course-card-quota-diploma { background: linear-gradient(135deg, rgba(142, 70, 255, 0.95), rgba(124, 58, 237, 0.95)); box-shadow: 0 14px 28px rgba(124,58,237,0.18) !important; }
+        html.dark .course-card-quota-sains-kesihatan { background: linear-gradient(135deg, rgba(33, 150, 243, 0.95), rgba(37, 99, 235, 0.95)); box-shadow: 0 14px 28px rgba(37,99,235,0.18) !important; }
     </style>
 </head>
 @php
@@ -1240,22 +1252,21 @@
                                     <p class="kursus-section-accent text-[0.7rem] font-semibold uppercase tracking-[0.28em]">Kursus</p>
                                     <h2 class="course-card-title mt-2 kursus-clamp-2">{{ $courseDisplayName }}</h2>
                                 </div>
-                                @if($showCourseCardQuotaColumn)
+                                    @php $quotaClass = $kursusIsDiploma ? 'course-card-quota-diploma' : ($kursusIsSainsKesihatan ? 'course-card-quota-sains-kesihatan' : 'course-card-quota-tvet'); @endphp
                                     <div class="course-card-action">
-                                        <span class="course-card-quota">
+                                        <span class="course-card-quota {{ $quotaClass }}">
                                             <span>
                                                 <span class="course-card-quota-label">Kuota</span>
                                                 <span class="course-card-quota-value">{{ $kursus->kuota ?? '-' }}</span>
                                             </span>
                                         </span>
                                     </div>
-                                @endif
                             </div>
 
                             <div class="course-card-meta">
                                 <div class="course-card-meta-item">
-                                    <p class="course-card-meta-label">{{ $showCourseCardQuotaColumn ? 'Tahap' : 'Kuota' }}</p>
-                                    <p class="course-card-meta-value">{{ $showCourseCardQuotaColumn ? ($showJenisKursusPill ? $kursus->jenis_kursus : 'Tidak dinyatakan') : ($kursus->kuota ?? '-') }}</p>
+                                    <p class="course-card-meta-label">{{ $kursusIsTvet ? 'Tahap' : 'TEMPOH' }}</p>
+                                    <p class="course-card-meta-value">{{ $kursusIsTvet ? ($showJenisKursusPill ? $kursus->jenis_kursus : 'Tidak dinyatakan') : ($kursus->tempoh ?? '-') }}</p>
                                 </div>
                             </div>
 

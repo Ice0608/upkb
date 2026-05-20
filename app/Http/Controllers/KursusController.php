@@ -27,6 +27,11 @@ class KursusController extends Controller
         $semuaKursus = $query->get();
         $namaKursus = $namaKursusPaparan;
 
+            // If only one institution offers this course, redirect directly to the course info page
+            if ($semuaKursus->count() === 1) {
+                return redirect()->route('kursus.show', $semuaKursus->first()->id);
+            }
+
         $selectedCourse = $semuaKursus->first();
         $heroImage = optional($selectedCourse?->galeris->first())->imej
             ?? optional($selectedCourse?->institusi)->gambar_institusi

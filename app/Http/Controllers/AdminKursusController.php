@@ -72,8 +72,10 @@ class AdminKursusController extends Controller
 
     public function update(Request $request, $id)
     {
+        $kursus = Kursus::findOrFail($id);
+        
         $request->validate([
-            'kod_kursus' => 'required|string|max:255',
+            'kod_kursus' => 'required|string|max:255|unique:kursuses,kod_kursus,' . $kursus->id,
             'nama_kursus' => 'required|string|max:255',
             'jenis_kursus' => 'required|string|max:255',
             'mod_pengajian' => 'required|string|max:255',
@@ -102,7 +104,6 @@ class AdminKursusController extends Controller
             $data['tarikh_pendaftaran'] = null;
         }
 
-        $kursus = Kursus::findOrFail($id);
         $kursus->update($data);
 
         if ($request->wantsJson()) {
