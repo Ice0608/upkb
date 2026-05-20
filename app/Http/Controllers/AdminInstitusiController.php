@@ -106,7 +106,7 @@ class AdminInstitusiController extends Controller
         $institusi = Institusi::findOrFail($id);
         
         $request->validate([
-            'kod_institusi' => 'required|string|max:255|unique:institutis,kod_institusi,' . $institusi->id,
+            'kod_institusi' => 'required|string|max:255|unique:institusis,kod_institusi,' . $institusi->id,
             'nama_institusi' => 'required|string|max:255',
             'jenis_institusi' => 'required|string|max:255',
             'gambar_institusi' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
