@@ -9,18 +9,28 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-up {
+            opacity: 0;
+            animation: fadeUp 0.55s ease forwards;
+        }
 
         .mesej-hero {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 227, 170, 0.48);
+            border: 1px solid rgba(94, 234, 212, 0.18);
             background:
-                linear-gradient(90deg, #ff7a00 0%, #ff9924 56%, #ffd24a 100%);
+                radial-gradient(circle at 12% 18%, rgba(255,255,255,0.18), transparent 24%),
+                radial-gradient(circle at 88% 24%, rgba(125, 211, 252, 0.28), transparent 22%),
+                radial-gradient(circle at 76% 80%, rgba(94, 234, 212, 0.26), transparent 24%),
+                linear-gradient(135deg, #0f172a 0%, #0f766e 44%, #14b8a6 74%, #67e8f9 100%);
             box-shadow:
-                inset 0 1px 0 rgba(255, 250, 236, 0.44),
-                0 24px 55px rgba(205, 112, 24, 0.22),
-                0 0 46px rgba(255, 177, 60, 0.2);
-            animation: faqFloat 6.6s var(--xmb-ease-soft) infinite;
+                0 24px 55px rgba(15, 23, 42, 0.16),
+                0 10px 24px rgba(20, 184, 166, 0.14);
         }
 
         .mesej-hero::before {
@@ -28,44 +38,76 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 84% 30%, rgba(255, 249, 235, 0.3), transparent 18%),
-                linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent 72%),
-                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 14px),
-                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 14px);
-            background-size: auto, auto, 8rem 5.8rem, 8rem 5.8rem;
-            background-position: center, center, 1.25rem calc(100% - 0.95rem), 1.25rem calc(100% - 0.95rem);
-            background-repeat: no-repeat;
-            opacity: 0.9;
+                linear-gradient(120deg, rgba(255,255,255,0.08), transparent 42%),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 18px);
+            opacity: 0.28;
             pointer-events: none;
         }
 
         .mesej-hero::after {
             content: "";
             position: absolute;
-            right: 6%;
-            top: -2.25rem;
-            width: 12rem;
-            height: 12rem;
+            right: -4rem;
+            top: -4rem;
+            width: 16rem;
+            height: 16rem;
             border-radius: 50%;
-            border: 1px solid rgba(255, 241, 209, 0.22);
-            box-shadow:
-                0 0 0 1rem rgba(255, 241, 209, 0.08),
-                0 0 0 2rem rgba(255, 241, 209, 0.04);
-            opacity: 0.92;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            filter: blur(6px);
             pointer-events: none;
         }
 
         .mesej-hero-eyebrow {
-            color: rgba(255, 244, 228, 0.74);
+            color: rgba(236, 254, 255, 0.82);
         }
 
         .mesej-hero-title {
             color: #ffffff;
-            text-shadow: 0 10px 22px rgba(160, 74, 0, 0.24);
+            text-shadow: 0 10px 22px rgba(15, 23, 42, 0.24);
         }
 
         .mesej-hero-copy {
-            color: rgba(255, 247, 235, 0.92);
+            color: rgba(236, 254, 255, 0.92);
+        }
+
+        .message-card {
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96));
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .message-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(20, 184, 166, 0.22);
+            box-shadow: 0 22px 44px rgba(20, 184, 166, 0.13), 0 8px 18px rgba(15, 23, 42, 0.07);
+        }
+
+        .message-card-accent {
+            background: linear-gradient(180deg, #14b8a6, #0f766e);
+        }
+
+        .message-chip {
+            background: rgba(20, 184, 166, 0.08);
+            color: #0f766e;
+        }
+
+        .message-mail-icon {
+            color: rgba(20, 184, 166, 0.48);
+        }
+
+        .message-btn-primary {
+            background: linear-gradient(120deg, #0f766e, #14b8a6);
+            box-shadow: 0 10px 24px rgba(20, 184, 166, 0.22);
+        }
+
+        .message-btn-primary:hover {
+            background: linear-gradient(120deg, #115e59, #0f766e);
+        }
+
+        .message-empty-icon {
+            background: rgba(20, 184, 166, 0.08);
         }
 
     </style>
@@ -76,7 +118,8 @@
 
     <section class="max-w-7xl mx-auto px-6 py-12">
 
-        <div class="mesej-hero rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12">
+        <div class="mesej-hero fade-up rounded-[2.25rem] px-6 py-8 sm:px-8 sm:py-10 mb-12">
+            <p class="mesej-hero-eyebrow text-xs font-bold uppercase tracking-[0.3em]">Pengurusan Pertanyaan</p>
             <h2 class="mesej-hero-title text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] max-w-3xl">
                 Urus Mesej Pelanggan
             </h2>
@@ -86,7 +129,7 @@
         </div>
 
         @if ($message = Session::get('success'))
-            <div class="mb-8 bg-white border border-green-100 shadow-sm text-green-700 px-5 py-4 rounded-2xl flex items-center">
+            <div class="mb-8 bg-white border border-green-100 shadow-sm text-green-700 px-5 py-4 rounded-2xl flex items-center fade-up">
                 <i class="fas fa-check-circle mr-3"></i>
                 <span class="text-sm font-bold">{{ $message }}</span>
             </div>
@@ -94,28 +137,24 @@
 
         @if($messages->count() > 0)
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @foreach($messages as $msg)
-                    <div class="group bg-white rounded-[2rem] border border-slate-100 flex flex-col h-full shadow-sm hover:shadow-xl hover:border-orange-100 transition-all duration-300 relative overflow-hidden">
+                @foreach($messages as $i => $msg)
+                    <div class="message-card group fade-up rounded-[2rem] flex flex-col h-full relative overflow-hidden" style="animation-delay: {{ 0.08 * ($i % 6) }}s">
                         
-                        {{-- Subtle Orange Accent Line --}}
-                        <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="message-card-accent absolute left-0 top-0 bottom-0 w-1.5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                         <div class="p-8 flex-grow">
-                            {{-- Date & Status --}}
                             <div class="flex justify-between items-center mb-6">
-                                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 bg-orange-50 px-3 py-1 rounded-full">Baru</span>
+                                <span class="message-chip text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full">Baru</span>
                                 <span class="text-[11px] font-bold text-slate-400">{{ $msg->created_at->format('d M, Y') }}</span>
                             </div>
 
-                            {{-- User Info --}}
                             <div class="mb-8">
                                 <h2 class="text-xl font-black text-slate-800 leading-tight mb-2 tracking-tight">{{ $msg->nama }}</h2>
                                 <p class="text-sm text-slate-400 font-medium truncate flex items-center gap-2">
-                                    <i class="fas fa-at text-orange-300"></i> {{ $msg->emel }}
+                                    <i class="fas fa-at message-mail-icon"></i> {{ $msg->emel }}
                                 </p>
                             </div>
 
-                            {{-- Preview Section --}}
                             <div class="space-y-5">
                                 <div class="relative">
                                     <label class="text-[9px] font-black uppercase text-slate-300 mb-2 block tracking-widest">Perkara</label>
@@ -140,9 +179,8 @@
                             </div>
                         </div>
 
-                        {{-- Premium Actions --}}
                         <div class="px-8 pb-8 pt-2 mt-auto grid grid-cols-5 gap-3">
-                            <a href="{{ route('admin.message-detail', $msg->id) }}" class="col-span-4 flex justify-center items-center bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl transition-all duration-300 text-xs font-black uppercase tracking-widest shadow-lg shadow-orange-200">
+                            <a href="{{ route('admin.message-detail', $msg->id) }}" class="message-btn-primary col-span-4 flex justify-center items-center text-white py-4 rounded-2xl transition-all duration-300 text-xs font-black uppercase tracking-widest">
                                 Lihat Mesej
                             </a>
                             
@@ -158,14 +196,14 @@
                 @endforeach
             </div>
 
-            <div class="mt-16 flex justify-center">
+            <div class="mt-16 flex justify-center fade-up">
                 {{ $messages->links() }}
             </div>
 
         @else
-            <div class="bg-white rounded-[3rem] border-2 border-dashed border-slate-100 text-center py-32 shadow-sm">
-                <div class="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-inbox text-orange-200 text-3xl"></i>
+            <div class="bg-white rounded-[3rem] border-2 border-dashed border-slate-100 text-center py-32 shadow-sm fade-up">
+                <div class="message-empty-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-inbox text-teal-300 text-3xl"></i>
                 </div>
                 <h3 class="text-xl font-bold text-slate-800 mb-1">Peti Masuk Kosong</h3>
                 <p class="text-slate-400 font-medium">Tiada sebarang mesej pelanggan buat masa ini.</p>

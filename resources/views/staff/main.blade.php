@@ -214,7 +214,7 @@
 
     <div id="loader-content" class="relative z-30 text-center transition-all duration-1000">
         <div class="relative w-56 h-56 md:w-76 md:h-80 mx-auto mb-6 opacity-0 transform translate-y-4 transition-all duration-1000 ease-out" id="logo-container">
-            <img src="{{ asset('images/icon/SES LOGO RENEW.png') }}"
+            <img src="{{ asset('images/icon/SES LOGO WHITE.png') }}"
                  class="absolute inset-0 w-full h-full object-contain filter-glow multiply-blend animate-smoke-dissolve">
         </div>
 

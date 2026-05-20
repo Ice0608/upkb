@@ -11,10 +11,24 @@ class AdminUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         abort_if(auth()->user()->level !== 'admin', 403);
-        $users = User::all();
+        $search = trim((string) $request->query('search', ''));
+
+        $users = User::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $query->where(function ($innerQuery) use ($search) {
+                    $innerQuery
+                        ->where('name', 'like', '%' . $search . '%')
+                        ->orWhere('username', 'like', '%' . $search . '%')
+                        ->orWhere('level', 'like', '%' . $search . '%');
+                });
+            })
+            ->orderByRaw("CASE WHEN level = 'admin' THEN 0 ELSE 1 END")
+            ->orderBy('name')
+            ->get();
+
         return view('admin.users.index', compact('users'));
     }
 

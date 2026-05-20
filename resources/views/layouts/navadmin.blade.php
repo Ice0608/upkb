@@ -15,7 +15,7 @@
             position: absolute;
             inset: auto 0 0;
             height: 2px;
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.14), rgba(249, 115, 22, 0.95), rgba(251, 146, 60, 0.14));
+            background: linear-gradient(90deg, rgba(45, 212, 191, 0.12), rgba(20, 184, 166, 0.96), rgba(45, 212, 191, 0.12));
         }
 
         .site-nav-brand,
@@ -35,15 +35,15 @@
             position: relative;
             overflow: hidden;
             padding: 0.7rem 0.95rem 0.7rem 0.7rem;
-            border: 1px solid rgba(251, 146, 60, 0.12);
-            background: linear-gradient(135deg, rgba(255, 247, 237, 0.82), rgba(255, 255, 255, 0.97) 52%, rgba(255, 250, 245, 0.9));
+            border: 1px solid rgba(20, 184, 166, 0.14);
+            background: linear-gradient(135deg, rgba(236, 253, 245, 0.92), rgba(255, 255, 255, 0.98) 52%, rgba(240, 253, 250, 0.92));
             box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
             backdrop-filter: blur(10px);
         }
 
         .site-nav-brand:hover {
-            border-color: rgba(249, 115, 22, 0.2);
-            box-shadow: 0 16px 34px rgba(249, 115, 22, 0.1);
+            border-color: rgba(20, 184, 166, 0.24);
+            box-shadow: 0 16px 34px rgba(20, 184, 166, 0.12);
         }
 
         .site-nav-brand::before {
@@ -51,8 +51,8 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(251, 191, 36, 0.22), transparent 34%),
-                radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.12), transparent 32%);
+                radial-gradient(circle at top left, rgba(94, 234, 212, 0.26), transparent 34%),
+                radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.12), transparent 32%);
             pointer-events: none;
         }
 
@@ -63,14 +63,14 @@
             right: 1rem;
             bottom: 0.58rem;
             height: 1px;
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.25), rgba(251, 146, 60, 0));
+            background: linear-gradient(90deg, rgba(45, 212, 191, 0.3), rgba(45, 212, 191, 0));
             pointer-events: none;
         }
 
         .site-nav-brand-badge {
             position: relative;
             overflow: hidden;
-            box-shadow: 0 14px 34px rgba(249, 115, 22, 0.14);
+            box-shadow: 0 14px 34px rgba(20, 184, 166, 0.16);
         }
 
         .site-nav-brand-badge::before {
@@ -78,7 +78,7 @@
             position: absolute;
             inset: 1px;
             border-radius: 1rem;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 247, 237, 0.88));
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(236, 253, 245, 0.9));
         }
 
         .site-nav-brand-badge::after {
@@ -88,7 +88,7 @@
             width: 70%;
             height: 70%;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.3), rgba(251, 191, 36, 0));
+            background: radial-gradient(circle, rgba(94, 234, 212, 0.34), rgba(94, 234, 212, 0));
             pointer-events: none;
         }
 
@@ -105,7 +105,7 @@
 
         .site-nav-brand:hover .site-nav-brand-kicker {
             letter-spacing: 0.28em;
-            color: #ea580c;
+            color: #0f766e;
         }
 
         .site-nav-brand:hover .site-nav-brand-title {
@@ -125,15 +125,15 @@
             padding: 0.28rem;
             border-radius: 999px;
             border: 1px solid rgba(226, 232, 240, 0.9);
-            background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,247,237,0.94));
+            background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(240,249,255,0.92));
             box-shadow: 0 10px 28px rgba(15, 23, 42, 0.10);
             transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
         }
 
         .theme-switch:hover {
             transform: translateY(-1px);
-            border-color: rgba(251, 146, 60, 0.48);
-            box-shadow: 0 16px 34px rgba(249, 115, 22, 0.16);
+            border-color: rgba(34, 211, 238, 0.48);
+            box-shadow: 0 16px 34px rgba(6, 182, 212, 0.16);
         }
 
         .theme-switch-track {
@@ -157,8 +157,8 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            background: linear-gradient(135deg, #f97316, #fb923c);
-            box-shadow: 0 12px 24px rgba(249, 115, 22, 0.24);
+            background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+            box-shadow: 0 12px 24px rgba(6, 182, 212, 0.24);
             transition: transform 0.26s ease, background 0.26s ease, box-shadow 0.26s ease;
         }
 
@@ -180,7 +180,7 @@
             bottom: 0.45rem;
             height: 2px;
             border-radius: 999px;
-            background: linear-gradient(90deg, #fb923c, #f97316);
+            background: linear-gradient(90deg, #2dd4bf, #14b8a6);
             transform: scaleX(0);
             transform-origin: center;
             transition: transform 0.25s ease;
@@ -225,7 +225,7 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top left, rgba(251, 191, 36, 0.12), transparent 26%),
+                radial-gradient(circle at top left, rgba(45, 212, 191, 0.12), transparent 26%),
                 radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.1), transparent 30%);
             pointer-events: none;
         }
@@ -248,9 +248,9 @@
         }
 
         .site-nav-mobile[open] .site-nav-menu-icon {
-            border-color: rgba(249, 115, 22, 0.35);
-            background: rgba(249, 115, 22, 0.12);
-            color: #ea580c;
+            border-color: rgba(20, 184, 166, 0.35);
+            background: rgba(20, 184, 166, 0.12);
+            color: #0f766e;
         }
 
         .site-nav-mobile-panel {
@@ -315,7 +315,7 @@
             box-shadow:
                 0 34px 60px rgba(15, 23, 42, 0.24),
                 0 0 40px rgba(255, 255, 255, 0.12),
-                0 0 60px rgba(249, 115, 22, 0.12),
+                0 0 60px rgba(20, 184, 166, 0.12),
                 0 0 0 1px rgba(255, 255, 255, 0.1),
                 inset 0 1px 0 rgba(255, 255, 255, 0.34);
             filter: saturate(1.1) brightness(1.02);
@@ -468,14 +468,14 @@
 
         .site-nav-mobile-link:hover,
         .site-nav-mobile-link:focus-visible {
-            color: #f97316;
+            color: #0f766e;
             background: #f8fafc;
         }
 
         .site-nav-mobile-link.is-active {
-            color: #f97316;
-            background: #fff7ed;
-            box-shadow: inset 0 -2px 0 rgba(249, 115, 22, 0.7);
+            color: #0f766e;
+            background: #ecfeff;
+            box-shadow: inset 0 -2px 0 rgba(20, 184, 166, 0.7);
         }
 
         body.admin-dark {
@@ -497,17 +497,17 @@
         }
 
         body.admin-dark .site-nav-brand {
-            border-color: rgba(249, 115, 22, 0.2);
+            border-color: rgba(45, 212, 191, 0.24);
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.97) 52%, rgba(30, 41, 59, 0.9));
             box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
         }
 
         body.admin-dark .site-nav-brand::after {
-            background: linear-gradient(90deg, rgba(251, 146, 60, 0.38), rgba(251, 146, 60, 0));
+            background: linear-gradient(90deg, rgba(45, 212, 191, 0.38), rgba(45, 212, 191, 0));
         }
 
         body.admin-dark .site-nav-brand-badge {
-            border-color: rgba(249, 115, 22, 0.2);
+            border-color: rgba(45, 212, 191, 0.3);
             background: linear-gradient(145deg, #1e293b, #0f172a);
             box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
         }
@@ -537,20 +537,20 @@
         body.admin-dark .site-nav-login:hover,
         body.admin-dark .site-nav-menu-icon:hover,
         body.admin-dark .site-nav-mobile[open] .site-nav-menu-icon {
-            border-color: rgba(251, 146, 60, 0.24);
-            background: rgba(30, 41, 59, 0.94);
-            color: #fb923c;
+            border-color: rgba(45, 212, 191, 0.45);
+            background: rgba(15, 23, 42, 0.92);
+            color: #5eead4;
         }
 
         body.admin-dark .site-nav-link:not(.is-active):hover,
         body.admin-dark .site-nav-link:not(.is-active):focus-visible {
             background: rgba(148, 163, 184, 0.08);
-            color: #fb923c;
+            color: #5eead4;
         }
 
         body.admin-dark .site-nav-link.is-active {
-            background: rgba(249, 115, 22, 0.14);
-            color: #fb923c;
+            background: rgba(20, 184, 166, 0.14);
+            color: #5eead4;
         }
 
         body.admin-dark .site-nav-program-shell,
@@ -720,22 +720,22 @@
 <nav class="site-nav">
     <div class="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <a href="{{ url('/') }}" class="site-nav-brand flex min-w-0 items-center gap-3 rounded-[1.6rem]">
-            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-orange-100/90 bg-[linear-gradient(145deg,#fff7ed,#ffffff)] sm:h-14 sm:w-14">
+            <span class="site-nav-brand-badge flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-teal-100/90 bg-[linear-gradient(145deg,#ecfdf5,#ffffff)] sm:h-14 sm:w-14">
                 <img src="{{ asset('images/icon/seslogo.png') }}" alt="SES logo" class="site-nav-brand-mark h-9 w-9 object-contain sm:h-10 sm:w-10">
             </span>
             <div class="site-nav-brand-copy min-w-0 leading-tight">
-                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-orange-500 sm:text-xs">SES</p>
+                <p class="site-nav-brand-kicker truncate text-[11px] uppercase tracking-[0.05em] text-teal-600 sm:text-xs">SES</p>
                 <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">SMART Education</h1>
                 <h1 class="site-nav-brand-title text-sm tracking-[-0.02em] text-slate-900 sm:text-[1.02rem]">Society</h1>
             </div>
         </a>
 
         <div class="ml-auto hidden items-center gap-2 lg:flex">
-            <a href="{{ route('dashboard') }}" class="site-nav-link {{ request()->routeIs('dashboard') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('dashboard') }}" class="site-nav-link {{ request()->routeIs('dashboard') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                     Dashboard
                 </a>
             <div class="site-nav-program relative">
-                <a href="{{ route('admin.programs') }}" class="site-nav-link {{ request()->routeIs('admin.programs') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+                <a href="{{ route('admin.programs') }}" class="site-nav-link {{ request()->routeIs('admin.programs') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                     Program
                 </a>
 
@@ -779,13 +779,13 @@
                     </div>
                 </div> --}}
             </div>
-            <a href="{{ route('admin.institusis') }}" class="site-nav-link {{ request()->routeIs('admin.institusis') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('admin.institusis') }}" class="site-nav-link {{ request()->routeIs('admin.institusis') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 Institusi
             </a>
-            <a href="{{ route('admin.messages') }}" class="site-nav-link {{ request()->routeIs('admin.messages') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('admin.messages') }}" class="site-nav-link {{ request()->routeIs('admin.messages') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
                 Pertanyaan
             </a>
-            <a href="{{ route('admin.users') }}" class="site-nav-link {{ request()->routeIs('admin.users') ? 'is-active bg-orange-50 text-orange-600' : 'text-slate-700 hover:bg-slate-50 hover:text-orange-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
+            <a href="{{ route('admin.users') }}" class="site-nav-link {{ request()->routeIs('admin.users') ? 'is-active bg-cyan-50 text-cyan-600' : 'text-slate-700 hover:bg-slate-50 hover:text-cyan-500' }} inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold">
             Users
             </a>
 
@@ -805,7 +805,7 @@
         <div class="hidden lg:block">
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="site-nav-link inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-orange-500">Logout</button>
+                <button type="submit" class="site-nav-link inline-flex items-center rounded-full px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 hover:text-cyan-500">Logout</button>
             </form>
         </div>
 

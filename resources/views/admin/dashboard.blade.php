@@ -138,7 +138,7 @@
 <div id="pixel-loader" class="fixed inset-0 z-[9999] bg-black overflow-hidden flex items-center justify-center">
     
     <div class="absolute inset-0 opacity-10 pointer-events-none" 
-         style="background-image: linear-gradient(#ffaa00 1px, transparent 1px), linear-gradient(90deg, #ffaa00 1px, transparent 1px); background-size: 60px 60px;">
+         style="background-image: linear-gradient(#14b8a6 1px, transparent 1px), linear-gradient(90deg, #14b8a6 1px, transparent 1px); background-size: 60px 60px;">
     </div>
 
     <div class="absolute inset-0 z-10 opacity-0 transition-opacity duration-1000" id="video-container">
@@ -150,14 +150,14 @@
     <div id="loader-content" class="relative z-30 text-center transition-all duration-1000">
         
         <div class="relative w-56 h-56 md:w-76 md:h-80 mx-auto mb-6 opacity-0 transform translate-y-4 transition-all duration-1000 ease-out" id="logo-container">
-            <img src="{{ asset('images/icon/seslogo.png') }}"
+            <img src="{{ asset('images/icon/SES LOGO WHITE.png') }}"
                  class="absolute inset-0 w-full h-full object-contain filter-glow multiply-blend animate-smoke-dissolve">
         </div>
 
-        <div class="font-mono text-orange-500 tracking-[0.5em] text-[10px] uppercase animate-glitch-text opacity-0 transition-opacity duration-700 delay-500" id="status-text">
+        <div class="font-mono text-teal-400 tracking-[0.5em] text-[10px] uppercase animate-glitch-text opacity-0 transition-opacity duration-700 delay-500" id="status-text">
             Initializing System...
             <div class="mt-2 w-32 h-[1px] bg-gray-800 mx-auto overflow-hidden relative">
-                <div id="load-bar" class="h-full bg-orange-500 w-0 transition-all duration-[2s] ease-in-out"></div>
+                <div id="load-bar" class="h-full bg-teal-400 w-0 transition-all duration-[2s] ease-in-out"></div>
             </div>
         </div>
     </div>
@@ -177,20 +177,20 @@
     body.is-loading { overflow: hidden !important; }
 
     /* Efek Glow & Multiply untuk Logo */
-    .filter-glow { filter: drop-shadow(0 0 25px rgba(255,165,0,0.6)); }
+    .filter-glow { filter: drop-shadow(0 0 25px rgba(20,184,166,0.55)); }
     .multiply-blend { mix-blend-mode: multiply; }
 
     /* Animasi Smoke/Dissolve untuk Logo */
     @keyframes smoke-dissolve {
-        0% { opacity: 0; filter: blur(15px) drop-shadow(0 0 25px rgba(255,165,0,0)); transform: scale(1.1); }
-        50% { opacity: 0.8; filter: blur(5px) drop-shadow(0 0 25px rgba(255,165,0,0.6)); transform: scale(1); }
-        100% { opacity: 1; filter: blur(0px) drop-shadow(0 0 25px rgba(255,165,0,0.6)); transform: scale(1); }
+        0% { opacity: 0; filter: blur(15px) drop-shadow(0 0 25px rgba(20,184,166,0)); transform: scale(1.1); }
+        50% { opacity: 0.8; filter: blur(5px) drop-shadow(0 0 25px rgba(20,184,166,0.55)); transform: scale(1); }
+        100% { opacity: 1; filter: blur(0px) drop-shadow(0 0 25px rgba(20,184,166,0.55)); transform: scale(1); }
     }
     .animate-smoke-dissolve { animation: smoke-dissolve 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
 
     /* Animasi Glitch Teks Halus */
     @keyframes glitch-text {
-        0%, 100% { transform: translate(0); text-shadow: 0 0 2px rgba(255,165,0,0.5); }
+        0%, 100% { transform: translate(0); text-shadow: 0 0 2px rgba(45,212,191,0.45); }
         33% { transform: translate(-1px, 1px); text-shadow: -1px 0 red, 1px 0 blue; }
         66% { transform: translate(1px, -1px); text-shadow: 1px 0 red, -1px 0 blue; }
     }

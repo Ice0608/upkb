@@ -1454,20 +1454,44 @@
                     'button_class' => 'bg-[linear-gradient(135deg,#fb923c,#ea580c)] text-white border-transparent shadow-[0_14px_32px_rgba(249,115,22,0.28)]',
                     'questions' => [
                         [
-                            'question' => 'Apa itu program TVET di bawah SESOC?',
-                            'answer' => 'Program TVET memberi fokus kepada kemahiran praktikal, latihan industri, dan persediaan kerja dalam bidang teknikal serta vokasional.',
+                            'question' => 'Apa itu Sijil Kemahiran Malaysia (SKM)?',
+                            'answer' => 'SKM ialah sijil kemahiran yang dianugerahkan oleh Jabatan Pembangunan Kemahiran di bawah Kementerian Sumber Manusia. Sijil ini terdiri daripada:<ul class="mt-3 list-disc space-y-2 pl-6 text-slate-600"><li>Sijil Kemahiran Malaysia (SKM) Tahap 1</li><li>Sijil Kemahiran Malaysia (SKM) Tahap 2</li><li>Sijil Kemahiran Malaysia (SKM) Tahap 3</li><li>Diploma Kemahiran Malaysia (DKM) Tahap 4</li><li>Diploma Lanjutan Kemahiran Malaysia (DLKM) Tahap 5</li></ul>',
                         ],
                         [
-                            'question' => 'Apa beza SKM Tahap 1, 2 dan 3?',
-                            'answer' => 'SKM Tahap 1 memberi pendedahan asas kemahiran, Tahap 2 memperkukuh kompetensi kerja, dan Tahap 3 memberi kemahiran lanjutan untuk tugas lebih kompleks.',
+                            'question' => 'Persijilan Kemahiran Malaysia boleh didapati melalui kaedah apa?',
+                            'answer' => 'Persijilan Kemahiran Malaysia boleh diperoleh melalui tiga kaedah, iaitu Sistem Latihan Pusat Bertauliah (SLaPB), Akademi Dalam Industri (ADI), dan Pentauliahan Pencapaian Terdahulu (PPT). SLaPB melibatkan latihan di pusat bertauliah JPK, ADI menggabungkan latihan di industri dan institusi kemahiran, manakala PPT membolehkan calon mendapatkan persijilan melalui pengalaman kerja atau latihan terdahulu berdasarkan bukti keterampilan yang dinilai dan disahkan.',
                         ],
                         [
-                            'question' => 'Berapa lama tempoh pengajian TVET?',
-                            'answer' => 'Tempoh pengajian bergantung kepada kursus yang dipilih. Kebiasaannya melibatkan gabungan teori, amali bengkel, dan latihan industri.',
+                            'question' => 'Apa itu Pusat Bertauliah (PB)?',
+                            'answer' => 'Pusat Bertauliah (PB) ialah institusi latihan yang telah mendapat kelulusan dan pengiktirafan daripada Jabatan Pembangunan Kemahiran untuk menjalankan program latihan kemahiran serta mengeluarkan persijilan SKM.',
                         ],
                         [
-                            'question' => 'Lepasan TVET boleh sambung belajar atau terus bekerja?',
-                            'answer' => 'Boleh kedua-duanya. Pelajar boleh terus masuk ke pasaran kerja mengikut bidang kemahiran atau sambung ke tahap sijil yang lebih tinggi jika memenuhi syarat.',
+                            'question' => 'Apakah faedah Persijilan Kemahiran Malaysia?',
+                            'answer' => 'Persijilan Kemahiran Malaysia diiktiraf oleh industri di Malaysia, menyediakan laluan kerjaya dan pembangunan diri yang menarik setanding dengan laluan berasaskan kelayakan akademik, serta membantu melahirkan pekerja mahir yang terlatih dan berkelayakan untuk meningkatkan daya saing industri tempatan di pasaran dunia.',
+                        ],
+                        [
+                            'question' => 'Apakah syarat kelayakan Persijilan Kemahiran Malaysia?',
+                            'answer' => 'Antara syarat asas ialah boleh bertutur dan menulis dalam Bahasa Melayu atau Bahasa Inggeris, serta mempunyai SKM tahap yang lebih rendah untuk menyertai SKM tahap yang lebih tinggi dalam bidang kursus yang sama. Walau bagaimanapun, Pusat Bertauliah boleh menetapkan syarat tambahan kepada pelatih mereka.',
+                        ],
+                        [
+                            'question' => 'Apa beza SKM dengan diploma akademik?',
+                            'answer' => 'SKM lebih fokus kepada latihan praktikal dan kemahiran kerja sebenar, manakala diploma akademik lebih menekankan teori serta pembelajaran dalam kelas.',
+                        ],
+                        [
+                            'question' => 'Betul ke pelajar TVET boleh berjaya walaupun bukan aliran akademik?',
+                            'answer' => 'Ya. Hari ini industri lebih memerlukan tenaga kerja berkemahiran tinggi berbanding hanya kelulusan teori semata-mata. Ramai graduan TVET berjaya menjadi tenaga pakar, penyelia, usahawan dan pengurus industri.',
+                        ],
+                        [
+                            'question' => 'Kenapa kerajaan sekarang sangat fokus kepada TVET?',
+                            'answer' => 'TVET menjadi antara sektor utama pembangunan ekonomi negara untuk melahirkan tenaga kerja mahir yang diperlukan oleh industri tempatan dan antarabangsa.',
+                        ],
+                        [
+                            'question' => 'TVET ini untuk pelajar lemah belajar sahaja ke?',
+                            'answer' => 'Tidak. TVET sesuai untuk pelajar yang mempunyai bakat praktikal, kemahiran teknikal, kreativiti dan minat hands-on. Ramai pelajar cemerlang juga memilih laluan TVET kerana peluang kerjaya yang luas.',
+                        ],
+                        [
+                            'question' => 'Boleh ke pelajar TVET sambung sampai ijazah?',
+                            'answer' => 'Boleh. Laluan TVET sekarang sangat luas bermula daripada SKM, DKM, DLKM, Diploma dan seterusnya ke Ijazah, bergantung kepada bidang dan syarat institusi.',
                         ],
                     ],
                 ],
@@ -1546,20 +1570,48 @@
                     'button_class' => 'bg-[linear-gradient(135deg,#2563eb,#0f172a)] text-white border-transparent shadow-[0_14px_32px_rgba(37,99,235,0.28)]',
                     'questions' => [
                         [
-                            'question' => 'Apakah contoh program dalam kategori Sains Kesihatan?',
-                            'answer' => 'Antara contoh bidang ialah penjagaan kesihatan, pembantu perubatan, penjagaan pesakit, dan program berkaitan kesihatan komuniti atau klinikal.',
+                            'question' => 'Adakah program di Murni International College diiktiraf?',
+                            'answer' => 'Ya, program yang ditawarkan mendapat pengiktirafan daripada Kementerian Pengajian Tinggi (KPT), Malaysian Qualifications Agency (MQA), dan badan profesional berkaitan mengikut kursus yang diambil.',
                         ],
                         [
-                            'question' => 'Adakah program Sains Kesihatan ada latihan praktikal?',
-                            'answer' => 'Kebanyakan program dalam kategori ini melibatkan komponen latihan praktikal, simulasi, atau penempatan mengikut struktur kursus dan institusi.',
+                            'question' => 'Bolehkah pelatih bekerja di hospital kerajaan?',
+                            'answer' => 'Ya, graduan yang memenuhi syarat dan lulus peperiksaan atau proses pendaftaran badan profesional boleh memohon pekerjaan di hospital kerajaan ataupun swasta.',
                         ],
                         [
-                            'question' => 'Apa syarat asas untuk mohon program Sains Kesihatan?',
-                            'answer' => 'Syarat asas bergantung pada program, tetapi biasanya melibatkan kelulusan akademik tertentu dan kadang-kadang keperluan subjek berkaitan seperti Sains atau Matematik.',
+                            'question' => 'Adakah kursus kejururawatan berdaftar dengan LJM?',
+                            'answer' => 'Ya, program Diploma Kejururawatan didaftarkan dan dipantau sepenuhnya oleh Nursing Board Malaysia (Lembaga Jururawat Malaysia - LJM).',
                         ],
                         [
-                            'question' => 'Apakah peluang kerjaya selepas tamat pengajian Sains Kesihatan?',
-                            'answer' => 'Graduan boleh memasuki sektor kesihatan, pusat rawatan, klinik, pusat jagaan, atau sambung pengajian ke tahap yang lebih tinggi mengikut bidang yang diambil.',
+                            'question' => 'Adakah program Medical Assistant berdaftar dengan Lembaga Pembantu Perubatan?',
+                            'answer' => 'Ya, program berkaitan Pembantu Perubatan tertakluk kepada piawaian Lembaga Pembantu Perubatan Malaysia bagi memastikan pelatih layak untuk pendaftaran profesional selepas tamat pengajian.',
+                        ],
+                        [
+                            'question' => 'Adakah pelajar menjalani latihan klinikal di hospital sebenar?',
+                            'answer' => 'Ya, pelajar akan menjalani latihan klinikal di hospital kerajaan atau fasiliti kesihatan untuk mendapatkan pengalaman praktikal secara langsung.',
+                        ],
+                        [
+                            'question' => 'Adakah sijil atau diploma kolej ini diiktiraf untuk sambung belajar?',
+                            'answer' => 'Ya, pelatih boleh menyambung pengajian ke peringkat lebih tinggi tertakluk kepada syarat universiti atau institusi yang dipohon.',
+                        ],
+                        [
+                            'question' => 'Bagaimana peluang pekerjaan selepas tamat belajar?',
+                            'answer' => 'Bidang kesihatan mempunyai permintaan yang tinggi, jadi peluang pekerjaan dalam sektor kerajaan dan swasta adalah luas.',
+                        ],
+                        [
+                            'question' => 'Adakah pensyarah mempunyai pengalaman dalam bidang kesihatan?',
+                            'answer' => 'Ya, kebanyakan pensyarah terdiri daripada tenaga pengajar yang mempunyai pengalaman akademik dan klinikal dalam bidang masing-masing. Pembelajaran juga lebih berorientasikan industri kerana ramai tenaga pengajar mempunyai pengalaman akademik dan klinikal.',
+                        ],
+                        [
+                            'question' => 'Apakah kemudahan yang disediakan untuk pelajar kesihatan?',
+                            'answer' => 'Kolej menyediakan makmal kemahiran klinikal, bilik simulasi, perpustakaan, dan kemudahan pembelajaran yang lengkap seperti Mock Ward, Skill Lab, ICT Lab, Makmal Praktikal, Asrama, Student Centre dan lain-lain untuk menyokong latihan pelatih.',
+                        ],
+                        [
+                            'question' => 'Ada kemudahan bantuan kewangan?',
+                            'answer' => 'Pelajar boleh memohon PTPTN serta beberapa bantuan penajaan tertentu mengikut syarat semasa.',
+                        ],
+                        [
+                            'question' => 'Mengapa ibu bapa perlu memilih Murni International College?',
+                            'answer' => 'MURNI memberi penekanan kepada pendidikan kesihatan yang berkualiti, latihan praktikal, disiplin pelajar, dan persediaan kerjaya dalam sektor healthcare. MURNI berada di Bandar Baru Nilai yang dekat dengan KLIA, Putrajaya, kemudahan awam, restoran, dan kawasan yang student-friendly.',
                         ],
                     ],
                 ],

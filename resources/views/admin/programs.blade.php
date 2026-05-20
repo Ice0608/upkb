@@ -8,6 +8,14 @@
     <title>SESOC - Admin Program</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
+        :root {
+            --program-accent: #14b8a6;
+            --program-accent-strong: #0f766e;
+            --program-accent-soft: #5eead4;
+            --program-sky: #38bdf8;
+            --program-ink: #0f172a;
+        }
+
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
@@ -22,17 +30,49 @@
             position: relative;
             overflow: hidden;
             border-radius: 1.85rem;
+            border: 1px solid rgba(94, 234, 212, 0.18);
             background:
-                radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 28%),
-                radial-gradient(circle at bottom left, rgba(255,255,255,0.10), transparent 22%),
-                linear-gradient(135deg, #ea580c 0%, #f97316 52%, #fb923c 100%);
+                radial-gradient(circle at 12% 18%, rgba(255,255,255,0.18), transparent 24%),
+                radial-gradient(circle at 88% 24%, rgba(125, 211, 252, 0.28), transparent 22%),
+                radial-gradient(circle at 76% 80%, rgba(94, 234, 212, 0.26), transparent 24%),
+                linear-gradient(135deg, #0f172a 0%, #0f766e 44%, #14b8a6 74%, #67e8f9 100%);
+            box-shadow:
+                0 24px 55px rgba(15, 23, 42, 0.16),
+                0 10px 24px rgba(20, 184, 166, 0.14);
+        }
+
+        .hero-admin::before,
+        .hero-admin::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .hero-admin::before {
+            inset: 0;
+            background:
+                linear-gradient(120deg, rgba(255,255,255,0.08), transparent 42%),
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px 18px),
+                repeating-linear-gradient(180deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 18px);
+            opacity: 0.28;
+        }
+
+        .hero-admin::after {
+            right: -4rem;
+            top: -4rem;
+            width: 16rem;
+            height: 16rem;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), rgba(255,255,255,0));
+            filter: blur(6px);
         }
 
         body.admin-dark .hero-admin {
             background:
-                radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 28%),
-                radial-gradient(circle at bottom left, rgba(255,255,255,0.06), transparent 22%),
-                linear-gradient(135deg, #1b3256 0%, #12214d 45%, #09182d 100%);
+                radial-gradient(circle at 14% 18%, rgba(255,255,255,0.08), transparent 24%),
+                radial-gradient(circle at 88% 24%, rgba(45, 212, 191, 0.16), transparent 22%),
+                radial-gradient(circle at 76% 80%, rgba(56, 189, 248, 0.12), transparent 24%),
+                linear-gradient(135deg, #10203f 0%, #102a43 42%, #0f3c4c 74%, #0b1327 100%);
         }
 
         body.admin-dark .prog-card {
@@ -52,8 +92,8 @@
         }
 
         body.admin-dark .prog-card-kicker {
-            background: rgba(249, 115, 22, 0.12);
-            color: #fbbf24;
+            background: rgba(20, 184, 166, 0.12);
+            color: #99f6e4;
         }
 
         body.admin-dark .prog-title {
@@ -121,15 +161,16 @@
             overflow: hidden;
             border: 1px solid rgba(15,23,42,0.07);
             border-radius: 1.6rem;
-            background: #fff;
-            box-shadow: 0 2px 16px rgba(15,23,42,0.06);
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96));
+            box-shadow: 0 8px 24px rgba(15,23,42,0.06);
             transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .prog-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(249,115,22,0.28);
-            box-shadow: 0 18px 40px rgba(249,115,22,0.13), 0 4px 12px rgba(15,23,42,0.06);
+            border-color: rgba(20,184,166,0.24);
+            box-shadow: 0 22px 44px rgba(20,184,166,0.13), 0 8px 18px rgba(15,23,42,0.07);
         }
 
         .prog-card-top {
@@ -143,9 +184,9 @@
             gap: 0.35rem;
             margin-bottom: 1rem;
             border-radius: 999px;
-            background: rgba(249,115,22,0.08);
+            background: rgba(20,184,166,0.08);
             padding: 0.42rem 0.8rem;
-            color: #ea580c;
+            color: #0f766e;
             font-size: 0.68rem;
             font-weight: 800;
             letter-spacing: 0.18em;
@@ -160,9 +201,11 @@
             height: 3.15rem;
             margin-bottom: 1rem;
             border-radius: 0.95rem;
-            background: rgba(249,115,22,0.1);
-            color: #f97316;
+            background:
+                linear-gradient(145deg, rgba(204,251,241,0.9), rgba(240,249,255,0.95));
+            color: #0f766e;
             font-size: 1.2rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 10px 20px rgba(20,184,166,0.08);
         }
 
         .prog-title {
@@ -209,7 +252,7 @@
             padding: 0;
             border: none;
             background: none;
-            color: #f97316;
+            color: #0f766e;
             font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
@@ -217,7 +260,7 @@
         }
 
         .read-more-btn:hover {
-            color: #ea580c;
+            color: #115e59;
         }
 
         .prog-card-footer {
@@ -227,7 +270,7 @@
             flex-wrap: wrap;
             gap: 0.75rem;
             border-top: 1px solid rgba(15,23,42,0.06);
-            background: linear-gradient(180deg, #fafafa 0%, #f8fafc 100%);
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
             padding: 1rem 1.5rem 1.4rem;
         }
 
@@ -251,16 +294,16 @@
         }
 
         .btn-explore {
-            background: linear-gradient(120deg, #f97316, #ea580c);
+            background: linear-gradient(120deg, #0f766e, #14b8a6);
             color: #fff;
             padding: 0.48rem 1rem;
             text-decoration: none;
-            box-shadow: 0 4px 12px rgba(249,115,22,0.28);
+            box-shadow: 0 8px 18px rgba(20,184,166,0.24);
         }
 
         .btn-explore:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(249,115,22,0.38);
+            box-shadow: 0 12px 24px rgba(20,184,166,0.3);
         }
 
         .btn-edit {
@@ -292,10 +335,11 @@
         .empty-programs {
             border: 1px dashed rgba(15,23,42,0.14);
             border-radius: 1.5rem;
-            background: #fff;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98));
             padding: 3rem 1.5rem;
             text-align: center;
             color: #64748b;
+            box-shadow: 0 12px 28px rgba(15,23,42,0.05);
         }
     </style>
 </head>
@@ -314,11 +358,11 @@
     <div class="hero-admin mb-10 p-8 md:p-10 fade-up">
         <div class="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div>
-                <span class="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-orange-100">// Pengurusan Sistem</span>
+                <span class="mb-3 inline-block text-xs font-bold uppercase tracking-widest text-cyan-50/90">// Pengurusan Sistem</span>
                 <h1 class="text-3xl font-black leading-tight text-white md:text-4xl">
                     Urus <span class="underline decoration-white/40 decoration-wavy underline-offset-4">Program</span>
                 </h1>
-                <p class="mt-2 max-w-md text-sm text-orange-100">Tambah, kemaskini atau padam program dengan lebih kemas dari satu paparan yang jelas.</p>
+                <p class="mt-2 max-w-md text-sm text-cyan-50/90">Tambah, kemaskini atau padam program dari satu paparan yang lebih kemas, jelas dan mudah diurus.</p>
 
                 <div class="mt-5 flex flex-wrap gap-2">
                     <span class="stat-chip"><i class="fas fa-layer-group"></i> {{ $programs->count() }} Program Aktif</span>
@@ -327,7 +371,7 @@
             </div>
 
             <a href="{{ route('admin.addprogram') }}"
-               class="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-orange-600 shadow-lg transition duration-200 hover:-translate-y-1 hover:shadow-xl">
+               class="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/30 bg-white/95 px-6 py-3 text-sm font-bold text-teal-700 shadow-[0_14px_30px_rgba(15,23,42,0.16)] transition duration-200 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_36px_rgba(20,184,166,0.2)]">
                 <i class="fas fa-plus"></i> Tambah Program
             </a>
         </div>
@@ -416,4 +460,3 @@ function toggleDesc(id, btn) {
 
 </body>
 </html>
-
