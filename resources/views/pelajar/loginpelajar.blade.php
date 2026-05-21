@@ -147,7 +147,7 @@
 
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-            <p class="text-sm uppercase tracking-[0.15em] text-orange-500">Login Pelajar</p>
+            <p class="text-sm uppercase tracking-[0.15em] text-teal-500">Login Pelajar</p>
             <h1 class="mt-3 text-3xl font-semibold text-slate-900">Sahkan Identiti</h1>
             <p class="mt-2 text-sm text-slate-600">Masukkan No. K/P untuk mengesahkan identiti.</p>
         </div>
@@ -178,7 +178,7 @@
 
                 <div class="flex flex-col gap-3 sm:flex-row sm:justify-between">
                     <a href="{{ route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]) }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Kembali</a>
-                    <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Sahkan</button>
+                    <button type="submit" class="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">Sahkan</button>
                 </div>
             </form>
         </div>

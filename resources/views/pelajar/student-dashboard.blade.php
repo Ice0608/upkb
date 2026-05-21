@@ -143,7 +143,7 @@
 <main class="max-w-4xl mx-auto px-4 py-8">
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200">
         <div class="text-center mb-8">
-            <p class="text-sm uppercase tracking-[0.3em] text-orange-500">Dashboard Pelajar</p>
+            <p class="text-sm uppercase tracking-[0.3em] text-teal-500">Dashboard Pelajar</p>
             <h1 class="text-3xl font-semibold text-slate-900 mt-2">Selamat Datang</h1>
             <p class="text-slate-600 mt-2">{{ $pelajar->nama_pelajar }}</p>
         </div>
@@ -207,7 +207,7 @@
             </a>
 
             @if($pelajar->kod_kursus)
-            <a href="{{ route('pelajar.pembayaran', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white hover:bg-orange-600">
+            <a href="{{ route('pelajar.pembayaran', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">
                 <i class="fas fa-credit-card"></i> Buat Pembayaran
             </a>
             @endif

@@ -22,7 +22,7 @@
     <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm uppercase tracking-[0.3em] text-orange-500">BMD</p>
+                <p class="text-sm uppercase tracking-[0.3em] text-teal-500">BMD</p>
                 <h1 class="text-3xl font-semibold text-slate-900">Borang Maklumat Diri</h1>
                 @if(isset($event))
                     <p class="mt-2 text-sm text-slate-600">Acara: {{ $event->nama_event }} pada {{ $event->tarikh_event?->format('d/m/Y') }}</p>
@@ -225,7 +225,7 @@
                     <a href="{{ url('/') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                 </div>
 
-                <button type="submit" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">DAFTAR</button>
+                <button type="submit" class="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">DAFTAR</button>
             </div>
         </div>
         </form>

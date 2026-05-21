@@ -646,7 +646,7 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold text-slate-900">Emel Rasmi</h2>
+                        <h2 class="text-xl font-bold text-slate-900">E-mel Rasmi</h2>
                         <p class="text-teal-500 font-semibold">sesoclegacy@gmail.com</p>
                     </div>
                 </div>

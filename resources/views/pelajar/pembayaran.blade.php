@@ -82,8 +82,8 @@
             color: #cbd5e1;
         }
 
-        html.dark .text-orange-600 {
-            color: #fb923c;
+        html.dark .text-teal-600 {
+            color: #14b8a6;
         }
 
         html.dark .text-green-600 {
@@ -124,22 +124,33 @@
             box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
         }
 
-        html.dark .bg-orange-100 {
-            background: rgba(251, 146, 60, 0.15);
-            color: #fb923c;
+        html.dark .bg-teal-100 {
+            background: rgba(20, 184, 166, 0.15);
+            color: #14b8a6;
         }
 
-        html.dark .text-orange-600 {
-            color: #fb923c;
+        html.dark .text-teal-700 {
+            color: #14b8a6;
         }
 
-        html.dark .hover\:bg-orange-200:hover {
-            background: rgba(251, 146, 60, 0.25);
+        html.dark .bg-teal-600 {
+            color: #14b8a6;
+        }
+
+        html.dark .hover\:bg-teal-200:hover {
+            background: rgba(20, 184, 166, 0.25);
         }
 
         html.dark .bg-blue-50 {
             background: rgba(59, 130, 246, 0.1);
             border-color: #3b82f6;
+        }
+
+        html.dark #transfer-details .space-y-3,
+        html.dark #transfer-details .space-y-3 p,
+        html.dark #transfer-details .space-y-3 span,
+        html.dark #transfer-details .space-y-3 code {
+            color: #ffffff;
         }
 
         html.dark .text-blue-700 {
@@ -164,8 +175,8 @@
             color: #fcd34d;
         }
 
-        html.dark .border-orange-600 {
-            border-color: #fb923c;
+        html.dark .border-teal-600 {
+            border-color: #14b8a6;
         }
 
         html.dark .border-slate-300 {
@@ -176,8 +187,8 @@
             border-color: #334155;
         }
 
-        html.dark .hover\:border-orange-400 {
-            border-color: #fb923c;
+        html.dark .hover\:border-teal-400 {
+            border-color: #14b8a6;
         }
 
         html.dark .text-slate-400 {
@@ -205,8 +216,8 @@
             color: #ffffff;
         }
 
-        html.dark .hover\:bg-orange-700:hover {
-            background: #ea580c;
+        html.dark .hover\:bg-teal-700:hover {
+            background: #14b8a6;
         }
 
         html.dark .border-blue-200 {
@@ -217,8 +228,8 @@
             border-color: #22c55e;
         }
 
-        html.dark .border-amber-200 {
-            border-color: #f59e0b;
+        html.dark .border-teal-200 {
+            border-color: #14b8a6;
         }
 
         html.dark .text-sm.text-slate-500 {
@@ -235,7 +246,7 @@
         <!-- Header -->
         <div class="mb-12">
             <h1 class="text-4xl font-bold text-slate-900 mb-3">
-                <i class="fas fa-credit-card text-orange-600"></i> Pilih Kaedah Pembayaran
+                <i class="fas fa-credit-card text-teal-600"></i> Pilih Kaedah Pembayaran
             </h1>
             <p class="text-lg text-slate-600">Sila pilih kaedah pembayaran yang sesuai untuk melanjutkan proses temu duga.</p>
         </div>
@@ -261,7 +272,7 @@
         <div class="bg-white rounded-3xl shadow-lg p-8 mb-8 border border-slate-100">
             <label for="jumlah-input" class="amount-label mb-2 inline-block">Jumlah Pembayaran (RM)</label>
             <div class="mt-2">
-                <input id="jumlah-input" name="jumlah_visible" type="number" step="0.01" min="0" value="{{ number_format($jumlah, 2, '.', '') }}" class="w-48 px-4 py-3 rounded-xl border border-slate-200 text-2xl font-bold text-orange-600 payment-amount" />
+                <input id="jumlah-input" name="jumlah_visible" type="number" step="0.01" min="0" value="{{ number_format($jumlah, 2, '.', '') }}" class="w-48 px-4 py-3 rounded-xl border border-slate-200 text-2xl font-bold text-teal-600 payment-amount" />
                 <p class="text-sm text-slate-500 mt-2">Masukkan jumlah yang anda ingin bayar. Contoh: 50.00</p>
             </div>
         </div>
@@ -271,14 +282,14 @@
             <!-- QR Code Method -->
             <div class="payment-method" onclick="selectMethod('qr', this)">
                 <div class="text-center mb-4">
-                    <i class="fas fa-qrcode text-4xl text-orange-600 mb-3"></i>
+                    <i class="fas fa-qrcode text-4xl text-teal-600 mb-3"></i>
                     <h3 class="text-xl font-bold text-slate-900">Kod QR</h3>
                 </div>
                 <p class="text-slate-600 text-center text-sm">
                     Imbas kod QR dengan telefon pintar anda untuk membuat pembayaran.
                 </p>
                 <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button type="button" class="w-full py-2 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm hover:bg-orange-200 transition">
+                    <button type="button" class="w-full py-2 rounded-full bg-teal-100 text-teal-600 font-semibold text-sm hover:bg-teal-200 transition">
                         Pilih
                     </button>
                 </div>
@@ -287,14 +298,14 @@
             <!-- Cash Method -->
             <div class="payment-method" onclick="selectMethod('cash', this)">
                 <div class="text-center mb-4">
-                    <i class="fas fa-money-bill-wave text-4xl text-green-600 mb-3"></i>
+                    <i class="fas fa-money-bill-wave text-4xl text-teal-600 mb-3"></i>
                     <h3 class="text-xl font-bold text-slate-900">Tunai</h3>
                 </div>
                 <p class="text-slate-600 text-center text-sm">
                     Bayar secara tunai kepada kakitangan institusi anda.
                 </p>
                 <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button type="button" class="w-full py-2 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm hover:bg-orange-200 transition">
+                    <button type="button" class="w-full py-2 rounded-full bg-teal-100 text-teal-600 font-semibold text-sm hover:bg-teal-200 transition">
                         Pilih
                     </button>
                 </div>
@@ -303,14 +314,14 @@
             <!-- Bank Transfer Method -->
             <div class="payment-method" onclick="selectMethod('transfer', this)">
                 <div class="text-center mb-4">
-                    <i class="fas fa-university text-4xl text-blue-600 mb-3"></i>
+                    <i class="fas fa-university text-4xl text-teal-600 mb-3"></i>
                     <h3 class="text-xl font-bold text-slate-900">Pindahan Bank</h3>
                 </div>
                 <p class="text-slate-600 text-center text-sm">
                     Pindahkan dana melalui akaun bank institusi.
                 </p>
                 <div class="mt-4 pt-4 border-t border-slate-200">
-                    <button type="button" class="w-full py-2 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm hover:bg-orange-200 transition">
+                    <button type="button" class="w-full py-2 rounded-full bg-teal-100 text-teal-600 font-semibold text-sm hover:bg-teal-200 transition">
                         Pilih
                     </button>
                 </div>
@@ -319,8 +330,8 @@
 
         <!-- Selected Method Details -->
         <div id="method-details" class="hidden bg-white rounded-3xl shadow-lg p-8 mb-12">
-            <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
-                <p class="text-orange-700 text-sm">
+            <div class="bg-teal-50 border border-teal-200 rounded-lg p-4 mb-6">
+                <p class="text-teal-700 text-sm">
                     <i class="fas fa-info-circle"></i> 
                     <strong>Nota:</strong> Semua kaedah pembayaran memerlukan muat naik resit pembayaran (PDF atau gambar) sebelum ke halaman seterusnya.
                 </p>
@@ -328,7 +339,7 @@
             <!-- QR Code Display -->
             <div id="qr-details" class="hidden">
                 <h3 class="text-2xl font-bold text-slate-900 mb-6">
-                    <i class="fas fa-qrcode text-orange-600"></i> Pembayaran Melalui Kod QR
+                    <i class="fas fa-qrcode text-Ruby-300"></i> Pembayaran Melalui Kod QR
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="qr-code-display">
@@ -419,7 +430,7 @@
             <!-- Resit Upload Section -->
             <div id="resit-section" class="bg-white rounded-3xl shadow-lg p-8 mb-12">
                 <h3 class="text-2xl font-bold text-slate-900 mb-6">
-                    <i class="fas fa-upload text-orange-600"></i> Muat Naik Resit Pembayaran
+                    <i class="fas fa-upload text-teal-600"></i> Muat Naik Resit Pembayaran
                 </h3>
                 <p class="text-slate-600 mb-4">Sila muat naik resit pembayaran anda (jpg, jpeg, png, pdf, doc, docx). Resit diperlukan untuk melanjutkan.</p>
                 <div class="border-2 border-dashed border-slate-300 rounded-2xl p-8 text-center hover:border-orange-400 transition cursor-pointer" onclick="document.getElementById('resit-input').click()">
@@ -439,7 +450,7 @@
                 <a href="javascript:history.back()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-8 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition">
                     <i class="fas fa-arrow-left"></i> Kembali
                 </a>
-                <button type="button" onclick="submitPaymentForm()" class="inline-flex items-center gap-2 rounded-full bg-orange-600 px-8 py-3 text-sm font-semibold text-white hover:bg-orange-700 transition disabled:opacity-50 disabled:cursor-not-allowed" id="submit-btn" disabled>
+                <button type="button" onclick="submitPaymentForm()" class="inline-flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold text-white bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed" id="submit-btn" disabled>
                     <i class="fas fa-check"></i> Lanjutkan
                 </button>
             </div>

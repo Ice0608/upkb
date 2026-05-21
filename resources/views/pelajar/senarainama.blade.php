@@ -19,7 +19,7 @@
 
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-orange-500">Senarai Pelajar</p>
+            <p class="text-sm uppercase tracking-[0.3em] text-teal-500">Senarai Pelajar</p>
             <h1 class="mt-3 text-3xl font-semibold text-slate-900">Pilih Event & Pelajar</h1>
             <p class="mt-2 text-sm text-slate-600">Pilih event untuk melihat senarai nama.</p>
         </div>
@@ -42,7 +42,7 @@
                         <option value="{{ $event->id }}" @selected($selectedEvent && $selectedEvent->id === $event->id)>{{ $event->nama_event }} — {{ $event->tarikh_event->format('d/m/Y') }}</option>
                     @endforeach
                 </select>
-                <button type="submit" class="rounded-full bg-orange-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600">Tapis</button>
+                <button type="submit" class="rounded-full px-5 py-3 text-sm font-semibold text-white transition bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">Tapis</button>
             </form>
         </div>
     </div>
@@ -52,7 +52,7 @@
             <input id="search-name-pelajar" type="search" placeholder="Cari nama..." class="w-full rounded-2xl border border-slate-200 px-4 py-2 text-sm outline-none" />
         </div>
         <table id="senarai-pelajar-table" class="min-w-full text-left text-sm">
-            <thead class="bg-orange-500 text-white">
+            <thead class="bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] text-white">
                 <tr>
                     <th class="px-6 py-4">Nama Pelajar</th>
                     <th class="px-6 py-4">Tarikh Daftar</th>
