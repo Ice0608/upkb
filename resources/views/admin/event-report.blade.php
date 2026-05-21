@@ -210,6 +210,11 @@
         }
 
         @media print {
+            @page {
+                size: A4 landscape;
+                margin: 10mm;
+            }
+
             html,
             body {
                 background: #ffffff !important;
@@ -238,9 +243,39 @@
                 width: 100%;
                 min-height: 100vh;
                 margin: 0;
+                padding: 20px 22px;
                 box-shadow: none;
                 border: none;
                 page-break-after: always;
+            }
+
+            .report-table-wrap {
+                overflow: visible !important;
+            }
+
+            .registration-table {
+                font-size: 8.6px;
+            }
+
+            .registration-table th,
+            .registration-table td {
+                padding: 5px 4px;
+            }
+
+            .attendee-name {
+                font-size: 8px;
+            }
+
+            .attendee-name.is-long {
+                font-size: 7.5px;
+            }
+
+            .attendee-name.is-very-long {
+                font-size: 7px;
+            }
+
+            .email-text {
+                font-size: 6.8px;
             }
 
             .report-page,
@@ -373,7 +408,7 @@ window.REPORT_DATA = {
     <h1 class="report-title">REGISTRATION DETAILS REGISTER</h1>
     <p class="report-subtitle">EVENT: {{ strtoupper($event->nama_event) }} | TOTAL REGISTRATIONS: {{ $totalRegistrations }}</p>
 
-    <div class="mt-7 overflow-x-auto">
+    <div class="report-table-wrap">
         <table class="report-table registration-table">
             <colgroup>
                 <col class="col-no">
