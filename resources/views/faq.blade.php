@@ -695,6 +695,51 @@
             color: rgba(122, 81, 44, 0.74);
         }
 
+        .faq-category-tab[data-category-tab="tvet"] {
+            border-color: rgba(249, 115, 22, 0.28);
+            background: rgba(255, 237, 213, 0.92);
+            color: #c2410c;
+            box-shadow: 0 12px 28px rgba(249, 115, 22, 0.14);
+        }
+
+        .faq-category-tab[data-category-tab="diploma"] {
+            border-color: rgba(124, 58, 237, 0.28);
+            background: rgba(237, 233, 254, 0.92);
+            color: #5b21b6;
+            box-shadow: 0 12px 28px rgba(124, 58, 237, 0.14);
+        }
+
+        .faq-category-tab[data-category-tab="sains-kesihatan"] {
+            border-color: rgba(37, 99, 235, 0.28);
+            background: rgba(219, 234, 254, 0.92);
+            color: #1d4ed8;
+            box-shadow: 0 12px 28px rgba(37, 99, 235, 0.14);
+        }
+
+        .faq-category-tab[data-category-tab="tvet"]:hover,
+        .faq-category-tab[data-category-tab="tvet"][aria-selected="true"] {
+            border-color: transparent;
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+            color: #ffffff;
+            box-shadow: 0 14px 32px rgba(249, 115, 22, 0.28);
+        }
+
+        .faq-category-tab[data-category-tab="diploma"]:hover,
+        .faq-category-tab[data-category-tab="diploma"][aria-selected="true"] {
+            border-color: transparent;
+            background: linear-gradient(135deg, #7c3aed, #4c1d95);
+            color: #ffffff;
+            box-shadow: 0 14px 32px rgba(124, 58, 237, 0.28);
+        }
+
+        .faq-category-tab[data-category-tab="sains-kesihatan"]:hover,
+        .faq-category-tab[data-category-tab="sains-kesihatan"][aria-selected="true"] {
+            border-color: transparent;
+            background: linear-gradient(135deg, #2563eb, #0f172a);
+            color: #ffffff;
+            box-shadow: 0 14px 32px rgba(37, 99, 235, 0.28);
+        }
+
         .faq-modal-backdrop {
             position: fixed;
             inset: 0;
@@ -1133,6 +1178,86 @@
         html.dark .faq-track-label { color: rgba(251,146,60,0.8); }
         html.dark .faq-category-title { color: #f8fafc; }
         html.dark .faq-track-hint { color: rgba(148,163,184,0.7); }
+        html.dark .faq-category-tab {
+            border-color: rgba(148,163,184,0.18);
+            background: rgba(15,23,42,0.82);
+            color: #cbd5e1;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+        }
+        html.dark .faq-category-tab:hover {
+            background: rgba(30,41,59,0.92);
+            color: #f8fafc;
+        }
+        html.dark .faq-category-tab[data-category-tab="tvet"] {
+            border-color: rgba(249,115,22,0.34);
+            background: rgba(67,30,8,0.82);
+            color: #fed7aa;
+            box-shadow: 0 12px 30px rgba(249,115,22,0.16);
+        }
+        html.dark .faq-category-tab[data-category-tab="diploma"] {
+            border-color: rgba(167,139,250,0.34);
+            background: rgba(46,16,101,0.84);
+            color: #ddd6fe;
+            box-shadow: 0 12px 30px rgba(124,58,237,0.2);
+        }
+        html.dark .faq-category-tab[data-category-tab="sains-kesihatan"] {
+            border-color: rgba(96,165,250,0.34);
+            background: rgba(15,23,42,0.9);
+            color: #bfdbfe;
+            box-shadow: 0 12px 30px rgba(37,99,235,0.2);
+        }
+        html.dark .faq-category-tab[data-category-tab="tvet"]:hover,
+        html.dark .faq-category-tab[data-category-tab="tvet"][aria-selected="true"] {
+            border-color: transparent;
+            background: linear-gradient(135deg, #fb923c, #ea580c);
+            color: #ffffff;
+            box-shadow: 0 14px 32px rgba(249,115,22,0.32);
+        }
+        html.dark .faq-category-tab[data-category-tab="diploma"]:hover,
+        html.dark .faq-category-tab[data-category-tab="diploma"][aria-selected="true"] {
+            border-color: transparent;
+            background: linear-gradient(135deg, #7c3aed, #4c1d95);
+            color: #ffffff;
+            box-shadow: 0 14px 32px rgba(124,58,237,0.34);
+        }
+        html.dark .faq-category-tab[data-category-tab="sains-kesihatan"]:hover,
+        html.dark .faq-category-tab[data-category-tab="sains-kesihatan"][aria-selected="true"] {
+            border-color: transparent;
+            background: linear-gradient(135deg, #2563eb, #0f172a);
+            color: #ffffff;
+            box-shadow: 0 14px 32px rgba(37,99,235,0.34);
+        }
+        html.dark .faq-category-panel {
+            border-color: rgba(148,163,184,0.16);
+            background: rgba(15,23,42,0.72);
+            box-shadow:
+                0 22px 58px rgba(0,0,0,0.34),
+                inset 0 1px 0 rgba(255,255,255,0.04);
+        }
+        html.dark .faq-category-panel article {
+            border-color: rgba(148,163,184,0.14);
+            background: rgba(30,41,59,0.9);
+            box-shadow: 0 14px 34px rgba(0,0,0,0.22);
+        }
+        html.dark .faq-accordion-trigger {
+            color: #f1f5f9;
+        }
+        html.dark .faq-accordion-trigger:hover {
+            background: rgba(51,65,85,0.66);
+        }
+        html.dark .faq-accordion-panel {
+            color: rgba(203,213,225,0.9);
+        }
+        html.dark .faq-accordion-icon {
+            background: rgba(15,23,42,0.88);
+            color: #cbd5e1;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        html.dark .faq-accordion-trigger[aria-expanded="true"] .faq-accordion-icon {
+            background: linear-gradient(135deg, rgba(20,184,166,0.92), rgba(45,212,191,0.82));
+            color: #ffffff;
+            box-shadow: 0 0 22px rgba(45,212,191,0.18);
+        }
         html.dark .faq-modal-shell {
             background: linear-gradient(135deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
             border-color: rgba(255,255,255,0.1);
@@ -1190,11 +1315,68 @@
         }
 
         .faq-neon-stage {
+            --faq-neon-mark: #dbeafe;
+            --faq-neon-glow-soft: rgba(147, 197, 253, 0.96);
+            --faq-neon-glow-mid: rgba(96, 165, 250, 0.94);
+            --faq-neon-glow-deep: rgba(59, 130, 246, 0.92);
+            --faq-neon-glow-wide: rgba(56, 189, 248, 0.72);
+            --faq-neon-haze-one: rgba(96, 165, 250, 0.28);
+            --faq-neon-haze-two: rgba(56, 189, 248, 0.18);
+            --faq-neon-haze-three: rgba(125, 211, 252, 0.16);
+            --faq-neon-core: rgba(59, 130, 246, 0.22);
+            --faq-neon-ghost: rgba(186, 230, 253, 0.42);
+            --faq-neon-aura: rgba(96, 165, 250, 0.32);
+            --faq-neon-aura-fade: rgba(59, 130, 246, 0);
             position: relative;
             width: min(24rem, 100%);
             height: 15rem;
             border-radius: 2rem;
             background: transparent;
+        }
+
+        .faq-page[data-active-category="tvet"] .faq-neon-stage {
+            --faq-neon-mark: #ffedd5;
+            --faq-neon-glow-soft: rgba(254, 215, 170, 0.96);
+            --faq-neon-glow-mid: rgba(251, 146, 60, 0.94);
+            --faq-neon-glow-deep: rgba(234, 88, 12, 0.92);
+            --faq-neon-glow-wide: rgba(249, 115, 22, 0.74);
+            --faq-neon-haze-one: rgba(251, 146, 60, 0.3);
+            --faq-neon-haze-two: rgba(249, 115, 22, 0.2);
+            --faq-neon-haze-three: rgba(253, 186, 116, 0.18);
+            --faq-neon-core: rgba(249, 115, 22, 0.24);
+            --faq-neon-ghost: rgba(254, 215, 170, 0.44);
+            --faq-neon-aura: rgba(251, 146, 60, 0.34);
+            --faq-neon-aura-fade: rgba(234, 88, 12, 0);
+        }
+
+        .faq-page[data-active-category="diploma"] .faq-neon-stage {
+            --faq-neon-mark: #ede9fe;
+            --faq-neon-glow-soft: rgba(221, 214, 254, 0.96);
+            --faq-neon-glow-mid: rgba(167, 139, 250, 0.94);
+            --faq-neon-glow-deep: rgba(124, 58, 237, 0.92);
+            --faq-neon-glow-wide: rgba(139, 92, 246, 0.74);
+            --faq-neon-haze-one: rgba(167, 139, 250, 0.3);
+            --faq-neon-haze-two: rgba(139, 92, 246, 0.2);
+            --faq-neon-haze-three: rgba(196, 181, 253, 0.18);
+            --faq-neon-core: rgba(124, 58, 237, 0.24);
+            --faq-neon-ghost: rgba(221, 214, 254, 0.44);
+            --faq-neon-aura: rgba(167, 139, 250, 0.34);
+            --faq-neon-aura-fade: rgba(76, 29, 149, 0);
+        }
+
+        .faq-page[data-active-category="sains-kesihatan"] .faq-neon-stage {
+            --faq-neon-mark: #dbeafe;
+            --faq-neon-glow-soft: rgba(191, 219, 254, 0.96);
+            --faq-neon-glow-mid: rgba(96, 165, 250, 0.94);
+            --faq-neon-glow-deep: rgba(37, 99, 235, 0.92);
+            --faq-neon-glow-wide: rgba(59, 130, 246, 0.74);
+            --faq-neon-haze-one: rgba(96, 165, 250, 0.3);
+            --faq-neon-haze-two: rgba(37, 99, 235, 0.2);
+            --faq-neon-haze-three: rgba(147, 197, 253, 0.18);
+            --faq-neon-core: rgba(37, 99, 235, 0.24);
+            --faq-neon-ghost: rgba(191, 219, 254, 0.44);
+            --faq-neon-aura: rgba(96, 165, 250, 0.34);
+            --faq-neon-aura-fade: rgba(15, 23, 42, 0);
         }
 
         .faq-neon-stage::before,
@@ -1208,9 +1390,9 @@
 
         .faq-neon-stage::before {
             background:
-                radial-gradient(circle at 50% 42%, rgba(96, 165, 250, 0.28), transparent 20%),
-                radial-gradient(circle at 40% 58%, rgba(56, 189, 248, 0.18), transparent 18%),
-                radial-gradient(circle at 62% 58%, rgba(125, 211, 252, 0.16), transparent 17%);
+                radial-gradient(circle at 50% 42%, var(--faq-neon-haze-one), transparent 20%),
+                radial-gradient(circle at 40% 58%, var(--faq-neon-haze-two), transparent 18%),
+                radial-gradient(circle at 62% 58%, var(--faq-neon-haze-three), transparent 17%);
             filter: blur(16px);
             opacity: 0.95;
         }
@@ -1218,7 +1400,7 @@
         .faq-neon-stage::after {
             background:
                 radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.12), transparent 8%),
-                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.22), transparent 38%);
+                radial-gradient(circle at 50% 50%, var(--faq-neon-core), transparent 38%);
             opacity: 0.72;
         }
 
@@ -1227,15 +1409,15 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #c8f1ff;
+            color: var(--faq-neon-mark);
             font-weight: 700;
             line-height: 1;
             text-shadow:
                 0 0 4px rgba(255, 255, 255, 0.92),
-                0 0 10px rgba(147, 197, 253, 0.96),
-                0 0 18px rgba(96, 165, 250, 0.94),
-                0 0 32px rgba(59, 130, 246, 0.92),
-                0 0 56px rgba(56, 189, 248, 0.72);
+                0 0 10px var(--faq-neon-glow-soft),
+                0 0 18px var(--faq-neon-glow-mid),
+                0 0 32px var(--faq-neon-glow-deep),
+                0 0 56px var(--faq-neon-glow-wide);
             animation: faqNeonFloat 5.6s ease-in-out infinite, faqNeonPulse 3.2s ease-in-out infinite;
             will-change: transform, opacity, filter;
         }
@@ -1244,7 +1426,7 @@
             content: "?";
             position: absolute;
             inset: 0;
-            color: rgba(186, 230, 253, 0.42);
+            color: var(--faq-neon-ghost);
             filter: blur(8px);
             z-index: -1;
         }
@@ -1273,7 +1455,7 @@
         .faq-neon-aura {
             position: absolute;
             border-radius: 999px;
-            background: radial-gradient(circle, rgba(96, 165, 250, 0.32), rgba(59, 130, 246, 0) 70%);
+            background: radial-gradient(circle, var(--faq-neon-aura), var(--faq-neon-aura-fade) 70%);
             filter: blur(12px);
             opacity: 0.82;
             animation: faqNeonAura 5.8s ease-in-out infinite;
@@ -1672,6 +1854,7 @@
 
     <script>
     (() => {
+        const faqPage = document.querySelector('.faq-page');
         const tabButtons = Array.from(document.querySelectorAll('[data-category-tab]'));
         const panels = Array.from(document.querySelectorAll('[data-category-panel]'));
         const inactiveButtonClass = 'border-white/70 bg-white/80 text-slate-700 shadow-[0_10px_26px_rgba(15,23,42,0.08)]';
@@ -1697,6 +1880,10 @@
         }
 
         function setActiveCategory(categoryKey) {
+            if (faqPage) {
+                faqPage.dataset.activeCategory = categoryKey;
+            }
+
             tabButtons.forEach((button) => {
                 const isActive = button.dataset.categoryTab === categoryKey;
                 const activeClasses = (button.dataset.activeClass || '').split(' ').filter(Boolean);
