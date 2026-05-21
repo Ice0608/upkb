@@ -416,6 +416,16 @@
 
     let currentPelajarId = null;
 
+    function getReceiptNumberValue() {
+        const input = document.getElementById('receipt-no-input');
+
+        if (!input) {
+            return '';
+        }
+
+        return input.value.trim();
+    }
+
     function openReceiptModal(event, url) {
         if (event) {
             event.preventDefault();
@@ -486,6 +496,7 @@
         // Create form data
         const formData = new FormData();
         formData.append('pelajar_id', currentPelajarId);
+        formData.append('receipt_no', getReceiptNumberValue());
 
         // Send AJAX request
         fetch('{{ route("staff.bmd.send-email-resit") }}', {
@@ -525,6 +536,15 @@
 
     function printReceiptModal() {
         const receiptContent = document.getElementById('receipt-modal-content');
+        const receiptNumber = getReceiptNumberValue();
+        const clonedContent = receiptContent.cloneNode(true);
+        const receiptInput = clonedContent.querySelector('#receipt-no-input');
+
+        if (receiptInput) {
+            const receiptText = document.createElement('span');
+            receiptText.textContent = receiptNumber || receiptInput.dataset.defaultReceiptNo || '';
+            receiptInput.replaceWith(receiptText);
+        }
         
         // Create a hidden iframe for printing
         const iframe = document.createElement('iframe');
@@ -558,7 +578,7 @@
     </style>
 </head>
 <body>
-    ${receiptContent.innerHTML}
+    ${clonedContent.innerHTML}
 </body>
 </html>`);
         iframeDoc.close();

@@ -12,6 +12,8 @@
         'kursus' => $kursus ?? null,
         'institusi' => $institusi ?? null,
         'isPdf' => $isPdf ?? false,
+        'isPreviewModal' => $isPreviewModal ?? false,
+        'receiptNumberOverride' => $receiptNumberOverride ?? null,
     ])
 </body>
 </html>
