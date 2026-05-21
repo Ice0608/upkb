@@ -295,12 +295,30 @@
                 0 0 32px rgba(var(--institusi-tvet-rgb-soft), 0.12);
         }
 
+        .institusi-page--tvet .institusi-card {
+            border-color: rgba(var(--institusi-tvet-rgb), 0.26);
+            background:
+                linear-gradient(180deg, rgba(255, 247, 237, 0.98), rgba(255, 237, 213, 0.96));
+            box-shadow:
+                0 22px 48px rgba(154, 52, 18, 0.12),
+                0 0 34px rgba(var(--institusi-tvet-rgb), 0.08);
+        }
+
         .institusi-page--diploma .institusi-card:hover,
         .institusi-page--diploma .institusi-card:focus-within {
             border-color: rgba(var(--institusi-diploma-rgb-soft), 0.38);
             box-shadow:
                 0 30px 64px rgba(15, 23, 42, 0.14),
                 0 0 32px rgba(var(--institusi-diploma-rgb-soft), 0.12);
+        }
+
+        .institusi-page--diploma .institusi-card {
+            border-color: rgba(var(--institusi-diploma-rgb), 0.24);
+            background:
+                linear-gradient(180deg, rgba(250, 245, 255, 0.98), rgba(237, 224, 255, 0.96));
+            box-shadow:
+                0 22px 48px rgba(76, 29, 149, 0.12),
+                0 0 34px rgba(var(--institusi-diploma-rgb), 0.08);
         }
 
         .institusi-page--sains-kesihatan .institusi-card:hover,
@@ -311,22 +329,31 @@
                 0 0 32px rgba(var(--institusi-sains-rgb-soft), 0.12);
         }
 
+        .institusi-page--sains-kesihatan .institusi-card {
+            border-color: rgba(var(--institusi-sains-rgb), 0.24);
+            background:
+                linear-gradient(180deg, rgba(239, 246, 255, 0.98), rgba(219, 234, 254, 0.96));
+            box-shadow:
+                0 22px 48px rgba(30, 64, 175, 0.12),
+                0 0 34px rgba(var(--institusi-sains-rgb), 0.08);
+        }
+
         .institusi-page--tvet .institusi-card-media::after {
             background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
-                linear-gradient(130deg, rgba(var(--institusi-tvet-rgb), 0.36), rgba(15, 23, 42, 0));
+                linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.54)),
+                linear-gradient(130deg, rgba(var(--institusi-tvet-rgb), 0.22), rgba(15, 23, 42, 0));
         }
 
         .institusi-page--diploma .institusi-card-media::after {
             background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
-                linear-gradient(130deg, rgba(var(--institusi-diploma-rgb), 0.36), rgba(15, 23, 42, 0));
+                linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.54)),
+                linear-gradient(130deg, rgba(var(--institusi-diploma-rgb), 0.22), rgba(15, 23, 42, 0));
         }
 
         .institusi-page--sains-kesihatan .institusi-card-media::after {
             background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.72)),
-                linear-gradient(130deg, rgba(var(--institusi-sains-rgb), 0.36), rgba(15, 23, 42, 0));
+                linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.54)),
+                linear-gradient(130deg, rgba(var(--institusi-sains-rgb), 0.22), rgba(15, 23, 42, 0));
         }
 
         .institusi-page--tvet .institusi-card-chip {
@@ -781,8 +808,8 @@
             inset: 0;
             background: linear-gradient(
                 to top,
-                rgba(0, 0, 0, 0.75),
-                rgba(0, 0, 0, 0.2),
+                rgba(0, 0, 0, 0.58),
+                rgba(0, 0, 0, 0.12),
                 transparent
             );
             pointer-events: none;
@@ -793,8 +820,8 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.32)),
-                linear-gradient(130deg, rgba(20, 184, 166, 0.36), rgba(15, 23, 42, 0));
+                linear-gradient(180deg, rgba(15, 23, 42, 0.01), rgba(15, 23, 42, 0.22)),
+                linear-gradient(130deg, rgba(20, 184, 166, 0.22), rgba(15, 23, 42, 0));
             pointer-events: none;
         }
 
@@ -877,6 +904,24 @@
                 border-top: 1px solid rgba(0, 0, 0, 0.05);
                 background: linear-gradient(180deg, rgba(250, 250, 252, 0.6), rgba(255, 255, 255, 0.98));
             }
+
+        .institusi-page--tvet .institusi-card-body {
+            border-top-color: rgba(var(--institusi-tvet-rgb), 0.18);
+            background:
+                linear-gradient(180deg, rgba(255, 247, 237, 0.78), rgba(255, 237, 213, 0.98));
+        }
+
+        .institusi-page--diploma .institusi-card-body {
+            border-top-color: rgba(var(--institusi-diploma-rgb), 0.16);
+            background:
+                linear-gradient(180deg, rgba(250, 245, 255, 0.78), rgba(237, 224, 255, 0.98));
+        }
+
+        .institusi-page--sains-kesihatan .institusi-card-body {
+            border-top-color: rgba(var(--institusi-sains-rgb), 0.16);
+            background:
+                linear-gradient(180deg, rgba(239, 246, 255, 0.78), rgba(219, 234, 254, 0.98));
+        }
 
         .institusi-clamp-2,
         .institusi-clamp-3 {
@@ -1072,9 +1117,48 @@
             background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
             border-color: rgba(255,255,255,0.08);
         }
+        html.dark .institusi-page--tvet .institusi-card {
+            background:
+                linear-gradient(180deg, rgba(154,52,18,0.94), rgba(67,30,8,0.98));
+            border-color: rgba(var(--institusi-tvet-rgb), 0.42);
+            box-shadow:
+                0 24px 52px rgba(0,0,0,0.34),
+                0 0 34px rgba(var(--institusi-tvet-rgb), 0.18);
+        }
+        html.dark .institusi-page--diploma .institusi-card {
+            background:
+                linear-gradient(180deg, rgba(88,28,135,0.94), rgba(46,16,101,0.98));
+            border-color: rgba(var(--institusi-diploma-rgb), 0.42);
+            box-shadow:
+                0 24px 52px rgba(0,0,0,0.34),
+                0 0 34px rgba(var(--institusi-diploma-rgb), 0.18);
+        }
+        html.dark .institusi-page--sains-kesihatan .institusi-card {
+            background:
+                linear-gradient(180deg, rgba(30,64,175,0.94), rgba(15,23,42,0.98));
+            border-color: rgba(var(--institusi-sains-rgb), 0.42);
+            box-shadow:
+                0 24px 52px rgba(0,0,0,0.34),
+                0 0 34px rgba(var(--institusi-sains-rgb), 0.18);
+        }
             html.dark .institusi-card-body {
                 border-top-color: rgba(255, 255, 255, 0.06);
                 background: linear-gradient(180deg, rgba(20, 30, 50, 0.6), rgba(15, 23, 42, 0.98));
+            }
+            html.dark .institusi-page--tvet .institusi-card-body {
+                border-top-color: rgba(251, 146, 60, 0.28);
+                background:
+                    linear-gradient(180deg, rgba(124,45,18,0.78), rgba(67,30,8,0.98));
+            }
+            html.dark .institusi-page--diploma .institusi-card-body {
+                border-top-color: rgba(192, 132, 252, 0.28);
+                background:
+                    linear-gradient(180deg, rgba(76,29,149,0.78), rgba(46,16,101,0.98));
+            }
+            html.dark .institusi-page--sains-kesihatan .institusi-card-body {
+                border-top-color: rgba(96, 165, 250, 0.28);
+                background:
+                    linear-gradient(180deg, rgba(30,64,175,0.78), rgba(15,23,42,0.98));
             }
             html.dark .institusi-card-link {
                 background: rgba(15, 23, 42, 0.78);

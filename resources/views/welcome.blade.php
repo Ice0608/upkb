@@ -2826,6 +2826,54 @@
             background: rgba(6,182,212,0.1);
             border-color: rgba(8,145,178,0.24);
         }
+        html:not(.dark) .story-orbit-core {
+            border-color: rgba(8,145,178,0.22);
+            background:
+                linear-gradient(135deg, rgba(236,254,255,0.78), rgba(255,255,255,0.98) 42%, rgba(255,255,255,0.94)),
+                #ffffff;
+            box-shadow:
+                0 22px 58px rgba(15,23,42,0.12),
+                0 0 0 1px rgba(20,184,166,0.06),
+                inset 0 1px 0 rgba(255,255,255,1);
+        }
+        html:not(.dark) .story-orbit-core::before {
+            opacity: 0.18;
+        }
+        html:not(.dark) .story-orbit-text {
+            color: #334155;
+            text-shadow: none;
+        }
+        html:not(.dark) .story-orbit-mission-heading {
+            border-color: rgba(8,145,178,0.18);
+            background-color: rgba(255,255,255,0.88);
+            box-shadow:
+                0 12px 30px rgba(15,23,42,0.08),
+                inset 0 1px 0 rgba(255,255,255,1);
+        }
+        html:not(.dark) .story-orbit-card {
+            border-color: rgba(8,145,178,0.18);
+            background:
+                linear-gradient(155deg, rgba(236,254,255,0.58), rgba(255,255,255,0.96) 44%, rgba(255,255,255,0.92)),
+                #ffffff;
+            box-shadow:
+                0 16px 38px rgba(15,23,42,0.1),
+                inset 0 1px 0 rgba(255,255,255,1);
+        }
+        html:not(.dark) .story-orbit-card::before {
+            opacity: 0.18;
+        }
+        html:not(.dark) .story-orbit-number {
+            color: #0f766e;
+            background: rgba(240,253,250,0.92);
+            border-color: rgba(13,148,136,0.28);
+            box-shadow: 0 0 18px rgba(34,211,238,0.12);
+        }
+        html:not(.dark) .story-orbit-card-title {
+            color: #0f766e;
+        }
+        html:not(.dark) .story-orbit-card-text {
+            color: #334155;
+        }
 
         /* Process section */
         html:not(.dark) .process-section {
