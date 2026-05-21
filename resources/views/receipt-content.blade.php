@@ -125,6 +125,27 @@
         white-space: nowrap;
     }
 
+    .receipt-no-input {
+        width: 100%;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: inherit;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
     .details-block {
         display: grid;
         grid-template-columns: 1fr 268px;
@@ -259,7 +280,11 @@
     };
 
     $referenceNumber = 'SES/' . $programCode . '/' . $receiptDate->format('my');
-    $receiptNumber = 'SESOC/' . $receiptDate->format('Ymd') . '/' . str_pad((string) ($pembayaran?->id ?? $pelajar?->id ?? 1), 4, '0', STR_PAD_LEFT);
+    $defaultReceiptNumber = 'SESOC/' . $receiptDate->format('Ymd') . '/' . str_pad((string) ($pembayaran?->id ?? $pelajar?->id ?? 1), 4, '0', STR_PAD_LEFT);
+    $receiptNumber = filled($receiptNumberOverride ?? null) ? trim((string) $receiptNumberOverride) : $defaultReceiptNumber;
+    $previewReceiptNumber = ($isPreviewModal ?? false) && !($isPdf ?? false)
+        ? trim((string) ($receiptNumberOverride ?? ''))
+        : $receiptNumber;
 
     $paymentMethod = match (strtolower((string) ($pembayaran?->kaedah_pembayaran ?? ''))) {
         'cash', 'tunai' => 'TUNAI',
@@ -305,6 +330,10 @@
     $registeredTotal = $yuranItems->sum(fn ($item) => (float) $item->amount);
     $paidAmount = (float) ($pembayaran?->bayaran_semasa ?? $pembayaran?->jumlah_bayaran ?? 0);
     $totalAmount = $paidAmount > 0 ? $paidAmount : $registeredTotal;
+
+    if ($paidAmount > 0) {
+        $paymentRows[0]['amount'] = $paidAmount;
+    }
 
     if ($totalAmount > 0 && collect($paymentRows)->every(fn ($row) => empty($row['amount']))) {
         $paymentRows[0]['amount'] = $totalAmount;
@@ -363,7 +392,19 @@
                         </tr>
                         <tr>
                             <td class="label">RESIT NO</td>
-                            <td class="value">{{ $receiptNumber }}</td>
+                            <td class="value">
+                                @if (($isPreviewModal ?? false) && !($isPdf ?? false))
+                                    <input
+                                        type="text"
+                                        id="receipt-no-input"
+                                        value="{{ $previewReceiptNumber }}"
+                                        data-default-receipt-no="{{ $defaultReceiptNumber }}"
+                                        class="receipt-no-input"
+                                    >
+                                @else
+                                    <span id="receipt-no-text">{{ $receiptNumber }}</span>
+                                @endif
+                            </td>
                         </tr>
                         <tr>
                             <td class="label">TARIKH</td>

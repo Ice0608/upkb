@@ -172,7 +172,7 @@ class StaffEventController extends Controller
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
-            'email_ibu' => 'required|email|max:255',
+            'email_ibu' => 'nullable|email|max:255',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
             'str' => 'nullable|boolean',
             'event_id' => 'nullable|integer|exists:event,id',
@@ -334,7 +334,7 @@ class StaffEventController extends Controller
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
-            'email_ibu' => 'required|email|max:255',
+            'email_ibu' => 'nullable|email|max:255',
             'pilihan_kedua' => 'nullable|string|max:255',
             'pilihan_ketiga' => 'nullable|string|max:255',
         ]);
@@ -374,13 +374,19 @@ class StaffEventController extends Controller
         abort_if(!in_array(auth()->user()->level, ['staff', 'admin']), 403);
 
         $receiptData = $this->resolveReceiptData($pelajar);
+        $receiptNumberOverride = trim((string) $request->input('receipt_no', ''));
+        $viewData = array_merge([
+            'pelajar' => $pelajar,
+            'receiptNumberOverride' => $receiptNumberOverride !== '' ? $receiptNumberOverride : null,
+            'isPreviewModal' => (string) $request->input('modal') === '1',
+        ], $receiptData);
 
         // If modal=1, return only the content for modal display
         if ($request->modal == 1) {
-            return view('staff.resit', array_merge(['pelajar' => $pelajar], $receiptData))->render();
+            return view('staff.resit', $viewData)->render();
         }
 
-        return view('staff.resit', array_merge(['pelajar' => $pelajar], $receiptData));
+        return view('staff.resit', $viewData);
     }
 
     public function sendEmailResit(Request $request)
@@ -388,6 +394,7 @@ class StaffEventController extends Controller
         try {
             $validated = $request->validate([
                 'pelajar_id' => 'required|integer|exists:pelajar,id',
+                'receipt_no' => 'nullable|string|max:255',
             ]);
 
             $pelajarId = $validated['pelajar_id'];
@@ -401,9 +408,14 @@ class StaffEventController extends Controller
             $pelajarName = $pelajar->nama_pelajar;
             $receiptData = $this->resolveReceiptData($pelajar);
             $isPdf = true;
+            $receiptNumberOverride = trim((string) ($validated['receipt_no'] ?? ''));
             $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
             $filename = 'Resit_' . $safeIc . '.pdf';
-            $pdf = Pdf::loadView('staff.resit', array_merge(['pelajar' => $pelajar, 'isPdf' => $isPdf], $receiptData));
+            $pdf = Pdf::loadView('staff.resit', array_merge([
+                'pelajar' => $pelajar,
+                'isPdf' => $isPdf,
+                'receiptNumberOverride' => $receiptNumberOverride !== '' ? $receiptNumberOverride : null,
+            ], $receiptData));
             $pdf->setPaper('A4', 'portrait');
             $pdfContent = $pdf->output();
 
@@ -626,7 +638,7 @@ class StaffEventController extends Controller
             'nama_ibu' => 'nullable|string|max:255',
             'ic_ibu' => 'nullable|string|max:50',
             'no_tel_ibu' => 'nullable|string|max:50',
-            'email_ibu' => 'required|email|max:255',
+            'email_ibu' => 'nullable|email|max:255',
             'jumlah_tanggungan' => 'nullable|integer|min:0',
             'str' => 'nullable|boolean',
             'event_id' => 'nullable|integer|exists:event,id',

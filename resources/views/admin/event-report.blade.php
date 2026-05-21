@@ -197,7 +197,24 @@
             gap: 12px;
         }
 
+        .screen-actions-left {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .screen-actions-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
         @media print {
+            @page {
+                size: A4 landscape;
+                margin: 10mm;
+            }
+
             html,
             body {
                 background: #ffffff !important;
@@ -226,9 +243,39 @@
                 width: 100%;
                 min-height: 100vh;
                 margin: 0;
+                padding: 20px 22px;
                 box-shadow: none;
                 border: none;
                 page-break-after: always;
+            }
+
+            .report-table-wrap {
+                overflow: visible !important;
+            }
+
+            .registration-table {
+                font-size: 8.6px;
+            }
+
+            .registration-table th,
+            .registration-table td {
+                padding: 5px 4px;
+            }
+
+            .attendee-name {
+                font-size: 8px;
+            }
+
+            .attendee-name.is-long {
+                font-size: 7.5px;
+            }
+
+            .attendee-name.is-very-long {
+                font-size: 7px;
+            }
+
+            .email-text {
+                font-size: 6.8px;
             }
 
             .report-page,
@@ -277,24 +324,91 @@
     $topCloser = $closerRows->first();
     $topCompletionRate = $topCloser && $topCloser['closing'] > 0 ? ($topCloser['completed'] / $topCloser['closing']) * 100 : 0;
     $popularMethod = $paymentMethodRows->sortByDesc('transactions')->first();
+
+    // Pre-compute registration data for Excel export
+    $exportRegistrations = $registrations->map(function ($r) {
+        return [
+            'nama_pelajar' => strtoupper($r['pelajar']->nama_pelajar),
+            'email' => $r['pelajar']->email ?: '-',
+            'no_tel' => $r['pelajar']->no_tel ?: '-',
+            'noreff' => $r['pelajar']->noreff ?: '-',
+            'kursus' => $r['pelajar']->pilihan_pertama ?: ($r['pelajar']->kod_kursus ?: '-'),
+            'institusi' => $r['pelajar']->kod_institusi ?: '-',
+            'payment_method' => $r['payment_method'],
+            'payment_status' => $r['payment_status'],
+            'pre_reg' => $r['pre_reg'],
+            'total' => $r['total'],
+            'closer' => $r['closer'],
+        ];
+    })->values();
+
+    $exportCloserRows = $closerRows->map(function ($c) {
+        return [
+            'closer' => $c['closer'],
+            'closing' => $c['closing'],
+            'completed' => $c['completed'],
+            'partial' => $c['partial'],
+            'pending' => $c['pending'],
+            'revenue' => $c['revenue'],
+        ];
+    });
+
+    $exportEventName = strtoupper($event->nama_event);
+    $exportPopularLabel = $popularMethod['label'] ?? 'NONE';
+    $exportPopularShare = $popularMethod['share'] ?? 0;
 @endphp
 
+{{-- Export data as JSON for Excel generation --}}
+<script>
+window.REPORT_DATA = {
+    eventName: @json($exportEventName),
+    reportId: @json($reportId),
+    totalRegistrations: @json($totalRegistrations),
+    registrations: @json($exportRegistrations),
+    paymentMethodRows: @json($paymentMethodRows),
+    paymentStatusRows: @json($paymentStatusRows),
+    closerRows: @json($exportCloserRows),
+    insights: {
+        totalPreReg: @json($totalPreReg),
+        totalReg: @json($totalReg),
+        totalRevenue: @json($totalRevenue),
+        totalClosers: @json($totalClosers),
+        activeClosers: @json($activeClosers),
+        topThreeClosing: @json($topThreeClosing),
+        topThreeShare: @json($topThreeShare),
+        averagePerCloser: @json($averagePerCloser),
+        topCloser: @json($topCloser),
+        topCompletionRate: @json($topCompletionRate),
+        popularMethodLabel: @json($exportPopularLabel),
+        popularMethodShare: @json($exportPopularShare),
+    },
+};
+</script>
+
 <div class="screen-actions">
-    <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50">
-        <i class="fas fa-arrow-left"></i>
-        Dashboard
-    </a>
-    <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-orange-600">
-        <i class="fas fa-print"></i>
-        Print Report
-    </button>
+    <div class="screen-actions-left">
+        <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50">
+            <i class="fas fa-arrow-left"></i>
+            Dashboard
+        </a>
+    </div>
+    <div class="screen-actions-right">
+        <button onclick="exportToExcel()" class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700">
+            <i class="fas fa-file-excel"></i>
+            Export to Excel
+        </button>
+        <button onclick="window.print()" class="inline-flex items-center gap-2 rounded-full bg-orange-500 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-orange-600">
+            <i class="fas fa-print"></i>
+            Print Report
+        </button>
+    </div>
 </div>
 
 <section class="report-page">
     <h1 class="report-title">REGISTRATION DETAILS REGISTER</h1>
     <p class="report-subtitle">EVENT: {{ strtoupper($event->nama_event) }} | TOTAL REGISTRATIONS: {{ $totalRegistrations }}</p>
 
-    <div class="mt-7 overflow-x-auto">
+    <div class="report-table-wrap">
         <table class="report-table registration-table">
             <colgroup>
                 <col class="col-no">
