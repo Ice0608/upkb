@@ -29,6 +29,12 @@
         </div>
         <div class="flex flex-wrap gap-3">
             <a href="{{ route('staff.event.create') }}" class="inline-flex items-center rounded-full bg-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-teal-200 transition hover:bg-teal-600">Tambah Event</a>
+            <button
+                type="button"
+                onclick="downloadStudentListPrint()"
+                class="inline-flex items-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                {{ $selectedEvent?->id ? '' : 'disabled' }}
+            >Cetak Senarai Pelajar</button>
         </div>
     </div>
 
@@ -66,7 +72,7 @@
                             <th class="px-6 py-4">Nama Pelajar</th>
                             <th class="px-6 py-4">Tarikh Daftar</th>
                             <th class="px-6 py-4">Status</th>
-                            <th class="px-6 py-4">Jumlah (RM)</th>
+                            <th class="px-6 py-4">Perlu Membayar (RM)</th>
                             <th class="px-6 py-4">Bayaran Semasa (RM)</th>
                             <th class="px-6 py-4">Lihat Resit</th>
                             <th class="px-6 py-4">Temu Duga</th>
@@ -100,7 +106,7 @@
                                     default => 'bg-slate-100 text-slate-800',
                                 };
                             @endphp
-                            <tr class="hover:bg-slate-50">
+                            <tr class="hover:bg-slate-50" data-phone="{{ $pelajar->no_tel ?? '' }}">
                                 <td class="px-6 py-4">
                                     <div class="font-semibold text-slate-900">{{ $pelajar->nama_pelajar }}</div>
                                     <div class="text-xs text-slate-500">{{ $pelajar->ic_pelajar }}</div>
@@ -112,7 +118,7 @@
                                     </button>
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ number_format($payment?->jumlah_bayaran ?? 0, 2) }}
+                                    {{ number_format(300, 2) }}
                                 </td>
                                 <td class="px-6 py-4">{{ number_format($payment?->bayaran_semasa ?? 0, 2) }}</td>
                                 <td class="px-6 py-4">
@@ -281,7 +287,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jumlah Bayaran (RM)</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jumlah (RM)</label>
                     <input type="number" step="0.01" min="0" name="jumlah_bayaran" id="modal-jumlah-bayaran" class="w-full rounded-3xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none" />
                 </div>
 
@@ -743,6 +749,92 @@
             printWindow.print();
         }, 300);
     }
+</script>
+
+<script>
+function downloadStudentListPrint() {
+        const selectedEventName = @json($selectedEvent?->nama_event ?? '');
+        const selectedEventDate = @json($selectedEvent?->tarikh_event?->format('d/m/Y') ?? '');
+        const selectedEventLocation = @json($selectedEvent?->lokasi ?? '');
+
+        const rows = Array.from(document.querySelectorAll('#staff-pelajar-table tbody tr'))
+                .filter(r => r.style.display !== 'none');
+
+        const tableRows = rows.map(r => {
+                const nameCell = r.querySelector('td:nth-child(1)');
+                const name = nameCell ? nameCell.querySelector('div')?.textContent.trim() || nameCell.textContent.trim() : '';
+                const ic = nameCell ? nameCell.querySelector('div + div')?.textContent.trim() || '' : '';
+                const phone = r.getAttribute('data-phone') || '';
+                const statusCell = r.querySelector('td:nth-child(3)');
+                const status = statusCell ? statusCell.textContent.trim() : '';
+                const bayaranCell = r.querySelector('td:nth-child(5)');
+                const bayaran = bayaranCell ? bayaranCell.textContent.trim() : '';
+                return { name, ic, phone, status, bayaran };
+        });
+
+        const logoUrl = '{{ asset('images/icon/seslogoo.png') }}';
+
+        const printWindow = window.open('', '_blank', 'width=1100,height=800');
+        const html = `<!doctype html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Senarai Pelajar - ${selectedEventName}</title>
+            <style>
+                @page { size: A4 landscape; margin: 12mm; }
+                body { font-family: Arial, sans-serif; color: #111; }
+                .header { display:flex; align-items:center; gap:16px; margin-bottom:12px; }
+                .logo { height:64px; }
+                h1 { margin:0; font-size:20px; }
+                .meta { margin-top:6px; font-size:14px; }
+                table { width:100%; border-collapse: collapse; margin-top:18px; }
+                th, td { border: 1px solid #333; padding:8px; font-size:13px; text-align:left; }
+                th { background:#f3f4f6; font-weight:700; }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <img src="${logoUrl}" class="logo" alt="logo">
+                <div>
+                    <h1>Senarai Pelajar — ${selectedEventName}</h1>
+                    <div class="meta">Tarikh: ${selectedEventDate} &nbsp; • &nbsp; Lokasi: ${selectedEventLocation}</div>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama Pelajar</th>
+                        <th>No K/P</th>
+                        <th>No Telefon</th>
+                        <th>Status Pembayaran</th>
+                        <th>Bayaran Semasa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows.map(r => `
+                        <tr>
+                            <td>${r.name}</td>
+                            <td>${r.ic}</td>
+                            <td>${r.phone}</td>
+                            <td>${r.status}</td>
+                            <td>${r.bayaran}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </body>
+        </html>`;
+
+        printWindow.document.open();
+        printWindow.document.write(html);
+        printWindow.document.close();
+
+        // Give browser time to render images
+        setTimeout(() => {
+                printWindow.focus();
+                printWindow.print();
+        }, 500);
+}
 </script>
 
 <script>

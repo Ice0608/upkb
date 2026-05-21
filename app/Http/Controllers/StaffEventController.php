@@ -416,40 +416,37 @@ class StaffEventController extends Controller
                 'isPdf' => $isPdf,
                 'receiptNumberOverride' => $receiptNumberOverride !== '' ? $receiptNumberOverride : null,
             ], $receiptData));
-            $pdf->setPaper('A4', 'portrait');
+            // Match the main receipt layout: landscape A4 and enable remote assets for images
+            $pdf->setPaper('A4', 'landscape');
+            $pdf->setOptions([
+                'isRemoteEnabled' => true,
+                'isHtml5ParserEnabled' => true,
+            ]);
             $pdfContent = $pdf->output();
 
             // Email content
-            $emailBody = '
-                <html>
+            // Use a concise email body but ensure the attached PDF is the canonical receipt (same layout as main)
+            $emailBody = '<html>
                 <head>
                     <style>
                         body { font-family: Arial, sans-serif; color: #333; }
-                        .header { background-color: #f97316; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-                        .content { padding: 20px; background-color: #f9f9f9; }
-                        .footer { background-color: #f1f5f9; padding: 10px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
-                        .receipt-section { border: 1px solid #ddd; padding: 10px; margin: 20px 0; background-color: white; border-radius: 4px; }
+                        .header { padding: 12px 0; text-align: center; }
+                        .content { padding: 12px; }
+                        .button { display:inline-block; padding:10px 18px; background:#0f766e; color:#fff; text-decoration:none; border-radius:8px; font-weight:700; }
                     </style>
                 </head>
                 <body>
                     <div class="header">
-                        <h2>Resit Pembayaran</h2>
-                        <p>Universiti Pertahanan Nasional Malaysia</p>
+                        <h2>Resit Pembayaran - Smart Education Society</h2>
                     </div>
                     <div class="content">
                         <p>Salam ' . htmlspecialchars($pelajarName) . ',</p>
-                        <p>Berikut adalah resit pembayaran anda dalam format PDF.</p>
-                        <p>Sila buka lampiran PDF untuk melihat atau menyimpan resit rasmi.</p>
-                        <p>Sila simpan resit ini untuk rekod anda.</p>
-                        <p>Sebarang pertanyaan, sila hubungi kami.</p>
+                        <p>Resit pembayaran anda dilampirkan sebagai PDF. Sila buka lampiran untuk melihat butiran rasmi.</p>
+                        <p>Jika anda tidak menerima lampiran, sila hubungi pihak pengurusan.</p>
                         <p>Terima kasih.</p>
                     </div>
-                    <div class="footer">
-                        <p>&copy; 2024 UPNM. Sistem Pengurusan Pelajar.</p>
-                    </div>
                 </body>
-                </html>
-            ';
+                </html>';
 
             // Try using PHPMailer first
             $sentViaPhpMailer = false;
@@ -1109,7 +1106,19 @@ class StaffEventController extends Controller
         }
 
         try {
-            Mail::send('emails.pelajar_complete', compact('pelajar'), function ($message) use ($pelajar) {
+            // gather related course/institution data for the email
+            $kursus = null;
+            $institusi = null;
+            if ($pelajar->kod_kursus) {
+                $kursus = Kursus::with('institusi')
+                    ->where('kod_kursus', $pelajar->kod_kursus)
+                    ->when($pelajar->kod_institusi, fn ($q) => $q->where('kod_institusi', $pelajar->kod_institusi))
+                    ->first();
+                $institusi = $kursus?->institusi;
+            }
+            $program = $pelajar->program ?? null;
+
+            Mail::send('emails.pelajar_complete', compact('pelajar', 'kursus', 'institusi', 'program'), function ($message) use ($pelajar) {
                 $message->to($pelajar->email, $pelajar->nama_pelajar)
                     ->subject('TAHNIAH! Permohonan Anda Telah Selesai')
                     ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME', 'UPKB System'));

@@ -34,6 +34,14 @@
                     <span class="info-label">No. K/P</span>
                     <span class="info-value">{{ $pelajar->ic_pelajar }}</span>
                 </div>
+                    <div style="margin-top:0.75rem;">
+                        <span class="info-label">Nama Institusi</span>
+                        <span class="info-value">{{ $institusi->nama_institusi ?? ($pelajar->kod_institusi ?? '-') }}</span>
+                    </div>
+                    <div style="margin-top:0.75rem;">
+                        <span class="info-label">Program Pengajian</span>
+                        <span class="info-value">{{ $program ?? ($pelajar->program ?? '-') }}</span>
+                    </div>
                 @if($pelajar->kod_kursus)
                 <div style="margin-top:0.75rem;">
                     <span class="info-label">Kursus</span>
