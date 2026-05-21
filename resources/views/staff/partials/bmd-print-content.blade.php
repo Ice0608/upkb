@@ -187,7 +187,7 @@
         <div class="ref-number">SES/{{ now()->format('Y-m-d') }}/{{ str_pad(\App\Models\Pelajar::where('event_id', $pelajar->event_id)->where(function($q) use ($pelajar) { $q->where('tarikh_pendaftaran', '<', $pelajar->tarikh_pendaftaran)->orWhere('tarikh_pendaftaran', '=', $pelajar->tarikh_pendaftaran)->where('id', '<', $pelajar->id); })->count() + 1, 3, '0', STR_PAD_LEFT) }}</div>
 
         <div class="logos-wrapper">
-            <img src="/images/icon/seslogoo.png" alt="Logo SES">
+            <img src="file://{{ str_replace('\\', '/', public_path('images/icon/seslogoo.png')) }}" alt="Logo SES">
         </div>
 
         <h1 class="header-title">Borang Permohonan & Temuduga</h1>

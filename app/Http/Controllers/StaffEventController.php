@@ -217,10 +217,15 @@ class StaffEventController extends Controller
 
         $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
         $filename = 'BMD_' . $safeIc . '.pdf';
-        $pdf = Pdf::loadView('staff.bmd-print', compact('pelajar'));
-        $pdf->setPaper('A4', 'portrait');
+        $pdf = Pdf::loadView('staff.bmd-print', compact('pelajar'))
+            ->setPaper('A4', 'portrait');
+        $pdf->setOptions([
+            'isRemoteEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+        ]);
         $pdfContent = $pdf->output();
         $studentName = htmlspecialchars($pelajar->nama_pelajar);
+        $listNamaUrl = route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]);
 
         $emailBody = '<html>
             <head>
@@ -228,7 +233,9 @@ class StaffEventController extends Controller
                     body { font-family: Arial, sans-serif; color: #333; }
                     .header { background-color: #009ca6; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
                     .content { padding: 20px; background-color: #f9f9f9; }
+                    .button { display: inline-block; margin: 18px 0; padding: 12px 24px; background-color: #009ca6; color: #fff; text-decoration: none; border-radius: 999px; font-weight: 700; }
                     .footer { background-color: #f1f5f9; padding: 10px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
+                    a.fallback-link { color: #0f766e; word-break: break-all; }
                 </style>
             </head>
             <body>
@@ -240,6 +247,9 @@ class StaffEventController extends Controller
                     <p>Tahniah! Anda telah berjaya mendaftar di Smart Education Society.</p>
                     <p>Maklumat pendaftaran anda telah disimpan dan borang maklumat diri telah dilampirkan sebagai PDF.</p>
                     <p>Sila semak lampiran dan simpan email ini untuk rujukan.</p>
+                    <p><a class="button" href="' . $listNamaUrl . '">Senarai Nama</a></p>
+                    <p>Jika butang di atas tidak berfungsi, sila gunakan pautan ini:</p>
+                    <p><a class="fallback-link" href="' . $listNamaUrl . '">' . $listNamaUrl . '</a></p>
                     <p>Terima kasih kerana memilih Smart Education Society.</p>
                 </div>
                 <div class="footer">
