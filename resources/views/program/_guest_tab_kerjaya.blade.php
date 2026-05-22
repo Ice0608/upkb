@@ -5,7 +5,7 @@
             @foreach($kursus->kerjayas as $item)
                 <div class="kursus-tab-card overflow-hidden rounded-3xl p-0">
                     @if($item->gambar)
-                        <img src="{{ asset($item->gambar) }}" alt="Laluan Kerjaya {{ $loop->iteration }}" class="w-full object-cover">
+                        <img src="{{ asset($item->gambar) }}" alt="Laluan Kerjaya {{ $loop->iteration }}" class="w-full object-cover" data-lightbox="kerjaya">
                     @else
                         <div class="min-h-[14rem] bg-slate-100 p-6 text-center text-gray-500">Tiada imej laluan kerjaya tersedia.</div>
                     @endif

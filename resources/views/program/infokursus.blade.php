@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SESOC - Info kursus</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/lightbox.css', 'resources/js/app.js'])
     @include('components.dark-mode-init')
     <style>
         .kursus-detail-page,
@@ -679,6 +679,10 @@
                 tabContent.innerHTML = html;
                 runLoadedScripts(tabContent);
                 initializeLoadedYuran(tabContent);
+                // Re-bind lightbox for dynamically loaded content
+                if (window.lightbox) {
+                    window.lightbox.bindImages();
+                }
             })
             .catch(error => {
                 console.error('Error loading tab:', error);
