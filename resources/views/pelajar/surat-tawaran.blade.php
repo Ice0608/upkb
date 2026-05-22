@@ -150,9 +150,9 @@
                         <button onclick="sendEmail()" class="inline-flex items-center gap-2 rounded-full border border-orange-600 bg-orange-100 px-6 py-3 text-sm font-semibold text-orange-700 hover:bg-orange-200 transition">
                             <i class="fas fa-envelope"></i> Hantar Email
                         </button>
-                        <a href="/" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
+                        <button type="button" onclick="showCongrats()" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
                             <i class="fas fa-check"></i> Selesai
-                        </a>
+                        </button>
                     </div>
                 </div>
             @else
@@ -224,9 +224,9 @@
 
                     <!-- Action Buttons -->
                     <div class="flex flex-wrap gap-3 justify-center no-print">
-                        <a href="/" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
+                        <button type="button" onclick="showCongrats()" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
                             <i class="fas fa-check"></i> Selesai
-                        </a>
+                        </button>
                     </div>
                 </div>
             @endif
@@ -246,22 +246,51 @@
         <!-- Progress -->
         <div class="mt-8 text-center">
             <p class="text-slate-600 mb-3">Proses temu duga</p>
-            <div class="flex items-center justify-center gap-2 text-sm text-slate-500">
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
+            <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-slate-500">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">1</span>
                 <span>Pilihan Kursus</span>
                 <i class="fas fa-chevron-right mx-1"></i>
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">2</span>
                 <span>Pembayaran</span>
                 <i class="fas fa-chevron-right mx-1"></i>
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">3</span>
                 <span>Resit</span>
                 <i class="fas fa-chevron-right mx-1"></i>
-                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">Ã¢Å“â€œ</span>
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-600 text-white font-bold text-xs">4</span>
                 <span>Surat Tawaran</span>
             </div>
         </div>
+
     </div>
 </main>
+
+<div id="congrats-overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+    <div class="w-full max-w-3xl rounded-[28px] bg-white p-8 shadow-2xl ring-1 ring-slate-200">
+        <div class="flex flex-col gap-4 text-center">
+            <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 text-3xl shadow-sm">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h2 class="text-3xl font-semibold text-slate-900">Tahniah! Pendaftaran Anda Telah Berjaya</h2>
+            <p class="text-slate-700 leading-relaxed">
+                Semua maklumat telah berjaya dihantar dan kini sedang dalam proses semakan oleh pihak kami.
+            </p>
+            <p class="text-slate-700 leading-relaxed">
+                Sila pantau e-mel serta nombor telefon yang didaftarkan kerana kami akan menghubungi anda dalam masa 3-5 hari bekerja untuk pengesahan seterusnya.
+            </p>
+            <div class="rounded-3xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-900 text-sm font-medium">
+                <i class="fas fa-check-circle mr-2"></i>Kerjasama anda dihargai. Teruskan langkah seterusnya dengan penuh keyakinan.
+            </div>
+            <div class="mt-4 flex flex-wrap justify-center gap-3">
+                <button type="button" onclick="hideCongrats()" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
+                    Tutup
+                </button>
+                <a href="/" class="inline-flex items-center justify-center rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white hover:bg-green-700 transition">
+                    Ke Laman Utama
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 @include('layouts.footer-pelajar')
 
@@ -289,5 +318,15 @@
             console.error('Error:', error);
             alert('Ralat semasa menghantar email.');
         });
+    }
+
+    function showCongrats() {
+        document.getElementById('congrats-overlay').classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function hideCongrats() {
+        document.getElementById('congrats-overlay').classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
     }
 </script>

@@ -131,19 +131,26 @@
         padding: 0;
         margin: 0;
         background: transparent;
-        color: inherit;
-        font: inherit;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: inherit;
+        color: #c00;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        font-weight: 700;
         line-height: inherit;
         text-align: center;
         text-transform: uppercase;
-        letter-spacing: inherit;
+        letter-spacing: 0.08em;
         outline: none;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
+    }
+
+    #receipt-no-text {
+        color: #c00;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
     }
 
     .details-block {
@@ -280,10 +287,10 @@
     };
 
     $referenceNumber = 'SES/' . $programCode . '/' . $receiptDate->format('my');
-    $defaultReceiptNumber = 'SESOC/' . $receiptDate->format('Ymd') . '/' . str_pad((string) ($pembayaran?->id ?? $pelajar?->id ?? 1), 4, '0', STR_PAD_LEFT);
+    $defaultReceiptNumber = str_pad((string) ($pembayaran?->id ?? 1), 5, '0', STR_PAD_LEFT);
     $receiptNumber = filled($receiptNumberOverride ?? null) ? trim((string) $receiptNumberOverride) : $defaultReceiptNumber;
     $previewReceiptNumber = ($isPreviewModal ?? false) && !($isPdf ?? false)
-        ? trim((string) ($receiptNumberOverride ?? ''))
+        ? (filled($receiptNumberOverride ?? null) ? trim((string) $receiptNumberOverride) : $defaultReceiptNumber)
         : $receiptNumber;
 
     $paymentMethod = match (strtolower((string) ($pembayaran?->kaedah_pembayaran ?? ''))) {
@@ -440,7 +447,13 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $row['label'] }}</td>
-                            <td class="col-amount">{{ $row['amount'] !== null ? number_format((float) $row['amount'], 2) : '' }}</td>
+                            <td class="col-amount">
+                                @if (trim(strtoupper($row['label'])) === 'PRA PENDAFTARAN')
+                                    
+                                @else
+                                    {{ $row['amount'] !== null ? number_format((float) $row['amount'], 2) : '' }}
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
