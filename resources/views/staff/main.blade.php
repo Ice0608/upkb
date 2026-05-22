@@ -69,14 +69,14 @@
                 <table id="staff-pelajar-table" class="min-w-full text-left text-sm">
                     <thead class="bg-[linear-gradient(90deg,#0f766e,#14b8a6)] text-white">
                         <tr>
-                            <th class="px-6 py-4">Nama Pelajar</th>
-                            <th class="px-6 py-4">Tarikh Daftar</th>
-                            <th class="px-6 py-4">Status</th>
-                            <th class="px-6 py-4">Perlu Membayar (RM)</th>
-                            <th class="px-6 py-4">Bayaran Semasa (RM)</th>
-                            <th class="px-6 py-4">Lihat Resit</th>
-                            <th class="px-6 py-4">Temu Duga</th>
-                            <th class="px-6 py-4">Cetak</th>
+                            <th class="px-3 py-2 sm:px-6 sm:py-4 text-left">Nama Pelajar</th>
+                            <th class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">Tarikh Daftar</th>
+                            <th class="px-3 py-2 sm:px-6 sm:py-4">Status</th>
+                            <th class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">Perlu Membayar (RM)</th>
+                            <th class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">Bayaran Semasa (RM)</th>
+                            <th class="px-3 py-2 sm:px-6 sm:py-4">Lihat Resit</th>
+                            <th class="px-3 py-2 sm:px-6 sm:py-4">Temu Duga</th>
+                            <th class="px-3 py-2 sm:px-6 sm:py-4">Cetak</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">
@@ -107,31 +107,31 @@
                                 };
                             @endphp
                             <tr class="hover:bg-slate-50" data-phone="{{ $pelajar->no_tel ?? '' }}">
-                                <td class="px-6 py-4">
+                                <td class="px-3 py-2 sm:px-6 sm:py-4">
                                     <div class="font-semibold text-slate-900">{{ $pelajar->nama_pelajar }}</div>
                                     <div class="text-xs text-slate-500">{{ $pelajar->ic_pelajar }}</div>
                                 </td>
-                                <td class="px-6 py-4">{{ $pelajar->tarikh_pendaftaran?->format('d M Y') ?? '-' }}</td>
-                                <td class="px-6 py-4">
+                                <td class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">{{ $pelajar->tarikh_pendaftaran?->format('d M Y') ?? '-' }}</td>
+                                <td class="px-3 py-2 sm:px-6 sm:py-4">
                                     <button type="button" onclick="openStatusModal('{{ $pelajar->ic_pelajar }}', '{{ $statusValue }}', '{{ $payment?->jumlah_bayaran ?? 0 }}', '{{ $payment?->bayaran_semasa ?? 0 }}')" class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $statusClasses }} hover:opacity-80 cursor-pointer">
                                         {{ $statusLabel }}
                                     </button>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">
                                     {{ number_format(300, 2) }}
                                 </td>
-                                <td class="px-6 py-4">{{ number_format($payment?->bayaran_semasa ?? 0, 2) }}</td>
-                                <td class="px-6 py-4">
+                                <td class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">{{ number_format($payment?->bayaran_semasa ?? 0, 2) }}</td>
+                                <td class="px-3 py-2 sm:px-6 sm:py-4">
                                     @if($payment && $payment->resit)
                                         <button type="button" onclick="openResitModal('{{ asset('storage/' . $payment->resit) }}')" class="inline-flex items-center gap-2 rounded-full bg-teal-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-teal-700">Lihat Resit</button>
                                     @else
                                         <span class="text-xs text-slate-400">Tiada resit</span>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 py-2 sm:px-6 sm:py-4">
                                     <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100 px-4 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50">Temu Duga</a>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-3 py-2 sm:px-6 sm:py-4">
                                     <div class="flex flex-wrap gap-2">
                                         <a href="{{ route('staff.bmd.edit', ['pelajar' => $pelajar->id]) }}" class="staff-action-btn staff-action-btn--bmd inline-flex items-center gap-2 rounded-full bg-slate-800 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-900">BMD</a>
                                         <a
@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <a href="{{ route('bmd', ['event_id' => $selectedEvent?->id]) }}" class="mt-6 block rounded-3xl border border-slate-200 bg-slate-50/90 p-5 text-center transition hover:border-teal-300 hover:bg-white">
-                    <div id="qrcode" class="mx-auto flex h-56 w-56 items-center justify-center rounded-3xl border border-slate-300 bg-white shadow-sm"></div>
+                    <div id="qrcode" class="mx-auto flex h-40 w-40 md:h-56 md:w-56 items-center justify-center rounded-3xl border border-slate-300 bg-white shadow-sm"></div>
                 </a>
                 <p class="mt-4 text-sm leading-6 text-slate-600">QR ini membawa ke borang maklumat diri (BMD). Lengkapkan data pelajar untuk mencatat kehadiran dan cetak borang.</p>
                 <div class="mt-4 flex flex-wrap gap-3">
