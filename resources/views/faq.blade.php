@@ -1315,18 +1315,18 @@
         }
 
         .faq-neon-stage {
-            --faq-neon-mark: #dbeafe;
-            --faq-neon-glow-soft: rgba(147, 197, 253, 0.96);
-            --faq-neon-glow-mid: rgba(96, 165, 250, 0.94);
-            --faq-neon-glow-deep: rgba(59, 130, 246, 0.92);
-            --faq-neon-glow-wide: rgba(56, 189, 248, 0.72);
-            --faq-neon-haze-one: rgba(96, 165, 250, 0.28);
-            --faq-neon-haze-two: rgba(56, 189, 248, 0.18);
-            --faq-neon-haze-three: rgba(125, 211, 252, 0.16);
-            --faq-neon-core: rgba(59, 130, 246, 0.22);
-            --faq-neon-ghost: rgba(186, 230, 253, 0.42);
-            --faq-neon-aura: rgba(96, 165, 250, 0.32);
-            --faq-neon-aura-fade: rgba(59, 130, 246, 0);
+            --faq-neon-mark: #7dd3fc;
+            --faq-neon-glow-soft: rgba(45, 212, 191, 0.96);
+            --faq-neon-glow-mid: rgba(20, 184, 166, 0.94);
+            --faq-neon-glow-deep: rgba(5, 150, 105, 0.92);
+            --faq-neon-glow-wide: rgba(45, 212, 191, 0.82);
+            --faq-neon-haze-one: rgba(45, 212, 191, 0.28);
+            --faq-neon-haze-two: rgba(20, 184, 166, 0.18);
+            --faq-neon-haze-three: rgba(167, 243, 208, 0.16);
+            --faq-neon-core: rgba(20, 184, 166, 0.24);
+            --faq-neon-ghost: rgba(167, 243, 208, 0.44);
+            --faq-neon-aura: rgba(45, 212, 191, 0.32);
+            --faq-neon-aura-fade: rgba(20, 184, 166, 0);
             position: relative;
             width: min(24rem, 100%);
             height: 15rem;
@@ -1335,48 +1335,48 @@
         }
 
         .faq-page[data-active-category="tvet"] .faq-neon-stage {
-            --faq-neon-mark: #ffedd5;
-            --faq-neon-glow-soft: rgba(254, 215, 170, 0.96);
-            --faq-neon-glow-mid: rgba(251, 146, 60, 0.94);
-            --faq-neon-glow-deep: rgba(234, 88, 12, 0.92);
-            --faq-neon-glow-wide: rgba(249, 115, 22, 0.74);
-            --faq-neon-haze-one: rgba(251, 146, 60, 0.3);
-            --faq-neon-haze-two: rgba(249, 115, 22, 0.2);
-            --faq-neon-haze-three: rgba(253, 186, 116, 0.18);
-            --faq-neon-core: rgba(249, 115, 22, 0.24);
-            --faq-neon-ghost: rgba(254, 215, 170, 0.44);
-            --faq-neon-aura: rgba(251, 146, 60, 0.34);
-            --faq-neon-aura-fade: rgba(234, 88, 12, 0);
+            --faq-neon-mark: #ccfbf1;
+            --faq-neon-glow-soft: rgba(45, 212, 191, 0.96);
+            --faq-neon-glow-mid: rgba(20, 184, 166, 0.94);
+            --faq-neon-glow-deep: rgba(13, 148, 136, 0.92);
+            --faq-neon-glow-wide: rgba(45, 212, 191, 0.74);
+            --faq-neon-haze-one: rgba(45, 212, 191, 0.3);
+            --faq-neon-haze-two: rgba(20, 184, 166, 0.2);
+            --faq-neon-haze-three: rgba(167, 243, 208, 0.18);
+            --faq-neon-core: rgba(20, 184, 166, 0.24);
+            --faq-neon-ghost: rgba(167, 243, 208, 0.44);
+            --faq-neon-aura: rgba(45, 212, 191, 0.34);
+            --faq-neon-aura-fade: rgba(20, 184, 166, 0);
         }
 
         .faq-page[data-active-category="diploma"] .faq-neon-stage {
-            --faq-neon-mark: #ede9fe;
-            --faq-neon-glow-soft: rgba(221, 214, 254, 0.96);
-            --faq-neon-glow-mid: rgba(167, 139, 250, 0.94);
-            --faq-neon-glow-deep: rgba(124, 58, 237, 0.92);
-            --faq-neon-glow-wide: rgba(139, 92, 246, 0.74);
-            --faq-neon-haze-one: rgba(167, 139, 250, 0.3);
-            --faq-neon-haze-two: rgba(139, 92, 246, 0.2);
-            --faq-neon-haze-three: rgba(196, 181, 253, 0.18);
-            --faq-neon-core: rgba(124, 58, 237, 0.24);
-            --faq-neon-ghost: rgba(221, 214, 254, 0.44);
-            --faq-neon-aura: rgba(167, 139, 250, 0.34);
-            --faq-neon-aura-fade: rgba(76, 29, 149, 0);
+            --faq-neon-mark: #ccfbf1;
+            --faq-neon-glow-soft: rgba(45, 212, 191, 0.96);
+            --faq-neon-glow-mid: rgba(20, 184, 166, 0.94);
+            --faq-neon-glow-deep: rgba(13, 148, 136, 0.92);
+            --faq-neon-glow-wide: rgba(45, 212, 191, 0.74);
+            --faq-neon-haze-one: rgba(45, 212, 191, 0.3);
+            --faq-neon-haze-two: rgba(20, 184, 166, 0.2);
+            --faq-neon-haze-three: rgba(167, 243, 208, 0.18);
+            --faq-neon-core: rgba(20, 184, 166, 0.24);
+            --faq-neon-ghost: rgba(167, 243, 208, 0.44);
+            --faq-neon-aura: rgba(45, 212, 191, 0.34);
+            --faq-neon-aura-fade: rgba(20, 184, 166, 0);
         }
 
         .faq-page[data-active-category="sains-kesihatan"] .faq-neon-stage {
-            --faq-neon-mark: #dbeafe;
-            --faq-neon-glow-soft: rgba(191, 219, 254, 0.96);
-            --faq-neon-glow-mid: rgba(96, 165, 250, 0.94);
-            --faq-neon-glow-deep: rgba(37, 99, 235, 0.92);
-            --faq-neon-glow-wide: rgba(59, 130, 246, 0.74);
-            --faq-neon-haze-one: rgba(96, 165, 250, 0.3);
-            --faq-neon-haze-two: rgba(37, 99, 235, 0.2);
-            --faq-neon-haze-three: rgba(147, 197, 253, 0.18);
-            --faq-neon-core: rgba(37, 99, 235, 0.24);
-            --faq-neon-ghost: rgba(191, 219, 254, 0.44);
-            --faq-neon-aura: rgba(96, 165, 250, 0.34);
-            --faq-neon-aura-fade: rgba(15, 23, 42, 0);
+            --faq-neon-mark: #ccfbf1;
+            --faq-neon-glow-soft: rgba(45, 212, 191, 0.96);
+            --faq-neon-glow-mid: rgba(20, 184, 166, 0.94);
+            --faq-neon-glow-deep: rgba(13, 148, 136, 0.92);
+            --faq-neon-glow-wide: rgba(45, 212, 191, 0.74);
+            --faq-neon-haze-one: rgba(45, 212, 191, 0.3);
+            --faq-neon-haze-two: rgba(20, 184, 166, 0.2);
+            --faq-neon-haze-three: rgba(167, 243, 208, 0.18);
+            --faq-neon-core: rgba(20, 184, 166, 0.24);
+            --faq-neon-ghost: rgba(167, 243, 208, 0.44);
+            --faq-neon-aura: rgba(45, 212, 191, 0.34);
+            --faq-neon-aura-fade: rgba(20, 184, 166, 0);
         }
 
         .faq-neon-stage::before,
@@ -1404,51 +1404,109 @@
             opacity: 0.72;
         }
 
-        .faq-neon-mark {
+        .faq-neon-node {
             position: absolute;
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            border-radius: 999px;
             color: var(--faq-neon-mark);
-            font-weight: 700;
-            line-height: 1;
+            font-size: 2.8rem;
+            font-weight: 900;
             text-shadow:
-                0 0 4px rgba(255, 255, 255, 0.92),
-                0 0 10px var(--faq-neon-glow-soft),
-                0 0 18px var(--faq-neon-glow-mid),
-                0 0 32px var(--faq-neon-glow-deep),
-                0 0 56px var(--faq-neon-glow-wide);
-            animation: faqNeonFloat 5.6s ease-in-out infinite, faqNeonPulse 3.2s ease-in-out infinite;
+                0 0 8px rgba(255, 255, 255, 1),
+                0 0 20px rgba(45, 212, 191, 0.92),
+                0 0 36px rgba(20, 184, 166, 0.72);
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), transparent 22%),
+                radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.22), transparent 45%),
+                radial-gradient(circle at 55% 55%, var(--faq-neon-glow-soft), transparent 55%);
+            box-shadow:
+                0 0 24px rgba(255, 255, 255, 0.22),
+                0 0 56px var(--faq-neon-glow-mid),
+                0 0 112px var(--faq-neon-glow-wide),
+                inset 0 0 18px rgba(255, 255, 255, 0.24);
             will-change: transform, opacity, filter;
+            animation: faqNeonFloat 7.4s ease-in-out infinite alternate, faqNeonPulse 4.8s ease-in-out infinite;
+            overflow: hidden;
         }
 
-        .faq-neon-mark::before {
-            content: "?";
+        .faq-neon-node::before {
+            content: "";
             position: absolute;
-            inset: 0;
-            color: var(--faq-neon-ghost);
-            filter: blur(8px);
-            z-index: -1;
+            inset: -10%;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow:
+                0 0 18px rgba(255, 255, 255, 0.35),
+                0 0 42px rgba(45, 212, 191, 0.48);
+            opacity: 0.72;
+            transform-origin: center;
+            animation: faqNeonRing 10s linear infinite;
+            pointer-events: none;
         }
 
-        .faq-neon-mark--large {
+        .faq-neon-node::after {
+            content: "";
+            position: absolute;
+            inset: 16%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
+            filter: blur(1.5px);
+            pointer-events: none;
+        }
+
+        .faq-neon-spark {
+            position: absolute;
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(45, 212, 191, 0.95) 50%, transparent 80%);
+            filter: blur(1px);
+            opacity: 0.85;
+            box-shadow: 0 0 12px rgba(45, 212, 191, 0.4), 0 0 6px rgba(255, 255, 255, 0.3);
+            animation: faqSparkDrift 5.4s ease-in-out infinite;
+        }
+
+        .faq-neon-spark--one {
+            left: 18%;
+            top: 12%;
+            animation-delay: 0s;
+        }
+
+        .faq-neon-spark--two {
+            right: 18%;
+            top: 24%;
+            animation-delay: -1.2s;
+        }
+
+        .faq-neon-spark--three {
+            left: 52%;
+            bottom: 14%;
+            animation-delay: -2.1s;
+        }
+
+        .faq-neon-node--large {
             left: 12%;
             top: 14%;
-            font-size: 8.5rem;
+            width: 8.5rem;
+            height: 8.5rem;
             animation-delay: 0s, 0s;
         }
 
-        .faq-neon-mark--mid {
-            left: 42%;
-            top: 30%;
-            font-size: 6.1rem;
+        .faq-neon-node--mid {
+            left: 44%;
+            top: 24%;
+            width: 6.4rem;
+            height: 6.4rem;
             animation-delay: -1.2s, -0.8s;
         }
 
-        .faq-neon-mark--small {
+        .faq-neon-node--small {
             right: 12%;
-            top: 12%;
-            font-size: 7.1rem;
+            top: 19%;
+            width: 5.3rem;
+            height: 5.3rem;
             animation-delay: -2.1s, -1.5s;
         }
 
@@ -1482,6 +1540,30 @@
             width: 6.4rem;
             height: 6.4rem;
             animation-delay: -2.3s;
+        }
+
+        @keyframes faqNeonRing {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes faqSparkDrift {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 0.92;
+            }
+            50% {
+                transform: translate3d(0.25rem, -0.45rem, 0) scale(1.05);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translate3d(-0.15rem, 0.35rem, 0) scale(0.95);
+                opacity: 0.92;
+            }
         }
 
         @keyframes faqNeonFloat {
@@ -1537,16 +1619,19 @@
                 height: 12rem;
             }
 
-            .faq-neon-mark--large {
-                font-size: 6.5rem;
+            .faq-neon-node--large {
+                width: 6.2rem;
+                height: 6.2rem;
             }
 
-            .faq-neon-mark--mid {
-                font-size: 4.8rem;
+            .faq-neon-node--mid {
+                width: 4.8rem;
+                height: 4.8rem;
             }
 
-            .faq-neon-mark--small {
-                font-size: 5.7rem;
+            .faq-neon-node--small {
+                width: 5.1rem;
+                height: 5.1rem;
             }
         }
 
@@ -1568,25 +1653,28 @@
                 height: 10rem;
             }
 
-            .faq-neon-mark--large {
+            .faq-neon-node--large {
                 left: 8%;
-                font-size: 5rem;
+                width: 4.6rem;
+                height: 4.6rem;
             }
 
-            .faq-neon-mark--mid {
+            .faq-neon-node--mid {
                 left: 40%;
                 top: 34%;
-                font-size: 3.9rem;
+                width: 3.8rem;
+                height: 3.8rem;
             }
 
-            .faq-neon-mark--small {
+            .faq-neon-node--small {
                 right: 8%;
-                font-size: 4.5rem;
+                width: 4rem;
+                height: 4rem;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .faq-neon-mark,
+            .faq-neon-node,
             .faq-neon-aura {
                 animation: none;
             }
@@ -1619,9 +1707,12 @@
                         <span class="faq-neon-aura faq-neon-aura--one"></span>
                         <span class="faq-neon-aura faq-neon-aura--two"></span>
                         <span class="faq-neon-aura faq-neon-aura--three"></span>
-                        <span class="faq-neon-mark faq-neon-mark--large">?</span>
-                        <span class="faq-neon-mark faq-neon-mark--mid">?</span>
-                        <span class="faq-neon-mark faq-neon-mark--small">?</span>
+                        <span class="faq-neon-spark faq-neon-spark--one"></span>
+                        <span class="faq-neon-spark faq-neon-spark--two"></span>
+                        <span class="faq-neon-spark faq-neon-spark--three"></span>
+                        <span class="faq-neon-node faq-neon-node--large">?</span>
+                        <span class="faq-neon-node faq-neon-node--mid">?</span>
+                        <span class="faq-neon-node faq-neon-node--small">?</span>
                     </div>
                 </div>
             </div>

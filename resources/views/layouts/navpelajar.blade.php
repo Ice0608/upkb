@@ -181,6 +181,42 @@
             color: #94a3b8;
         }
 
+        @media (max-width: 640px) {
+            .site-nav {
+                flex-wrap: wrap;
+                gap: 0.6rem;
+            }
+
+            .theme-switch {
+                width: 4rem;
+                height: 2.25rem;
+                padding: 0.2rem;
+                flex-shrink: 0;
+            }
+
+            .theme-switch-track {
+                padding: 0 0.4rem;
+                font-size: 0.78rem;
+                justify-content: space-between;
+            }
+
+            .theme-switch-thumb {
+                width: 1.8rem;
+                height: 1.8rem;
+                top: 0.18rem;
+                left: 0.18rem;
+            }
+
+            .theme-switch[data-theme-mode="dark"] .theme-switch-thumb {
+                transform: translateX(1.75rem);
+            }
+
+            .site-nav-menu-icon {
+                flex-shrink: 0;
+                margin-left: 0.25rem;
+            }
+        }
+
         .site-nav-link::before {
             content: "";
             position: absolute;
