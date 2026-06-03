@@ -1246,7 +1246,17 @@
             background: rgba(51,65,85,0.66);
         }
         html.dark .faq-accordion-panel {
-            color: rgba(203,213,225,0.9);
+            color: rgba(226,232,240,0.95) !important;
+            background: rgba(15,23,42,0.88);
+        }
+        html.dark .faq-accordion-panel *,
+        html.dark .faq-accordion-panel p,
+        html.dark .faq-accordion-panel ul,
+        html.dark .faq-accordion-panel ol,
+        html.dark .faq-accordion-panel li,
+        html.dark .faq-accordion-panel strong,
+        html.dark .faq-accordion-panel a {
+            color: rgba(226,232,240,0.95) !important;
         }
         html.dark .faq-accordion-icon {
             background: rgba(15,23,42,0.88);
