@@ -4,7 +4,7 @@
 
 class Lightbox {
     constructor() {
-        this.overlay = null;
+        this.overlay = document.querySelector('.lightbox-overlay');
         this.currentIndex = 0;
         this.items = [];
         this.currentGroup = '';
@@ -15,12 +15,21 @@ class Lightbox {
         this.translateX = 0;
         this.translateY = 0;
         this.lastTapTime = 0;
+        this.overlayEventsBound = false;
 
         this.init();
     }
 
     init() {
-        // Create overlay element
+        // Hook into all images with data-lightbox
+        this.bindImages();
+    }
+
+    ensureOverlay() {
+        if (this.overlay && this.overlay.parentNode) {
+            return this.overlay;
+        }
+
         this.overlay = document.createElement('div');
         this.overlay.className = 'lightbox-overlay';
         this.overlay.innerHTML = `
@@ -34,8 +43,15 @@ class Lightbox {
         `;
 
         document.body.appendChild(this.overlay);
+        this.bindOverlayEvents();
+        return this.overlay;
+    }
 
-        // Bind events
+    bindOverlayEvents() {
+        if (this.overlayEventsBound) return;
+
+        const content = this.overlay.querySelector('.lightbox-content');
+
         this.overlay.querySelector('.lightbox-close').addEventListener('click', (e) => {
             e.stopPropagation();
             this.close();
@@ -51,14 +67,12 @@ class Lightbox {
             this.next();
         });
 
-        // Backdrop close (click on overlay background)
         this.overlay.addEventListener('click', (e) => {
             if (e.target === this.overlay) {
                 this.close();
             }
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!this.overlay.classList.contains('active')) return;
             if (e.key === 'Escape') this.close();
@@ -66,11 +80,6 @@ class Lightbox {
             if (e.key === 'ArrowRight') this.next();
         });
 
-        // Image zoom / pan events
-        const img = this.overlay.querySelector('.lightbox-image');
-        const content = this.overlay.querySelector('.lightbox-content');
-
-        // Mouse wheel zoom
         content.addEventListener('wheel', (e) => {
             e.preventDefault();
             if (e.deltaY < 0) {
@@ -80,7 +89,6 @@ class Lightbox {
             }
         }, { passive: false });
 
-        // Mouse pan
         content.addEventListener('mousedown', (e) => {
             if (this.scale > 1) {
                 this.isPanning = true;
@@ -103,7 +111,6 @@ class Lightbox {
             content.style.cursor = '';
         });
 
-        // Touch events for mobile pinch zoom and pan
         let lastTouchDist = 0;
         let lastTouchX = 0;
         let lastTouchY = 0;
@@ -131,14 +138,12 @@ class Lightbox {
                 const delta = dist - lastTouchDist;
                 const zoomFactor = 1 + delta * 0.01;
                 const newScale = Math.min(5, Math.max(1, this.scale * zoomFactor));
-                // Zoom toward center of pinch
                 const rect = content.getBoundingClientRect();
                 const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
                 const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
                 const offsetX = (cx - rect.left - rect.width / 2);
                 const offsetY = (cy - rect.top - rect.height / 2);
                 this.scale = newScale;
-                // Adjust translate to keep pinch center
                 this.translateX = offsetX * (1 - this.scale / (this.scale / zoomFactor));
                 this.translateY = offsetY * (1 - this.scale / (this.scale / zoomFactor));
                 this.applyTransform();
@@ -152,7 +157,6 @@ class Lightbox {
 
         content.addEventListener('touchend', (e) => {
             if (e.changedTouches.length === 1 && this.scale > 1) {
-                // Double tap to zoom reset
                 const currentTime = new Date().getTime();
                 const tapLength = currentTime - this.lastTapTime;
                 if (tapLength < 300 && tapLength > 0) {
@@ -166,8 +170,7 @@ class Lightbox {
             }
         }, { passive: true });
 
-        // Hook into all images with data-lightbox
-        this.bindImages();
+        this.overlayEventsBound = true;
     }
 
     bindImages() {
@@ -186,6 +189,7 @@ class Lightbox {
 
             if (this.currentIndex === -1) return;
 
+            this.ensureOverlay();
             this.open(this.currentIndex);
         });
     }
