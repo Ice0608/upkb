@@ -183,11 +183,17 @@
 
 <div class="bmd-print-root">
 <div class="bmd-print-sheet">
+    @php
+        $logoSrc = (isset($isPdf) && $isPdf)
+            ? 'file:///' . str_replace('\\', '/', public_path('images/icon/seslogoo.png'))
+            : asset('images/icon/seslogoo.png');
+    @endphp
+
     <div class="header-container">
         <div class="ref-number">SES/{{ now()->format('Y-m-d') }}/{{ str_pad(\App\Models\Pelajar::where('event_id', $pelajar->event_id)->where(function($q) use ($pelajar) { $q->where('tarikh_pendaftaran', '<', $pelajar->tarikh_pendaftaran)->orWhere('tarikh_pendaftaran', '=', $pelajar->tarikh_pendaftaran)->where('id', '<', $pelajar->id); })->count() + 1, 3, '0', STR_PAD_LEFT) }}</div>
 
         <div class="logos-wrapper">
-            <img src="file://{{ str_replace('\\', '/', public_path('images/icon/seslogoo.png')) }}" alt="Logo SES">
+            <img src="{{ $logoSrc }}" alt="Logo SES">
         </div>
 
         <h1 class="header-title">Borang Permohonan & Temuduga</h1>
@@ -225,27 +231,7 @@
             </tr>
             <tr>
                 <td class="label">Alamat Emel / <span class="label-sub">Email Address:</span></td>
-                <td class="value" style="text-transform: none;">{{ $pelajar->email ?? '-' }}</td>
-                <td class="label">E-mel Bapa / <span class="label-sub">Father Email:</span></td>
-                <td class="value" style="text-transform: none;">{{ $pelajar->email_bapa ?? '-' }}</td>
-            </tr>
-            <tr>
-                <td class="label">&nbsp;</td>
-                <td class="value">&nbsp;</td>
-                <td class="label">E-mel Ibu / <span class="label-sub">Mother Email:</span></td>
-                <td class="value" style="text-transform: none;">{{ $pelajar->email_ibu ?? '-' }}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="print-section">
-        <div class="section-title">3. Maklumat Alamat / Address Details</div>
-        <table class="info-table">
-            <tr>
-                <td class="label">Alamat Baris / <span class="label-sub">Address Line:</span></td>
-                <td colspan="3" class="value">
-                    {{ $pelajar->address_line1 ?? '-' }}{{ $pelajar->address_line2 ? ', ' . $pelajar->address_line2 : '' }}
-                </td>
+                <td colspan="3" class="value" style="text-transform: none;">{{ $pelajar->email ?? '-' }}</td>
             </tr>
             <tr>
                 <td class="label">Bandar / <span class="label-sub">City:</span></td>
@@ -273,6 +259,10 @@
                 <td class="label">No. Telefon / <span class="label-sub">Phone Number:</span></td>
                 <td class="value">{{ $pelajar->no_tel_bapa ?? '-' }}</td>
             </tr>
+            <tr>
+                <td class="label">Alamat Emel / <span class="label-sub">Email Address:</span></td>
+                <td colspan="3" class="value" style="text-transform: none;">{{ $pelajar->email_bapa ?? '-' }}</td>
+            </tr>
         </table>
     </div>
 
@@ -288,6 +278,10 @@
                 <td class="value">{{ $pelajar->ic_ibu ?? '-' }}</td>
                 <td class="label">No. Telefon / <span class="label-sub">Phone Number:</span></td>
                 <td class="value">{{ $pelajar->no_tel_ibu ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td class="label">Alamat Emel / <span class="label-sub">Email Address:</span></td>
+                <td colspan="3" class="value" style="text-transform: none;">{{ $pelajar->email_ibu ?? '-' }}</td>
             </tr>
             <tr>
                 <td class="label">Bil. Tanggungan / <span class="label-sub">No. of Dependants:</span></td>

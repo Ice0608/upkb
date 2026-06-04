@@ -38,9 +38,18 @@
             border-color: #334155;
         }
 
+        html.dark .bg-white {
+            background-color: #111827;
+            border-color: #334155;
+        }
+
+        html.dark .border-slate-200 {
+            border-color: #334155;
+        }
+
         html.dark .bg-emerald-50 {
-            background-color: rgba(5, 150, 105, 0.1);
-            border-color: #10b981;
+            background-color: rgba(5, 150, 105, 0.12);
+            border-color: #134e4a;
         }
 
         html.dark .bg-amber-50 {
@@ -140,77 +149,114 @@
 <body class="bg-slate-100 text-slate-800">
 @include('layouts.navpelajar')
 
-<main class="max-w-4xl mx-auto px-4 py-8">
-    <div class="rounded-[32px] bg-white p-8 shadow-sm border border-slate-200">
-        <div class="text-center mb-8">
-            <p class="text-sm uppercase tracking-[0.3em] text-teal-500">Dashboard Pelajar</p>
-            <h1 class="text-3xl font-semibold text-slate-900 mt-2">Selamat Datang</h1>
-            <p class="text-slate-600 mt-2">{{ $pelajar->nama_pelajar }}</p>
-        </div>
-
-        @if(session('success'))
-            <div class="rounded-3xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700 shadow-sm mb-6">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <!-- Student Info Card -->
-        <div class="bg-slate-50 rounded-2xl p-6 mb-6">
-            <h3 class="font-semibold text-slate-900 mb-4">Maklumat Pelajar</h3>
-            <div class="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
-                <div class="min-w-0">
-                    <p class="text-slate-500">No. K/P</p>
-                    <p class="font-medium break-words">{{ $pelajar->ic_pelajar }}</p>
-                </div>
-                <div class="min-w-0">
-                    <p class="text-slate-500">No. Telefon</p>
-                    <p class="font-medium break-words">{{ $pelajar->no_tel ?? '-' }}</p>
-                </div>
-                <div class="min-w-0">
-                    <p class="text-slate-500">Email</p>
-                    <p class="font-medium break-all">{{ $pelajar->email ?? '-' }}</p>
-                </div>
-                <div class="min-w-0">
-                    <p class="text-slate-500">Program</p>
-                    <p class="font-medium break-words">{{ $pelajar->program ?? '-' }}</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Course Selection -->
-        @if($pelajar->kod_kursus)
-        <div class="bg-emerald-50 rounded-2xl p-6 mb-6 border border-emerald-200">
-            <div class="flex items-center justify-between">
+<main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="rounded-[40px] overflow-hidden shadow-2xl border border-slate-200 bg-white">
+        <div class="bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 px-6 sm:px-8 py-10 text-white">
+            <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h3 class="font-semibold text-emerald-900">Kursus Dipilih</h3>
-                    <p class="text-emerald-700">{{ $pelajar->kod_kursus }}</p>
+                    <p class="text-xs uppercase tracking-[0.4em] text-cyan-100">Dashboard Pelajar</p>
+                    <h1 class="mt-3 text-3xl sm:text-4xl font-semibold tracking-tight">Selamat Datang, {{ explode(' ', $pelajar->nama_pelajar)[0] ?? $pelajar->nama_pelajar }}</h1>
+                    <p class="mt-2 max-w-full sm:max-w-2xl text-sm text-cyan-100/90">Semua maklumat pendaftaran anda di sini. Teruskan dengan memilih kursus dan lengkapkan langkah seterusnya.</p>
                 </div>
-                <div class="text-emerald-500">
-                    <i class="fas fa-check-circle text-2xl"></i>
+                <div class="rounded-[28px] bg-white/10 p-4 text-center md:text-right backdrop-blur-sm w-full md:w-auto max-w-xl md:max-w-xs mx-auto">
+                    <p class="text-xs uppercase tracking-[0.3em] text-cyan-100/80">Status Pendaftaran</p>
+                    <p class="mt-2 text-2xl font-semibold">{{ $pelajar->kod_kursus ? 'Lengkap Sebahagian' : 'Perlu Lengkapkan' }}</p>
+                    <p class="text-sm text-cyan-100/80">{{ $pelajar->kod_kursus ? 'Masa untuk bayar dan sahkan kursus.' : 'Pilih kursus untuk teruskan.' }}</p>
                 </div>
             </div>
         </div>
-        @else
-        <div class="bg-amber-50 rounded-2xl p-6 mb-6 border border-amber-200">
-            <h3 class="font-semibold text-amber-900 mb-2">Kursus Belum Dipilih</h3>
-            <p class="text-amber-700 text-sm mb-4">Sila pilih kursus yang anda minati.</p>
-            <a href="{{ route('pelajar.program-list', $pelajar->id) }}" class="inline-flex items-center justify-center rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white hover:bg-amber-600">
-                Pilih Kursus
-            </a>
-        </div>
-        @endif
 
-        <!-- Actions -->
-        <div class="flex flex-col gap-4">
-            <a href="{{ route('pelajar.editbmd', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-100">
-                <i class="fas fa-edit"></i> Kemaskini Maklumat Diri
-            </a>
+        <div class="p-8 space-y-8">
+            @if(session('success'))
+                <div class="rounded-[28px] border border-emerald-200 bg-emerald-50 p-4 text-emerald-700 shadow-sm">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="rounded-[30px] border border-slate-200 bg-slate-50 p-6 shadow-sm min-w-0">
+                    <p class="text-sm text-slate-500">No. K/P</p>
+                    <p class="mt-3 text-xl font-semibold text-slate-900">{{ $pelajar->ic_pelajar }}</p>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-slate-50 p-6 shadow-sm min-w-0">
+                    <p class="text-sm text-slate-500">No. Telefon</p>
+                    <p class="mt-3 text-xl font-semibold text-slate-900">{{ $pelajar->no_tel ?? '-' }}</p>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-slate-50 p-6 shadow-sm min-w-0">
+                    <p class="text-sm text-slate-500">Email</p>
+                    <p class="mt-3 text-lg sm:text-xl font-semibold text-slate-900 break-all whitespace-normal">{{ $pelajar->email ?? '-' }}</p>
+                </div>
+            </div>
+
+            <div class="rounded-[30px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                    <div>
+                        <p class="text-sm text-slate-500">Program</p>
+                        <p class="mt-3 text-2xl font-semibold text-slate-900">{{ $pelajar->program ?? '-' }}</p>
+                    </div>
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <a href="{{ route('pelajar.editbmd', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">
+                            <i class="fas fa-edit"></i> Kemaskini Maklumat
+                        </a>
+                        @if($pelajar->kod_kursus)
+                        <a href="{{ route('pelajar.pembayaran', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-teal-200/30 transition hover:opacity-95">
+                            <i class="fas fa-credit-card"></i> Buat Pembayaran
+                        </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
 
             @if($pelajar->kod_kursus)
-            <a href="{{ route('pelajar.pembayaran', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">
-                <i class="fas fa-credit-card"></i> Buat Pembayaran
-            </a>
+                <div class="rounded-[30px] border border-emerald-200 bg-white p-6 shadow-sm">
+                    <div class="flex items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-xl font-semibold text-slate-900">Kursus Dipilih</h2>
+                            <p class="mt-2 text-slate-600">{{ $pelajar->kod_kursus }} telah dicatatkan. Sahkan pembayaran untuk melengkapkan pendaftaran.</p>
+                        </div>
+                        <div class="rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-700">Selesai</div>
+                    </div>
+                </div>
+            @else
+                <div class="rounded-[30px] border border-amber-200 bg-white p-6 shadow-sm">
+                    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                        <div>
+                            <h2 class="text-xl font-semibold text-slate-900">Kursus Belum Dipilih</h2>
+                            <p class="mt-2 text-slate-600">Pilih kursus yang anda minati supaya pendaftaran anda boleh diteruskan tanpa had.</p>
+                        </div>
+                        <a href="{{ route('pelajar.program-list', $pelajar->id) }}" class="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white hover:bg-amber-600">
+                            <i class="fas fa-arrow-right"></i> Pilih Kursus
+                        </a>
+                    </div>
+                </div>
             @endif
+
+            <div class="grid gap-6 md:grid-cols-2">
+                <div class="rounded-[30px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                    <h3 class="font-semibold text-slate-900">Langkah Seterusnya</h3>
+                    <ul class="mt-4 space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-teal-200 bg-teal-50 text-sm font-semibold text-teal-700">1</span>
+                            Pilih atau sahkan kursus pilihan anda.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-teal-200 bg-teal-50 text-sm font-semibold text-teal-700">2</span>
+                            Buat pembayaran jika perlu.
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1 inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-teal-200 bg-teal-50 text-sm font-semibold text-teal-700">3</span>
+                            Semak e-mel untuk pengesahan dan arahan seterusnya.
+                        </li>
+                    </ul>
+                </div>
+                <div class="rounded-[30px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                    <h3 class="font-semibold text-slate-900">Tip Berguna</h3>
+                    <div class="mt-4 space-y-3 text-sm text-slate-600">
+                        <p class="rounded-3xl bg-white px-4 py-3 shadow-sm">Pastikan nombor telefon dan email anda sentiasa dikemaskini supaya kami boleh hubungi anda dengan cepat.</p>
+                        <p class="rounded-3xl bg-white px-4 py-3 shadow-sm">Jika anda belum menerima email, semak folder spam atau gunakan fungsi 'kemaskini maklumat diri'.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

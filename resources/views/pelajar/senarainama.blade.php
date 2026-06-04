@@ -56,30 +56,30 @@
                 <tr>
                     <th class="px-6 py-4">Nama Pelajar</th>
                     <th class="px-6 py-4">Tarikh Daftar</th>
-                    <th class="px-6 py-4">Status</th>
+                    {{-- <th class="px-6 py-4">Status</th> --}}
                     <th class="px-6 py-4">Temu Duga</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-slate-200">
                 @forelse($pelajars as $p)
                     @php
-                        $payment = \App\Models\Pembayaran::where('ic_pelajar', $p->ic_pelajar)->latest()->first();
-                        $statusLabel = $payment?->status ?? 'Belum Bayar';
-                        $statusClasses = match(strtolower($statusLabel)) {
-                            'completed', 'selesai', 'bayar' => 'bg-emerald-100 text-emerald-700',
-                            'pending' => 'bg-amber-100 text-amber-700',
-                            'cancel', 'batal' => 'bg-rose-100 text-rose-700',
-                            default => 'bg-slate-100 text-slate-800',
-                        };
+                        // $payment = \App\Models\Pembayaran::where('ic_pelajar', $p->ic_pelajar)->latest()->first();
+                        // $statusLabel = $payment?->status ?? 'Belum Selesai';
+                        // $statusClasses = match(strtolower($statusLabel)) {
+                        //     'completed', 'selesai', 'bayar' => 'bg-emerald-100 text-emerald-700',
+                        //     'pending' => 'bg-amber-100 text-amber-700',
+                        //     'cancel', 'batal' => 'bg-rose-100 text-rose-700',
+                        //     default => 'bg-slate-100 text-slate-800',
+                        // };
                     @endphp
                     <tr class="hover:bg-slate-50">
                         <td class="px-6 py-4">
                             <div class="font-semibold text-slate-900">{{ $p->nama_pelajar }}</div>
                         </td>
                         <td class="px-6 py-4">{{ $p->tarikh_pendaftaran?->format('d M Y') ?? '-' }}</td>
-                        <td class="px-6 py-4">
+                        {{-- <td class="px-6 py-4">
                             <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold {{ $statusClasses }}">{{ $statusLabel }}</span>
-                        </td>
+                        </td> --}}
                         <td class="px-6 py-4">
                             <a href="{{ route('pelajar.login', ['pelajar_id' => $p->id]) }}" class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-100 px-4 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-50">Temu Duga</a>
                         </td>

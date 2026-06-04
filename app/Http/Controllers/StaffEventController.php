@@ -199,8 +199,8 @@ class StaffEventController extends Controller
 
         $this->sendBmdConfirmationEmail($pelajar);
 
-        return redirect()->route('pelajar.senarainama', ['pelajar_id' => $pelajar->id])
-            ->with('success', 'Maklumat pelajar telah dihantar. Sila semak email untuk pengesahan.');
+        return redirect()->route('pelajar.dashboard', $pelajar->id)
+            ->with('success', 'Pendaftaran berjaya. Anda telah dibawa ke papan pemuka pelajar.');
     }
 
     private function sendBmdConfirmationEmail(Pelajar $pelajar): void
@@ -217,7 +217,7 @@ class StaffEventController extends Controller
 
         $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
         $filename = 'BMD_' . $safeIc . '.pdf';
-        $pdf = Pdf::loadView('staff.bmd-print', compact('pelajar'))
+        $pdf = Pdf::loadView('staff.bmd-print', ['pelajar' => $pelajar, 'isPdf' => true])
             ->setPaper('A4', 'portrait');
         $pdf->setOptions([
             'isRemoteEnabled' => true,
@@ -362,10 +362,14 @@ class StaffEventController extends Controller
             return view('staff.partials.bmd-print-content', compact('pelajar'));
         }
 
-        $html = view('staff.bmd-print', compact('pelajar'))->render();
+        $html = view('staff.bmd-print', ['pelajar' => $pelajar, 'isPdf' => true])->render();
 
         $pdf = Pdf::loadHtml($html);
         $pdf->setPaper('A4', 'portrait');
+        $pdf->setOptions([
+            'isRemoteEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+        ]);
         return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
     }
 
