@@ -1142,6 +1142,19 @@
             }
         }
 
+        .faq-accordion-panel {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: max-height 260ms ease, opacity 220ms ease, transform 220ms ease;
+        }
+
+        .faq-accordion-panel.is-open {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .faq-modal-backdrop,
             .faq-wave-layer,
@@ -1960,6 +1973,32 @@
         const panels = Array.from(document.querySelectorAll('[data-category-panel]'));
         const inactiveButtonClass = 'border-white/70 bg-white/80 text-slate-700 shadow-[0_10px_26px_rgba(15,23,42,0.08)]';
 
+        const ACCORDION_TRANSITION_MS = 260;
+
+        function animateAccordionPanel(content, shouldOpen) {
+            if (!content) {
+                return;
+            }
+
+            if (shouldOpen) {
+                content.hidden = false;
+                content.classList.add('is-open');
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = `${content.scrollHeight}px`;
+                    content.style.opacity = '1';
+                });
+                return;
+            }
+
+            content.classList.remove('is-open');
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+
+            window.setTimeout(() => {
+                content.hidden = true;
+            }, ACCORDION_TRANSITION_MS);
+        }
+
         function closeAllAccordions(panel) {
             panel.querySelectorAll('[data-accordion-trigger]').forEach((trigger, index) => {
                 const content = trigger.parentElement.querySelector('[data-accordion-panel]');
@@ -1967,9 +2006,7 @@
                 const isFirst = index === 0;
 
                 trigger.setAttribute('aria-expanded', isFirst ? 'true' : 'false');
-                if (content) {
-                    content.hidden = !isFirst;
-                }
+                animateAccordionPanel(content, isFirst);
                 if (icon) {
                     icon.classList.toggle('rotate-180', isFirst);
                     icon.classList.toggle('bg-slate-900', isFirst);
@@ -2022,9 +2059,7 @@
                     const shouldOpen = isCurrent && otherTrigger.getAttribute('aria-expanded') !== 'true';
 
                     otherTrigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
-                    if (otherPanel) {
-                        otherPanel.hidden = !shouldOpen;
-                    }
+                    animateAccordionPanel(otherPanel, shouldOpen);
 
                     if (otherIcon) {
                         otherIcon.classList.toggle('rotate-180', shouldOpen);
