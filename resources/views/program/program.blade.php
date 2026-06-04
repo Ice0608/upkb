@@ -324,12 +324,12 @@
 
         /* ── ENTRANCE ANIMATIONS ── */
         @keyframes pgFadeUp {
-            from { opacity: 0; transform: translateY(28px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from { transform: translateY(28px); }
+            to   { transform: translateY(0); }
         }
         @keyframes pgScaleIn {
-            from { opacity: 0; transform: scale(0.72); }
-            to   { opacity: 1; transform: scale(1); }
+            from { transform: scale(0.72); }
+            to   { transform: scale(1); }
         }
         @keyframes pgSegFan {
             from { opacity: 0; transform: scale(0.6) rotate(var(--fan-rot, 0deg)); }
@@ -345,8 +345,8 @@
             50%       { box-shadow: 0 28px 72px rgba(15,23,42,0.22), 0 0 70px rgba(255,166,0,0.38), 0 0 40px rgba(56,189,248,0.14), inset 0 0 40px 8px rgba(255,255,255,0.22); }
         }
         @keyframes pgHeadlineWord {
-            from { opacity: 0; transform: translateY(18px) skewY(2deg); }
-            to   { opacity: 1; transform: translateY(0) skewY(0deg); }
+            from { transform: translateY(18px) skewY(2deg); }
+            to   { transform: translateY(0) skewY(0deg); }
         }
 
         .pg-heading-anim {
@@ -354,7 +354,6 @@
         }
         .pg-heading-anim .pg-word {
             display: inline-block;
-            opacity: 0;
             animation: pgHeadlineWord 0.55s cubic-bezier(0.22,1,0.36,1) both;
         }
         .pg-heading-anim .pg-word:nth-child(1) { animation-delay: 0.18s; }

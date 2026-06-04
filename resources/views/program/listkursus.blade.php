@@ -672,11 +672,9 @@
 
         @media (prefers-reduced-motion: no-preference) {
             [data-reveal] {
-                opacity: 0 !important;
                 transition:
-                    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
                     transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
-                will-change: opacity, transform;
+                will-change: transform;
             }
 
             [data-reveal="up"] { transform: translateY(52px) scale(0.97) !important; }
@@ -685,7 +683,6 @@
             [data-reveal="scale"] { transform: translateY(24px) scale(0.88) !important; }
 
             [data-reveal].revealed {
-                opacity: 1 !important;
                 transform: none !important;
             }
 
@@ -1433,12 +1430,12 @@
 
         document.addEventListener('DOMContentLoaded', initKursusScrollReveal);
 
-        // Add fade-in animation
+        // Add animation support
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
+                from { transform: translateY(10px); }
+                to { transform: translateY(0); }
             }
         `;
         document.head.appendChild(style);
