@@ -256,6 +256,68 @@
             padding: 0;
         }
     }
+
+    @if ($isPdf ?? false)
+        .receipt-sheet {
+            padding: 0;
+        }
+
+        .receipt-header,
+        .details-block {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .brand-block,
+        .org-block,
+        .details-block > div,
+        .meta-stack {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .brand-block,
+        .details-block > div:first-child {
+            width: 62%;
+        }
+
+        .org-block,
+        .meta-stack {
+            width: 38%;
+        }
+
+        .meta-stack {
+            text-align: right;
+        }
+
+        .meta-box,
+        .payment-method-box {
+            margin-left: auto;
+            margin-bottom: 16px;
+        }
+
+        .detail-line {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .detail-label,
+        .detail-colon,
+        .detail-value {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        .detail-label {
+            width: 170px;
+        }
+
+        .detail-colon {
+            width: 14px;
+        }
+    @endif
 </style>
 
 @php
@@ -300,6 +362,9 @@
         default => strtoupper((string) ($pembayaran?->kaedah_pembayaran ?? '-')),
     };
 
+    $sesLogoSrc = ($isPdf ?? false)
+        ? ($sesLogoPdfSrc ?? 'file:///' . str_replace('\\', '/', public_path('images/icon/sesL.png')))
+        : asset('images/icon/sesL.png');
     $institusiNama = strtoupper((string) ($institusi?->nama_institusi ?? $pelajar?->kod_institusi ?? '-'));
     $kursusNama = strtoupper((string) ($kursus?->nama_kursus ?? $pelajar?->pilihan_pertama ?? $pelajar?->kod_kursus ?? '-'));
 
@@ -351,7 +416,7 @@
     <div class="receipt-card">
         <div class="receipt-header">
             <div class="brand-block">
-                <img src="{{ ($isPdf ?? false) ? public_path('images/icon/sesL.png') : asset('images/icon/sesL.png') }}" alt="SESOC Logo" class="brand-logo">
+                <img src="{{ $sesLogoSrc }}" alt="SESOC Logo" class="brand-logo">
             </div>
 
             <div class="org-block">

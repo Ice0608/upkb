@@ -179,6 +179,35 @@
             break-inside: avoid !important;
         }
     }
+
+    @if ($isPdf ?? false)
+        .bmd-print-sheet {
+            display: block;
+        }
+
+        .bmd-print-root .logos-wrapper {
+            display: block;
+            text-align: center;
+        }
+
+        .bmd-print-root .logos-wrapper img {
+            display: inline-block;
+        }
+
+        .bmd-print-root .signature-section {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin-top: 8px;
+        }
+
+        .bmd-print-root .signature-block {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            padding: 0 6px;
+        }
+    @endif
 </style>
 
 <div class="bmd-print-root">

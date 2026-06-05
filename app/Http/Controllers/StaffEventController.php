@@ -29,6 +29,93 @@ class StaffEventController extends Controller
         ];
     }
 
+    private function localFileUri(string $path): string
+    {
+        return 'file:///' . str_replace('\\', '/', $path);
+    }
+
+    private function domPdfOptions(): array
+    {
+        return [
+            'isRemoteEnabled' => true,
+            'isHtml5ParserEnabled' => true,
+            'chroot' => public_path(),
+            'dpi' => 120,
+        ];
+    }
+
+    private function makeBmdPdf(Pelajar $pelajar)
+    {
+        return Pdf::loadView('staff.bmd-print', [
+            'pelajar' => $pelajar,
+            'isPdf' => true,
+        ])
+            ->setPaper('A4', 'portrait')
+            ->setOptions($this->domPdfOptions());
+    }
+
+    private function makeReceiptPdf(Pelajar $pelajar, ?string $receiptNumberOverride = null)
+    {
+        $receiptData = $this->resolveReceiptData($pelajar);
+
+        return Pdf::loadView('staff.resit', array_merge([
+            'pelajar' => $pelajar,
+            'isPdf' => true,
+            'receiptNumberOverride' => filled($receiptNumberOverride) ? trim((string) $receiptNumberOverride) : null,
+            'sesLogoPdfSrc' => $this->localFileUri(public_path('images/icon/sesL.png')),
+        ], $receiptData))
+            ->setPaper('A4', 'landscape')
+            ->setOptions($this->domPdfOptions());
+    }
+
+    private function professionalEmailShell(string $title, string $preheader, string $bodyHtml, ?string $buttonUrl = null, ?string $buttonText = null): string
+    {
+        $fromName = e(env('MAIL_FROM_NAME', 'Smart Education Society'));
+        $safeTitle = e($title);
+        $safePreheader = e($preheader);
+        $button = '';
+
+        if ($buttonUrl && $buttonText) {
+            $safeUrl = e($buttonUrl);
+            $safeText = e($buttonText);
+            $button = '<tr><td style="padding:8px 0 22px;">
+                <a href="' . $safeUrl . '" style="display:inline-block;background:#0f766e;color:#ffffff;text-decoration:none;font-weight:700;font-size:14px;line-height:20px;padding:12px 22px;border-radius:6px;">' . $safeText . '</a>
+            </td></tr>
+            <tr><td style="padding:0 0 18px;color:#64748b;font-size:12px;line-height:18px;">Jika butang tidak berfungsi, buka pautan ini:<br><a href="' . $safeUrl . '" style="color:#0f766e;word-break:break-all;">' . $safeUrl . '</a></td></tr>';
+        }
+
+        return '<!doctype html>
+<html lang="ms">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#eef2f7;color:#0f172a;font-family:Arial,Helvetica,sans-serif;">
+    <div style="display:none;max-height:0;overflow:hidden;color:#eef2f7;">' . $safePreheader . '</div>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#eef2f7;padding:28px 12px;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #dbe3ec;border-radius:10px;overflow:hidden;">
+                    <tr>
+                        <td style="background:#0f766e;padding:24px 28px;color:#ffffff;">
+                            <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.9;">' . $fromName . '</div>
+                            <h1 style="margin:8px 0 0;font-size:24px;line-height:31px;font-weight:700;">' . $safeTitle . '</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:28px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                ' . $bodyHtml . '
+                                ' . $button . '
+                                <tr><td style="border-top:1px solid #e2e8f0;padding-top:18px;color:#64748b;font-size:12px;line-height:18px;">Email ini dijana oleh sistem. Sila simpan untuk rujukan anda.</td></tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>';
+    }
+
     public function __construct()
     {
         $this->middleware(['auth', 'verified'])->except([
@@ -217,46 +304,19 @@ class StaffEventController extends Controller
 
         $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
         $filename = 'BMD_' . $safeIc . '.pdf';
-        $pdf = Pdf::loadView('staff.bmd-print', ['pelajar' => $pelajar, 'isPdf' => true])
-            ->setPaper('A4', 'portrait');
-        $pdf->setOptions([
-            'isRemoteEnabled' => true,
-            'isHtml5ParserEnabled' => true,
-        ]);
-        $pdfContent = $pdf->output();
-        $studentName = htmlspecialchars($pelajar->nama_pelajar);
+        $pdfContent = $this->makeBmdPdf($pelajar)->output();
+        $studentName = e($pelajar->nama_pelajar);
         $listNamaUrl = route('pelajar.senarainama', ['pelajar_id' => $pelajar->id]);
 
-        $emailBody = '<html>
-            <head>
-                <style>
-                    body { font-family: Arial, sans-serif; color: #333; }
-                    .header { background-color: #009ca6; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-                    .content { padding: 20px; background-color: #f9f9f9; }
-                    .button { display: inline-block; margin: 18px 0; padding: 12px 24px; background-color: #009ca6; color: #fff; text-decoration: none; border-radius: 999px; font-weight: 700; }
-                    .footer { background-color: #f1f5f9; padding: 10px; text-align: center; font-size: 12px; border-radius: 0 0 8px 8px; }
-                    a.fallback-link { color: #0f766e; word-break: break-all; }
-                </style>
-            </head>
-            <body>
-                <div class="header">
-                    <h2>Selamat Datang ke Smart Education Society</h2>
-                </div>
-                <div class="content">
-                    <p>Salam sejahtera ' . $studentName . ',</p>
-                    <p>Tahniah! Anda telah berjaya mendaftar di Smart Education Society.</p>
-                    <p>Maklumat pendaftaran anda telah disimpan dan borang maklumat diri telah dilampirkan sebagai PDF.</p>
-                    <p>Sila semak lampiran dan simpan email ini untuk rujukan.</p>
-                    <p><a class="button" href="' . $listNamaUrl . '">Senarai Nama</a></p>
-                    <p>Jika butang di atas tidak berfungsi, sila gunakan pautan ini:</p>
-                    <p><a class="fallback-link" href="' . $listNamaUrl . '">' . $listNamaUrl . '</a></p>
-                    <p>Terima kasih kerana memilih Smart Education Society.</p>
-                </div>
-                <div class="footer">
-                    <p>Smart Education Society</p>
-                </div>
-            </body>
-            </html>';
+        $emailBody = $this->professionalEmailShell(
+            'Pendaftaran Berjaya',
+            'Borang maklumat diri anda dilampirkan dalam format PDF.',
+            '<tr><td style="padding:0 0 14px;font-size:15px;line-height:24px;color:#334155;">Salam sejahtera <strong style="color:#0f172a;">' . $studentName . '</strong>,</td></tr>
+            <tr><td style="padding:0 0 14px;font-size:15px;line-height:24px;color:#334155;">Tahniah, pendaftaran anda di Smart Education Society telah berjaya disimpan.</td></tr>
+            <tr><td style="padding:14px 18px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;color:#334155;font-size:14px;line-height:22px;">Borang Maklumat Diri dilampirkan sebagai PDF rasmi. Sila semak maklumat dan simpan email ini untuk rujukan.</td></tr>',
+            $listNamaUrl,
+            'Lihat Senarai Nama'
+        );
 
         $sentViaPhpMailer = false;
         try {
@@ -362,15 +422,7 @@ class StaffEventController extends Controller
             return view('staff.partials.bmd-print-content', compact('pelajar'));
         }
 
-        $html = view('staff.bmd-print', ['pelajar' => $pelajar, 'isPdf' => true])->render();
-
-        $pdf = Pdf::loadHtml($html);
-        $pdf->setPaper('A4', 'portrait');
-        $pdf->setOptions([
-            'isRemoteEnabled' => true,
-            'isHtml5ParserEnabled' => true,
-        ]);
-        return $pdf->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
+        return $this->makeBmdPdf($pelajar)->download('BMD_' . $pelajar->ic_pelajar . '.pdf');
     }
 
     public function staffResit(Pelajar $pelajar, Request $request)
@@ -410,47 +462,18 @@ class StaffEventController extends Controller
 
             $pelajarEmail = $pelajar->email;
             $pelajarName = $pelajar->nama_pelajar;
-            $receiptData = $this->resolveReceiptData($pelajar);
-            $isPdf = true;
             $receiptNumberOverride = trim((string) ($validated['receipt_no'] ?? ''));
             $safeIc = preg_replace('/[^A-Za-z0-9_-]/', '', $pelajar->ic_pelajar ?? (string) $pelajar->id);
             $filename = 'Resit_' . $safeIc . '.pdf';
-            $pdf = Pdf::loadView('staff.resit', array_merge([
-                'pelajar' => $pelajar,
-                'isPdf' => $isPdf,
-                'receiptNumberOverride' => $receiptNumberOverride !== '' ? $receiptNumberOverride : null,
-            ], $receiptData));
-            // Match the main receipt layout: landscape A4 and enable remote assets for images
-            $pdf->setPaper('A4', 'landscape');
-            $pdf->setOptions([
-                'isRemoteEnabled' => true,
-                'isHtml5ParserEnabled' => true,
-            ]);
-            $pdfContent = $pdf->output();
+            $pdfContent = $this->makeReceiptPdf($pelajar, $receiptNumberOverride)->output();
 
-            // Email content
-            // Use a concise email body but ensure the attached PDF is the canonical receipt (same layout as main)
-            $emailBody = '<html>
-                <head>
-                    <style>
-                        body { font-family: Arial, sans-serif; color: #333; }
-                        .header { padding: 12px 0; text-align: center; }
-                        .content { padding: 12px; }
-                        .button { display:inline-block; padding:10px 18px; background:#0f766e; color:#fff; text-decoration:none; border-radius:8px; font-weight:700; }
-                    </style>
-                </head>
-                <body>
-                    <div class="header">
-                        <h2>Resit Pembayaran - Smart Education Society</h2>
-                    </div>
-                    <div class="content">
-                        <p>Salam ' . htmlspecialchars($pelajarName) . ',</p>
-                        <p>Resit pembayaran anda dilampirkan sebagai PDF. Sila buka lampiran untuk melihat butiran rasmi.</p>
-                        <p>Jika anda tidak menerima lampiran, sila hubungi pihak pengurusan.</p>
-                        <p>Terima kasih.</p>
-                    </div>
-                </body>
-                </html>';
+            $emailBody = $this->professionalEmailShell(
+                'Resit Pembayaran',
+                'Resit rasmi pembayaran anda dilampirkan dalam format PDF.',
+                '<tr><td style="padding:0 0 14px;font-size:15px;line-height:24px;color:#334155;">Salam <strong style="color:#0f172a;">' . e($pelajarName) . '</strong>,</td></tr>
+                <tr><td style="padding:0 0 14px;font-size:15px;line-height:24px;color:#334155;">Resit rasmi pembayaran anda telah dilampirkan dalam format PDF.</td></tr>
+                <tr><td style="padding:14px 18px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;color:#334155;font-size:14px;line-height:22px;">Sila buka lampiran untuk melihat butiran bayaran, nombor rujukan dan maklumat kursus. Simpan resit ini untuk rujukan pendaftaran.</td></tr>'
+            );
 
             // Try using PHPMailer first
             $sentViaPhpMailer = false;
