@@ -21,19 +21,19 @@
 
 <div class="p-4 sm:p-6 lg:p-8 border-t border-gray-100 space-y-6">
     <div class="rounded-3xl bg-white border border-gray-200 shadow-sm overflow-hidden" data-yuran-section data-pendaftaran-total="{{ $pendaftaranTotal }}">
-        <div class="flex flex-col gap-4 border-b border-gray-100 bg-gradient-to-br from-orange-50 via-white to-amber-50 p-4 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="flex flex-col gap-4 border-b border-gray-100 bg-gray-50 p-4 sm:p-6 lg:flex-row lg:items-center lg:justify-between">
             <div class="min-w-0">
                 <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Yuran Kemasukan</h2>
                 <p class="mt-1 text-sm text-gray-500">Yuran kemasukan tertakluk kepada perubahan pengurusan {{ $pusatLabelLower }}.</p>
             </div>
-            <div class="w-full rounded-2xl bg-white px-4 py-4 text-left shadow-sm border border-orange-100 sm:w-auto sm:min-w-[280px] sm:px-5 sm:text-center">
-                <p class="text-xs sm:text-sm uppercase tracking-[0.16em] sm:tracking-[0.2em] text-orange-700" data-keseluruhan-label>Keseluruhan ({{ $keseluruhanParts }})</p>
-                <p data-total-yuran class="mt-2 text-2xl sm:text-3xl font-bold text-orange-900">RM {{ number_format($totalYuran, 2) }}</p>
+            <div class="w-full rounded-2xl bg-white px-4 py-4 text-left shadow-sm sm:w-auto sm:min-w-[280px] sm:px-5 sm:text-center" style="border: 1px solid var(--detail-card-border);">
+                <p class="kursus-tab-accent-strong text-xs sm:text-sm uppercase tracking-[0.16em] sm:tracking-[0.2em]" data-keseluruhan-label>Keseluruhan ({{ $keseluruhanParts }})</p>
+                <p data-total-yuran class="kursus-tab-accent-strong mt-2 text-2xl sm:text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</p>
             </div>
         </div>
         <div class="grid gap-4 sm:gap-6 {{ $yuranGridClass }} p-4 sm:p-6 auto-rows-fr">
-            <div class="rounded-2xl border border-orange-100 bg-gradient-to-br from-white to-orange-50/60 p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
-                <h3 class="text-base sm:text-lg font-bold text-orange-700 mb-4 sm:mb-5">Yuran Pendaftaran</h3>
+            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
+                <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Pendaftaran</h3>
                 @if($kursus->yuranPendaftarans->isNotEmpty())
                     <div class="space-y-3">
                         @foreach($kursus->yuranPendaftarans as $fee)
@@ -46,15 +46,15 @@
                 @else
                     <p class="text-sm text-gray-500">Tiada yuran pendaftaran direkodkan.</p>
                 @endif
-                <div class="mt-auto border-t border-orange-100 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
+                <div class="mt-auto border-t border-gray-200 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
                     <span>Jumlah</span>
                     <span>RM {{ number_format($pendaftaranTotal, 2) }}</span>
                 </div>
             </div>
 
             @if($hasPilihan)
-            <div class="rounded-2xl border border-orange-100 bg-gradient-to-br from-white to-orange-50/60 p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
-                <h3 class="text-base sm:text-lg font-bold text-orange-700 mb-4 sm:mb-5">Yuran Pilihan</h3>
+            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
+                <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Pilihan</h3>
                 <div class="space-y-3">
                     @foreach($kursus->yuranPilihans as $fee)
                         <div class="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 border border-gray-200 shadow-sm" data-pilihan-item data-item-name="{{ $fee->item }}" data-item-amount="{{ $fee->amount }}" data-is-active="1">
@@ -62,13 +62,13 @@
                                 <p class="text-sm font-medium text-gray-700">{{ $fee->item }}</p>
                                 <p class="text-sm font-bold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
                             </div>
-                            <button type="button" data-pilihan-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'pilihan')" class="shrink-0 inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700 transition">
+                            <button type="button" data-pilihan-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'pilihan')" class="shrink-0 inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-bold text-gray-700 transition">
                                 <span data-toggle-state class="uppercase tracking-wide">YA</span>
                             </button>
                         </div>
                     @endforeach
                 </div>
-                <div class="mt-auto border-t border-orange-100 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
+                <div class="mt-auto border-t border-gray-200 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
                     <span>Jumlah</span>
                     <span data-pilihan-total-display>RM {{ number_format($pilihanTotal, 2) }}</span>
                 </div>
@@ -76,8 +76,8 @@
             @endif
 
             @if($hasAsrama)
-            <div class="rounded-2xl border border-orange-100 bg-gradient-to-br from-white to-orange-50/60 p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
-                <h3 class="text-base sm:text-lg font-bold text-orange-700 mb-4 sm:mb-5">Yuran Asrama</h3>
+            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
+                <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Asrama</h3>
                 <div class="space-y-3">
                     @foreach($kursus->yuranAsramas as $fee)
                         <div class="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 border border-gray-200 shadow-sm" data-asrama-item data-item-name="{{ $fee->item }}" data-item-amount="{{ $fee->amount }}" data-is-active="1">
@@ -85,15 +85,15 @@
                                 <p class="text-sm font-medium text-gray-700">{{ $fee->item }}</p>
                                 <p class="text-sm font-bold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
                             </div>
-                            <button type="button" data-asrama-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'asrama')" class="shrink-0 inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700 transition">
+                            <button type="button" data-asrama-item-toggle aria-pressed="true" onclick="window.updateGuestYuranTotal?.(this, 'asrama')" class="shrink-0 inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-bold text-gray-700 transition">
                                 <span data-toggle-state class="uppercase tracking-wide">YA</span>
                             </button>
                         </div>
                     @endforeach
                 </div>
-                <div class="mt-auto border-t border-orange-100 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
+                <div class="mt-auto border-t border-gray-200 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
                     <span>Jumlah</span>
-                    <span data-asrama-total-display>RM {{ number_format($asramaTotal, 2) }}</span>
+                    <span class="kursus-tab-accent-strong" data-asrama-total-display>RM {{ number_format($asramaTotal, 2) }}</span>
                 </div>
             </div>
             @endif
@@ -112,7 +112,7 @@
                   trigger.setAttribute('aria-pressed', nextActive ? 'true' : 'false');
                   const badge = trigger.querySelector('[data-toggle-state]');
                   if (badge) badge.textContent = nextActive ? 'YA' : 'TIDAK';
-                  trigger.className = nextActive ? 'shrink-0 inline-flex items-center rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-bold text-orange-700 transition' : 'shrink-0 inline-flex items-center rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-500 transition';
+                  trigger.className = nextActive ? 'shrink-0 inline-flex items-center rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs font-bold text-gray-700 transition' : 'shrink-0 inline-flex items-center rounded-full border border-gray-300 bg-white px-3 py-1 text-xs font-bold text-gray-500 transition';
                 }
 
                 const p = Number(section.dataset.pendaftaranTotal || 0);

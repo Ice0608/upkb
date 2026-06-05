@@ -889,19 +889,19 @@ class StaffEventController extends Controller
     public function pelajarTabMaklumat(Pelajar $pelajar, Kursus $kursus)
     {
         $kursus->loadScopedCourseDetails('syaratKelayakans');
-        return view('pelajar._guest_tab_maklumat', compact('kursus'));
+        return view('pelajar._pelajar_tab_maklumat', compact('kursus'));
     }
 
     public function pelajarTabSyarat(Pelajar $pelajar, Kursus $kursus)
     {
         $kursus->loadScopedCourseDetails('syaratKelayakans');
-        return view('pelajar._guest_tab_syarat', compact('kursus'));
+        return view('pelajar._pelajar_tab_syarat', compact('kursus'));
     }
 
     public function pelajarTabKerjaya(Pelajar $pelajar, Kursus $kursus)
     {
         $kursus->loadScopedCourseDetails('kerjayas');
-        return view('pelajar._guest_tab_kerjaya', compact('kursus'));
+        return view('pelajar._pelajar_tab_kerjaya', compact('kursus'));
     }
 
     public function pelajarTabYuran(Pelajar $pelajar, Kursus $kursus)
@@ -913,7 +913,7 @@ class StaffEventController extends Controller
             'yuranPengajians',
             'elauns',
         ]);
-        return view('pelajar._guest_tab_yuran', compact('kursus'));
+        return view('pelajar._pelajar_tab_yuran', compact('kursus'));
     }
 
     public function pelajarTabGaleri(Pelajar $pelajar, Kursus $kursus)
@@ -932,7 +932,7 @@ class StaffEventController extends Controller
         // Keep legacy variable name ($galeri) for compatibility with existing views.
         $galeri = $galleries;
 
-        return view('pelajar._guest_tab_galeri', compact('kursus', 'galleries', 'galeri'));
+        return view('pelajar._pelajar_tab_galeri', compact('kursus', 'galleries', 'galeri'));
     }
 
     public function pelajarApplyNow(Request $request, Pelajar $pelajar)
