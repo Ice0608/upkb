@@ -9,6 +9,17 @@
         <div class="kursus-tab-card rounded-3xl p-6">
             <p class="kursus-tab-label mb-2">{{ $kodLabel }}</p>
             <p class="font-semibold text-slate-900">{{ $kursus->kod_kursus ?? '-' }}</p>
+            <div class="mt-4">
+                @if (in_array($programType, ['diploma', 'sains kesihatan'], true))
+                    <a href="http://www2.mqa.gov.my/mqr/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800">
+                        Semak MQA
+                    </a>
+                @else
+                    <a href="https://www.myspike.my/index.php?r=umum-pb%2Findex-umum" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800">
+                        Semak MySpike
+                    </a>
+                @endif
+            </div>
         </div>
         <div class="kursus-tab-card rounded-3xl p-6">
             <p class="kursus-tab-label mb-2">Tempoh</p>
