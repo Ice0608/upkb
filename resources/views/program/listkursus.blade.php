@@ -1107,6 +1107,50 @@
         html.dark .text-slate-500 { color: #94a3b8 !important; }
         html.dark .course-card-quota-diploma { background: linear-gradient(135deg, rgba(142, 70, 255, 0.95), rgba(124, 58, 237, 0.95)); box-shadow: 0 14px 28px rgba(124,58,237,0.18) !important; }
         html.dark .course-card-quota-sains-kesihatan { background: linear-gradient(135deg, rgba(33, 150, 243, 0.95), rgba(37, 99, 235, 0.95)); box-shadow: 0 14px 28px rgba(37,99,235,0.18) !important; }
+
+        /* Light mode course cards */
+        html:not(.dark) .course-card {
+            border-color: rgba(255, 255, 255, 0.94);
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow:
+                0 20px 46px rgba(15, 23, 42, 0.12),
+                0 0 24px var(--kursus-card-hover-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.98);
+        }
+
+        html:not(.dark) .course-card-media::after {
+            background:
+                linear-gradient(180deg, rgba(15, 23, 42, 0.02) 0%, rgba(15, 23, 42, 0.08) 32%, rgba(248, 250, 252, 0.7) 72%, rgba(248, 250, 252, 0.98) 100%),
+                linear-gradient(130deg, var(--kursus-card-overlay), rgba(255, 255, 255, 0));
+        }
+
+        html:not(.dark) .course-card-body {
+            background: linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0.88) 28%, rgba(255, 255, 255, 0.98) 100%);
+            color: #0f172a;
+        }
+
+        html:not(.dark) .course-card-title,
+        html:not(.dark) .course-card:hover .course-card-title {
+            color: #0f172a;
+            text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9);
+        }
+
+        html:not(.dark) .course-card-meta-item {
+            border-color: rgba(148, 163, 184, 0.3);
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow:
+                0 10px 24px rgba(15, 23, 42, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+
+        html:not(.dark) .course-card-meta-label {
+            color: #64748b;
+        }
+
+        html:not(.dark) .course-card-meta-value {
+            color: #1e293b;
+            font-weight: 700;
+        }
     </style>
 </head>
 @php

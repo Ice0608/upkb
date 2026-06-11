@@ -2491,6 +2491,95 @@
             color: #fff;
             background: rgba(20,184,166,0.16);
         }
+
+        /* Light mode CTA */
+        html:not(.dark) .partner-section {
+            background:
+                radial-gradient(ellipse at 16% 18%, rgba(20,184,166,0.14), transparent 34%),
+                radial-gradient(ellipse at 84% 74%, rgba(56,189,248,0.14), transparent 38%),
+                linear-gradient(160deg, #f8fafc 0%, #ecfeff 54%, #eff6ff 100%);
+        }
+
+        html:not(.dark) .cta-banner {
+            border-color: rgba(14,116,144,0.18);
+            background:
+                radial-gradient(ellipse at 18% 44%, rgba(45,212,191,0.2) 0%, rgba(20,184,166,0.07) 38%, transparent 66%),
+                radial-gradient(ellipse at 80% 38%, rgba(56,189,248,0.18) 0%, rgba(56,189,248,0.06) 34%, transparent 64%),
+                linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,253,250,0.82) 48%, rgba(239,246,255,0.86));
+            box-shadow:
+                0 28px 70px rgba(15,23,42,0.12),
+                0 0 54px rgba(20,184,166,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.95),
+                inset 0 -1px 0 rgba(14,116,144,0.08);
+        }
+
+        html:not(.dark) .cta-banner::before {
+            background-image:
+                linear-gradient(120deg, rgba(255,255,255,0.7), transparent 28%, rgba(255,255,255,0.26) 54%, transparent 78%),
+                repeating-linear-gradient(0deg, rgba(14,116,144,0.045) 0px, rgba(14,116,144,0.045) 1px, transparent 1px, transparent 48px),
+                repeating-linear-gradient(90deg, rgba(14,116,144,0.035) 0px, rgba(14,116,144,0.035) 1px, transparent 1px, transparent 96px);
+        }
+
+        html:not(.dark) .cta-banner::after {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255,255,255,0.75), transparent 34%),
+                radial-gradient(circle at 14% 98%, rgba(45,212,191,0.14), transparent 32%);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+        }
+
+        html:not(.dark) .cta-banner-eyebrow {
+            border-color: rgba(13,148,136,0.3);
+            background: linear-gradient(135deg, rgba(204,251,241,0.82), rgba(224,242,254,0.72));
+            color: #0f766e;
+            box-shadow:
+                0 10px 24px rgba(15,118,110,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        html:not(.dark) .cta-banner-title {
+            color: #0f172a;
+            text-shadow: 0 12px 30px rgba(15,23,42,0.12);
+        }
+
+        html:not(.dark) .cta-banner-title span {
+            background: linear-gradient(135deg, #0f766e 0%, #0891b2 48%, #0284c7 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            filter: drop-shadow(0 10px 22px rgba(8,145,178,0.12));
+        }
+
+        html:not(.dark) .cta-banner-sub {
+            color: #334155;
+            text-shadow: none;
+        }
+
+        html:not(.dark) .cta-btn-primary {
+            border-color: rgba(13,148,136,0.22);
+            box-shadow:
+                0 16px 36px rgba(15,118,110,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.95);
+        }
+
+        html:not(.dark) .cta-btn-primary:hover {
+            box-shadow:
+                0 20px 44px rgba(15,118,110,0.22),
+                inset 0 1px 0 rgba(255,255,255,0.98);
+        }
+
+        html:not(.dark) .cta-btn-secondary {
+            border-color: rgba(14,116,144,0.24);
+            color: #0f5268;
+            background: rgba(255,255,255,0.62);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.92),
+                0 12px 28px rgba(15,23,42,0.1);
+        }
+
+        html:not(.dark) .cta-btn-secondary:hover {
+            border-color: rgba(13,148,136,0.46);
+            color: #0f766e;
+            background: rgba(204,251,241,0.7);
+        }
         /* ── END PARTNER + CTA ── */
 
         /* ── PROBLEM & SOLUTION SECTION ── */
