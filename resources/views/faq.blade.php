@@ -1704,6 +1704,33 @@
         }
 
         /* ── FAQ HERO FIGURE ── */
+        /* Ensure accordion chevron stays perfectly circular on small screens */
+        .faq-accordion-trigger .faq-accordion-icon {
+            box-sizing: border-box;
+            width: 2.5rem; /* matches Tailwind h-10 */
+            height: 2.5rem; /* matches Tailwind w-10 */
+            min-width: 2.5rem;
+            min-height: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            line-height: 1;
+            padding: 0; /* avoid extra padding from utilities */
+        }
+
+        .faq-accordion-trigger .faq-accordion-icon i {
+            display: block;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+            .faq-accordion-trigger .faq-accordion-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body class="faq-page text-neutral-900 transition-colors duration-300">

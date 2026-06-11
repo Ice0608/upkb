@@ -213,8 +213,11 @@
 <div class="bmd-print-root">
 <div class="bmd-print-sheet">
     @php
-        $logoSrc = (isset($isPdf) && $isPdf)
-            ? 'file:///' . str_replace('\\', '/', public_path('images/icon/seslogoo.png'))
+        $logoPath = public_path('images/icon/seslogoo.png');
+        $logoSrc = ($isPdf ?? false)
+            ? ($sesLogoPdfSrc ?? (file_exists($logoPath)
+                ? 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath))
+                : 'file:///' . str_replace('\\', '/', $logoPath)))
             : asset('images/icon/seslogoo.png');
     @endphp
 

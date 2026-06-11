@@ -264,7 +264,7 @@
     </div>
 </main>
 
-<div id="congrats-overlay" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4">
+<div id="congrats-overlay" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 p-4">
     <div class="w-full max-w-3xl rounded-[28px] bg-white p-8 shadow-2xl ring-1 ring-slate-200">
         <div class="flex flex-col gap-4 text-center">
             <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-800 text-3xl shadow-sm">

@@ -46,9 +46,16 @@ class StaffEventController extends Controller
 
     private function makeBmdPdf(Pelajar $pelajar)
     {
+        $logoPath = public_path('images/icon/seslogoo.png');
+        $logoDataUri = null;
+        if (file_exists($logoPath)) {
+            $logoDataUri = 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath));
+        }
+
         return Pdf::loadView('staff.bmd-print', [
             'pelajar' => $pelajar,
             'isPdf' => true,
+            'sesLogoPdfSrc' => $logoDataUri,
         ])
             ->setPaper('A4', 'portrait')
             ->setOptions($this->domPdfOptions());
@@ -58,11 +65,17 @@ class StaffEventController extends Controller
     {
         $receiptData = $this->resolveReceiptData($pelajar);
 
+        $logoPath = public_path('images/icon/sesL.png');
+        $logoDataUri = null;
+        if (file_exists($logoPath)) {
+            $logoDataUri = 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath));
+        }
+
         return Pdf::loadView('staff.resit', array_merge([
             'pelajar' => $pelajar,
             'isPdf' => true,
             'receiptNumberOverride' => filled($receiptNumberOverride) ? trim((string) $receiptNumberOverride) : null,
-            'sesLogoPdfSrc' => $this->localFileUri(public_path('images/icon/sesL.png')),
+            'sesLogoPdfSrc' => $logoDataUri ?? $this->localFileUri($logoPath),
         ], $receiptData))
             ->setPaper('A4', 'landscape')
             ->setOptions($this->domPdfOptions());

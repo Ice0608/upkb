@@ -1244,7 +1244,7 @@
                                 Semua Kursus
                             </button>
 
-                            @foreach($kursusList->unique('kumpulan_kursus_key') as $kursus)
+                            @foreach($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key') as $kursus)
                                 @php $courseDisplayName = $displayCourseName($kursus); @endphp
                                 <button 
                                     type="button"
@@ -1274,7 +1274,7 @@
                     </div>
                     <div id="courses-container" class="kursus-results-grid" data-kursus-slider-row>
                         <div class="kursus-results-track" data-kursus-slider-track>
-                    @forelse($kursusList->unique('kumpulan_kursus_key')->values() as $kursus)
+                    @forelse($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key')->values() as $kursus)
                     @php
                         $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg';
                         $courseDisplayName = $displayCourseName($kursus);

@@ -362,8 +362,11 @@
         default => strtoupper((string) ($pembayaran?->kaedah_pembayaran ?? '-')),
     };
 
+    $defaultLogoPath = public_path('images/icon/sesL.png');
     $sesLogoSrc = ($isPdf ?? false)
-        ? ($sesLogoPdfSrc ?? 'file:///' . str_replace('\\', '/', public_path('images/icon/sesL.png')))
+        ? ($sesLogoPdfSrc ?? (file_exists($defaultLogoPath)
+            ? 'data:image/png;base64,' . base64_encode(file_get_contents($defaultLogoPath))
+            : 'file:///' . str_replace('\\', '/', $defaultLogoPath)))
         : asset('images/icon/sesL.png');
     $institusiNama = strtoupper((string) ($institusi?->nama_institusi ?? $pelajar?->kod_institusi ?? '-'));
     $kursusNama = strtoupper((string) ($kursus?->nama_kursus ?? $pelajar?->pilihan_pertama ?? $pelajar?->kod_kursus ?? '-'));
