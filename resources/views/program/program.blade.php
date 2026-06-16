@@ -1327,6 +1327,74 @@
             .program-wheel-wrap { min-height: 24rem; }
             .pg-stage-reticle { width: min(94vw, 350px); height: min(94vw, 350px); }
         }
+        @media (max-width: 480px) {
+            .pg-command-header {
+                margin-bottom: 0.75rem;
+            }
+
+            .pg-heading-title {
+                font-size: clamp(2.2rem, 10vw, 2.65rem) !important;
+                letter-spacing: -0.045em !important;
+            }
+
+            .program-wheel-wrap {
+                min-height: 20.5rem;
+                padding-top: 0.25rem !important;
+                padding-bottom: 0.25rem !important;
+            }
+
+            .pg-orbit-stage,
+            .mercedes-container {
+                width: min(72vw, 260px) !important;
+                height: min(72vw, 260px) !important;
+            }
+
+            .pg-stage-reticle {
+                width: min(86vw, 310px);
+                height: min(86vw, 310px);
+            }
+
+            .pg-orbit-ring-1 { inset: -10px; }
+            .pg-orbit-ring-2 { inset: -20px; }
+            .pg-orbit-ring-3 { inset: -30px; }
+
+            .segment-content {
+                max-width: 5.4rem !important;
+            }
+
+            .segment-orange .segment-content {
+                top: 31% !important;
+                left: 5% !important;
+            }
+
+            .segment-purple .segment-content {
+                top: 31% !important;
+                right: 5% !important;
+            }
+
+            .segment-blue .segment-content {
+                bottom: 12% !important;
+                max-width: 7rem !important;
+            }
+
+            .segment-content h2 {
+                font-size: 0.64rem !important;
+                line-height: 1.08 !important;
+                letter-spacing: 0 !important;
+            }
+
+            .segment-label {
+                max-width: 100%;
+                padding: 0.28rem 0.42rem !important;
+                gap: 0.2rem !important;
+                font-size: 0.42rem !important;
+                letter-spacing: 0.08em !important;
+            }
+
+            .segment-label i {
+                font-size: 0.48rem;
+            }
+        }
         @media (prefers-reduced-motion: reduce) {
             .pg-wheel-orbits,
             .mercedes-container { translate: 0 0 !important; transition: none; }

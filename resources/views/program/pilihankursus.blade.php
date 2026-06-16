@@ -749,26 +749,71 @@
         }
 
         @media (max-width: 640px) {
+            .pilihan-hero-banner,
             .pilihan-hero-media {
-                min-height: 22rem;
+                min-height: 25rem;
+                border-radius: 1.5rem;
                 transform: none !important;
+            }
+
+            .pilihan-hero-banner::before {
+                inset: 0.75rem;
+                border-radius: 1rem;
             }
 
             .pilihan-hero-layout {
                 margin-top: 1.25rem;
             }
 
+            .pilihan-hero-floating-badge {
+                display: none;
+            }
+
+            .pilihan-hero-media::after {
+                background:
+                    linear-gradient(180deg, rgba(15, 23, 42, 0.24) 0%, rgba(15, 23, 42, 0.46) 42%, rgba(15, 23, 42, 0.9) 100%),
+                    linear-gradient(135deg, rgba(var(--pilihan-accent-rgb), 0.24), rgba(15, 23, 42, 0));
+            }
+
             .pilihan-hero-image {
+                min-height: 25rem !important;
                 transform: none !important;
             }
 
+            .pilihan-kicker {
+                max-width: 100%;
+                padding: 0.5rem 0.85rem !important;
+                font-size: 0.68rem !important;
+                letter-spacing: 0.18em !important;
+                white-space: normal;
+            }
+
+            .pilihan-hero-copy {
+                gap: 0.85rem;
+            }
+
             .pilihan-hero-copy h1 {
-                font-size: 2.2rem;
+                font-size: clamp(2rem, 11vw, 2.45rem);
+                line-height: 0.98;
+                letter-spacing: -0.035em;
+            }
+
+            .pilihan-hero-subtitle {
+                display: -webkit-box;
+                max-width: 100%;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 6;
+                font-size: 0.95rem;
+                line-height: 1.62;
             }
 
             .pilihan-hero-card-content {
-                padding: 1.5rem;
-                padding-bottom: 2rem;
+                justify-content: flex-start;
+                gap: 0.9rem;
+                padding: 1.25rem;
+                padding-top: 1.35rem;
+                padding-bottom: 1.5rem;
             }
 
             .pilihan-filter-floating {
@@ -962,7 +1007,7 @@
 
             <div class="pilihan-hero-layout pilihan-section-anchor">
                 <div class="pilihan-hero-media pilihan-hero-banner group" data-hero-card>
-                    <div class="absolute left-5 top-5 z-10">
+                    <div class="pilihan-hero-floating-badge absolute left-5 top-5 z-10">
                         <span class="pilihan-image-badge inline-flex rounded-full border border-white/30 bg-white/14 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-white">Program Dipilih</span>
                     </div>
                     <div class="pilihan-hero-card-overlay"></div>

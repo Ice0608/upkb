@@ -545,19 +545,106 @@
                 padding-top: 1.5rem !important;
             }
 
+            .kursus-detail-hero {
+                border-radius: 1.5rem !important;
+            }
+
+            .kursus-detail-hero::before {
+                inset: 0;
+                background:
+                    linear-gradient(180deg, rgba(49, 16, 89, 0.52) 0%, rgba(68, 20, 118, 0.36) 48%, rgba(36, 6, 68, 0.72) 100%),
+                    var(--detail-hero-image) center / cover no-repeat;
+                opacity: 0.56;
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+
             .kursus-detail-hero .relative {
-                padding: 1.5rem !important;
+                padding: 1.25rem !important;
+            }
+
+            .kursus-detail-hero .relative > div:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 0.85rem;
+                padding-right: 0 !important;
+            }
+
+            .kursus-detail-hero .relative > div:first-child > .flex:first-child {
+                flex-wrap: wrap;
+                gap: 0.5rem !important;
+                margin-bottom: 0 !important;
+            }
+
+            .kursus-detail-chip {
+                padding: 0.38rem 0.72rem !important;
+                font-size: 0.68rem !important;
+                letter-spacing: 0.16em !important;
+            }
+
+            .kursus-detail-hero .relative > div:first-child > p.inline-flex {
+                align-items: flex-start;
+                margin-bottom: 0 !important;
+                max-width: 100%;
+                font-size: 0.82rem !important;
+                line-height: 1.35;
             }
 
             .kursus-detail-hero h1 {
-                font-size: clamp(2rem, 10vw, 3rem) !important;
-                line-height: 1.05 !important;
+                display: block;
+                margin-bottom: 0 !important;
+                max-width: 100%;
+                font-size: clamp(1.72rem, 8.2vw, 2.05rem) !important;
+                line-height: 1.06 !important;
+                letter-spacing: 0 !important;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+                hyphens: auto;
+            }
+
+            .kursus-detail-soft-text {
+                display: grid !important;
+                grid-template-columns: 1fr;
+                gap: 0.55rem !important;
+                font-size: 0.86rem !important;
+            }
+
+            .kursus-detail-soft-text > div {
+                display: flex !important;
+                align-items: center;
+                gap: 0.55rem !important;
+                min-width: 0;
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                border-radius: 1rem;
+                background: rgba(31, 15, 67, 0.22);
+                padding: 0.6rem 0.72rem;
+                line-height: 1.25;
+                overflow-wrap: anywhere;
+                backdrop-filter: blur(4px);
+            }
+
+            .kursus-detail-soft-text > div i {
+                flex-shrink: 0;
+            }
+
+            .kursus-detail-hero .mt-8 {
+                margin-top: 0.15rem !important;
+            }
+
+            .kursus-detail-primary-btn {
+                max-width: 100%;
+                justify-content: center;
+                padding: 0.85rem 1.15rem !important;
+                line-height: 1.2;
             }
 
             .kursus-detail-cta {
                 position: static !important;
                 align-items: stretch !important;
-                margin-top: 1.5rem;
+                margin-top: 0.3rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.18);
+                padding-top: 1rem;
+                padding-right: 2rem;
                 width: 100%;
             }
 
@@ -568,8 +655,14 @@
             .kd-cta-daftar {
                 width: 100%;
                 justify-content: space-between;
-                padding: 1rem 1.25rem;
+                min-height: 3.7rem;
+                padding: 0.85rem 0.9rem 0.85rem 1rem;
                 font-size: 1rem;
+            }
+
+            .kd-cta-daftar .kd-cta-daftar__arrow {
+                width: 2.35rem;
+                height: 2.35rem;
             }
 
             .kursus-detail-tabbar {
@@ -591,6 +684,27 @@
                 text-align: center;
                 line-height: 1.25;
                 white-space: normal;
+            }
+        }
+
+        @media (min-width: 390px) and (max-width: 768px) {
+            .kursus-detail-soft-text {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .kursus-detail-soft-text > div:first-child,
+            .kursus-detail-soft-text > div:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .kursus-detail-hero h1 {
+                font-size: clamp(1.55rem, 7.6vw, 1.82rem) !important;
+            }
+
+            .kursus-detail-cta {
+                padding-right: 2.5rem;
             }
         }
     </style>
