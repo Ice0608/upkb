@@ -192,7 +192,10 @@ class Kursus extends Model
         }
 
         if ($canonicalName === 'PENGURUSAN PEJABAT') {
-            return $query->where('nama_kursus', 'LIKE', '%pengurusan pejabat%');
+            return $query->where(function ($subQuery) {
+                $subQuery->where('nama_kursus', 'LIKE', '%pengurusan%')
+                         ->where('nama_kursus', 'LIKE', '%pejabat%');
+            });
         }
 
         if ($canonicalName === 'KECANTIKAN') {
