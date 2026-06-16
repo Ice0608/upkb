@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2026 at 07:12 AM
+-- Generation Time: Jun 16, 2026 at 08:03 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -654,7 +654,14 @@ INSERT INTO `kerjayas` (`id`, `kod_institusi`, `kod_kursus`, `gambar`, `created_
 (120, 'P13A', 'F432-005-3-2019S', 'images/institusi/tvet-elektrik-1781150209.png', '2026-06-10 19:56:49', '2026-06-10 19:56:49'),
 (121, 'L02313', 'DEC/(R2/0112/4/0018)( 2/2029) (MQA/FA2298)', 'images/institusi/uic-diploma-pendidikan-awal-kanak-kanak-1781164756.png', '2026-06-10 23:59:16', '2026-06-10 23:59:16'),
 (122, 'UE4344001', 'AC110/(R2/344/4/0241)( 10/2024)( A1570)', 'images/institusi/diploma-perakaunan-1781164884.png', '2026-06-11 00:01:24', '2026-06-11 00:01:24'),
-(123, '01', 'MQA/SWA0629', 'images/institusi/diploma-pengurusan-perniagaan-1781165050.png', '2026-06-11 00:04:10', '2026-06-11 00:04:10');
+(123, '01', 'MQA/SWA0629', 'images/institusi/diploma-pengurusan-perniagaan-1781165050.png', '2026-06-11 00:04:10', '2026-06-11 00:04:10'),
+(124, 'DK268(W)', '(R/321/4/0029) – MQA/FA0611', 'images/institusi/diploma-komunikasi-massa-1781588196.png', '2026-06-15 21:36:36', '2026-06-15 21:36:36'),
+(125, 'DK268(W)', 'R2/213/4/0359 (MQA/A6023)', 'images/institusi/diploma-reka-bentuk-multimedia-1781588261.png', '2026-06-15 21:37:41', '2026-06-15 21:37:41'),
+(126, 'DK268(W)', 'R2/861/4/0003 – MQA/FA10855', 'images/institusi/diploma-pengurusan-keselamatan-penguatkuasa-undang-undang-1781588309.png', '2026-06-15 21:38:29', '2026-06-15 21:38:29'),
+(127, '05', 'DDWG/(R2/345/4/0183)( 5/2027)( MQA/FA2192)', 'images/institusi/diploma-pengurusan-teknologi-maklumat-1781588485.png', '2026-06-15 21:41:25', '2026-06-15 21:41:25'),
+(128, '05', 'DDWF/(R2/341/4/0018)( 05/2027)( MQA/ FA2191)', 'images/institusi/diploma-pengurusan-hartanah-1781588521.png', '2026-06-15 21:42:01', '2026-06-15 21:42:01'),
+(130, '01', 'MQA/SWA0628', 'images/institusi/diploma-pengurusan-1781588623.png', '2026-06-15 21:43:43', '2026-06-15 21:43:43'),
+(131, '01', 'MQA/SWA0630', 'images/institusi/diploma-pengurusan-sumber-manusia-1781588683.png', '2026-06-15 21:44:43', '2026-06-15 21:44:43');
 
 -- --------------------------------------------------------
 
@@ -994,10 +1001,14 @@ CREATE TABLE `sessions` (
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('4pKiWgq1kJJdhYZWWzvCob1ZEF39z8STYIvM9JNq', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYnByME5qQkJ0YlFibzBvNlpaaGVicERpUmw0MHBYSzRYa3lDd25rRiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9pbnN0aXR1c2lzP2Nhcmk9JmplbmlzPSZuZWdlcmk9IjtzOjU6InJvdXRlIjtzOjE2OiJhZG1pbi5pbnN0aXR1c2lzIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9', 1781162112),
+('eomB36LIMVUWyyxLols5DT48Tw38uC5zWKGBZiQj', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.124.2 Chrome/148.0.7778.97 Electron/42.2.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWWZtN3NHWXBRY2hEU28zTDFqQ01vZG5mbXlPMEg5UjdnMzVKTm9GeCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1781587706),
+('FJjdI4M8XjKunOIpX5XGfe4ykzrIIV4Wzj5aIdC3', NULL, '2405:3800:8ee:1256:a0d4:6de8:f0be:8496', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWUZoSEszY1g2UW9xaVlhUzBhTTJaTnlOU2loenRaWEM2ampPdjNPbiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTk6Imh0dHBzOi8vYWxvbmctZ3JhbmRlLWJhcmdhaW4tY29udHJpYnV0aW5nLnRyeWNsb3VkZmxhcmUuY29tIjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1781589691),
+('kXdt2aWAnAF6IdNMPpLxQfLHdn5Hbh6YAIoeJUhT', NULL, '2405:3800:8ee:1256:a0d4:6de8:f0be:8496', 'WhatsApp/2.2620.102 W', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiU2IxQ3FCZGM3cThIZDd3ZkpEd044NmlNMjdYZVd1ODA3a3NVZ2F2eiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NTk6Imh0dHBzOi8vYWxvbmctZ3JhbmRlLWJhcmdhaW4tY29udHJpYnV0aW5nLnRyeWNsb3VkZmxhcmUuY29tIjtzOjU6InJvdXRlIjtOO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1781587895),
 ('Lmlm6dvweAU9aIQ9TPJC2jgME2NBb5Ga4yKWbnGn', NULL, '2402:1980:885c:e12d:3132:fb3b:4e2e:166a', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ0JGNHNZMHlDRUlYQnVsYURONWo2MTF0eVNEQXZzYndiejZ3d3FqTCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NjE6Imh0dHBzOi8vYXJ0LXBlcmZvcm1zLWZvY2FsLXRlY2huaWNpYW4udHJ5Y2xvdWRmbGFyZS5jb20vbG9naW4iO3M6NToicm91dGUiO3M6NToibG9naW4iO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1781159384),
 ('qLWRuvYu6osO13HjBEuMkbtvoqsMy7kviVBrEtIL', 3, '2402:1980:885c:e12d:6c3f:4082:6f36:69e1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 OPR/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWUlkbjlTQ0FDVlJPaVdMd2lNaHFkYWsxZHd4bkpXZXJVZ1VTMnVOMiI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NzU6Imh0dHBzOi8vYXJ0LXBlcmZvcm1zLWZvY2FsLXRlY2huaWNpYW4udHJ5Y2xvdWRmbGFyZS5jb20vYWRtaW4vZWRpdGt1cnN1cy84NyI7czo1OiJyb3V0ZSI7czoxNjoiYWRtaW4uZWRpdGt1cnN1cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1781160515),
 ('upmM77K7Onr2kDVEnRUhyUxxel3xSNTbi5HFJPJz', NULL, '2001:d08:1b40:7b50:8d4a:3606:e013:8e16', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 OPR/131.0.0.0', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZ2Z0UGFBTWV1b0RrMDlxRHZiQ001ekNST3ZyczczTU5aMHZBT0RCRiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1781159496),
-('xK1cUhm5zLNYpPVOApQDMQL0Dx1qho4k5JRlX7Pn', 3, '2001:d08:1b40:7b50:8d4a:3606:e013:8e16', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 OPR/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWURsZDZFUnNyaURmZ1FacnhjRDJhT09IWFFnZ3E1d1VicmpzYU9CVCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NzU6Imh0dHBzOi8vYXJ0LXBlcmZvcm1zLWZvY2FsLXRlY2huaWNpYW4udHJ5Y2xvdWRmbGFyZS5jb20vYWRtaW4vZWRpdGt1cnN1cy83OCI7czo1OiJyb3V0ZSI7czoxNjoiYWRtaW4uZWRpdGt1cnN1cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1781165112);
+('xK1cUhm5zLNYpPVOApQDMQL0Dx1qho4k5JRlX7Pn', 3, '2001:d08:1b40:7b50:8d4a:3606:e013:8e16', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 OPR/131.0.0.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWURsZDZFUnNyaURmZ1FacnhjRDJhT09IWFFnZ3E1d1VicmpzYU9CVCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6NzU6Imh0dHBzOi8vYXJ0LXBlcmZvcm1zLWZvY2FsLXRlY2huaWNpYW4udHJ5Y2xvdWRmbGFyZS5jb20vYWRtaW4vZWRpdGt1cnN1cy83OCI7czo1OiJyb3V0ZSI7czoxNjoiYWRtaW4uZWRpdGt1cnN1cyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1781165112),
+('ZbNYDaxvfhFer84DbMPqSXPhthuf00fDUj7bkF4n', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYTk0MEVPVURyR0RMNFdrVm14b0VydTBYeFR1cVk4WUhHeks1MUV3WCI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7czo1OiJyb3V0ZSI7Tjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9', 1781589677);
 
 -- --------------------------------------------------------
 
@@ -1785,7 +1796,7 @@ ALTER TABLE `institusis`
 -- AUTO_INCREMENT for table `kerjayas`
 --
 ALTER TABLE `kerjayas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `kursuses`

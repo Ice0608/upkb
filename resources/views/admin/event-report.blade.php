@@ -383,6 +383,14 @@ window.REPORT_DATA = {
         popularMethodShare: @json($exportPopularShare),
     },
 };
+
+function confirmEventDelete() {
+    if (!confirm('Padam event ini beserta semua data pelajar dan pembayaran berkaitan?')) {
+        return false;
+    }
+
+    return confirm('Sila sahkan semula: anda pasti mahu memadam semua data ini? Tindakan ini tidak boleh dipulihkan.');
+}
 </script>
 
 <div class="screen-actions">
@@ -393,6 +401,14 @@ window.REPORT_DATA = {
         </a>
     </div>
     <div class="screen-actions-right">
+        <form action="{{ route('admin.event.destroy', $event) }}" method="POST" onsubmit="return confirmEventDelete();" class="inline-block">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-rose-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-rose-700">
+                <i class="fas fa-trash"></i>
+                Delete Event
+            </button>
+        </form>
         <button onclick="exportToExcel()" class="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-emerald-700">
             <i class="fas fa-file-excel"></i>
             Export to Excel

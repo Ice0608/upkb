@@ -11,6 +11,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class AdminDashboardController extends Controller
 {
@@ -114,6 +115,26 @@ class AdminDashboardController extends Controller
             'closerRows',
             'reportId'
         ));
+    }
+
+    public function destroyEvent(Event $event)
+    {
+        abort_if(auth()->user()->level !== 'admin', 403);
+
+        DB::transaction(function () use ($event) {
+            $pelajars = Pelajar::where('event_id', $event->id)->get();
+            $icPelajars = $pelajars->pluck('ic_pelajar')->filter()->unique()->values();
+
+            if ($icPelajars->isNotEmpty()) {
+                Pembayaran::whereIn('ic_pelajar', $icPelajars)->delete();
+            }
+
+            Pelajar::where('event_id', $event->id)->delete();
+            $event->delete();
+        });
+
+        return redirect()->route('dashboard')
+            ->with('success', 'Event dan semua data pelajar serta pembayaran berkaitan telah dipadam.');
     }
 
     private function paymentMethodLabel(?string $method): string
