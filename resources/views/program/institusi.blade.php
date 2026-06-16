@@ -389,24 +389,6 @@
             background: rgba(219, 234, 254, 0.95);
         }
 
-        .institusi-page--tvet .institusi-card:hover .institusi-card-arrow,
-        .institusi-page--tvet .institusi-card:focus-within .institusi-card-arrow {
-            background: var(--institusi-tvet-50);
-            color: var(--institusi-tvet-600);
-        }
-
-        .institusi-page--diploma .institusi-card:hover .institusi-card-arrow,
-        .institusi-page--diploma .institusi-card:focus-within .institusi-card-arrow {
-            background: var(--institusi-diploma-50);
-            color: var(--institusi-diploma-600);
-        }
-
-        .institusi-page--sains-kesihatan .institusi-card:hover .institusi-card-arrow,
-        .institusi-page--sains-kesihatan .institusi-card:focus-within .institusi-card-arrow {
-            background: var(--institusi-sains-50);
-            color: var(--institusi-sains-600);
-        }
-
         .institusi-page--tvet .institusi-card-link {
             color: var(--institusi-tvet-500);
             border-color: rgba(var(--institusi-tvet-rgb), 0.2);
@@ -837,7 +819,6 @@
 
         .institusi-card-badge,
         .institusi-card-chip,
-        .institusi-card-arrow,
         .institusi-card-link {
             transition: transform 0.28s ease, background-color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
         }
@@ -857,22 +838,6 @@
         .institusi-card:focus-within .institusi-card-chip {
             border-color: rgba(20, 184, 166, 0.22);
             background: rgba(204, 251, 241, 0.95);
-        }
-
-        .institusi-card-arrow {
-            flex: 0 0 3rem;
-            min-width: 3rem;
-            min-height: 3rem;
-            box-shadow:
-                0 10px 24px rgba(15, 23, 42, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.22);
-        }
-
-        .institusi-card:hover .institusi-card-arrow,
-        .institusi-card:focus-within .institusi-card-arrow {
-            transform: translateX(4px) translateY(-2px);
-            background: #f0fdfa;
-            color: #0f766e;
         }
 
         .institusi-card-link {
@@ -1433,9 +1398,6 @@
                                     <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">{{ $institusiLabel }}</p>
                                     <h2 class="mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                 </div>
-                                <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
-                                    <i class="fas fa-arrow-right"></i>
-                                </span>
                             </div>
                         </div>
                         <div class="p-6 sm:p-7 flex flex-col flex-1">
@@ -1510,9 +1472,6 @@
                                                 <p class="text-[0.68rem] font-semibold uppercase tracking-[0.34em] {{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100/90')) }}">{{ $institusiLabel }}</p>
                                                 <h2 class="institusi-card-title mt-2 text-2xl font-extrabold text-white">{{ $institusi->nama_institusi }}</h2>
                                             </div>
-                                            <span class="institusi-card-arrow inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15 text-lg text-white">
-                                                <i class="fas fa-arrow-right"></i>
-                                            </span>
                                         </div>
                                     </div>
                                     <div class="institusi-card-body p-6 sm:p-7 flex flex-col flex-1">

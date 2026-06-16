@@ -1202,6 +1202,158 @@
             .pg-sun-hub::before { animation: none; }
         }
         /* ══ END SUN CENTER HUB ══ */
+        /* Pathfinder command deck */
+        .program-shell {
+            width: min(100%, 92rem);
+            min-height: calc(100vh - 5rem);
+            padding-top: clamp(2rem, 5vw, 4.5rem) !important;
+            padding-bottom: clamp(4rem, 8vw, 7rem) !important;
+        }
+        .pg-command-header {
+            position: relative;
+            z-index: 20;
+            max-width: 58rem;
+            margin: 0 auto clamp(1.7rem, 4vw, 3rem);
+            text-align: center;
+        }
+        .pg-heading-title {
+            margin-top: 1rem;
+            font-size: clamp(2.5rem, 7vw, 5.8rem) !important;
+            line-height: 0.93 !important;
+            letter-spacing: -0.065em !important;
+            text-wrap: balance;
+        }
+        .pg-laluan-wrap .pg-word {
+            background: linear-gradient(100deg, #5eead4 0%, #22d3ee 40%, #60a5fa 72%, #a78bfa 100%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+        }
+        .program-wheel-wrap {
+            --pg-shift-x: 0px;
+            --pg-shift-y: 0px;
+            position: relative;
+            min-height: clamp(22rem, 58vw, 43rem);
+            isolation: isolate;
+            perspective: 1200px;
+        }
+        .program-wheel-wrap::before {
+            content: "";
+            position: absolute;
+            z-index: -2;
+            inset: auto;
+            left: 50%;
+            top: 50%;
+            width: min(72rem, 96vw);
+            height: auto;
+            aspect-ratio: 1.7;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 32% 48%, rgba(249,115,22,0.19), transparent 28%),
+                radial-gradient(circle at 68% 42%, rgba(139,92,246,0.2), transparent 28%),
+                radial-gradient(circle at 50% 74%, rgba(56,189,248,0.18), transparent 28%);
+            filter: blur(42px);
+            opacity: 0.82;
+        }
+        .program-wheel-wrap::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: auto;
+            left: 50%;
+            top: auto;
+            bottom: 5%;
+            width: min(42rem, 84vw);
+            height: 5rem;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: rgba(2,6,23,0.72);
+            filter: blur(28px);
+        }
+        .pg-wheel-orbits {
+            translate: var(--pg-shift-x) var(--pg-shift-y);
+            transition: translate 0.3s ease-out;
+        }
+        .pg-orbit-stage {
+            width: clamp(280px, 52vw, 560px) !important;
+            height: clamp(280px, 52vw, 560px) !important;
+        }
+        .mercedes-container {
+            width: clamp(280px, 52vw, 560px) !important;
+            height: clamp(280px, 52vw, 560px) !important;
+            translate: var(--pg-shift-x) var(--pg-shift-y);
+            border: 1px solid rgba(255,255,255,0.38);
+            box-shadow:
+                0 38px 100px rgba(2,6,23,0.5),
+                0 0 0 8px rgba(255,255,255,0.025),
+                0 0 90px rgba(56,189,248,0.12);
+            transition: translate 0.3s ease-out, box-shadow 0.35s ease;
+        }
+        .pg-stage-reticle {
+            position: absolute;
+            inset: 50% auto auto 50%;
+            width: clamp(320px, 61vw, 660px);
+            height: clamp(320px, 61vw, 660px);
+            translate: -50% -50%;
+            pointer-events: none;
+            border: 1px solid rgba(148,163,184,0.1);
+            border-radius: 50%;
+            box-shadow: inset 0 0 60px rgba(56,189,248,0.035);
+        }
+        .pg-stage-reticle::before,
+        .pg-stage-reticle::after {
+            content: "";
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(94,234,212,0.28), transparent);
+        }
+        .pg-stage-reticle::before { left: -8%; right: -8%; top: 50%; height: 1px; }
+        .pg-stage-reticle::after { top: -8%; bottom: -8%; left: 50%; width: 1px; background: linear-gradient(180deg, transparent, rgba(94,234,212,0.22), transparent); }
+        .segment-content h2 {
+            letter-spacing: -0.035em;
+            text-shadow: 0 5px 24px rgba(2,6,23,0.72);
+        }
+        .segment-label {
+            border: 1px solid var(--label-glass-border, rgba(255,255,255,0.34)) !important;
+            border-radius: 999px !important;
+            padding: 0.45rem 0.72rem !important;
+            background:
+                linear-gradient(145deg, rgba(255,255,255,0.26), rgba(255,255,255,0.04) 42%),
+                var(--label-glass-bg, rgba(2,6,23,0.42)) !important;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.42),
+                inset 0 -1px 0 rgba(255,255,255,0.08),
+                0 8px 22px rgba(2,6,23,0.22),
+                0 0 18px var(--label-glow, rgba(255,255,255,0.16)) !important;
+            backdrop-filter: blur(14px) saturate(145%);
+            -webkit-backdrop-filter: blur(14px) saturate(145%);
+        }
+        .segment-wrapper:focus-visible {
+            outline: none;
+        }
+        .segment-wrapper:focus-visible .segment {
+            filter: brightness(1.14) saturate(1.08);
+            box-shadow: inset 0 0 0 3px rgba(255,255,255,0.78), 0 0 42px rgba(94,234,212,0.42);
+        }
+        .segment-wrapper:focus-visible .holo-layer { opacity: 0.82; }
+        html:not(.dark) .program-page {
+            background:
+                radial-gradient(circle at 12% 16%, rgba(249,115,22,0.13), transparent 24%),
+                radial-gradient(circle at 84% 18%, rgba(139,92,246,0.13), transparent 26%),
+                radial-gradient(circle at 50% 78%, rgba(56,189,248,0.14), transparent 30%),
+                linear-gradient(145deg, #f8fafc 0%, #eef2ff 52%, #ecfeff 100%);
+        }
+        html:not(.dark) .pg-heading-title { color: #0f172a; }
+        html:not(.dark) .program-wheel-wrap::after { background: rgba(51,65,85,0.2); }
+        @media (max-width: 767px) {
+            .program-shell { padding-top: 1.5rem !important; }
+            .pg-command-header { margin-bottom: 1.3rem; }
+            .program-wheel-wrap { min-height: 24rem; }
+            .pg-stage-reticle { width: min(94vw, 350px); height: min(94vw, 350px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .pg-wheel-orbits,
+            .mercedes-container { translate: 0 0 !important; transition: none; }
+        }
     </style>
 </head>
 <body class="program-page text-gray-800 transition-colors duration-300">
@@ -1211,7 +1363,7 @@
     <section class="program-shell max-w-7xl mx-auto px-4 pb-8 pt-12 sm:px-6">
 
         {{-- PAGE HEADING --}}
-        <div class="text-center mb-8 pg-heading-anim">
+        <div class="pg-command-header pg-heading-anim">
             <h1 class="pg-heading-title" style="font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(1.8rem,5vw,3.2rem); line-height:1.1; letter-spacing:-0.03em;">
                 <span class="pg-word">Pilih</span>
                 <span class="pg-laluan-wrap"><span class="pg-word" style="background:linear-gradient(120deg,#f97316,#ea580c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Laluan</span></span>
@@ -1220,9 +1372,10 @@
         </div>
 
         <div class="program-wheel-wrap relative flex justify-center items-center py-4">
+            <div class="pg-stage-reticle" aria-hidden="true"></div>
             {{-- Orbit rings + sparks + HUD corners --}}
-            <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-                <div style="position:relative; width:min(280px,80vw); height:min(280px,80vw);" class="sm:!w-[360px] sm:!h-[360px] md:!w-[520px] md:!h-[520px]">
+            <div class="pg-wheel-orbits absolute inset-0 pointer-events-none" aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div class="pg-orbit-stage" style="position:relative;">
                     <div class="pg-orbit-ring pg-orbit-ring-1"></div>
                     <div class="pg-orbit-ring pg-orbit-ring-2"></div>
                     <div class="pg-orbit-ring pg-orbit-ring-3"></div>
@@ -1252,6 +1405,9 @@
                                 'label_border' => 'border-[#CC4100]',
                                 'label_hover' => 'group-hover:border-[#993100]',
                                 'label_shadow' => '#FF5100',
+                                'label_glass_bg' => 'rgba(255, 81, 0, 0.46)',
+                                'label_glass_border' => 'rgba(255, 220, 190, 0.58)',
+                                'label_glow' => 'rgba(255, 81, 0, 0.48)',
                             ],
                             1 => [
                                 'clip' => 'segment-top-right-clip',
@@ -1261,6 +1417,9 @@
                                 'label_border' => 'border-[#7a1fd1]',
                                 'label_hover' => 'group-hover:border-[#6216aa]',
                                 'label_shadow' => '#8d2be2',
+                                'label_glass_bg' => 'rgba(141, 43, 226, 0.46)',
+                                'label_glass_border' => 'rgba(224, 196, 255, 0.58)',
+                                'label_glow' => 'rgba(141, 43, 226, 0.48)',
                             ],
                             2 => [
                                 'clip' => 'segment-bottom-clip',
@@ -1270,6 +1429,9 @@
                                 'label_border' => 'border-[#1d4ed8]',
                                 'label_hover' => 'group-hover:border-[#1e40af]',
                                 'label_shadow' => '#2196f3',
+                                'label_glass_bg' => 'rgba(33, 150, 243, 0.46)',
+                                'label_glass_border' => 'rgba(190, 228, 255, 0.58)',
+                                'label_glow' => 'rgba(33, 150, 243, 0.48)',
                             ],
                         ];
                         $ui = $configs[$index] ?? $configs[0];
@@ -1375,7 +1537,7 @@
                             <div class="segment-label mt-1 sm:mt-2 text-[8px] sm:text-xs font-bold tracking-widest 
                                      border-b-2 {{ $ui['label_border'] }} text-white {{ $ui['label_bg'] }} {{ $ui['label_hover'] }} 
                                         transition-all inline-flex items-center whitespace-nowrap gap-1 w-fit rounded px-2 py-0.5 shadow-lg"
-                                 style="box-shadow: 0 0 12px 2px {{ $ui['label_shadow'] }};">
+                                 style="--label-glass-bg: {{ $ui['label_glass_bg'] }}; --label-glass-border: {{ $ui['label_glass_border'] }}; --label-glow: {{ $ui['label_glow'] }};">
                                 LIHAT PROGRAM <i class="fas fa-chevron-right" style="text-shadow: 0 0 8px #fff;"></i>
                             </div>
                         </div>
@@ -1384,15 +1546,6 @@
 
             </div>
 
-            {{-- Info Panel: outside wheel so it never overlaps the circle --}}
-            <div id="pg-info-backdrop" class="pg-info-backdrop" aria-hidden="true"></div>
-            <div class="pg-info-tip" id="pg-info-tip" role="tooltip" aria-hidden="true">
-                <ul>
-                    <li><span class="pg-tip-dot" style="background:#FF5100;"></span><div><strong>TVET</strong> <em style="opacity:.7;font-size:.9em;">(Pendidikan dan Latihan Teknikal dan Vokasional)</em><br>Sistem pendidikan yang fokus pada kemahiran praktikal, teknikal, dan pekerjaan industri untuk melahirkan tenaga kerja mahir.</div></li>
-                    <li><span class="pg-tip-dot" style="background:#9C27B0;"></span><div><strong>Diploma</strong><br>Kelayakan akademik tahap pertengahan selepas SPM yang biasanya mengambil masa 2–3 tahun, memberi pengetahuan teori dan kemahiran dalam bidang tertentu.</div></li>
-                    <li><span class="pg-tip-dot" style="background:#2196F3;"></span><div><strong>Sains Kesihatan</strong><br>Bidang pengajian yang berkaitan dengan penjagaan kesihatan manusia, termasuk aspek pencegahan, diagnosis, rawatan, dan pemulihan penyakit.</div></li>
-                </ul>
-            </div>
         </div>
     </section>
 
@@ -1402,50 +1555,26 @@
     {{-- Cosmic star field canvas --}}
     <canvas id="pg-starfield" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;" aria-hidden="true"></canvas>
 
-    {{-- Info panel toggle --}}
     <script>
     (function(){
-        var btn = document.getElementById('pg-info-btn');
-        var tip = document.getElementById('pg-info-tip');
-        if (!btn || !tip) return;
-        var timer;
-        var backdrop = document.getElementById('pg-info-backdrop');
-        function isMobile() { return window.innerWidth < 768; }
-        function showBackdrop() {
-            if (!backdrop || !isMobile()) return;
-            backdrop.style.display = 'block';
-            requestAnimationFrame(function(){ backdrop.classList.add('pg-info-active'); });
+        var stage = document.querySelector('.program-wheel-wrap');
+        if (!stage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        function resetDepth() {
+            stage.style.setProperty('--pg-shift-x', '0px');
+            stage.style.setProperty('--pg-shift-y', '0px');
         }
-        function hideBackdrop() {
-            if (!backdrop) return;
-            backdrop.classList.remove('pg-info-active');
-            backdrop.style.display = 'none';
-        }
-        function show() {
-            clearTimeout(timer);
-            tip.classList.add('pg-info-active');
-            tip.setAttribute('aria-hidden', 'false');
-            btn.setAttribute('aria-expanded', 'true');
-            showBackdrop();
-        }
-        function hide() {
-            timer = setTimeout(function(){
-                tip.classList.remove('pg-info-active');
-                tip.setAttribute('aria-hidden', 'true');
-                btn.setAttribute('aria-expanded', 'false');
-                hideBackdrop();
-            }, 120);
-        }
-        // Click toggles (all sizes)
-        btn.addEventListener('click', function(e){
-            e.stopPropagation();
-            tip.classList.contains('pg-info-active') ? hide() : show();
+
+        stage.addEventListener('pointermove', function(event) {
+            if (event.pointerType === 'touch') return;
+            var rect = stage.getBoundingClientRect();
+            var x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+            var y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+            stage.style.setProperty('--pg-shift-x', (x * 10).toFixed(2) + 'px');
+            stage.style.setProperty('--pg-shift-y', (y * 8).toFixed(2) + 'px');
         });
-        // Dismiss on backdrop click or outside click
-        if (backdrop) backdrop.addEventListener('click', hide);
-        document.addEventListener('click', function(e){
-            if (!tip.contains(e.target) && e.target !== btn) hide();
-        });
+
+        stage.addEventListener('pointerleave', resetDepth);
     })();
     </script>
     <script>
@@ -1569,4 +1698,3 @@
 
 </body>
 </html>
-
