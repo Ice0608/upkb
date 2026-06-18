@@ -230,6 +230,8 @@ class StaffEventController extends Controller
             $event = Event::find($request->event_id);
         }
 
+        $noreff=$request->query('noreff');
+
         // If user clicked "Daftar Sekarang" from a kursus page, remember the selected kursus
         if ($request->filled('set_kursus_redirect')) {
             session([
@@ -241,7 +243,7 @@ class StaffEventController extends Controller
         }
 
         $pelajar = null;
-        return view('pelajar.bmd', compact('event', 'pelajar'));
+        return view('pelajar.bmd', compact('event','noreff', 'pelajar'));
     }
 
     public function storeGuestPelajar(Request $request)
