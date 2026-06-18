@@ -31,29 +31,29 @@
                 <p data-total-yuran class="kursus-tab-accent-strong mt-2 text-2xl sm:text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</p>
             </div>
         </div>
-        <div class="grid gap-4 sm:gap-6 {{ $yuranGridClass }} p-4 sm:p-6 auto-rows-fr">
-            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
+        <div class="grid gap-4 sm:gap-6 {{ $yuranGridClass }} p-4 sm:p-6">
+            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Pendaftaran</h3>
                 @if($kursus->yuranPendaftarans->isNotEmpty())
                     <div class="space-y-3">
                         @foreach($kursus->yuranPendaftarans as $fee)
                             <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200 shadow-sm">
                                 <p class="text-sm font-medium text-gray-700">{{ $fee->item }}</p>
-                                <p class="shrink-0 font-bold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
+                                <p class="shrink-0 text-right font-bold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
                             </div>
                         @endforeach
                     </div>
                 @else
                     <p class="text-sm text-gray-500">Tiada yuran pendaftaran direkodkan.</p>
                 @endif
-                <div class="mt-auto border-t border-gray-200 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
+                <div class="mt-4 border-t border-gray-200 px-4 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
                     <span>Jumlah</span>
                     <span>RM {{ number_format($pendaftaranTotal, 2) }}</span>
                 </div>
             </div>
 
             @if($hasPilihan)
-            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
+            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Pilihan</h3>
                 <div class="space-y-3">
                     @foreach($kursus->yuranPilihans as $fee)
@@ -68,7 +68,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="mt-auto border-t border-gray-200 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
+                <div class="mt-4 border-t border-gray-200 px-4 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
                     <span>Jumlah</span>
                     <span data-pilihan-total-display>RM {{ number_format($pilihanTotal, 2) }}</span>
                 </div>
@@ -76,7 +76,7 @@
             @endif
 
             @if($hasAsrama)
-            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 h-full min-h-[220px] flex flex-col shadow-sm">
+            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Asrama</h3>
                 <div class="space-y-3">
                     @foreach($kursus->yuranAsramas as $fee)
@@ -91,7 +91,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="mt-auto border-t border-gray-200 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
+                <div class="mt-4 border-t border-gray-200 px-4 pt-4 flex items-center justify-between gap-4 text-sm font-bold text-gray-900">
                     <span>Jumlah</span>
                     <span class="kursus-tab-accent-strong" data-asrama-total-display>RM {{ number_format($asramaTotal, 2) }}</span>
                 </div>
@@ -174,20 +174,20 @@
 
         <div class="grid gap-6 lg:grid-cols-2 p-6">
             <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-semibold text-gray-800">Yuran Pengajian</h3>
-                    <span class="text-sm font-semibold text-gray-900">RM {{ number_format($pengajianTotal, 2) }}</span>
+                <div class="mb-4 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4">
+                    <h3 class="font-semibold leading-snug text-gray-800">Yuran Pengajian</h3>
+                    <span class="text-right text-sm font-semibold leading-snug text-gray-900">RM {{ number_format($pengajianTotal, 2) }}</span>
                 </div>
                 @if($kursus->yuranPengajians->isNotEmpty())
                     <div class="space-y-4">
                         @foreach($kursus->yuranPengajians as $fee)
                             <div class="rounded-3xl bg-white p-4 border border-gray-200 shadow-sm">
-                                <div class="flex items-center justify-between gap-4">
-                                    <div>
-                                        <p class="font-semibold text-gray-800">{{ $fee->peringkat }}</p>
-                                        <p class="text-sm text-gray-500">{{ $fee->tempoh }}</p>
+                                <div class="grid gap-3 xl:grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] xl:items-center">
+                                    <div class="min-w-0">
+                                        <p class="break-words font-semibold leading-snug text-gray-800">{{ $fee->peringkat }}</p>
+                                        <p class="mt-1 break-words text-sm leading-snug text-gray-500">{{ $fee->tempoh }}</p>
                                     </div>
-                                    <p class="text-lg font-semibold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
+                                    <p class="whitespace-nowrap text-lg font-semibold leading-snug text-gray-900 xl:text-right">RM {{ number_format($fee->amount, 2) }}</p>
                                 </div>
                             </div>
                         @endforeach
@@ -195,22 +195,22 @@
                 @else
                     <p class="text-sm text-gray-500">Tiada yuran pengajian direkodkan.</p>
                 @endif
-                <div class="mt-6 border-t border-gray-200 pt-4 text-sm font-semibold text-gray-900 flex items-center justify-between">
+                <div class="mt-6 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4 border-t border-gray-200 pt-4 text-sm font-semibold text-gray-900">
                     <span>Jumlah Yuran Pengajian</span>
-                    <span>RM {{ number_format($pengajianTotal, 2) }}</span>
+                    <span class="text-right">RM {{ number_format($pengajianTotal, 2) }}</span>
                 </div>
             </div>
 
             <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-semibold text-gray-800">Elaun / Bantuan Sara Hidup</h3>
-                    <span class="text-sm font-semibold text-gray-900">RM {{ number_format($elaunTotal, 2) }}</span>
+                <div class="mb-4 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4">
+                    <h3 class="font-semibold leading-snug text-gray-800">Elaun / Bantuan Sara Hidup</h3>
+                    <span class="text-right text-sm font-semibold leading-snug text-gray-900">RM {{ number_format($elaunTotal, 2) }}</span>
                 </div>
                 @if($kursus->elauns->isNotEmpty())
                     <div class="space-y-4">
                         @foreach($kursus->elauns as $fee)
                             <div class="rounded-3xl bg-white p-4 border border-gray-200 shadow-sm">
-                                <div class="grid gap-4 md:grid-cols-3 items-center">
+                                <div class="grid gap-4 xl:grid-cols-3 xl:items-center">
                                     <div>
                                         <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Kadar Bulanan</p>
                                         <p class="mt-2 text-lg font-semibold text-emerald-900">RM {{ number_format($fee->elaun_bulanan, 2) }}</p>
@@ -219,7 +219,7 @@
                                         <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Tempoh</p>
                                         <p class="mt-2 text-lg font-semibold text-emerald-900">{{ $fee->tempoh }}</p>
                                     </div>
-                                    <div class="text-right">
+                                    <div class="xl:text-right">
                                         <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Jumlah</p>
                                         <p class="mt-2 text-lg font-semibold text-emerald-900">RM {{ number_format($fee->jumlah, 2) }}</p>
                                     </div>
@@ -230,9 +230,9 @@
                 @else
                     <p class="text-sm text-gray-500">Tiada elaun direkodkan.</p>
                 @endif
-                <div class="mt-6 border-t border-gray-200 pt-4 text-sm font-semibold text-gray-900 flex items-center justify-between">
+                <div class="mt-6 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4 border-t border-gray-200 pt-4 text-sm font-semibold text-gray-900">
                     <span>Jumlah Elaun</span>
-                    <span>RM {{ number_format($elaunTotal, 2) }}</span>
+                    <span class="text-right">RM {{ number_format($elaunTotal, 2) }}</span>
                 </div>
             </div>
         </div>
