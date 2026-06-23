@@ -26,7 +26,7 @@
                 <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Yuran Kemasukan</h2>
                 <p class="mt-1 text-sm text-gray-500">Yuran kemasukan tertakluk kepada perubahan pengurusan {{ $pusatLabelLower }}.</p>
             </div>
-            <div class="w-full rounded-2xl bg-white px-4 py-4 text-left shadow-sm sm:w-auto sm:min-w-[280px] sm:px-5 sm:text-center" style="border: 1px solid var(--detail-card-border);">
+            <div class="w-full rounded-2xl bg-white px-4 py-4 text-center shadow-sm sm:w-auto sm:min-w-[280px] sm:px-5" style="border: 1px solid var(--detail-card-border);">
                 <p class="kursus-tab-accent-strong text-xs sm:text-sm uppercase tracking-[0.16em] sm:tracking-[0.2em]" data-keseluruhan-label>Keseluruhan ({{ $keseluruhanParts }})</p>
                 <p data-total-yuran class="kursus-tab-accent-strong mt-2 text-2xl sm:text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</p>
             </div>
@@ -37,9 +37,9 @@
                 @if($kursus->yuranPendaftarans->isNotEmpty())
                     <div class="space-y-3">
                         @foreach($kursus->yuranPendaftarans as $fee)
-                            <div class="flex items-center justify-between gap-4 rounded-2xl bg-white p-4 border border-gray-200 shadow-sm">
-                                <p class="text-sm font-medium text-gray-700">{{ $fee->item }}</p>
-                                <p class="shrink-0 font-bold text-gray-900">RM {{ number_format($fee->amount, 2) }}</p>
+                            <div class="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 border border-gray-200 shadow-sm">
+                                <p class="min-w-0 text-xs font-medium text-gray-700 sm:text-sm">{{ $fee->item }}</p>
+                                <p class="shrink-0 whitespace-nowrap text-right text-sm font-bold leading-tight text-gray-900 sm:text-base">RM {{ number_format($fee->amount, 2) }}</p>
                             </div>
                         @endforeach
                     </div>
@@ -197,7 +197,7 @@
                 @endif
                 <div class="mt-6 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4 border-t border-gray-200 pt-4 text-sm font-semibold text-gray-900">
                     <span>Jumlah Yuran Pengajian</span>
-                    <span class="text-right">RM {{ number_format($pengajianTotal, 2) }}</span>
+                    <span class="text-right text-base font-bold sm:text-lg">RM {{ number_format($pengajianTotal, 2) }}</span>
                 </div>
             </div>
 
@@ -210,16 +210,16 @@
                     <div class="space-y-4">
                         @foreach($kursus->elauns as $fee)
                             <div class="rounded-3xl bg-white p-4 border border-gray-200 shadow-sm">
-                                <div class="grid gap-4 xl:grid-cols-3 xl:items-center">
-                                    <div>
+                                <div class="grid gap-4 text-center xl:grid-cols-3 xl:items-center">
+                                    <div class="min-w-0">
                                         <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Kadar Bulanan</p>
                                         <p class="mt-2 text-lg font-semibold text-emerald-900">RM {{ number_format($fee->elaun_bulanan, 2) }}</p>
                                     </div>
-                                    <div>
+                                    <div class="min-w-0">
                                         <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Tempoh</p>
                                         <p class="mt-2 text-lg font-semibold text-emerald-900">{{ $fee->tempoh }}</p>
                                     </div>
-                                    <div class="xl:text-right">
+                                    <div class="min-w-0">
                                         <p class="text-xs text-gray-500 uppercase tracking-[0.2em]">Jumlah</p>
                                         <p class="mt-2 text-lg font-semibold text-emerald-900">RM {{ number_format($fee->jumlah, 2) }}</p>
                                     </div>
@@ -232,7 +232,7 @@
                 @endif
                 <div class="mt-6 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4 border-t border-gray-200 pt-4 text-sm font-semibold text-gray-900">
                     <span>Jumlah Elaun</span>
-                    <span class="text-right">RM {{ number_format($elaunTotal, 2) }}</span>
+                    <span class="text-right text-base font-bold sm:text-lg">RM {{ number_format($elaunTotal, 2) }}</span>
                 </div>
             </div>
         </div>
