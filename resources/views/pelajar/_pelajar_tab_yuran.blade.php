@@ -176,7 +176,7 @@
             <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
                 <div class="mb-4 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4">
                     <h3 class="font-semibold leading-snug text-gray-800">Yuran Pengajian</h3>
-                    <span class="text-right text-sm font-semibold leading-snug text-gray-900">RM {{ number_format($pengajianTotal, 2) }}</span>
+                    {{-- <span class="text-right text-sm font-semibold leading-snug text-gray-900">RM {{ number_format($pengajianTotal, 2) }}</span> --}}
                 </div>
                 @if($kursus->yuranPengajians->isNotEmpty())
                     <div class="space-y-4">
@@ -204,7 +204,7 @@
             <div class="rounded-3xl border border-gray-200 bg-gray-50 p-6">
                 <div class="mb-4 grid grid-cols-[minmax(0,1fr)_minmax(7.5rem,auto)] items-start gap-4">
                     <h3 class="font-semibold leading-snug text-gray-800">Elaun / Bantuan Sara Hidup</h3>
-                    <span class="text-right text-sm font-semibold leading-snug text-gray-900">RM {{ number_format($elaunTotal, 2) }}</span>
+                    {{-- <span class="text-right text-sm font-semibold leading-snug text-gray-900">RM {{ number_format($elaunTotal, 2) }}</span> --}}
                 </div>
                 @if($kursus->elauns->isNotEmpty())
                     <div class="space-y-4">
