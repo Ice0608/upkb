@@ -22,7 +22,7 @@
                 <i class="fab fa-facebook-f"></i>
             </a>
 
-            <a href="https://www.instagram.com/smartedusocietyofficial" target="_blank" rel="noopener" class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white shadow transition hover:scale-110" aria-label="Instagram">
+            <a href="https://www.instagram.com/smarteducationsocietyofficial" target="_blank" rel="noopener" class="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white shadow transition hover:scale-110" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
 
