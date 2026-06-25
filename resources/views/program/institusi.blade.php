@@ -1631,252 +1631,48 @@
 
             document.querySelectorAll('[data-institusi-slider]').forEach((sliderRow) => {
                 const slider = sliderRow.closest('.institusi-results-slider');
-                const sliderTrack = sliderRow.querySelector('.institusi-slider-track');
+                const track = slider?.querySelector('.institusi-slider-track');
                 const nav = slider?.querySelector('[data-slider-nav]');
                 const prevButton = slider?.querySelector('[data-slider-action="prev"]');
                 const nextButton = slider?.querySelector('[data-slider-action="next"]');
 
-                if (!slider || !sliderTrack || !nav || !prevButton || !nextButton) {
+                if (!slider || !track || !nav || !prevButton || !nextButton) {
                     return;
                 }
 
-                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-                const originalCards = Array.from(sliderTrack.querySelectorAll('.institusi-slider-card'));
-                const canLoop = originalCards.length > 1;
-                const autoScrollSpeed = 32;
-                const autoScrollResumeDelay = 1800;
-                let loopWidth = 0;
-                let animationFrameId = null;
-                let lastFrameTime = 0;
-                let resumeTimerId = null;
-
-                const pauseAutoScroll = () => {
-                    if (resumeTimerId) {
-                        window.clearTimeout(resumeTimerId);
-                        resumeTimerId = null;
-                    }
-
-                    if (animationFrameId !== null) {
-                        window.cancelAnimationFrame(animationFrameId);
-                        animationFrameId = null;
-                    }
-
-                    lastFrameTime = 0;
-                };
-
-                const createLoopClone = (card) => {
-                    const clone = card.cloneNode(true);
-
-                    clone.dataset.sliderClone = 'true';
-                    clone.setAttribute('aria-hidden', 'true');
-                    clone.querySelectorAll('a, button, input, select, textarea, [tabindex]').forEach((focusable) => {
-                        focusable.setAttribute('tabindex', '-1');
-                    });
-
-                    return clone;
-                };
-
-                if (canLoop) {
-                    const prependFragment = document.createDocumentFragment();
-                    const appendFragment = document.createDocumentFragment();
-
-                    originalCards.forEach((card) => {
-                        prependFragment.appendChild(createLoopClone(card));
-                        appendFragment.appendChild(createLoopClone(card));
-                    });
-
-                    sliderTrack.prepend(prependFragment);
-                    sliderTrack.append(appendFragment);
-                    sliderRow.classList.add('is-looping');
-                }
-
-                animateTitlesOnScroll(sliderTrack);
+                const getVisibleCards = () => Array.from(track.querySelectorAll('.institusi-slider-card')).filter((card) => card.style.display !== 'none');
 
                 const getStepSize = () => {
-                    const firstCard = originalCards[0];
-
+                    const firstCard = getVisibleCards()[0];
                     if (!firstCard) {
-                        return sliderRow.clientWidth * 0.9;
+                        return sliderRow.clientWidth * 0.85;
                     }
 
-                    const gapValue = parseFloat(window.getComputedStyle(sliderTrack).gap || '0');
-                    return firstCard.getBoundingClientRect().width + gapValue;
+                    const gap = parseFloat(window.getComputedStyle(track).gap || '0');
+                    return firstCard.getBoundingClientRect().width + gap;
                 };
 
-                const normalizeLoopPosition = () => {
-                    if (!canLoop || loopWidth <= 0) {
-                        return;
-                    }
-
-                    if (sliderRow.scrollLeft < loopWidth) {
-                        sliderRow.style.scrollBehavior = 'auto';
-                        sliderRow.scrollLeft += loopWidth;
-                        sliderRow.style.scrollBehavior = '';
-                    } else if (sliderRow.scrollLeft >= loopWidth * 2) {
-                        sliderRow.style.scrollBehavior = 'auto';
-                        sliderRow.scrollLeft -= loopWidth;
-                        sliderRow.style.scrollBehavior = '';
-                    }
-                };
-
-                const measureLoopWidth = () => {
-                    if (!canLoop) {
-                        return;
-                    }
-
-                    const firstOriginalCard = sliderTrack.children[originalCards.length];
-                    const firstAppendedClone = sliderTrack.children[originalCards.length * 2];
-
-                    if (!firstOriginalCard || !firstAppendedClone) {
-                        return;
-                    }
-
-                    loopWidth = firstAppendedClone.offsetLeft - firstOriginalCard.offsetLeft;
-
-                    if (loopWidth <= 0) {
-                        return;
-                    }
-
-                    const preservedOffset = sliderRow.dataset.loopReady === 'true'
-                        ? (((sliderRow.scrollLeft - loopWidth) % loopWidth) + loopWidth) % loopWidth
-                        : 0;
-
-                    sliderRow.style.scrollBehavior = 'auto';
-                    sliderRow.scrollLeft = loopWidth + preservedOffset;
-                    sliderRow.style.scrollBehavior = '';
-                    sliderRow.dataset.loopReady = 'true';
-                };
-
-                const runAutoScroll = (timestamp) => {
-                    if (animationFrameId === null) {
-                        return;
-                    }
-
-                    if (!lastFrameTime) {
-                        lastFrameTime = timestamp;
-                    }
-
-                    const frameDelta = timestamp - lastFrameTime;
-
-                    lastFrameTime = timestamp;
-                    sliderRow.scrollLeft += (autoScrollSpeed * frameDelta) / 1000;
-                    normalizeLoopPosition();
-                    animationFrameId = window.requestAnimationFrame(runAutoScroll);
-                };
-
-                const resumeAutoScroll = () => {
-                    if (prefersReducedMotion.matches || !canLoop || nav.hidden || animationFrameId !== null) {
-                        return;
-                    }
-
-                    animationFrameId = window.requestAnimationFrame(runAutoScroll);
-                };
-
-                const scheduleAutoScrollResume = () => {
-                    pauseAutoScroll();
-
-                    if (prefersReducedMotion.matches || !canLoop || nav.hidden) {
-                        return;
-                    }
-
-                    resumeTimerId = window.setTimeout(() => {
-                        if (!slider.matches(':hover') && !slider.contains(document.activeElement)) {
-                            resumeAutoScroll();
-                        }
-                    }, autoScrollResumeDelay);
-                };
-
-                const updateSliderState = () => {
+                const updateState = () => {
                     const maxScroll = Math.max(0, sliderRow.scrollWidth - sliderRow.clientWidth);
-                    const hasOverflow = maxScroll > 8;
-
-                    nav.hidden = !hasOverflow;
-
-                    if (!hasOverflow) {
-                        pauseAutoScroll();
-                        prevButton.disabled = true;
-                        nextButton.disabled = true;
-                        return;
-                    }
-
-                    if (canLoop) {
-                        normalizeLoopPosition();
-                        prevButton.disabled = false;
-                        nextButton.disabled = false;
-                        return;
-                    }
-
+                    const hasOverflow = maxScroll > 8 && getVisibleCards().length > 1;
+                    nav.hidden = !hasOverflow || window.innerWidth >= 768;
                     prevButton.disabled = sliderRow.scrollLeft <= 4;
                     nextButton.disabled = sliderRow.scrollLeft >= maxScroll - 4;
                 };
 
                 const moveSlider = (direction) => {
-                    pauseAutoScroll();
-
-                    if (canLoop && loopWidth > 0) {
-                        const stepSize = getStepSize();
-
-                        if (direction < 0 && sliderRow.scrollLeft - stepSize < loopWidth) {
-                            sliderRow.scrollLeft += loopWidth;
-                        }
-
-                        if (direction > 0 && sliderRow.scrollLeft + stepSize >= loopWidth * 2) {
-                            sliderRow.scrollLeft -= loopWidth;
-                        }
-                    }
-
                     sliderRow.scrollBy({
                         left: direction * getStepSize(),
-                        behavior: prefersReducedMotion.matches ? 'auto' : 'smooth',
+                        behavior: 'smooth',
                     });
-
-                    scheduleAutoScrollResume();
-                };
-
-                const handleMotionPreferenceChange = () => {
-                    pauseAutoScroll();
-                    updateSliderState();
-
-                    if (!prefersReducedMotion.matches) {
-                        scheduleAutoScrollResume();
-                    }
                 };
 
                 prevButton.addEventListener('click', () => moveSlider(-1));
                 nextButton.addEventListener('click', () => moveSlider(1));
-                sliderRow.addEventListener('scroll', updateSliderState, { passive: true });
-                slider.addEventListener('mouseenter', pauseAutoScroll);
-                slider.addEventListener('mouseleave', scheduleAutoScrollResume);
-                slider.addEventListener('focusin', pauseAutoScroll);
-                slider.addEventListener('focusout', () => {
-                    window.requestAnimationFrame(() => {
-                        if (!slider.contains(document.activeElement)) {
-                            scheduleAutoScrollResume();
-                        }
-                    });
-                });
-                sliderRow.addEventListener('pointerdown', pauseAutoScroll);
-                sliderRow.addEventListener('pointerup', scheduleAutoScrollResume);
-                sliderRow.addEventListener('touchstart', pauseAutoScroll, { passive: true });
-                sliderRow.addEventListener('touchend', scheduleAutoScrollResume, { passive: true });
-                window.addEventListener('resize', () => {
-                    measureLoopWidth();
-                    updateSliderState();
-
-                    if (!prefersReducedMotion.matches) {
-                        scheduleAutoScrollResume();
-                    }
-                });
-
-                if (typeof prefersReducedMotion.addEventListener === 'function') {
-                    prefersReducedMotion.addEventListener('change', handleMotionPreferenceChange);
-                } else if (typeof prefersReducedMotion.addListener === 'function') {
-                    prefersReducedMotion.addListener(handleMotionPreferenceChange);
-                }
-
-                measureLoopWidth();
-                updateSliderState();
-                scheduleAutoScrollResume();
+                sliderRow.addEventListener('scroll', updateState, { passive: true });
+                window.addEventListener('resize', updateState);
+                sliderRow._updateInstitusiSlider = updateState;
+                updateState();
             });
         });
     </script>
