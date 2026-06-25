@@ -98,10 +98,6 @@
         <div class="course-result-footer px-6 pb-6 pt-0">
             <div class="course-result-footer-row flex items-center justify-between border-t border-slate-200/80 dark:border-white/10 pt-4">
                 <span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Lihat detail kursus</span>
-                <span class="course-result-cta inline-flex items-center gap-2 text-sm font-semibold">
-                    Teroka
-                    <i class="fas fa-arrow-right text-xs"></i>
-                </span>
             </div>
         </div>
         </a>

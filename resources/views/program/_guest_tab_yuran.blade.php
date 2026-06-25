@@ -31,8 +31,8 @@
                 <p data-total-yuran class="kursus-tab-accent-strong mt-2 text-2xl sm:text-3xl font-bold">RM {{ number_format($totalYuran, 2) }}</p>
             </div>
         </div>
-        <div class="grid gap-4 sm:gap-6 {{ $yuranGridClass }} p-4 sm:p-6">
-            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 shadow-sm">
+        <div class="grid items-start gap-4 sm:gap-6 {{ $yuranGridClass }} p-4 sm:p-6">
+            <div class="kursus-tab-card self-start rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Pendaftaran</h3>
                 @if($kursus->yuranPendaftarans->isNotEmpty())
                     <div class="space-y-3">
@@ -53,7 +53,7 @@
             </div>
 
             @if($hasPilihan)
-            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 shadow-sm">
+            <div class="kursus-tab-card self-start rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Pilihan</h3>
                 <div class="space-y-3">
                     @foreach($kursus->yuranPilihans as $fee)
@@ -76,7 +76,7 @@
             @endif
 
             @if($hasAsrama)
-            <div class="kursus-tab-card rounded-2xl p-4 sm:p-6 shadow-sm">
+            <div class="kursus-tab-card self-start rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3 class="kursus-tab-accent-strong text-base sm:text-lg font-bold mb-4 sm:mb-5">Yuran Asrama</h3>
                 <div class="space-y-3">
                     @foreach($kursus->yuranAsramas as $fee)
