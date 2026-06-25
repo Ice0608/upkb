@@ -287,8 +287,8 @@
         <div>
             <h3 class="font-semibold text-white mb-4">Hubungi Kami</h3>
             <ul class="space-y-3 text-sm text-gray-400">
-                <li><p>+6011 2100 5537</p></li>
-                <li><p>sesoclegacy@gmail.com</p></li>
+                <li><p>+6011 2672 5795</p></li>
+                <li><p>smartsocietysolution@gmail.com</p></li>
                 <li><p>sesoc.com.my</p></li>
                 <li><p>NO 34, JALAN MPK 4, TAMAN BUKIT KEPAYANG, 70300 SEREMBAN, NEGERI SEMBILAN</p></li>
             </ul>
