@@ -577,6 +577,55 @@
             position: relative;
         }
 
+        .institusi-slider-progress-wrap {
+            display: flex;
+            align-items: center;
+            padding: 0.2rem 4.7rem 0;
+        }
+
+        .institusi-slider-progress {
+            overflow: hidden;
+            width: 100%;
+            height: 0.42rem;
+            border-radius: 999px;
+            border: 1px solid rgba(20, 184, 166, 0.16);
+            background: rgba(226, 232, 240, 0.62);
+            box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
+        }
+
+        .institusi-slider-progress-fill {
+            display: block;
+            width: 0%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #14b8a6, #38bdf8);
+            transition: width 0.18s ease-out;
+        }
+
+        .institusi-shell--tvet .institusi-slider-progress {
+            border-color: rgba(var(--institusi-tvet-rgb), 0.2);
+        }
+
+        .institusi-shell--tvet .institusi-slider-progress-fill {
+            background: linear-gradient(90deg, var(--institusi-tvet-500), #facc15);
+        }
+
+        .institusi-shell--diploma .institusi-slider-progress {
+            border-color: rgba(var(--institusi-diploma-rgb), 0.2);
+        }
+
+        .institusi-shell--diploma .institusi-slider-progress-fill {
+            background: linear-gradient(90deg, var(--institusi-diploma-500), #38bdf8);
+        }
+
+        .institusi-shell--sains-kesihatan .institusi-slider-progress {
+            border-color: rgba(var(--institusi-sains-rgb), 0.2);
+        }
+
+        .institusi-shell--sains-kesihatan .institusi-slider-progress-fill {
+            background: linear-gradient(90deg, var(--institusi-sains-500), #22c55e);
+        }
+
         .institusi-slider-nav {
             position: absolute;
             inset: 50% 0 auto;
@@ -904,6 +953,10 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .institusi-slider-progress-fill {
+                transition: none;
+            }
+
             .institusi-slider-row {
                 scroll-behavior: auto;
                 -webkit-mask-image: none;
@@ -1012,6 +1065,10 @@
             .institusi-slider-row {
                 padding-left: 7vw;
                 padding-right: 7vw;
+            }
+
+            .institusi-slider-progress-wrap {
+                padding-inline: 7vw;
             }
 
             .institusi-slider-card {
@@ -1144,6 +1201,10 @@
         }
         html.dark .institusi-slider-button {
             background: rgba(30,41,59,0.96);
+        }
+        html.dark .institusi-slider-progress {
+            background: rgba(15, 23, 42, 0.72);
+            border-color: rgba(255,255,255,0.1);
         }
         html.dark .institusi-filter-select {
             background: #1e293b;
