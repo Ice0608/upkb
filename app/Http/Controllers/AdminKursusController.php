@@ -75,7 +75,10 @@ class AdminKursusController extends Controller
         $kursus = Kursus::findOrFail($id);
         
         $request->validate([
-            'kod_kursus' => 'required|string|max:255|unique:kursuses,kod_kursus,' . $kursus->id,
+            // kod_kursus is a normal field, not a unique key. We allow the same
+            // course code to exist multiple times, so editing kuota will not be
+            // blocked by uniqueness validation.
+            'kod_kursus' => 'required|string|max:255',
             'nama_kursus' => 'required|string|max:255',
             'jenis_kursus' => 'required|string|max:255',
             'mod_pengajian' => 'required|string|max:255',
