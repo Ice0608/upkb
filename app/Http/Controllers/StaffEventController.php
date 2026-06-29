@@ -1000,8 +1000,11 @@ class StaffEventController extends Controller
             $resitPath = null;
             if ($request->hasFile('resit')) {
                 $file = $request->file('resit');
-                // Generate unique filename
-                $filename = time() . '_' . $pelajar->ic_pelajar . '_' . $file->getClientOriginalName();
+                // Generate a safe filename so the public URL will not break on spaces/special chars.
+                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $safeOriginalName = Str::slug($originalName);
+                $filename = time() . '_' . $pelajar->ic_pelajar . '_' . $safeOriginalName . '.' . $extension;
                 $resitPath = $file->storeAs('resit', $filename, 'public');
                 
                 \Log::info('Resit uploaded successfully', [

@@ -470,11 +470,12 @@
         modal.classList.remove('hidden');
 
         // Check if it's an image or PDF
-        const fileExtension = resitUrl.split('.').pop().toLowerCase();
+        const safeUrl = encodeURI(resitUrl);
+        const fileExtension = safeUrl.split('.').pop().toLowerCase();
         if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
-            content.innerHTML = `<img src="${resitUrl}" alt="Resit Pembayaran" class="max-w-full h-auto rounded-lg shadow-sm">`;
+            content.innerHTML = `<img src="${safeUrl}" alt="Resit Pembayaran" class="max-w-full h-auto rounded-lg shadow-sm">`;
         } else if (fileExtension === 'pdf') {
-            content.innerHTML = `<iframe src="${resitUrl}" class="w-full h-96 rounded-lg shadow-sm"></iframe>`;
+            content.innerHTML = `<iframe src="${safeUrl}" class="w-full h-96 rounded-lg shadow-sm"></iframe>`;
         } else {
             content.innerHTML = `<p class="text-sm text-rose-600">Format fail tidak disokong untuk paparan.</p>`;
         }
