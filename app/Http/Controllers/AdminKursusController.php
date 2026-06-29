@@ -146,7 +146,7 @@ class AdminKursusController extends Controller
         SyaratKelayakan::create([
             'kod_institusi' => $kursus->kod_institusi,
             'kod_kursus' => $kursus->kod_kursus,
-            'gambar' => 'images/institusi/' . $fileName,
+            'gambar' => 'institusi/' . $fileName,
         ]);
 
         if ($request->wantsJson()) {
@@ -191,7 +191,7 @@ class AdminKursusController extends Controller
         Kerjaya::create([
             'kod_institusi' => $kursus->kod_institusi,
             'kod_kursus' => $kursus->kod_kursus,
-            'gambar' => 'images/institusi/' . $fileName,
+            'gambar' => 'institusi/' . $fileName,
         ]);
 
         if ($request->wantsJson()) {
@@ -488,10 +488,10 @@ class AdminKursusController extends Controller
                     $counter++;
                 }
 
-                Storage::disk('public')->putFileAs('institusi', $file, $candidateName);
+                Storage::disk('public')->putFileAs('galeri', $file, $candidateName);
                 
                 \App\Models\Galeri::create([
-                    'imej' => 'images/institusi/' . $candidateName,
+                    'imej' => 'galeri/' . $candidateName,
                     'kod_kursus' => $request->input('kod_kursus'),
                     'kod_institusi' => $request->input('kod_institusi'),
                 ]);
