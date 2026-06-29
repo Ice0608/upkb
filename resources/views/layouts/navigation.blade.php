@@ -358,21 +358,18 @@
             border-radius: 1.9rem;
             clip-path: inset(0 round 1.9rem);
             min-height: 13.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.26);
+            border: 0;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             isolation: isolate;
-            backdrop-filter: blur(18px) saturate(1.25);
             box-shadow:
                 0 24px 48px rgba(2, 6, 23, 0.28),
-                0 0 0 1px rgba(255, 255, 255, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.34),
-                inset 0 -18px 40px rgba(255, 255, 255, 0.06);
+                0 14px 34px rgba(var(--card-accent), 0.26),
+                inset 0 -18px 40px rgba(2, 6, 23, 0.16);
             transition:
                 transform 0.55s cubic-bezier(0.22, 1, 0.3, 1),
                 box-shadow 0.55s cubic-bezier(0.22, 1, 0.3, 1),
-                border-color 0.4s ease,
                 filter 0.4s ease,
                 background-position 0.65s cubic-bezier(0.22, 1, 0.3, 1);
             will-change: transform, box-shadow, filter, background-position;
@@ -404,8 +401,8 @@
             z-index: 1;
             background: linear-gradient(
                 180deg,
-                rgba(255,255,255,0.16) 0%,
-                rgba(255,255,255,0.04) 24%,
+                rgba(var(--card-accent-alt), 0.18) 0%,
+                rgba(var(--card-accent), 0.08) 24%,
                 rgba(0,0,0,0.26) 58%,
                 rgba(0,0,0,0.66) 100%
             );
@@ -426,18 +423,21 @@
 
         /* ── Background images ── */
         .site-nav-program-card-tvet {
+            background-color: #9a3412;
             background-image:
-                linear-gradient(180deg, rgba(128, 42, 0, 0.62), rgba(194, 76, 0, 0.68) 58%, rgba(62, 25, 0, 0.82)),
+                linear-gradient(180deg, rgba(154, 52, 18, 0.78), rgba(234, 88, 12, 0.76) 58%, rgba(67, 20, 7, 0.9)),
                 url('{{ asset('images/tvet-vg2.jpeg') }}');
         }
         .site-nav-program-card-diploma {
+            background-color: #7e22ce;
             background-image:
-                linear-gradient(145deg, rgba(80, 20, 112, 0.74), rgba(162, 28, 175, 0.62), rgba(192, 132, 252, 0.34)),
+                linear-gradient(145deg, rgba(88, 28, 135, 0.86), rgba(147, 51, 234, 0.78), rgba(107, 33, 168, 0.72)),
                 url('{{ asset('images/postgraduate-differences_sim-article.jpg') }}');
         }
         .site-nav-program-card-health {
+            background-color: #0369a1;
             background-image:
-                linear-gradient(145deg, rgba(1, 80, 130, 0.74), rgba(2, 132, 199, 0.62), rgba(103, 232, 249, 0.34)),
+                linear-gradient(145deg, rgba(3, 105, 161, 0.88), rgba(2, 132, 199, 0.78), rgba(14, 116, 144, 0.72)),
                 url('{{ asset('images/sains.jpg') }}');
         }
 
@@ -445,17 +445,15 @@
         .site-nav-program-card:hover,
         .site-nav-program-card:focus-visible {
             transform: translateY(-13px) scale(1.045);
-            border-color: rgba(255, 255, 255, 0.58);
+            outline: none;
             background-size: cover;
             background-position: center 24%;
             filter: saturate(1.24) brightness(1.09) contrast(1.03);
             box-shadow:
-                0 0 0 1.5px rgba(255, 255, 255, 0.4),
                 0 28px 56px rgba(var(--card-accent), 0.34),
                 0 46px 88px rgba(2, 6, 23, 0.42),
-                0 0 54px rgba(var(--card-accent-alt), 0.28),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                inset 0 -22px 46px rgba(255, 255, 255, 0.08);
+                0 0 54px rgba(var(--card-accent-alt), 0.38),
+                inset 0 -22px 46px rgba(2, 6, 23, 0.14);
         }
 
         .site-nav-program-card-tvet:hover,
@@ -581,19 +579,19 @@
             position: relative;
             overflow: hidden;
             min-height: 7rem;
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border: 0;
             background-size: cover;
             background-position: center;
             box-shadow:
                 0 16px 30px rgba(15, 23, 42, 0.14),
-                inset 0 1px 0 rgba(255, 255, 255, 0.28);
+                0 10px 24px rgba(var(--card-accent), 0.24);
         }
 
         .site-nav-mobile-program-card::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.02));
+            background: linear-gradient(135deg, rgba(var(--card-accent-alt), 0.2), rgba(var(--card-accent), 0.06));
             pointer-events: none;
         }
 

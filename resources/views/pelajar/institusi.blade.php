@@ -857,6 +857,30 @@
             backdrop-filter: blur(10px);
         }
 
+        .institusi-page--tvet .institusi-program-badge,
+        .institusi-page--tvet .institusi-course-badge {
+            border-color: rgba(255, 237, 213, 0.72);
+            background: linear-gradient(135deg, var(--institusi-tvet-600), var(--institusi-tvet-500));
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(var(--institusi-tvet-rgb), 0.38);
+        }
+
+        .institusi-page--diploma .institusi-program-badge,
+        .institusi-page--diploma .institusi-course-badge {
+            border-color: rgba(237, 224, 255, 0.72);
+            background: linear-gradient(135deg, var(--institusi-diploma-600), var(--institusi-diploma-500));
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(var(--institusi-diploma-rgb), 0.38);
+        }
+
+        .institusi-page--sains-kesihatan .institusi-program-badge,
+        .institusi-page--sains-kesihatan .institusi-course-badge {
+            border-color: rgba(219, 234, 254, 0.72);
+            background: linear-gradient(135deg, var(--institusi-sains-600), var(--institusi-sains-500));
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(var(--institusi-sains-rgb), 0.38);
+        }
+
         .institusi-card-chip {
             border: 1px solid rgba(var(--institusi-brand-rgb-soft), 0.14);
             background: rgba(236, 254, 255, 0.82);
@@ -1372,8 +1396,8 @@
                         <div class="institusi-card-media">
                             <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
                             <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
-                                <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
-                                <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
+                                <span class="institusi-program-badge institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
+                                <span class="institusi-course-badge institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
                                     <i class="fas fa-book-open mr-2 text-[0.7rem]"></i>{{ $institusi->kursuses_count }} kursus
                                 </span>
                             </div>
@@ -1436,8 +1460,8 @@
                                     <div class="institusi-card-media">
                                         <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
                                         <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
-                                            <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
-                                            <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
+                                            <span class="institusi-program-badge institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
+                                            <span class="institusi-course-badge institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
                                                 <i class="fas fa-book-open mr-2 text-[0.7rem]"></i>{{ $institusi->kursuses_count }} kursus
                                             </span>
                                         </div>

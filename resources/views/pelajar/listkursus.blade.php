@@ -442,7 +442,6 @@
         .kursus-filter-button,
         .kursus-reset-link,
         .kursus-cta,
-        .category-btn,
         .course-card {
             transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease, color 0.28s ease;
         }
@@ -457,7 +456,6 @@
         .kursus-filter-button:hover,
         .kursus-reset-link:hover,
         .kursus-cta:hover,
-        .category-btn:hover,
         .course-card:hover {
             transform: translateY(-2px);
         }
@@ -466,81 +464,87 @@
             box-shadow: 0 10px 24px rgba(249, 115, 22, 0.06);
         }
 
-        .sidebar-scroll {
-            max-height: min(32rem, calc(100vh - 18rem));
-            overflow-y: auto;
-            padding-right: 0.2rem;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar-scroll::-webkit-scrollbar-thumb {
-            border-radius: 999px;
-            background: rgba(249, 115, 22, 0.24);
-        }
-
-        .category-btn {
-            justify-content: flex-start;
-            align-items: flex-start;
+        .kursus-program-curtain {
             width: 100%;
-            border: 1px solid transparent;
-            background: transparent;
-            color: #475569;
-            line-height: 1.45;
+        }
+
+        .kursus-program-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+            min-height: 3.25rem;
+            cursor: pointer;
+            padding: 0.85rem 1rem;
+            color: #334155;
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.4;
             text-align: left;
         }
 
-        .category-name {
-            min-width: 0;
-            white-space: normal;
-            overflow-wrap: break-word;
-            word-break: normal;
-            line-height: 1.45;
+        .kursus-program-toggle-icon {
+            flex: 0 0 auto;
+            color: var(--kursus-accent-500);
+            transition: transform 0.3s ease;
         }
 
-        .category-btn:hover {
+        .kursus-program-toggle[aria-expanded="true"] .kursus-program-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .kursus-program-curtain-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.38s ease;
+        }
+
+        .kursus-program-curtain-panel.is-open {
+            grid-template-rows: 1fr;
+        }
+
+        .kursus-program-curtain-inner {
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .kursus-program-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding-top: 0.75rem;
+        }
+
+        .kursus-program-option {
+            width: 100%;
+            border: 1px solid transparent;
+            border-radius: 0.75rem;
+            padding: 0.7rem 0.85rem;
+            background: transparent;
+            color: #475569;
+            cursor: pointer;
+            font-size: 0.825rem;
+            font-weight: 500;
+            line-height: 1.4;
+            text-align: left;
+            transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .kursus-program-option:hover,
+        .kursus-program-option:focus-visible {
             border-color: var(--kursus-accent-border);
             background: var(--kursus-accent-soft);
             color: var(--kursus-accent-600);
+            outline: none;
+            transform: translateX(0.2rem);
         }
 
-        .category-btn.is-active {
+        .kursus-program-option.is-active {
             border-color: var(--kursus-accent-border-strong);
             background: var(--kursus-accent-soft-strong);
             color: var(--kursus-accent-700);
-            box-shadow: 0 14px 28px var(--kursus-accent-shadow);
-        }
-
-        .category-indicator {
-            width: 1rem;
-            height: 1rem;
-            min-width: 1rem;
-            min-height: 1rem;
-            border-radius: 999px;
-            border: 1.5px solid #cbd5e1;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: border-color 0.28s ease, background-color 0.28s ease;
-        }
-
-        .category-btn.is-active .category-indicator {
-            border-color: var(--kursus-accent-500);
-        }
-
-        .category-indicator::after {
-            content: "";
-            width: 0.45rem;
-            height: 0.45rem;
-            border-radius: 999px;
-            background: transparent;
-            transition: background-color 0.28s ease;
-        }
-
-        .category-btn.is-active .category-indicator::after {
-            background: var(--kursus-accent-500);
+            box-shadow: 0 10px 22px var(--kursus-accent-shadow);
         }
 
         .kursus-section-accent {
@@ -1049,10 +1053,12 @@
             .course-card,
             .kursus-sidebar-search-input,
             .kursus-select,
+            .kursus-program-curtain-panel,
+            .kursus-program-toggle-icon,
+            .kursus-program-option,
             .kursus-filter-button,
             .kursus-reset-link,
             .kursus-cta,
-            .category-btn,
             .course-card-image,
             .course-card-arrow {
                 transition: none;
@@ -1111,7 +1117,14 @@
             color: #e2e8f0;
             border-color: rgba(255,255,255,0.1);
         }
-        html.dark .category-btn { color: #94a3b8; }
+        html.dark .kursus-program-option { color: #cbd5e1; }
+        html.dark .kursus-program-option:hover,
+        html.dark .kursus-program-option:focus-visible,
+        html.dark .kursus-program-option.is-active {
+            border-color: var(--kursus-accent-border-strong);
+            background: rgba(30, 41, 59, 0.9);
+            color: var(--kursus-accent-500);
+        }
         html.dark .course-card {
             background: linear-gradient(180deg, rgba(30,41,59,0.98), rgba(15,23,42,0.98));
             border-color: rgba(255,255,255,0.08);
@@ -1233,29 +1246,22 @@
                             <i class="fas fa-list-ul mr-2 kursus-section-accent"></i>Pilihan Program
                         </h3>
                         
-                        <div class="flex flex-col space-y-1 sidebar-scroll">
-                            <button 
-                                type="button"
-                                onclick="filterCourses('')"
-                                class="category-btn is-active flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium"
-                                id="btn-all"
-                            >
-                                <span class="category-indicator"></span>
-                                Semua Kursus
+                        <div class="kursus-program-curtain" data-program-curtain>
+                            <button type="button" class="kursus-select kursus-program-toggle rounded-xl" aria-expanded="false" aria-controls="course-program-options" onclick="toggleProgramCurtain(this)">
+                                <span data-program-toggle-label>Kategori</span>
+                                <i class="fas fa-chevron-down kursus-program-toggle-icon" aria-hidden="true"></i>
                             </button>
-
-                            @foreach($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key') as $kursus)
-                                @php $courseDisplayName = $displayCourseName($kursus); @endphp
-                                <button 
-                                    type="button"
-                                    onclick="filterCourses('{{ addslashes($courseDisplayName) }}')"
-                                    class="category-btn flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium"
-                                    id="btn-{{ Illuminate\Support\Str::slug($courseDisplayName, '-') }}"
-                                >
-                                    <span class="category-indicator"></span>
-                                    <span class="category-name">{{ $courseDisplayName }}</span>
-                                </button>
-                            @endforeach
+                            <div id="course-program-options" class="kursus-program-curtain-panel" data-program-curtain-panel>
+                                <div class="kursus-program-curtain-inner">
+                                    <div class="kursus-program-options">
+                                        <button type="button" class="kursus-program-option is-active" data-course-program-option data-course-name="" onclick="selectProgramCourse(this)">Semua Kursus</button>
+                                        @foreach($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key') as $kursus)
+                                            @php $courseDisplayName = $displayCourseName($kursus); @endphp
+                                            <button type="button" class="kursus-program-option" data-course-program-option data-course-name="{{ $courseDisplayName }}" onclick="selectProgramCourse(this)">{{ $courseDisplayName }}</button>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1349,24 +1355,40 @@
     @include('layouts.footer-pelajar')
 
     <script>
+        function toggleProgramCurtain(toggle) {
+            const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+            const willOpen = toggle.getAttribute('aria-expanded') !== 'true';
+
+            toggle.setAttribute('aria-expanded', String(willOpen));
+            panel?.classList.toggle('is-open', willOpen);
+        }
+
+        function closeProgramCurtain() {
+            const toggle = document.querySelector('[data-program-curtain] .kursus-program-toggle');
+            const panel = document.querySelector('[data-program-curtain-panel]');
+
+            toggle?.setAttribute('aria-expanded', 'false');
+            panel?.classList.remove('is-open');
+        }
+
+        function selectProgramCourse(option) {
+            filterCourses(option.dataset.courseName || '');
+            closeProgramCurtain();
+        }
+
         function filterCourses(courseName) {
             const container = document.querySelector('[data-kursus-slider-track]') || document.getElementById('courses-container');
             const cards = document.querySelectorAll('.course-card');
             let emptyState = document.getElementById('kursus-empty-state');
             let visibleCount = 0;
 
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('is-active');
+            document.querySelectorAll('[data-course-program-option]').forEach((option) => {
+                option.classList.toggle('is-active', option.dataset.courseName === courseName);
             });
 
-            if (courseName === '') {
-                document.getElementById('btn-all')?.classList.add('is-active');
-            } else {
-                const btnId = 'btn-' + courseName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                const activeBtn = document.getElementById(btnId);
-                if (activeBtn) {
-                    activeBtn.classList.add('is-active');
-                }
+            const toggleLabel = document.querySelector('[data-program-toggle-label]');
+            if (toggleLabel) {
+                toggleLabel.textContent = courseName || 'Semua Kursus';
             }
 
             cards.forEach(card => {
