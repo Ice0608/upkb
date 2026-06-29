@@ -1166,6 +1166,35 @@
             : ($kursusIsTvet
                 ? 'text-amber-700 hover:text-amber-800 border-amber-300 hover:bg-amber-50'
                 : 'text-orange-600 hover:text-orange-700 border-orange-300 hover:bg-orange-50'));
+    $resolveCourseImageUrl = function (?string $path, string $fallback = 'images/dummy-course.svg'): string {
+        $path = trim((string) $path);
+
+        if ($path === '') {
+            return asset($fallback);
+        }
+
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        if (str_starts_with($path, 'storage/')) {
+            return asset($path);
+        }
+
+        if (str_starts_with($path, 'institusi/') || str_starts_with($path, 'galeri/')) {
+            return asset('storage/' . $path);
+        }
+
+        if (str_starts_with($path, 'images/institusi/') || str_starts_with($path, 'images/galeri/')) {
+            return asset('storage/' . substr($path, 7));
+        }
+
+        if (str_starts_with($path, 'images/default') || str_starts_with($path, 'images/')) {
+            return asset($path);
+        }
+
+        return asset('storage/' . ltrim($path, '/'));
+    };
 @endphp
 @php
     $heroProgramInfo = $selectedProgram->info_program ?? null;
@@ -1276,7 +1305,10 @@
                         <div class="kursus-results-track" data-kursus-slider-track>
                     @forelse($kursusList->sortBy('nama_kursus_paparan')->unique('kumpulan_kursus_key')->values() as $kursus)
                     @php
-                        $galleryImage = optional($kursus->galeris->first())->imej ?? 'images/default-college.jpg';
+                        $galleryImage = optional($kursus->galeris->first())->imej
+                            ?? optional($kursus->institusi)->gambar_institusi
+                            ?? '';
+                        $galleryImageUrl = $resolveCourseImageUrl($galleryImage);
                         $courseDisplayName = $displayCourseName($kursus);
                     @endphp
                     <article class="course-card h-full"
@@ -1290,7 +1322,7 @@
                             $showJenisKursusPill = $jenisKursusLabel !== '' && $jenisKursusLabel !== $institusiTypeLabel;
                         @endphp
                         <div class="course-card-media">
-                            <img src="{{ asset($galleryImage) }}" alt="{{ $courseDisplayName }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/default-college.jpg') }}';">
+                            <img src="{{ $galleryImageUrl }}" alt="{{ $courseDisplayName }}" class="course-card-image" onerror="this.onerror=null;this.src='{{ asset('images/dummy-course.svg') }}';">
                             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3 z-10">
                                 <span class="kursus-tag px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em]">{{ $kursus->institusi->jenis_institusi ?? 'Program' }}</span>
                                 <div class="flex flex-wrap items-center justify-end gap-2 max-w-[75%]">

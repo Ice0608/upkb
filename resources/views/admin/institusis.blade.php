@@ -417,7 +417,7 @@
             @forelse($institusis as $i => $institusi)
             <article class="inst-card fade-up" style="animation-delay: {{ 0.08 * ($i % 6) }}s">
                 <div class="inst-card-image relative h-52 overflow-hidden">
-                    <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="h-full w-full object-cover">
+                    <img src="{{ asset('storage/' . ltrim($institusi->gambar_institusi, '/')) }}" alt="{{ $institusi->nama_institusi }}" class="h-full w-full object-cover">
                 </div>
                 <div class="flex flex-1 flex-col p-8">
                     <span class="inst-card-badge mb-4"><i class="fas fa-building"></i>{{ $institusi->jenis_institusi }}</span>

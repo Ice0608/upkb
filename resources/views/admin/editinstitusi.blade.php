@@ -275,7 +275,7 @@
                 @foreach($galeriList as $foto)
                 <div class="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition border border-gray-200 relative group">
                     <div class="relative h-48 overflow-hidden">
-                        <img src="{{ asset($foto->imej) }}" alt="Fasiliti" class="w-full h-full object-cover">
+                        <img src="{{ asset('storage/' . ltrim($foto->imej, '/')) }}" alt="Fasiliti" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
                             <a href="{{ route('admin.editgaleri', $foto->id) }}" class="inline-flex items-center gap-2 bg-blue-500 text-white px-3 py-1 rounded-full text-sm hover:bg-blue-600 transition">
                                 <i class="fas fa-edit"></i>Edit

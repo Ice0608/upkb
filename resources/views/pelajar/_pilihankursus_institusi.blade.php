@@ -87,7 +87,7 @@
             <a href="{{ route('kursus.show', $kursus->id) }}" class="group flex h-full flex-col text-current no-underline">
         @endif
         <div class="course-result-media">
-            <img src="{{ asset($kursus->institusi->gambar_institusi ?? 'images/default-course.jpg') }}"
+            <img src="{{ str_starts_with((string) ($kursus->institusi->gambar_institusi ?? 'images/default-course.jpg'), 'images/default') ? asset($kursus->institusi->gambar_institusi ?? 'images/default-course.jpg') : asset('storage/' . ltrim($kursus->institusi->gambar_institusi ?? '', '/')) }}"
                  alt="{{ $kursus->institusi->nama_institusi ?? 'Institusi' }}"
                  class="course-result-image w-full h-full object-cover">
             <div class="absolute inset-x-0 top-4 px-4 flex items-start justify-between gap-3">

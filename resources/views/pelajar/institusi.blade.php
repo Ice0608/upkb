@@ -1370,7 +1370,7 @@
                 <article class="institusi-card rounded-3xl flex flex-col h-full lg:col-span-2">
                     <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar, 'kod_institusi' => $institusi->kod_institusi]) }}" class="group flex flex-col h-full text-current no-underline">
                         <div class="institusi-card-media">
-                            <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
+                            <img src="{{ asset('storage/' . ltrim($institusi->gambar_institusi, '/')) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
                             <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
                                 <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
                                 <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">
@@ -1434,7 +1434,7 @@
                             <article class="institusi-slider-card institusi-card rounded-3xl flex flex-col h-full">
                                 <a href="{{ route('pelajar.infoinstitusi', ['pelajar' => $pelajar, 'kod_institusi' => $institusi->kod_institusi]) }}" class="group flex flex-col h-full text-current no-underline">
                                     <div class="institusi-card-media">
-                                        <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
+                                        <img src="{{ asset('storage/' . ltrim($institusi->gambar_institusi, '/')) }}" alt="{{ $institusi->nama_institusi }}" class="institusi-card-image w-full h-full object-cover">
                                         <div class="absolute left-5 top-5 z-10 flex flex-wrap items-center gap-2 pr-5">
                                             <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-white">{{ $institusi->jenis_institusi }}</span>
                                             <span class="institusi-card-badge inline-flex items-center rounded-full border border-white/20 bg-slate-950/25 px-3 py-1 text-xs font-medium text-white/90">

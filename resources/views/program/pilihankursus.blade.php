@@ -1042,7 +1042,7 @@
                     </div>
                     <div class="pilihan-hero-glow absolute -inset-1 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
                     <div class="relative h-full rounded-[2rem] overflow-hidden">
-                        <img src="{{ asset($heroImage) }}"
+                        <img src="{{ str_starts_with($heroImage, 'images/default') ? asset($heroImage) : asset('storage/' . ltrim($heroImage, '/')) }}"
                              alt="{{ $namaKursus }}"
                              class="pilihan-hero-image w-full h-full min-h-[20rem] sm:min-h-[26rem] object-cover">
                     </div>
