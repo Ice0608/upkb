@@ -6,6 +6,7 @@ use App\Models\Galeri;
 use App\Models\Institusi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminGaleriController extends Controller
 {
@@ -26,12 +27,8 @@ class AdminGaleriController extends Controller
         if ($request->hasFile('imej')) {
             $image = $request->file('imej');
             $filename = Str::slug($request->kod_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
-            $destination = public_path('images/galeri');
-            if (! file_exists($destination)) {
-                mkdir($destination, 0755, true);
-            }
-            $image->move($destination, $filename);
-            $imagePath = 'images/galeri/' . $filename;
+            Storage::disk('public')->putFileAs('galeri', $image, $filename);
+            $imagePath = 'galeri/' . $filename;
         }
 
         $institusi_id = Institusi::where('kod_institusi', $request->kod_institusi)->first()->id;
@@ -69,12 +66,8 @@ class AdminGaleriController extends Controller
         if ($request->hasFile('imej')) {
             $image = $request->file('imej');
             $filename = Str::slug($foto->kod_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
-            $destination = public_path('images/galeri');
-            if (! file_exists($destination)) {
-                mkdir($destination, 0755, true);
-            }
-            $image->move($destination, $filename);
-            $data['imej'] = 'images/galeri/' . $filename;
+            Storage::disk('public')->putFileAs('galeri', $image, $filename);
+            $data['imej'] = 'galeri/' . $filename;
         }
 
         $foto->update($data);

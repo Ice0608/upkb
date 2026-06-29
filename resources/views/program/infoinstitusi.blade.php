@@ -479,7 +479,7 @@
 
     {{-- ══ HERO ══ --}}
     <div class="ii-hero">
-        <img src="{{ asset($institusi->gambar_institusi) }}" alt="{{ $institusi->nama_institusi }}" class="ii-hero__img" id="ii-hero-img">
+        <img src="{{ asset('storage/' . ltrim($institusi->gambar_institusi, '/')) }}" alt="{{ $institusi->nama_institusi }}" class="ii-hero__img" id="ii-hero-img">
         <div class="ii-hero__overlay"></div>
         <div class="ii-hero__content">
             <span class="ii-hero__badge {{ $isThemed ? 'institusi-info-badge-tvet' : 'bg-white/20 text-white' }}">{{ $institusi->jenis_institusi }}</span>
@@ -605,8 +605,8 @@
                 @if(count($galeriList) > 0)
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
                     @foreach($galeriList as $foto)
-                    <button class="ii-gallery-item" onclick="iiLightbox('{{ asset($foto->imej) }}', '{{ addslashes($foto->penerangan ?? ('Fasiliti ' . $institusiEntityLabelLower)) }}')">
-                        <img src="{{ asset($foto->imej) }}" alt="Fasiliti" class="ii-gallery-img" loading="lazy">
+                    <button class="ii-gallery-item" onclick="iiLightbox('{{ asset('storage/' . ltrim($foto->imej, '/')) }}', '{{ addslashes($foto->penerangan ?? ('Fasiliti ' . $institusiEntityLabelLower)) }}')">
+                        <img src="{{ asset('storage/' . ltrim($foto->imej, '/')) }}" alt="Fasiliti" class="ii-gallery-img" loading="lazy">
                         <div class="ii-gallery-overlay">
                             <i class="fas fa-expand text-white text-lg mb-2"></i>
                             <p class="text-white text-sm font-medium px-3 text-center">{{ $foto->penerangan ?? ('Fasiliti ' . $institusiEntityLabelLower) }}</p>

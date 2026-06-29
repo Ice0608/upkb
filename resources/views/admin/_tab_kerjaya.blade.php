@@ -21,7 +21,7 @@
         @forelse($kursus->kerjayas as $item)
             <div class="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
                 @if($item->gambar)
-                    <img src="{{ asset($item->gambar) }}" alt="Laluan Kerjaya {{ $loop->iteration }}" class="w-full object-cover">
+                    <img src="{{ asset('storage/' . ltrim($item->gambar, '/')) }}" alt="Laluan Kerjaya {{ $loop->iteration }}" class="w-full object-cover">
                 @else
                     <div class="min-h-[12rem] p-6 text-center text-gray-500">Tiada imej laluan kerjaya tersedia.</div>
                 @endif

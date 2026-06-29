@@ -115,14 +115,14 @@
                         <div class="relative">
                             @if($isVideo)
                                 <video controls class="h-52 w-full object-cover bg-black">
-                                    <source src="{{ asset($gallery->imej) }}" type="video/{{ $extension }}">
+                                    <source src="{{ asset('storage/' . ltrim($gallery->imej, '/')) }}" type="video/{{ $extension }}">
                                     Your browser does not support the video tag.
                                 </video>
                                 <span class="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white">
                                     Video
                                 </span>
                             @else
-                                <img src="{{ asset($gallery->imej) }}" alt="Gallery" class="h-52 w-full object-cover transition duration-300 group-hover:scale-105">
+                                <img src="{{ asset('storage/' . ltrim($gallery->imej, '/')) }}" alt="Gallery" class="h-52 w-full object-cover transition duration-300 group-hover:scale-105">
                                 <span class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gray-700 shadow-sm">
                                     Imej
                                 </span>
@@ -139,7 +139,7 @@
                                 <button
                                     type="button"
                                     class="galeri-preview-trigger inline-flex items-center justify-center rounded-full bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-black"
-                                    data-src="{{ asset($gallery->imej) }}"
+                                    data-src="{{ asset('storage/' . ltrim($gallery->imej, '/')) }}"
                                     data-type="{{ $isVideo ? 'video' : 'image' }}"
                                     data-name="{{ basename($gallery->imej) }}"
                                 >

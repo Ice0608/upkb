@@ -678,6 +678,9 @@
     $heroImage = optional($kursus->galeris->first())->imej
         ?? optional($kursus->institusi)->gambar_institusi
         ?? 'images/default-course.jpg';
+    $heroImageUrl = str_starts_with($heroImage, 'images/default')
+        ? asset($heroImage)
+        : asset('storage/' . ltrim($heroImage, '/'));
 @endphp
 <body class="kursus-detail-page no-bg {{ $detailProgramType === 'tvet' ? 'kursus-detail-page--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-page--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-page--sains-kesihatan' : '' }} text-gray-800">
 @include('layouts.navigation')
@@ -690,7 +693,7 @@
                 Kembali
             </button>
         </div>
-        <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white" style="--detail-hero-image: url('{{ asset($heroImage) }}');">
+        <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white" style="--detail-hero-image: url('{{ $heroImageUrl }}');">
             <div class="relative p-8">
                 <div class="pr-0 md:pr-56">
                     <div class="flex items-center gap-3 mb-4">

@@ -33,7 +33,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Gambar Sedia Ada</label>
                         <div class="rounded-2xl overflow-hidden border border-gray-300 h-48">
-                            <img src="{{ asset($foto->imej) }}" alt="Galeri" class="w-full h-full object-cover">
+                            <img src="{{ asset('storage/' . ltrim($foto->imej, '/')) }}" alt="Galeri" class="w-full h-full object-cover">
                         </div>
                     </div>
                     
@@ -107,4 +107,3 @@
 
 </body>
 </html>
-

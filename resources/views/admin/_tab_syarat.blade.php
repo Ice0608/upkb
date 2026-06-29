@@ -73,7 +73,7 @@
         @forelse($kursus->syaratKelayakans as $item)
             <div class="admin-syarat-card overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
                 @if($item->gambar)
-                    <img src="{{ asset($item->gambar) }}" alt="Syarat Kelayakan {{ $loop->iteration }}" class="w-full object-cover">
+                    <img src="{{ asset('storage/' . ltrim($item->gambar, '/')) }}" alt="Syarat Kelayakan {{ $loop->iteration }}" class="w-full object-cover">
                 @else
                     <div class="min-h-[12rem] p-6 text-center text-gray-500">Tiada imej syarat kelayakan tersedia.</div>
                 @endif

@@ -13,6 +13,7 @@ use App\Models\YuranPengajian;
 use App\Models\Elaun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminKursusController extends Controller
 {
@@ -140,13 +141,7 @@ class AdminKursusController extends Controller
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
         $fileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
-        $destination = public_path('images/institusi');
-
-        if (! file_exists($destination)) {
-            mkdir($destination, 0755, true);
-        }
-
-        $file->move($destination, $fileName);
+        Storage::disk('public')->putFileAs('institusi', $file, $fileName);
 
         SyaratKelayakan::create([
             'kod_institusi' => $kursus->kod_institusi,
@@ -191,13 +186,7 @@ class AdminKursusController extends Controller
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $extension = $file->getClientOriginalExtension();
         $fileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
-        $destination = public_path('images/institusi');
-
-        if (! file_exists($destination)) {
-            mkdir($destination, 0755, true);
-        }
-
-        $file->move($destination, $fileName);
+        Storage::disk('public')->putFileAs('institusi', $file, $fileName);
 
         Kerjaya::create([
             'kod_institusi' => $kursus->kod_institusi,
@@ -494,18 +483,12 @@ class AdminKursusController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $candidateName = Str::slug($fileName) . '-' . time() . '.' . $extension;
                 $counter = 1;
-                $destination = public_path('images/institusi');
-
-                if (! file_exists($destination)) {
-                    mkdir($destination, 0755, true);
-                }
-
-                while (file_exists($destination . DIRECTORY_SEPARATOR . $candidateName)) {
+                while (Storage::disk('public')->exists('institusi/' . $candidateName)) {
                     $candidateName = Str::slug($fileName) . '-' . time() . '-' . $counter . '.' . $extension;
                     $counter++;
                 }
 
-                $file->move($destination, $candidateName);
+                Storage::disk('public')->putFileAs('institusi', $file, $candidateName);
                 
                 \App\Models\Galeri::create([
                     'imej' => 'images/institusi/' . $candidateName,
@@ -530,8 +513,8 @@ class AdminKursusController extends Controller
     {
         $galeri = \App\Models\Galeri::findOrFail($id);
         
-        if ($galeri->imej && file_exists(public_path($galeri->imej))) {
-            unlink(public_path($galeri->imej));
+        if ($galeri->imej) {
+            Storage::disk('public')->delete($galeri->imej);
         }
         
         $galeri->delete();

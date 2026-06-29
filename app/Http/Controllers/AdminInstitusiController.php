@@ -13,6 +13,7 @@ use App\Models\YuranPengajian;
 use App\Models\Elaun;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminInstitusiController extends Controller
 {
@@ -68,12 +69,8 @@ class AdminInstitusiController extends Controller
         if ($request->hasFile('gambar_institusi')) {
             $image = $request->file('gambar_institusi');
             $filename = Str::slug($request->nama_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
-            $destination = public_path('images/institusi');
-            if (! file_exists($destination)) {
-                mkdir($destination, 0755, true);
-            }
-            $image->move($destination, $filename);
-            $imagePath = 'images/institusi/' . $filename;
+            Storage::disk('public')->putFileAs('institusi', $image, $filename);
+            $imagePath = 'institusi/' . $filename;
         }
 
         Institusi::create([
@@ -125,12 +122,8 @@ class AdminInstitusiController extends Controller
         if ($request->hasFile('gambar_institusi')) {
             $image = $request->file('gambar_institusi');
             $filename = Str::slug($request->nama_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
-            $destination = public_path('images/institusi');
-            if (! file_exists($destination)) {
-                mkdir($destination, 0755, true);
-            }
-            $image->move($destination, $filename);
-            $data['gambar_institusi'] = 'images/institusi/' . $filename;
+            Storage::disk('public')->putFileAs('institusi', $image, $filename);
+            $data['gambar_institusi'] = 'institusi/' . $filename;
         }
 
         $institusi->update($data);
