@@ -3931,9 +3931,7 @@
             }
 
             const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-            helpText.textContent = isIos
-                ? 'Dalam Safari, tekan butang Kongsi, kemudian pilih “Add to Home Screen”. SES akan muncul seperti aplikasi pada skrin utama anda.'
-                : 'Buka menu pelayar (⋮), kemudian pilih “Install app” atau “Add to Home screen”. SES akan tersedia terus dari skrin utama anda.';
+            helpText.textContent = isIo
             helpPanel.hidden = false;
             helpPanel.classList.toggle('is-floating', isFloating);
             trigger.setAttribute('aria-expanded', 'true');
