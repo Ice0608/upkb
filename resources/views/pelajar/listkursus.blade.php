@@ -497,7 +497,7 @@
         .kursus-program-curtain-panel {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.38s ease;
+            transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .kursus-program-curtain-panel.is-open {
@@ -514,6 +514,14 @@
             flex-direction: column;
             gap: 0.25rem;
             padding-top: 0.75rem;
+            opacity: 0;
+            transform: translateY(-0.65rem);
+            transition: opacity 0.24s ease, transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .kursus-program-curtain-panel.is-open .kursus-program-options {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .kursus-program-option {
@@ -528,7 +536,15 @@
             font-weight: 500;
             line-height: 1.4;
             text-align: left;
-            transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+            opacity: 0;
+            transform: translateX(-0.65rem);
+            transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease, transform 0.3s ease, opacity 0.25s ease;
+        }
+
+        .kursus-program-curtain-panel.is-open .kursus-program-option {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: calc(var(--program-option-index, 0) * 35ms);
         }
 
         .kursus-program-option:hover,

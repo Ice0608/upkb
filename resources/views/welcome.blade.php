@@ -3071,9 +3071,468 @@
         html:not(.dark) .probsol-solution-title { color: #1e293b; }
         html:not(.dark) .probsol-solution-desc { color: rgba(71,85,105,0.86); }
         /* ── END LIGHT MODE OVERRIDES ── */
+        /* App install announcement */
+        .app-install-banner {
+            position: relative;
+            z-index: 60;
+            color: #ffffff;
+            background:
+                radial-gradient(circle at 12% 50%, rgba(255,255,255,0.18), transparent 24%),
+                linear-gradient(100deg, #0f766e 0%, #0891b2 50%, #2563eb 100%);
+            box-shadow: 0 10px 28px rgba(8, 145, 178, 0.2);
+        }
+
+        .app-install-banner-inner {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: min(100%, 80rem);
+            min-height: 3.2rem;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+        }
+
+        .app-install-banner-icon {
+            display: inline-flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            width: 2.15rem;
+            height: 2.15rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.14);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+        }
+
+        .app-install-marquee {
+            min-width: 0;
+            flex: 1 1 auto;
+            overflow: hidden;
+            mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+        }
+
+        .app-install-marquee-track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+            animation: appInstallMarquee 24s linear infinite;
+        }
+
+        .app-install-marquee-copy {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding-right: 3.5rem;
+            white-space: nowrap;
+            font-size: 0.82rem;
+            font-weight: 650;
+            letter-spacing: 0.01em;
+        }
+
+        .app-install-marquee-copy strong { font-weight: 800; }
+        .app-install-marquee-separator { color: #a7f3d0; font-size: 0.55rem; }
+
+        .app-install-banner:hover .app-install-marquee-track,
+        .app-install-banner:focus-within .app-install-marquee-track {
+            animation-play-state: paused;
+        }
+
+        .app-install-button {
+            display: inline-flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            min-height: 2.25rem;
+            border: 1px solid rgba(255,255,255,0.68);
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            background: #ffffff;
+            color: #0e7490;
+            font-size: 0.75rem;
+            font-weight: 800;
+            white-space: nowrap;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .app-install-button:hover,
+        .app-install-button:focus-visible {
+            transform: translateY(-1px);
+            outline: none;
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.22);
+        }
+
+        .app-install-dismiss {
+            display: inline-flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            color: rgba(255,255,255,0.82);
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .app-install-dismiss:hover,
+        .app-install-dismiss:focus-visible {
+            background: rgba(255,255,255,0.14);
+            color: #ffffff;
+            outline: none;
+        }
+
+        .app-install-help {
+            position: absolute;
+            top: calc(100% + 0.55rem);
+            right: max(1rem, calc((100% - 80rem) / 2 + 1rem));
+            width: min(23rem, calc(100vw - 2rem));
+            border: 1px solid rgba(148,163,184,0.24);
+            border-radius: 1rem;
+            padding: 0.9rem 2.75rem 0.9rem 1rem;
+            background: rgba(255,255,255,0.97);
+            color: #334155;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            box-shadow: 0 20px 50px rgba(15,23,42,0.2);
+            backdrop-filter: blur(16px);
+        }
+
+        .app-install-help[hidden] { display: none; }
+        .app-install-help strong { color: #0e7490; }
+        .app-install-help-close {
+            position: absolute;
+            top: 0.7rem;
+            right: 0.7rem;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 999px;
+            color: #64748b;
+        }
+        .app-install-help-close:hover { background: #e2e8f0; color: #0f172a; }
+
+        .app-install-floating {
+            position: fixed;
+            top: 52%;
+            right: 1rem;
+            z-index: 59;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            width: 6.25rem;
+            min-height: 7.25rem;
+            border: 1px solid rgba(255,255,255,0.38);
+            border-radius: 1.4rem;
+            padding: 0.8rem 0.65rem;
+            background: linear-gradient(145deg, #0f766e, #0891b2 52%, #2563eb);
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 18px 42px rgba(8,145,178,0.3), inset 0 1px 0 rgba(255,255,255,0.22);
+            transform: translateY(-50%);
+            isolation: isolate;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .app-install-floating::before {
+            content: "";
+            position: absolute;
+            inset: -0.35rem;
+            z-index: -1;
+            border: 1px solid rgba(34,211,238,0.35);
+            border-radius: 1.7rem;
+            animation: appInstallFloatPulse 2.4s ease-out infinite;
+        }
+
+        .app-install-floating:hover,
+        .app-install-floating:focus-visible {
+            outline: none;
+            transform: translateY(-50%) translateX(-0.2rem) scale(1.03);
+            box-shadow: 0 24px 52px rgba(8,145,178,0.42), inset 0 1px 0 rgba(255,255,255,0.28);
+        }
+
+        .app-install-floating-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.16);
+            font-size: 1.05rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+
+        .app-install-floating-copy {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .app-install-floating-copy strong { font-size: 0.76rem; font-weight: 800; }
+        .app-install-floating-copy small { margin-top: 0.2rem; color: #a7f3d0; font-size: 0.68rem; font-weight: 750; }
+        .app-install-floating[hidden] { display: none; }
+
+        .app-install-floating-chevron {
+            color: #a7f3d0;
+            font-size: 0.72rem;
+            transition: transform 0.3s ease;
+        }
+
+        .app-install-floating[aria-expanded="true"] .app-install-floating-chevron {
+            transform: rotate(180deg);
+        }
+
+        .app-install-side-panel {
+            position: fixed;
+            top: 52%;
+            right: 8.25rem;
+            z-index: 58;
+            width: min(22rem, calc(100vw - 10rem));
+            border: 1px solid rgba(148,163,184,0.22);
+            border-radius: 1.5rem;
+            padding: 1.25rem;
+            background:
+                radial-gradient(circle at top right, rgba(34,211,238,0.12), transparent 35%),
+                rgba(255,255,255,0.97);
+            color: #334155;
+            box-shadow: 0 26px 64px rgba(15,23,42,0.22);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(2rem, -50%) scale(0.96);
+            transform-origin: right center;
+            transition: opacity 0.25s ease, transform 0.38s cubic-bezier(0.22,1,0.36,1);
+        }
+
+        .app-install-side-panel.is-open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(0, -50%) scale(1);
+        }
+
+        .app-install-side-kicker {
+            color: #0891b2;
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .app-install-side-title {
+            margin-top: 0.35rem;
+            color: #0f172a;
+            font-size: 1.12rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .app-install-side-copy {
+            margin-top: 0.45rem;
+            color: #64748b;
+            font-size: 0.78rem;
+            line-height: 1.65;
+        }
+
+        .app-install-side-benefits {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 0.9rem;
+        }
+
+        .app-install-side-benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 650;
+        }
+
+        .app-install-side-benefit i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.55rem;
+            height: 1.55rem;
+            border-radius: 999px;
+            background: #ecfeff;
+            color: #0891b2;
+            font-size: 0.66rem;
+        }
+
+        .app-install-side-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            min-height: 2.65rem;
+            margin-top: 1rem;
+            border-radius: 999px;
+            background: linear-gradient(100deg, #0f766e, #0891b2 55%, #2563eb);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            box-shadow: 0 12px 26px rgba(8,145,178,0.24);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .app-install-side-cta:hover,
+        .app-install-side-cta:focus-visible {
+            outline: none;
+            transform: translateY(-1px);
+            box-shadow: 0 16px 32px rgba(8,145,178,0.34);
+        }
+
+        .app-install-side-close {
+            position: absolute;
+            top: 0.85rem;
+            right: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.9rem;
+            height: 1.9rem;
+            border-radius: 999px;
+            color: #64748b;
+        }
+
+        .app-install-side-close:hover,
+        .app-install-side-close:focus-visible {
+            outline: none;
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        html.dark .app-install-side-panel {
+            border-color: rgba(148,163,184,0.2);
+            background:
+                radial-gradient(circle at top right, rgba(34,211,238,0.12), transparent 35%),
+                rgba(15,23,42,0.97);
+            color: #cbd5e1;
+        }
+        html.dark .app-install-side-title { color: #f8fafc; }
+        html.dark .app-install-side-copy { color: #94a3b8; }
+        html.dark .app-install-side-benefit { color: #cbd5e1; }
+        html.dark .app-install-side-benefit i { background: rgba(8,145,178,0.15); }
+
+        .app-install-help.is-floating {
+            position: fixed;
+            top: 52%;
+            right: 8.25rem;
+            transform: translateY(-50%);
+        }
+
+        @keyframes appInstallMarquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @keyframes appInstallFloatPulse {
+            0% { opacity: 0.7; transform: scale(0.96); }
+            70%, 100% { opacity: 0; transform: scale(1.12); }
+        }
+
+        @media (max-width: 640px) {
+            .app-install-banner-inner { gap: 0.5rem; padding-inline: 0.65rem; }
+            .app-install-banner-icon { display: none; }
+            .app-install-button span { display: none; }
+            .app-install-button { width: 2.25rem; padding-inline: 0; }
+            .app-install-dismiss { width: 1.75rem; height: 1.75rem; }
+            .app-install-floating {
+                top: auto;
+                right: auto;
+                bottom: max(1rem, env(safe-area-inset-bottom));
+                left: max(1rem, env(safe-area-inset-left));
+                flex-direction: row;
+                width: auto;
+                min-height: 3.25rem;
+                border-radius: 999px;
+                padding: 0.4rem 0.85rem 0.4rem 0.45rem;
+                transform: none;
+            }
+            .app-install-floating::before { border-radius: 999px; }
+            .app-install-floating:hover,
+            .app-install-floating:focus-visible { transform: translateY(-2px) scale(1.02); }
+            .app-install-floating-icon { width: 2.35rem; height: 2.35rem; }
+            .app-install-floating-copy { align-items: flex-start; }
+            .app-install-floating-chevron { transform: rotate(90deg); }
+            .app-install-floating[aria-expanded="true"] .app-install-floating-chevron { transform: rotate(-90deg); }
+            .app-install-side-panel {
+                top: auto;
+                right: 1rem;
+                bottom: 5.25rem;
+                left: 1rem;
+                width: auto;
+                transform: translateX(-115%) scale(0.97);
+                transform-origin: left bottom;
+            }
+            .app-install-side-panel.is-open { transform: translateX(0) scale(1); }
+            .app-install-help.is-floating {
+                top: auto;
+                right: 1rem;
+                bottom: 5.25rem;
+                left: 1rem;
+                width: auto;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .app-install-marquee-track { animation: none; }
+            .app-install-marquee-copy:last-child { display: none; }
+            .app-install-button { transition: none; }
+            .app-install-floating,
+            .app-install-floating::before,
+            .app-install-side-panel,
+            .app-install-side-cta { animation: none; transition: none; }
+        }
     </style>
 </head>
 <body class="welcome-page text-slate-800 dark:text-slate-200 no-bg transition-colors duration-300">
+    <section id="appInstallBanner" class="app-install-banner" aria-label="Pasang aplikasi SES">
+        <div class="app-install-banner-inner">
+            <span class="app-install-banner-icon" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></span>
+
+            <p class="sr-only">Semak program dan institusi dalam satu ketikan. Tambah aplikasi SES ke skrin utama supaya anda tidak perlu mencari laman ini setiap kali. Percuma, pantas.</p>
+            <div class="app-install-marquee" aria-hidden="true">
+                <div class="app-install-marquee-track">
+                    @for ($i = 0; $i < 2; $i++)
+                        <span class="app-install-marquee-copy">
+                            <strong>Semak program &amp; institusi dalam satu ketikan</strong>
+                            <i class="fas fa-circle app-install-marquee-separator"></i>
+                            Tambah aplikasi SES ke skrin utama tak perlu cari laman ini setiap kali
+                            <i class="fas fa-circle app-install-marquee-separator"></i>
+                            Percuma
+                            <i class="fas fa-circle app-install-marquee-separator"></i>
+                            Pantas
+                            <i class="fas fa-circle app-install-marquee-separator"></i>
+                        </span>
+                    @endfor
+                </div>
+            </div>
+
+            <button id="appInstallButton" type="button" class="app-install-button" aria-describedby="appInstallReason" aria-expanded="false">
+                <i class="fas fa-arrow-down-to-line" aria-hidden="true"></i>
+                <span>Tambah ke Skrin Utama</span>
+            </button>
+            <button id="appInstallDismiss" type="button" class="app-install-dismiss" aria-label="Tutup pengumuman pemasangan aplikasi">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="appInstallHelp" class="app-install-help" role="status" hidden>
+            <strong id="appInstallReason">Kenapa tambah SES?</strong>
+            <span id="appInstallHelpText">Buka semula senarai program dan institusi dalam satu ketikan tanpa perlu mencari laman ini semula.</span>
+            <button id="appInstallHelpClose" type="button" class="app-install-help-close" aria-label="Tutup panduan pemasangan">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+        </div>
+    </section>
+
     <!-- <div class="slideshow-container">
         <div class="slide" style="background-image: url('{{ asset('images/background/Frame1.png') }}');"></div>
         <div class="slide" style="background-image: url('{{ asset('images/background/Frame2.png') }}');"></div>
@@ -3397,8 +3856,109 @@
 
     </main>
 
+    <button id="appInstallFloatingButton" type="button" class="app-install-floating" aria-label="Buka pilihan pemasangan SES" aria-controls="appInstallSidePanel" aria-expanded="false">
+        <span class="app-install-floating-icon" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></span>
+        <span class="app-install-floating-copy">
+            <strong>Install It</strong>
+            <small>Now!</small>
+        </span>
+        <i class="fas fa-chevron-left app-install-floating-chevron" aria-hidden="true"></i>
+    </button>
+
+    <aside id="appInstallSidePanel" class="app-install-side-panel" aria-hidden="true" aria-labelledby="appInstallSideTitle">
+        <button id="appInstallSideClose" type="button" class="app-install-side-close" aria-label="Tutup pilihan pemasangan">
+            <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+        <p class="app-install-side-kicker">Akses Lebih Mudah</p>
+        <h2 id="appInstallSideTitle" class="app-install-side-title">SES di skrin utama anda</h2>
+        <p class="app-install-side-copy">Buka semula program dan institusi dalam satu ketikan—tak perlu mencari laman ini setiap kali.</p>
+        <div class="app-install-side-benefits">
+            <span class="app-install-side-benefit"><i class="fas fa-bolt" aria-hidden="true"></i>Akses pantas</span>
+            <span class="app-install-side-benefit"><i class="fas fa-tag" aria-hidden="true"></i>Percuma</span>
+        </div>
+        <button id="appInstallFloatingCta" type="button" class="app-install-side-cta" aria-label="Tambah SES ke skrin utama" aria-describedby="appInstallReason" aria-expanded="false">
+            <i class="fas fa-arrow-down-to-line" aria-hidden="true"></i>
+            Tambah ke Skrin Utama
+        </button>
+    </aside>
+
     {{-- 🔹 SOCIAL FLOAT --}}
     @include('components.social-float')
+
+    <script>
+    (function () {
+        const banner = document.getElementById('appInstallBanner');
+        const installButton = document.getElementById('appInstallButton');
+        const floatingButton = document.getElementById('appInstallFloatingButton');
+        const dismissButton = document.getElementById('appInstallDismiss');
+        const helpPanel = document.getElementById('appInstallHelp');
+        const helpText = document.getElementById('appInstallHelpText');
+        const helpClose = document.getElementById('appInstallHelpClose');
+        let deferredInstallPrompt = null;
+        let lastInstallTrigger = installButton;
+
+        if (!banner || !installButton) return;
+
+        const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        if (isInstalled) {
+            banner.hidden = true;
+            if (floatingButton) floatingButton.hidden = true;
+            return;
+        }
+
+        window.addEventListener('beforeinstallprompt', function (event) {
+            event.preventDefault();
+            deferredInstallPrompt = event;
+        });
+
+        window.addEventListener('appinstalled', function () {
+            deferredInstallPrompt = null;
+            banner.hidden = true;
+            if (floatingButton) floatingButton.hidden = true;
+        });
+
+        async function requestAppInstall(trigger, isFloating) {
+            lastInstallTrigger = trigger;
+            if (deferredInstallPrompt) {
+                deferredInstallPrompt.prompt();
+                const choice = await deferredInstallPrompt.userChoice;
+                deferredInstallPrompt = null;
+                if (choice.outcome === 'accepted') {
+                    banner.hidden = true;
+                    if (floatingButton) floatingButton.hidden = true;
+                }
+                return;
+            }
+
+            const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+            helpText.textContent = isIos
+                ? 'Dalam Safari, tekan butang Kongsi, kemudian pilih “Add to Home Screen”. SES akan muncul seperti aplikasi pada skrin utama anda.'
+                : 'Buka menu pelayar (⋮), kemudian pilih “Install app” atau “Add to Home screen”. SES akan tersedia terus dari skrin utama anda.';
+            helpPanel.hidden = false;
+            helpPanel.classList.toggle('is-floating', isFloating);
+            trigger.setAttribute('aria-expanded', 'true');
+        }
+
+        installButton.addEventListener('click', function () {
+            requestAppInstall(installButton, false);
+        });
+        floatingButton?.addEventListener('click', function () {
+            requestAppInstall(floatingButton, true);
+        });
+
+        function closeHelp() {
+            helpPanel.hidden = true;
+            helpPanel.classList.remove('is-floating');
+            lastInstallTrigger?.setAttribute('aria-expanded', 'false');
+            lastInstallTrigger?.focus();
+        }
+
+        helpClose?.addEventListener('click', closeHelp);
+        dismissButton?.addEventListener('click', function () {
+            banner.hidden = true;
+        });
+    })();
+    </script>
 
 </body>
 
