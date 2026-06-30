@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\PublishesStorageToPublic;
 use App\Models\Institusi;
 use App\Models\Kursus;
 use App\Models\Galeri;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminInstitusiController extends Controller
 {
+    use PublishesStorageToPublic;
+
     public function index(Request $request)
     {
         $jenis = $request->query('jenis');
@@ -71,6 +74,7 @@ class AdminInstitusiController extends Controller
             $filename = Str::slug($request->nama_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('institusi', $image, $filename);
             $imagePath = 'institusi/' . $filename;
+            $this->publishToPublicStorage($imagePath);
         }
 
         Institusi::create([
@@ -124,6 +128,7 @@ class AdminInstitusiController extends Controller
             $filename = Str::slug($request->nama_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('institusi', $image, $filename);
             $data['gambar_institusi'] = 'institusi/' . $filename;
+            $this->publishToPublicStorage($data['gambar_institusi']);
         }
 
         $institusi->update($data);

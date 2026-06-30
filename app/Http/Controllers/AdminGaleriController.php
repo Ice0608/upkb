@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\PublishesStorageToPublic;
 use App\Models\Galeri;
 use App\Models\Institusi;
 use Illuminate\Http\Request;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminGaleriController extends Controller
 {
+    use PublishesStorageToPublic;
+
     public function create($kod_institusi)
     {
         return view('admin.addgaleri', compact('kod_institusi'));
@@ -29,6 +32,7 @@ class AdminGaleriController extends Controller
             $filename = Str::slug($request->kod_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('galeri', $image, $filename);
             $imagePath = 'galeri/' . $filename;
+            $this->publishToPublicStorage($imagePath);
         }
 
         $institusi_id = Institusi::where('kod_institusi', $request->kod_institusi)->first()->id;
@@ -68,6 +72,7 @@ class AdminGaleriController extends Controller
             $filename = Str::slug($foto->kod_institusi) . '-' . time() . '.' . $image->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('galeri', $image, $filename);
             $data['imej'] = 'galeri/' . $filename;
+            $this->publishToPublicStorage($data['imej']);
         }
 
         $foto->update($data);

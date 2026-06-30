@@ -958,6 +958,36 @@
         $pilihanProgramType = 'tvet';
     }
 
+    $resolveHeroImageUrl = function (?string $path, string $fallback = 'images/dummy-course.svg'): string {
+        $path = trim((string) $path);
+
+        if ($path === '') {
+            return asset($fallback);
+        }
+
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        if (str_starts_with($path, 'storage/')) {
+            return asset($path);
+        }
+
+        if (str_starts_with($path, 'institusi/') || str_starts_with($path, 'galeri/')) {
+            return asset('storage/' . $path);
+        }
+
+        if (str_starts_with($path, 'images/institusi/') || str_starts_with($path, 'images/galeri/')) {
+            return asset('storage/' . substr($path, 7));
+        }
+
+        if (str_starts_with($path, 'images/')) {
+            return asset($path);
+        }
+
+        return asset('storage/' . ltrim($path, '/'));
+    };
+
     // Expose normalized program type for shared footer theming.
     $heroProgramType = $pilihanProgramType;
 @endphp
@@ -1014,7 +1044,7 @@
                     </div>
                     <div class="pilihan-hero-glow absolute -inset-1 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
                     <div class="relative h-full rounded-[2rem] overflow-hidden">
-                        <img src="{{ str_starts_with($heroImage, 'images/default') ? asset($heroImage) : asset('storage/' . ltrim($heroImage, '/')) }}"
+                        <img src="{{ $resolveHeroImageUrl($heroImage) }}"
                              alt="{{ $namaKursus }}"
                              class="pilihan-hero-image w-full h-full min-h-[20rem] sm:min-h-[26rem] object-cover">
                     </div>
