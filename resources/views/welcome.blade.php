@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/icon/seslogo.png">
+    <link rel="icon" type="image/png" href="/images/icon/smartpilih_icon192.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>SMART EDUCATION SOCIETY</title>
 
@@ -3384,10 +3388,32 @@
                 <a href="{{ route('hubungi') }}" class="cta-btn-secondary">
                     Bincang Dengan Kami <i class="fa-solid fa-arrow-right"></i>
                 </a>
+                <button type="button" id="openInstallPrompt" class="cta-btn-secondary inline-flex items-center gap-3 border border-cyan-300/40 bg-white/10 text-white transition hover:bg-white/20">
+                    <i class="fa-solid fa-download"></i> Pasang App
+                </button>
             </div>
         </div>
 
     </section>
+
+    <div id="pwaInstallModal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-slate-950/80 px-4 backdrop-blur-sm">
+        <div class="w-full max-w-md rounded-[1.6rem] border border-cyan-300/20 bg-slate-900 p-6 text-white shadow-2xl shadow-cyan-950/40">
+            <div class="mb-4 flex items-start gap-4">
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-cyan-400/15 text-cyan-300">
+                    <i class="fa-solid fa-mobile-screen-button text-xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs uppercase tracking-[0.35em] text-cyan-200/70">Install PWA</p>
+                    <h3 class="mt-1 text-2xl font-bold text-white">Pasang SMART EDUCATION SOCIETY?</h3>
+                </div>
+            </div>
+            <p class="text-sm leading-7 text-slate-300">Install app ni untuk buka lebih laju, simpan pada home screen, dan guna macam app biasa di telefon atau desktop.</p>
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+                <button type="button" id="cancelInstallPrompt" class="inline-flex items-center justify-center rounded-full border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">Batal</button>
+                <button type="button" id="confirmInstallPrompt" class="inline-flex items-center justify-center rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300">Pasang Sekarang</button>
+            </div>
+        </div>
+    </div>
 
 <section class="footer-slide">
     <div class="w-full [&_.footer-ocean]:mt-0 [&_.footer-ocean]:!mt-0">
@@ -3500,6 +3526,51 @@ function prevSlide() {
     }, 20);
 }
 
+
+const installTriggerButton = document.getElementById('openInstallPrompt');
+const pwaInstallModal = document.getElementById('pwaInstallModal');
+const cancelInstallPrompt = document.getElementById('cancelInstallPrompt');
+const confirmInstallPrompt = document.getElementById('confirmInstallPrompt');
+
+function updateInstallButtonState() {
+    if (!installTriggerButton) return;
+
+    const canInstall = Boolean(window.laravelPwaInstall && window.laravelPwaInstall.canInstall());
+    installTriggerButton.setAttribute('aria-disabled', canInstall ? 'false' : 'true');
+    installTriggerButton.title = canInstall ? 'Install app' : 'The browser install prompt is not ready yet';
+}
+
+window.addEventListener('pwa-installable', updateInstallButtonState);
+window.addEventListener('pwa-installed', updateInstallButtonState);
+
+function openInstallModal() {
+    if (!pwaInstallModal) return;
+    pwaInstallModal.classList.remove('hidden');
+    pwaInstallModal.classList.add('flex');
+}
+
+function closeInstallModal() {
+    if (!pwaInstallModal) return;
+    pwaInstallModal.classList.add('hidden');
+    pwaInstallModal.classList.remove('flex');
+}
+
+async function triggerPwaInstall() {
+    if (!window.laravelPwaInstall || !window.laravelPwaInstall.canInstall()) {
+        return false;
+    }
+
+    const outcome = await window.laravelPwaInstall.showPrompt();
+    closeInstallModal();
+
+    if (outcome === 'accepted' && installTriggerButton) {
+        installTriggerButton.innerHTML = '<i class="fa-solid fa-circle-check"></i> Installed';
+        installTriggerButton.disabled = true;
+    }
+
+    return outcome === 'accepted';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const slides = document.getElementById("slides");
     
@@ -3536,6 +3607,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto Slide
     setInterval(nextSlide, 5000);
+
+    updateInstallButtonState();
+
+    if (installTriggerButton) {
+        installTriggerButton.addEventListener('click', openInstallModal);
+    }
+
+    if (cancelInstallPrompt) {
+        cancelInstallPrompt.addEventListener('click', closeInstallModal);
+    }
+
+    if (confirmInstallPrompt) {
+        confirmInstallPrompt.addEventListener('click', triggerPwaInstall);
+    }
+
+    if (pwaInstallModal) {
+        pwaInstallModal.addEventListener('click', (event) => {
+            if (event.target === pwaInstallModal) {
+                closeInstallModal();
+            }
+        });
+    }
 });
 </script>
 
