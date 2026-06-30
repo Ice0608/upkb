@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\PublishesStorageToPublic;
 use App\Models\Kursus;
 use App\Models\Institusi;
 use App\Models\SyaratKelayakan;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminKursusController extends Controller
 {
+    use PublishesStorageToPublic;
+
     public function create($kod_institusi)
     {
         return view('admin.addkursus', compact('kod_institusi'));
@@ -142,11 +145,13 @@ class AdminKursusController extends Controller
         $extension = $file->getClientOriginalExtension();
         $fileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
         Storage::disk('public')->putFileAs('institusi', $file, $fileName);
+        $imagePath = 'institusi/' . $fileName;
+        $this->publishToPublicStorage($imagePath);
 
         SyaratKelayakan::create([
             'kod_institusi' => $kursus->kod_institusi,
             'kod_kursus' => $kursus->kod_kursus,
-            'gambar' => 'institusi/' . $fileName,
+            'gambar' => $imagePath,
         ]);
 
         if ($request->wantsJson()) {
@@ -187,11 +192,13 @@ class AdminKursusController extends Controller
         $extension = $file->getClientOriginalExtension();
         $fileName = Str::slug($originalName) . '-' . time() . '.' . $extension;
         Storage::disk('public')->putFileAs('institusi', $file, $fileName);
+        $imagePath = 'institusi/' . $fileName;
+        $this->publishToPublicStorage($imagePath);
 
         Kerjaya::create([
             'kod_institusi' => $kursus->kod_institusi,
             'kod_kursus' => $kursus->kod_kursus,
-            'gambar' => 'institusi/' . $fileName,
+            'gambar' => $imagePath,
         ]);
 
         if ($request->wantsJson()) {
@@ -489,9 +496,11 @@ class AdminKursusController extends Controller
                 }
 
                 Storage::disk('public')->putFileAs('galeri', $file, $candidateName);
+                $imagePath = 'galeri/' . $candidateName;
+                $this->publishToPublicStorage($imagePath);
                 
                 \App\Models\Galeri::create([
-                    'imej' => 'galeri/' . $candidateName,
+                    'imej' => $imagePath,
                     'kod_kursus' => $request->input('kod_kursus'),
                     'kod_institusi' => $request->input('kod_institusi'),
                 ]);

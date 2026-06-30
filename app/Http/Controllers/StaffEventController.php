@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\PublishesStorageToPublic;
 use App\Models\Event;
 use App\Models\Kursus;
 use App\Models\Pelajar;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Mail;
 
 class StaffEventController extends Controller
 {
+    use PublishesStorageToPublic;
+
     private function resolveReceiptData(Pelajar $pelajar): array
     {
         $pembayaran = Pembayaran::where('ic_pelajar', $pelajar->ic_pelajar)->latest()->first();
@@ -1006,6 +1009,7 @@ class StaffEventController extends Controller
                 $safeOriginalName = Str::slug($originalName);
                 $filename = time() . '_' . $pelajar->ic_pelajar . '_' . $safeOriginalName . '.' . $extension;
                 $resitPath = $file->storeAs('resit', $filename, 'public');
+                $this->publishToPublicStorage($resitPath);
                 
                 \Log::info('Resit uploaded successfully', [
                     'pelajar_id' => $pelajar->id,
