@@ -3278,6 +3278,16 @@
         .app-install-floating-copy strong { font-size: 0.76rem; font-weight: 800; }
         .app-install-floating-copy small { margin-top: 0.2rem; color: #a7f3d0; font-size: 0.68rem; font-weight: 750; }
         .app-install-floating[hidden] { display: none; }
+        @media (max-width: 1023px) {
+            #appInstallButton {
+                display: none !important;
+            }
+        }
+        @media (min-width: 1024px) {
+            .app-install-floating {
+                display: none !important;
+            }
+        }
 
         .app-install-floating-chevron {
             color: #a7f3d0;
@@ -3847,9 +3857,6 @@
                 <a href="{{ route('hubungi') }}" class="cta-btn-secondary">
                     Bincang Dengan Kami <i class="fa-solid fa-arrow-right"></i>
                 </a>
-                <button type="button" id="openInstallPrompt" class="cta-btn-secondary inline-flex items-center gap-3 border border-cyan-300/40 bg-white/10 text-white transition hover:bg-white/20">
-                    <i class="fa-solid fa-download"></i> Pasang App
-                </button>
             </div>
         </div>
 
@@ -3882,7 +3889,7 @@
 
     </main>
 
-    <button id="appInstallFloatingButton" type="button" class="app-install-floating" aria-label="Buka pilihan pemasangan SES" aria-controls="appInstallSidePanel" aria-expanded="false">
+    <button id="appInstallFloatingButton" type="button" class="app-install-floating lg:hidden" aria-label="Buka pilihan pemasangan SES" aria-controls="appInstallSidePanel" aria-expanded="false">
         <span class="app-install-floating-icon" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></span>
         <span class="app-install-floating-copy">
             <strong>Install It</strong>
@@ -3916,10 +3923,16 @@
         const banner = document.getElementById('appInstallBanner');
         const installButton = document.getElementById('appInstallButton');
         const floatingButton = document.getElementById('appInstallFloatingButton');
+        const floatingCta = document.getElementById('appInstallFloatingCta');
+        const sidePanel = document.getElementById('appInstallSidePanel');
+        const sidePanelClose = document.getElementById('appInstallSideClose');
         const dismissButton = document.getElementById('appInstallDismiss');
         const helpPanel = document.getElementById('appInstallHelp');
         const helpText = document.getElementById('appInstallHelpText');
         const helpClose = document.getElementById('appInstallHelpClose');
+        const installModal = document.getElementById('pwaInstallModal');
+        const confirmInstall = document.getElementById('confirmInstallPrompt');
+        const cancelInstall = document.getElementById('cancelInstallPrompt');
         let deferredInstallPrompt = null;
         let lastInstallTrigger = installButton;
 
@@ -3929,6 +3942,7 @@
         if (isInstalled) {
             banner.hidden = true;
             if (floatingButton) floatingButton.hidden = true;
+            if (sidePanel) sidePanel.hidden = true;
             return;
         }
 
@@ -3941,34 +3955,48 @@
             deferredInstallPrompt = null;
             banner.hidden = true;
             if (floatingButton) floatingButton.hidden = true;
+            if (sidePanel) sidePanel.hidden = true;
+            if (installModal) installModal.classList.add('hidden');
         });
 
-        async function requestAppInstall(trigger, isFloating) {
-            lastInstallTrigger = trigger;
+        function openInstallModal() {
+            if (!installModal) return;
+            installModal.classList.remove('hidden');
+            installModal.classList.add('flex');
+        }
+
+        function closeInstallModal() {
+            if (!installModal) return;
+            installModal.classList.add('hidden');
+            installModal.classList.remove('flex');
+        }
+
+        async function performInstall() {
             if (deferredInstallPrompt) {
                 deferredInstallPrompt.prompt();
                 const choice = await deferredInstallPrompt.userChoice;
                 deferredInstallPrompt = null;
+                closeInstallModal();
                 if (choice.outcome === 'accepted') {
                     banner.hidden = true;
                     if (floatingButton) floatingButton.hidden = true;
+                    if (sidePanel) sidePanel.hidden = true;
                 }
-                return;
+                return true;
             }
+            return false;
+        }
 
+        function showInstallHelp(trigger, isFloating) {
+            lastInstallTrigger = trigger;
             const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-            helpText.textContent = isIo
+            helpText.textContent = isIos
+                ? 'Guna butang \"Kongsi\" (Share) di Safari, kemudian pilih \"Tambah ke Skrin Utama\" (Add to Home Screen).'
+                : 'Klik butang \"Pasang\" atau \"Install\" dalam dialog yang muncul di bahagian atas atau bawah skrin.';
             helpPanel.hidden = false;
             helpPanel.classList.toggle('is-floating', isFloating);
             trigger.setAttribute('aria-expanded', 'true');
         }
-
-        installButton.addEventListener('click', function () {
-            requestAppInstall(installButton, false);
-        });
-        floatingButton?.addEventListener('click', function () {
-            requestAppInstall(floatingButton, true);
-        });
 
         function closeHelp() {
             helpPanel.hidden = true;
@@ -3977,9 +4005,83 @@
             lastInstallTrigger?.focus();
         }
 
+        function openSidePanel() {
+            if (!sidePanel) return;
+            sidePanel.classList.add('is-open');
+            sidePanel.setAttribute('aria-hidden', 'false');
+            floatingButton?.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeSidePanel() {
+            if (!sidePanel) return;
+            sidePanel.classList.remove('is-open');
+            sidePanel.setAttribute('aria-hidden', 'true');
+            floatingButton?.setAttribute('aria-expanded', 'false');
+        }
+
+        // --- Install button in banner (desktop) ---
+        installButton.addEventListener('click', function () {
+            openInstallModal();
+        });
+
+        // --- Floating button (mobile) ---
+        floatingButton?.addEventListener('click', function () {
+            openSidePanel();
+        });
+
+        // --- Install button inside side panel ---
+        floatingCta?.addEventListener('click', function () {
+            closeSidePanel();
+            openInstallModal();
+        });
+
+        // --- Confirm install in modal ---
+        confirmInstall?.addEventListener('click', async function () {
+            const installed = await performInstall();
+            if (!installed) {
+                closeInstallModal();
+                showInstallHelp(lastInstallTrigger, false);
+            }
+        });
+
+        // --- Cancel install in modal ---
+        cancelInstall?.addEventListener('click', closeInstallModal);
+
+        // --- Close modal on backdrop click ---
+        installModal?.addEventListener('click', function (e) {
+            if (e.target === installModal) {
+                closeInstallModal();
+            }
+        });
+
+        // --- Side panel close ---
+        sidePanelClose?.addEventListener('click', closeSidePanel);
+
+        // --- Help panel close ---
         helpClose?.addEventListener('click', closeHelp);
+
+        // --- Dismiss banner ---
         dismissButton?.addEventListener('click', function () {
             banner.hidden = true;
+        });
+
+        // --- Close on Escape key ---
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeInstallModal();
+                closeSidePanel();
+                closeHelp();
+            }
+        });
+
+        // --- Close side panel when clicking outside ---
+        document.addEventListener('click', function (e) {
+            if (!sidePanel || !floatingButton) return;
+            if (sidePanel.classList.contains('is-open') &&
+                !sidePanel.contains(e.target) &&
+                !floatingButton.contains(e.target)) {
+                closeSidePanel();
+            }
         });
     })();
     </script>
@@ -4085,50 +4187,6 @@ function prevSlide() {
 }
 
 
-const installTriggerButton = document.getElementById('openInstallPrompt');
-const pwaInstallModal = document.getElementById('pwaInstallModal');
-const cancelInstallPrompt = document.getElementById('cancelInstallPrompt');
-const confirmInstallPrompt = document.getElementById('confirmInstallPrompt');
-
-function updateInstallButtonState() {
-    if (!installTriggerButton) return;
-
-    const canInstall = Boolean(window.laravelPwaInstall && window.laravelPwaInstall.canInstall());
-    installTriggerButton.setAttribute('aria-disabled', canInstall ? 'false' : 'true');
-    installTriggerButton.title = canInstall ? 'Install app' : 'The browser install prompt is not ready yet';
-}
-
-window.addEventListener('pwa-installable', updateInstallButtonState);
-window.addEventListener('pwa-installed', updateInstallButtonState);
-
-function openInstallModal() {
-    if (!pwaInstallModal) return;
-    pwaInstallModal.classList.remove('hidden');
-    pwaInstallModal.classList.add('flex');
-}
-
-function closeInstallModal() {
-    if (!pwaInstallModal) return;
-    pwaInstallModal.classList.add('hidden');
-    pwaInstallModal.classList.remove('flex');
-}
-
-async function triggerPwaInstall() {
-    if (!window.laravelPwaInstall || !window.laravelPwaInstall.canInstall()) {
-        return false;
-    }
-
-    const outcome = await window.laravelPwaInstall.showPrompt();
-    closeInstallModal();
-
-    if (outcome === 'accepted' && installTriggerButton) {
-        installTriggerButton.innerHTML = '<i class="fa-solid fa-circle-check"></i> Installed';
-        installTriggerButton.disabled = true;
-    }
-
-    return outcome === 'accepted';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     const slides = document.getElementById("slides");
     
@@ -4165,28 +4223,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto Slide
     setInterval(nextSlide, 5000);
-
-    updateInstallButtonState();
-
-    if (installTriggerButton) {
-        installTriggerButton.addEventListener('click', openInstallModal);
-    }
-
-    if (cancelInstallPrompt) {
-        cancelInstallPrompt.addEventListener('click', closeInstallModal);
-    }
-
-    if (confirmInstallPrompt) {
-        confirmInstallPrompt.addEventListener('click', triggerPwaInstall);
-    }
-
-    if (pwaInstallModal) {
-        pwaInstallModal.addEventListener('click', (event) => {
-            if (event.target === pwaInstallModal) {
-                closeInstallModal();
-            }
-        });
-    }
 });
 </script>
 
