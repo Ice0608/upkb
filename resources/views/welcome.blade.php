@@ -3507,7 +3507,7 @@
     </style>
 </head>
 <body class="welcome-page text-slate-800 dark:text-slate-200 no-bg transition-colors duration-300">
-    <section id="appInstallBanner" class="app-install-banner" aria-label="Pasang aplikasi SES">
+    <!--<section id="appInstallBanner" class="app-install-banner" aria-label="Pasang aplikasi SES">
         <div class="app-install-banner-inner">
             <span class="app-install-banner-icon" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></span>
 
@@ -3545,7 +3545,7 @@
                 <i class="fas fa-xmark" aria-hidden="true"></i>
             </button>
         </div>
-    </section>
+    </section>-->
 
     <!-- <div class="slideshow-container">
         <div class="slide" style="background-image: url('{{ asset('images/background/Frame1.png') }}');"></div>
@@ -3889,14 +3889,14 @@
 
     </main>
 
-    <button id="appInstallFloatingButton" type="button" class="app-install-floating lg:hidden" aria-label="Buka pilihan pemasangan SES" aria-controls="appInstallSidePanel" aria-expanded="false">
+    <!--<button id="appInstallFloatingButton" type="button" class="app-install-floating lg:hidden" aria-label="Buka pilihan pemasangan SES" aria-controls="appInstallSidePanel" aria-expanded="false">
         <span class="app-install-floating-icon" aria-hidden="true"><i class="fas fa-mobile-screen-button"></i></span>
         <span class="app-install-floating-copy">
             <strong>Install It</strong>
             <small>Now!</small>
         </span>
         <i class="fas fa-chevron-left app-install-floating-chevron" aria-hidden="true"></i>
-    </button>
+    </button>-->
 
     <aside id="appInstallSidePanel" class="app-install-side-panel" aria-hidden="true" aria-labelledby="appInstallSideTitle">
         <button id="appInstallSideClose" type="button" class="app-install-side-close" aria-label="Tutup pilihan pemasangan">
