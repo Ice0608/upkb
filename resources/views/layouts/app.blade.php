@@ -5,11 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/icon/seslogo.png') }}">
+                <link rel="icon" href="{{ asset('images/icon/smartpilih_icon192.png') }}" sizes="any">
+                <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/icon/smartpilih_icon192.png') }}">
                 <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/icon/smartpilih_icon192.png') }}">
                 <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('images/icon/smartpilih_icon512.png') }}">
                 <link rel="apple-touch-icon" href="{{ asset('images/icon/smartpilih_icon192.png') }}">
                 <meta name="msapplication-TileImage" content="{{ asset('images/icon/smartpilih_icon512.png') }}">
+                <meta name="theme-color" content="#0ea5e9">
                 <title>{{ config('app.name', 'Laravel') }}</title>
 
                 <script type="application/ld+json">
