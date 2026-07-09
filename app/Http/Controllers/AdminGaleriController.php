@@ -85,6 +85,10 @@ class AdminGaleriController extends Controller
     {
         $foto = Galeri::findOrFail($id);
         $institusi_id = Institusi::where('kod_institusi', $foto->kod_institusi)->first()->id;
+        if ($foto->imej) {
+            $this->removeFromPublicStorage($foto->imej);
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($foto->imej);
+        }
         $foto->delete();
 
         return redirect()->route('admin.editinstitusi', $institusi_id)

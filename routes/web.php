@@ -13,16 +13,12 @@ use App\Http\Controllers\StaffEventController;
 use App\Http\Controllers\InterviewController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\ProgramController;
-use App\Http\Controllers\TestUploadController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/testupload', [TestUploadController::class, 'index'])->name('testupload.index');
-Route::post('/testupload', [TestUploadController::class, 'store'])->name('testupload.store');
 
 // Admin only routes
 Route::middleware(['auth', 'verified'])->group(function () {

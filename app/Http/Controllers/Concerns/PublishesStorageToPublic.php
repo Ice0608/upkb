@@ -7,6 +7,22 @@ use Illuminate\Support\Facades\Storage;
 
 trait PublishesStorageToPublic
 {
+    private function resolveWebPublicRoot(): string
+    {
+        $configured = env('APP_PUBLIC_PATH');
+
+        if (filled($configured) && is_dir($configured)) {
+            return rtrim($configured, DIRECTORY_SEPARATOR);
+        }
+
+        $siblingPublicHtml = dirname(base_path()) . DIRECTORY_SEPARATOR . 'public_html';
+        if (is_dir($siblingPublicHtml)) {
+            return rtrim($siblingPublicHtml, DIRECTORY_SEPARATOR);
+        }
+
+        return public_path();
+    }
+
     private function publishToPublicStorage(string $relativePath): void
     {
         $relativePath = ltrim(str_replace('\\', '/', $relativePath), '/');
@@ -16,14 +32,21 @@ trait PublishesStorageToPublic
         }
 
         $source = Storage::disk('public')->path($relativePath);
-        $destination = public_path('storage/' . $relativePath);
 
         if (! File::exists($source)) {
             return;
         }
 
-        File::ensureDirectoryExists(dirname($destination));
-        File::copy($source, $destination);
+        $webRoot = $this->resolveWebPublicRoot();
+        $destinations = [
+            $webRoot . DIRECTORY_SEPARATOR . $relativePath,
+            $webRoot . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . $relativePath,
+        ];
+
+        foreach ($destinations as $destination) {
+            File::ensureDirectoryExists(dirname($destination));
+            File::copy($source, $destination);
+        }
     }
 
     private function removeFromPublicStorage(?string $relativePath): void
@@ -34,10 +57,14 @@ trait PublishesStorageToPublic
             return;
         }
 
-        $destination = public_path('storage/' . $relativePath);
-
-        if (File::exists($destination)) {
-            File::delete($destination);
+        $webRoot = $this->resolveWebPublicRoot();
+        foreach ([
+            $webRoot . DIRECTORY_SEPARATOR . $relativePath,
+            $webRoot . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . $relativePath,
+        ] as $destination) {
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
         }
     }
 }

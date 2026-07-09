@@ -9,7 +9,13 @@ Artisan::command('inspire', function () {
 
 Artisan::command('storage:mirror {--clean : Remove mirrored files that no longer exist in source}', function () {
     $sourceRoot = storage_path('app/public');
-    $targetRoot = public_path('storage');
+    $configured = env('APP_PUBLIC_PATH');
+    if (filled($configured) && is_dir($configured)) {
+        $targetRoot = rtrim($configured, DIRECTORY_SEPARATOR);
+    } else {
+        $siblingPublicHtml = dirname(base_path()) . DIRECTORY_SEPARATOR . 'public_html';
+        $targetRoot = is_dir($siblingPublicHtml) ? rtrim($siblingPublicHtml, DIRECTORY_SEPARATOR) : public_path();
+    }
 
     if (! is_dir($sourceRoot)) {
         $this->error("Source folder not found: {$sourceRoot}");
@@ -49,6 +55,37 @@ Artisan::command('storage:mirror {--clean : Remove mirrored files that no longer
         }
     }
 
+    $storageMirrorRoot = $targetRoot . DIRECTORY_SEPARATOR . 'storage';
+    if (! is_dir($storageMirrorRoot)) {
+        mkdir($storageMirrorRoot, 0755, true);
+    }
+
+    $iterator = new RecursiveIteratorIterator(
+        new RecursiveDirectoryIterator($sourceRoot, FilesystemIterator::SKIP_DOTS),
+        RecursiveIteratorIterator::SELF_FIRST
+    );
+
+    foreach ($iterator as $item) {
+        $relativePath = substr($item->getPathname(), strlen($sourceRoot) + 1);
+        $destination = $storageMirrorRoot . DIRECTORY_SEPARATOR . $relativePath;
+
+        if ($item->isDir()) {
+            if (! is_dir($destination)) {
+                mkdir($destination, 0755, true);
+            }
+            continue;
+        }
+
+        $destinationDir = dirname($destination);
+        if (! is_dir($destinationDir)) {
+            mkdir($destinationDir, 0755, true);
+        }
+
+        if (! file_exists($destination) || filemtime($destination) < filemtime($item->getPathname())) {
+            copy($item->getPathname(), $destination);
+        }
+    }
+
     if ($this->option('clean')) {
         $removed = 0;
         $targetIterator = new RecursiveIteratorIterator(
@@ -70,10 +107,29 @@ Artisan::command('storage:mirror {--clean : Remove mirrored files that no longer
             }
         }
 
+        $storageTargetIterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($storageMirrorRoot, FilesystemIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::CHILD_FIRST
+        );
+
+        foreach ($storageTargetIterator as $item) {
+            $relativePath = substr($item->getPathname(), strlen($storageMirrorRoot) + 1);
+            $sourcePath = $sourceRoot . DIRECTORY_SEPARATOR . $relativePath;
+
+            if (! file_exists($sourcePath)) {
+                if ($item->isDir()) {
+                    @rmdir($item->getPathname());
+                } else {
+                    @unlink($item->getPathname());
+                }
+                $removed++;
+            }
+        }
+
         $this->info("Mirrored {$copied} files and removed {$removed} stale files.");
         return 0;
     }
 
-    $this->info("Mirrored {$copied} files from storage/app/public to public/storage.");
+    $this->info("Mirrored {$copied} files from storage/app/public to the web root and web root storage mirror.");
     return 0;
 })->purpose('Mirror the public storage files into the web root without using a symlink');

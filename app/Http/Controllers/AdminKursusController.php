@@ -523,6 +523,7 @@ class AdminKursusController extends Controller
         $galeri = \App\Models\Galeri::findOrFail($id);
         
         if ($galeri->imej) {
+            $this->removeFromPublicStorage($galeri->imej);
             Storage::disk('public')->delete($galeri->imej);
         }
         
