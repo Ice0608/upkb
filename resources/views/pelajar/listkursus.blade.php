@@ -1195,35 +1195,7 @@
             : ($kursusIsTvet
                 ? 'text-amber-700 hover:text-amber-800 border-amber-300 hover:bg-amber-50'
                 : 'text-orange-600 hover:text-orange-700 border-orange-300 hover:bg-orange-50'));
-    $resolveCourseImageUrl = function (?string $path, string $fallback = 'images/dummy-course.svg'): string {
-        $path = trim((string) $path);
-
-        if ($path === '') {
-            return asset($fallback);
-        }
-
-        if (preg_match('#^https?://#i', $path)) {
-            return $path;
-        }
-
-        if (str_starts_with($path, 'storage/')) {
-            return asset($path);
-        }
-
-        if (str_starts_with($path, 'institusi/') || str_starts_with($path, 'galeri/')) {
-            return asset('storage/' . $path);
-        }
-
-        if (str_starts_with($path, 'images/institusi/') || str_starts_with($path, 'images/galeri/')) {
-            return asset('storage/' . substr($path, 7));
-        }
-
-        if (str_starts_with($path, 'images/default') || str_starts_with($path, 'images/')) {
-            return asset($path);
-        }
-
-        return asset('storage/' . ltrim($path, '/'));
-    };
+    $resolveCourseImageUrl = fn (?string $path, string $fallback = 'images/dummy-course.svg') => public_media_url($path, $fallback);
 @endphp
 @php
     $heroProgramInfo = $selectedProgram->info_program ?? null;

@@ -130,8 +130,8 @@ Route::get('/receipt', function () {
 Route::view('/about', 'about')->name('about');
 
 Route::get('/program', [ProgramController::class, 'index'])->name('program');
-Route::get('/institusi', [InstitusiController::class, 'index'])->name('institusi');
-Route::get('/institusi/{id}', [InstitusiController::class, 'show'])->name('institusi.show');
+Route::get('/collage', [InstitusiController::class, 'index'])->name('institusi');
+Route::get('/collage/{id}', [InstitusiController::class, 'show'])->name('institusi.show');
 Route::view('/kuota', 'kuota')->name('kuota');
 Route::view('/faq', 'faq')->name('faq');
 Route::view('/galeri', 'galeri')->name('galeri');

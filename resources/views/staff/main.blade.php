@@ -123,7 +123,7 @@
                                 <td class="hidden sm:table-cell px-3 py-2 sm:px-6 sm:py-4">{{ number_format($payment?->bayaran_semasa ?? 0, 2) }}</td> --}}
                                 <td class="px-3 py-2 sm:px-6 sm:py-4">
                                     @if($payment && $payment->resit)
-                                        <button type="button" onclick="openResitModal('{{ asset('storage/' . $payment->resit) }}')" class="inline-flex items-center gap-2 rounded-full bg-teal-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-teal-700">Lihat Resit</button>
+                                        <button type="button" onclick="openResitModal('{{ public_media_url($payment->resit ?? null) }}')" class="inline-flex items-center gap-2 rounded-full bg-teal-600 px-4 py-2 text-xs font-semibold text-white transition hover:bg-teal-700">Lihat Resit</button>
                                     @else
                                         <span class="text-xs text-slate-400">Tiada resit</span>
                                     @endif

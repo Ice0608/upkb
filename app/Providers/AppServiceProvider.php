@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        require_once app_path('Support/public_url.php');
+
         // Register model observers for cascade updates
         Institusi::observe(InstitusiObserver::class);
         Kursus::observe(KursusObserver::class);

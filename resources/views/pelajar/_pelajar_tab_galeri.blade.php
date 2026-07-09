@@ -17,14 +17,14 @@
                     $isVideo = in_array($extension, ['mp4', 'webm', 'ogg']);
                 @endphp
                 <div class="group rounded-3xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-                    <a href="{{ asset('storage/' . ltrim($gallery->imej, '/')) }}" target="_blank" class="block overflow-hidden">
+                    <a href="{{ public_media_url($gallery->imej ?? null) }}" target="_blank" class="block overflow-hidden">
                         @if($isVideo)
                             <video controls class="w-full h-56 object-cover bg-black">
-                                <source src="{{ asset('storage/' . ltrim($gallery->imej, '/')) }}" type="video/{{ $extension }}">
+                                <source src="{{ public_media_url($gallery->imej ?? null) }}" type="video/{{ $extension }}">
                                 Your browser does not support the video tag.
                             </video>
                         @else
-                            <img src="{{ asset('storage/' . ltrim($gallery->imej, '/')) }}" alt="Galeri {{ $kursus->nama_kursus }}" class="w-full h-56 object-cover transition duration-300 group-hover:scale-105">
+                            <img src="{{ public_media_url($gallery->imej ?? null) }}" alt="Galeri {{ $kursus->nama_kursus }}" class="w-full h-56 object-cover transition duration-300 group-hover:scale-105">
                         @endif
                     </a>
                     <div class="p-4">

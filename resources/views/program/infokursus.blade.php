@@ -678,9 +678,7 @@
     $heroImage = optional($kursus->galeris->first())->imej
         ?? optional($kursus->institusi)->gambar_institusi
         ?? 'images/default-course.jpg';
-    $heroImageUrl = str_starts_with($heroImage, 'images/default')
-        ? asset($heroImage)
-        : asset('storage/' . ltrim($heroImage, '/'));
+    $heroImageUrl = public_media_url($heroImage);
 @endphp
 <body class="kursus-detail-page no-bg {{ $detailProgramType === 'tvet' ? 'kursus-detail-page--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-page--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-page--sains-kesihatan' : '' }} text-gray-800">
 @include('layouts.navigation')
