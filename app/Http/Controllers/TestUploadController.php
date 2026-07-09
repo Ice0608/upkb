@@ -9,11 +9,30 @@ use Illuminate\Support\Str;
 
 class TestUploadController extends Controller
 {
+    private function resolveWebPublicRoot(): string
+    {
+        $configured = env('APP_PUBLIC_PATH');
+
+        if (filled($configured) && is_dir($configured)) {
+            return rtrim($configured, DIRECTORY_SEPARATOR);
+        }
+
+        $siblingPublicHtml = dirname(base_path()) . DIRECTORY_SEPARATOR . 'public_html';
+        if (is_dir($siblingPublicHtml)) {
+            return rtrim($siblingPublicHtml, DIRECTORY_SEPARATOR);
+        }
+
+        return public_path();
+    }
+
     public function index()
     {
         $uploads = TestUpload::latest()->get();
 
-        return view('testupload', compact('uploads'));
+        return view('testupload', [
+            'uploads' => $uploads,
+            'webPublicRoot' => $this->resolveWebPublicRoot(),
+        ]);
     }
 
     public function store(Request $request)
@@ -29,7 +48,7 @@ class TestUploadController extends Controller
         $mimeType = $file->getClientMimeType();
         $fileSize = $file->getSize();
 
-        $targetDir = public_path('test');
+        $targetDir = $this->resolveWebPublicRoot() . DIRECTORY_SEPARATOR . 'test';
         File::ensureDirectoryExists($targetDir);
         $file->move($targetDir, $filename);
 

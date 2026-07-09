@@ -146,7 +146,7 @@
                 </form>
 
                 <div style="margin-top: 20px; font-size: 14px; color: #475569;">
-                    Lokasi sasaran: <strong>{{ public_path('test') }}</strong>
+                    Lokasi sasaran: <strong>{{ $webPublicRoot }}/test</strong>
                 </div>
             </div>
 
