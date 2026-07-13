@@ -184,6 +184,75 @@
             pointer-events: none;
         }
 
+        /* Opening animation for hero (pseudo image), content and CTAs */
+        .kursus-detail-hero::before {
+            /* start hidden and slightly shifted */
+            opacity: 0;
+            transform: translateX(18px) scale(1.04);
+            transition: opacity 760ms ease, transform 760ms cubic-bezier(.2,.9,.3,1), filter 760ms ease;
+        }
+
+        .kursus-detail-hero > .relative {
+            opacity: 0;
+            transform: translateY(18px) scale(0.998);
+            transition: opacity 780ms ease, transform 780ms cubic-bezier(.2,.9,.3,1);
+            transition-delay: 120ms;
+        }
+
+        .kursus-detail-cta {
+            opacity: 0;
+            transform: translateY(8px) scale(0.996);
+            transition: opacity 760ms ease, transform 760ms cubic-bezier(.2,.9,.3,1);
+            transition-delay: 220ms;
+        }
+
+        .pilihan-back-btn {
+            opacity: 0;
+            transform: translateY(-8px) scale(0.98);
+            transition: opacity 680ms ease, transform 680ms cubic-bezier(.2,.9,.3,1);
+            transition-delay: 300ms;
+        }
+
+        /* Visible state toggled by JS */
+        .kd-hero--visible .kursus-detail-hero::before { opacity: 0.78; transform: none; }
+        .kd-hero--visible .kursus-detail-hero > .relative { opacity: 1; transform: none; }
+        .kd-hero--visible .kursus-detail-cta { opacity: 1; transform: none; }
+        .kd-hero--visible .pilihan-back-btn { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .kursus-detail-hero::before,
+            .kursus-detail-hero > .relative,
+            .kursus-detail-cta,
+            .pilihan-back-btn {
+                transition: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+        }
+
+        /* Tab menu and tab content animations */
+        .kursus-detail-tabs .tab-link {
+            opacity: 0; transform: translateY(6px) scale(0.998);
+            transition: opacity 520ms ease, transform 520ms cubic-bezier(.2,.9,.3,1);
+        }
+        /* small stagger for up to 6 items */
+        .kursus-detail-tabs .tab-link:nth-child(1) { transition-delay: 220ms; }
+        .kursus-detail-tabs .tab-link:nth-child(2) { transition-delay: 260ms; }
+        .kursus-detail-tabs .tab-link:nth-child(3) { transition-delay: 300ms; }
+        .kursus-detail-tabs .tab-link:nth-child(4) { transition-delay: 340ms; }
+        .kursus-detail-tabs .tab-link:nth-child(5) { transition-delay: 380ms; }
+        .kursus-detail-tabs .tab-link:nth-child(6) { transition-delay: 420ms; }
+
+        .kd-hero--visible .kursus-detail-tabs .tab-link { opacity: 1; transform: none; }
+
+        #tab-content { opacity: 0; transform: translateY(8px); transition: opacity 420ms ease, transform 420ms cubic-bezier(.2,.9,.3,1); }
+        #tab-content.tab-content--visible { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .kursus-detail-tabs .tab-link,
+            #tab-content { transition: none !important; transform: none !important; opacity: 1 !important; }
+        }
+
         .kursus-detail-hero > .relative {
             position: relative;
             z-index: 1;
@@ -683,7 +752,7 @@
 <body class="kursus-detail-page no-bg {{ $detailProgramType === 'tvet' ? 'kursus-detail-page--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-page--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-page--sains-kesihatan' : '' }} text-gray-800">
 @include('layouts.navigation')
 
-    <section class="kursus-detail-shell {{ $detailProgramType === 'tvet' ? 'kursus-detail-shell--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-shell--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-6 py-10">
+    <section id="kd-hero-shell" class="kursus-detail-shell {{ $detailProgramType === 'tvet' ? 'kursus-detail-shell--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-shell--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-6 py-10">
         <div class="mb-6">
             <button type="button" onclick="window.history.back()"
                 class="pilihan-back-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700">
@@ -798,6 +867,13 @@
                 if (window.lightbox) {
                     window.lightbox.bindImages();
                 }
+                // Animate tab content reveal (small fade/slide)
+                try {
+                    tabContent.classList.remove('tab-content--visible');
+                    // force reflow
+                    void tabContent.offsetWidth;
+                    setTimeout(function() { tabContent.classList.add('tab-content--visible'); }, 40);
+                } catch (e) { /* ignore */ }
             })
             .catch(error => {
                 console.error('Error loading tab:', error);
@@ -808,6 +884,20 @@
         // Load default tab on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadTab('maklumat');
+            // Trigger hero opening animation for kursus detail
+            (function() {
+                var shell = document.getElementById('kd-hero-shell');
+                if (!shell) return;
+                var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (prefersReduced) {
+                    shell.classList.add('kd-hero--visible');
+                    return;
+                }
+                // small stagger for polish
+                requestAnimationFrame(function() {
+                    setTimeout(function() { shell.classList.add('kd-hero--visible'); }, 80);
+                });
+            })();
         });
     </script>
 

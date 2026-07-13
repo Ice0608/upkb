@@ -194,15 +194,45 @@
             position: absolute; inset: 0; width: 100%; height: 140%;
             object-fit: cover; object-position: center top;
             will-change: transform;
+            /* Opening animation: start slightly scaled and transparent, then settle in */
+            opacity: 0;
+            transform: translateY(-18px) scale(1.08);
+            transition: transform 900ms cubic-bezier(.2,.9,.3,1), opacity 900ms ease;
         }
+
+        .ii-hero__img--visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ii-hero__img, .ii-hero__img--visible,
+            .ii-hero__overlay, .ii-hero__content, .ii-back-btn {
+                transition: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+        }
+
+        /* visible state toggled by JS */
+        .ii-hero--visible .ii-hero__overlay { opacity: 1; transform: none; }
+        .ii-hero--visible .ii-hero__content { opacity: 1; transform: none; }
+        .ii-hero--visible .ii-back-btn { opacity: 1; transform: none; }
         .ii-hero__overlay {
             position: absolute; inset: 0;
             background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.52) 55%, rgba(0,0,0,0.82) 100%);
+            /* animate in */
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.9,.3,1);
         }
         .ii-hero__content {
             position: absolute; bottom: 0; left: 0; right: 0;
             padding: 2.5rem 2rem 2rem;
             max-width: 72rem; margin: 0 auto;
+            /* animate in */
+            opacity: 0;
+            transform: translateY(14px) scale(0.998);
+            transition: opacity 780ms ease, transform 780ms cubic-bezier(.2,.9,.3,1);
         }
         .ii-hero__badge {
             display: inline-flex; align-items: center;
@@ -230,8 +260,12 @@
             background: rgba(0,0,0,0.32); backdrop-filter: blur(10px);
             color: #fff; font-size: 0.8rem; font-weight: 600;
             padding: 0.4rem 1.1rem; border-radius: 9999px;
-            transition: background 0.2s; text-decoration: none;
+            transition: background 0.2s, opacity 680ms ease, transform 680ms cubic-bezier(.2,.9,.3,1);
+            text-decoration: none;
             border: 1px solid rgba(255,255,255,0.18);
+            /* animate in */
+            opacity: 0;
+            transform: translateY(-8px) scale(0.98);
         }
         .ii-back-btn:hover { background: rgba(0,0,0,0.55); }
 
@@ -478,7 +512,7 @@
     @include('layouts.navigation')
 
     {{-- ══ HERO ══ --}}
-    <div class="ii-hero">
+    <div class="ii-hero" id="ii-hero">
         <img src="{{ public_media_url($institusi->gambar_institusi ?? null) }}" alt="{{ $institusi->nama_institusi }}" class="ii-hero__img" id="ii-hero-img">
         <div class="ii-hero__overlay"></div>
         <div class="ii-hero__content">
@@ -702,11 +736,31 @@
 
     /* ── Hero parallax ── */
     var heroImg = document.getElementById('ii-hero-img');
+    var heroEl = document.getElementById('ii-hero');
     if (heroImg) {
         window.addEventListener('scroll', function() {
             heroImg.style.transform = 'translateY(' + (window.scrollY * 0.28) + 'px)';
         }, { passive: true });
     }
+
+    /* ── Opening animation trigger ── */
+    (function() {
+        if (!heroImg) return;
+        // Respect user preference for reduced motion
+        var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+            heroImg.classList.add('ii-hero__img--visible');
+            if (heroEl) heroEl.classList.add('ii-hero--visible');
+            return;
+        }
+        // Trigger animation on next paint
+        requestAnimationFrame(function() {
+            setTimeout(function() {
+                heroImg.classList.add('ii-hero__img--visible');
+                if (heroEl) heroEl.classList.add('ii-hero--visible');
+            }, 60);
+        });
+    })();
     </script>
 
 </body>
