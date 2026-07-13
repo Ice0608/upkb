@@ -6,6 +6,11 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/css/lightbox.css', 'resources/js/app.js'],
             refresh: true,
+            publicDirectory: '../public_html',
         }),
     ],
+    build: {
+        outDir: '../public_html/build',
+        emptyOutDir: true,
+    }
 });
