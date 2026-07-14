@@ -154,8 +154,9 @@
 
         .segment-orange .segment,
         .segment-purple .segment,
-        .segment-blue .segment {
-            transition: box-shadow 0.3s, filter 0.3s;
+        .segment-blue .segment,
+        .segment-green .segment {
+            transition: box-shadow 0.3s, filter 0.3s, transform 0.3s;
         }
 
         .segment-wrapper:hover{
@@ -174,6 +175,138 @@
             box-shadow: 0 0 48px 16px rgba(33,150,243,0.7), 0 0 0 4px rgba(230,244,255,0.6) inset;
             filter: brightness(1.08) saturate(1.1);
         }
+        .segment-green:hover .segment {
+            box-shadow: 0 0 48px 16px rgba(46,139,87,0.7), 0 0 0 4px rgba(220,255,232,0.6) inset;
+            filter: brightness(1.08) saturate(1.1);
+        }
+        .segment-green .tahfiz-leaf {
+            position: absolute;
+            width: 1rem;
+            height: 1.4rem;
+            border-radius: 55% 55% 45% 45%;
+            background: radial-gradient(circle at 30% 25%, rgba(234, 255, 220, 1), rgba(46, 95, 58, 0.95));
+            border: 1px solid rgba(255,255,255,0.18);
+            box-shadow: 0 0 18px rgba(179, 255, 187, 0.35);
+            opacity: 0;
+            transform: rotate(-16deg);
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
+            animation: tahfizLeafIdle 0.45s ease forwards;
+            animation-play-state: paused;
+            animation-fill-mode: both;
+            mix-blend-mode: screen;
+        }
+        .segment-green:hover .tahfiz-leaf {
+            opacity: 0.94 !important;
+            animation-play-state: running !important;
+            filter: drop-shadow(0 12px 24px rgba(0, 90, 35, 0.4));
+        }
+        .segment-green .tahfiz-glow {
+            position: absolute;
+            inset: 10% 10% auto;
+            width: 68%;
+            height: 36%;
+            background: radial-gradient(circle at 50% 0%, rgba(190, 255, 210, 0.44), transparent 54%);
+            border-radius: 999px;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .segment-green:hover .tahfiz-glow {
+            opacity: 1;
+        }
+        .segment-green .tahfiz-orbit-container {
+            position: absolute;
+            inset: 14% 12% auto;
+            width: 72%;
+            height: 72%;
+            opacity: 0;
+            transform-origin: center center;
+            transform: scale(0.94);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            pointer-events: none;
+        }
+        .segment-green:hover .tahfiz-orbit-container {
+            opacity: 1;
+            transform: scale(1);
+            animation: tahfizOrbitSpin 4.4s linear infinite;
+        }
+        .segment-green .tahfiz-orbit {
+            position: absolute;
+            inset: 0;
+            border: 1.5px solid rgba(182, 255, 189, 0.55);
+            border-radius: 50%;
+            box-shadow: inset 0 0 20px rgba(177, 255, 187, 0.32), 0 0 18px rgba(142, 255, 164, 0.24);
+            backdrop-filter: blur(1px);
+        }
+        .segment-green .tahfiz-orbit::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16%;
+            height: 16%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 0 16px rgba(209, 255, 222, 0.5);
+        }
+        .segment-green .tahfiz-electron {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            width: 0.78rem;
+            height: 0.78rem;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.98), rgba(50, 132, 74, 0.95));
+            box-shadow: 0 0 18px rgba(196, 255, 196, 0.96);
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.35s ease;
+        }
+        .segment-green:hover .tahfiz-electron {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        @keyframes tahfizOrbitSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        .segment-green .leaf-1 { left: 15%; top: 8%; animation: tahfizLeafFall 2.4s ease-in-out 0.08s infinite paused; }
+        .segment-green .leaf-2 { left: 39%; top: 4%; animation: tahfizLeafFall 2.7s ease-in-out 0.16s infinite reverse paused; }
+        .segment-green .leaf-3 { left: 63%; top: 12%; animation: tahfizLeafFall 2.6s ease-in-out 0.12s infinite paused; }
+        .segment-green .leaf-4 { left: 27%; top: 18%; animation: tahfizLeafFall 3.0s ease-in-out 0.24s infinite reverse paused; }
+        .segment-green .leaf-5 { left: 51%; top: 16%; animation: tahfizLeafFall 2.9s ease-in-out 0.20s infinite paused; }
+        .segment-green:hover .leaf-1,
+        .segment-green:hover .leaf-2,
+        .segment-green:hover .leaf-3,
+        .segment-green:hover .leaf-4,
+        .segment-green:hover .leaf-5 {
+            animation-play-state: running;
+        }
+        @keyframes tahfizLeafFall {
+            0% {
+                transform: translate3d(0, 0, 0) rotate(-10deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            50% {
+                transform: translate3d(14px, 45px, 0) rotate(10deg);
+                opacity: 0.88;
+            }
+            80% {
+                transform: translate3d(-12px, 92px, 0) rotate(20deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translate3d(4px, 138px, 0) rotate(4deg);
+                opacity: 0;
+            }
+        }
+        @keyframes tahfizLeafIdle {
+            from { opacity: 0; transform: scale(0.82) rotate(-12deg); }
+            to   { opacity: 1; transform: scale(1) rotate(-12deg); }
+        }
 
         /* Subtle border for each segment */
         .segment {
@@ -189,13 +322,16 @@
         }
 
         .segment-top-left-clip {
-            clip-path: polygon(50% 50%, 50% -6%, 21% 2%, -6% 21%, -6% 60%, 7% 82%);
+            clip-path: polygon(50% 50%, 50% 0%, 0% 0%, 0% 50%);
         }
         .segment-top-right-clip {
-            clip-path: polygon(50% 50%, 50% -6%, 79% 2%, 106% 21%, 106% 60%, 93% 82%);
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 50%);
         }
-        .segment-bottom-clip {
-            clip-path: polygon(50% 50%, 7% 82%, 21% 106%, 79% 106%, 93% 82%);
+        .segment-bottom-right-clip {
+            clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+        }
+        .segment-bottom-left-clip {
+            clip-path: polygon(50% 50%, 0% 50%, 0% 100%, 50% 100%);
         }
 
         .segment-wrapper .segment {
@@ -231,6 +367,11 @@
 
         .segment-blue:hover .segment {
             box-shadow: 0 0 40px rgba(33, 150, 243, 0.6);
+            transform: translate(0px, 40px) scale(1.25);
+        }
+
+        .segment-green:hover .segment {
+            box-shadow: 0 0 40px rgba(46, 139, 87, 0.6);
             transform: translate(0px, 40px) scale(1.25);
         }
 
@@ -807,6 +948,26 @@
             box-shadow: 0 0 28px 4px rgba(56,189,248,0.08);
             animation: pgOrbitSpin1 42s linear infinite;
         }
+        .pg-orbit-ring-4 {
+            inset: -66px;
+            border-color: rgba(80, 220, 180, 0.16);
+            box-shadow: 0 0 32px 4px rgba(80,220,180,0.10);
+            animation: pgOrbitSpin2 54s linear infinite reverse;
+        }
+        .program-wheel-wrap:has(.segment-green:hover) .pg-orbit-ring-1 {
+            border-color: rgba(46, 139, 87, 0.30);
+            box-shadow: 0 0 24px 4px rgba(86, 220, 136, 0.22), inset 0 0 16px 2px rgba(147, 255, 179, 0.12);
+            transform: scale(1.012);
+        }
+        .program-wheel-wrap:has(.segment-green:hover) .pg-orbit-ring-2 {
+            border-color: rgba(46, 139, 87, 0.22);
+            box-shadow: 0 0 24px 4px rgba(46, 139, 87, 0.14);
+            transform: scale(1.008);
+        }
+        .program-wheel-wrap:has(.segment-green:hover) .pg-orbit-ring-3 {
+            border-color: rgba(46, 139, 87, 0.18);
+            box-shadow: 0 0 28px 5px rgba(46, 139, 87, 0.12);
+        }
         @keyframes pgOrbitSpin1 {
             from { transform: rotate(0deg); }
             to   { transform: rotate(360deg); }
@@ -882,6 +1043,28 @@
             box-shadow: 0 0 7px 2px rgba(56,189,248,0.5);
         }
 
+        /* Green ring (ring-4) tick dots */
+        .pg-orbit-ring-4::before {
+            content: "";
+            position: absolute;
+            top: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(80, 220, 180, 0.95);
+            box-shadow: 0 0 9px 3px rgba(80,220,180,0.7);
+        }
+        .pg-orbit-ring-4::after {
+            content: "";
+            position: absolute;
+            bottom: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(140, 255, 210, 0.8);
+            box-shadow: 0 0 7px 2px rgba(80,220,180,0.5);
+        }
+
         /* ── Idle floating sparks around wheel ── */
         .pg-spark {
             position: absolute;
@@ -925,10 +1108,14 @@
             border-color: rgba(56, 189, 248, 0.24);
             box-shadow: 0 0 34px 5px rgba(56,189,248,0.16);
         }
+        html.dark .pg-orbit-ring-4 {
+            border-color: rgba(80, 220, 180, 0.32);
+            box-shadow: 0 0 38px 5px rgba(80,220,180,0.18);
+        }
 
 
         @media (prefers-reduced-motion: reduce) {
-            .pg-orbit-ring-1, .pg-orbit-ring-2, .pg-orbit-ring-3,
+            .pg-orbit-ring-1, .pg-orbit-ring-2, .pg-orbit-ring-3, .pg-orbit-ring-4,
             .pg-spark, .pg-heading-anim::after,
             .pg-laluan-wrap::before {
                 animation: none !important;
@@ -1299,6 +1486,24 @@
         }
         .segment-orange .segment-content { left: 7%; }
         .segment-purple .segment-content { right: 7%; }
+        .segment-blue .segment-content,
+        .segment-green .segment-content {
+            bottom: 20%;
+            width: 40%;
+            max-width: 11.5rem !important;
+            top: auto;
+            padding-bottom: 0.25rem;
+        }
+        .segment-blue .segment-content {
+            left: 12%;
+            text-align: left;
+            align-items: flex-start;
+        }
+        .segment-green .segment-content {
+            right: 12%;
+            text-align: right;
+            align-items: flex-end;
+        }
         .segment-label {
             border: 1px solid var(--label-glass-border, rgba(255,255,255,0.34)) !important;
             border-radius: 999px !important;
@@ -1383,8 +1588,23 @@
             }
 
             .segment-blue .segment-content {
-                bottom: 12% !important;
-                max-width: 7rem !important;
+                bottom: 16% !important;
+                left: 10% !important;
+                width: 40% !important;
+                max-width: 11rem !important;
+                text-align: left !important;
+                align-items: flex-start !important;
+                padding-bottom: 0.2rem !important;
+            }
+
+            .segment-green .segment-content {
+                bottom: 16% !important;
+                right: 10% !important;
+                width: 40% !important;
+                max-width: 11rem !important;
+                text-align: right !important;
+                align-items: flex-end !important;
+                padding-bottom: 0.2rem !important;
             }
 
             .segment-content h2 {
@@ -1434,6 +1654,7 @@
                     <div class="pg-orbit-ring pg-orbit-ring-1"></div>
                     <div class="pg-orbit-ring pg-orbit-ring-2"></div>
                     <div class="pg-orbit-ring pg-orbit-ring-3"></div>
+                    <div class="pg-orbit-ring pg-orbit-ring-4"></div>
                     <div class="pg-spark"></div>
                     <div class="pg-spark"></div>
                     <div class="pg-spark"></div>
@@ -1449,7 +1670,14 @@
                 rounded-full">
 
                 <div class="mercedes-reflection"></div>
-                @foreach($programs->take(3) as $index => $program)
+                @php
+                    $wheelPrograms = $programs->take(3)->values()->all();
+                    $wheelPrograms[] = (object) [
+                        'jenis_program' => 'SMART TAHFIZ',
+                        'external_url' => 'https://smtaa.vercel.app/',
+                    ];
+                @endphp
+                @foreach($wheelPrograms as $index => $program)
                     @php
                         $configs = [
                             0 => [
@@ -1477,9 +1705,9 @@
                                 'label_glow' => 'rgba(141, 43, 226, 0.48)',
                             ],
                             2 => [
-                                'clip' => 'segment-bottom-clip',
+                                'clip' => 'segment-bottom-left-clip',
                                 'bg' => 'bg-[#2196F3]',
-                                'pos' => 'bottom-[10%] left-1/2 -translate-x-1/2 sm:bottom-[15%] text-center items-center',
+                                'pos' => 'bottom-[12%] left-[16%] sm:bottom-[14%] sm:left-[18%] text-left items-start',
                                 'label_bg' => 'bg-[#2196f3]',
                                 'label_border' => 'border-[#1d4ed8]',
                                 'label_hover' => 'group-hover:border-[#1e40af]',
@@ -1488,13 +1716,26 @@
                                 'label_glass_border' => 'rgba(190, 228, 255, 0.58)',
                                 'label_glow' => 'rgba(33, 150, 243, 0.48)',
                             ],
+                            3 => [
+                                'clip' => 'segment-bottom-right-clip',
+                                'bg' => 'bg-[#2E8B57]',
+                                'pos' => 'bottom-[12%] right-[16%] sm:bottom-[14%] sm:right-[18%] text-right items-end',
+                                'label_bg' => 'bg-[#2E8B57]',
+                                'label_border' => 'border-[#206b42]',
+                                'label_hover' => 'group-hover:border-[#145132]',
+                                'label_shadow' => '#2E8B57',
+                                'label_glass_bg' => 'rgba(46, 139, 87, 0.46)',
+                                'label_glass_border' => 'rgba(190, 255, 215, 0.58)',
+                                'label_glow' => 'rgba(46, 139, 87, 0.48)',
+                            ],
                         ];
                         $ui = $configs[$index] ?? $configs[0];
+                        $programUrl = !empty($program->external_url) ? $program->external_url : route('kursus.index', ['jenis' => $program->jenis_program]);
                     @endphp
 
-                    <a href="{{ route('kursus.index', ['jenis' => $program->jenis_program]) }}" 
+                    <a href="{{ $programUrl }}" 
                         class="segment-wrapper pg-seg-anim group 
-                        {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
+                        {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : ($index == 3 ? 'segment-green' : 'segment-blue')) }}">
                         <!-- Segment background with image overlay -->
                         <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}">
                             @if($index == 0)
@@ -1506,6 +1747,9 @@
                             @elseif($index == 2)
                                 <!-- SAINS KESIHATAN: Lab/Microscope -->
                                 <div style="background: linear-gradient(rgba(33,150,243,0.50), rgba(33,150,243,0.40)), url('/images/sains.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.97) blur(0.5px);" class="w-full h-full"></div>
+                            @elseif($index == 3)
+                                <!-- SMART TAHFIZ: Serhat background image -->
+                                <div style="background: linear-gradient(180deg, rgba(13,77,52,0.62), rgba(22,119,75,0.42)), url('/images/serhat-tug-e6L2B3He8bY-unsplash.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(1.02) blur(0.5px);" class="w-full h-full"></div>
                             @endif
 
                             <!-- UNIQUE HOVER OVERLAY -->
@@ -1570,6 +1814,20 @@
                                 <div class="diploma-block"></div>
                                 <div class="diploma-vignette"></div>
                             </div>
+                            @elseif($index == 3)
+                            {{-- SMART TAHFIZ: Falling leaves and orbit hover effect --}}
+                            <div class="holo-layer">
+                                <div class="tahfiz-orbit-container">
+                                    <div class="tahfiz-orbit"></div>
+                                    <div class="tahfiz-electron"></div>
+                                </div>
+                                <div class="tahfiz-leaf leaf-1"></div>
+                                <div class="tahfiz-leaf leaf-2"></div>
+                                <div class="tahfiz-leaf leaf-3"></div>
+                                <div class="tahfiz-leaf leaf-4"></div>
+                                <div class="tahfiz-leaf leaf-5"></div>
+                                <div class="tahfiz-glow"></div>
+                            </div>
                             @else
                             {{-- SAINS KESIHATAN: Health Monitor ECG --}}
                             <div class="holo-layer">
@@ -1630,6 +1888,16 @@
         });
 
         stage.addEventListener('pointerleave', resetDepth);
+
+        var greenSegment = document.querySelector('.segment-green');
+        if (greenSegment) {
+            greenSegment.addEventListener('pointerenter', function() {
+                stage.classList.add('hovering-green');
+            });
+            greenSegment.addEventListener('pointerleave', function() {
+                stage.classList.remove('hovering-green');
+            });
+        }
     })();
     </script>
     <script>

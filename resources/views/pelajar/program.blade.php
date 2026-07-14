@@ -830,6 +830,12 @@
             box-shadow: 0 0 28px 4px rgba(56,189,248,0.08);
             animation: pgOrbitSpin1 42s linear infinite;
         }
+        .pg-orbit-ring-4 {
+            inset: -66px;
+            border-color: rgba(80, 220, 180, 0.16);
+            box-shadow: 0 0 32px 4px rgba(80,220,180,0.10);
+            animation: pgOrbitSpin2 54s linear infinite reverse;
+        }
         @keyframes pgOrbitSpin1 {
             from { transform: rotate(0deg); }
             to   { transform: rotate(360deg); }
@@ -903,6 +909,28 @@
             border-radius: 50%;
             background: rgba(120, 220, 255, 0.8);
             box-shadow: 0 0 7px 2px rgba(56,189,248,0.5);
+        }
+
+        /* Green ring (ring-4) tick dots */
+        .pg-orbit-ring-4::before {
+            content: "";
+            position: absolute;
+            top: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(80, 220, 180, 0.95);
+            box-shadow: 0 0 9px 3px rgba(80,220,180,0.7);
+        }
+        .pg-orbit-ring-4::after {
+            content: "";
+            position: absolute;
+            bottom: -3px; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(140, 255, 210, 0.8);
+            box-shadow: 0 0 7px 2px rgba(80,220,180,0.5);
         }
 
         /* ── Idle floating sparks around wheel ── */
@@ -1457,6 +1485,7 @@
                     <div class="pg-orbit-ring pg-orbit-ring-1"></div>
                     <div class="pg-orbit-ring pg-orbit-ring-2"></div>
                     <div class="pg-orbit-ring pg-orbit-ring-3"></div>
+                    <div class="pg-orbit-ring pg-orbit-ring-4"></div>
                     <div class="pg-spark"></div>
                     <div class="pg-spark"></div>
                     <div class="pg-spark"></div>
