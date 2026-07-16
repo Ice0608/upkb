@@ -176,136 +176,118 @@
             filter: brightness(1.08) saturate(1.1);
         }
         .segment-green:hover .segment {
-            box-shadow: 0 0 48px 16px rgba(46,139,87,0.7), 0 0 0 4px rgba(220,255,232,0.6) inset;
-            filter: brightness(1.08) saturate(1.1);
+            box-shadow: 0 0 46px 14px rgba(46,139,87,0.22), 0 0 0 1px rgba(220,255,232,0.36) inset;
+            filter: brightness(1.05) saturate(1.04);
+            transform: translateY(-6px) scale(1.04);
         }
-        .segment-green .tahfiz-leaf {
-            position: absolute;
-            width: 1rem;
-            height: 1.4rem;
-            border-radius: 55% 55% 45% 45%;
-            background: radial-gradient(circle at 30% 25%, rgba(234, 255, 220, 1), rgba(46, 95, 58, 0.95));
-            border: 1px solid rgba(255,255,255,0.18);
-            box-shadow: 0 0 18px rgba(179, 255, 187, 0.35);
-            opacity: 0;
-            transform: rotate(-16deg);
-            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.22));
-            animation: tahfizLeafIdle 0.45s ease forwards;
-            animation-play-state: paused;
-            animation-fill-mode: both;
-            mix-blend-mode: screen;
-        }
-        .segment-green:hover .tahfiz-leaf {
-            opacity: 0.94 !important;
-            animation-play-state: running !important;
-            filter: drop-shadow(0 12px 24px rgba(0, 90, 35, 0.4));
-        }
-        .segment-green .tahfiz-glow {
-            position: absolute;
-            inset: 10% 10% auto;
-            width: 68%;
-            height: 36%;
-            background: radial-gradient(circle at 50% 0%, rgba(190, 255, 210, 0.44), transparent 54%);
-            border-radius: 999px;
-            opacity: 0;
-            transition: opacity 0.35s ease;
-        }
-        .segment-green:hover .tahfiz-glow {
-            opacity: 1;
-        }
-        .segment-green .tahfiz-orbit-container {
-            position: absolute;
-            inset: 14% 12% auto;
-            width: 72%;
-            height: 72%;
-            opacity: 0;
-            transform-origin: center center;
-            transform: scale(0.94);
-            transition: opacity 0.35s ease, transform 0.35s ease;
-            pointer-events: none;
-        }
-        .segment-green:hover .tahfiz-orbit-container {
-            opacity: 1;
-            transform: scale(1);
-            animation: tahfizOrbitSpin 4.4s linear infinite;
-        }
-        .segment-green .tahfiz-orbit {
+        .segment-green .holo-layer {
             position: absolute;
             inset: 0;
-            border: 1.5px solid rgba(182, 255, 189, 0.55);
-            border-radius: 50%;
-            box-shadow: inset 0 0 20px rgba(177, 255, 187, 0.32), 0 0 18px rgba(142, 255, 164, 0.24);
-            backdrop-filter: blur(1px);
+            overflow: hidden;
+            border-radius: inherit;
+            pointer-events: none;
         }
-        .segment-green .tahfiz-orbit::after {
-            content: "";
+        .segment-green .tahfiz-orb-layer {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 16%;
-            height: 16%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.18);
-            box-shadow: 0 0 16px rgba(209, 255, 222, 0.5);
+            inset: 0;
+            pointer-events: none;
         }
-        .segment-green .tahfiz-electron {
+        .segment-green .tahfiz-orb-glow {
             position: absolute;
-            top: 10%;
-            left: 50%;
-            width: 0.78rem;
-            height: 0.78rem;
-            transform: translate(-50%, -50%);
+            inset: 10% 10% 10% 10%;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.98), rgba(50, 132, 74, 0.95));
-            box-shadow: 0 0 18px rgba(196, 255, 196, 0.96);
+            background: radial-gradient(circle, rgba(244, 255, 248, 0.98) 0%, rgba(160, 255, 185, 0.56) 24%, rgba(63, 171, 95, 0.24) 56%, transparent 78%);
+            filter: blur(12px);
             opacity: 0;
-            transition: opacity 0.25s ease, transform 0.35s ease;
+            transform: translateY(10px) scale(0.78);
+            transition: opacity 0.35s ease, transform 0.4s ease;
         }
-        .segment-green:hover .tahfiz-electron {
+        .segment-green:hover .tahfiz-orb-glow {
             opacity: 1;
-            transform: translate(-50%, -50%) scale(1.05);
+            transform: translateY(0) scale(1.04);
         }
-        @keyframes tahfizOrbitSpin {
+        .segment-green .tahfiz-orb-focus {
+            position: absolute;
+            inset: 24% 24% 24% 24%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.16), transparent 72%);
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green:hover .tahfiz-orb-focus {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+        .segment-green .tahfiz-orb-ring,
+        .segment-green .tahfiz-orb-ring-2 {
+            position: absolute;
+            inset: 18% 18% 18% 18%;
+            border-radius: 50%;
+            border: 1px solid rgba(221, 255, 232, 0.42);
+            box-shadow: inset 0 0 16px rgba(169, 255, 191, 0.12), 0 0 18px rgba(121, 255, 152, 0.14);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green .tahfiz-orb-ring-2 {
+            inset: 28% 28% 28% 28%;
+            border-style: dashed;
+            border-color: rgba(206, 255, 223, 0.72);
+        }
+        .segment-green:hover .tahfiz-orb-ring,
+        .segment-green:hover .tahfiz-orb-ring-2 {
+            opacity: 1;
+            transform: scale(1);
+            animation: tahfizOrbSpin 3.8s linear infinite;
+        }
+        .segment-green:hover .tahfiz-orb-ring-2 {
+            animation-duration: 5.2s;
+            animation-direction: reverse;
+        }
+        .segment-green .tahfiz-orb-core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 22%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.98), rgba(232, 255, 240, 0.94) 22%, rgba(130, 255, 164, 0.82) 42%, rgba(35, 110, 60, 0.96) 72%, rgba(8, 38, 23, 1) 100%);
+            box-shadow: 0 0 24px rgba(161, 255, 186, 0.36), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.72);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green:hover .tahfiz-orb-core {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            animation: tahfizOrbFloat 2.2s ease-in-out infinite;
+        }
+        .segment-green .tahfiz-orb-trail {
+            position: absolute;
+            inset: 12% 12% 12% 12%;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: conic-gradient(from 0deg, transparent 0 40%, rgba(194, 255, 212, 0.24) 50%, transparent 60%);
+            opacity: 0;
+            transform: rotate(0deg);
+            transition: opacity 0.35s ease;
+        }
+        .segment-green:hover .tahfiz-orb-trail {
+            opacity: 1;
+            animation: tahfizOrbTrail 2.6s linear infinite;
+        }
+        @keyframes tahfizOrbSpin {
+            from { transform: rotate(0deg) scale(1); }
+            to   { transform: rotate(360deg) scale(1); }
+        }
+        @keyframes tahfizOrbFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+            50% { transform: translate(-50%, -50%) translateY(-6px) scale(1.03); }
+        }
+        @keyframes tahfizOrbTrail {
             from { transform: rotate(0deg); }
             to   { transform: rotate(360deg); }
-        }
-        .segment-green .leaf-1 { left: 15%; top: 8%; animation: tahfizLeafFall 2.4s ease-in-out 0.08s infinite paused; }
-        .segment-green .leaf-2 { left: 39%; top: 4%; animation: tahfizLeafFall 2.7s ease-in-out 0.16s infinite reverse paused; }
-        .segment-green .leaf-3 { left: 63%; top: 12%; animation: tahfizLeafFall 2.6s ease-in-out 0.12s infinite paused; }
-        .segment-green .leaf-4 { left: 27%; top: 18%; animation: tahfizLeafFall 3.0s ease-in-out 0.24s infinite reverse paused; }
-        .segment-green .leaf-5 { left: 51%; top: 16%; animation: tahfizLeafFall 2.9s ease-in-out 0.20s infinite paused; }
-        .segment-green:hover .leaf-1,
-        .segment-green:hover .leaf-2,
-        .segment-green:hover .leaf-3,
-        .segment-green:hover .leaf-4,
-        .segment-green:hover .leaf-5 {
-            animation-play-state: running;
-        }
-        @keyframes tahfizLeafFall {
-            0% {
-                transform: translate3d(0, 0, 0) rotate(-10deg);
-                opacity: 0;
-            }
-            20% {
-                opacity: 1;
-            }
-            50% {
-                transform: translate3d(14px, 45px, 0) rotate(10deg);
-                opacity: 0.88;
-            }
-            80% {
-                transform: translate3d(-12px, 92px, 0) rotate(20deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translate3d(4px, 138px, 0) rotate(4deg);
-                opacity: 0;
-            }
-        }
-        @keyframes tahfizLeafIdle {
-            from { opacity: 0; transform: scale(0.82) rotate(-12deg); }
-            to   { opacity: 1; transform: scale(1) rotate(-12deg); }
         }
 
         /* Subtle border for each segment */
@@ -371,8 +353,9 @@
         }
 
         .segment-green:hover .segment {
-            box-shadow: 0 0 40px rgba(46, 139, 87, 0.6);
-            transform: translate(0px, 40px) scale(1.25);
+            box-shadow: 0 0 38px rgba(104, 255, 157, 0.34), 0 0 72px rgba(46, 139, 87, 0.24);
+            transform: translate(-6px, -8px) scale(1.1);
+            filter: saturate(1.08) brightness(1.1);
         }
 
         .mercedes-container:hover .segment {
@@ -1815,18 +1798,16 @@
                                 <div class="diploma-vignette"></div>
                             </div>
                             @elseif($index == 3)
-                            {{-- SMART TAHFIZ: Falling leaves and orbit hover effect --}}
+                            {{-- SMART TAHFIZ: glowing orb hover effect --}}
                             <div class="holo-layer">
-                                <div class="tahfiz-orbit-container">
-                                    <div class="tahfiz-orbit"></div>
-                                    <div class="tahfiz-electron"></div>
+                                <div class="tahfiz-orb-layer">
+                                    <div class="tahfiz-orb-glow"></div>
+                                    <div class="tahfiz-orb-focus"></div>
+                                    <div class="tahfiz-orb-ring"></div>
+                                    <div class="tahfiz-orb-ring-2"></div>
+                                    <div class="tahfiz-orb-trail"></div>
+                                    <div class="tahfiz-orb-core"></div>
                                 </div>
-                                <div class="tahfiz-leaf leaf-1"></div>
-                                <div class="tahfiz-leaf leaf-2"></div>
-                                <div class="tahfiz-leaf leaf-3"></div>
-                                <div class="tahfiz-leaf leaf-4"></div>
-                                <div class="tahfiz-leaf leaf-5"></div>
-                                <div class="tahfiz-glow"></div>
                             </div>
                             @else
                             {{-- SAINS KESIHATAN: Health Monitor ECG --}}
