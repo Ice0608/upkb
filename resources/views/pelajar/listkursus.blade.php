@@ -517,6 +517,30 @@
             opacity: 0;
             transform: translateY(-0.65rem);
             transition: opacity 0.24s ease, transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+            /* make the program list independently scrollable */
+            max-height: 40vh;
+            overflow-y: auto;
+            padding-right: 0.5rem; /* space for scrollbar */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Slightly larger on desktop */
+        @media (min-width: 768px) {
+            .kursus-program-options {
+                max-height: 28rem;
+            }
+        }
+
+        /* Basic scrollbar styling */
+        .kursus-program-options::-webkit-scrollbar {
+            width: 10px;
+        }
+        .kursus-program-options::-webkit-scrollbar-thumb {
+            background: rgba(148,163,184,0.24);
+            border-radius: 999px;
+        }
+        .kursus-program-options::-webkit-scrollbar-track {
+            background: transparent;
         }
 
         .kursus-program-curtain-panel.is-open .kursus-program-options {

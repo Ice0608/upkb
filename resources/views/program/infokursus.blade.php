@@ -788,13 +788,13 @@
                 </div>
 
                 {{-- Corner CTA --}}
-                <div class="kursus-detail-cta absolute bottom-8 right-8 flex flex-col items-end gap-2">
+                {{-- <div class="kursus-detail-cta absolute bottom-8 right-8 flex flex-col items-end gap-2">
                     <a href="{{ route('bmd', ['set_kursus_redirect' => $kursus->kod_kursus, 'kod_institusi' => $kursus->kod_institusi]) }}" class="kd-cta-daftar">
                         <i class="fas fa-user-plus"></i>
                         Daftar Sekarang
                         <span class="kd-cta-daftar__arrow"><i class="fas fa-arrow-right"></i></span>
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
 
