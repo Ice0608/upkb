@@ -154,8 +154,9 @@
 
         .segment-orange .segment,
         .segment-purple .segment,
-        .segment-blue .segment {
-            transition: box-shadow 0.3s, filter 0.3s;
+        .segment-blue .segment,
+        .segment-green .segment {
+            transition: box-shadow 0.3s, filter 0.3s, transform 0.3s;
         }
 
         .segment-wrapper:hover{
@@ -174,6 +175,120 @@
             box-shadow: 0 0 48px 16px rgba(33,150,243,0.7), 0 0 0 4px rgba(230,244,255,0.6) inset;
             filter: brightness(1.08) saturate(1.1);
         }
+        .segment-green:hover .segment {
+            box-shadow: 0 0 46px 14px rgba(46,139,87,0.22), 0 0 0 1px rgba(220,255,232,0.36) inset;
+            filter: brightness(1.05) saturate(1.04);
+            transform: translateY(-6px) scale(1.04);
+        }
+        .segment-green .holo-layer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+        .segment-green .tahfiz-orb-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        .segment-green .tahfiz-orb-glow {
+            position: absolute;
+            inset: 10% 10% 10% 10%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(244, 255, 248, 0.98) 0%, rgba(160, 255, 185, 0.56) 24%, rgba(63, 171, 95, 0.24) 56%, transparent 78%);
+            filter: blur(12px);
+            opacity: 0;
+            transform: translateY(10px) scale(0.78);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green:hover .tahfiz-orb-glow {
+            opacity: 1;
+            transform: translateY(0) scale(1.04);
+        }
+        .segment-green .tahfiz-orb-focus {
+            position: absolute;
+            inset: 24% 24% 24% 24%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.16), transparent 72%);
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green:hover .tahfiz-orb-focus {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+        .segment-green .tahfiz-orb-ring,
+        .segment-green .tahfiz-orb-ring-2 {
+            position: absolute;
+            inset: 18% 18% 18% 18%;
+            border-radius: 50%;
+            border: 1px solid rgba(221, 255, 232, 0.42);
+            box-shadow: inset 0 0 16px rgba(169, 255, 191, 0.12), 0 0 18px rgba(121, 255, 152, 0.14);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green .tahfiz-orb-ring-2 {
+            inset: 28% 28% 28% 28%;
+            border-style: dashed;
+            border-color: rgba(206, 255, 223, 0.72);
+        }
+        .segment-green:hover .tahfiz-orb-ring,
+        .segment-green:hover .tahfiz-orb-ring-2 {
+            opacity: 1;
+            transform: scale(1);
+            animation: tahfizOrbSpin 3.8s linear infinite;
+        }
+        .segment-green:hover .tahfiz-orb-ring-2 {
+            animation-duration: 5.2s;
+            animation-direction: reverse;
+        }
+        .segment-green .tahfiz-orb-core {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 22%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.98), rgba(232, 255, 240, 0.94) 22%, rgba(130, 255, 164, 0.82) 42%, rgba(35, 110, 60, 0.96) 72%, rgba(8, 38, 23, 1) 100%);
+            box-shadow: 0 0 24px rgba(161, 255, 186, 0.36), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.72);
+            transition: opacity 0.35s ease, transform 0.4s ease;
+        }
+        .segment-green:hover .tahfiz-orb-core {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            animation: tahfizOrbFloat 2.2s ease-in-out infinite;
+        }
+        .segment-green .tahfiz-orb-trail {
+            position: absolute;
+            inset: 12% 12% 12% 12%;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: conic-gradient(from 0deg, transparent 0 40%, rgba(194, 255, 212, 0.24) 50%, transparent 60%);
+            opacity: 0;
+            transform: rotate(0deg);
+            transition: opacity 0.35s ease;
+        }
+        .segment-green:hover .tahfiz-orb-trail {
+            opacity: 1;
+            animation: tahfizOrbTrail 2.6s linear infinite;
+        }
+        @keyframes tahfizOrbSpin {
+            from { transform: rotate(0deg) scale(1); }
+            to   { transform: rotate(360deg) scale(1); }
+        }
+        @keyframes tahfizOrbFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+            50% { transform: translate(-50%, -50%) translateY(-6px) scale(1.03); }
+        }
+        @keyframes tahfizOrbTrail {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
 
         /* Subtle border for each segment */
         .segment {
@@ -189,13 +304,16 @@
         }
 
         .segment-top-left-clip {
-            clip-path: polygon(50% 50%, 50% -6%, 21% 2%, -6% 21%, -6% 60%, 7% 82%);
+            clip-path: polygon(50% 50%, 50% 0%, 0% 0%, 0% 50%);
         }
         .segment-top-right-clip {
-            clip-path: polygon(50% 50%, 50% -6%, 79% 2%, 106% 21%, 106% 60%, 93% 82%);
+            clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 50%);
         }
-        .segment-bottom-clip {
-            clip-path: polygon(50% 50%, 7% 82%, 21% 106%, 79% 106%, 93% 82%);
+        .segment-bottom-right-clip {
+            clip-path: polygon(50% 50%, 100% 50%, 100% 100%, 50% 100%);
+        }
+        .segment-bottom-left-clip {
+            clip-path: polygon(50% 50%, 0% 50%, 0% 100%, 50% 100%);
         }
 
         .segment-wrapper .segment {
@@ -232,6 +350,12 @@
         .segment-blue:hover .segment {
             box-shadow: 0 0 40px rgba(33, 150, 243, 0.6);
             transform: translate(0px, 40px) scale(1.25);
+        }
+
+        .segment-green:hover .segment {
+            box-shadow: 0 0 38px rgba(104, 255, 157, 0.34), 0 0 72px rgba(46, 139, 87, 0.24);
+            transform: translate(-6px, -8px) scale(1.1);
+            filter: saturate(1.08) brightness(1.1);
         }
 
         .mercedes-container:hover .segment {
@@ -835,6 +959,20 @@
             border-color: rgba(80, 220, 180, 0.16);
             box-shadow: 0 0 32px 4px rgba(80,220,180,0.10);
             animation: pgOrbitSpin2 54s linear infinite reverse;
+        }
+        .program-wheel-wrap:has(.segment-green:hover) .pg-orbit-ring-1 {
+            border-color: rgba(46, 139, 87, 0.30);
+            box-shadow: 0 0 24px 4px rgba(86, 220, 136, 0.22), inset 0 0 16px 2px rgba(147, 255, 179, 0.12);
+            transform: scale(1.012);
+        }
+        .program-wheel-wrap:has(.segment-green:hover) .pg-orbit-ring-2 {
+            border-color: rgba(46, 139, 87, 0.22);
+            box-shadow: 0 0 24px 4px rgba(46, 139, 87, 0.14);
+            transform: scale(1.008);
+        }
+        .program-wheel-wrap:has(.segment-green:hover) .pg-orbit-ring-3 {
+            border-color: rgba(46, 139, 87, 0.18);
+            box-shadow: 0 0 28px 5px rgba(46, 139, 87, 0.12);
         }
         @keyframes pgOrbitSpin1 {
             from { transform: rotate(0deg); }
@@ -1501,7 +1639,14 @@
                 rounded-full">
 
                 <div class="mercedes-reflection"></div>
-                @foreach($programs->take(3) as $index => $program)
+                @php
+                    $wheelPrograms = $programs->take(3)->values()->all();
+                    $wheelPrograms[] = (object) [
+                        'jenis_program' => 'SMART TAHFIZ',
+                        'external_url' => 'https://smarttahfiz.vercel.app/',
+                    ];
+                @endphp
+                @foreach($wheelPrograms as $index => $program)
                     @php
                         $configs = [
                             0 => [
@@ -1529,9 +1674,9 @@
                                 'label_glow' => 'rgba(141, 43, 226, 0.48)',
                             ],
                             2 => [
-                                'clip' => 'segment-bottom-clip',
+                                'clip' => 'segment-bottom-left-clip',
                                 'bg' => 'bg-[#2196F3]',
-                                'pos' => 'bottom-[10%] left-1/2 -translate-x-1/2 sm:bottom-[15%] text-center items-center',
+                                'pos' => 'bottom-[12%] left-[16%] sm:bottom-[14%] sm:left-[18%] text-left items-start',
                                 'label_bg' => 'bg-[#2196f3]',
                                 'label_border' => 'border-[#1d4ed8]',
                                 'label_hover' => 'group-hover:border-[#1e40af]',
@@ -1540,13 +1685,28 @@
                                 'label_glass_border' => 'rgba(190, 228, 255, 0.58)',
                                 'label_glow' => 'rgba(33, 150, 243, 0.48)',
                             ],
+                            3 => [
+                                'clip' => 'segment-bottom-right-clip',
+                                'bg' => 'bg-[#2E8B57]',
+                                'pos' => 'bottom-[12%] right-[16%] sm:bottom-[14%] sm:right-[18%] text-right items-end',
+                                'label_bg' => 'bg-[#2E8B57]',
+                                'label_border' => 'border-[#206b42]',
+                                'label_hover' => 'group-hover:border-[#145132]',
+                                'label_shadow' => '#2E8B57',
+                                'label_glass_bg' => 'rgba(46, 139, 87, 0.46)',
+                                'label_glass_border' => 'rgba(190, 255, 215, 0.58)',
+                                'label_glow' => 'rgba(46, 139, 87, 0.48)',
+                            ],
                         ];
                         $ui = $configs[$index] ?? $configs[0];
+                        $programUrl = !empty($program->external_url)
+                            ? $program->external_url
+                            : route('pelajar.listkursus', ['pelajar' => $pelajar->id, 'nama' => $program->jenis_program]);
                     @endphp
 
-                    <a href="{{ route('pelajar.listkursus', ['pelajar' => $pelajar->id, 'nama' => $program->jenis_program]) }}" 
+                    <a href="{{ $programUrl }}" 
                         class="segment-wrapper pg-seg-anim group 
-                        {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : 'segment-blue') }}">
+                        {{ $index == 0 ? 'segment-orange' : ($index == 1 ? 'segment-purple' : ($index == 3 ? 'segment-green' : 'segment-blue')) }}">
                         <!-- Segment background with image overlay -->
                         <div class="segment absolute inset-0 {{ $ui['bg'] }} {{ $ui['clip'] }}">
                             @if($index == 0)
@@ -1558,6 +1718,9 @@
                             @elseif($index == 2)
                                 <!-- SAINS KESIHATAN: Lab/Microscope -->
                                 <div style="background: linear-gradient(rgba(33,150,243,0.50), rgba(33,150,243,0.40)), url('/images/sains.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(0.97) blur(0.5px);" class="w-full h-full"></div>
+                            @elseif($index == 3)
+                                <!-- SMART TAHFIZ: Serhat background image -->
+                                <div style="background: linear-gradient(180deg, rgba(13,77,52,0.62), rgba(22,119,75,0.42)), url('/images/serhat-tug-e6L2B3He8bY-unsplash.jpg') center/cover no-repeat; position:absolute; inset:0; z-index:1; border-radius:inherit; filter: brightness(1.02) blur(0.5px);" class="w-full h-full"></div>
                             @endif
 
                             <!-- UNIQUE HOVER OVERLAY -->
@@ -1622,6 +1785,18 @@
                                 <div class="diploma-block"></div>
                                 <div class="diploma-vignette"></div>
                             </div>
+                            @elseif($index == 3)
+                            {{-- SMART TAHFIZ: glowing orb hover effect --}}
+                            <div class="holo-layer">
+                                <div class="tahfiz-orb-layer">
+                                    <div class="tahfiz-orb-glow"></div>
+                                    <div class="tahfiz-orb-focus"></div>
+                                    <div class="tahfiz-orb-ring"></div>
+                                    <div class="tahfiz-orb-ring-2"></div>
+                                    <div class="tahfiz-orb-trail"></div>
+                                    <div class="tahfiz-orb-core"></div>
+                                </div>
+                            </div>
                             @else
                             {{-- SAINS KESIHATAN: Health Monitor ECG --}}
                             <div class="holo-layer">
@@ -1682,6 +1857,16 @@
         });
 
         stage.addEventListener('pointerleave', resetDepth);
+
+        var greenSegment = document.querySelector('.segment-green');
+        if (greenSegment) {
+            greenSegment.addEventListener('pointerenter', function() {
+                stage.classList.add('hovering-green');
+            });
+            greenSegment.addEventListener('pointerleave', function() {
+                stage.classList.remove('hovering-green');
+            });
+        }
     })();
     </script>
     <script>

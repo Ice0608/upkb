@@ -1657,7 +1657,7 @@
                     $wheelPrograms = $programs->take(3)->values()->all();
                     $wheelPrograms[] = (object) [
                         'jenis_program' => 'SMART TAHFIZ',
-                        'external_url' => 'https://smtaa.vercel.app/',
+                        'external_url' => 'https://smarttahfiz.vercel.app/',
                     ];
                 @endphp
                 @foreach($wheelPrograms as $index => $program)
