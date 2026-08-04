@@ -1281,6 +1281,23 @@
     $institusiIsSainsKesihatan = $institusiProgramType === 'sains kesihatan';
     $institusiLabel = $institusiIsTvet ? 'Pusat Bertauliah' : 'Institusi';
     $institusiLabelLower = strtolower($institusiLabel);
+    $institusis = $institusis->sortBy(function ($item) {
+        $name = strtolower((string) ($item->nama_institusi ?? ''));
+
+        if (str_contains($name, 'usahama') || str_contains($name, 'usahasama')) {
+            return 0;
+        }
+
+        if (str_contains($name, 'uic')) {
+            return 3;
+        }
+
+        if (str_contains($name, 'ihm')) {
+            return 2;
+        }
+
+        return 1;
+    })->values();
 @endphp
 <body class="institusi-page {{ $institusiIsTvet ? 'institusi-page--tvet' : '' }} {{ $institusiIsDiploma ? 'institusi-page--diploma' : '' }} {{ $institusiIsSainsKesihatan ? 'institusi-page--sains-kesihatan' : '' }} {{ ! $institusiIsTvet && ! $institusiIsDiploma && ! $institusiIsSainsKesihatan ? 'bg-gray-100' : '' }} text-gray-800">
     
