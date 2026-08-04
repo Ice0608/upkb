@@ -35,7 +35,7 @@
             <div class="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-700 shadow-sm">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('bmd.store') }}" method="POST" class="mt-8 space-y-6">
+        <form action="{{ route('bmd.store') }}" method="POST" class="mt-8 space-y-6" data-bmd-form>
             @csrf
             @if(isset($event))
                 <input type="hidden" name="event_id" value="{{ $event->id }}">
@@ -225,7 +225,7 @@
                     <a href="{{ url('/') }}" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100">Batal</a>
                 </div>
 
-                <button type="submit" class="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">DAFTAR</button>
+                <button type="submit" data-bmd-submit class="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition bg-[linear-gradient(135deg,#14b8a6,#06b6d4)] hover:opacity-90">DAFTAR</button>
             </div>
         </div>
         </form>
@@ -288,6 +288,26 @@
                     this.setSelectionRange(start + upper.length, start + upper.length);
                 });
             });
+
+            const form = document.querySelector('[data-bmd-form]');
+            if (form) {
+                let isSubmitting = false;
+                const submitButton = form.querySelector('[data-bmd-submit]');
+
+                form.addEventListener('submit', function() {
+                    if (isSubmitting) {
+                        return;
+                    }
+
+                    isSubmitting = true;
+
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.classList.add('cursor-not-allowed', 'opacity-70');
+                        submitButton.textContent = 'SEDANG DIPROSES...';
+                    }
+                });
+            }
         });
     </script>
 @endif

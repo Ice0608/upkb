@@ -298,6 +298,17 @@ class StaffEventController extends Controller
             // Keep session alive so pelajarVerifyIc can use it, clear it only after login
         }
 
+        $existingPelajarQuery = Pelajar::where('ic_pelajar', $data['ic_pelajar']);
+        if (!empty($data['event_id'])) {
+            $existingPelajarQuery->where('event_id', $data['event_id']);
+        }
+
+        $existingPelajar = $existingPelajarQuery->latest('id')->first();
+        if ($existingPelajar) {
+            return redirect()->route('pelajar.dashboard', $existingPelajar->id)
+                ->with('success', 'Pendaftaran ini sudah diterima sebelum ini. Anda telah dibawa ke papan pemuka pelajar.');
+        }
+
         $pelajar = Pelajar::create(array_merge([
             'jumlah_tanggungan' => $request->input('jumlah_tanggungan', 0),
         ], $data, $extraData));
