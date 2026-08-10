@@ -743,6 +743,7 @@
         $detailProgramType = 'tvet';
     }
     $detailEntityLabel = $detailProgramType === 'tvet' ? 'Pusat Bertauliah' : 'Institusi';
+    $showCoursePrintButton = !in_array($detailProgramType, ['smart tahfiz', 'tahfiz'], true);
 
     $heroImage = optional($kursus->galeris->first())->imej
         ?? optional($kursus->institusi)->gambar_institusi
@@ -753,12 +754,20 @@
 @include('layouts.navigation')
 
     <section id="kd-hero-shell" class="kursus-detail-shell {{ $detailProgramType === 'tvet' ? 'kursus-detail-shell--tvet' : '' }} {{ $detailProgramType === 'diploma' ? 'kursus-detail-shell--diploma' : '' }} {{ $detailProgramType === 'sains kesihatan' ? 'kursus-detail-shell--sains-kesihatan' : '' }} max-w-7xl mx-auto px-6 py-10">
-        <div class="mb-6">
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
             <button type="button" onclick="window.history.back()"
                 class="pilihan-back-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-slate-700">
                 <i class="fa-solid fa-arrow-left"></i>
                 Kembali
             </button>
+
+            @if($showCoursePrintButton)
+                <button type="button" onclick="printCourseInfoSections()"
+                    class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 shadow-sm transition hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50">
+                    <i class="fa-solid fa-print"></i>
+                    Cetak Info Kursus
+                </button>
+            @endif
         </div>
         <div class="kursus-detail-hero rounded-3xl shadow-lg overflow-hidden mb-10 text-white" style="--detail-hero-image: url('{{ $heroImageUrl }}');">
             <div class="relative p-8">
@@ -834,6 +843,344 @@
             container.querySelectorAll('[data-yuran-section]').forEach(section => {
                 const card = section.querySelector('[data-yuran-card]');
                 if (card) window.updateGuestYuranTotal(card, 'init');
+            });
+        }
+
+        function printCourseInfoSections() {
+            const tabs = [
+                { title: 'Maklumat Am', url: '{{ route('kursus.tabmaklumat', $kursus->id) }}' },
+                { title: 'Syarat Kelayakan', url: '{{ route('kursus.tabsyarat', $kursus->id) }}' },
+                { title: 'Laluan Kerjaya', url: '{{ route('kursus.tabkerjaya', $kursus->id) }}' },
+                { title: 'Yuran & Pinjaman', url: '{{ route('kursus.tabyuran', $kursus->id) }}' },
+                { title: 'Galeri', url: '{{ route('kursus.tabgaleri', $kursus->id) }}' },
+            ];
+
+            const printWindow = window.open('', '_blank', 'width=1200,height=1400');
+            if (!printWindow) {
+                alert('Popup disekat oleh browser. Sila benarkan popup untuk mencetak maklumat kursus.');
+                return;
+            }
+
+            Promise.all(tabs.map(async (tab) => {
+                const response = await fetch(tab.url, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    }
+                });
+                const html = await response.text();
+                const cleanedHtml = html
+                    .replace(/<script[\s\S]*?<\/script>/gi, '')
+                    .replace(/<h2\b[^>]*class="[^"]*(kursus-tab-title|kursus-tab-accent-strong)[^"]*"[^>]*>[\s\S]*?<\/h2>/gi, '');
+
+                return {
+                    title: tab.title,
+                    html: cleanedHtml,
+                };
+            })).then((sections) => {
+                const heroImage = @json($heroImageUrl);
+                const courseCode = @json($kursus->kod_kursus ?? '');
+                const courseName = @json($kursus->nama_kursus ?? '');
+                const institutionName = @json(optional($kursus->institusi)->nama_institusi ?? '');
+                const programType = @json($kursus->jenis_kursus ?? '');
+                const modPengajian = @json($kursus->mod_pengajian ?? '');
+                const tempoh = @json($kursus->tempoh ?? '');
+                const kuota = @json($kursus->kuota ?? '');
+                const tarikhPendaftaran = @json($kursus->tarikh_pendaftaran?->format('d M Y') ?? 'Sila Rujuk Pegawai Kami');
+
+                const printHtml = `<!DOCTYPE html>
+                    <html lang="ms">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Cetak Informasi Kursus</title>
+                        <style>
+                            @page {
+                                size: auto;
+                                margin: 8mm 8mm 8mm 8mm;
+                                margin-header: 0mm;
+                                margin-footer: 0mm;
+                            }
+                            * { box-sizing: border-box; }
+                            html, body {
+                                margin: 0;
+                                padding: 0;
+                                background: #ffffff;
+                                color: #0f172a;
+                                font-family: Arial, Helvetica, sans-serif;
+                            }
+                            body {
+                                padding: 0;
+                                margin: 0;
+                            }
+                            .course-print-page {
+                                width: 100%;
+                                max-width: 1000px;
+                                margin: 0 auto;
+                                padding: 0;
+                            }
+                            .course-print-hero {
+                                margin: 0 0 12px;
+                                border-radius: 22px;
+                                overflow: hidden;
+                                background: linear-gradient(135deg, #f59e0b 0%, #f97316 28%, #ea580c 100%);
+                                box-shadow: 0 14px 28px rgba(249,115,22,0.16);
+                            }
+                            .course-print-hero__content {
+                                position: relative;
+                                display: flex;
+                                min-height: 240px;
+                            }
+                            .course-print-hero__body {
+                                flex: 1;
+                                padding: 16px 18px 14px;
+                                color: #fff;
+                                z-index: 2;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                            }
+                            .course-print-hero__badge-row {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 8px;
+                                margin-bottom: 8px;
+                            }
+                            .course-print-hero__badge {
+                                display: inline-flex;
+                                align-items: center;
+                                padding: 6px 10px;
+                                border: 1px solid rgba(255,255,255,0.8);
+                                border-radius: 999px;
+                                font-size: 10px;
+                                letter-spacing: 0.12em;
+                                font-weight: 800;
+                                text-transform: uppercase;
+                                background: rgba(255,255,255,0.08);
+                            }
+                            .course-print-hero__institute {
+                                margin: 0 0 8px;
+                                font-size: 12px;
+                                font-weight: 700;
+                                letter-spacing: 0.04em;
+                                opacity: 0.95;
+                            }
+                            .course-print-hero__title {
+                                margin: 0 0 10px;
+                                font-size: 40px;
+                                line-height: 1;
+                                font-weight: 900;
+                                letter-spacing: -0.02em;
+                                color: #fff;
+                                max-width: 640px;
+                            }
+                            .course-print-hero__meta {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 8px 14px;
+                                font-size: 12px;
+                                line-height: 1.5;
+                                font-weight: 700;
+                                opacity: 0.95;
+                                margin-bottom: 0;
+                            }
+                            .course-print-hero__meta span {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 6px;
+                            }
+                            .course-print-hero__cta {
+                                display: inline-block;
+                                background: rgba(255,255,255,0.96);
+                                color: #c2410c;
+                                border-radius: 999px;
+                                padding: 12px 22px;
+                                font-weight: 800;
+                                font-size: 15px;
+                                box-shadow: 0 10px 22px rgba(15,23,42,0.08);
+                            }
+                            .course-print-hero__visual {
+                                position: relative;
+                                width: 35%;
+                                min-width: 230px;
+                                background: rgba(15,23,42,0.10);
+                            }
+                            .course-print-hero__visual::before {
+                                content: "";
+                                position: absolute;
+                                inset: 0;
+                                background-image: url('${heroImage}');
+                                background-size: cover;
+                                background-position: center;
+                                filter: saturate(1.05) contrast(1.04);
+                                opacity: 0.9;
+                            }
+                            .course-print-section {
+                                margin: 0 0 20px;
+                                padding: 18px 18px 12px;
+                                border: 1px solid #e5e7eb;
+                                border-radius: 18px;
+                                background: white;
+                                box-shadow: 0 8px 18px rgba(15,23,42,0.04);
+                                page-break-inside: avoid;
+                                break-inside: avoid;
+                                page-break-after: always;
+                            }
+                            .course-print-section:last-child { page-break-after: auto; }
+                            .course-print-section > h2 {
+                                margin: 0 0 18px;
+                                padding-bottom: 10px;
+                                border-bottom: 2px solid rgba(234,88,12,0.15);
+                                color: #ea580c;
+                                font-size: 24px;
+                                font-weight: 800;
+                                text-align: center;
+                            }
+                            .course-print-section .kursus-tab-title,
+                            .course-print-section .kursus-tab-accent-strong { display: none !important; }
+                            .course-print-section p,
+                            .course-print-section li,
+                            .course-print-section span,
+                            .course-print-section strong,
+                            .course-print-section em,
+                            .course-print-section td,
+                            .course-print-section th,
+                            .course-print-section div {
+                                color: #0f172a;
+                                line-height: 1.6;
+                                word-wrap: break-word;
+                            }
+                            .course-print-section .grid {
+                                display: grid !important;
+                                gap: 12px;
+                                grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+                            }
+                            .course-print-section .space-y-3,
+                            .course-print-section .space-y-4,
+                            .course-print-section .space-y-6 {
+                                display: block !important;
+                                gap: 6px;
+                            }
+                            .course-print-section .space-y-3 > div,
+                            .course-print-section .space-y-4 > div,
+                            .course-print-section .space-y-6 > div,
+                            .course-print-section [data-pilihan-item],
+                            .course-print-section [data-asrama-item],
+                            .course-print-section .rounded-3xl,
+                            .course-print-section .rounded-2xl {
+                                display: block;
+                                width: 100%;
+                                border: 1px solid #e2e8f0;
+                                border-radius: 12px;
+                                background: #fff;
+                                padding: 8px 10px;
+                                margin: 0 0 6px;
+                                box-shadow: none;
+                            }
+                            .course-print-section .rounded-3xl,
+                            .course-print-section .rounded-2xl,
+                            .course-print-section [data-yuran-section] {
+                                page-break-inside: avoid;
+                                break-inside: avoid;
+                            }
+                            .course-print-section [data-yuran-section] {
+                                border: 1px solid #e2e8f0;
+                                border-radius: 18px;
+                                background: #fff;
+                                overflow: hidden;
+                            }
+                            .course-print-section [data-yuran-section] > div:first-child,
+                            .course-print-section [data-yuran-section] > .flex,
+                            .course-print-section [data-yuran-section] > .grid {
+                                display: flex !important;
+                                justify-content: space-between;
+                                align-items: center;
+                                gap: 12px;
+                                padding: 14px 16px;
+                                background: #f8fafc;
+                                border-bottom: 1px solid #e2e8f0;
+                            }
+                            .course-print-section [data-yuran-section] [data-total-yuran],
+                            .course-print-section [data-total-yuran],
+                            .course-print-section [data-pilihan-total-display],
+                            .course-print-section [data-asrama-total-display] {
+                                font-size: 18px;
+                                font-weight: 800;
+                                color: #111827;
+                            }
+                            .course-print-section .flex {
+                                display: flex !important;
+                                align-items: center;
+                                justify-content: space-between;
+                                gap: 10px;
+                            }
+                            .course-print-section .inline-flex {
+                                display: inline-flex !important;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                            .course-print-section img,
+                            .course-print-section video {
+                                max-width: 100%;
+                                height: auto;
+                                display: block;
+                                border-radius: 12px;
+                                margin: 10px auto 14px;
+                                text-align: center;
+                            }
+                            .course-print-section figure,
+                            .course-print-section .image-wrapper,
+                            .course-print-section .gallery-item {
+                                margin: 0 auto 12px;
+                                text-align: center;
+                            }
+                            @media print {
+                                body { background: #fff !important; }
+                                .course-print-section { box-shadow: none !important; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="course-print-page">
+                            <section class="course-print-hero">
+                                <div class="course-print-hero__content">
+                                    <div class="course-print-hero__body">
+                                        <div class="course-print-hero__badge-row">
+                                            <span class="course-print-hero__badge">${programType}</span>
+                                            <span class="course-print-hero__badge">${modPengajian}</span>
+                                        </div>
+                                        <div class="course-print-hero__institute">${institutionName}</div>
+                                        <h1 class="course-print-hero__title">${courseName}</h1>
+                                        <div class="course-print-hero__meta">
+                                            <span># ${courseCode}</span>
+                                            <span>${tempoh}</span>
+                                            <span>Kuota ${kuota}</span>
+                                            <span>Daftar ${tarikhPendaftaran}</span>
+                                        </div>
+                                    </div>
+                                    <div class="course-print-hero__visual" aria-hidden="true"></div>
+                                </div>
+                            </section>
+                            ${sections.map(section => `
+                                <section class="course-print-section">
+                                    <h2>${section.title}</h2>
+                                    ${section.html}
+                                </section>
+                            `).join('')}
+                        </div>
+                    </body>
+                    </html>`;
+
+                printWindow.document.open();
+                printWindow.document.write(printHtml);
+                printWindow.document.close();
+                printWindow.focus();
+                setTimeout(() => printWindow.print(), 600);
+            }).catch((error) => {
+                console.error('Print course error:', error);
+                printWindow.document.write('<p>Error printing course details.</p>');
+                printWindow.document.close();
+                printWindow.focus();
             });
         }
 
