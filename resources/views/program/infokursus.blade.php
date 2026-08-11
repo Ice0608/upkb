@@ -275,6 +275,22 @@
             color: var(--detail-accent-700);
         }
 
+        .kursus-detail-print-btn {
+            border: 1px solid rgba(var(--detail-accent-rgb), 0.24);
+            background: rgba(255, 255, 255, 0.96);
+            color: var(--detail-accent-700);
+            box-shadow: 0 10px 22px rgba(var(--detail-accent-rgb), 0.12);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease, color 0.28s ease;
+        }
+
+        .kursus-detail-print-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(var(--detail-accent-rgb), 0.38);
+            background: var(--detail-accent-50);
+            color: var(--detail-accent-700);
+            box-shadow: 0 14px 26px rgba(var(--detail-accent-rgb), 0.16);
+        }
+
         .pilihan-back-btn,
         .pilihan-filter-card,
         .pilihan-select,
@@ -526,6 +542,19 @@
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
         }
 
+        html.dark .kursus-detail-print-btn {
+            background: rgba(15, 23, 42, 0.88);
+            color: var(--detail-accent-500);
+            border-color: rgba(var(--detail-accent-rgb), 0.34);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.26);
+        }
+
+        html.dark .kursus-detail-print-btn:hover {
+            background: rgba(var(--detail-accent-rgb), 0.16);
+            color: #fff;
+            border-color: rgba(var(--detail-accent-rgb), 0.5);
+        }
+
         /* ── Dark mode – tab section shared ── */
         html.dark .kursus-tab-title { color: var(--detail-accent-500, #8b5cf6); }
         html.dark .kursus-tab-section { border-color: rgba(255,255,255,0.07) !important; }
@@ -744,6 +773,18 @@
     }
     $detailEntityLabel = $detailProgramType === 'tvet' ? 'Pusat Bertauliah' : 'Institusi';
     $showCoursePrintButton = !in_array($detailProgramType, ['smart tahfiz', 'tahfiz'], true);
+    $detailPrintTheme = [
+        'accent600' => '#ea580c',
+        'rgb' => '234,88,12',
+    ];
+
+    if ($detailProgramType === 'tvet') {
+        $detailPrintTheme = ['accent600' => '#CC4100', 'rgb' => '255,81,0'];
+    } elseif ($detailProgramType === 'diploma') {
+        $detailPrintTheme = ['accent600' => '#7c3aed', 'rgb' => '124,58,237'];
+    } elseif ($detailProgramType === 'sains kesihatan') {
+        $detailPrintTheme = ['accent600' => '#2563eb', 'rgb' => '37,99,235'];
+    }
 
     $heroImage = optional($kursus->galeris->first())->imej
         ?? optional($kursus->institusi)->gambar_institusi
@@ -763,9 +804,9 @@
 
             @if($showCoursePrintButton)
                 <button type="button" onclick="printCourseInfoSections()"
-                    class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-semibold text-orange-700 shadow-sm transition hover:-translate-y-0.5 hover:border-orange-300 hover:bg-orange-50">
+                    class="kursus-detail-print-btn inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold">
                     <i class="fa-solid fa-print"></i>
-                    Cetak Info Kursus
+                    Cetak PDF
                 </button>
             @endif
         </div>
@@ -848,11 +889,11 @@
 
         function printCourseInfoSections() {
             const tabs = [
-                { title: 'Maklumat Am', url: '{{ route('kursus.tabmaklumat', $kursus->id) }}' },
-                { title: 'Syarat Kelayakan', url: '{{ route('kursus.tabsyarat', $kursus->id) }}' },
-                { title: 'Laluan Kerjaya', url: '{{ route('kursus.tabkerjaya', $kursus->id) }}' },
-                { title: 'Yuran & Pinjaman', url: '{{ route('kursus.tabyuran', $kursus->id) }}' },
-                { title: 'Galeri', url: '{{ route('kursus.tabgaleri', $kursus->id) }}' },
+                { key: 'maklumat', title: 'Maklumat Am', url: '{{ route('kursus.tabmaklumat', $kursus->id) }}' },
+                { key: 'syarat', title: 'Syarat Kelayakan', url: '{{ route('kursus.tabsyarat', $kursus->id) }}' },
+                { key: 'kerjaya', title: 'Laluan Kerjaya', url: '{{ route('kursus.tabkerjaya', $kursus->id) }}' },
+                { key: 'yuran', title: 'Yuran & Pinjaman', url: '{{ route('kursus.tabyuran', $kursus->id) }}' },
+                { key: 'galeri', title: 'Galeri', url: '{{ route('kursus.tabgaleri', $kursus->id) }}' },
             ];
 
             const printWindow = window.open('', '_blank', 'width=1200,height=1400');
@@ -872,10 +913,14 @@
                 const cleanedHtml = html
                     .replace(/<script[\s\S]*?<\/script>/gi, '')
                     .replace(/<h2\b[^>]*class="[^"]*(kursus-tab-title|kursus-tab-accent-strong)[^"]*"[^>]*>[\s\S]*?<\/h2>/gi, '');
+                const preview = document.createElement('div');
+                preview.innerHTML = cleanedHtml;
+                const imageCount = preview.querySelectorAll('img').length;
 
                 return {
                     title: tab.title,
                     html: cleanedHtml,
+                    printClass: tab.key === 'kerjaya' && imageCount === 2 ? 'course-print-section--kerjaya-two-images' : '',
                 };
             })).then((sections) => {
                 const heroImage = @json($heroImageUrl);
@@ -887,6 +932,7 @@
                 const tempoh = @json($kursus->tempoh ?? '');
                 const kuota = @json($kursus->kuota ?? '');
                 const tarikhPendaftaran = @json($kursus->tarikh_pendaftaran?->format('d M Y') ?? 'Sila Rujuk Pegawai Kami');
+                const printTheme = @json($detailPrintTheme);
 
                 const printHtml = `<!DOCTYPE html>
                     <html lang="ms">
@@ -1134,14 +1180,74 @@
                                 margin: 0 auto 12px;
                                 text-align: center;
                             }
+                            .course-print-section--kerjaya-two-images {
+                                padding: 14px 14px 16px;
+                            }
+                            .course-print-section--kerjaya-two-images > h2 {
+                                margin-bottom: 14px;
+                            }
+                            .course-print-section--kerjaya-two-images .kursus-tab-section {
+                                padding: 0 !important;
+                                border: 0 !important;
+                            }
+                            .course-print-section--kerjaya-two-images .grid {
+                                display: grid !important;
+                                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                                gap: 12px !important;
+                                align-items: stretch;
+                            }
+                            .course-print-section--kerjaya-two-images .kursus-tab-card,
+                            .course-print-section--kerjaya-two-images .rounded-3xl,
+                            .course-print-section--kerjaya-two-images .rounded-2xl {
+                                display: flex !important;
+                                align-items: center;
+                                justify-content: center;
+                                width: 100%;
+                                aspect-ratio: 2 / 1;
+                                padding: 0 !important;
+                                margin: 0 !important;
+                                border-radius: 12px;
+                                overflow: hidden;
+                            }
+                            .course-print-section--kerjaya-two-images img {
+                                width: 100% !important;
+                                max-width: none !important;
+                                height: 100% !important;
+                                margin: 0 !important;
+                                border-radius: 10px !important;
+                                object-fit: contain !important;
+                            }
+                            .course-print-toolbar {
+                                display: flex;
+                                justify-content: flex-end;
+                                margin: 0 0 14px;
+                            }
+                            .course-print-toolbar button {
+                                border: 0;
+                                border-radius: 999px;
+                                background: ${printTheme.accent600};
+                                color: #fff;
+                                padding: 10px 18px;
+                                font-size: 13px;
+                                font-weight: 800;
+                                cursor: pointer;
+                                box-shadow: 0 10px 22px rgba(${printTheme.rgb},0.18);
+                            }
+                            .course-print-toolbar button:hover {
+                                filter: brightness(1.04);
+                            }
                             @media print {
                                 body { background: #fff !important; }
+                                .course-print-toolbar { display: none !important; }
                                 .course-print-section { box-shadow: none !important; }
                             }
                         </style>
                     </head>
                     <body>
                         <div class="course-print-page">
+                            <div class="course-print-toolbar">
+                                <button type="button" onclick="window.print()">Cetak PDF</button>
+                            </div>
                             <section class="course-print-hero">
                                 <div class="course-print-hero__content">
                                     <div class="course-print-hero__body">
@@ -1162,7 +1268,7 @@
                                 </div>
                             </section>
                             ${sections.map(section => `
-                                <section class="course-print-section">
+                                <section class="course-print-section ${section.printClass}">
                                     <h2>${section.title}</h2>
                                     ${section.html}
                                 </section>
@@ -1175,7 +1281,6 @@
                 printWindow.document.write(printHtml);
                 printWindow.document.close();
                 printWindow.focus();
-                setTimeout(() => printWindow.print(), 600);
             }).catch((error) => {
                 console.error('Print course error:', error);
                 printWindow.document.write('<p>Error printing course details.</p>');
