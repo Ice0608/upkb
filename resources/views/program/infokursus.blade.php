@@ -1217,37 +1217,14 @@
                                 border-radius: 10px !important;
                                 object-fit: contain !important;
                             }
-                            .course-print-toolbar {
-                                display: flex;
-                                justify-content: flex-end;
-                                margin: 0 0 14px;
-                            }
-                            .course-print-toolbar button {
-                                border: 0;
-                                border-radius: 999px;
-                                background: ${printTheme.accent600};
-                                color: #fff;
-                                padding: 10px 18px;
-                                font-size: 13px;
-                                font-weight: 800;
-                                cursor: pointer;
-                                box-shadow: 0 10px 22px rgba(${printTheme.rgb},0.18);
-                            }
-                            .course-print-toolbar button:hover {
-                                filter: brightness(1.04);
-                            }
                             @media print {
                                 body { background: #fff !important; }
-                                .course-print-toolbar { display: none !important; }
                                 .course-print-section { box-shadow: none !important; }
                             }
                         </style>
                     </head>
                     <body>
                         <div class="course-print-page">
-                            <div class="course-print-toolbar">
-                                <button type="button" onclick="window.print()">Cetak PDF</button>
-                            </div>
                             <section class="course-print-hero">
                                 <div class="course-print-hero__content">
                                     <div class="course-print-hero__body">
@@ -1281,6 +1258,7 @@
                 printWindow.document.write(printHtml);
                 printWindow.document.close();
                 printWindow.focus();
+                setTimeout(() => printWindow.print(), 600);
             }).catch((error) => {
                 console.error('Print course error:', error);
                 printWindow.document.write('<p>Error printing course details.</p>');
