@@ -464,16 +464,44 @@
             color: var(--institusi-sains-500);
         }
 
+        .institusi-shell {
+            position: relative;
+        }
+
+        .institusi-shell::before {
+            content: "";
+            position: absolute;
+            inset: -1rem -2rem auto -2rem;
+            height: 12rem;
+            border-radius: 2rem;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+            filter: blur(28px);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
         .institusi-hero {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.86);
             background: linear-gradient(90deg, #115e59 0%, #14b8a6 55%, #2dd4bf 100%);
             box-shadow:
                 0 24px 70px rgba(15, 23, 42, 0.14),
                 0 0 68px rgba(20, 184, 166, 0.3),
                 0 0 130px rgba(45, 212, 191, 0.22),
                 inset 0 1px 0 rgba(255, 255, 255, 0.24);
+            isolation: isolate;
+        }
+
+        .institusi-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(115deg, rgba(255,255,255,0.22), rgba(255,255,255,0) 28%, rgba(255,255,255,0.08) 48%, rgba(255,255,255,0) 70%),
+                radial-gradient(circle at 82% 18%, rgba(255,255,255,0.16), transparent 24%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .institusi-hero::after {
@@ -529,14 +557,25 @@
         .institusi-toolbar {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(255, 255, 255, 0.84);
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 253, 250, 0.92)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(240, 253, 250, 0.94)),
                 linear-gradient(120deg, rgba(20, 184, 166, 0.06), rgba(45, 212, 191, 0.08));
             box-shadow:
-                0 24px 50px rgba(15, 23, 42, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
+                0 22px 46px rgba(15, 23, 42, 0.08),
+                0 0 26px rgba(20, 184, 166, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(18px);
+            transform: translateY(0);
+        }
+
+        .institusi-toolbar::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(20,184,166,0), rgba(20,184,166,0.42), rgba(20,184,166,0));
+            pointer-events: none;
         }
 
         .institusi-toolbar::after {
@@ -771,15 +810,18 @@
             border: 1px solid rgba(226, 232, 240, 0.92);
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
             box-shadow: 0 22px 48px rgba(15, 23, 42, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            isolation: isolate;
         }
 
         .institusi-card::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(140deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0));
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0.06));
             opacity: 0;
             pointer-events: none;
+            z-index: 0;
         }
 
         .institusi-card:hover,
@@ -789,6 +831,13 @@
             box-shadow:
                 0 30px 64px rgba(15, 23, 42, 0.14),
                 0 0 32px rgba(45, 212, 191, 0.12);
+        }
+
+        .institusi-card > a,
+        .institusi-card > .institusi-card-body,
+        .institusi-card > .institusi-card-media {
+            position: relative;
+            z-index: 1;
         }
 
         .institusi-slider-card.institusi-reveal-ready {
@@ -939,8 +988,19 @@
         }
 
             .institusi-card-body {
+                position: relative;
                 border-top: 1px solid rgba(0, 0, 0, 0.05);
-                background: linear-gradient(180deg, rgba(250, 250, 252, 0.6), rgba(255, 255, 255, 0.98));
+                background: linear-gradient(180deg, rgba(250, 250, 252, 0.7), rgba(255, 255, 255, 0.98));
+            }
+
+        .institusi-card-body::before {
+                content: "";
+                position: absolute;
+                inset: 0 auto auto 0;
+                width: 100%;
+                height: 1px;
+                background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0));
+                pointer-events: none;
             }
 
         .institusi-page--tvet .institusi-card-body {
@@ -1417,6 +1477,11 @@
                         @endif
                     </h1>
                     <p class="{{ $institusiIsTvet ? 'institusi-soft-text-tvet' : ($institusiIsDiploma ? 'institusi-soft-text-diploma' : ($institusiIsSainsKesihatan ? 'institusi-soft-text-sains-kesihatan' : 'text-teal-100')) }} mt-3 text-lg">Lihat semua {{ $institusiLabelLower }}, lokasi mereka dan ringkasan fasiliti serta kursus yang ditawarkan.</p>
+                    <div class="mt-6 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-white/90">
+                        <span class="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3 py-2 backdrop-blur-sm">+40 lokasi</span>
+                        <span class="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3 py-2 backdrop-blur-sm">Kursus terkemuka</span>
+                        <span class="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3 py-2 backdrop-blur-sm">Akses mudah</span>
+                    </div>
                 </div>
             </div>
         </div>
