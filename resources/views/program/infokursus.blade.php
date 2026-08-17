@@ -774,16 +774,41 @@
     $detailEntityLabel = $detailProgramType === 'tvet' ? 'Pusat Bertauliah' : 'Institusi';
     $showCoursePrintButton = !in_array($detailProgramType, ['smart tahfiz', 'tahfiz'], true);
     $detailPrintTheme = [
+        'accent500' => '#f97316',
         'accent600' => '#ea580c',
-        'rgb' => '234,88,12',
+        'accent700' => '#c2410c',
+        'heroStart' => '#f97316',
+        'heroMid' => '#ea580c',
+        'rgb' => '249,115,22',
     ];
 
     if ($detailProgramType === 'tvet') {
-        $detailPrintTheme = ['accent600' => '#CC4100', 'rgb' => '255,81,0'];
+        $detailPrintTheme = [
+            'accent500' => '#FF5100',
+            'accent600' => '#CC4100',
+            'accent700' => '#993100',
+            'heroStart' => '#FF5100',
+            'heroMid' => '#CC4100',
+            'rgb' => '255,81,0',
+        ];
     } elseif ($detailProgramType === 'diploma') {
-        $detailPrintTheme = ['accent600' => '#7c3aed', 'rgb' => '124,58,237'];
+        $detailPrintTheme = [
+            'accent500' => '#8b5cf6',
+            'accent600' => '#7c3aed',
+            'accent700' => '#6d28d9',
+            'heroStart' => '#8b5cf6',
+            'heroMid' => '#7c3aed',
+            'rgb' => '124,58,237',
+        ];
     } elseif ($detailProgramType === 'sains kesihatan') {
-        $detailPrintTheme = ['accent600' => '#2563eb', 'rgb' => '37,99,235'];
+        $detailPrintTheme = [
+            'accent500' => '#3b82f6',
+            'accent600' => '#2563eb',
+            'accent700' => '#1d4ed8',
+            'heroStart' => '#3b82f6',
+            'heroMid' => '#2563eb',
+            'rgb' => '37,99,235',
+        ];
     }
 
     $heroImage = optional($kursus->galeris->first())->imej
@@ -887,6 +912,102 @@
             });
         }
 
+        function getCourseImageKey(image) {
+            const src = image.getAttribute('src');
+            if (!src) return '';
+
+            try {
+                const url = new URL(src, window.location.origin);
+                return `${url.origin}${url.pathname}`;
+            } catch (error) {
+                return src.trim();
+            }
+        }
+
+        function loadImageForFingerprint(src) {
+            return new Promise(resolve => {
+                const fingerprintImage = new Image();
+                try {
+                    if (new URL(src, window.location.origin).origin !== window.location.origin) {
+                        fingerprintImage.crossOrigin = 'anonymous';
+                    }
+                } catch (error) {
+                    fingerprintImage.crossOrigin = 'anonymous';
+                }
+                fingerprintImage.onload = () => resolve(fingerprintImage);
+                fingerprintImage.onerror = () => resolve(null);
+                fingerprintImage.src = src;
+            });
+        }
+
+        async function getCourseImageFingerprint(image) {
+            const src = image.getAttribute('src');
+            const urlKey = getCourseImageKey(image);
+            if (!src) return '';
+
+            let absoluteSrc = src;
+            try {
+                absoluteSrc = new URL(src, window.location.origin).href;
+            } catch (error) {
+                absoluteSrc = src;
+            }
+
+            const loadedImage = await loadImageForFingerprint(absoluteSrc);
+            if (!loadedImage) return urlKey;
+
+            try {
+                const canvas = document.createElement('canvas');
+                const size = 48;
+                canvas.width = size;
+                canvas.height = size;
+                const context = canvas.getContext('2d', { willReadFrequently: true });
+                context.drawImage(loadedImage, 0, 0, size, size);
+                const data = context.getImageData(0, 0, size, size).data;
+                let hash = 2166136261;
+
+                for (let index = 0; index < data.length; index += 4) {
+                    hash ^= data[index] >> 4;
+                    hash = Math.imul(hash, 16777619);
+                    hash ^= data[index + 1] >> 4;
+                    hash = Math.imul(hash, 16777619);
+                    hash ^= data[index + 2] >> 4;
+                    hash = Math.imul(hash, 16777619);
+                    hash ^= data[index + 3] >> 4;
+                    hash = Math.imul(hash, 16777619);
+                }
+
+                return (hash >>> 0).toString(16);
+            } catch (error) {
+                return urlKey;
+            }
+        }
+
+        async function removeDuplicateCourseImages(container) {
+            const seenImages = new Set();
+
+            for (const image of Array.from(container.querySelectorAll('img[data-lightbox]'))) {
+                const imageKey = await getCourseImageFingerprint(image);
+                if (!imageKey) continue;
+
+                if (seenImages.has(imageKey)) {
+                    const removable = image.closest('.kursus-tab-card, .gallery-item, figure, a') || image;
+                    removable.remove();
+                    continue;
+                }
+
+                seenImages.add(imageKey);
+            }
+        }
+
+        async function cleanCourseInfoHtml(html) {
+            const preview = document.createElement('div');
+            preview.innerHTML = html
+                .replace(/<script[\s\S]*?<\/script>/gi, '')
+                .replace(/<h2\b[^>]*class="[^"]*(kursus-tab-title|kursus-tab-accent-strong)[^"]*"[^>]*>[\s\S]*?<\/h2>/gi, '');
+            await removeDuplicateCourseImages(preview);
+            return preview.innerHTML;
+        }
+
         function printCourseInfoSections() {
             const tabs = [
                 { key: 'maklumat', title: 'Maklumat Am', url: '{{ route('kursus.tabmaklumat', $kursus->id) }}' },
@@ -910,9 +1031,7 @@
                     }
                 });
                 const html = await response.text();
-                const cleanedHtml = html
-                    .replace(/<script[\s\S]*?<\/script>/gi, '')
-                    .replace(/<h2\b[^>]*class="[^"]*(kursus-tab-title|kursus-tab-accent-strong)[^"]*"[^>]*>[\s\S]*?<\/h2>/gi, '');
+                const cleanedHtml = await cleanCourseInfoHtml(html);
                 const preview = document.createElement('div');
                 preview.innerHTML = cleanedHtml;
                 const imageCount = preview.querySelectorAll('img').length;
@@ -966,19 +1085,29 @@
                                 padding: 0;
                             }
                             .course-print-hero {
+                                position: relative;
                                 margin: 0 0 12px;
                                 border-radius: 22px;
                                 overflow: hidden;
-                                background: linear-gradient(135deg, #f59e0b 0%, #f97316 28%, #ea580c 100%);
-                                box-shadow: 0 14px 28px rgba(249,115,22,0.16);
+                                box-shadow: 0 14px 28px rgba(${printTheme.rgb},0.16);
+                                color: #fff;
+                            }
+                            .course-print-hero__ink {
+                                position: absolute;
+                                inset: 0;
+                                width: 100%;
+                                height: 100%;
+                                display: block;
+                                z-index: 0;
                             }
                             .course-print-hero__content {
                                 position: relative;
                                 display: flex;
                                 min-height: 240px;
+                                z-index: 2;
                             }
                             .course-print-hero__body {
-                                flex: 1;
+                                flex: 0 0 65%;
                                 padding: 16px 18px 14px;
                                 color: #fff;
                                 z-index: 2;
@@ -1038,7 +1167,7 @@
                             .course-print-hero__cta {
                                 display: inline-block;
                                 background: rgba(255,255,255,0.96);
-                                color: #c2410c;
+                                color: ${printTheme.accent700};
                                 border-radius: 999px;
                                 padding: 12px 22px;
                                 font-weight: 800;
@@ -1046,20 +1175,16 @@
                                 box-shadow: 0 10px 22px rgba(15,23,42,0.08);
                             }
                             .course-print-hero__visual {
-                                position: relative;
-                                width: 35%;
-                                min-width: 230px;
-                                background: rgba(15,23,42,0.10);
-                            }
-                            .course-print-hero__visual::before {
-                                content: "";
                                 position: absolute;
-                                inset: 0;
-                                background-image: url('${heroImage}');
-                                background-size: cover;
-                                background-position: center;
+                                inset: 0 0 0 auto;
+                                width: 35%;
+                                height: 100%;
+                                min-width: 230px;
+                                display: block;
+                                object-fit: cover;
+                                object-position: center;
                                 filter: saturate(1.05) contrast(1.04);
-                                opacity: 0.9;
+                                z-index: 1;
                             }
                             .course-print-section {
                                 margin: 0 0 20px;
@@ -1076,8 +1201,8 @@
                             .course-print-section > h2 {
                                 margin: 0 0 18px;
                                 padding-bottom: 10px;
-                                border-bottom: 2px solid rgba(234,88,12,0.15);
-                                color: #ea580c;
+                                border-bottom: 2px solid rgba(${printTheme.rgb},0.15);
+                                color: ${printTheme.accent600};
                                 font-size: 24px;
                                 font-weight: 800;
                                 text-align: center;
@@ -1095,6 +1220,10 @@
                                 color: #0f172a;
                                 line-height: 1.6;
                                 word-wrap: break-word;
+                            }
+                            .course-print-section .kursus-tab-accent,
+                            .course-print-section .kursus-tab-accent-strong {
+                                color: ${printTheme.accent600} !important;
                             }
                             .course-print-section .grid {
                                 display: grid !important;
@@ -1226,6 +1355,12 @@
                     <body>
                         <div class="course-print-page">
                             <section class="course-print-hero">
+                                <svg class="course-print-hero__ink" viewBox="0 0 1000 240" preserveAspectRatio="none" aria-hidden="true">
+                                    <rect x="0" y="0" width="660" height="240" rx="22" ry="22" fill="${printTheme.heroStart}"></rect>
+                                    <rect x="635" y="0" width="55" height="240" fill="${printTheme.heroMid}" opacity="0.94"></rect>
+                                    <rect x="690" y="0" width="310" height="240" fill="#0f172a" opacity="0.08"></rect>
+                                </svg>
+                                <img class="course-print-hero__visual" src="${heroImage}" alt="">
                                 <div class="course-print-hero__content">
                                     <div class="course-print-hero__body">
                                         <div class="course-print-hero__badge-row">
@@ -1241,7 +1376,6 @@
                                             <span>Daftar ${tarikhPendaftaran}</span>
                                         </div>
                                     </div>
-                                    <div class="course-print-hero__visual" aria-hidden="true"></div>
                                 </div>
                             </section>
                             ${sections.map(section => `
@@ -1294,9 +1428,11 @@
                 runLoadedScripts(tabContent);
                 initializeLoadedYuran(tabContent);
                 // Re-bind lightbox for dynamically loaded content
-                if (window.lightbox) {
-                    window.lightbox.bindImages();
-                }
+                removeDuplicateCourseImages(tabContent).finally(() => {
+                    if (window.lightbox) {
+                        window.lightbox.bindImages();
+                    }
+                });
                 // Animate tab content reveal (small fade/slide)
                 try {
                     tabContent.classList.remove('tab-content--visible');
